@@ -1,0 +1,72 @@
+spring:
+  application:
+    name: lens-platform-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: public
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: public
+        file-extension: yml
+        group: DEFAULT_GROUP
+    gateway:
+      routes:
+        # Auth Service
+        - id: auth-service
+          uri: lb://lens-platform-auth
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+
+        # System Service
+        - id: system-service
+          uri: lb://lens-platform-system
+          predicates:
+            - Path=/system/**
+          filters:
+            - StripPrefix=1
+
+        # Monitor Service
+        - id: monitor-service
+          uri: lb://lens-platform-monitor
+          predicates:
+            - Path=/monitor/**
+          filters:
+            - StripPrefix=1
+
+        # Blog Service
+        - id: blog-service
+          uri: lb://lens-blog-backend
+          predicates:
+            - Path=/blog/**
+          filters:
+            - StripPrefix=1
+
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+            maxAge: 3600
+
+server:
+  port: 8888
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    root: INFO
+    com.lens: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
