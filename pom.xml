@@ -12,10 +12,13 @@
 
     <modules>
         <module>parent-poms</module>
-        <module>infra</module>
+
+
         <module>common</module>
+        <module>infra</module>
         <module>platform</module>
         <module>lens-blog</module>
+
     </modules>
 
 </project>

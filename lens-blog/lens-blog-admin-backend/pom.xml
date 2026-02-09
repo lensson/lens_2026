@@ -3,20 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>com.lens</groupId>
-        <artifactId>parent-pom</artifactId>
+        <artifactId>lens-blog</artifactId>
         <version>2.0.0-SNAPSHOT</version>
-        <relativePath>../parent-poms/pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
-
-    <artifactId>infra</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
-    <name>lens_2026/infra</name>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>lens-infra-nginx</module>
-    </modules>
+    <artifactId>lens-blog-admin-backend</artifactId>
+    <name>lens-blog-admin-backend</name>
+    <packaging>jar</packaging>
 </project>

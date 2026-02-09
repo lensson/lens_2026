@@ -1,0 +1,25 @@
+**/.project
+**/.settings
+**/src/test/java/META-INF/
+**/bin/*
+**/.classpath
+**/target
+**/bower_components/
+**/.tmp/
+**/dist/
+**/node_modules/
+**/*~
+# all iml files
+**/*.iml
+**/*.ipr
+**/*.iws
+.idea/
+**/npm-debug.log
+**/yarn-error.log
+**/build-info.json
+**/.yarn-cache/
+# all flattened pom files
+**/.flattened-pom.xml
+dependency-reduced-pom.xml
+**/.mvn/*
+**/yang.lock
