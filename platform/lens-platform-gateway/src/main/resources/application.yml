@@ -1,0 +1,30 @@
+# Application configuration for lens-platform-gateway
+# Nacos configuration using spring.config.import (modern approach)
+# All business properties are loaded from Nacos (namespace: lens_2026, dataId: lens-platform-gateway.yaml)
+
+server:
+  port: 8050  # Default port, can be overridden by Nacos config
+
+spring:
+  application:
+    name: lens-platform-gateway
+  config:
+    import:
+      - nacos:lens-platform-gateway.yaml?group=DEFAULT_GROUP&namespace=lens_2026&refresh=true
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+        file-extension: yaml
+        namespace: lens_2026
+        group: DEFAULT_GROUP
+        # Enable Nacos config
+        enabled: true
+        # Refresh config automatically
+        refresh-enabled: true
+      discovery:
+        server-addr: localhost:8848
+        namespace: lens_2026
+        enabled: true
+

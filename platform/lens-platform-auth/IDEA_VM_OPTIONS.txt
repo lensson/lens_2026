@@ -1,0 +1,17 @@
+# VM Options for IntelliJ IDEA Spring Boot Run Configuration
+# Copy these options to your Run Configuration in IDEA:
+# Run → Edit Configurations → Select lens-platform-auth → VM options
+
+# Enable Nacos config logging
+-Dlogging.level.com.alibaba.cloud.nacos.client=DEBUG
+-Dlogging.level.com.alibaba.nacos=DEBUG
+
+# Enable Spring Cloud config logging
+-Dlogging.level.org.springframework.cloud.context=DEBUG
+-Dlogging.level.org.springframework.cloud.bootstrap=DEBUG
+
+# Enable config data logging
+-Dlogging.level.org.springframework.boot.context.config=DEBUG
+
+# Optional: Override Nacos server address
+# -Dnacos=localhost

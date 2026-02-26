@@ -50,7 +50,7 @@ public class OpenAPIConfig {
                 .addSecurityItem(new SecurityRequirement().addList(OAUTH_SCHEME_NAME))
                 .servers(List.of(new Server().url(url)))
                 .info(new Info().title(serviceTitle)
-                        .description("System Platform API")
+                        .description("Lens Auth Platform API")
                         .version(serviceVersion));
     }
 

@@ -89,6 +89,10 @@ cd ../lens_2026_deployment/chentown_cn/3rd-party
 # 启动Nacos（服务注册中心）
 ./lens-nacos/start.sh
 
+# 上传服务配置到Nacos
+cd /home/zhenac/my/lens_2026/doc/nacos-backup
+./upload-all-configs.sh
+
 # 启动其他基础服务
 ./lens-zipkin/start.sh
 ./lens-rabbitmq/start.sh
@@ -152,6 +156,37 @@ cd ../lens-blog
 | Zipkin | latest | 分布式追踪 |
 | Nginx | latest | 反向代理 |
 
+### 配置管理
+- **配置方式**: 使用 `spring.config.import` 从 Nacos 导入配置
+- **配置文件**: 仅使用 `application.yml`（已移除 `bootstrap.yml` 和 `application.properties`）
+- **动态刷新**: 支持配置热更新，无需重启服务
+- **环境隔离**: 通过 Nacos namespace 区分不同环境
+- **加载顺序**: Nacos配置在服务器启动前加载，确保端口等关键配置正确应用
+
+**配置示例:**
+```yaml
+server:
+  port: 8050  # 默认端口，可被Nacos配置覆盖
+
+spring:
+  application:
+    name: lens-platform-gateway
+  config:
+    import:
+      - nacos:lens-platform-gateway.yaml?refresh=true
+  cloud:
+    nacos:
+      server-addr: ${nacos:localhost}:8848
+      config:
+        file-extension: yaml
+        namespace: lens_2026
+```
+
+**重要说明:**
+- 不使用 `optional:` 前缀，确保Nacos配置在服务器启动前加载
+- 本地配置 `server.port` 作为后备，防止Nacos不可用时无法启动
+- Nacos中的配置会覆盖本地配置
+
 ## 📦 模块说明
 
 ### parent-poms 模块
@@ -198,6 +233,86 @@ cd ../lens-blog
 - `lens-blog-frontend`: 前端应用（Vue.js或React）
 - `lens-blog-search`: 全文搜索功能，集成Elasticsearch或Solr
 - `lens-blog-picture`: 图片管理和CDN分发
+
+## 📝 Nacos配置管理
+
+### 配置概述
+
+所有平台服务使用Nacos作为集中配置管理中心。配置文件存储在 `/doc/nacos-backup/` 目录下。
+
+### 配置文件列表
+
+| 服务名称 | Data ID | 端口 | 说明 |
+|---------|---------|------|------|
+| lens-platform-auth | lens-platform-auth.yaml | 8041 | 认证服务配置 |
+| lens-platform-gateway | lens-platform-gateway.yaml | 8050 | API网关配置 |
+| lens-platform-system | lens-platform-system.yaml | 8042 | 系统管理服务配置 |
+| lens-platform-monitor | lens-platform-monitor.yaml | 8043 | 监控服务配置 |
+
+**Nacos参数:**
+- **Namespace**: `lens_2026`
+- **Group**: `DEFAULT_GROUP`
+- **Format**: `yaml`
+
+### 上传配置到Nacos
+
+**方式一：使用自动化脚本（推荐）**
+```bash
+cd /home/zhenac/my/lens_2026/doc/nacos-backup
+./upload-all-configs.sh
+```
+
+**方式二：单独上传某个服务配置**
+```bash
+cd /home/zhenac/my/lens_2026/doc/nacos-backup
+./upload-auth-config.sh
+```
+
+**方式三：手动上传**
+1. 访问 Nacos 控制台: http://localhost:8848/nacos
+2. 登录（默认用户名/密码: nacos/nacos）
+3. 进入"配置管理" -> "配置列表"
+4. 切换到命名空间: `lens_2026`
+5. 点击 "+" 创建配置
+6. 填写 Data ID (如 `lens-platform-auth.yaml`)、Group (`DEFAULT_GROUP`)
+7. 选择格式为 `YAML`
+8. 复制对应的yaml文件内容并保存
+
+### 验证配置
+
+上传后可以通过以下命令验证配置是否正确加载：
+```bash
+# 查看某个服务的配置
+curl "http://localhost:8848/nacos/v1/cs/configs?dataId=lens-platform-auth.yaml&group=DEFAULT_GROUP&tenant=lens_2026"
+```
+
+### JWT配置说明
+
+**重要:** 所有需要JWT认证的服务必须配置 `jwk-set-uri` 而不是 `issuer-uri`。
+
+**正确配置 (使用 jwk-set-uri):**
+```yaml
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/realms/lens/protocol/openid-connect/certs
+```
+
+**错误配置 (使用 issuer-uri):**
+```yaml
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/lens  # ❌ 会在启动时连接Keycloak
+```
+
+**区别:**
+- `jwk-set-uri`: 延迟加载，仅在验证JWT时才连接Keycloak，启动时不需要Keycloak运行
+- `issuer-uri`: 启动时立即连接Keycloak获取OIDC配置，如果Keycloak未运行会导致启动失败
 
 ## 🔐 安全性
 
@@ -312,12 +427,25 @@ git commit -m "feat: add new feature @copilot"
 
 ## 📚 相关文档
 
+- [项目变更历史](./HISTORY.md) - 所有配置更新、迁移和问题修复的完整记录
 - [部署指南](../lens_2026_deployment/README.md) - 完整的部署和运维文档
 - [项目模块总结](../MODULES_SUMMARY.md) - 所有项目的模块详细说明
 - [API文档](./docs/API.md) - API接口文档（待完善）
 - [架构设计](./docs/ARCHITECTURE.md) - 系统架构和设计文档（待完善）
 
 ## 🔍 常见问题
+
+### Q: 配置文件在哪里？
+A: 项目使用`application.yml`作为主配置文件，通过`spring.config.import`从Nacos加载远程配置。不再使用`bootstrap.yml`和`application.properties`。详见[HISTORY.md](./HISTORY.md)。
+
+### Q: 如何修改Nacos配置中心地址？
+A: 在各服务的`application.yml`中修改`spring.cloud.nacos.server-addr`配置项，或通过环境变量`nacos`覆盖，例如：`${nacos:localhost}:8848`。
+
+### Q: 为什么不使用bootstrap.yml了？
+A: 从Spring Cloud 2020.0开始，推荐使用`spring.config.import`在`application.yml`中导入配置，这是更现代、更简洁的方式，无需`spring-cloud-starter-bootstrap`依赖。详见[HISTORY.md](./HISTORY.md)的迁移说明。
+
+### Q: 服务启动失败怎么办？
+A: 查看[HISTORY.md](./HISTORY.md)中的故障排查部分，包含常见问题和解决方案。
 
 ### Q: 如何修改数据库连接配置？
 A: 在 `lens-common-mariadb` 模块中修改 `application.yml`，或通过Nacos配置中心动态修改。
@@ -352,7 +480,131 @@ Lens Team - 高效、可靠、易用的微服务平台
 
 ---
 
-**最后更新**: 2026-01-22  
+**最后更新**: 2026-02-24  
 **当前版本**: 2.0.0-SNAPSHOT  
 **Spring Boot版本**: 3.2.0  
-**Java版本**: 21
+**Java版本**: 21  
+**配置方式**: spring.config.import (已移除 bootstrap.yml)
+## 🔧 环境配置
+### 环境变量管理
+项目使用集中的环境配置文件管理所有服务的环境变量。
+#### 加载环境
+```bash
+# 加载环境变量
+source doc/env/lens_2026.env
+# 查看当前配置
+source doc/env/lens_2026.env --show
+```
+#### 启动服务
+```bash
+# 使用启动脚本（推荐）
+./scripts/start-services.sh start                         # 启动所有服务
+./scripts/start-services.sh start lens-platform-gateway   # 启动单个服务
+./scripts/start-services.sh status                        # 检查状态
+./scripts/start-services.sh stop                          # 停止服务
+```
+#### 关键环境变量
+| 类别 | 变量 | 默认值 |
+|------|------|--------|
+| **Gateway** | GATEWAY_PORT, GATEWAY_URL | 8050, http://localhost:8050 |
+| **Auth** | AUTH_PORT, AUTH_URL | 8041, http://localhost:8041 |
+| **System** | SYSTEM_PORT, SYSTEM_URL | 8042, http://localhost:8042 |
+| **Monitor** | MONITOR_PORT, MONITOR_URL | 8043, http://localhost:8043 |
+| **Keycloak** | KEYCLOAK_URL, KEYCLOAK_REALM | http://172.28.0.1:28080, lens |
+| **Nacos** | NACOS_SERVER_ADDR, NACOS_NAMESPACE | localhost:8848, lens_2026 |
+| **Database** | DB_HOST, DB_PORT, DB_NAME, DB_USERNAME | localhost, 33306, lens_2026, lens |
+### Nacos 配置管理
+#### 配置文件位置
+所有Nacos配置备份在: `/doc/nacos-backup/`
+- lens-platform-gateway.yaml
+- lens-platform-auth.yaml
+- lens-platform-system.yaml
+- lens-platform-monitor.yaml
+#### 上传配置到 Nacos
+```bash
+cd doc/nacos-backup
+./upload-all-configs.sh
+```
+#### 验证配置
+```bash
+# 查看特定配置
+curl "http://localhost:8848/nacos/v1/cs/configs?dataId=lens-platform-gateway.yaml&group=DEFAULT_GROUP&tenant=lens_2026"
+# 列出所有配置
+curl "http://localhost:8848/nacos/v1/cs/configs?search=accurate&pageNo=1&pageSize=100&tenant=lens_2026&group=DEFAULT_GROUP"
+```
+### Gateway 路由配置
+Gateway 使用 RESTful 风格的路由:
+```
+/v2/lens/platform/auth/**     → lens-platform-auth
+/v2/lens/platform/system/**   → lens-platform-system
+/v2/lens/platform/monitor/**  → lens-platform-monitor
+```
+**示例:**
+```bash
+# Auth 服务
+curl http://localhost:8050/v2/lens/platform/auth/login
+# System 服务
+curl http://localhost:8050/v2/lens/platform/system/users
+# Monitor 服务
+curl http://localhost:8050/v2/lens/platform/monitor/actuator/health
+```
+## 🐛 故障排查
+### 常见问题
+#### 1. 服务无法启动 - 无法连接 Keycloak
+**错误:**
+```
+Unable to resolve the Configuration with the provided Issuer
+```
+**解决方案:**
+确保使用 `jwk-set-uri` 而不是 `issuer-uri`：
+```yaml
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://172.28.0.1:28080/realms/lens/protocol/openid-connect/certs
+```
+#### 2. 配置未从 Nacos 加载
+**错误:**
+```
+[Nacos Config] config[dataId=lens-platform-auth.yaml] is empty
+```
+**解决方案:**
+```bash
+# 上传配置到 Nacos
+cd doc/nacos-backup
+./upload-all-configs.sh
+# 验证 namespace 和 group 设置正确
+```
+#### 3. 端口已被占用
+**解决方案:**
+```bash
+# 查找占用端口的进程
+lsof -i :8050
+# 终止进程
+kill -9 <PID>
+# 或修改环境变量使用不同端口
+export GATEWAY_PORT=9050
+```
+### 有用的命令
+```bash
+# 重新构建所有模块
+mvn clean install -DskipTests
+# 运行特定模块
+cd platform/lens-platform-auth
+mvn spring-boot:run
+# 上传所有配置到 Nacos
+cd doc/nacos-backup
+./upload-all-configs.sh
+# 检查运行的 Java 进程
+jps -l
+# 检查 Nacos 健康状态
+curl http://localhost:8848/nacos/v1/console/health/readiness
+```
+## 📚 文档
+- **README.md** - 本文件，项目主文档
+- **doc/HISTORY.md** - 详细变更历史和技术文档
+- **doc/env/lens_2026.env** - 环境变量配置文件
+- **doc/nacos-backup/** - Nacos 配置备份
+- **scripts/start-services.sh** - 服务管理脚本

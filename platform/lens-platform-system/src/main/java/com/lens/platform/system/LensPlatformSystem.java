@@ -20,8 +20,8 @@ import java.util.TimeZone;
 @OpenAPIDefinition(
         info = @Info(
                 title = "Lens Platform System",
-                version = "1.0",
-                description = "Platform System Documentation v1.0"))
+                version = "2.0",
+                description = "Platform System Documentation v2.0"))
 public class LensPlatformSystem {
 
 

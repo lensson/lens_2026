@@ -22,8 +22,8 @@ import java.util.TimeZone;
 @OpenAPIDefinition(
         info = @Info(
                 title = "Lens Platform Auth",
-                version = "1.0",
-                description = "Auth Gateway Documentation v1.0"))
+                version = "2.0",
+                description = "Lens Platform Auth Documentation v2.0"))
 public class LensPlatformAuth {
 
     public static void main(String[] args) {

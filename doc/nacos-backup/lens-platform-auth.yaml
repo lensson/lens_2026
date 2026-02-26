@@ -1,0 +1,60 @@
+# Nacos Configuration for lens-platform-auth
+# Namespace: lens_2026
+# Group: DEFAULT_GROUP
+# Data ID: lens-platform-auth.yaml
+#
+# Environment variables required:
+# - AUTH_PORT, JWT_JWK_SET_URI, KEYCLOAK_URL, KEYCLOAK_REALM, OPENAPI_VERSION
+# - LOG_LEVEL_ROOT, LOG_LEVEL_LENS, LOG_LEVEL_SPRING_SECURITY
+
+server:
+  port: ${AUTH_PORT:8041}
+
+spring:
+  application:
+    name: lens-platform-auth
+
+  # Security & OAuth2 JWT Configuration
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # JWK Set URI - used to fetch public keys for JWT validation
+          # This approach avoids connecting to Keycloak during application startup
+          jwk-set-uri: ${JWT_JWK_SET_URI:http://172.28.0.1:28080/realms/lens/protocol/openid-connect/certs}
+          # Alternative: Use issuer-uri (connects at startup to fetch OIDC config)
+          # issuer-uri: ${JWT_ISSUER_URI:http://172.28.0.1:28080/realms/lens}
+
+# OpenAPI Configuration
+openapi:
+  service:
+    title: Lens Platform Auth API
+    version: ${OPENAPI_VERSION:2.0.0}
+    url: ${AUTH_URL:http://localhost:8041}
+
+# Keycloak Configuration
+keycloak:
+  url: ${KEYCLOAK_URL:http://172.28.0.1:28080}
+  realm: ${KEYCLOAK_REALM:lens}
+
+# Logging Configuration
+logging:
+  level:
+    root: ${LOG_LEVEL_ROOT:INFO}
+    com.lens: ${LOG_LEVEL_LENS:DEBUG}
+    org.springframework.security: ${LOG_LEVEL_SPRING_SECURITY:DEBUG}
+    org.springframework.cloud.gateway: DEBUG
+
+# Management & Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true

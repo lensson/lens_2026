@@ -28,7 +28,7 @@ import java.util.List;
         flows = @OAuthFlows(
                 authorizationCode =
         @OAuthFlow(
-                authorizationUrl = "${keycloak.url}/realms/${keycloak.realm}/protocol/openid-connect/auth",
+                authorizationUrl = "${keycloak.url}/realms/${keycloak.realm:My-Realm}/protocol/openid-connect/auth",
                 scopes = {
                         @OAuthScope(name = "VIEW", description = "read scope"),
                         @OAuthScope(name = "ADMIN", description = "write scope")
@@ -40,9 +40,9 @@ public class OpenAPIConfig {
 
     @Bean
     public OpenAPI customOpenAPI(
-            @Value("${openapi.service.title}") String serviceTitle,
-            @Value("${openapi.service.version}") String serviceVersion,
-            @Value("${openapi.service.url}") String url  ) {
+            @Value("${openapi.service.title:Lens Platform Gateway API}") String serviceTitle,
+            @Value("${openapi.service.version:2.0.0}") String serviceVersion,
+            @Value("${openapi.service.url:http://localhost:8050}") String url) {
         return new OpenAPI().servers(
                     List.of(new Server().url(url))
                 )

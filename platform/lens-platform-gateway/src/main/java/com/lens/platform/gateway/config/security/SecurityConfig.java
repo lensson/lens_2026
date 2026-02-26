@@ -33,7 +33,11 @@ public class SecurityConfig {
     public CorsWebFilter corsWebFilter() {
         final CorsConfiguration corsConfig = new CorsConfiguration();
 
-        String [] allowedList = {"http://172.28.0.1:8840","http://localhost:8840","http://localhost", "http://localhost:8849"};
+        String [] allowedList = {
+                "http://172.28.0.1:8848",
+                "http://localhost:8840",
+                "http://localhost",
+                "http://localhost:8849"};
         corsConfig.setAllowedOrigins(Arrays.asList(allowedList));
         corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "HEAD", "PUT", "DELETE"));
         corsConfig.setAllowCredentials(true);

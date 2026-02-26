@@ -1,0 +1,71 @@
+# Nacos Configuration for lens-platform-gateway
+# Namespace: lens_2026
+# Group: DEFAULT_GROUP
+# Data ID: lens-platform-gateway.yaml
+#
+# Environment variables required:
+# - GATEWAY_PORT, KEYCLOAK_URL, KEYCLOAK_REALM, OPENAPI_VERSION
+# - LOG_LEVEL_ROOT, LOG_LEVEL_LENS, LOG_LEVEL_SPRING_GATEWAY
+
+server:
+  port: ${GATEWAY_PORT:8050}
+
+spring:
+  application:
+    name: lens-platform-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: lens-platform-auth
+          uri: lb://lens-platform-auth
+          predicates:
+            - Path=/v2/lens/platform/auth/**
+          filters:
+            - StripPrefix=4
+        - id: lens-platform-system
+          uri: lb://lens-platform-system
+          predicates:
+            - Path=/v2/lens/platform/system/**
+          filters:
+            - StripPrefix=4
+        - id: lens-platform-monitor
+          uri: lb://lens-platform-monitor
+          predicates:
+            - Path=/v2/lens/platform/monitor/**
+          filters:
+            - StripPrefix=4
+
+# OpenAPI Configuration
+openapi:
+  service:
+    title: Lens Platform Gateway API
+    version: ${OPENAPI_VERSION:2.0.0}
+    url: ${GATEWAY_URL:http://localhost:8050}
+
+# Keycloak Configuration
+keycloak:
+  url: ${KEYCLOAK_URL:http://172.28.0.1:28080}
+  realm: ${KEYCLOAK_REALM:lens}
+
+# Logging Configuration
+logging:
+  level:
+    root: ${LOG_LEVEL_ROOT:INFO}
+    com.lens: ${LOG_LEVEL_LENS:DEBUG}
+    org.springframework.cloud.gateway: ${LOG_LEVEL_SPRING_GATEWAY:DEBUG}
+
+# Management & Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,gateway
+  endpoint:
+    health:
+      show-details: always
+    gateway:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true

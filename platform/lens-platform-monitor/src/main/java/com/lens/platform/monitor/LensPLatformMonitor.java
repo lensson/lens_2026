@@ -16,7 +16,7 @@ import java.util.TimeZone;
 @SpringBootApplication
 @OpenAPIDefinition(
         info = @Info(
-                title = "Lens Platform Gateway",
+                title = "Lens Platform Monitor",
                 version = "2.0",
                 description = "Platform Monitor Documentation v2.0"))
 public class LensPLatformMonitor {

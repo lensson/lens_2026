@@ -10,6 +10,6 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>lens-blog-persistence</artifactId>
-    <name>lens-blog-persistence</name>
+    <name>lens_2026/lens-blog/lens-blog-persistence</name>
     <packaging>jar</packaging>
 </project>

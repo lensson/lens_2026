@@ -1,0 +1,46 @@
+# Nacos Configuration for lens-platform-monitor
+# Namespace: lens_2026
+# Group: DEFAULT_GROUP
+# Data ID: lens-platform-monitor.yaml
+#
+# Environment variables required:
+# - MONITOR_PORT, OPENAPI_VERSION, LOG_LEVEL_ROOT, LOG_LEVEL_LENS
+
+server:
+  port: ${MONITOR_PORT:8043}
+
+spring:
+  application:
+    name: lens-platform-monitor
+
+  # Spring Boot Admin Server Configuration
+  boot:
+    admin:
+      context-path: ${SPRING_BOOT_ADMIN_CONTEXT_PATH:/admin}
+
+# OpenAPI Configuration
+openapi:
+  service:
+    title: Lens Platform Monitor API
+    version: ${OPENAPI_VERSION:2.0.0}
+    url: ${MONITOR_URL:http://localhost:8043}
+
+# Logging Configuration
+logging:
+  level:
+    root: ${LOG_LEVEL_ROOT:INFO}
+    com.lens: ${LOG_LEVEL_LENS:DEBUG}
+
+# Management & Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true

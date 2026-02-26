@@ -10,6 +10,6 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>lens-common-redis</artifactId>
-    <name>lens-common-redis</name>
+    <name>lens_2026/common/lens-common-redis</name>
     <packaging>jar</packaging>
 </project>
