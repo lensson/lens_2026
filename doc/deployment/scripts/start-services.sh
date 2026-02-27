@@ -4,10 +4,10 @@
 
 # Get the project root directory
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 
 # Load environment variables
-ENV_FILE="$PROJECT_ROOT/doc/env/lens_2026.env"
+ENV_FILE="$PROJECT_ROOT/conf/env/lens_2026.env"
 
 if [ ! -f "$ENV_FILE" ]; then
     echo "❌ Error: Environment file not found: $ENV_FILE"

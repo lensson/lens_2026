@@ -1,5 +1,1367 @@
 # lens_2026 Project History
 
+## 2026-02-27: Fixed Service Startup Failure - Made Nacos Config Import Optional
+
+### Overview
+Fixed services failing to start when Nacos configuration cannot be loaded by making the config import optional.
+
+### Problem
+
+Services failed to start with error:
+```
+Check that the value 'nacos:lens-platform-auth.yaml?group=DEFAULT_GROUP&namespace=lens_2026&refresh=true' 
+at class path resource [application.yml] is correct, or prefix it with 'optional:'
+```
+
+**Impact:**
+- Services cannot start if Nacos is unavailable
+- Services cannot start if config doesn't exist in Nacos
+- No graceful fallback to local configuration
+- Development becomes difficult without Nacos running
+
+### Root Cause
+
+The `spring.config.import` in `application.yml` was configured as **mandatory**:
+
+```yaml
+spring:
+  config:
+    import:
+      - nacos:lens-platform-auth.yaml?group=DEFAULT_GROUP&namespace=lens_2026&refresh=true
+```
+
+Spring Boot treats this as a required configuration source. If it cannot load the config:
+- Application startup fails immediately
+- No fallback to local configuration
+- No graceful degradation
+
+### Solution Implemented
+
+Added `optional:` prefix to make Nacos config import optional:
+
+```yaml
+# Before (mandatory - fails if unavailable)
+spring:
+  config:
+    import:
+      - nacos:lens-platform-auth.yaml?...
+
+# After (optional - graceful fallback)
+spring:
+  config:
+    import:
+      - optional:nacos:lens-platform-auth.yaml?...
+```
+
+### Files Modified
+
+**Java Code:**
+- `platform/lens-platform-auth/src/main/resources/application.yml`
+- `platform/lens-platform-gateway/src/main/resources/application.yml`
+- `platform/lens-platform-system/src/main/resources/application.yml`
+- `platform/lens-platform-monitor/src/main/resources/application.yml`
+
+All files updated to use `optional:nacos:` prefix.
+
+### How It Works
+
+**With optional prefix:**
+
+1. **Nacos Available with Config** (Production scenario)
+   - ✅ Loads config from Nacos
+   - ✅ Uses production settings
+   - ✅ Registers with Nacos
+   - ✅ Full functionality
+
+2. **Nacos Available but Config Missing**
+   - ⚠️  Warning logged
+   - ✅ Uses local defaults from application.yml
+   - ⚠️  May have limited functionality
+   - ✅ Application still starts
+
+3. **Nacos Not Available** (Development scenario)
+   - ⚠️  Warning logged
+   - ✅ Uses local defaults from application.yml
+   - ✅ Application starts for development/debugging
+   - ⚠️  No service discovery
+
+### Testing
+
+**Before fix:**
+```bash
+cd platform/lens-platform-auth
+mvn spring-boot:run
+# Result: ❌ Fails with "Check that the value..." error
+```
+
+**After fix:**
+```bash
+cd platform/lens-platform-auth
+mvn spring-boot:run
+# Result: ✅ Starts successfully
+# Logs show: [Nacos Config] Load config... success
+```
+
+**Verification:**
+```bash
+# Check service is running
+curl http://localhost:8041/actuator/health
+# Expected: {"status":"UP"}
+
+# Check Nacos registration
+# Visit: http://localhost:8848/nacos/#/serviceManagement
+# Should see: lens-platform-auth registered
+```
+
+### Benefits
+
+✅ **Resilience:** Services start even if Nacos is temporarily down  
+✅ **Development:** Easier local development without requiring Nacos  
+✅ **Debugging:** Services can start with minimal config for troubleshooting  
+✅ **Production:** Graceful degradation instead of complete failure  
+✅ **Faster Startup:** No blocking wait for unavailable config source  
+
+### Configuration Precedence
+
+When `optional:nacos:` is used:
+
+1. **Nacos config** (if available) - HIGHEST PRIORITY
+2. **Local application.yml** - fallback if Nacos unavailable
+3. **Default values in code** - lowest priority
+
+This ensures production uses Nacos config while allowing development flexibility.
+
+### Production Recommendations
+
+1. **Monitoring:** Set up alerts for "optional config not found" warnings
+2. **High Availability:** Ensure Nacos is highly available in production
+3. **Health Checks:** Monitor service health to detect limited functionality mode
+4. **Documentation:** Document which features require Nacos config
+
+### Key Takeaway
+
+**Lesson:** When using external config sources like Nacos:
+- Use `optional:` prefix for graceful fallback
+- Always provide sensible defaults in local application.yml
+- Services should be able to start (possibly with limited features) without external dependencies
+- This enables better debugging, local development, and resilience
+
+### Related Spring Boot Feature
+
+Spring Boot's `optional:` prefix for config imports:
+- Available since Spring Boot 2.4+
+- Works with various config sources: Nacos, Consul, Vault, etc.
+- Provides graceful fallback mechanism
+- Recommended for production-ready applications
+
+Documentation: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.files.importing
+
+---
+
+## 2026-02-27: Fixed Gateway Showing Its Own Swagger UI Instead of Backend Service
+
+### Overview
+Fixed issue where accessing backend service Swagger UI through gateway showed gateway's Swagger UI instead of the actual backend service's Swagger UI.
+
+### Problem
+
+**Issue:** Wrong Swagger UI displayed
+- **Accessing:** `http://localhost:8050/v2/lens/platform/auth/swagger-ui/index.html`
+- **Expected:** Auth service Swagger UI (with auth endpoints)
+- **Got:** Gateway Swagger UI (with gateway endpoints) ❌
+
+**Root Cause:**
+
+Two issues causing the gateway to serve its own Swagger UI:
+
+1. **Security Pattern Matching Order**
+   - Gateway's `SecurityConfig` had pattern: `.pathMatchers("/swagger-ui/**").permitAll()`
+   - This pattern matched ANY path starting with `/swagger-ui/`
+   - Path `/v2/lens/platform/auth/swagger-ui/index.html` contains `/swagger-ui/`
+   - Security filter matched gateway's pattern BEFORE checking proxied backend routes
+   - Result: Gateway served its own Swagger UI
+
+2. **Springdoc Auto-Configuration**
+   - Gateway has dependency: `springdoc-openapi-starter-webflux-ui`
+   - Springdoc auto-configures Swagger UI at `/swagger-ui/**`
+   - This creates endpoints that serve gateway's API documentation
+   - No configuration to disable it
+
+### Solution Implemented
+
+**1. Disabled Springdoc in Gateway (Nacos Configuration)**
+
+Added configuration to disable Springdoc's Swagger UI in gateway:
+
+```yaml
+# lens-platform-gateway.yaml
+spring:
+  # Disable Springdoc Swagger UI in gateway (we only proxy backend services' Swagger UI)
+  springdoc:
+    swagger-ui:
+      enabled: false
+    api-docs:
+      enabled: false
+```
+
+**Why:** Gateway should only proxy backend services' Swagger UI, not serve its own.
+
+**2. Fixed Security Configuration (Java Code)**
+
+Updated `SecurityConfig.java` to:
+- Remove gateway's own `/swagger-ui/**` and `/swagger-ui.html` patterns
+- Keep only proxied backend service patterns with specific paths
+- Order patterns from specific to general
+
+```java
+// Before (WRONG - catches all swagger-ui paths)
+.authorizeExchange(auth -> auth
+    .pathMatchers("/actuator/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+    .pathMatchers("/v2/lens/platform/*/swagger-ui.html", "/v2/lens/platform/*/swagger-ui/**").permitAll()
+    // ...
+)
+
+// After (CORRECT - specific backend patterns only)
+.authorizeExchange(auth -> auth
+    // Proxied backend Swagger UI (specific, comes first)
+    .pathMatchers("/v2/lens/platform/*/swagger-ui.html", 
+                  "/v2/lens/platform/*/swagger-ui/**", 
+                  "/v2/lens/platform/*/v3/api-docs/**").permitAll()
+    // Gateway endpoints (no swagger-ui patterns)
+    .pathMatchers("/actuator/**", "/v3/api-docs/**").permitAll()
+    // ...
+)
+```
+
+**Why:**
+- Gateway doesn't need its own Swagger UI
+- Removing the catch-all `/swagger-ui/**` pattern prevents it from intercepting backend service paths
+- Specific patterns (`/v2/lens/platform/*/swagger-ui/**`) ensure backend services' Swagger UI is accessible
+
+### How It Works Now
+
+**Request Flow:**
+```
+Browser: http://localhost:8050/v2/lens/platform/auth/swagger-ui/index.html
+    ↓
+Gateway Security: Check patterns
+    ↓
+Match: /v2/lens/platform/*/swagger-ui/**  ✓ (backend service pattern)
+    ↓
+Gateway Routes: lens-platform-auth-swagger route
+    ↓
+Proxy to: lb://lens-platform-auth/swagger-ui/index.html (after StripPrefix=4)
+    ↓
+Auth Service: Serves auth service Swagger UI
+    ↓
+Browser: Displays auth service API endpoints ✓
+```
+
+**Before Fix:**
+```
+Browser: http://localhost:8050/v2/lens/platform/auth/swagger-ui/index.html
+    ↓
+Gateway Security: Check patterns
+    ↓
+Match: /swagger-ui/**  ✓ (gateway's pattern - too broad!)
+    ↓
+Gateway Springdoc: Serves gateway's Swagger UI
+    ↓
+Browser: Displays gateway API endpoints ❌ (wrong!)
+```
+
+### Files Modified
+
+**Java Code:**
+- `platform/lens-platform-gateway/src/main/java/com/lens/platform/gateway/config/security/SecurityConfig.java`
+  - Removed `.pathMatchers("/swagger-ui/**", "/swagger-ui.html")` from security config
+  - Reordered patterns: specific backend patterns before general gateway patterns
+
+**Nacos Configuration (uploaded):**
+- `doc/nacos-backup/lens-platform-gateway.yaml`
+  - Added `spring.springdoc.swagger-ui.enabled: false`
+  - Added `spring.springdoc.api-docs.enabled: false`
+
+### Testing
+
+**Restart Gateway (Code + Config Changed):**
+```bash
+# Stop gateway in IDEA
+# Then restart:
+cd /home/zhenac/my/lens_2026/platform/lens-platform-gateway
+mvn spring-boot:run
+```
+
+**Verify:**
+```bash
+# Should show auth service endpoints, not gateway endpoints
+open http://localhost:8050/v2/lens/platform/auth/swagger-ui.html
+
+# Check the API title - should be "Lens Platform Auth API"
+curl -s http://localhost:8050/v2/lens/platform/auth/v3/api-docs | jq '.info.title'
+# Expected: "Lens Platform Auth API"
+```
+
+### Benefits
+
+✅ **Gateway only proxies backend Swagger UI, doesn't serve its own**  
+✅ **Correct service endpoints displayed when accessing via gateway**  
+✅ **Security patterns properly ordered (specific before general)**  
+✅ **No confusion about which service's API is being documented**  
+✅ **Cleaner architecture - gateway is pure routing layer**  
+
+### Key Takeaway
+
+**Lesson:** When using API Gateway with Springdoc:
+- Disable Springdoc in gateway unless you specifically want to document gateway's own API
+- Security patterns order matters: specific patterns before catch-all patterns
+- Avoid catch-all patterns like `/swagger-ui/**` that match too broadly
+- Test that proxied paths aren't being intercepted by gateway's own endpoints
+
+### Complete Fix Series
+
+This completes all Swagger UI fixes:
+1. ✅ **Redirect issue:** Fixed with forward headers strategy (then disabled)
+2. ✅ **CORS error:** Fixed with OpenAPI server URL pointing to gateway
+3. ✅ **Config load failure:** Fixed by removing X-Forwarded-Prefix from Swagger routes
+4. ✅ **Wrong Swagger UI:** Fixed by disabling gateway's Springdoc and fixing security patterns
+
+**All Swagger UI functionality now works correctly! 🎉**
+
+---
+
+## 2026-02-27: Fixed "Failed to load remote configuration" - Path Doubling Issue
+
+### Overview
+Fixed Swagger UI "Failed to load remote configuration" error caused by Springdoc doubling paths when reading X-Forwarded-Prefix headers.
+
+### Problem
+
+**Issue:** Swagger UI shows "Failed to load remote configuration"
+- Swagger UI page loads at `http://localhost:8050/v2/lens/platform/auth/swagger-ui.html` ✓
+- Error message: "Failed to load remote configuration" ❌
+- API endpoints don't display in Swagger UI
+
+**Root Cause:**
+Springdoc was reading the `X-Forwarded-Prefix` header from gateway and prepending it to all URL paths in swagger-config.json. Since the Swagger UI was already accessed through the gateway with that prefix, this resulted in doubled paths:
+
+```bash
+# swagger-config.json contained:
+{
+  "url": "/v2/lens/platform/auth/v2/lens/platform/auth/v3/api-docs",  # ❌ Doubled!
+  "configUrl": "/v2/lens/platform/auth/v2/lens/platform/auth/v3/api-docs/swagger-config"
+}
+
+# Should be:
+{
+  "url": "/v3/api-docs",  # ✓ Correct
+  "configUrl": "/v3/api-docs/swagger-config"
+}
+```
+
+When Swagger UI tried to load these doubled URLs, they returned 404, causing the configuration load failure.
+
+### Solution Implemented
+
+**Removed X-Forwarded-Prefix from Swagger Routes**
+
+Updated gateway configuration to NOT add `X-Forwarded-Prefix` header to Swagger UI/OpenAPI routes:
+
+```yaml
+# lens-platform-gateway.yaml
+routes:
+  # Swagger/OpenAPI routes - NO X-Forwarded-Prefix
+  - id: lens-platform-auth-swagger
+    uri: lb://lens-platform-auth
+    predicates:
+      - Path=/v2/lens/platform/auth/swagger-ui.html, /v2/lens/platform/auth/swagger-ui/**, /v2/lens/platform/auth/v3/api-docs/**
+    filters:
+      - StripPrefix=4
+      - PreserveHostHeader
+      # X-Forwarded-Prefix removed to prevent Springdoc from doubling paths
+
+  # API routes - Keep X-Forwarded-Prefix for actual API calls
+  - id: lens-platform-auth
+    uri: lb://lens-platform-auth
+    predicates:
+      - Path=/v2/lens/platform/auth/**
+    filters:
+      - StripPrefix=4
+      - AddRequestHeader=X-Forwarded-Prefix, /v2/lens/platform/auth
+```
+
+**Simplified Springdoc Configuration**
+
+Removed unnecessary Springdoc properties:
+
+```yaml
+# lens-platform-auth.yaml & lens-platform-system.yaml
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+  disable-swagger-default-url: false
+  pre-loading-enabled: false
+```
+
+### Why This Works
+
+**The Two Types of Routes:**
+
+1. **Swagger UI Routes** (swagger-ui.html, swagger-ui/*, v3/api-docs)
+   - Used by browser to load Swagger UI interface and OpenAPI spec
+   - Should NOT have X-Forwarded-Prefix because:
+     - Browser already includes full path in URL
+     - Springdoc would double the path if it saw the header
+     - Swagger config would contain invalid doubled URLs
+
+2. **API Routes** (actual endpoint calls like /echo, /users, etc.)
+   - Used when testing APIs from Swagger UI
+   - SHOULD have X-Forwarded-Prefix because:
+     - Allows proper OAuth2 token relay
+     - Backend can construct correct response URLs
+     - Needed for pagination, HATEOAS links, etc.
+
+**Before (Path Doubling):**
+```
+Request: GET /v2/lens/platform/auth/v3/api-docs/swagger-config
+Gateway adds: X-Forwarded-Prefix: /v2/lens/platform/auth
+Backend sees: X-Forwarded-Prefix header
+Springdoc generates: {"url": "/v2/lens/platform/auth/v3/api-docs"}  # Prepends prefix
+Final URL: /v2/lens/platform/auth/v2/lens/platform/auth/v3/api-docs  # Doubled!
+Result: 404 Not Found → "Failed to load remote configuration"
+```
+
+**After (No Doubling):**
+```
+Request: GET /v2/lens/platform/auth/v3/api-docs/swagger-config
+Gateway: NO X-Forwarded-Prefix header for Swagger routes
+Backend: No X-Forwarded-Prefix to read
+Springdoc generates: {"url": "/v3/api-docs"}  # No prefix prepending
+Browser uses: /v2/lens/platform/auth/v3/api-docs  # Correct!
+Result: 200 OK → Swagger UI loads successfully
+```
+
+### Files Modified
+
+**Nacos Configurations (uploaded):**
+- `doc/nacos-backup/lens-platform-gateway.yaml`
+  - Removed `AddRequestHeader=X-Forwarded-Prefix` from auth-swagger route
+  - Removed `AddRequestHeader=X-Forwarded-Prefix` from system-swagger route
+  - Kept `X-Forwarded-Prefix` on API routes (auth, system, monitor)
+
+- `doc/nacos-backup/lens-platform-auth.yaml`
+  - Simplified `springdoc` configuration
+  - Removed unnecessary properties
+
+- `doc/nacos-backup/lens-platform-system.yaml`
+  - Simplified `springdoc` configuration
+  - Removed unnecessary properties
+
+**Documentation:**
+- `doc/openapi/CORS_FIX_QUICK_GUIDE.md`
+  - Added "If Getting 'Failed to load remote configuration'" section
+  - Explained the path doubling issue and solution
+
+### Testing
+
+**Restart All Services:**
+```bash
+# Gateway - picks up new routing configuration
+cd platform/lens-platform-gateway
+mvn spring-boot:run &
+
+# Auth - picks up simplified springdoc config
+cd platform/lens-platform-auth
+mvn spring-boot:run &
+
+# System
+cd platform/lens-platform-system
+mvn spring-boot:run &
+```
+
+**Verify swagger-config Paths:**
+```bash
+# Check swagger-config - paths should NOT be doubled
+curl http://localhost:8050/v2/lens/platform/auth/v3/api-docs/swagger-config | jq
+
+# Expected output:
+# {
+#   "url": "/v3/api-docs",  # ✓ No doubling
+#   "configUrl": "/v3/api-docs/swagger-config"
+# }
+
+# NOT:
+# {
+#   "url": "/v2/lens/platform/auth/v2/lens/platform/auth/v3/api-docs"  # ❌ Doubled
+# }
+```
+
+**Test in Browser:**
+1. Open: `http://localhost:8050/v2/lens/platform/auth/swagger-ui.html`
+2. **Expected:** Swagger UI loads and displays all endpoints
+3. **Before fix:** "Failed to load remote configuration" error
+
+### Benefits
+
+✅ **Swagger UI loads OpenAPI spec correctly**  
+✅ **No path doubling in swagger-config.json**  
+✅ **API endpoints display in Swagger UI**  
+✅ **API calls still work correctly (X-Forwarded-Prefix on API routes)**  
+✅ **Cleaner Springdoc configuration**  
+
+### Key Takeaway
+
+**Lesson:** When using Spring Cloud Gateway with path stripping:
+- **Don't** add `X-Forwarded-Prefix` to Swagger UI/OpenAPI documentation routes
+- **Do** add `X-Forwarded-Prefix` to actual API routes
+- Springdoc reads this header and prepends paths, causing doubling if used on Swagger routes
+- The server's `forward-headers-strategy: framework` handles redirects properly without this header
+
+### Related Fixes
+
+This completes the Swagger UI fix series:
+1. ✅ Redirect issue fixed (forward headers strategy)
+2. ✅ CORS error fixed (OpenAPI server URL)
+3. ✅ Configuration load failure fixed (removed path doubling)
+
+All Swagger UI functionality now works correctly via gateway! 🎉
+
+---
+
+## 2026-02-27: Fixed Swagger UI CORS Error by Configuring OpenAPI Server URL
+
+### Overview
+Fixed CORS error when testing endpoints from Swagger UI by configuring backend services to use gateway URL as the OpenAPI server URL.
+
+### Problem
+
+**Issue:** CORS error when executing API calls from Swagger UI
+- **Swagger UI loads:** `http://localhost:8050/v2/lens/platform/auth/swagger-ui.html` ✓
+- **API calls fail:** Swagger UI tries to call `http://localhost:8041/echo` ❌
+- **Error:** "Failed to fetch. Possible Reasons: CORS"
+
+**Root Cause:**
+The OpenAPI configuration was set to use the direct backend URL (`http://localhost:8041`) as the server URL. When Swagger UI loads via the gateway but tries to call APIs on the backend directly, the browser sees this as a cross-origin request:
+- Origin: `http://localhost:8050` (gateway)
+- Target: `http://localhost:8041` (backend)
+- Result: **CORS error** (different ports = different origins)
+
+### Solution Implemented
+
+**1. Updated OpenAPI Configuration in Nacos**
+
+Changed the `openapi.service.url` to use the gateway URL with path prefix:
+
+```yaml
+# lens-platform-auth.yaml & lens-platform-system.yaml
+openapi:
+  service:
+    title: Lens Platform Auth API
+    version: ${OPENAPI_VERSION:2.0.0}
+    # OLD (causes CORS):
+    # url: http://localhost:8041
+    
+    # NEW (no CORS):
+    url: ${AUTH_URL:http://localhost:8050/v2/lens/platform/auth}
+```
+
+**2. Updated Environment Variables**
+
+Modified `conf/env/lens_2026.env` to use gateway URLs:
+
+```bash
+# OLD
+export AUTH_URL=http://localhost:8041
+export SYSTEM_URL=http://localhost:8042
+
+# NEW
+export AUTH_URL=http://localhost:8050/v2/lens/platform/auth
+export SYSTEM_URL=http://localhost:8050/v2/lens/platform/system
+```
+
+### How It Works Now
+
+**Before (CORS Error):**
+1. Browser loads Swagger UI from: `http://localhost:8050/.../swagger-ui.html`
+2. Swagger UI reads OpenAPI spec with server URL: `http://localhost:8041`
+3. User clicks "Execute" on `/echo` endpoint
+4. Swagger UI calls: `http://localhost:8041/echo` (direct to backend)
+5. Browser blocks: Different origin (8050 vs 8041) → **CORS error**
+
+**After (No CORS):**
+1. Browser loads Swagger UI from: `http://localhost:8050/.../swagger-ui.html`
+2. Swagger UI reads OpenAPI spec with server URL: `http://localhost:8050/v2/lens/platform/auth`
+3. User clicks "Execute" on `/echo` endpoint
+4. Swagger UI calls: `http://localhost:8050/v2/lens/platform/auth/echo` (via gateway)
+5. Gateway routes to backend and returns response → **Success!** ✓
+
+### Files Modified
+
+**Nacos Configurations (uploaded):**
+- `doc/nacos-backup/lens-platform-auth.yaml`
+  - Changed `openapi.service.url` from `http://localhost:8041` to `${AUTH_URL:http://localhost:8050/v2/lens/platform/auth}`
+  
+- `doc/nacos-backup/lens-platform-system.yaml`
+  - Changed `openapi.service.url` from `http://localhost:8042` to `${SYSTEM_URL:http://localhost:8050/v2/lens/platform/system}`
+
+**Environment Configuration:**
+- `conf/env/lens_2026.env`
+  - Updated `AUTH_URL` to use gateway URL with path
+  - Updated `SYSTEM_URL` to use gateway URL with path
+
+**Documentation:**
+- `doc/openapi/README.md`
+  - Added section "OpenAPI Server URL (Critical for CORS)" at the top
+  - Explained why gateway URL must be used
+  - Documented environment variables
+
+### Testing
+
+**Restart Services:**
+```bash
+# Restart auth service to pick up new OpenAPI server URL
+cd platform/lens-platform-auth
+mvn spring-boot:run &
+
+# Restart system service
+cd platform/lens-platform-system
+mvn spring-boot:run &
+```
+
+**Test in Browser:**
+1. Open: `http://localhost:8050/v2/lens/platform/auth/swagger-ui.html`
+2. Click on `GET /echo` endpoint
+3. Click "Try it out"
+4. Click "Execute"
+5. **Expected:** Response from server (200 OK)
+6. **Before fix:** CORS error in console
+
+**Verify Server URL in OpenAPI Spec:**
+```bash
+# Check that server URL uses gateway
+curl http://localhost:8050/v2/lens/platform/auth/v3/api-docs | jq '.servers'
+
+# Expected output:
+# [
+#   {
+#     "url": "http://localhost:8050/v2/lens/platform/auth"
+#   }
+# ]
+```
+
+### Benefits
+
+✅ **No CORS errors when testing APIs via Swagger UI**  
+✅ **All API calls go through gateway (proper OAuth2 token relay)**  
+✅ **Consistent with production setup (always via gateway)**  
+✅ **No need for CORS configuration in backend services**  
+✅ **Works for both authenticated and unauthenticated endpoints**  
+
+### Important Notes
+
+**Why Not Just Enable CORS on Backend?**
+
+While you could configure CORS headers on backend services to allow requests from `localhost:8050`, this approach is better because:
+1. **Security:** Backend services shouldn't be directly accessible
+2. **Consistency:** All traffic goes through gateway (same as production)
+3. **OAuth2:** TokenRelay filter in gateway forwards tokens properly
+4. **Simplicity:** No CORS configuration needed in multiple services
+
+**Environment-Specific URLs:**
+
+For different environments, update the environment variables:
+- **Development:** `http://localhost:8050/v2/lens/platform/auth`
+- **Production:** `https://api.example.com/v2/lens/platform/auth`
+
+### Related Issues Fixed
+
+This fix also resolves:
+- ✅ Swagger UI redirect issue (from previous fix)
+- ✅ Forward headers support (from previous fix)
+- ✅ CORS errors when testing endpoints
+- ✅ OAuth2 token relay working correctly
+
+---
+
+## 2026-02-27: Fixed Swagger UI Redirect Issue with Forward Headers Strategy
+
+### Overview
+Fixed Swagger UI redirect issue when accessing via gateway by implementing forward headers support in backend services and gateway configuration.
+
+### Problem
+
+**Issue:** Swagger UI redirects to incorrect URL (404 error)
+- **Accessing:** `http://localhost:8050/v2/lens/platform/auth/swagger-ui.html`
+- **Redirects to:** `http://localhost:8050/swagger-ui/index.html` ❌
+- **Expected:** `http://localhost:8050/v2/lens/platform/auth/swagger-ui/index.html` ✓
+
+**Root Cause:**
+When accessing Swagger UI through the gateway with path prefix stripping:
+1. Gateway receives: `/v2/lens/platform/auth/swagger-ui.html`
+2. Gateway strips prefix (4 segments) and forwards: `/swagger-ui.html`
+3. Backend service responds with redirect: `Location: /swagger-ui/index.html` (absolute path)
+4. Browser interprets redirect relative to host: `http://localhost:8050/swagger-ui/index.html`
+5. Gateway has no route for `/swagger-ui/index.html` → **404 Not Found**
+
+The backend service doesn't know it's being accessed through a gateway with a path prefix, so it generates redirects without the prefix.
+
+### Solution Implemented
+
+**1. Backend Services: Forward Headers Strategy**
+
+Added configuration to handle `X-Forwarded-*` headers:
+
+```yaml
+# lens-platform-auth.yaml & lens-platform-system.yaml
+server:
+  port: ${AUTH_PORT:8041}
+  # Enable forward headers support
+  forward-headers-strategy: framework
+  # Configure Tomcat to use relative redirects
+  tomcat:
+    redirect-context-root: false
+    use-relative-redirects: true
+```
+
+This configuration:
+- Reads `X-Forwarded-Prefix`, `X-Forwarded-Host`, `X-Forwarded-Proto` headers
+- Reconstructs the original request URL including gateway prefix
+- Generates redirects that include the forwarded prefix
+- Uses relative redirects when possible
+
+**2. Gateway: Add X-Forwarded-Prefix Headers**
+
+Updated all gateway routes to include the prefix header:
+
+```yaml
+# lens-platform-gateway.yaml
+routes:
+  # Auth service routes
+  - id: lens-platform-auth-swagger
+    uri: lb://lens-platform-auth
+    predicates:
+      - Path=/v2/lens/platform/auth/swagger-ui.html, /v2/lens/platform/auth/swagger-ui/**, /v2/lens/platform/auth/v3/api-docs/**
+    filters:
+      - StripPrefix=4
+      - AddRequestHeader=X-Forwarded-Prefix, /v2/lens/platform/auth
+      - PreserveHostHeader
+
+  - id: lens-platform-auth
+    uri: lb://lens-platform-auth
+    predicates:
+      - Path=/v2/lens/platform/auth/**
+    filters:
+      - StripPrefix=4
+      - AddRequestHeader=X-Forwarded-Prefix, /v2/lens/platform/auth
+
+  # System service routes (same pattern)
+  - id: lens-platform-system-swagger
+    uri: lb://lens-platform-system
+    predicates:
+      - Path=/v2/lens/platform/system/swagger-ui.html, /v2/lens/platform/system/swagger-ui/**, /v2/lens/platform/system/v3/api-docs/**
+    filters:
+      - StripPrefix=4
+      - AddRequestHeader=X-Forwarded-Prefix, /v2/lens/platform/system
+      - PreserveHostHeader
+
+  - id: lens-platform-system
+    uri: lb://lens-platform-system
+    predicates:
+      - Path=/v2/lens/platform/system/**
+    filters:
+      - StripPrefix=4
+      - AddRequestHeader=X-Forwarded-Prefix, /v2/lens/platform/system
+```
+
+**3. Springdoc Configuration**
+
+Added Springdoc configuration to work with forward headers:
+
+```yaml
+# lens-platform-auth.yaml & lens-platform-system.yaml
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    use-root-path: false
+  use-management-port: false
+  show-actuator: true
+```
+
+### How It Works Now
+
+1. **Browser → Gateway:** `GET http://localhost:8050/v2/lens/platform/auth/swagger-ui.html`
+2. **Gateway → Backend:** 
+   - Strips `/v2/lens/platform/auth` (4 segments)
+   - Forwards: `GET /swagger-ui.html`
+   - Adds header: `X-Forwarded-Prefix: /v2/lens/platform/auth`
+3. **Backend Processing:**
+   - Receives `/swagger-ui.html` with forward header
+   - `forward-headers-strategy: framework` reconstructs original URL
+   - Knows original path was `/v2/lens/platform/auth/swagger-ui.html`
+4. **Backend → Gateway:** 
+   - Responds with: `302 Location: /v2/lens/platform/auth/swagger-ui/index.html`
+   - **Includes the prefix** because it knows the original context
+5. **Gateway → Browser:** Returns redirect with full path
+6. **Browser:** Loads `http://localhost:8050/v2/lens/platform/auth/swagger-ui/index.html` ✓
+7. **Success:** Swagger UI loads with all CSS/JS resources
+
+### Files Modified
+
+**Nacos Configurations (uploaded):**
+- `doc/nacos-backup/lens-platform-gateway.yaml`
+  - Added `X-Forwarded-Prefix` header to all routes
+  - Applied to auth, system, and monitor service routes
+  
+- `doc/nacos-backup/lens-platform-auth.yaml`
+  - Added `server.forward-headers-strategy: framework`
+  - Added `server.tomcat.use-relative-redirects: true`
+  - Added `springdoc` configuration block
+
+- `doc/nacos-backup/lens-platform-system.yaml`
+  - Added `server.forward-headers-strategy: framework`
+  - Added `server.tomcat.use-relative-redirects: true`
+  - Added `springdoc` configuration block
+
+**Documentation:**
+- `doc/openapi/README.md`
+  - Updated "Gateway Configuration" section
+  - Added detailed explanation of forward headers strategy
+  - Documented how the fix works
+  - Added troubleshooting section
+
+### Testing
+
+**Restart Services:**
+```bash
+# Restart gateway to pick up new routes
+cd platform/lens-platform-gateway
+mvn spring-boot:run &
+
+# Restart auth service to pick up forward headers config
+cd platform/lens-platform-auth
+mvn spring-boot:run &
+
+# Restart system service
+cd platform/lens-platform-system
+mvn spring-boot:run &
+```
+
+**Test Redirect:**
+```bash
+# Test that redirect now includes prefix
+curl -I http://localhost:8050/v2/lens/platform/auth/swagger-ui.html
+
+# Expected response:
+# HTTP/1.1 302
+# Location: /v2/lens/platform/auth/swagger-ui/index.html
+```
+
+**Test in Browser:**
+```
+Open: http://localhost:8050/v2/lens/platform/auth/swagger-ui.html
+Expected: Swagger UI loads successfully with all styling and functionality
+```
+
+### Benefits
+
+✅ **Swagger UI works via gateway with path prefixes**  
+✅ **All static resources (CSS, JS, images) load correctly**  
+✅ **No code changes required in controllers**  
+✅ **Configuration-only solution**  
+✅ **Works for all backend services (auth, system, monitor)**  
+✅ **Standard Spring Boot forward headers support**  
+
+### Related Documentation
+
+- Forward Headers: https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.webserver.use-behind-a-proxy-server
+- Springdoc OpenAPI: https://springdoc.org/
+- Spring Cloud Gateway: https://docs.spring.io/spring-cloud-gateway/reference/
+
+---
+
+## 2026-02-27: Consolidated Configuration Files to conf Directory  
+- URL: `http://localhost:8050/v2/lens/platform/auth/swagger-ui.html`
+- Error: 404 Not Found or incomplete page load
+
+**Root Cause:**
+- Single gateway route with `StripPrefix=4` couldn't handle multiple Swagger UI paths
+- Static resources (CSS, JS, images) under `/swagger-ui/**` weren't properly routed
+- Security configuration didn't explicitly allow proxied Swagger UI paths
+
+### Solution Implemented
+
+**1. Dedicated Swagger UI Routes**
+
+Added separate high-priority routes for API documentation:
+
+```yaml
+routes:
+  # Swagger UI route (higher priority)
+  - id: lens-platform-auth-swagger
+    uri: lb://lens-platform-auth
+    predicates:
+      - Path=/v2/lens/platform/auth/swagger-ui.html
+      - Path=/v2/lens/platform/auth/swagger-ui/**
+      - Path=/v2/lens/platform/auth/v3/api-docs/**
+    filters:
+      - StripPrefix=4
+      - PreserveHostHeader
+  
+  # Regular API route
+  - id: lens-platform-auth
+    uri: lb://lens-platform-auth
+    predicates:
+      - Path=/v2/lens/platform/auth/**
+    filters:
+      - StripPrefix=4
+```
+
+Same pattern applied for System service.
+
+**2. Updated Security Configuration**
+
+Added wildcard patterns for proxied Swagger UI:
+
+```java
+.pathMatchers("/v2/lens/platform/*/swagger-ui.html").permitAll()
+.pathMatchers("/v2/lens/platform/*/swagger-ui/**").permitAll()
+.pathMatchers("/v2/lens/platform/*/v3/api-docs/**").permitAll()
+```
+
+### Documentation Reorganization
+
+**Created `/doc/openapi/` directory:**
+```
+/doc/openapi/
+  ├── README.md                  - OpenAPI access guide
+  ├── OPENAPI_VERIFICATION.md    - Configuration verification
+  └── HOW_TO_GET_TOKEN.md        - Token retrieval guide
+```
+
+**Moved files:**
+- `HOW_TO_GET_TOKEN.md` → `/doc/openapi/`
+- `OPENAPI_VERIFICATION.md` → `/doc/openapi/`
+
+### Script Reorganization
+
+**Reorganized scripts by module:**
+
+```
+/doc/
+├── keycloak/scripts/          - Authentication & token management
+│   ├── get-token.sh
+│   ├── quick-token.sh
+│   ├── configure-client.sh
+│   ├── sync-realm.sh
+│   └── import-realm.sh
+├── testing/scripts/           - API testing
+│   ├── test-auth-api.sh
+│   └── quick-test-auth.sh
+├── deployment/scripts/        - Service management
+│   └── start-services.sh
+├── nacos-backup/              - Configuration management
+│   └── upload-*.sh
+└── openapi/                   - API documentation guides
+```
+
+### Access URLs
+
+**Direct Access:**
+- Gateway: http://localhost:8050/swagger-ui.html
+- Auth: http://localhost:8041/swagger-ui.html
+- System: http://localhost:8042/swagger-ui.html
+
+**Via Gateway (Now Working):**
+- Auth: http://localhost:8050/v2/lens/platform/auth/swagger-ui.html
+- System: http://localhost:8050/v2/lens/platform/system/swagger-ui.html
+
+### Public Endpoints
+
+All API documentation endpoints are publicly accessible (no authentication):
+
+- ✅ `/swagger-ui.html` - Swagger UI landing page
+- ✅ `/swagger-ui/**` - Swagger UI static resources
+- ✅ `/v3/api-docs/**` - OpenAPI JSON specifications
+- ✅ `/actuator/**` - Health and metrics
+- ✅ `/v2/lens/platform/*/swagger-ui.html` - Proxied Swagger UI
+- ✅ `/v2/lens/platform/*/swagger-ui/**` - Proxied static resources
+- ✅ `/v2/lens/platform/*/v3/api-docs/**` - Proxied OpenAPI specs
+
+### Using Swagger UI
+
+**1. Browse Documentation (No Auth):**
+- Open URL in browser
+- View all endpoints
+- See schemas and descriptions
+
+**2. Test Protected Endpoints:**
+```bash
+# Get token
+source doc/keycloak/scripts/quick-token.sh
+
+# In Swagger UI:
+# - Click "Authorize" button
+# - Paste token
+# - Test protected endpoints
+```
+
+### Files Updated
+
+**Modified:**
+- `/doc/nacos-backup/lens-platform-gateway.yaml`
+  - Added dedicated routes for Swagger UI (higher priority)
+  - Separate routes for each service's documentation
+  - Added PreserveHostHeader filter
+
+- `/platform/lens-platform-gateway/src/.../SecurityConfig.java`
+  - Added wildcard patterns for proxied Swagger UI paths
+  - Permits `/v2/lens/platform/*/swagger-ui.html`
+  - Permits `/v2/lens/platform/*/swagger-ui/**`
+  - Permits `/v2/lens/platform/*/v3/api-docs/**`
+
+**Created:**
+- `/doc/openapi/README.md` - Complete OpenAPI access guide
+- `/doc/keycloak/README.md` - Keycloak scripts documentation
+- `/doc/testing/README.md` - Testing scripts documentation
+- `/doc/deployment/README.md` - Deployment scripts documentation
+
+**Synchronized:**
+- ✅ Uploaded to Nacos (namespace: lens_2026, group: DEFAULT_GROUP)
+
+### Benefits
+
+1. **Better Organization** - Documentation grouped by purpose
+2. **Fixed Gateway Access** - Swagger UI now works through gateway
+3. **Dedicated Routes** - Separate handling for documentation vs API
+4. **Wildcard Support** - Easy to add new services
+5. **Consistent Security** - All documentation publicly accessible
+6. **Preserved Functionality** - Direct access still works
+
+### Testing
+
+**Restart gateway and test:**
+```bash
+# Restart gateway
+cd platform/lens-platform-gateway
+mvn spring-boot:run
+
+# Test in browser
+http://localhost:8050/v2/lens/platform/auth/swagger-ui.html
+http://localhost:8050/v2/lens/platform/system/swagger-ui.html
+
+# Test with curl
+curl http://localhost:8050/v2/lens/platform/auth/v3/api-docs
+```
+
+---
+
+## 2026-02-26: OAuth2 Client with Login Redirect to Keycloak
+
+### Overview
+Configured API Gateway as OAuth2 Client to redirect unauthenticated browser users to Keycloak login page while maintaining API token-based access.
+
+### Configuration Added
+
+**1. OAuth2 Client Provider (Keycloak)**
+```yaml
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://172.28.0.1:28080/realms/lens
+            authorization-uri: .../protocol/openid-connect/auth
+            token-uri: .../protocol/openid-connect/token
+            user-info-uri: .../protocol/openid-connect/userinfo
+            jwk-set-uri: .../protocol/openid-connect/certs
+```
+
+**2. OAuth2 Client Registration**
+```yaml
+        registration:
+          keycloak:
+            client-id: lens-client
+            client-secret: x6lEH0DMcT27eop2cszIP3Brc2sDQHLb
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope: [openid, profile, email]
+```
+
+**3. Security Configuration**
+- Added `.oauth2Login()` for browser login redirect
+- Added `/login/**` and `/oauth2/**` to public paths
+- Kept `.oauth2ResourceServer()` for API token validation
+
+### Authentication Flows
+
+**Flow 1: Browser Access (Login Redirect)**
+1. User accesses protected endpoint without authentication
+2. Gateway redirects to Keycloak login page
+3. User authenticates with username/password
+4. Keycloak redirects back with authorization code
+5. Gateway exchanges code for access token
+6. Gateway creates session for user
+7. User accesses protected resources
+
+**Flow 2: API Access (Token-Based)**
+1. API client obtains token from Keycloak
+2. Client sends request with `Authorization: Bearer <token>`
+3. Gateway validates JWT token
+4. Gateway forwards request with token to backend (TokenRelay)
+
+### Gateway Dual Role
+
+The Gateway now acts as:
+1. **OAuth2 Client** - For browser login redirect
+2. **OAuth2 Resource Server** - For API token validation
+3. **Reverse Proxy** - With TokenRelay to backend services
+
+### Public Endpoints (No Authentication)
+- `/actuator/**` - Health checks and metrics
+- `/swagger-ui/**` - API documentation
+- `/v3/api-docs/**` - OpenAPI specs
+- `/login/**` - OAuth2 login endpoints
+- `/oauth2/**` - OAuth2 callback endpoints
+
+### Protected Endpoints (Require Authentication)
+- `/v2/lens/platform/auth/**`
+- `/v2/lens/platform/system/**`
+- `/v2/lens/platform/monitor/**`
+
+### Keycloak Client Requirements
+
+For browser login to work, the Keycloak client must have:
+- **Access Type**: confidential
+- **Valid Redirect URIs**: `http://localhost:8050/login/oauth2/code/keycloak`
+- **Web Origins**: `http://localhost:8050`
+- **Standard Flow Enabled**: ON
+- **Direct Access Grants Enabled**: ON
+
+### Testing
+
+**Test Browser Login:**
+```bash
+# Open browser and navigate to:
+http://localhost:8050/v2/lens/platform/auth/echo
+
+# Expected: Redirect to Keycloak login
+# After login: Access granted to protected resource
+```
+
+**Test API Access:**
+```bash
+# Get token
+TOKEN=$(curl -s -X POST "http://172.28.0.1:28080/realms/lens/protocol/openid-connect/token" \
+  -d "client_id=lens-client" \
+  -d "client_secret=x6lEH0DMcT27eop2cszIP3Brc2sDQHLb" \
+  -d "grant_type=client_credentials" \
+  | jq -r '.access_token')
+
+# Call API
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8050/v2/lens/platform/auth/echo
+```
+
+### Files Updated
+
+**Modified:**
+- `/doc/nacos-backup/lens-platform-gateway.yaml`
+  - Added OAuth2 client configuration
+  - Added provider and registration for Keycloak
+  - Kept resource server configuration
+
+- `/platform/lens-platform-gateway/src/.../SecurityConfig.java`
+  - Added `.oauth2Login()` configuration
+  - Updated public paths to include `/login/**` and `/oauth2/**`
+  - Kept `.oauth2ResourceServer()` for JWT validation
+
+- `/conf/env/lens_2026.env`
+  - Added `KEYCLOAK_CLIENT_ID=lens-client`
+  - Added `KEYCLOAK_CLIENT_SECRET=x6lEH0DMcT27eop2cszIP3Brc2sDQHLb`
+
+**Synchronized:**
+- ✅ Uploaded to Nacos (namespace: lens_2026, group: DEFAULT_GROUP)
+
+### Benefits
+
+1. **Dual Authentication** - Supports both browser login and API tokens
+2. **User-Friendly** - Browser users automatically redirected to login
+3. **API Compatible** - API clients use Bearer tokens as before
+4. **Single Sign-On** - SSO with Keycloak across applications
+5. **Session Management** - Spring Security manages user sessions
+6. **Centralized Auth** - All authentication at gateway level
+7. **Token Forwarding** - TokenRelay forwards tokens to backends
+
+### Dependencies
+
+All required OAuth2 dependencies already present:
+- `spring-boot-starter-oauth2-client`
+- `spring-security-oauth2-resource-server`
+- `spring-boot-starter-webflux`
+- `spring-cloud-starter-gateway`
+
+---
+
+## 2026-02-26: Gateway Configured as OAuth2 Resource Server with TokenRelay
+
+### Overview
+Configured API Gateway as an OAuth2 Resource Server with JWT validation and TokenRelay filter to work with Keycloak identity server.
+
+### Keycloak Setup
+
+**Server Configuration:**
+- URL: http://172.28.0.1:28080 (localhost:28080)
+- Realm: lens
+- Admin Credentials: admin/admin
+- Realm Configuration: doc/keycloak/realm-lens.json
+
+### Changes Made
+
+**1. Updated SecurityConfig.java**
+- Enabled OAuth2 Resource Server with JWT
+- Configured ReactiveJwtDecoder with JWK Set URI
+- Public endpoints: /actuator/**, /v3/api-docs/**, /swagger-ui/**
+- All other endpoints require authentication
+- Added Keycloak URLs to CORS configuration
+
+**2. Updated Nacos Gateway Configuration**
+```yaml
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://172.28.0.1:28080/realms/lens/protocol/openid-connect/certs
+          issuer-uri: http://172.28.0.1:28080/realms/lens
+  cloud:
+    gateway:
+      default-filters:
+        - TokenRelay=  # Automatically forwards access token to downstream
+```
+
+**3. Updated Environment Configuration**
+```bash
+export KEYCLOAK_ADMIN_USERNAME=admin
+export KEYCLOAK_ADMIN_PASSWORD=admin
+```
+
+### TokenRelay Filter
+
+**Purpose:** Automatically forwards OAuth2 access token from gateway to downstream services
+
+**Configuration:**
+- Added as default filter in `spring.cloud.gateway.default-filters`
+- Applied to all routes automatically
+
+**Routes with TokenRelay:**
+- `/v2/lens/platform/auth/**` → lens-platform-auth
+- `/v2/lens/platform/system/**` → lens-platform-system
+- `/v2/lens/platform/monitor/**` → lens-platform-monitor
+
+### Authentication Flow
+
+1. **Client → Keycloak:** Authenticate and get JWT access token
+2. **Client → Gateway:** Send request with `Authorization: Bearer <token>`
+3. **Gateway:** Validates JWT using JWK Set from Keycloak
+4. **Gateway → Backend:** Forwards request with token (TokenRelay)
+5. **Backend:** Receives request with authenticated user context
+
+### Security Configuration
+
+**Public Endpoints (No Authentication):**
+- `/actuator/**` - Health checks and metrics
+- `/v3/api-docs/**` - OpenAPI documentation
+- `/swagger-ui/**` - Swagger UI
+- `/swagger-ui.html` - Swagger UI landing page
+
+**Protected Endpoints:**
+- All other paths require valid JWT token
+
+**JWT Validation:**
+- Decoder: NimbusReactiveJwtDecoder
+- JWK Set URI: http://172.28.0.1:28080/realms/lens/protocol/openid-connect/certs
+- Lazy loading: Does not connect to Keycloak at startup
+
+### Benefits
+
+1. **Centralized Authentication** - Single point of OAuth2 configuration at gateway
+2. **Automatic Token Forwarding** - Backend services receive authenticated user context
+3. **Simplified Backend** - No need for backend services to validate JWT
+4. **Security at Edge** - Authentication handled at gateway layer
+5. **Flexible Access Control** - Easy to add/modify public endpoints
+
+### Example Usage
+
+```bash
+# Get token from Keycloak
+TOKEN=$(curl -X POST "http://172.28.0.1:28080/realms/lens/protocol/openid-connect/token" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "username=user" \
+  -d "password=pass" \
+  -d "grant_type=password" \
+  -d "client_id=client_id" \
+  | jq -r '.access_token')
+
+# Call gateway with token
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8050/v2/lens/platform/auth/users/me
+
+# Public endpoint (no token needed)
+curl http://localhost:8050/actuator/health
+```
+
+### Files Updated
+
+**Modified:**
+- `/platform/lens-platform-gateway/src/main/java/com/lens/platform/gateway/config/security/SecurityConfig.java`
+  - Added OAuth2 Resource Server configuration
+  - Configured ReactiveJwtDecoder
+  - Updated endpoint authorization rules
+  - Added Keycloak CORS origins
+
+- `/doc/nacos-backup/lens-platform-gateway.yaml`
+  - Added OAuth2 JWT configuration
+  - Added default-filters with TokenRelay
+  - Added Keycloak admin credentials
+  - Added OAuth2 security logging
+
+- `/conf/env/lens_2026.env`
+  - Added KEYCLOAK_ADMIN_USERNAME
+  - Added KEYCLOAK_ADMIN_PASSWORD
+
+**Synchronized:**
+- ✅ Uploaded to Nacos (namespace: lens_2026, group: DEFAULT_GROUP)
+
+### Dependencies
+
+All required OAuth2 dependencies already present in pom.xml:
+- `spring-boot-starter-oauth2-client`
+- `spring-security-oauth2-resource-server`
+- `spring-boot-starter-webflux`
+- `spring-cloud-starter-gateway`
+
+### Testing
+
+**Verify Gateway as OAuth2 Resource Server:**
+```bash
+# Should work (public)
+curl http://localhost:8050/actuator/health
+
+# Should return 401 Unauthorized
+curl http://localhost:8050/v2/lens/platform/auth/test
+
+# Should work with valid token
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8050/v2/lens/platform/auth/test
+```
+
+---
+
 ## 2026-02-26: Documentation Consolidation
 
 ### Overview
@@ -201,7 +1563,7 @@ Created comprehensive environment configuration system to eliminate hardcoded IP
 ### Changes Made
 
 **Created:**
-- `/doc/env/lens_2026.env` - Main environment configuration file with all variables
+- `/conf/env/lens_2026.env` - Main environment configuration file with all variables
 - `/doc/env/README.md` - Documentation for environment configuration
 - `/scripts/start-services.sh` - Service startup script that loads environment
 
@@ -266,7 +1628,7 @@ keycloak:
 
 **Load Environment:**
 ```bash
-source doc/env/lens_2026.env
+source conf/env/lens_2026.env
 ```
 
 **Start Services:**
@@ -275,14 +1637,14 @@ source doc/env/lens_2026.env
 ./scripts/start-services.sh start
 
 # Or manually
-source doc/env/lens_2026.env
+source conf/env/lens_2026.env
 cd platform/lens-platform-gateway
 mvn spring-boot:run
 ```
 
 **Override Values:**
 ```bash
-source doc/env/lens_2026.env
+source conf/env/lens_2026.env
 export GATEWAY_PORT=9050
 export KEYCLOAK_URL=http://keycloak.example.com:8080
 mvn spring-boot:run
@@ -290,7 +1652,7 @@ mvn spring-boot:run
 
 **Display Configuration:**
 ```bash
-source doc/env/lens_2026.env --show
+source conf/env/lens_2026.env --show
 ```
 
 ### Service Startup Script
@@ -344,7 +1706,7 @@ All updated configurations with environment variables uploaded:
 ### Documentation
 
 - `/doc/env/README.md` - Complete environment configuration guide
-- `/doc/env/lens_2026.env` - Main environment file with all variables
+- `/conf/env/lens_2026.env` - Main environment file with all variables
 - Inline comments in env file explaining each variable
 - Variable defaults for local development
 
@@ -352,13 +1714,13 @@ All updated configurations with environment variables uploaded:
 
 1. **Create Production Environment:**
    ```bash
-   cp doc/env/lens_2026.env doc/env/lens_2026_prod.env
+   cp conf/env/lens_2026.env doc/env/lens_2026_prod.env
    # Edit production values
    ```
 
 2. **Create Test Environment:**
    ```bash
-   cp doc/env/lens_2026.env doc/env/lens_2026_test.env
+   cp conf/env/lens_2026.env doc/env/lens_2026_test.env
    # Edit test values
    ```
 

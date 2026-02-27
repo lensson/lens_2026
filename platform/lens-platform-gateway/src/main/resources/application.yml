@@ -10,7 +10,7 @@ spring:
     name: lens-platform-gateway
   config:
     import:
-      - nacos:lens-platform-gateway.yaml?group=DEFAULT_GROUP&namespace=lens_2026&refresh=true
+      - optional:nacos:lens-platform-gateway.yaml?group=DEFAULT_GROUP&namespace=lens_2026&refresh=true
   cloud:
     nacos:
       server-addr: localhost:8848

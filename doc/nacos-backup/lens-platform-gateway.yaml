@@ -13,27 +13,117 @@ server:
 spring:
   application:
     name: lens-platform-gateway
+
+  # Security & OAuth2 Configuration
+  security:
+    oauth2:
+      # OAuth2 Client - for login redirect
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${JWT_ISSUER_URI:http://172.28.0.1:28080/realms/lens}
+            authorization-uri: ${KEYCLOAK_URL:http://172.28.0.1:28080}/realms/${KEYCLOAK_REALM:lens}/protocol/openid-connect/auth
+            token-uri: ${KEYCLOAK_URL:http://172.28.0.1:28080}/realms/${KEYCLOAK_REALM:lens}/protocol/openid-connect/token
+            user-info-uri: ${KEYCLOAK_URL:http://172.28.0.1:28080}/realms/${KEYCLOAK_REALM:lens}/protocol/openid-connect/userinfo
+            jwk-set-uri: ${JWT_JWK_SET_URI:http://172.28.0.1:28080/realms/lens/protocol/openid-connect/certs}
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: ${KEYCLOAK_CLIENT_ID:lens-client}
+            client-secret: ${KEYCLOAK_CLIENT_SECRET:x6lEH0DMcT27eop2cszIP3Brc2sDQHLb}
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+              - profile
+              - email
+      # OAuth2 Resource Server - for JWT validation
+      resourceserver:
+        jwt:
+          # JWK Set URI for JWT validation
+          jwk-set-uri: ${JWT_JWK_SET_URI:http://172.28.0.1:28080/realms/lens/protocol/openid-connect/certs}
+          issuer-uri: ${JWT_ISSUER_URI:http://172.28.0.1:28080/realms/lens}
+
+  # Enable Springdoc Swagger UI in gateway for API documentation
+  springdoc:
+    swagger-ui:
+      enabled: true
+      path: /swagger-ui.html
+      # OAuth2 redirect URL
+      oauth2-redirect-url: http://localhost:8050/swagger-ui/oauth2-redirect.html
+      # OAuth2 configuration - client credentials pre-configured (camelCase!)
+      oauth:
+        clientId: lens-client
+        clientSecret: x6lEH0DMcT27eop2cszIP3Brc2sDQHLb
+        usePkceWithAuthorizationCodeGrant: true
+        scopes:
+          - openid
+          - profile
+          - email
+    api-docs:
+      enabled: true
+      path: /v3/api-docs
+
   cloud:
     gateway:
+      default-filters:
+        # TokenRelay filter - automatically forwards OAuth2 access token to downstream services
+        - TokenRelay=
       routes:
+        # OpenAPI/Swagger routes for Auth service - MUST come before general auth route
+        # Note: No X-Forwarded-Prefix here to prevent Springdoc from doubling paths
+        - id: lens-platform-auth-swagger
+          uri: lb://lens-platform-auth
+          order: 1
+          predicates:
+            - Path=/v2/lens/platform/auth/swagger-ui.html,/v2/lens/platform/auth/swagger-ui/**,/v2/lens/platform/auth/v3/api-docs/**
+          filters:
+            - StripPrefix=4
+            - PreserveHostHeader
+
+        # Auth service API routes - lower priority than swagger routes
+        # X-Forwarded-Prefix added here for API calls
         - id: lens-platform-auth
           uri: lb://lens-platform-auth
+          order: 100
           predicates:
             - Path=/v2/lens/platform/auth/**
           filters:
             - StripPrefix=4
+            - AddRequestHeader=X-Forwarded-Prefix, /v2/lens/platform/auth
+
+        # OpenAPI/Swagger routes for System service - MUST come before general system route
+        # Note: No X-Forwarded-Prefix here to prevent Springdoc from doubling paths
+        - id: lens-platform-system-swagger
+          uri: lb://lens-platform-system
+          order: 1
+          predicates:
+            - Path=/v2/lens/platform/system/swagger-ui.html,/v2/lens/platform/system/swagger-ui/**,/v2/lens/platform/system/v3/api-docs/**
+          filters:
+            - StripPrefix=4
+            - PreserveHostHeader
+
+        # System service API routes - lower priority than swagger routes
+        # X-Forwarded-Prefix added here for API calls
         - id: lens-platform-system
           uri: lb://lens-platform-system
+          order: 100
           predicates:
             - Path=/v2/lens/platform/system/**
           filters:
             - StripPrefix=4
+            - AddRequestHeader=X-Forwarded-Prefix, /v2/lens/platform/system
+
+        # Monitor service routes
         - id: lens-platform-monitor
           uri: lb://lens-platform-monitor
+          order: 100
           predicates:
             - Path=/v2/lens/platform/monitor/**
           filters:
             - StripPrefix=4
+            - AddRequestHeader=X-Forwarded-Prefix, /v2/lens/platform/monitor
 
 # OpenAPI Configuration
 openapi:
@@ -46,6 +136,10 @@ openapi:
 keycloak:
   url: ${KEYCLOAK_URL:http://172.28.0.1:28080}
   realm: ${KEYCLOAK_REALM:lens}
+  # Admin credentials (for management operations if needed)
+  admin:
+    username: ${KEYCLOAK_ADMIN_USERNAME:admin}
+    password: ${KEYCLOAK_ADMIN_PASSWORD:admin}
 
 # Logging Configuration
 logging:
@@ -53,6 +147,8 @@ logging:
     root: ${LOG_LEVEL_ROOT:INFO}
     com.lens: ${LOG_LEVEL_LENS:DEBUG}
     org.springframework.cloud.gateway: ${LOG_LEVEL_SPRING_GATEWAY:DEBUG}
+    org.springframework.security: ${LOG_LEVEL_SPRING_SECURITY:DEBUG}
+    org.springframework.security.oauth2: DEBUG
 
 # Management & Actuator
 management:

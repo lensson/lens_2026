@@ -47,13 +47,21 @@ public class OpenAPIConfig {
             @Value("${openapi.service.url}") String url) {
         return new OpenAPI().
                 components(new Components()
+                        // Only OAuth2 scheme - removed bearer_auth
                         .addSecuritySchemes(OAUTH_SCHEME_NAME, createOAuthScheme()))
+                // Only OAuth2 required
                 .addSecurityItem(new SecurityRequirement().addList(OAUTH_SCHEME_NAME))
                 .servers(List.of(new Server().url(url)))
                 .info(new Info().title(serviceTitle)
-                        .description("System Platform API")
+                        .description("Lens System Platform API\n\n" +
+                                "## Authentication:\n" +
+                                "OAuth2 Authorization Code flow with Keycloak\n" +
+                                "- Click 'Authorize' button\n" +
+                                "- Login with your Keycloak credentials\n" +
+                                "- Client credentials are pre-configured")
                         .version(serviceVersion));
     }
+
 
     private SecurityScheme createOAuthScheme() {
         OAuthFlows flows = createOAuthFlows();
@@ -63,13 +71,17 @@ public class OpenAPIConfig {
 
     private OAuthFlows createOAuthFlows() {
         OAuthFlow flow = createAuthorizationCodeFlow();
-        return new OAuthFlows().implicit(flow);
+        // Use authorizationCode flow (not implicit) for proper Keycloak redirect
+        return new OAuthFlows().authorizationCode(flow);
     }
 
     private OAuthFlow createAuthorizationCodeFlow() {
         return new OAuthFlow()
                 .authorizationUrl(authServerUrl + "/realms/" + realm + "/protocol/openid-connect/auth")
-                .scopes(new Scopes().addString("VIEW", "read data")
-                        .addString("ADMIN", "modify data"));
+                .tokenUrl(authServerUrl + "/realms/" + realm + "/protocol/openid-connect/token")
+                .scopes(new Scopes()
+                        .addString("openid", "OpenID Connect scope")
+                        .addString("profile", "Profile information")
+                        .addString("email", "Email address"));
     }
 }

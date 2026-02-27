@@ -25,7 +25,7 @@ public class CallerController {
     }
 
     @Operation(summary = "Invoke system callme ping", description = "Return http://172.28.0.1:8842/callme/ping")
-    @PreAuthorize("hasAuthority('SCOPE_TEST')")
+    @PreAuthorize("hasAuthority('VIEW')")
     @GetMapping("/ping")
     public String ping() {
         SecurityContext context = SecurityContextHolder.getContext();
@@ -33,7 +33,7 @@ public class CallerController {
 
         String scopes = webClient
                 .get()
-                .uri("http://172.28.0.1:8842/callme/ping")
+                .uri("http://172.28.0.1:8042/callme/ping")
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();

@@ -491,17 +491,17 @@ Lens Team - 高效、可靠、易用的微服务平台
 #### 加载环境
 ```bash
 # 加载环境变量
-source doc/env/lens_2026.env
+source conf/env/lens_2026.env
 # 查看当前配置
-source doc/env/lens_2026.env --show
+source conf/env/lens_2026.env --show
 ```
 #### 启动服务
 ```bash
 # 使用启动脚本（推荐）
-./scripts/start-services.sh start                         # 启动所有服务
-./scripts/start-services.sh start lens-platform-gateway   # 启动单个服务
-./scripts/start-services.sh status                        # 检查状态
-./scripts/start-services.sh stop                          # 停止服务
+./doc/deployment/scripts/start-services.sh start                         # 启动所有服务
+./doc/deployment/scripts/start-services.sh start lens-platform-gateway   # 启动单个服务
+./doc/deployment/scripts/start-services.sh status                        # 检查状态
+./doc/deployment/scripts/start-services.sh stop                          # 停止服务
 ```
 #### 关键环境变量
 | 类别 | 变量 | 默认值 |
@@ -605,6 +605,6 @@ curl http://localhost:8848/nacos/v1/console/health/readiness
 ## 📚 文档
 - **README.md** - 本文件，项目主文档
 - **doc/HISTORY.md** - 详细变更历史和技术文档
-- **doc/env/lens_2026.env** - 环境变量配置文件
+- **conf/env/lens_2026.env** - 环境变量配置文件
 - **doc/nacos-backup/** - Nacos 配置备份
 - **scripts/start-services.sh** - 服务管理脚本

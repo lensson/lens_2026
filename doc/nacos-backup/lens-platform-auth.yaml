@@ -9,6 +9,13 @@
 
 server:
   port: ${AUTH_PORT:8041}
+  # Disable forward headers strategy to prevent Springdoc from detecting gateway prefix
+  # We handle the prefix in OpenAPI configuration via openapi.service.url
+  forward-headers-strategy: none
+  # Alternative for older Spring Boot versions: use tomcat configuration
+  tomcat:
+    redirect-context-root: false
+    use-relative-redirects: true
 
 spring:
   application:
@@ -30,7 +37,33 @@ openapi:
   service:
     title: Lens Platform Auth API
     version: ${OPENAPI_VERSION:2.0.0}
-    url: ${AUTH_URL:http://localhost:8041}
+    # Use gateway URL for Swagger UI API calls to avoid CORS issues
+    url: ${AUTH_URL:http://localhost:8050/v2/lens/platform/auth}
+
+# Springdoc Configuration for Swagger UI
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    # Configure Swagger UI to use the full gateway URL for API docs
+    # This prevents relative path resolution issues
+    url: /v2/lens/platform/auth/v3/api-docs
+    config-url: /v2/lens/platform/auth/v3/api-docs/swagger-config
+    # OAuth2 configuration - client credentials pre-configured
+    oauth2-redirect-url: http://localhost:8050/v2/lens/platform/auth/swagger-ui/oauth2-redirect.html
+    oauth:
+      client-id: lens-client
+      client-secret: x6lEH0DMcT27eop2cszIP3Brc2sDQHLb
+      # Use PKCE for better security with authorization code flow
+      use-pkce-with-authorization-code-grant: true
+      # Scopes to request
+      scopes:
+        - openid
+        - profile
+        - email
+  disable-swagger-default-url: false
+  pre-loading-enabled: false
 
 # Keycloak Configuration
 keycloak:
