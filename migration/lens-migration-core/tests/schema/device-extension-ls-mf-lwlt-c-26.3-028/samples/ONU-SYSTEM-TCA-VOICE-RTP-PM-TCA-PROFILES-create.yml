@@ -1,0 +1,51 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  rtp-failure-tca-profile:
+    description: POTS RTP performance monitoring TCA profile name
+    suggested-values:
+    - rtp_tca_profile
+  rtp-errors-threshold:
+    description: Threshold value for RTP packet errors range is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 100
+  rtp-packet-loss-threshold:
+    description: Threshold value for RTP packet loss range is 0 .. 4294967294)
+    optional: true
+    suggested-values:
+    - 1000
+  max-jitter-threshold:
+    description: Threshold value for the maximum jitter identified during the measured
+      interval (RTP timestamp units)
+    optional: true
+    suggested-values:
+    - 50
+  max-rtcp-inter-packet-time-threshold:
+    description: Threshold value for the maximum time between RTCP packets during
+      the measured interval (in milliseconds)
+    optional: true
+    suggested-values:
+    - 5000
+  buffer-underflow-threshold:
+    description: Threshold value for the number of times the RTP reassembly buffer
+      underflows range is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 20
+  buffer-overflow-threshold:
+    description: Threshold value for the number of times the RTP reassembly buffer
+      overflows range is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 20
+domains: onu>system>tca>pm-profiles
+entity: rtp-tca-profile
+freemarker: true
+name: Config POTS RTP PM TCA profile
+operation: create
+sample-id: onu-system-tca-pm-profiles-rtp-tca-profile-create
+scope: eonu
+status: draft

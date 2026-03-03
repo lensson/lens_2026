@@ -1,0 +1,39 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+        <edit-config>
+                <target>
+                        <running/>
+                </target>
+                <config>
+ <dhcpv6-ldra-profiles xmlns="urn:bbf:yang:bbf-ldra">
+        <dhcpv6-ldra-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${dhcpv6\-profile\-name}</name>
+		  <options>
+            <option>${interface\-id}</option>
+            <default-interface-id-syntax>${interface\-id\-syntax}</default-interface-id-syntax>
+         <#if remote\-id?has_content && remote\-id\-syntax?has_content>
+			<option>${remote\-id}</option>
+        <default-remote-id-syntax>${remote\-id\-syntax}</default-remote-id-syntax>
+	<#elseif remote\-id?has_content>
+			<option>${remote\-id}</option>
+	</#if>
+        <#if enterprise\-number?has_content>
+            <enterprise-number>${enterprise\-number}</enterprise-number>
+        </#if>
+	<#if vendor\-specific\-information?has_content>
+            <option>${vendor\-specific\-information}</option>
+	</#if>
+	<#if vendor\-specific\-information?has_content && access\-loop\-characteristics?has_content>
+	    <access-loop-characteristics>${access\-loop\-characteristics}</access-loop-characteristics>
+	</#if>
+         <#if start\-numbering\-from\-zero?has_content>
+            <start-numbering-from-zero>${start\-numbering\-from\-zero}</start-numbering-from-zero>
+	</#if>
+         <#if use\-leading\-zero?has_content>
+            <use-leading-zeroes>${use\-leading\-zero}</use-leading-zeroes>
+	</#if>
+			  </options>
+               </dhcpv6-ldra-profile>
+      </dhcpv6-ldra-profiles>
+                </config>
+        </edit-config>
+</rpc>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  simple-classifier-test / sample-01
+  old-version (v1): 3 classifier entries
+  Paired with: new-version/classifier-sample-01-v2.xml
+-->
+<classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+
+  <!-- Entry 1: High Priority Traffic -->
+  <classifier-entry>
+    <name>high-priority-classifier</name>
+    <description>Classifier for high priority traffic with P-bit 6 and 7</description>
+    <classifier-action-entry-cfg>
+      <action-type>scheduling-traffic-class</action-type>
+      <scheduling-traffic-class>1</scheduling-traffic-class>
+    </classifier-action-entry-cfg>
+  </classifier-entry>
+
+  <!-- Entry 2: Low Priority Traffic -->
+  <classifier-entry>
+    <name>low-priority-classifier</name>
+    <description>Classifier for low priority traffic with P-bit 0 and 1</description>
+    <classifier-action-entry-cfg>
+      <action-type>scheduling-traffic-class</action-type>
+      <scheduling-traffic-class>4</scheduling-traffic-class>
+    </classifier-action-entry-cfg>
+  </classifier-entry>
+
+  <!-- Entry 3: Best Effort Traffic (will be deleted in v2) -->
+  <classifier-entry>
+    <name>best-effort-classifier</name>
+    <description>Classifier for best effort traffic</description>
+    <classifier-action-entry-cfg>
+      <action-type>pass</action-type>
+      <pass/>
+    </classifier-action-entry-cfg>
+  </classifier-entry>
+
+</classifiers>
+

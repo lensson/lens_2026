@@ -1,0 +1,15 @@
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+        <running/>
+    </target>
+      <config>
+        <l2-dhcpv4-relay-profiles xmlns="urn:bbf:yang:bbf-l2-dhcpv4-relay">
+          <l2-dhcpv4-relay-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+            <name>${dhcp\-profile\-name}</name>
+            <option82-handling-extn xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-dhcpv4-relay-agent-extn">${option82\-handling\-extn}</option82-handling-extn>
+          </l2-dhcpv4-relay-profile>
+        </l2-dhcpv4-relay-profiles>
+      </config>
+  </edit-config>
+</rpc>

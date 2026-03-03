@@ -1,0 +1,20 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  mc-profile-name:
+    description: The name of the multicast profile.
+    suggested-values:
+    - vpn-profile1
+  vpn-name:
+    description: The name of a multicast vpn.
+    suggested-values:
+    - mc-vpn
+domains: onu>multicast>vpn
+freemarker: true
+name: Create  multicast VPN service
+operation: create
+sample-id: onu-multicast-vpn-create
+scope: eonu
+status: draft

@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  voip-cc-name:
+    description: Name For VSI and GEM Ports To Be Deleted
+    suggested-values:
+    - cc-1
+  tc:
+    description: The Traffic Class for Gemport
+    suggested-values:
+    - 6
+domains: onu>transport>voip-sip
+entity: cc
+freemarker: true
+name: Remove Transport VOIP SIP CC
+operation: remove
+sample-id: onu-transport-voip-sip-cc-remove
+scope: eonu
+status: draft

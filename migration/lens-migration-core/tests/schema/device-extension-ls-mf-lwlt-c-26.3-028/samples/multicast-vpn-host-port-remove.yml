@@ -1,0 +1,17 @@
+arguments:
+  vpn-host-port-name:
+    description: The name of a multicast host port.
+    suggested-values:
+    - user-mc-itf1
+  vpn-name:
+    description: The name of a multicast vpn.
+    suggested-values:
+    - mc-vpn
+domains: multicast>vpn
+entity: host-port
+freemarker: true
+name: Remove multicast host port
+operation: remove
+sample-id: multicast-vpn-host-port-remove
+scope: multicast-fiber and not(mx) and not(dpu)
+status: draft

@@ -1,0 +1,27 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <power-shedding-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-hardware-power-shed-profiles-mounted" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+              <power-shedding-profile>
+                <name>${name}</name>
+                <data-service-power-shed-delay>5</data-service-power-shed-delay>
+                <voice-service-power-shed-delay>5</voice-service-power-shed-delay>
+                <video-overlay-service-power-shed-delay>5</video-overlay-service-power-shed-delay>
+                <dsl-service-power-shed-delay>5</dsl-service-power-shed-delay>
+                <ces-service-power-shed-delay>5</ces-service-power-shed-delay>
+                <power-shed-exit-delay>5</power-shed-exit-delay>
+              </power-shedding-profile>
+            </power-shedding-profiles>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

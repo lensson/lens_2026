@@ -1,0 +1,279 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+	  <!-- configure enhance filter -->
+    <#if match\-any\-frame?has_content == false || match\-any\-frame == false>
+      <filters xmlns="urn:bbf:yang:bbf-qos-filters">
+        <enhanced-filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>${classifier\-name}_enhfilter</name>
+          <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">bbf-qos-cls:${enhance\-filter\-operation}</filter-operation>
+          <#if src\-mac\-address>
+		  <filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+            <name>enhfilter1</name>
+            <source-mac-address xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+            <#if src\-broadcast>
+            <broadcast-address/>
+            </#if>
+            <#if src\-cfm\-multicast>
+            <cfm-multicast-address/>
+            </#if>
+            <#if src\-ipv4\-multicast>
+            <ipv4-multicast-address/>
+            </#if>
+            <#if src\-ipv6\-multicast>
+            <ipv6-multicast-address/>
+            </#if>
+            <#if src\-mac\-specific && src\-mac\-value?has_content && src\-mac\-mask?has_content>
+            <mac-address-value>${src\-mac\-value}</mac-address-value>
+            <mac-address-mask>${src\-mac\-mask}</mac-address-mask>
+            </#if>
+          </source-mac-address>
+          </filter>
+		  </#if>
+		  <#if dest\-mac\-address>
+		  <filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>enhfilter2</name>
+          <destination-mac-address xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+            <#if dest\-broadcast>
+            <broadcast-address/>
+            </#if>
+            <#if dest\-cfm\-multicast>
+            <cfm-multicast-address/>
+            </#if>
+            <#if dest\-ipv4\-multicast>
+            <ipv4-multicast-address/>
+            </#if>
+            <#if dest\-ipv6\-multicast>
+            <ipv6-multicast-address/>
+            </#if>
+            <#if dest\-mac\-specific && dest\-mac\-value?has_content && dest\-mac\-mask?has_content>
+            <mac-address-value>${dest\-mac\-value}</mac-address-value>
+            <mac-address-mask>${dest\-mac\-mask}</mac-address-mask>
+            </#if>
+            <#if dest\-unicast>
+            <unicast-address/>
+            </#if>
+            <#if dest\-any\-multicast>
+            <any-multicast-mac-address/>
+            </#if>
+          </destination-mac-address>
+		  </filter>
+		  </#if>		  
+		  <#if pbit\-list?has_content || dei?has_content>
+		  <filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+            <name>enhfilter3</name>
+            <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+			  <#if pbit\-list?has_content>
+              <tag>
+                <index>0</index>
+                <in-pbit-list xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">${pbit\-list}</in-pbit-list>
+              </tag>
+			  </#if>
+			  <#if dei?has_content>
+              <tag>
+                <index>0</index>
+                <in-dei>${dei}</in-dei>
+              </tag>
+			  </#if>
+            </vlans>
+          </filter>
+		  </#if>
+          <#if pbit\-marking\-list?has_content>
+		  <filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>enhfilter4</name>
+		  <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+            <index>0</index>
+            <#list pbit\-marking\-list as pbitvalueentry>
+            <pbit-value xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">${pbitvalueentry}</pbit-value>
+            </#list>
+          </pbit-marking-list>
+		  </filter>
+          </#if>
+		  <#if dei\-marking\-list?has_content>
+		  <filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>enhfilter5</name>
+		  <dei-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+            <index>0</index>
+            <dei-value xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">${dei\-marking\-list}</dei-value>
+          </dei-marking-list>
+		  </filter>
+          </#if>		  
+		  <#if ethernet\-frame\-type?has_content>
+		  <filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>enhfilter6</name>
+          <ethernet-frame-type xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">${ethernet\-frame\-type}</ethernet-frame-type>
+		  </filter>
+          </#if>
+          <#if src\-ipv4\-address?has_content || dest\-ipv4\-address?has_content>
+		  <filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>enhfilter7</name>
+          <ipv4 xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+            <#if src\-ipv4\-address?has_content>
+            <source-ipv4-network>${src\-ipv4\-address}</source-ipv4-network>
+            </#if>
+            <#if dest\-ipv4\-address?has_content>
+            <destination-ipv4-network>${dest\-ipv4\-address}</destination-ipv4-network>
+            </#if>
+          </ipv4>
+		    </filter>		
+          </#if>
+		  <#if src\-ipv6\-address?has_content || dest\-ipv6\-address?has_content>
+		  <filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>enhfilter8</name>
+          <ipv6 xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+            <#if src\-ipv6\-address?has_content>
+            <source-ipv6-network>${src\-ipv6\-address}</source-ipv6-network>
+            </#if>
+            <#if dest\-ipv6\-address?has_content>
+            <destination-ipv6-network>${dest\-ipv6\-address}</destination-ipv6-network>
+            </#if>
+          </ipv6>
+		  </filter>
+          </#if>
+		  <#if ip\-version == "ipv4" && enhance\-filter\-operation == "match-all-filter" && !src\-ipv4\-address?has_content && !dest\-ipv4\-address?has_content>
+		    <#if dscp?has_content || protocol?has_content || src\-lower\-port?has_content || src\-upper\-port?has_content || dest\-lower\-port?has_content || dest\-upper\-port?has_content>
+			<filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+            <name>enhfilter7</name>
+            <ipv4 xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+              <source-ipv4-network>0.0.0.0/0</source-ipv4-network>
+            </ipv4>
+		    </filter>
+			</#if>
+		  </#if>
+		  <#if ip\-version == "ipv6" && enhance\-filter\-operation == "match-all-filter" && !src\-ipv6\-address?has_content && !dest\-ipv6\-address?has_content>
+			<#if dscp?has_content || protocol?has_content || src\-lower\-port?has_content || src\-upper\-port?has_content || dest\-lower\-port?has_content || dest\-upper\-port?has_content>
+			<filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+            <name>enhfilter8</name>
+            <ipv6 xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+              <source-ipv6-network>00::/0</source-ipv6-network>
+            </ipv6>
+		    </filter>
+		    </#if>
+		  </#if>
+		  <#if dscp?has_content || protocol?has_content>
+		  <filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>enhfilter9</name>
+          <ip-common xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+            <#if dscp?has_content>
+            <dscp-range xmlns:bbf-inet="urn:bbf:yang:bbf-inet-types">${dscp}</dscp-range>
+            </#if>
+            <#if protocol?has_content>
+            <protocol>${protocol}</protocol>
+            </#if>
+          </ip-common>
+		  <#if ip\-version == "ipv4" && enhance\-filter\-operation == "match-any-filter">
+		  <ipv4 xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+            <source-ipv4-network>0.0.0.0/0</source-ipv4-network>
+          </ipv4>
+		  </#if>
+		  <#if ip\-version == "ipv6" && enhance\-filter\-operation == "match-any-filter">
+          <ipv6 xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+            <source-ipv6-network>00::/0</source-ipv6-network>
+          </ipv6>
+		  </#if>
+		  </filter>
+          </#if>
+		  <#if ((src\-lower\-port?has_content) && (src\-upper\-port?has_content)) || ((dest\-lower\-port?has_content) && (dest\-upper\-port?has_content))>
+		  <filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>enhfilter10</name>
+          <transport xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+            <#if (src\-lower\-port?has_content) && (src\-upper\-port?has_content)>
+            <source-port-range>
+              <lower-port>${src\-lower\-port}</lower-port>
+              <upper-port>${src\-upper\-port}</upper-port>
+            </source-port-range>
+            </#if>
+            <#if (dest\-lower\-port?has_content) && (dest\-upper\-port?has_content)>
+            <destination-port-range>
+              <lower-port>${dest\-lower\-port}</lower-port>
+              <upper-port>${dest\-upper\-port}</upper-port>
+            </destination-port-range>
+            </#if>
+          </transport>
+		   <#if ip\-version == "ipv4" && enhance\-filter\-operation == "match-any-filter">
+		  <ipv4 xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+            <source-ipv4-network>0.0.0.0/0</source-ipv4-network>
+          </ipv4>
+		  </#if>
+		  <#if ip\-version == "ipv6" && enhance\-filter\-operation == "match-any-filter">
+          <ipv6 xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+            <source-ipv6-network>00::/0</source-ipv6-network>
+          </ipv6>
+		  </#if>
+		  </filter>
+          </#if>
+          <#if protocols?has_content>
+		  <filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>enhfilter11</name>
+          <#list protocols as protocolentry>
+          <protocol xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">${protocolentry}</protocol>
+          </#list>
+		  </filter>
+          </#if>
+        </enhanced-filter>
+      </filters>	    
+    </#if>
+	  <!-- enhance filter attach to classifier -->
+	   <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+	   <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${classifier\-name}</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <#if match\-any\-frame?has_content && match\-any\-frame>
+          <any-frame xmlns="urn:bbf:yang:bbf-qos-enhanced-filters"/>
+          <#else>
+          <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">${classifier\-name}_enhfilter</enhanced-filter-name>
+          </#if>
+		  <#if pass\-action>
+          <classifier-action-entry-cfg>
+            <action-type>pass</action-type>
+            <pass/>
+          </classifier-action-entry-cfg>
+          </#if>
+		  <#if discard\-action>
+          <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:discard</action-type>
+            <discard xmlns="urn:bbf:yang:bbf-qos-policing"/>
+          </classifier-action-entry-cfg>
+          </#if>        	  
+		  <#if pbit\-marking\-action && outer\-marking\-pbit?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>pbit-marking</action-type>
+            <pbit-marking-cfg>
+                <pbit-marking-list>
+                  <index>0</index>
+                  <pbit-value>${outer\-marking\-pbit}</pbit-value>
+                </pbit-marking-list>
+                <#if inner\-marking\-pbit?has_content>
+			    <pbit-marking-list>
+                  <index>1</index>
+                  <pbit-value>${inner\-marking\-pbit}</pbit-value>
+                </pbit-marking-list>
+		        </#if>
+            </pbit-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+		  <#if ccl\-policing\-action && policing\-profile\-name?has_content>
+		  <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:policing</action-type>
+            <policing xmlns="urn:bbf:yang:bbf-qos-policing">
+              <policing-profile>${policing\-profile\-name}</policing-profile>
+            </policing>
+          </classifier-action-entry-cfg>
+		  </#if>
+        </classifier-entry>
+		</classifiers>
+			<!-- configure ccl policy -->
+      <policies xmlns="urn:bbf:yang:bbf-qos-policies">
+        <policy>
+          <name>${ccl\-policy\-name}</name>
+          <classifiers>
+            <name>${classifier\-name}</name>
+          </classifiers>
+        </policy>
+      </policies>
+	</config>
+  </edit-config>
+</rpc>

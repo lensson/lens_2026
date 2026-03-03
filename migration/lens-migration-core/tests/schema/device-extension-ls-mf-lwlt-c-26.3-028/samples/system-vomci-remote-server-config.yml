@@ -1,0 +1,30 @@
+arguments:
+  remoteserver:
+    suggested-values:
+    - vomci
+  localservice:
+    suggested-values:
+    - moswa
+  accesspoint:
+    suggested-values:
+    - vomci-grpc
+  remoteaddress:
+    suggested-values:
+    - 1.1.1.1
+  remoteport:
+    suggested-values:
+    - 333
+  cert:
+    description: Private cert value to be used
+    suggested-values:
+    - MIIJQwIBAD....
+  cagroup:
+    suggested-values:
+    - CA-GROUP
+domains: system>vomci
+entity: remote-server
+freemarker: true
+name: Configure vomci function
+operation: config
+sample-id: system-vomci-remote-server-config
+status: draft

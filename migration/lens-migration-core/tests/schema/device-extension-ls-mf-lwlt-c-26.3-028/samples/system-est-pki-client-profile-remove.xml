@@ -1,0 +1,18 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <#if est\-profile\-name?has_content>
+        <est-client xmlns="urn:ietf:params:xml:ns:yang:nokia-sdan-est-client">
+          <est-certificate-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+            <name>${est\-profile\-name}</name>
+	  </est-certificate-profile>
+	</est-client>
+      <#else>
+        <est-client xmlns="urn:ietf:params:xml:ns:yang:nokia-sdan-est-client" ns0:operation="remove"/>
+      </#if>
+    </config>
+  </edit-config>
+</rpc>

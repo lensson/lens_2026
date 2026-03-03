@@ -1,0 +1,13 @@
+arguments:
+  v-ani-name:
+    description: The name of the virtual ANI Interface.
+    suggested-values:
+    - v-ani-1-1-1
+domains: transport>xgspon>v-ani
+freemarker: true
+name: Retrieve Xgspon onu on olt side
+operation: get-config
+sample-id: transport-xgspon-v-ani-get-config
+scope: ngpon2-xgs or gpon-xgs or gpon-xgs-25g or gpon-ngpon2-xgs-25g or gpon-xgs-25g-hs
+  or gpon-xgpon-xgs-25g or gpon-ngpon2-xgpon-xgs-25g or gpon-xgs-25g-50g
+status: draft

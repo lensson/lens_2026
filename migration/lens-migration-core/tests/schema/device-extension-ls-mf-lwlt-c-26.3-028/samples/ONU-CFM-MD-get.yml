@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  md-id:
+    description: Unique ID which is a key for the maintenance domain
+    suggested-values:
+    - MD-1
+domains: onu>cfm
+entity: md
+freemarker: true
+name: Get ONU CFM MD
+operation: get
+sample-id: onu-cfm-md-get
+scope: eonu
+status: draft

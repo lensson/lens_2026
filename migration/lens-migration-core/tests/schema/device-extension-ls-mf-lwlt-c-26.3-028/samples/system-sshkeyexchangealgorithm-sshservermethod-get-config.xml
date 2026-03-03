@@ -1,0 +1,17 @@
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <get-config>
+   <source>
+     <running/>
+   </source>
+   <filter type="subtree">
+     <confdConfig xmlns="http://tail-f.com/ns/confd_dyncfg/1.0">
+      <ssh>
+       <algorithms>
+         <kex/>
+         <serverHostKey/>
+      </algorithms>
+     </ssh>
+    </confdConfig>
+   </filter>
+  </get-config>
+</rpc>

@@ -1,0 +1,16 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+<get-config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <source>
+    <running/>
+  </source>
+  <filter type="subtree">
+    <users xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-aaa">
+      <user> 
+        <#if name?has_content>
+          <name>${name}</name>
+        </#if>
+     </user>
+    </users>
+  </filter>
+</get-config>
+</rpc>

@@ -1,0 +1,21 @@
+arguments:
+  vpn-name:
+    description: The name of a multicast vpn.
+    suggested-values:
+    - mc-vpn
+  vpn-host-interface-name:
+    description: The name of a multicast host interface.
+    suggested-values:
+    - user-mc-itf1
+  multicast-package-name:
+    description: The name of a multicast package.
+    suggested-values:
+    - Pkg-1
+domains: multicast>vpn
+entity: host-interface-package
+freemarker: true
+name: Remove multicast package from multicast host interface
+operation: remove
+sample-id: multicast-vpn-host-interface-package-remove
+scope: multicast
+status: draft

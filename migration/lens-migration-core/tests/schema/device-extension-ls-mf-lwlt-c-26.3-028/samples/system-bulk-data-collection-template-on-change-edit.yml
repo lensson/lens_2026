@@ -1,0 +1,63 @@
+arguments:
+  cache-name:
+    description: cache name
+    suggested-values:
+    - OnchangeCache1
+  field1-name:
+    description: field name
+    suggested-values:
+    - Field1
+  field1-ie-name:
+    description: field ie name
+    suggested-values:
+    - /hw:hardware-state/hw:component/hw:name
+  field2-name:
+    description: field name
+    suggested-values:
+    - Field2
+  field2-ie-name:
+    description: field ie name
+    suggested-values:
+    - /hw:hardware-state/hw:component/hw:class
+  field3-name:
+    description: field name
+    optional: true
+    suggested-values:
+    - Field3
+  field3-ie-name:
+    description: field ie name
+    optional: true
+    suggested-values:
+    - /hw:hardware-state/hw:component/hw:hardware-rev
+  heartbeat-interval:
+    description: periodic heartbeat-interval for on-change templates
+    optional: true
+    suggested-values:
+    - 0
+  reporting-enable:
+    description: reporting enable flag
+    suggested-values:
+    - true
+  exportingProcess:
+    description: This field indicates the exportingProcess name whose destination(s)
+      will be used for pushing the cache's data out. The exportingProcess has to be
+      configured in the cache in order to have the data exported out. Each cache can
+      be configured with max 1 exportingProcess.
+    optional: true
+    suggested-values:
+    - Exporter1
+  critical-content:
+    description: This field indicates that the cache contains critical data and ipfix-app
+      should retain the data for this cache which could not be exported, when connection
+      with collector is lost. This cache's data will be maintained in ipfix-app's
+      memory and flushed upon connectivity restoration.
+    optional: true
+    suggested-values:
+    - false
+domains: system>bulk-data-collection>template
+entity: on-change
+freemarker: true
+name: Configure IPFIX on-change cache template
+operation: edit
+sample-id: system-bulk-data-collection-template-on-change-edit
+status: draft

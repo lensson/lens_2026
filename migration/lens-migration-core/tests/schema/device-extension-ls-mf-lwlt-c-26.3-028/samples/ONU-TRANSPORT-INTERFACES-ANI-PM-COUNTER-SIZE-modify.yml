@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu_ani_intf:
+    description: ANI interface name
+    suggested-values:
+    - ontani
+  pm_counter_size:
+    description: Modifies pm counter size of an ANI interface,Values Range:[32bit-performance-monitoring,64bit-performance-monitoring]
+    suggested-values:
+    - 32bit-performance-monitoring
+domains: onu>transport>gpon>ani
+entity: pm-countersize
+freemarker: true
+name: Modify ANI interface performance monitoring countersize
+operation: modify
+sample-id: onu-transport-gpon-ani-pm-countersize-modify
+scope: eonu
+status: draft

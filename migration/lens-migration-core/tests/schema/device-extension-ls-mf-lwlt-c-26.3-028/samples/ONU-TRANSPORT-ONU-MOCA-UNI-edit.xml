@@ -1,0 +1,50 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <hardware xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted">
+              <component>
+<#if moca\-port\-hw\-option == "moca" >
+                <name>MOCAPORT${moca\-port\-hw\-number}</name>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${moca\-port\-hw\-number}</parent-rel-pos>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:moca</class>
+</#if>
+              </component>
+            </hardware>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${moca\-name}</name>
+<#if moca\-port\-hw\-option == "moca" >
+                <type xmlns:nokia-if-id="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interface-identities-mounted">nokia-if-id:moca-uni</type>
+                <enabled>true</enabled>
+                <port-layer-if xmlns="urn:bbf:yang:bbf-interface-port-reference-mounted">MOCAPORT${moca\-port\-hw\-number}</port-layer-if>
+<#if moca\-mode?has_content && moca\-mode == "moca">
+                <moca-home xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-moca-mounted">
+<#if moca\-password?has_content>
+                  <password>${moca\-password}</password>
+</#if>
+                </moca-home>
+</#if>
+<#if moca\-mode?has_content && moca\-mode == "moca-access">
+                <moca-access xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-moca-mounted">
+<#if moca\-password?has_content>
+                  <password>${moca\-password}</password>
+</#if>
+                </moca-access>
+</#if>
+</#if>
+              </interface>
+            </interfaces>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

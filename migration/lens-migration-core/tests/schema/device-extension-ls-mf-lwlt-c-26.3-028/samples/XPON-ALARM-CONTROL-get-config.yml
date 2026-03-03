@@ -1,0 +1,7 @@
+domains: transport>xpon>alarm-control
+freemarker: true
+name: Retrieve alarm control
+operation: get-config
+sample-id: transport-xpon-alarm-control-get-config
+scope: xpon
+status: draft

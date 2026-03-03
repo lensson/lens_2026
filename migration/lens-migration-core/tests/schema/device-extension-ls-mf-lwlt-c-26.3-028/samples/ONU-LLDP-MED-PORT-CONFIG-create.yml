@@ -1,0 +1,55 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu-uni-intf:
+    description: Ethernet UNI interface where LLDP-MED port is configured.
+    suggested-values:
+    - ontuni
+  dest-mac-address:
+    description: Ethernet destination mac-address.
+    suggested-values:
+    - any
+  admin-status:
+    description: Administrative status of the LLDP port.
+    suggested-values:
+    - tx-and-rx
+  message-fast-tx:
+    description: Time interval between LLDP PDU transmissions during fast transmission
+      periods.
+    suggested-values:
+    - 1
+  message-tx-hold-multiplier:
+    description: Multiplier of message-tx-interval. This value is used to cache the
+      learned LLDP cache before discard.
+    suggested-values:
+    - 4
+  message-tx-interval:
+    description: Time interval between LLDP PDU transmissions during normal transmission
+      periods.
+    suggested-values:
+    - 30
+  reinit-delay:
+    description: Amount of delay (in units of seconds) from when admin-status becomes
+      'disabled' until re-initialization is attempted.
+    suggested-values:
+    - 2
+  tx-credit-max:
+    description: The maximum number of consecutive LLDP PDUs that can be transmitted
+      at any time.
+    suggested-values:
+    - 5
+  tx-fast-init:
+    description: The number of LLDP PDU transmissions that are made during the fast
+      transimission period.
+    suggested-values:
+    - 4
+domains: onu>lldp-med
+entity: port
+freemarker: true
+name: Create LLDP-MED port
+operation: create
+sample-id: onu-lldp-med-port-create
+scope: eonu
+status: draft

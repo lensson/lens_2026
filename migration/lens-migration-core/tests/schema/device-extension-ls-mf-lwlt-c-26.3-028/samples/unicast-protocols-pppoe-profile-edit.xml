@@ -1,0 +1,41 @@
+
+     <rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+     <edit-config>
+     <target>
+     <running/>
+     </target>
+     <config>
+     <pppoe-profiles xmlns="urn:bbf:yang:bbf-pppoe-intermediate-agent">
+     <pppoe-profile>
+     <name>${pppoe\-profile\-name}</name>
+     <pppoe-vendor-specific-tag xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+     <#if circuit\-id?has_content>
+     <subtag>${circuit\-id}</subtag>
+     </#if>
+     <#if circuit\-id\-syntax?has_content>
+     <default-circuit-id-syntax>${circuit\-id\-syntax}</default-circuit-id-syntax>
+     </#if>
+     <#if remote\-id?has_content>
+     <subtag>${remote\-id}</subtag>
+     </#if>
+     <#if remote\-id\-syntax?has_content>
+     <default-remote-id-syntax>${remote\-id\-syntax}</default-remote-id-syntax>
+     </#if>
+     <#if access\-loop\-characteristics?has_content && access\-loop\-suboptions?has_content>
+     <subtag>${access\-loop\-characteristics}</subtag>
+     <access-loop-subtags>${access\-loop\-suboptions}</access-loop-subtags>
+     <#elseif access\-loop\-characteristics?has_content>
+     <subtag>${access\-loop\-characteristics}</subtag>
+     </#if>
+     <#if start\-numbering\-from\-zero?has_content>
+     <start-numbering-from-zero>${start\-numbering\-from\-zero}</start-numbering-from-zero>
+     </#if>
+     <#if use\-leading\-zero?has_content>
+     <use-leading-zeroes>${use\-leading\-zero}</use-leading-zeroes>
+     </#if>
+     </pppoe-vendor-specific-tag>
+     </pppoe-profile>
+     </pppoe-profiles>
+     </config>
+     </edit-config>
+     </rpc>

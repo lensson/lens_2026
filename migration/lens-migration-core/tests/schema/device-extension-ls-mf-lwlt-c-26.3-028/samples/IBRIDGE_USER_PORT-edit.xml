@@ -1,0 +1,299 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${ibridge\-user\-port\-name}-VSI</name>
+          <type xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:vlan-sub-interface</type>
+          <vector-profile xmlns="urn:bbf:yang:bbf-vlan-sub-interface-vector">${vector\-of\-data\-name}</vector-profile>
+          <#if performance\-enable?has_content>
+          <performance xmlns="urn:bbf:yang:bbf-interfaces-performance-management">
+            <enable>${performance\-enable}</enable>
+          </performance>
+          </#if>
+          <subif-lower-layer xmlns="urn:bbf:yang:bbf-sub-interfaces">
+            <interface>${enet\-name}</interface>
+          </subif-lower-layer>
+          <enabled>true</enabled>
+          <#if max\-number\-mac\-address?has_content>
+          <mac-learning xmlns="urn:bbf:yang:bbf-l2-forwarding">
+            <max-number-mac-addresses>${max\-number\-mac\-address}</max-number-mac-addresses>
+            <mac-learning-failure-action>discard</mac-learning-failure-action>
+          </mac-learning>
+          </#if>          
+          <frame-processing-profile-ref xmlns="urn:bbf:yang:bbf-frame-processing-profile">${frame\-processing\-profiles\-name}</frame-processing-profile-ref>
+          <egress-qos-policy-profile xmlns="urn:bbf:yang:bbf-qos-policies">${egress\-qos\-policy\-profile\-name}</egress-qos-policy-profile>
+          <#if ingress\-qos\-policy\-profile\-name?has_content>
+          <ingress-qos-policy-profile xmlns="urn:bbf:yang:bbf-qos-policies">${ingress\-qos\-policy\-profile\-name}</ingress-qos-policy-profile>
+          </#if>
+          <#if olt\-infrastructure\-name?has_content && leaf\-scheduler\-name?has_content>
+          <egress-tm-objects xmlns="urn:bbf:yang:bbf-qos-enhanced-scheduling">
+            <root-if-name>${olt\-infrastructure\-name}-cpartition</root-if-name>
+            <scheduler-node-name>${leaf\-scheduler\-name}</scheduler-node-name>
+          </egress-tm-objects>
+        </#if>
+        </interface>
+        <#if ip\-anti\-spoofing?has_content && ip\-anti\-spoofing && ip\-anti\-spoofing\-statistics?has_content && ip\-anti\-spoofing\-statistics>
+        <ipv4-security-statistics xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv4-address-spoofing-prevention">
+          <interface>
+            <name>${ibridge\-user\-port\-name}-VSI</name>
+          </interface>
+        </ipv4-security-statistics>
+        </#if>
+      </interfaces>
+      <#if (gemport\-sharing?has_content && gemport\-sharing == false) || (!gemport\-sharing?has_content)>
+      <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont">
+      <gemports>
+        <#if tc0\-gemport\-id?has_content>
+        <gemport xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="merge">
+          <name>${ibridge\-user\-port\-name}-GEM0</name>
+          <interface>${ibridge\-user\-port\-name}-VSI</interface>
+          <traffic-class>0</traffic-class>
+          <gemport-id>${tc0\-gemport\-id}</gemport-id>
+          <#if upstream\-aes?has_content>
+          <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+          </#if>
+          <#if downstream\-aes?has_content>
+          <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+          </#if>
+        </gemport>
+        </#if>
+        <#if tc1\-gemport\-id?has_content>
+        <gemport xmlns:ns2="urn:ietf:params:xml:ns:netconf:base:1.0" ns2:operation="merge">
+          <name>${ibridge\-user\-port\-name}-GEM1</name>
+          <interface>${ibridge\-user\-port\-name}-VSI</interface>
+          <traffic-class>1</traffic-class>
+          <gemport-id>${tc1\-gemport\-id}</gemport-id>
+          <#if upstream\-aes?has_content>
+          <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+          </#if>
+          <#if downstream\-aes?has_content>
+          <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+          </#if>
+        </gemport>
+        </#if>
+        <#if tc2\-gemport\-id?has_content>
+        <gemport xmlns:ns3="urn:ietf:params:xml:ns:netconf:base:1.0" ns3:operation="merge">
+          <name>${ibridge\-user\-port\-name}-GEM2</name>
+          <interface>${ibridge\-user\-port\-name}-VSI</interface>
+          <traffic-class>2</traffic-class>
+          <gemport-id>${tc2\-gemport\-id}</gemport-id>
+          <#if upstream\-aes?has_content>
+          <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+          </#if>
+          <#if downstream\-aes?has_content>
+          <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+          </#if>
+        </gemport>
+        </#if>
+        <#if tc3\-gemport\-id?has_content>
+        <gemport xmlns:ns4="urn:ietf:params:xml:ns:netconf:base:1.0" ns4:operation="merge">
+          <name>${ibridge\-user\-port\-name}-GEM3</name>
+          <interface>${ibridge\-user\-port\-name}-VSI</interface>
+          <traffic-class>3</traffic-class>
+          <gemport-id>${tc3\-gemport\-id}</gemport-id>
+          <#if upstream\-aes?has_content>
+          <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+          </#if>
+          <#if downstream\-aes?has_content>
+          <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+          </#if>
+        </gemport>
+        </#if>
+        <#if tc4\-gemport\-id?has_content>
+        <gemport xmlns:ns5="urn:ietf:params:xml:ns:netconf:base:1.0" ns5:operation="merge">
+          <name>${ibridge\-user\-port\-name}-GEM4</name>
+          <interface>${ibridge\-user\-port\-name}-VSI</interface>
+          <traffic-class>4</traffic-class>
+          <gemport-id>${tc4\-gemport\-id}</gemport-id>
+          <#if upstream\-aes?has_content>
+          <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+          </#if>
+          <#if downstream\-aes?has_content>
+          <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+          </#if>
+        </gemport>
+        </#if>
+        <#if tc5\-gemport\-id?has_content>
+        <gemport xmlns:ns6="urn:ietf:params:xml:ns:netconf:base:1.0" ns6:operation="merge">
+          <name>${ibridge\-user\-port\-name}-GEM5</name>
+          <interface>${ibridge\-user\-port\-name}-VSI</interface>
+          <traffic-class>5</traffic-class>
+          <gemport-id>${tc5\-gemport\-id}</gemport-id>
+          <#if upstream\-aes?has_content>
+          <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+          </#if>
+          <#if downstream\-aes?has_content>
+          <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+          </#if>
+        </gemport>
+        </#if>
+        <#if tc6\-gemport\-id?has_content>
+        <gemport xmlns:ns7="urn:ietf:params:xml:ns:netconf:base:1.0" ns7:operation="merge">
+          <name>${ibridge\-user\-port\-name}-GEM6</name>
+          <interface>${ibridge\-user\-port\-name}-VSI</interface>
+          <traffic-class>6</traffic-class>
+          <gemport-id>${tc6\-gemport\-id}</gemport-id>
+          <#if upstream\-aes?has_content>
+          <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+          </#if>
+          <#if downstream\-aes?has_content>
+          <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+          </#if>
+        </gemport>
+        </#if>
+        <#if tc7\-gemport\-id?has_content>
+        <gemport xmlns:ns8="urn:ietf:params:xml:ns:netconf:base:1.0" ns8:operation="merge">
+          <name>${ibridge\-user\-port\-name}-GEM7</name>
+          <interface>${ibridge\-user\-port\-name}-VSI</interface>
+          <traffic-class>7</traffic-class>
+          <gemport-id>${tc7\-gemport\-id}</gemport-id>
+          <#if upstream\-aes?has_content>
+          <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+          </#if>
+          <#if downstream\-aes?has_content>
+          <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+          </#if>
+        </gemport>
+        </#if>
+      </gemports>
+      </xpongemtcont>
+      </#if>
+      <forwarding xmlns="urn:bbf:yang:bbf-l2-forwarding">
+        <forwarders>
+          <forwarder>
+            <name>${ibridge\-name}-FWD</name>
+            <ports>
+              <port>
+                <name>${ibridge\-user\-port\-name}-FWD-USER-PORT</name>
+                <sub-interface>${ibridge\-user\-port\-name}-VSI</sub-interface>
+              </port>
+            </ports>
+          </forwarder>
+        </forwarders>
+      </forwarding>
+      <#if onu\-template\-cc\-name?has_content && onu\-name?has_content>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <#if (gemport\-sharing?has_content && gemport\-sharing == false) || (!gemport\-sharing?has_content)>
+            <gemports>
+              <#if tc0\-gemport\-id?has_content>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <#if tc0\-gemport\-set\-name?has_content>
+                <template-ref>${tc0\-gemport\-set\-name}-${onu\-template\-cc\-name}-GEM0</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-cc\-name}-GEM0</template-ref>
+                </#if>
+                <id>${tc0\-gemport\-id}</id>
+              </gemport>
+              </#if>
+              <#if tc1\-gemport\-id?has_content>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <#if tc1\-gemport\-set\-name?has_content>
+                <template-ref>${tc1\-gemport\-set\-name}-${onu\-template\-cc\-name}-GEM1</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-cc\-name}-GEM1</template-ref>
+                </#if>
+                <id>${tc1\-gemport\-id}</id>
+              </gemport>
+              </#if>
+              <#if tc2\-gemport\-id?has_content>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <#if tc2\-gemport\-set\-name?has_content>
+                <template-ref>${tc2\-gemport\-set\-name}-${onu\-template\-cc\-name}-GEM2</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-cc\-name}-GEM2</template-ref>
+                </#if>
+                <id>${tc2\-gemport\-id}</id>
+              </gemport>
+              </#if>
+              <#if tc3\-gemport\-id?has_content>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <#if tc3\-gemport\-set\-name?has_content>
+                <template-ref>${tc3\-gemport\-set\-name}-${onu\-template\-cc\-name}-GEM3</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-cc\-name}-GEM3</template-ref>
+                </#if>
+                <id>${tc3\-gemport\-id}</id>
+              </gemport>
+              </#if>
+              <#if tc4\-gemport\-id?has_content>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <#if tc4\-gemport\-set\-name?has_content>
+                <template-ref>${tc4\-gemport\-set\-name}-${onu\-template\-cc\-name}-GEM4</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-cc\-name}-GEM4</template-ref>
+                </#if>
+                <id>${tc4\-gemport\-id}</id>
+              </gemport>
+              </#if>
+              <#if tc5\-gemport\-id?has_content>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <#if tc5\-gemport\-set\-name?has_content>
+                <template-ref>${tc5\-gemport\-set\-name}-${onu\-template\-cc\-name}-GEM5</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-cc\-name}-GEM5</template-ref>
+                </#if>
+                <id>${tc5\-gemport\-id}</id>
+              </gemport>
+              </#if>
+              <#if tc6\-gemport\-id?has_content>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <#if tc6\-gemport\-set\-name?has_content>
+                <template-ref>${tc6\-gemport\-set\-name}-${onu\-template\-cc\-name}-GEM6</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-cc\-name}-GEM6</template-ref>
+                </#if>
+                <id>${tc6\-gemport\-id}</id>
+              </gemport>
+              </#if>
+              <#if tc7\-gemport\-id?has_content>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <#if tc7\-gemport\-set\-name?has_content>
+                <template-ref>${tc7\-gemport\-set\-name}-${onu\-template\-cc\-name}-GEM7</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-cc\-name}-GEM7</template-ref>
+                </#if>
+                <id>${tc7\-gemport\-id}</id>
+              </gemport>
+              </#if>
+            </gemports>
+            </#if>
+            <#if onu\-template\-instantiate\-tagged?has_content || onu\-template\-instantiate\-untagged?has_content || onu\-template\-instantiate\-prio\-tagged?has_content>
+            <interfaces>
+               <interface>
+                <template-ref>${onu\-template\-cc\-name}</template-ref>
+                <vsi>
+                    <ingress-rule>
+                     <#if onu\-template\-instantiate\-tagged?has_content && onu\-template\-instantiate\-tagged>
+                     <name>rule_TAGGED</name>
+                     </#if>
+                     <#if onu\-template\-instantiate\-untagged?has_content && onu\-template\-instantiate\-untagged >
+                     <name>rule_UNTAGGED</name>
+                     </#if>
+                     <#if onu\-template\-instantiate\-prio\-tagged?has_content && onu\-template\-instantiate\-prio\-tagged>
+                     <name>rule_PRIO_TAGGED</name>
+                     </#if>
+                     <#if onu\-template\-instantiate\-anyframe?has_content && onu\-template\-instantiate\-anyframe>
+                     <name>rule_ANYFRAME</name>
+                     </#if>
+                    </ingress-rule>
+                  <#if onu\-ingress\-qos\-policy\-profile\-name?has_content>
+                  <ingress-qos-policy-profile>${onu\-ingress\-qos\-policy\-profile\-name}</ingress-qos-policy-profile>
+                  </#if>
+                </vsi>
+               </interface>
+            </interfaces>
+            </#if>
+          </template-parameters>
+        </onu>
+      </onus>
+      </#if>
+    </config>
+  </edit-config>
+</rpc>

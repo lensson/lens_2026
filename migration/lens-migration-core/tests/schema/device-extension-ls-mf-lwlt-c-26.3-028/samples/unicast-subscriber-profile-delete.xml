@@ -1,0 +1,14 @@
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+        <running/>
+    </target>
+      <config>
+        <subscriber-profiles xmlns="urn:bbf:yang:bbf-subscriber-profiles">
+         <subscriber-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+          <name>${subscriber_profile_name}</name>
+         </subscriber-profile>
+        </subscriber-profiles>
+      </config>
+  </edit-config>
+</rpc>

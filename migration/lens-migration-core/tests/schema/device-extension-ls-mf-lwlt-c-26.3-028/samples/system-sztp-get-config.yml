@@ -1,0 +1,7 @@
+available-locally: true
+domains: system>sztp
+freemarker: true
+name: Retrieve sZTP configuration
+operation: get-config
+sample-id: system-sztp-get-config
+status: draft

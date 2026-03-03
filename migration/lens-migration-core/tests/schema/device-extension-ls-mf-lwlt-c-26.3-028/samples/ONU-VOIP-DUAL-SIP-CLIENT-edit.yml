@@ -1,0 +1,33 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  pots-port-hw-number:
+    description: ONU POTS UNI Number
+    suggested-values:
+    - 1
+  voip-uni-name:
+    description: VOIP UNI name
+    suggested-values:
+    - POTS1
+  sip-admin:
+    description: Valid values, [true, false]
+    suggested-values:
+    - true
+  veip-interface-name:
+    description: VEIP interface which is used to manage VoIP services
+    suggested-values:
+    - veip1
+  call-statistics-enabled:
+    description: Enable the VoIP call statistics for a particular POTS line.
+    suggested-values:
+    - false
+domains: onu>transport>voip-sip
+entity: dual-sip-client
+freemarker: true
+name: Edit VOIP DUAL SIP CLIENT
+operation: edit
+sample-id: onu-transport-voip-sip-dual-sip-client-edit
+scope: eonu
+status: draft

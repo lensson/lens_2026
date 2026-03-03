@@ -1,0 +1,6 @@
+domains: system>certificate>certificate-expiration
+freemarker: true
+name: Retrieve configured certificates notification expiry threshold
+operation: get-config
+sample-id: system-certificate-certificate-expiration-get-config
+status: draft

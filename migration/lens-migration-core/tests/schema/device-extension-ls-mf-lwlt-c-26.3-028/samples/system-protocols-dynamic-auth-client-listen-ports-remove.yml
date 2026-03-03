@@ -1,0 +1,14 @@
+arguments:
+  listen-ports:
+    description: Dynamic Authorization Server(DAS) shall start listening on the configured
+      UDP ports to handle dynamic Authorization requests from the Dynamic Authorization
+      Client(DAC)
+    suggested-values:
+    - 3799
+domains: system>protocols>dynamic-auth-client
+entity: listen-ports
+freemarker: true
+name: Remove Dynamic Authorization Server listen ports configuration
+operation: remove
+sample-id: system-protocols-dynamic-auth-client-listen-ports-remove
+status: draft

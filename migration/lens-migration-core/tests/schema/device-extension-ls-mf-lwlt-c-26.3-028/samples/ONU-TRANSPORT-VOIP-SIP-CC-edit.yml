@@ -1,0 +1,85 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ani-name:
+    description: ONU ANI Interface name
+    suggested-values:
+    - ani-1-1-1
+  voip-cc-name:
+    description: VSI name
+    suggested-values:
+    - cc-1
+  gemport-id:
+    description: The GEM Port ID for the configured Traffic Class
+    optional: true
+    suggested-values:
+    - 256
+  gemport-t-cont:
+    description: The T-CONT for Gemport
+    suggested-values:
+    - tcont-1
+  tc:
+    description: The Traffic Class for Gemport
+    suggested-values:
+    - 6
+  us-pbit:
+    description: The Pbit for Up Stream Traffic.
+    suggested-values:
+    - 6
+  n-vlan-id:
+    description: N-VLAN id
+    suggested-values:
+    - 200
+  ip-origin:
+    description: the methods to get IP, dhcp or static
+    optional: true
+    suggested-values:
+    - dhcp
+  ping:
+    description: Whether to enable ping. Valid values:[true, false]
+    suggested-values:
+    - false
+  traceroute:
+    description: Whether to enable traceroute. Valid values:[true, false]
+    suggested-values:
+    - false
+  ip-address:
+    description: IP address of the IP Host at the ONT.
+    optional: true
+    suggested-values:
+    - 1.1.1.1
+  netmask:
+    description: IP address network mask of the IP Host at the ONT.
+    optional: true
+    suggested-values:
+    - 255.0.0.0
+  dhcp-dscp:
+    description: DSCP for dhcp packets
+    optional: true
+    suggested-values:
+    - 24
+  primary-dns:
+    description: Address of the primary DNS server.
+    optional: true
+    suggested-values:
+    - 0.0.0.0
+  secondary-dns:
+    description: Address of the secondary DNS server.
+    optional: true
+    suggested-values:
+    - 0.0.0.0
+  gateway-address:
+    description: IP address of the default router
+    optional: true
+    suggested-values:
+    - 1.1.1.2
+domains: onu>transport>voip-sip
+entity: cc
+freemarker: true
+name: Edit Transport VOIP SIP CC
+operation: edit
+sample-id: onu-transport-voip-sip-cc-edit
+scope: eonu
+status: draft

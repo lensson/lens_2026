@@ -1,0 +1,8 @@
+available-locally: true
+domains: system>callhome
+entity: duid
+freemarker: true
+name: Retrieve device DUID identifier
+operation: get
+sample-id: system-callhome-duid-get
+status: draft

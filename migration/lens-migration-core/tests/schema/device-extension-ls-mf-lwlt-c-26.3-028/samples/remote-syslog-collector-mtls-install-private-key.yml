@@ -1,0 +1,17 @@
+arguments:
+  syslog-collector-name:
+    description: Remote destination log collector name
+    suggested-values:
+    - logCollector2
+  private-key:
+    description: Private key value to be used
+    sensitive: true
+    suggested-values:
+    - MIIGHTCCBAUCAQEwDQYJKoZIhvcNAQELBQAwZzELMAkGA1UEBhMCSU4xIDAeBgNVB....
+domains: system>logging>remote-syslog-collector
+entity: mtls
+freemarker: true
+name: Install private key for syslog remote destination over mTLS using local-definition
+operation: install-private-key
+sample-id: system-logging-remote-syslog-collector-mtls-install-private-key
+status: draft

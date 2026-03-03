@@ -1,0 +1,18 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter type="subtree">
+      <forwarding xmlns="urn:bbf:yang:bbf-l2-forwarding">
+        <forwarding-databases>
+          <forwarding-database>
+            <name>${service\-name}-FWD-DATABASE</name>
+            <static-mac-address>
+            </static-mac-address>
+          </forwarding-database>
+        </forwarding-databases>
+      </forwarding>
+    </filter>
+  </get-config>
+</rpc>

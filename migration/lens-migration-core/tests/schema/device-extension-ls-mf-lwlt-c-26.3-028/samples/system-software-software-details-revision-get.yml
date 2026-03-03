@@ -1,0 +1,18 @@
+arguments:
+  component:
+    description: Name of the component, default must be Chassis.
+    suggested-values:
+    - Chassis
+  download-software-name:
+    description: Name of the software for which software details are needed.
+    optional: true
+    suggested-values:
+    - ZJNDAQ2212.550
+available-locally: true
+domains: system>software
+freemarker: true
+name: Retrieve software details of software revision.
+operation: details-get
+sample-id: system-software-details-get
+scope: not(eth-copper) and not(eth-copper-ci)
+status: draft

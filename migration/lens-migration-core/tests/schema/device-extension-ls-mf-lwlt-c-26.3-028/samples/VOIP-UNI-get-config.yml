@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu-template-voip-uni-name:
+    description: ONU template VoIP UNI interface name
+    suggested-values:
+    - voip-uni-template-1
+domains: transport>voip-sip
+entity: uni
+freemarker: true
+name: Get config VOIP UNI
+operation: get-config
+sample-id: transport-voip-sip-uni-get-config
+scope: ''
+status: draft

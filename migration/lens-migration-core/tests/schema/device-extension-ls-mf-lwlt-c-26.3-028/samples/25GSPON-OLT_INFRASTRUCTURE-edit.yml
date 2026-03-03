@@ -1,0 +1,90 @@
+arguments:
+  olt-infrastructure-name:
+    description: OLT infrastructure name.
+    suggested-values:
+    - 25gspon-2-1
+  olt-port-name:
+    description: OLT infrastructure port name.
+    suggested-values:
+    - port-2
+  pm-enable:
+    description: If true, enables performance counters on this channel-termination
+      interface.
+    optional: true
+    suggested-values:
+    - false
+  authentication-method:
+    description: ONU authentication mode.
+    optional: true
+    suggested-values:
+    - serial-number
+    - registration-id
+    - as-per-v-ani-expected
+    - loid
+  authentication-fail-control:
+    description: Determines how the OLT must react when a discovered ONU fails all
+      authentication possibilities after PLOAM messages exchange.
+    optional: true
+    suggested-values:
+    - keep-onu-ranged
+    - enable-silent-period
+  specific-polling-period:
+    description: Quiet window control specifically to this channel-pair. Value zero
+      means the channel pair will never offer any quiet windows.
+    optional: true
+    test-value: 100
+  scg-index:
+    description: This attribute identifies the partition inside the channel-group.
+    optional: true
+    test-value: 1
+  ber-tca-profile:
+    description: Configuration of an xPON channel pair with ber-tca profile data applyed
+      on all ONUs ranged on given channel-pair.
+    optional: true
+    test-value: profile name
+  ct-enabled:
+    description: The configured, desired state of the interface.
+    optional: true
+    suggested-values:
+    - true
+  twentyfivegs-pon-id:
+    description: The PON identifier of this channel-termination.
+    optional: true
+    suggested-values:
+    - 2
+  closest-onu-distance:
+    description: The distance of the closest ONU.
+    optional: true
+    suggested-values:
+    - 0
+  maximum-differential-xpon-distance:
+    description: The maximum differential logical reach for a channel partition.
+    optional: true
+    suggested-values:
+    - 20
+  early-fetch-onu-loid-info:
+    description: This indicates whether onu-present-and-unexpected alarm is enable
+      report onu loid info.
+    optional: true
+    suggested-values:
+    - false
+  loid-alternate-fetch-fall-back:
+    description: This indicates whether to fallback to proprietary LOID ME after failure
+      to obtain LOID by ONU-G ME.
+    optional: true
+    suggested-values:
+    - false
+  us-omci-granting:
+    description: This attribute modifies the frequency at which the OLT channel-pair
+      port will allocate grants to the ONUs for their OMCI communication.
+    optional: true
+    suggested-values:
+    - conservative
+    - relaxed
+domains: transport>25gspon>olt-infrastructure
+freemarker: true
+name: Edit 25gspon olt infrastructure
+operation: edit
+sample-id: transport-25gspon-olt-infrastructure-edit
+scope: 25gspon
+status: draft

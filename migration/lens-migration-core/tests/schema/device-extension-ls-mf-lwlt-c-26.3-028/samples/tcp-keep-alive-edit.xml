@@ -1,0 +1,26 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+   <config>
+    <netconf-server xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-server">
+    <call-home>
+      <netconf-client>
+        <name>${netconf\-client\-name}</name>
+        <connection-type>
+          <persistent>
+            <tcp-keep-alives xmlns="urn:broadband-forum-org:yang:bbf-netconf-server-tcp-keep-alives">
+              <max-wait>${max\-wait}</max-wait>
+              <max-attempts>${max\-attempts}</max-attempts>
+              <interval-between-attempts>${interval\-between\-attempts}</interval-between-attempts>
+            </tcp-keep-alives>
+          </persistent>
+        </connection-type>
+      </netconf-client>
+    </call-home>
+   </netconf-server>
+  </config>
+</edit-config>
+</rpc>
+

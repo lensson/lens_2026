@@ -1,0 +1,20 @@
+arguments:
+  action-to-onu:
+    description: The action that OLT send to ONU via PLOAM.
+    suggested-values:
+    - deactivate
+    - enable
+  olt-infrastructure-name:
+    description: The name of the OLT infrastructure on which channel termination created.
+    suggested-values:
+    - xpon-1-1
+  onu-serial-number:
+    description: Serial number of a ONU
+    suggested-values:
+    - ALCLF1091001
+domains: transport>xpon>onu-troubleshoot
+freemarker: true
+name: Action to ONU troubleshoot
+operation: action
+sample-id: transport-xpon-onu-troubleshoot-action
+status: draft

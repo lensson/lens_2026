@@ -1,0 +1,11 @@
+arguments:
+  period-length:
+    description: the monitoring period over which the data will be collected.
+    optional: true
+domains: transport>xpon>speed-monitoring
+freemarker: true
+name: Create interface speed monitoring
+operation: create
+sample-id: transport-xpon-speed-monitoring-create
+scope: xpon
+status: draft

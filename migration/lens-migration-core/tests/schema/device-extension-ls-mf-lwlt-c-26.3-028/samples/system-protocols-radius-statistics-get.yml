@@ -1,0 +1,7 @@
+domains: system>protocols>radius
+entity: statistics
+freemarker: true
+name: Retrieve Radius Authentication & Accounting server statistics
+operation: get
+sample-id: system-protocols-radius-statistics-get
+status: draft

@@ -1,0 +1,20 @@
+arguments:
+  bac-prof-name:
+    description: Name of the Buffer Acceptance Control(BAC) profile. If this is not
+      provided, then all the configured BAC profiles will be retrieved.
+    optional: true
+    suggested-values:
+    - BAC-PROFILE-NAME
+  detailed-output:
+    description: Provides detailed configuration data of all the BAC profiles in the
+      system when enabled and only BAC profile names when disabled. This argument
+      will be ignored when bac-prof-name is provided.
+    suggested-values:
+    - false
+domains: unicast>qos>tm
+entity: bac-profile
+freemarker: true
+name: Retrieve QoS Traffic Management(TM) Buffer Acceptance Control(BAC) profile
+operation: get-config
+sample-id: unicast-qos-tm-bac-profile-get-config
+status: draft

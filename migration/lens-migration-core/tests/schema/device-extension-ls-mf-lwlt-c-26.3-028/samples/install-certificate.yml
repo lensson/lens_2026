@@ -1,0 +1,17 @@
+arguments:
+  netconf-client-name:
+    description: Name of NETCONF clients list, when replacing key/certificate the
+      'certificate_endpoint' name MUST be used
+    suggested-values:
+    - nc-client
+  server-certificate:
+    description: Device Certificate value to be used
+    suggested-values:
+    - MIIJQwIBAD....
+available-locally: true
+domains: system>callhome
+freemarker: true
+name: Install device certificate for callhome
+operation: install-certificate
+sample-id: system-callhome-install-certificate
+status: draft

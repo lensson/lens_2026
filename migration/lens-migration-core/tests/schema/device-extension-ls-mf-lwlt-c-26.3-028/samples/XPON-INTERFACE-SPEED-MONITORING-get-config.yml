@@ -1,0 +1,7 @@
+domains: transport>xpon>speed-monitoring
+freemarker: true
+name: Retrieve interface speed monitoring
+operation: get-config
+sample-id: transport-xpon-speed-monitoring-get-config
+scope: xpon
+status: draft

@@ -1,0 +1,29 @@
+arguments:
+  listen-port1:
+    description: The Dynamic Authorization Server (DAS) listens on UDP port 3799 to
+      handle dynamic authorization requests from the Dynamic Authorization Client
+      (DAC).
+    optional: true
+    suggested-values:
+    - 3799
+  listen-port2:
+    description: The Dynamic Authorization Server (DAS) listens on UDP port 1700 to
+      handle dynamic authorization requests from the Dynamic Authorization Client
+      (DAC).
+    optional: true
+    suggested-values:
+    - 1700
+  listen-port3:
+    description: The Dynamic Authorization Server (DAS) listens on UDP port 1813 to
+      handle dynamic authorization requests from the Dynamic Authorization Client
+      (DAC).
+    optional: true
+    suggested-values:
+    - 1813
+domains: system>protocols>dynamic-auth-client
+entity: listen-ports
+freemarker: true
+name: Configure the listen-ports for Dynamic Authorization Server
+operation: edit
+sample-id: system-protocols-dynamic-auth-client-listen-ports-edit
+status: draft

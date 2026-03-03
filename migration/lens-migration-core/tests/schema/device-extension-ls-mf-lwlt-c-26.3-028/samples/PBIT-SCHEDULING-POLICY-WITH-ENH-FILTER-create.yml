@@ -1,0 +1,1666 @@
+arguments:
+  pbit-scheduling-policy-name:
+    description: Policy name
+    suggested-values:
+    - pbit-scheduling-policy
+  pbit0-tc:
+    description: Traffic class to be associated with classifier0 pbits.
+    optional: true
+    suggested-values:
+    - 0
+  pbit1-tc:
+    description: Traffic class to be associated with classifier1 pbits.
+    optional: true
+    suggested-values:
+    - 1
+  pbit2-tc:
+    description: Traffic class to be associated with classifier2 pbits.
+    optional: true
+    suggested-values:
+    - 2
+  pbit3-tc:
+    description: Traffic class to be associated with classifier3 pbits.
+    optional: true
+    suggested-values:
+    - 3
+  pbit4-tc:
+    description: Traffic class to be associated with classifier4 pbits.
+    optional: true
+  pbit5-tc:
+    description: Traffic class to be associated with classifier5 pbits.
+    optional: true
+  pbit6-tc:
+    description: Traffic class to be associated with classifier6 pbits.
+    optional: true
+  pbit7-tc:
+    description: Traffic class to be associated with classifier7 pbits.
+    optional: true
+  filter-operation:
+    description: Filters are applicable as any or all filters
+    suggested-values:
+    - match-all-filter
+    - match-any-filter
+  pbit-index0-cls0:
+    description: Index of pbit marking list for classifier0
+    optional: true
+    suggested-values:
+    - 0
+  pbit-index1-cls0:
+    description: Index of pbit marking list for classifier0
+    optional: true
+    suggested-values:
+    - 1
+  pbit-index0-cls1:
+    description: Index of pbit marking list for classifier1
+    optional: true
+    suggested-values:
+    - 0
+  pbit-index1-cls1:
+    description: Index of pbit marking list for classifier1
+    optional: true
+    suggested-values:
+    - 1
+  pbit-index0-cls2:
+    description: Index of pbit marking list for classifier2
+    optional: true
+    suggested-values:
+    - 0
+  pbit-index1-cls2:
+    description: Index of pbit marking list for classifier2
+    optional: true
+    suggested-values:
+    - 1
+  pbit-index0-cls3:
+    description: Index of pbit marking list for classifier3
+    optional: true
+    suggested-values:
+    - 0
+  pbit-index1-cls3:
+    description: Index of pbit marking list for classifier3
+    optional: true
+    suggested-values:
+    - 1
+  pbit-index0-cls4:
+    description: Index of pbit marking list for classifier4
+    optional: true
+    suggested-values:
+    - 0
+  pbit-index1-cls4:
+    description: Index of pbit marking list for classifier4
+    optional: true
+    suggested-values:
+    - 1
+  pbit-index0-cls5:
+    description: Index of pbit marking list for classifier5
+    optional: true
+    suggested-values:
+    - 0
+  pbit-index1-cls5:
+    description: Index of pbit marking list for classifier5
+    optional: true
+    suggested-values:
+    - 1
+  pbit-index0-cls6:
+    description: Index of pbit marking list for classifier6
+    optional: true
+    suggested-values:
+    - 0
+  pbit-index1-cls6:
+    description: Index of pbit marking list for classifier6
+    optional: true
+    suggested-values:
+    - 1
+  pbit-index0-cls7:
+    description: Index of pbit marking list for classifier7
+    optional: true
+    suggested-values:
+    - 0
+  pbit-index1-cls7:
+    description: Index of pbit marking list for classifier7
+    optional: true
+    suggested-values:
+    - 1
+  pbit-value0-for-index0-cls0:
+    description: The pbit value(s) to match for pbit-index0 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index0-cls0:
+    description: The pbit value(s) to match for pbit-index0 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index0-cls0:
+    description: The pbit value(s) to match for pbit-index0 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index0-cls0:
+    description: The pbit value(s) to match for pbit-index0 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index0-cls0:
+    description: The pbit value(s) to match for pbit-index0 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index0-cls0:
+    description: The pbit value(s) to match for pbit-index0 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index0-cls0:
+    description: The pbit value(s) to match for pbit-index0 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index0-cls0:
+    description: The pbit value(s) to match for pbit-index0 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value0-for-index1-cls0:
+    description: The pbit value(s) to match for pbit-index1 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index1-cls0:
+    description: The pbit value(s) to match for pbit-index1 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index1-cls0:
+    description: The pbit value(s) to match for pbit-index1 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index1-cls0:
+    description: The pbit value(s) to match for pbit-index1 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index1-cls0:
+    description: The pbit value(s) to match for pbit-index1 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index1-cls0:
+    description: The pbit value(s) to match for pbit-index1 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index1-cls0:
+    description: The pbit value(s) to match for pbit-index1 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index1-cls0:
+    description: The pbit value(s) to match for pbit-index1 of classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value0-for-index0-cls1:
+    description: The pbit value(s) to match for pbit-index0 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index0-cls1:
+    description: The pbit value(s) to match for pbit-index0 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index0-cls1:
+    description: The pbit value(s) to match for pbit-index0 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index0-cls1:
+    description: The pbit value(s) to match for pbit-index0 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index0-cls1:
+    description: The pbit value(s) to match for pbit-index0 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index0-cls1:
+    description: The pbit value(s) to match for pbit-index0 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index0-cls1:
+    description: The pbit value(s) to match for pbit-index0 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index0-cls1:
+    description: The pbit value(s) to match for pbit-index0 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value0-for-index1-cls1:
+    description: The pbit value(s) to match for pbit-index1 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index1-cls1:
+    description: The pbit value(s) to match for pbit-index1 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index1-cls1:
+    description: The pbit value(s) to match for pbit-index1 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index1-cls1:
+    description: The pbit value(s) to match for pbit-index1 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index1-cls1:
+    description: The pbit value(s) to match for pbit-index1 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index1-cls1:
+    description: The pbit value(s) to match for pbit-index1 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index1-cls1:
+    description: The pbit value(s) to match for pbit-index1 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index1-cls1:
+    description: The pbit value(s) to match for pbit-index1 of classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value0-for-index0-cls2:
+    description: The pbit value(s) to match for pbit-index0 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index0-cls2:
+    description: The pbit value(s) to match for pbit-index0 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index0-cls2:
+    description: The pbit value(s) to match for pbit-index0 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index0-cls2:
+    description: The pbit value(s) to match for pbit-index0 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index0-cls2:
+    description: The pbit value(s) to match for pbit-index0 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index0-cls2:
+    description: The pbit value(s) to match for pbit-index0 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index0-cls2:
+    description: The pbit value(s) to match for pbit-index0 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index0-cls2:
+    description: The pbit value(s) to match for pbit-index0 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value0-for-index1-cls2:
+    description: The pbit value(s) to match for pbit-index1 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index1-cls2:
+    description: The pbit value(s) to match for pbit-index1 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index1-cls2:
+    description: The pbit value(s) to match for pbit-index1 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index1-cls2:
+    description: The pbit value(s) to match for pbit-index1 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index1-cls2:
+    description: The pbit value(s) to match for pbit-index1 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index1-cls2:
+    description: The pbit value(s) to match for pbit-index1 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index1-cls2:
+    description: The pbit value(s) to match for pbit-index1 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index1-cls2:
+    description: The pbit value(s) to match for pbit-index1 of classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value0-for-index0-cls3:
+    description: The pbit value(s) to match for pbit-index0 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index0-cls3:
+    description: The pbit value(s) to match for pbit-index0 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index0-cls3:
+    description: The pbit value(s) to match for pbit-index0 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index0-cls3:
+    description: The pbit value(s) to match for pbit-index0 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index0-cls3:
+    description: The pbit value(s) to match for pbit-index0 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index0-cls3:
+    description: The pbit value(s) to match for pbit-index0 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index0-cls3:
+    description: The pbit value(s) to match for pbit-index0 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index0-cls3:
+    description: The pbit value(s) to match for pbit-index0 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value0-for-index1-cls3:
+    description: The pbit value(s) to match for pbit-index1 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index1-cls3:
+    description: The pbit value(s) to match for pbit-index1 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index1-cls3:
+    description: The pbit value(s) to match for pbit-index1 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index1-cls3:
+    description: The pbit value(s) to match for pbit-index1 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index1-cls3:
+    description: The pbit value(s) to match for pbit-index1 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index1-cls3:
+    description: The pbit value(s) to match for pbit-index1 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index1-cls3:
+    description: The pbit value(s) to match for pbit-index1 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index1-cls3:
+    description: The pbit value(s) to match for pbit-index1 of classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value0-for-index0-cls4:
+    description: The pbit value(s) to match for pbit-index0 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index0-cls4:
+    description: The pbit value(s) to match for pbit-index0 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index0-cls4:
+    description: The pbit value(s) to match for pbit-index0 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index0-cls4:
+    description: The pbit value(s) to match for pbit-index0 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index0-cls4:
+    description: The pbit value(s) to match for pbit-index0 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index0-cls4:
+    description: The pbit value(s) to match for pbit-index0 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index0-cls4:
+    description: The pbit value(s) to match for pbit-index0 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index0-cls4:
+    description: The pbit value(s) to match for pbit-index0 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value0-for-index1-cls4:
+    description: The pbit value(s) to match for pbit-index1 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index1-cls4:
+    description: The pbit value(s) to match for pbit-index1 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index1-cls4:
+    description: The pbit value(s) to match for pbit-index1 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index1-cls4:
+    description: The pbit value(s) to match for pbit-index1 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index1-cls4:
+    description: The pbit value(s) to match for pbit-index1 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index1-cls4:
+    description: The pbit value(s) to match for pbit-index1 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index1-cls4:
+    description: The pbit value(s) to match for pbit-index1 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index1-cls4:
+    description: The pbit value(s) to match for pbit-index1 of classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value0-for-index0-cls5:
+    description: The pbit value(s) to match for pbit-index0 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index0-cls5:
+    description: The pbit value(s) to match for pbit-index0 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index0-cls5:
+    description: The pbit value(s) to match for pbit-index0 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index0-cls5:
+    description: The pbit value(s) to match for pbit-index0 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index0-cls5:
+    description: The pbit value(s) to match for pbit-index0 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index0-cls5:
+    description: The pbit value(s) to match for pbit-index0 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index0-cls5:
+    description: The pbit value(s) to match for pbit-index0 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index0-cls5:
+    description: The pbit value(s) to match for pbit-index0 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value0-for-index1-cls5:
+    description: The pbit value(s) to match for pbit-index1 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index1-cls5:
+    description: The pbit value(s) to match for pbit-index1 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index1-cls5:
+    description: The pbit value(s) to match for pbit-index1 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index1-cls5:
+    description: The pbit value(s) to match for pbit-index1 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index1-cls5:
+    description: The pbit value(s) to match for pbit-index1 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index1-cls5:
+    description: The pbit value(s) to match for pbit-index1 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index1-cls5:
+    description: The pbit value(s) to match for pbit-index1 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index1-cls5:
+    description: The pbit value(s) to match for pbit-index1 of classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value0-for-index0-cls6:
+    description: The pbit value(s) to match for pbit-index0 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index0-cls6:
+    description: The pbit value(s) to match for pbit-index0 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index0-cls6:
+    description: The pbit value(s) to match for pbit-index0 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index0-cls6:
+    description: The pbit value(s) to match for pbit-index0 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index0-cls6:
+    description: The pbit value(s) to match for pbit-index0 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index0-cls6:
+    description: The pbit value(s) to match for pbit-index0 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index0-cls6:
+    description: The pbit value(s) to match for pbit-index0 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index0-cls6:
+    description: The pbit value(s) to match for pbit-index0 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value0-for-index1-cls6:
+    description: The pbit value(s) to match for pbit-index1 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index1-cls6:
+    description: The pbit value(s) to match for pbit-index1 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index1-cls6:
+    description: The pbit value(s) to match for pbit-index1 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index1-cls6:
+    description: The pbit value(s) to match for pbit-index1 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index1-cls6:
+    description: The pbit value(s) to match for pbit-index1 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index1-cls6:
+    description: The pbit value(s) to match for pbit-index1 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index1-cls6:
+    description: The pbit value(s) to match for pbit-index1 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index1-cls6:
+    description: The pbit value(s) to match for pbit-index1 of classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value0-for-index0-cls7:
+    description: The pbit value(s) to match for pbit-index0 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index0-cls7:
+    description: The pbit value(s) to match for pbit-index0 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index0-cls7:
+    description: The pbit value(s) to match for pbit-index0 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index0-cls7:
+    description: The pbit value(s) to match for pbit-index0 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index0-cls7:
+    description: The pbit value(s) to match for pbit-index0 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index0-cls7:
+    description: The pbit value(s) to match for pbit-index0 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index0-cls7:
+    description: The pbit value(s) to match for pbit-index0 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index0-cls7:
+    description: The pbit value(s) to match for pbit-index0 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value0-for-index1-cls7:
+    description: The pbit value(s) to match for pbit-index1 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value1-for-index1-cls7:
+    description: The pbit value(s) to match for pbit-index1 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value2-for-index1-cls7:
+    description: The pbit value(s) to match for pbit-index1 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value3-for-index1-cls7:
+    description: The pbit value(s) to match for pbit-index1 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value4-for-index1-cls7:
+    description: The pbit value(s) to match for pbit-index1 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value5-for-index1-cls7:
+    description: The pbit value(s) to match for pbit-index1 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value6-for-index1-cls7:
+    description: The pbit value(s) to match for pbit-index1 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit-value7-for-index1-cls7:
+    description: The pbit value(s) to match for pbit-index1 of classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+domains: unicast>qos>policy-profiles
+entity: pbit_scheduling_policy_with_enhanced_filter
+freemarker: true
+name: Configure QoS pbit scheduling policy with enhanced filter
+operation: edit
+sample-id: unicast-qos-policy-profiles-pbit_scheduling_policy_with_enhanced_filter-edit
+scope: not(mx) and not(dpu)
+status: draft

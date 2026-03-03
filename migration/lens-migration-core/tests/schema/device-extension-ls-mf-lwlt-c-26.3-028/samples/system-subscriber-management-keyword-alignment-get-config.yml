@@ -1,0 +1,7 @@
+domains: system>subscriber-management
+entity: keyword-alignment
+freemarker: true
+name: Retrieve ONU slot/port minimum string length configuration
+operation: get-config
+sample-id: system-subscriber-management-keyword-alignment-get-config
+status: draft

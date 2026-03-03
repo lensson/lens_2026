@@ -1,0 +1,20 @@
+arguments:
+  certificate-list-name:
+    description: Certificate list name
+    suggested-values:
+    - CA-GROUP
+  certificate-name:
+    description: Certificate name
+    suggested-values:
+    - CA
+  certificate-key:
+    description: Certificate string
+    suggested-values:
+    - MIIGITCCBAmgAwIBAgIBATANBgkqh...
+available-locally: true
+domains: system>certificate>pinned-ca
+freemarker: true
+name: Configure CA certificate
+operation: edit
+sample-id: system-certificate-pinned-ca-edit
+status: draft

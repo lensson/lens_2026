@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ccpm-failure-tca-profile:
+    description: POTS Call Control performance monitoring TCA profile name
+    suggested-values:
+    - call_control_tca_profile
+domains: onu>system>tca>pm-profiles
+entity: ccpm-tca-profile
+freemarker: true
+name: Remove POTS Call control PM TCA profile
+operation: remove
+sample-id: onu-system-tca-pm-profiles-ccpm-tca-profile-remove
+scope: eonu
+status: draft

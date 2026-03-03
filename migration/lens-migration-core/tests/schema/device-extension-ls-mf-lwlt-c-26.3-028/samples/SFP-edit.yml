@@ -1,0 +1,37 @@
+arguments:
+  transceiver-model-name:
+    description: The generic or 3FE specific model name of transceiver
+    suggested-values:
+    - NOKIA_GPON
+    - NOKIA_DUAL_GPON
+    - NOKIA_NGPON
+    - NOKIA_MPM
+    - NOKIA_25GSPON
+  transceiver-name:
+    description: The name of transceiver
+    suggested-values:
+    - sfp1
+  cage-name:
+    description: The name of cage
+    suggested-values:
+    - C1
+  admin-state:
+    description: Transceiver's administrative permission to provide service
+    optional: true
+    suggested-values:
+    - unlocked
+    - locked
+  power-saving:
+    description: Power saving configuration at transceiver level. When no power-saving
+      criteria configured, it will inherit the system level power-saving criteria.
+    optional: true
+    suggested-values:
+    - if-no-vani-configured
+    - none
+domains: equipment>sfp
+freemarker: true
+name: Configure transceiver on the board
+operation: edit
+sample-id: equipment-sfp-edit
+scope: xpon and not(df4g)
+status: draft

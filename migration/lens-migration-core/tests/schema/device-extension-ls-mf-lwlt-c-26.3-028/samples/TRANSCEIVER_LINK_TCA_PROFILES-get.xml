@@ -1,0 +1,8 @@
+<rpc message-id="2" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <get>
+    <filter type="subtree">
+      <nokia-hw-prof:tca-profiles xmlns:nokia-hw-prof="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-profiles">
+      </nokia-hw-prof:tca-profiles>
+    </filter>
+  </get>
+</rpc>

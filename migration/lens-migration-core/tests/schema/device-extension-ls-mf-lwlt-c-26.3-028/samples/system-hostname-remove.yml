@@ -1,0 +1,11 @@
+arguments:
+  host-name:
+    description: The name of the host
+    suggested-values:
+    - NOKIA-FN
+domains: system>hostname
+freemarker: true
+name: Remove hostname
+operation: remove
+sample-id: system-hostname-remove
+status: draft

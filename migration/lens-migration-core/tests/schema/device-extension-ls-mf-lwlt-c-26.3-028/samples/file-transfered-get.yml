@@ -1,0 +1,21 @@
+arguments:
+  index:
+    description: Index number of a particular file tranfer action request
+    suggested-values:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+domains: system>file-transfer
+entity: file-transferred
+freemarker: true
+name: Retrieve file transfer status for a particular action request
+operation: get
+sample-id: system-file-transfer-file-transferred-get
+status: draft

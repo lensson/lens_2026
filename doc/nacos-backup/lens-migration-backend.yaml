@@ -1,0 +1,99 @@
+# Lens Migration Backend Service Configuration
+
+# Spring Configuration
+spring:
+  application:
+    name: lens-migration-backend
+  
+  datasource:
+    url: jdbc:mariadb://${DB_HOST:localhost}:${DB_PORT:33306}/lens_migration?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: ${DB_USERNAME:lens}
+    password: ${DB_PASSWORD:lens}
+    driver-class-name: org.mariadb.jdbc.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: ${JPA_SHOW_SQL:false}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+        format_sql: true
+
+# Server Configuration
+server:
+  port: ${MIGRATION_PORT:8044}
+  forward-headers-strategy: framework
+  tomcat:
+    redirect-context-root: false
+    use-relative-redirects: true
+
+# OpenAPI Configuration
+openapi:
+  service:
+    title: Lens Migration API
+    version: 1.0.0
+    url: ${MIGRATION_URL:http://localhost:8050/v2/lens/migration}
+
+# Springdoc Configuration
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    url: /v2/lens/migration/v3/api-docs
+    config-url: /v2/lens/migration/v3/api-docs/swagger-config
+    oauth2-redirect-url: http://localhost:8050/v2/lens/migration/swagger-ui/oauth2-redirect.html
+    oauth:
+      clientId: lens-client
+      clientSecret: x6lEH0DMcT27eop2cszIP3Brc2sDQHLb
+      usePkceWithAuthorizationCodeGrant: true
+      scopes:
+        - openid
+        - profile
+        - email
+  disable-swagger-default-url: false
+
+# Keycloak Configuration
+keycloak:
+  url: ${KEYCLOAK_URL:http://172.28.0.1:28080}
+  realm: ${KEYCLOAK_REALM:lens}
+
+# Security Configuration
+spring.security.oauth2.resourceserver.jwt:
+  jwk-set-uri: ${KEYCLOAK_URL:http://172.28.0.1:28080}/realms/${KEYCLOAK_REALM:lens}/protocol/openid-connect/certs
+
+# Migration Service Configuration
+migration:
+  python:
+    executable: ${PYTHON_EXECUTABLE:python3}
+    venv-path: ${PYTHON_VENV:/home/zhenac/my/lens_2026/migration/lens-migration-core/venv}
+  storage:
+    base-path: ${STORAGE_PATH:/var/lens/migration}
+    yang-dir: ${STORAGE_PATH:/var/lens/migration}/yang
+    xml-dir: ${STORAGE_PATH:/var/lens/migration}/xml
+    xslt-dir: ${STORAGE_PATH:/var/lens/migration}/xslt
+    test-dir: ${STORAGE_PATH:/var/lens/migration}/tests
+  ai:
+    provider: ${AI_PROVIDER:openai}
+    api-key: ${AI_API_KEY:}
+    model: ${AI_MODEL:gpt-4-turbo}
+    max-tokens: ${AI_MAX_TOKENS:4000}
+    temperature: ${AI_TEMPERATURE:0.3}
+
+# Logging Configuration
+logging:
+  level:
+    root: ${LOG_LEVEL_ROOT:INFO}
+    com.lens: ${LOG_LEVEL_LENS:DEBUG}
+    org.springframework.security: ${LOG_LEVEL_SPRING_SECURITY:DEBUG}
+
+# Management & Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  health:
+    db:
+      enabled: true

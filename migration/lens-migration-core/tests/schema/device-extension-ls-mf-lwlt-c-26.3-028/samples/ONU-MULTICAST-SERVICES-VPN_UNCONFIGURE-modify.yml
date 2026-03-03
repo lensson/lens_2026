@@ -1,0 +1,33 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  vpn-name:
+    description: Multicast VPN Name
+    suggested-values:
+    - mc-vpn
+  unmatched-membership-report-processing:
+    allowed-values:
+    - discard
+    - forward
+    - snoop-or-proxy
+    description: Specifies the multicast vpn behaviour when the onu receives a membership
+      report message for a multicast channel for which there is no explicit configuration
+      in the multicast-channel list.
+    suggested-values:
+    - discard
+  network-interface-for-unmatched-reports:
+    description: Identifies the multicast network interface for multicast group addresses
+      for which there is no specific configuration.
+    optional: true
+    suggested-values:
+    - mc-network-port
+domains: onu>multicast>vpn
+entity: unmatched-membership-report-processing
+freemarker: true
+name: Modify unmatched membership report processing
+operation: modify
+sample-id: onu-multicast-vpn-unmatched-membership-report-processing-modify
+scope: eonu
+status: draft

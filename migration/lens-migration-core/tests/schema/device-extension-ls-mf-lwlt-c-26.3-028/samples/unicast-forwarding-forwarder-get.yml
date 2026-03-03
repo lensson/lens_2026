@@ -1,0 +1,13 @@
+arguments:
+  forwarder-name:
+    description: The name of the forwarder.
+    suggested-values:
+    - fwd-1
+domains: unicast>forwarding
+entity: forwarder
+freemarker: true
+name: Retrieve forwarder operational data
+operation: get
+sample-id: unicast-forwarding-forwarder-get
+scope: l2fwd-qos-dyn-association
+status: draft

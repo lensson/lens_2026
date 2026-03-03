@@ -1,0 +1,22 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
+        <radius>
+          <domain xmlns="urn:aul:params:xml:ns:yang:nokia-radius" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+            <name>${domain\-name}</name>
+          </domain>
+          <connection-policy xmlns="urn:aul:params:xml:ns:yang:nokia-radius" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove"/>
+          <options xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove"/>
+          <policy xmlns="urn:aul:params:xml:ns:yang:nokia-radius" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+            <name>${policy\-name}</name>
+          </policy>
+        </radius>
+      </system>
+    </config>
+  </edit-config>
+</rpc>
+

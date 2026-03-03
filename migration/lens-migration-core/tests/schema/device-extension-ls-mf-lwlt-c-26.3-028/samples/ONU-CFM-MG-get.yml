@@ -1,0 +1,30 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  maintenance-group-id:
+    description: Unique ID which is a key for the maintenance group
+    suggested-values:
+    - MG-1
+  md-id:
+    description: Unique ID for MD.
+    suggested-values:
+    - MD-1
+  ma-id:
+    description: Unique ID for MA.
+    suggested-values:
+    - MA-1
+  mep-id:
+    description: An integer that is unique among all the MEPs in the same Maintenance
+      Association.
+    suggested-values:
+    - 1
+domains: onu>cfm
+entity: mg
+freemarker: true
+name: Get ONU CFM MG
+operation: get
+sample-id: onu-cfm-mg-get
+scope: eonu
+status: draft

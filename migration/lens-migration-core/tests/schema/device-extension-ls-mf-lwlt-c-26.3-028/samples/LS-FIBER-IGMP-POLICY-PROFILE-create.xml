@@ -1,0 +1,56 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+	  <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+  	    <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+         <name>classifier_igmp_egress</name>
+         <filter-operation>match-all-filter</filter-operation>
+         <match-criteria>
+           <protocol>igmp</protocol>
+         </match-criteria>
+         <classifier-action-entry-cfg>
+           <action-type>pbit-marking</action-type>
+           <pbit-marking-cfg>
+             <pbit-marking-list>
+               <index>0</index>
+               <pbit-value>${pbit\-for\-igmp}</pbit-value>
+             </pbit-marking-list>
+           </pbit-marking-cfg>
+         </classifier-action-entry-cfg>
+        </classifier-entry>
+      </classifiers>	 
+      <policies xmlns="urn:bbf:yang:bbf-qos-policies">
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+          <name>policy_igmp_egress</name>
+          <classifiers>
+            <name>classifier_igmp_egress</name>
+          </classifiers>
+        </policy>
+      </policies>
+      <qos-policy-profiles xmlns="urn:bbf:yang:bbf-qos-policies">
+	    <policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+         <name>${qos\-profile\-igmp\-egress}</name>
+         <policy-list>
+           <name>policy_igmp_egress</name>
+         </policy-list>
+      </policy-profile>
+       <#if qos\-policy\-profile\-has\-more\-policy > 
+	<policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+         <name>${qos\-profile\-egress}</name>
+         <policy-list>
+           <name>policy_igmp_egress</name>
+         </policy-list>
+         <policy-list>
+           <name>${other\-policy}</name>
+         </policy-list>		  
+       </policy-profile>
+       </#if>
+      </qos-policy-profiles>
+    </config>
+  </edit-config>
+</rpc>
+
+

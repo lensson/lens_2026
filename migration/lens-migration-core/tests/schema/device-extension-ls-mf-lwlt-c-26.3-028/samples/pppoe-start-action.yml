@@ -1,0 +1,59 @@
+arguments:
+  interface:
+    description: The user vlan-sub-interface on which the PPPoE Client simulation
+      is to be performed
+    suggested-values:
+    - uni1-user
+  client-mac:
+    description: MAC address of the Client
+    suggested-values:
+    - 00:00:5e:00:53:af
+  inner-vlan-pbit-value:
+    description: The pbit-value to be inserted in the PBIT field of the inner VLAN
+      tag of the outgoing PPPoE packets
+    optional: true
+    suggested-values:
+    - 7
+  outer-vlan-pbit-value:
+    description: The pbit-value to be inserted in the PBIT field of the outer VLAN
+      tag of the outgoing PPPoE packets
+    optional: true
+    suggested-values:
+    - 7
+  mru:
+    description: The Maximum Receive Unit(mru) Option is sent to inform peer about
+      the maximum packet the client could receive
+    optional: true
+    suggested-values:
+    - 100
+  authentication-protocol:
+    description: This leaf provides a method to negotiate the use of a specific protocol
+      for authentication. If not configured, no authentication will be performed
+    optional: true
+    suggested-values:
+    - pap
+    - chap
+  user-name:
+    description: Username to be used in authentication process with PPP server
+    optional: true
+    suggested-values:
+    - username
+  password:
+    description: Password to be used in authentication process with PPP server
+    optional: true
+    sensitive: true
+    suggested-values:
+    - password
+  time-out:
+    description: The time interval within which the simulated PPPoE Client test session
+      is expected to be bound
+    optional: true
+    suggested-values:
+    - 30
+domains: unicast>protocols>simulation
+entity: pppoe-start
+freemarker: true
+name: Perform PPPoE Client session simulation start action
+operation: action
+sample-id: unicast-protocols-simulation-pppoe-start-action
+status: draft

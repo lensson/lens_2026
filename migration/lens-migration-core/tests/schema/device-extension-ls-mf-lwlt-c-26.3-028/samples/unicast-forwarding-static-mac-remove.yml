@@ -1,0 +1,23 @@
+arguments:
+  service-name:
+    description: The name of the IBRIDGE (or) the IBRIDGE with user-to-user traffic
+      enabled (or) the multiple uplink interfaces IBRIDGE (or) the multiple uplink
+      interfaces IBRIDGE with user-to-user traffic enabled (or) the local cross-connect
+      on the OLT (or) the remote cross-connect on the OLT
+    suggested-values:
+    - bridge-1
+    - multi-uplink-bridge-1
+    - localcc-1
+    - remotecc-1
+  static-mac-address:
+    description: The mac address to be removed
+    suggested-values:
+    - 00:09:23:33:44:01
+domains: unicast>forwarding
+entity: static-mac
+freemarker: true
+name: Remove static MAC-address from forwarding database
+operation: remove
+sample-id: unicast-forwarding-static-mac-remove
+scope: not(dpu) and not(mx) and not(fx-p2p-uplink)
+status: draft

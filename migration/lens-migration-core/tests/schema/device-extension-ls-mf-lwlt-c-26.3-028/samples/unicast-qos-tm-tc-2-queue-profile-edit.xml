@@ -1,0 +1,78 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+    <tm-profiles xmlns="urn:bbf:yang:bbf-qos-traffic-mngt">
+      <tc-id-2-queue-id-mapping-profile xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="merge">
+	<name>${tc2q\-profile\-name}</name>
+    <#if queue0\-tc?has_content>
+    <#if queue0?has_content>
+      <mapping-entry>
+         <traffic-class-id>${queue0\-tc}</traffic-class-id>
+         <local-queue-id>${queue0}</local-queue-id>
+      </mapping-entry>
+    </#if>
+    </#if>
+    <#if queue1\-tc?has_content>
+    <#if queue1?has_content>
+      <mapping-entry>
+        <traffic-class-id>${queue1\-tc}</traffic-class-id>
+        <local-queue-id>${queue1}</local-queue-id>
+      </mapping-entry>
+    </#if>
+    </#if>
+    <#if queue2\-tc?has_content>
+    <#if queue2?has_content>
+    <mapping-entry>
+       <traffic-class-id>${queue2\-tc}</traffic-class-id>
+       <local-queue-id>${queue2}</local-queue-id>
+    </mapping-entry>
+    </#if>
+    </#if>
+    <#if queue3\-tc?has_content>
+    <#if queue3?has_content>
+    <mapping-entry>
+      <traffic-class-id>${queue3\-tc}</traffic-class-id>
+      <local-queue-id>${queue3}</local-queue-id>
+    </mapping-entry>
+    </#if>
+    </#if>
+    <#if queue4\-tc?has_content>
+    <#if queue4?has_content>
+    <mapping-entry>
+       <traffic-class-id>${queue4\-tc}</traffic-class-id>
+       <local-queue-id>${queue4}</local-queue-id>
+    </mapping-entry>
+    </#if>
+    </#if>
+    <#if queue5\-tc?has_content>
+    <#if queue5?has_content>
+    <mapping-entry>
+      <traffic-class-id>${queue5\-tc}</traffic-class-id>
+      <local-queue-id>${queue5}</local-queue-id>
+    </mapping-entry>
+    </#if>
+    </#if>
+    <#if queue6\-tc?has_content>
+    <#if queue6?has_content>
+    <mapping-entry>
+       <traffic-class-id>${queue6\-tc}</traffic-class-id>
+       <local-queue-id>${queue6}</local-queue-id>
+   </mapping-entry>
+   </#if>
+   </#if>
+   <#if queue7\-tc?has_content>
+   <#if queue7?has_content>
+    <mapping-entry>
+       <traffic-class-id>${queue7\-tc}</traffic-class-id>
+      <local-queue-id>${queue7}</local-queue-id>
+   </mapping-entry>
+   </#if>
+   </#if>
+   </tc-id-2-queue-id-mapping-profile>
+  </tm-profiles>
+ </config>
+</edit-config>
+</rpc> 

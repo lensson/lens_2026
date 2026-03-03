@@ -1,0 +1,16 @@
+ 
+     
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<get-config>
+<source>
+<running/>
+</source>
+<filter type="subtree">
+<l2-dhcpv4-relay-profiles xmlns="urn:bbf:yang:bbf-l2-dhcpv4-relay">
+<l2-dhcpv4-relay-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+<name>${dhcp\-profile\-name}</name>
+</l2-dhcpv4-relay-profile>
+</l2-dhcpv4-relay-profiles>
+</filter>
+</get-config>
+</rpc>

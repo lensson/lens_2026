@@ -1,0 +1,21 @@
+<rpc message-id="PinnedCertificateGet" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <get>
+    <filter type="subtree">
+      <certificate xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-certificate-management">
+        <certificates-state>
+          <pinned-certificates>
+            <pinned-certificate>
+            <trust-list>${certificate\-list\-name}</trust-list>
+              <certificates>
+                <certificate>
+                <cert>${certificate\-name}</cert>
+                </certificate>
+              </certificates>
+            </pinned-certificate>
+          </pinned-certificates>
+        </certificates-state>
+      </certificate>
+    </filter>
+  </get>
+</rpc>
+

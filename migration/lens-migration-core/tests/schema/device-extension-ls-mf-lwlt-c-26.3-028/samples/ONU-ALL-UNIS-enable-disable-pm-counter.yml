@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - uni-1-1-1
+  pm-flag:
+    description: '**true** to enable or **false** to disable aggregated UNI PM counters
+      on an ONU'
+    suggested-values:
+    - 'true'
+domains: onu>transport>xpon>aggregate-pm>enet
+entity: template
+freemarker: true
+name: Enabling and disabling PM counters to be fetched for aggregated UNI
+operation: all-unis-enet-enable-disable-pm-counter
+sample-id: onu-transport-xpon-aggregate-pm-enet-template-all-unis-enet-enable-disable-pm-counter
+status: draft

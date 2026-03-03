@@ -1,0 +1,20 @@
+arguments:
+  olt-infrastructure-name:
+    description: The name of the OLT infrastructure on which channel termination created.
+    suggested-values:
+    - xpon-1-1
+  manual-test-name:
+    description: The name assigned to this manual rogue test.
+    suggested-values:
+    - manual-test
+  rogue-test-profile-ref:
+    description: Reference to a rogue test profile.
+    suggested-values:
+    - rogue-test-profile1
+domains: transport>xpon>rogue
+entity: manual_test
+freemarker: true
+name: Sart manual rogue test
+operation: action
+sample-id: transport-xpon-rogue-manual_test-action
+status: draft

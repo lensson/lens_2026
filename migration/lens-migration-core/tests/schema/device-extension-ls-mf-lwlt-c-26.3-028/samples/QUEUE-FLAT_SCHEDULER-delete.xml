@@ -1,0 +1,40 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${olt\-infrastructure\-name}-cpartition</name>
+          <tm-root xmlns="urn:bbf:yang:bbf-qos-traffic-mngt">
+            <queue xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="delete">
+              <local-queue-id>0</local-queue-id>
+            </queue>
+            <queue xmlns:ns2="urn:ietf:params:xml:ns:netconf:base:1.0" ns2:operation="delete">
+              <local-queue-id>1</local-queue-id>
+            </queue>
+            <queue xmlns:ns3="urn:ietf:params:xml:ns:netconf:base:1.0" ns3:operation="delete">
+              <local-queue-id>2</local-queue-id>
+            </queue>
+            <queue xmlns:ns4="urn:ietf:params:xml:ns:netconf:base:1.0" ns4:operation="delete">
+              <local-queue-id>3</local-queue-id>
+            </queue>
+            <queue xmlns:ns5="urn:ietf:params:xml:ns:netconf:base:1.0" ns5:operation="delete">
+              <local-queue-id>4</local-queue-id>
+            </queue>
+            <queue xmlns:ns6="urn:ietf:params:xml:ns:netconf:base:1.0" ns6:operation="delete">
+              <local-queue-id>5</local-queue-id>
+            </queue>
+            <queue xmlns:ns7="urn:ietf:params:xml:ns:netconf:base:1.0" ns7:operation="delete">
+              <local-queue-id>6</local-queue-id>
+            </queue>
+            <queue xmlns:ns8="urn:ietf:params:xml:ns:netconf:base:1.0" ns8:operation="delete">
+              <local-queue-id>7</local-queue-id>
+            </queue>
+          </tm-root>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>

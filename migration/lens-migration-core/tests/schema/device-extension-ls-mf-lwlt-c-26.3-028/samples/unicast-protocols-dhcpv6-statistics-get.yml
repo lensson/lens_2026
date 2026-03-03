@@ -1,0 +1,19 @@
+arguments:
+  cc-name:
+    description: The name of CC sample
+    optional: true
+    suggested-values:
+    - cc-1
+  ibridge-user-port-name:
+    description: Ibridge user port name
+    optional: true
+    suggested-values:
+    - user-port-1
+domains: unicast>protocols>dhcpv6
+entity: statistics
+freemarker: true
+name: Retrieve DHCPv6 Relay Agent statistics
+operation: get
+sample-id: unicast-protocols-dhcpv6-statistics-get
+scope: fiber
+status: draft

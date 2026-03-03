@@ -1,0 +1,26 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  md-id:
+    description: Unique ID which is a key for the maintenance domain
+    suggested-values:
+    - MD-1
+  ma-id:
+    description: Unique ID which is a key for the maintenance association
+    suggested-values:
+    - MA-1
+  ccm-interval:
+    description: The interval between CCM transmissions to be used by all MEPs in
+      the Maintenance Association.
+    suggested-values:
+    - 3sec
+domains: onu>cfm
+entity: md-ma-mep-update
+freemarker: true
+name: Updating ONU CFM MD, MA and MEP
+operation: edit
+sample-id: onu-cfm-md-ma-mep-update-edit
+scope: eonu
+status: draft

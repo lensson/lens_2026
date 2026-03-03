@@ -1,0 +1,13 @@
+arguments:
+  transceiver-link-name:
+    description: The name of transceiver-link
+    suggested-values:
+    - port1
+domains: equipment>sfp
+entity: transceiver-link
+freemarker: true
+name: Remove transceiver-link
+operation: remove
+sample-id: equipment-sfp-transceiver-link-remove
+scope: xpon or fx-p2p
+status: draft

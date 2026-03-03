@@ -1,0 +1,26 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu-template-mc-vsi-name:
+    description: multicast vsi name from onu template
+    suggested-values:
+    - mc-network-port-vsi
+  admin-state:
+    description: enable or disable mcast vsi in onu instance
+    suggested-values:
+    - true
+  mcast-vlan-id:
+    description: the vlan id for multicast
+    optional: true
+    suggested-values:
+    - 400
+domains: onu>multicast>vsi
+entity: instance
+freemarker: true
+name: instantiate mcast vsi in template-parameters
+operation: edit
+sample-id: onu-multicast-vsi-instance-edit
+scope: eonu
+status: draft

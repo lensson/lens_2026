@@ -1,0 +1,17 @@
+arguments:
+  software-name:
+    description: Name of the (predefined) ONU vendor specific software type.
+    suggested-values:
+    - onu_vendor_specific_software
+  delete-software-name:
+    description: Revision name of the onu_vendor_specific_software to be deleted
+    suggested-values:
+    - PACKAGE_2
+domains: system>software
+entity: onu-software
+freemarker: true
+name: Delete downloaded ONU vendor specific software.
+operation: delete
+sample-id: system-software-onu-software-delete
+scope: not(dpu) and not(mx) and not(fx-p2p) and not(fx-lt or mf-lt)
+status: draft

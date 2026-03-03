@@ -1,0 +1,18 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <tm-profiles xmlns="urn:bbf:yang:bbf-qos-traffic-mngt">
+        <shaper-profile xmlns="urn:bbf:yang:bbf-qos-shaping" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+          <name>${shaper\-profile\-name}</name>
+          <single-token-bucket>
+            <pir>${pir}</pir>
+            <pbs>${pbs}</pbs>
+          </single-token-bucket>
+        </shaper-profile>
+      </tm-profiles>
+    </config>
+  </edit-config>
+</rpc>

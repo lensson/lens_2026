@@ -1,0 +1,12 @@
+arguments:
+  dns-server-name:
+    description: The name of configured DNS server
+    suggested-values:
+    - DNS-SERVER1
+domains: system>dns
+entity: server
+freemarker: true
+name: Remove DNS server
+operation: remove
+sample-id: system-dns-server-remove
+status: draft

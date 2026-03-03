@@ -1,0 +1,23 @@
+arguments:
+  olt-infrastructure-name:
+    description: OLT infrastructure name
+    optional: false
+    suggested-values:
+    - xpon-1-1
+  enable:
+    description: enable the dba congestion monitoring
+    optional: true
+    suggested-values:
+    - true
+  threshold:
+    description: configure the dba congestion threshold value
+    optional: true
+    suggested-values:
+    - 90
+domains: transport>xpon>dba-congestion-monitoring
+freemarker: true
+name: Configure the dba congestion monitoring
+operation: create
+sample-id: transport-xpon-dba-congestion-monitoring-create
+scope: xpon
+status: draft

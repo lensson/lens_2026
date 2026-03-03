@@ -1,0 +1,8 @@
+available-locally: true
+domains: system>callhome
+entity: disable
+freemarker: true
+name: Disable PMA callhome
+operation: remove
+sample-id: system-callhome-disable-remove
+status: draft

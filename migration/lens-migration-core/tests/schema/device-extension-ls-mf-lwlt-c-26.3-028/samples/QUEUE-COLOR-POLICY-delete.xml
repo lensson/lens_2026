@@ -1,0 +1,49 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+    <edit-config>
+        <target>
+            <running/>
+        </target>
+        <config>
+            <policies xmlns="urn:bbf:yang:bbf-qos-policies">
+                <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+                    <name>${color\-policy\-name}</name>
+                </policy>
+            </policies>
+            <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+                <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                    <name>classifier0-${color\-policy\-name}</name>
+                </classifier-entry>
+                <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                    <name>classifier1-${color\-policy\-name}</name>
+                </classifier-entry>
+                <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                    <name>classifier2-${color\-policy\-name}</name>
+                </classifier-entry>
+                <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                    <name>classifier3-${color\-policy\-name}</name>
+                </classifier-entry>
+                <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                    <name>classifier4-${color\-policy\-name}</name>
+                </classifier-entry>
+                <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                    <name>classifier5-${color\-policy\-name}</name>
+                </classifier-entry>
+                <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                    <name>classifier6-${color\-policy\-name}</name>
+                </classifier-entry>
+                <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                    <name>classifier7-${color\-policy\-name}</name>
+                </classifier-entry>
+                <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                    <name>enhanced_cls0-${color\-policy\-name}</name>
+                </classifier-entry>
+                <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                    <name>enhanced_cls0-dei-${color\-policy\-name}</name>
+                </classifier-entry>
+                <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                    <name>enhanced_cls1-dei-${color\-policy\-name}</name>
+                </classifier-entry>
+             </classifiers>
+        </config>
+    </edit-config>
+</rpc>

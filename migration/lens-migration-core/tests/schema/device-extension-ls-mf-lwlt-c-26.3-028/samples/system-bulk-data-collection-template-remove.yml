@@ -1,0 +1,11 @@
+arguments:
+  cache-name:
+    description: cache name
+    suggested-values:
+    - Cache1
+domains: system>bulk-data-collection>template
+freemarker: true
+name: Remove IPFIX cache template
+operation: remove
+sample-id: system-bulk-data-collection-template-remove
+status: draft

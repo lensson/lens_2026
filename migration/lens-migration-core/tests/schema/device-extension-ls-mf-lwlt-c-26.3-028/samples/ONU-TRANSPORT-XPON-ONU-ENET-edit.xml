@@ -1,0 +1,334 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <hardware xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted">
+<#if pluggable\-optical\-electrical\-SFP?has_content && pluggable\-optical\-electrical\-SFP== true >
+              <component>
+                <name>25G_cage</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:cage-uni</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>1</parent-rel-pos>
+              </component>
+              <component>
+                <name>25G_transceiver</name>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</class>
+                <parent>25G_cage</parent>
+                <parent-rel-pos>0</parent-rel-pos>
+              </component>
+</#if>
+              <component>
+<#if eth\-port\-hw\-option == "rj45" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:rj45</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if eth\-port\-hw\-option == "rj45-1G" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:rj45-1G</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if eth\-port\-hw\-option == "rj45-5G" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:rj45-5G</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if eth\-port\-hw\-option == "rj45-10-100M" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:rj45-10-100M</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if eth\-port\-hw\-option == "rj45-25G" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:rj45-25G</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if eth\-port\-hw\-option == "rj45-2.5G" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:rj45-2.5G</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if eth\-port\-hw\-option == "rj45-10G" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:rj45-10G</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if eth\-port\-hw\-option == "rj45-40G" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:rj45-40G</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if eth\-port\-hw\-option == "rf-video" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:rf-video</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+</#if>
+<#if special\-integrated\-ONUs?has_content && special\-integrated\-ONUs== true >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:rj45</class>
+                <parent>CHASSIS</parent>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if virtual\-board\-number?has_content>
+                <omci-identifier-helper xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-extension-mounted">
+                  <virtual-board-number>${virtual\-board\-number}</virtual-board-number>
+<#if port\-id?has_content >
+                  <port-id>${port\-id}</port-id>
+</#if>
+                </omci-identifier-helper>
+</#if>
+<#if power\-over\-ethernet\-control?has_content && power\-over\-ethernet\-control == true >
+                <poe xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-power-over-ethernet-control-mounted">
+                  <enable>true</enable>
+                  <pse-class-control>0</pse-class-control>
+                  <power-priority>high</power-priority>
+                </poe>
+</#if>
+<#if power\-over\-ethernet\-control?has_content && power\-over\-ethernet\-control != true >
+                <poe xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-power-over-ethernet-control-mounted">
+                  <enable>false</enable>
+                </poe>
+</#if>
+<#if eth\-port\-hw\-option == "veip" >
+                <name>VEIPPORT${eth\-port\-hw\-number}</name>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:virtual-port</class>
+</#if>
+<#if eth\-port\-hw\-option == "moca" >
+                <name>MOCAPORT${eth\-port\-hw\-number}</name>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:moca</class>
+</#if>
+<#if pluggable\-optical\-electrical\-SFP?has_content && pluggable\-optical\-electrical\-SFP== true >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <parent>25G_transceiver</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</class>
+</#if>
+              </component>
+            </hardware>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${enet\-name}</name>
+<#if eth\-port\-hw\-option == "veip" >
+                <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type-mounted">bbf-xponift:onu-v-vrefpoint</type>
+                <enabled>true</enabled>
+                <port-layer-if xmlns="urn:bbf:yang:bbf-interface-port-reference-mounted">VEIPPORT${eth\-port\-hw\-number}</port-layer-if>
+                <onu-v-vrefpoint xmlns="urn:bbf:yang:bbf-xponani-mounted">
+<#if ani\-name?has_content>
+                  <related-onu>${ani\-name}</related-onu>
+</#if>
+                </onu-v-vrefpoint>
+<#elseif eth\-port\-hw\-option == "rf-video" >
+                <type xmlns:nokia-if-id="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-if-id:rf-video-ani</type>
+                <enabled>true</enabled>
+                <port-layer-if xmlns="urn:bbf:yang:bbf-interface-port-reference-mounted">PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</port-layer-if>
+<#elseif eth\-port\-hw\-option == "moca" >
+                <type xmlns:nokia-if-id="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-if-id:moca-uni</type>
+                <enabled>true</enabled>
+                <port-layer-if xmlns="urn:bbf:yang:bbf-interface-port-reference-mounted">MOCAPORT${eth\-port\-hw\-number}</port-layer-if>
+<#if moca\-mode?has_content && moca\-mode == "moca">
+                <moca-home xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-moca-mounted">
+<#if moca\-password?has_content>
+                  <password>${moca\-password}</password>
+</#if>
+                </moca-home>
+</#if>
+<#if moca\-mode?has_content && moca\-mode == "moca-access">
+                <moca-access xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-moca-mounted">
+<#if moca\-password?has_content>
+                  <password>${moca\-password}</password>
+</#if>
+                </moca-access>
+</#if>
+<#else>
+                <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type-mounted">ianaift:ethernetCsmacd</type>
+                <enabled>true</enabled>
+                <port-layer-if xmlns="urn:bbf:yang:bbf-interface-port-reference-mounted">PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</port-layer-if>
+                <ethernet xmlns="urn:ieee:params:xml:ns:yang:ethernet-mounted">
+                  <auto-negotiation>
+                    <status>enabled</status>
+<#if pluggable\-optical\-electrical\-SFP?has_content && pluggable\-optical\-electrical\-SFP== true && fec?has_content >
+                    <fec>${fec}</fec>
+</#if>
+                  </auto-negotiation>
+                </ethernet>
+</#if>
+<#if disable\-upon\-ponlos?has_content>
+                <disable-upon-ponlos xmlns="urn:bbf:yang:nokia-xpon-onu-specials-mounted">${disable\-upon\-ponlos}</disable-upon-ponlos>
+</#if>
+              </interface>
+            </interfaces>
+<#if (gemport\-sharing?has_content && gemport\-sharing == true) >
+            <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont-mounted">
+              <gemports>
+<#if tc0\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${enet\-name}-GEM0</name>
+                  <interface>${enet\-name}</interface>
+                  <traffic-class>0</traffic-class>
+                  <tcont-ref>${tc0\-tcont\-name}</tcont-ref>
+<#if tc0\-gemport\-id?has_content>
+                  <gemport-id>${tc0\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+<#if tc1\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${enet\-name}-GEM1</name>
+                  <interface>${enet\-name}</interface>
+                  <traffic-class>1</traffic-class>
+                  <tcont-ref>${tc1\-tcont\-name}</tcont-ref>
+<#if tc1\-gemport\-id?has_content>
+                  <gemport-id>${tc1\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+<#if tc2\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${enet\-name}-GEM2</name>
+                  <interface>${enet\-name}</interface>
+                  <traffic-class>2</traffic-class>
+                  <tcont-ref>${tc2\-tcont\-name}</tcont-ref>
+<#if tc2\-gemport\-id?has_content>
+                  <gemport-id>${tc2\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+<#if tc3\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${enet\-name}-GEM3</name>
+                  <interface>${enet\-name}</interface>
+                  <traffic-class>3</traffic-class>
+                  <tcont-ref>${tc3\-tcont\-name}</tcont-ref>
+<#if tc3\-gemport\-id?has_content>
+                  <gemport-id>${tc3\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+<#if tc4\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${enet\-name}-GEM4</name>
+                  <interface>${enet\-name}</interface>
+                  <traffic-class>4</traffic-class>
+                  <tcont-ref>${tc4\-tcont\-name}</tcont-ref>
+<#if tc4\-gemport\-id?has_content>
+                  <gemport-id>${tc4\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+<#if tc5\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${enet\-name}-GEM5</name>
+                  <interface>${enet\-name}</interface>
+                  <traffic-class>5</traffic-class>
+                  <tcont-ref>${tc5\-tcont\-name}</tcont-ref>
+<#if tc5\-gemport\-id?has_content>
+                  <gemport-id>${tc5\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+<#if tc6\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${enet\-name}-GEM6</name>
+                  <interface>${enet\-name}</interface>
+                  <traffic-class>6</traffic-class>
+                  <tcont-ref>${tc6\-tcont\-name}</tcont-ref>
+<#if tc6\-gemport\-id?has_content>
+                  <gemport-id>${tc6\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+<#if tc7\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${enet\-name}-GEM7</name>
+                  <interface>${enet\-name}</interface>
+                  <traffic-class>7</traffic-class>
+                  <tcont-ref>${tc7\-tcont\-name}</tcont-ref>
+<#if tc7\-gemport\-id?has_content>
+                  <gemport-id>${tc7\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+              </gemports>
+            </xpongemtcont>
+</#if>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

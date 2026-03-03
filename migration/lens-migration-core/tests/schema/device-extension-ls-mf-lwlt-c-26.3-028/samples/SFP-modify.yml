@@ -1,0 +1,17 @@
+arguments:
+  transceiver-name:
+    description: The name of transceiver
+    suggested-values:
+    - sfp1
+  admin-state:
+    description: Transceiver's administrative permission to provide service
+    suggested-values:
+    - locked
+    - unlocked
+domains: equipment>sfp
+freemarker: true
+name: Modify transceiver admin-state
+operation: modify
+sample-id: equipment-sfp-modify
+scope: xpon or fx-p2p
+status: draft

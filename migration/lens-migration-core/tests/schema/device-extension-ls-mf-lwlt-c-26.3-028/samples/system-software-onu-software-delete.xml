@@ -1,0 +1,22 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="2">
+  <action xmlns="urn:ietf:params:xml:ns:yang:1">
+    <hardware-state xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware">
+      <component>
+        <name>Chassis</name>
+        <software xmlns="urn:bbf:yang:bbf-software-image-management-one-dot-one">
+          <software>
+            <name>${software\-name}</name>
+            <revisions>
+              <revision>
+                <name>${delete\-software\-name}</name>
+                <delete-revision>
+                  <delete/>
+                </delete-revision>
+              </revision>
+            </revisions>
+          </software>
+        </software>
+      </component>
+    </hardware-state>
+  </action>
+</rpc>

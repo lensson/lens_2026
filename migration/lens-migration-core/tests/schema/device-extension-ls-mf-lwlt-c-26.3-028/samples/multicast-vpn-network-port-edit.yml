@@ -1,0 +1,39 @@
+arguments:
+  vpn-network-port-name:
+    description: The name of a multicast network port.
+    suggested-values:
+    - net-mc-itf1
+  vpn-name:
+    description: The name of a multicast vpn.
+    suggested-values:
+    - mc-vpn
+  mc-vlan:
+    description: The VLAN-ID used to create a network interface.
+    optional: true
+    suggested-values:
+    - 300
+  ibridge-name:
+    description: The name of ibridge to be used.
+    optional: true
+  network-port-proxy-ipv4-address:
+    description: The IP address to be used as source IP address.
+    optional: true
+    suggested-values:
+    - 170.24.2.192
+  network-policy-profile-name:
+    description: The policy profile used for network side.
+    suggested-values:
+    - up-egress-qos
+  network-port-name:
+    description: The name of network VSI lower layer.
+    optional: true
+    suggested-values:
+    - BP_Eth
+domains: multicast>vpn
+entity: network-port
+freemarker: true
+name: Configure multicast network port
+operation: edit
+sample-id: multicast-vpn-network-port-edit
+scope: multicast-fiber and not(mx) and not(dpu) and not(df16gm) and not(df16gw)
+status: draft

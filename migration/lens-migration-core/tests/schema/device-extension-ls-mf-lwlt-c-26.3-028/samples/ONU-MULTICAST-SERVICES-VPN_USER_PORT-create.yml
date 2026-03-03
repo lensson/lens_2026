@@ -1,0 +1,30 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  cc-name:
+    description: Cross Connect Vlan sub Interface
+    suggested-values:
+    - cc-1
+  user-port-name:
+    description: Multicast VPN User Port Name
+    suggested-values:
+    - mc-user-port
+  vpn-name:
+    description: VPN Name
+    suggested-values:
+    - mc-vpn
+  multicast-package-name:
+    description: The name of a multicast package
+    optional: true
+    suggested-values:
+    - mc-package-1
+domains: onu>multicast>vpn
+entity: user-port
+freemarker: true
+name: Create multicast VPN user port
+operation: create
+sample-id: onu-multicast-vpn-user-port-create
+scope: eonu
+status: draft

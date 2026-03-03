@@ -1,0 +1,21 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+<action xmlns="urn:ietf:params:xml:ns:yang:1">
+  <certificate xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-certificate-management">
+    <certificates-state>
+      <end-user-certificates>
+        <end-certs>
+        <feature>${feature\-name}</feature>
+          <certificates>
+            <certificate>
+            <cert>${certificate\-name}</cert>
+              <show-cert>
+                <format>${format}</format>
+              </show-cert>
+            </certificate>
+          </certificates>
+        </end-certs>
+      </end-user-certificates>
+    </certificates-state>
+  </certificate>
+</action>
+</rpc>

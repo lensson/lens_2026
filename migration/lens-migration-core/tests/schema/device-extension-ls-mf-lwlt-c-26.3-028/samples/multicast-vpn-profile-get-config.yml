@@ -1,0 +1,22 @@
+arguments:
+  vpn-profile-name:
+    description: The name of the multicast proxy profile.
+    optional: true
+    suggested-values:
+    - vpn_profile1
+  detailed-output:
+    description: Provides detailed configuration of all the multicast proxy profiles
+      in the system when enabled and a list of configured multicast proxy profile
+      names when disabled. This argument will be ignored when the vpn-name is provided.
+    optional: false
+    suggested-values:
+    - false
+    - true
+domains: multicast>vpn
+entity: profile
+freemarker: true
+name: Retrieve multicast VPN profile configuration
+operation: get-config
+sample-id: multicast-vpn-profile-get-config
+scope: multicast
+status: draft

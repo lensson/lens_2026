@@ -1,0 +1,8 @@
+domains: system>power-saving
+entity: xpon-transceiver-criteria
+freemarker: true
+name: Delete power saving at system level
+operation: delete
+sample-id: system-power-saving-xpon-transceiver-criteria-delete
+scope: xpon
+status: draft

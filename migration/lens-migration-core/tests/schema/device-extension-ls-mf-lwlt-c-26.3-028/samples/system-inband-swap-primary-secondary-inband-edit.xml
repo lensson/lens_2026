@@ -1,0 +1,49 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+<edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>${old\-primary\-inband\-interface\-name}</name>
+          <#if tag\-value?has_content>
+          <tag-ip-intf xmlns="urn:ietf:params:xml:ns:yang:nokia-ip-aug" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="replace">
+            <tag-ip-intf>${tag\-value}</tag-ip-intf>
+          </tag-ip-intf>
+          <#else>	 
+          <tag-ip-intf xmlns="urn:ietf:params:xml:ns:yang:nokia-ip-aug" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+            <tag-ip-intf>inband-mgnt</tag-ip-intf>
+          </tag-ip-intf>
+          </#if>
+          <control-protocol xmlns="urn:ietf:params:xml:ns:yang:nokia-ip-aug">
+            <name>${old\-default\-control\-plane\-protocol\-name}</name>
+          </control-protocol>
+        </interface>
+        <interface>
+          <name>${new\-primary\-inband\-interface\-name}</name>
+          <tag-ip-intf xmlns="urn:ietf:params:xml:ns:yang:nokia-ip-aug" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="replace">
+            <tag-ip-intf>inband-mgnt</tag-ip-intf>
+          </tag-ip-intf>
+          <control-protocol xmlns="urn:ietf:params:xml:ns:yang:nokia-ip-aug" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+            <name>${new\-default\-control\-plane\-protocol\-name}</name>
+          </control-protocol>
+        </interface>
+      </interfaces>
+      <routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing">
+        <control-plane-protocols>
+          <control-plane-protocol>
+            <type>static</type>
+            <name>${old\-default\-control\-plane\-protocol\-name}</name>
+            <default-route xmlns="urn:ietf:params:xml:ns:yang:nokia-routing-aug">false</default-route>
+          </control-plane-protocol>
+          <control-plane-protocol>
+            <type>static</type>
+            <name>${new\-default\-control\-plane\-protocol\-name}</name>
+            <default-route xmlns="urn:ietf:params:xml:ns:yang:nokia-routing-aug">true</default-route>
+          </control-plane-protocol>
+        </control-plane-protocols>
+      </routing>
+    </config>
+  </edit-config>
+</rpc>

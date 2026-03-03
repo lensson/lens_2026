@@ -1,0 +1,35 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <hardware xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted">
+              <component>
+                <name>${eth\-port\-hw\-name}</name>
+                <poe xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-power-over-ethernet-control-mounted">
+<#if power\-over\-ethernet\-control == true >
+                  <enable>true</enable>
+<#if pse\-class\-control?has_content>
+                  <pse-class-control>${pse\-class\-control}</pse-class-control>
+</#if>
+<#if power\-priority?has_content>
+                  <power-priority>${power\-priority}</power-priority>
+</#if>
+</#if>
+<#if power\-over\-ethernet\-control != true >
+                  <enable>false</enable>
+</#if>
+                </poe>
+              </component>
+            </hardware>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

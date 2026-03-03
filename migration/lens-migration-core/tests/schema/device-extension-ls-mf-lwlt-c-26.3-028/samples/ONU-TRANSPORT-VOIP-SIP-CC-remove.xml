@@ -1,0 +1,79 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont-mounted">
+              <gemports>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>${voip\-cc\-name}-GEM${tc}</name>
+                </gemport>
+              </gemports>
+            </xpongemtcont>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>ip-host</name>
+                <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type-mounted">ianaift:ipForward</type>
+              </interface>
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>${voip\-cc\-name}</name>
+                <type xmlns:bbfift="urn:bbf:yang:bbf-if-type-mounted">bbfift:vlan-sub-interface</type>
+              </interface>
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>voip-onu-v-enet</name>
+                <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type-mounted">bbf-xponift:onu-v-enet</type>
+              </interface>
+            </interfaces>
+            <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system-mounted">
+              <dns-resolver xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove"/>
+            </system>
+            <routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing-mounted">
+              <control-plane-protocols xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove"/>
+            </routing>
+            <qos-policy-profiles xmlns="urn:bbf:yang:bbf-qos-policies-mounted">
+              <policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>us-egress-qos</name>
+              </policy-profile>
+            </qos-policy-profiles>
+            <policies xmlns="urn:bbf:yang:bbf-qos-policies-mounted">
+              <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>any-2-tc</name>
+              </policy>
+            </policies>
+            <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers-mounted">
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>policy-any-2-tc_classifier0</name>
+              </classifier-entry>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>policy-any-2-tc_classifier1</name>
+              </classifier-entry>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>policy-any-2-tc_classifier2</name>
+              </classifier-entry>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>policy-any-2-tc_classifier3</name>
+              </classifier-entry>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>policy-any-2-tc_classifier4</name>
+              </classifier-entry>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>policy-any-2-tc_classifier5</name>
+              </classifier-entry>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>policy-any-2-tc_classifier6</name>
+              </classifier-entry>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>policy-any-2-tc_classifier7</name>
+              </classifier-entry>
+            </classifiers>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

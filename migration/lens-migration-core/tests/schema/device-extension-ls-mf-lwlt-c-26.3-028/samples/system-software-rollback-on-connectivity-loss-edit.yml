@@ -1,0 +1,23 @@
+arguments:
+  enable:
+    description: enable or disable software rollback on connectivity loss, default
+      should be enable.
+    optional: true
+    suggested-values:
+    - true/false
+  time:
+    description: Indicates the delay between detection of connectivity loss and the
+      actual triggering of the Lightspan application software rollback. The time can
+      be configured from 5 minutes up to 120 minutes as allowed range, default should
+      be 20.
+    optional: true
+    suggested-values:
+    - 20
+available-locally: true
+domains: system>software
+freemarker: true
+name: Configure software rollback options on system
+operation: edit
+sample-id: system-software-edit
+scope: not(model2-dpu)
+status: draft

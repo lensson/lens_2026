@@ -1,0 +1,12 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+<edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+        <hostname ns0:operation="remove">${host\-name}</hostname>
+      </system>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,29 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter type="subtree">
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <#if cc\-name?has_content>
+          <name>${cc\-name}-USER-VSI</name>
+          <#elseif ibridge\-user\-port\-name?has_content>
+          <name>${ibridge\-user\-port\-name}-VSI</name>
+          </#if>
+          <ipv6-security xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv6-address-spoofing-prevention">
+          </ipv6-security>
+        </interface>
+        <ipv6-security-statistics xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv6-address-spoofing-prevention">
+          <interface>
+            <#if cc\-name?has_content>
+            <name>${cc\-name}-USER-VSI</name>
+            <#elseif ibridge\-user\-port\-name?has_content>
+            <name>${ibridge\-user\-port\-name}-VSI</name>
+            </#if>
+          </interface>
+        </ipv6-security-statistics>
+      </interfaces>
+    </filter>
+  </get-config>
+</rpc>

@@ -1,0 +1,8 @@
+domains: system>licensing
+entity: server
+freemarker: true
+name: Remove configuration of license client
+operation: remove
+sample-id: system-licensing-server-remove
+scope: licensing
+status: draft

@@ -1,0 +1,14 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+     <running/>
+      </target>
+      <config>
+      <power-saving xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-power-saving">
+      <xpon-transceiver xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-xpon-power-saving" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="replace">
+	      <xpon-transceiver-criteria xmlns:nokia-sdan-xpon-pwr-savc="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-xpon-power-saving-common">nokia-sdan-xpon-pwr-savc:${xpon\-transceiver\-criteria}</xpon-transceiver-criteria>
+      </xpon-transceiver>
+      </power-saving>
+     </config>
+    </edit-config>
+    </rpc>

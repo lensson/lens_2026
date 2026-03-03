@@ -1,0 +1,8 @@
+available-locally: true
+domains: system>sztp
+entity: disable
+freemarker: true
+name: Disable sZTP
+operation: edit
+sample-id: system-sztp-disable-edit
+status: draft

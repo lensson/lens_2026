@@ -1,0 +1,14 @@
+arguments:
+  ssm-in-enable:
+    description: the value of BP_Eth path of LT for SSM Out function(true/false).
+    optional: true
+    suggested-values:
+    - true
+domains: synchronization>lt>ssm
+entity: BPEth
+freemarker: true
+name: Configure BP_Eth value for LT board
+operation: edit
+sample-id: synchronization-lt-ssm-BPEth-edit
+scope: clock-onu-ssm and (not clock-df16gm)  and (not clock-df32gm)
+status: draft

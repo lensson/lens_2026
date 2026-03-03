@@ -1,0 +1,19 @@
+arguments:
+  transceiver-name:
+    description: The name of transceiver
+    suggested-values:
+    - sfp1
+  power-saving:
+    description: Power saving configuration at transceiver level. When no power-saving
+      criteria configured, it will inherit the system level power-saving criteria
+    suggested-values:
+    - if-no-vani-configured
+    - none
+domains: equipment>sfp
+entity: xpon-transceiver-criteria
+freemarker: true
+name: Modify power saving configuration at transceiver level
+operation: modify
+sample-id: equipment-sfp-xpon-transceiver-criteria-modify
+scope: xpon
+status: draft

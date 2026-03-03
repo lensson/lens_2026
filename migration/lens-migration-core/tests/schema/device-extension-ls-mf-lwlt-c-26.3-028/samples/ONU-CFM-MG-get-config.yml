@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  maintenance-group-id:
+    description: Unique ID which is a key for maintenance group
+    suggested-values:
+    - MG-1
+domains: onu>cfm
+entity: mg
+freemarker: true
+name: Retrieve ONU CFM MG Template parameter config
+operation: get-config
+sample-id: onu-cfm-mg-get-config
+scope: eonu
+status: draft

@@ -1,0 +1,16 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  voice-pots-port-support:
+    description: Boolean value for voice POTS Port Support
+    suggested-values:
+    - true
+domains: onu>equipment
+freemarker: true
+name: Create hardware component
+operation: create
+sample-id: onu-equipment-create
+scope: eonu
+status: draft

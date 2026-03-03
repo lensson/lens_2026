@@ -1,0 +1,11 @@
+arguments:
+  ber-tca-profile:
+    description: Name of the ber-tca profile.
+    suggested-values:
+    - pofile1
+domains: transport>xpon>ber-tca-profile
+freemarker: true
+name: get config info of ber tca profile
+operation: get-config
+sample-id: transport-xpon-ber-tca-profile-get-config
+status: draft

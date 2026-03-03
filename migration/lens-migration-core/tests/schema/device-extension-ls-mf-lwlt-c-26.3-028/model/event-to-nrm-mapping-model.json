@@ -1,0 +1,335 @@
+{
+  "does-not-require-hierarchy-meta-info": {
+    "yang-schemas": ["/bbf-fiber-onu-emulated-mount:onus/onu/root"]
+  },
+  "discriminator-mapping": [
+    {
+      "discriminator": {
+        "yang-schema": "/ietf-interfaces:interfaces/interface",
+        "hierarchy-meta-info": "([a-zA-Z0-9-]+)(__C_)?(.*)",
+        "group": "1"
+      }
+    },
+    {
+      "discriminator": {
+        "yang-schema": "/ietf-hardware:hardware/component",
+        "hierarchy-meta-info": "([a-zA-Z0-9-]+)(__C_)?(.*)",
+        "group": "1"
+      }
+    },
+    {
+      "discriminator": {
+        "yang-schema": "/bbf-fiber-onu-emulated-mount:onus/onu/root/ietf-interfaces-mounted:interfaces/interface=$(itf-name)",
+        "itf-name": "(.*)_(.*)",
+        "group": "1"
+      }
+    },
+    {
+      "discriminator": {
+        "yang-schema": "/bbf-fiber-onu-emulated-mount:onus/onu/root/ietf-hardware-mounted:hardware/component=$(hw-name)",
+        "hw-name": "(.*)_(.*)",
+        "group": "1"
+      }
+    }
+  ],
+  "ham-mapping-model": {
+    "ham-mapping-tables": [
+      {
+        "sfp-naming-table": [
+          {
+            "input": "qsfp",
+            "name-mapping": ":1"
+          },
+          {
+            "input": "non-qsfp",
+            "name-mapping": ""
+          }
+        ]
+      }
+    ]
+  },
+  "yang-schema-aliases": [
+    {
+       "yang-schema": "/ietf-hardware:hardware/component=$(hw-name)",
+       "state-yang-schema": "/ietf-hardware:hardware-state/component=$(hw-name)"
+    },
+    {
+       "yang-schema": "/ietf-interfaces:interfaces/interface=$(itf-name)",
+       "state-yang-schema": "/ietf-interfaces:interfaces-state/interface=$(itf-name)"
+    },
+    {
+       "yang-schema": "/bbf-fiber-onu-emulated-mount:onus/onu=$(onu-name)/root/ietf-interfaces-mounted:interfaces/interface=$(itf-name)",
+       "state-yang-schema": "/bbf-fiber-onu-emulated-mount:onus/onu=$(onu-name)/root/ietf-interfaces-mounted:interfaces-state/interface=$(itf-name)"
+    },
+    {
+       "yang-schema": "/bbf-fiber-onu-emulated-mount:onus/onu=$(onu-name)/root/ietf-hardware-mounted:hardware/component=$(hw-name)",
+       "state-yang-schema": "/bbf-fiber-onu-emulated-mount:onus/onu=$(onu-name)/root/ietf-hardware-mounted:hardware-state/component=$(hw-name)"
+    }
+  ],
+  "event-to-nrm-mapping": [
+    {
+      "nrm-object-type": "board-slot",
+      "discriminator": "chassis",
+      "yang-schema": "/ietf-hardware:hardware/component=$(hw-name)",
+      "grouped-patterns": {
+        "hw-name": ".*"
+      },
+      "ham-id": "/device=$device/slot=LT-$slot-position",
+      "ham-object-friendly-name-proto": "Slot:<1>:<2>",
+      "nr-id": "/network-id=$network-id/node-id=$device/slot-id=LT-$slot-position"
+    },
+    {
+      "nrm-object-type": "board-slot",
+      "discriminator": "slot-lt",
+      "yang-schema": "/ietf-hardware:hardware/component=$(hw-name)",
+      "grouped-patterns": {
+        "hw-name": ".*"
+      },
+      "ham-id": "/device=$device/slot=LT-$slot-position",
+      "ham-object-friendly-name-proto": "Slot:<1>:<2>",
+      "nr-id": "/network-id=$network-id/node-id=$device/slot-id=LT-$slot-position"
+    },
+    {
+      "nrm-object-type": "board-slot",
+      "discriminator": "lt",
+      "yang-schema": "/ietf-hardware:hardware/component=$(hw-name)",
+      "grouped-patterns": {
+        "hw-name": ".*"
+      },
+      "ham-id": "/device=$device/slot=LT-$slot-position",
+      "ham-object-friendly-name-proto": "Slot:<1>:<2>",
+      "nr-id": "/network-id=$network-id/node-id=$device/slot-id=LT-$slot-position"
+    },
+    {
+      "nrm-object-type": "sfp-cage",
+      "discriminator": "cage",
+      "yang-schema": "/ietf-hardware:hardware/component=$(hw-name)",
+      "grouped-patterns": {
+        "hw-name": "C([0-9]+)"
+      },
+      "ham-id": "/device=$device/slot=LT-$slot-position/cage=$(hw-name[1])",
+      "ham-object-friendly-name-proto": "Cage:<1>:<2>.C-<3>",
+      "nr-id": "/network-id=$network-id/node-id=$device/slot-id=LT-$slot-position/cage-id=$(hw-name[1])"
+    },
+    {
+      "nrm-object-type": "sfp-cage",
+      "discriminator": "transceiver",
+      "yang-schema": "/ietf-hardware:hardware/component=$(hw-name)",
+      "grouped-patterns": {
+        "hw-name": ".*_([0-9]+)"
+      },
+      "ham-id": "/device=$device/slot=LT-$slot-position/cage=$(hw-name[1])",
+      "ham-object-friendly-name-proto": "Cage:<1>:<2>.C-<3>",
+      "nr-id": "/network-id=$network-id/node-id=$device/slot-id=LT-$slot-position/cage-id=$(hw-name[1])"
+    },
+    {
+      "nrm-object-type": "termination-point",
+      "discriminator": "transceiver-link-gpon",
+      "yang-schema": "/ietf-hardware:hardware/component=$(hw-name)",
+      "grouped-patterns": {
+        "hw-name": "[^_]+_([0-9]+)_(.*)"
+      },
+      "ham-id": "/device=$device/slot=LT-$slot-position/pon=PON-$(hw-name[1])-$(hw-name[2])",
+      "ham-object-friendly-name-proto": "PON Port:<1>:<2>.<3>",
+      "nr-id": "/network-id=$network-id/node-id=$device/tp-id=LT-$slot-position.PON-$(hw-name[1])"
+    },
+    {
+      "nrm-object-type": "termination-point",
+      "discriminator": "transceiver-link-ngpon",
+      "yang-schema": "/ietf-hardware:hardware/component=$(hw-name)",
+      "grouped-patterns": {
+        "hw-name": "[^_]+_([0-9]+)_(.*)"
+      },
+      "ham-id": "/device=$device/slot=LT-$slot-position/pon=PON-$(hw-name[1])-$(hw-name[2])",
+      "ham-object-friendly-name-proto": "PON Port:<1>:<2>.<3>",
+      "nr-id": "/network-id=$network-id/node-id=$device/tp-id=LT-$slot-position.PON-$(hw-name[1])"
+    },
+    {
+      "nrm-object-type": "termination-point",
+      "discriminator": "transceiver-link-twentyfivegspon",
+      "yang-schema": "/ietf-hardware:hardware/component=$(hw-name)",
+      "grouped-patterns": {
+        "hw-name": "[^_]+_([0-9]+)_(.*)"
+      },
+      "ham-id": "/device=$device/slot=LT-$slot-position/pon=PON-$(hw-name[1])-$(hw-name[2])",
+      "ham-object-friendly-name-proto": "PON Port:<1>:<2>.<3>",
+      "nr-id": "/network-id=$network-id/node-id=$device/tp-id=LT-$slot-position.PON-$(hw-name[1])"
+    },
+    {
+      "nrm-object-type": "termination-point",
+      "discriminator": "transceiver-link-hspon",
+      "yang-schema": "/ietf-hardware:hardware/component=$(hw-name)",
+      "grouped-patterns": {
+        "hw-name": "[^_]+_([0-9]+)_(.*)"
+      },
+      "ham-id": "/device=$device/slot=LT-$slot-position/pon=PON-$(hw-name[1])-$(hw-name[2])",
+      "ham-object-friendly-name-proto": "PON Port:<1>:<2>.<3>",
+      "nr-id": "/network-id=$network-id/node-id=$device/tp-id=LT-$slot-position.PON-$(hw-name[1])"
+    },
+    {
+      "nrm-object-type": "termination-point",
+      "discriminator": "channel-termination",
+      "yang-schema": "/ietf-interfaces:interfaces/interface=$(itf-name)",
+      "grouped-patterns": {
+        "itf-name": "[^_]+_.+_([0-9]+)_(.*)"
+      },
+      "ham-id": "/device=$device/slot=LT-$slot-position/pon=PON-$(itf-name[1])-$(itf-name[2])",
+      "ham-object-friendly-name-proto": "PON Port:<1>:<2>.<3>",
+      "nr-id": "/network-id=$network-id/node-id=$device/tp-id=LT-$slot-position.PON-$(itf-name[1])"
+    },
+    {
+      "nrm-object-type": "termination-point",
+      "discriminator": "rj45",
+      "yang-schema": "/ietf-hardware:hardware/component=$(hw-name)",
+      "grouped-patterns": {
+        "hw-name": "[^_]+_([0-9]+)"
+      },
+      "ham-id": "/device=$device/slot=LT-$slot-position/eth=PORT-$(hw-name[1])",
+      "nr-id": "/network-id=$network-id/node-id=$device/tp-id=LT-$slot-position.PORT-$(hw-name[1])"
+    },
+    {
+      "nrm-object-type": "termination-point",
+      "discriminator": "ethernetCsmacd",
+      "yang-schema": "/ietf-interfaces:interfaces/interface=$(itf-name)",
+      "grouped-patterns": {
+        "itf-name": "[^_]+_([0-9]+)"
+      },
+      "hierarchy-meta-info": ".*_(.*)",
+      "ham-id": "/device=$device/slot=LT-$slot-position/eth=PORT-$(itf-name[1])match-table('sfp-naming-table','$(hierarchy-meta-info[1])','name-mapping', 'true')",
+      "ham-object-friendly-name-proto": "Ethernet Port:<1>:<2>.<3>",
+      "nr-id": "/network-id=$network-id/node-id=$device/tp-id=LT-$slot-position.PORT-$(itf-name[1])match-table('sfp-naming-table','$(hierarchy-meta-info[1])','name-mapping', 'true')"
+    },
+    {
+      "nrm-object-type": "termination-point",
+      "discriminator": "ieee8023adLag",
+      "yang-schema": "/ietf-interfaces:interfaces/interface=$(itf-name)",
+      "grouped-patterns": {
+        "itf-name": ".*([0-9]+)"
+      },
+      "ham-id": "/device=$device/slot=LT-$slot-position/lag=LAG-$(itf-name[1])",
+      "nr-id": "/network-id=$network-id/node-id=$device/tp-id=LAG-$(itf-name[1])"
+    },
+    {
+      "nrm-object-type": "pon-link",
+      "discriminator": "channel-group",
+      "yang-schema": "/ietf-interfaces:interfaces/interface=$(itf-name)",
+      "grouped-patterns": {
+        "itf-name": "(.*)"
+      },
+      "hierarchy-meta-info": "([0-9]+)\/(.*)",
+      "ham-id": "/device=$device/slot=LT-$slot-position/pon=PON-$(hierarchy-meta-info[1])-$(hierarchy-meta-info[2])/pon-link=$(itf-name)",
+      "ham-object-friendly-name-proto": "PON Link:<1>:<2>.<3>.<4>",
+      "nr-id": "/network-id=$network-id/name=$(itf-name)"
+    },
+    {
+      "nrm-object-type": "pon-link",
+      "discriminator": "channel-partition",
+      "yang-schema": "/ietf-interfaces:interfaces/interface=$(itf-name)",
+      "grouped-patterns": {
+        "itf-name": "(.+)_[^_]+_(.*)"
+      },
+      "hierarchy-meta-info": "([0-9]+)",
+      "ham-id": "/device=$device/slot=LT-$slot-position/pon=PON-$(hierarchy-meta-info[1])-$(itf-name[2])/pon-link=$(itf-name[1])",
+      "ham-object-friendly-name-proto": "PON Link:<1>:<2>.<3>.<4>",
+      "nr-id": "/network-id=$network-id/name=$(itf-name[1])"
+    },
+    {
+      "nrm-object-type": "pon-link",
+      "discriminator": "channel-pair",
+      "yang-schema": "/ietf-interfaces:interfaces/interface=$(itf-name)",
+      "grouped-patterns": {
+        "itf-name": "(.+)_[^_]+_(.*)"
+      },
+      "hierarchy-meta-info": "([0-9]+)",
+      "ham-id": "/device=$device/slot=LT-$slot-position/pon=PON-$(hierarchy-meta-info[1])-$(itf-name[2])/pon-link=$(itf-name[1])",
+      "ham-object-friendly-name-proto": "PON Link:<1>:<2>.<3>.<4>",
+      "nr-id": "/network-id=$network-id/name=$(itf-name[1])"
+    },
+    {
+      "nrm-object-type": "node",
+      "discriminator": "v-ani",
+      "yang-schema": "/ietf-interfaces:interfaces/interface=$(itf-name)",
+      "grouped-patterns": {
+        "itf-name": ".*"
+      },
+      "hierarchy-meta-info": "([0-9]+)\/(.*)",
+      "ham-id": "/device=$device/slot=LT-$slot-position/pon=PON-$(hierarchy-meta-info[1])-$(hierarchy-meta-info[2])/ont=$(itf-name)",
+      "ham-object-friendly-name-proto": "ONT:<1>:<2>.<3>.ONT-<4>",
+      "nr-id": "/network-id=$network-id/node-id=$(itf-name)"
+    },
+    {
+      "nrm-object-type": "node",
+      "yang-schema": "/bbf-fiber-onu-emulated-mount:onus/onu=$(onu-name)",
+      "grouped-patterns": {
+        "onu-name": ".*"
+      },
+      "hierarchy-meta-info": "([0-9]+)\/(.*)",
+      "ham-id": "/device=$device/slot=LT-$slot-position/pon=PON-$(hierarchy-meta-info[1])-$(hierarchy-meta-info[2])/ont=$(onu-name)",
+      "ham-object-friendly-name-proto": "ONT:<1>:<2>.<3>.ONT-<4>",
+      "nr-id": "/network-id=$network-id/node-id=$(onu-name)"
+    },
+    {
+      "nrm-object-type": "termination-point",
+      "discriminator": "olt-v-enet",
+      "yang-schema": "/ietf-interfaces:interfaces/interface=$(itf-name)",
+      "grouped-patterns": {
+        "itf-name": "[^_]+_(.*)_([^_]+)"
+      },
+      "hierarchy-meta-info": "([0-9]+)\/(.*)",
+      "ham-id": "/device=$device/slot=LT-$slot-position/pon=PON-$(hierarchy-meta-info[1])-$(hierarchy-meta-info[2])/ont=$(itf-name[1])/uni=$(itf-name[2])",
+      "ham-object-friendly-name-proto": "UNI:<1>:<2>.<3>.ONT-<4>.UNI-<5>",
+      "nr-id": "/network-id=$network-id/node-id=$(itf-name[1])/tp-id=$(itf-name[2])"
+    },
+    {
+      "nrm-object-type": "termination-point",
+      "discriminator": "ENET",
+      "yang-schema": "/bbf-fiber-onu-emulated-mount:onus/onu=$(onu-name)/root/ietf-interfaces-mounted:interfaces/interface=$(itf-name)",
+      "grouped-patterns": {
+        "onu-name": ".*",
+        "itf-name": "[^_]+_([^_]+)"
+      },
+      "hierarchy-meta-info": "([0-9]+)\/(.*)",
+      "ham-id": "/device=$device/slot=LT-$slot-position/pon=PON-$(hierarchy-meta-info[1])-$(hierarchy-meta-info[2])/ont=$(onu-name)/uni=$(itf-name[1])",
+      "ham-object-friendly-name-proto": "UNI:<1>:<2>.<3>.ONT-<4>.UNI-<5>",
+      "nr-id": "/network-id=$network-id/node-id=$(onu-name)/tp-id=$(itf-name[1])"
+    },
+    {
+      "nrm-object-type": "termination-point",
+      "discriminator": "UNI",
+      "yang-schema": "/bbf-fiber-onu-emulated-mount:onus/onu=$(onu-name)/root/ietf-hardware-mounted:hardware/component=$(hw-name)",
+      "grouped-patterns": {
+        "onu-name": ".*",
+        "hw-name": "[^_]+_([^_]+)"
+      },
+      "hierarchy-meta-info": "([0-9]+)\/(.*)",
+      "ham-id": "/device=$device/slot=LT-$slot-position/pon=PON-$(hierarchy-meta-info[1])-$(hierarchy-meta-info[2])/ont=$(onu-name)/uni=$(hw-name[1])",
+      "ham-object-friendly-name-proto": "UNI:<1>:<2>.<3>.ONT-<4>.UNI-<5>",
+      "nr-id": "/network-id=$network-id/node-id=$(onu-name)/tp-id=$(hw-name[1])"
+    },
+    {
+      "nrm-object-type": "connection-point",
+      "discriminator": "vlan-sub-interface",
+      "yang-schema": "/ietf-interfaces:interfaces/interface=$(itf-name)",
+      "grouped-patterns": {
+        "itf-name": "[^_]+_(.+)_(.+)_(.+)"
+      },
+      "hierarchy-meta-info": "([0-9]+)\/([^\/]+)\/([^\/]+)\/([0-9]+)\/*([0-9]*)",
+      "ham-id": "/device=$device/slot=LT-$slot-position/pon=PON-$(hierarchy-meta-info[1])-$(hierarchy-meta-info[2])/ont=$(itf-name[1])/uni=$(itf-name[2])/service=$(hierarchy-meta-info[3]):$(hierarchy-meta-info[4])<:$(hierarchy-meta-info[5])>",
+      "ham-object-friendly-name-proto": "Service:<1>:<2>.<3>.ONT-<4>.UNI-<5>.<6>",
+      "nr-id": "/network-id=$network-id/node-id=$(itf-name[1])/tp-id=$(itf-name[2])/cp-id=$(hierarchy-meta-info[3]):$(hierarchy-meta-info[4])<:$(hierarchy-meta-info[5])>"
+    },
+    {
+      "nrm-object-type": "connection-point",
+      "discriminator": "VSI",
+      "yang-schema": "/bbf-fiber-onu-emulated-mount:onus/onu=$(onu-name)/root/ietf-interfaces-mounted:interfaces/interface=$(itf-name)",
+      "grouped-patterns": {
+        "onu-name": ".*",
+        "itf-name": "[^_]+_([^_]+)_([^_]+)"
+      },
+      "hierarchy-meta-info": "([0-9]+)\/([^\/]+)\/([^\/]+)\/([0-9]+)\/*([0-9]*)",
+      "ham-id": "/device=$device/slot=LT-$slot-position/pon=PON-$(hierarchy-meta-info[1])-$(hierarchy-meta-info[2])/ont=$(onu-name)/uni=$(itf-name[1])/service=$(hierarchy-meta-info[3]):$(hierarchy-meta-info[4])<:$(hierarchy-meta-info[5])>",
+      "ham-object-friendly-name-proto": "Service:<1>:<2>.<3>.ONT-<4>.UNI-<5>.<6>",
+      "nr-id": "/network-id=$network-id/node-id=$(onu-name)/tp-id=$(itf-name[1])/cp-id=$(hierarchy-meta-info[3]):$(hierarchy-meta-info[4])<:$(hierarchy-meta-info[5])>"
+    }
+  ]
+}

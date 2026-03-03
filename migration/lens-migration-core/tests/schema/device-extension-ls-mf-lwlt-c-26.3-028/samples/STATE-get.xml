@@ -1,0 +1,12 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get>
+    <filter>
+      <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>${vsi_name}</name>
+          <type xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:vlan-sub-interface</type>
+        </interface>
+      </interfaces-state>
+    </filter>
+  </get>
+</rpc>

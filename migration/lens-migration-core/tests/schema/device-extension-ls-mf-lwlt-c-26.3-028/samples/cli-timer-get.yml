@@ -1,0 +1,6 @@
+domains: system>callhome>cli-timer
+freemarker: true
+name: Retrieve the cli-timer for cli access
+operation: get
+sample-id: system-callhome-cli-timer-get
+status: draft

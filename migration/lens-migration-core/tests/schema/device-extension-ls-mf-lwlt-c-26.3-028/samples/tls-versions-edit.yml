@@ -1,0 +1,17 @@
+arguments:
+  netconf-client-name:
+    description: Name of the NETCONF client
+    suggested-values:
+    - nc-client
+  version-id:
+    description: YANG identifier of a TLS protocol version to add
+    suggested-values:
+    - tls13
+available-locally: true
+domains: system>callhome>tls-hello-params
+entity: versions
+freemarker: true
+name: Add TLS versions
+operation: edit
+sample-id: system-callhome-tls-hello-params-versions-edit
+status: draft

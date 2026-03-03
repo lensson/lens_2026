@@ -141,6 +141,26 @@ keycloak:
     username: ${KEYCLOAK_ADMIN_USERNAME:admin}
     password: ${KEYCLOAK_ADMIN_PASSWORD:admin}
 
+        # Migration service Swagger routes
+        - id: lens-migration-backend-swagger
+          uri: lb://lens-migration-backend
+          order: 1
+          predicates:
+            - Path=/v2/lens/migration/swagger-ui.html,/v2/lens/migration/swagger-ui/**,/v2/lens/migration/v3/api-docs/**
+          filters:
+            - StripPrefix=3
+            - PreserveHostHeader
+
+        # Migration service API routes
+        - id: lens-migration-backend
+          uri: lb://lens-migration-backend
+          order: 100
+          predicates:
+            - Path=/v2/lens/migration/**
+          filters:
+            - StripPrefix=3
+            - AddRequestHeader=X-Forwarded-Prefix,/v2/lens/migration
+
 # Logging Configuration
 logging:
   level:

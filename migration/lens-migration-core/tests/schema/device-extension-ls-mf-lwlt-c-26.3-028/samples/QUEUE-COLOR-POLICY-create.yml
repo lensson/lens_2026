@@ -1,0 +1,287 @@
+arguments:
+  color-policy-name:
+    description: Policy name
+    suggested-values:
+    - color-policy
+  match-type:
+    description: the match type for the policy
+    suggested-values:
+    - pbit-marking-list
+    - dei-marking-list
+    - in-pbit-list
+    - in-dei
+  metered-color:
+    description: True if the color is marked after policing by certain policer types.
+    suggested-values:
+    - false
+    - true
+  dei-index:
+    description: index of dei marking list
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+  dei-0:
+    description: The dei value to match for marking bac-color
+    optional: true
+    suggested-values:
+    - 0
+  dei-1:
+    description: the dei value to match for marking bac-color
+    optional: true
+    suggested-values:
+    - 1
+  color-0:
+    description: the bac-color action
+    optional: true
+    suggested-values:
+    - green
+    - yellow
+    - red
+  color-1:
+    description: the bac-color action
+    optional: true
+    suggested-values:
+    - green
+    - yellow
+    - red
+  color-2:
+    description: the bac-color action
+    optional: true
+    suggested-values:
+    - green
+    - yellow
+    - red
+  color-3:
+    description: the bac-color action
+    optional: true
+    suggested-values:
+    - green
+    - yellow
+    - red
+  color-4:
+    description: the bac-color action
+    optional: true
+    suggested-values:
+    - green
+    - yellow
+    - red
+  color-5:
+    description: the bac-color action
+    optional: true
+    suggested-values:
+    - green
+    - yellow
+    - red
+  color-6:
+    description: the bac-color action
+    optional: true
+    suggested-values:
+    - green
+    - yellow
+    - red
+  color-7:
+    description: the bac-color action
+    optional: true
+    suggested-values:
+    - green
+    - yellow
+    - red
+  outer-tag-pbit-to-color-0:
+    description: The outer tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 0
+  inner-tag-pbit-to-color-0:
+    description: The inner tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 0
+  outer-tag-pbit-to-color-1:
+    description: The outer tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 1
+  inner-tag-pbit-to-color-1:
+    description: The inner tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 1
+  outer-tag-pbit-to-color-2:
+    description: The outer tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 2
+  inner-tag-pbit-to-color-2:
+    description: The inner tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 2
+  outer-tag-pbit-to-color-3:
+    description: The outer tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 3
+  inner-tag-pbit-to-color-3:
+    description: The inner tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 3
+  outer-tag-pbit-to-color-4:
+    description: The outer tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 4
+  inner-tag-pbit-to-color-4:
+    description: The inner tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 4
+  outer-tag-pbit-to-color-5:
+    description: The outer tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 5
+  inner-tag-pbit-to-color-5:
+    description: The inner tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 5
+  outer-tag-pbit-to-color-6:
+    description: The outer tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 6
+  inner-tag-pbit-to-color-6:
+    description: The inner tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 6
+  outer-tag-pbit-to-color-7:
+    description: The outer tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 7
+  inner-tag-pbit-to-color-7:
+    description: The inner tag pbit list to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 7
+  outer-tag-dei-to-color-0:
+    description: The outer tag dei to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 0
+  inner-tag-dei-to-color-0:
+    description: The inner tag dei to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 0
+  outer-tag-dei-to-color-1:
+    description: The outer tag dei to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 1
+  inner-tag-dei-to-color-1:
+    description: The inner tag dei to be mapped for marking bac-color
+    optional: true
+    suggested-values:
+    - 1
+  pbit-index-0:
+    description: The p-bit index to match for enhanced classifier pbit-marking-list
+    optional: true
+    suggested-values:
+    - 0
+  pbit-index-1:
+    description: The p-bit index to match for enhanced classifier pbit-marking-list
+    optional: true
+    suggested-values:
+    - 1
+  pbit-value0-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 0
+  pbit-value1-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 1
+  pbit-value2-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 2
+  pbit-value3-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 3
+  pbit-value4-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 4
+  pbit-value5-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 5
+  pbit-value6-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 6
+  pbit-value7-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 7
+  pbit-value0-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 0
+  pbit-value1-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 1
+  pbit-value2-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 2
+  pbit-value3-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 3
+  pbit-value4-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 4
+  pbit-value5-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 5
+  pbit-value6-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 6
+  pbit-value7-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 7
+domains: unicast>qos>policy-profiles
+entity: queue_color_policy
+freemarker: true
+name: Configure QoS Queue color policy
+operation: edit
+sample-id: unicast-qos-policy-profiles-queue_color_policy-edit
+scope: not(mx) and not(dpu)
+status: draft

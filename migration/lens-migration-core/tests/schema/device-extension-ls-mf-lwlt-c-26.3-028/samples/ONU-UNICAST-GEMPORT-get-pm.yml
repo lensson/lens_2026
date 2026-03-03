@@ -1,0 +1,16 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  gemport-name:
+    description: GEM port name for which performance counters need to be fetched
+    suggested-values:
+    - cc-name-GEM0
+domains: onu>unicast>forwarding
+freemarker: true
+name: Get PM counters for GEM port
+operation: -gemport-get-pm
+sample-id: onu-unicast-forwarding--gemport-get-pm
+scope: eonu
+status: draft

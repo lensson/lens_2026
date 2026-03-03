@@ -1,0 +1,92 @@
+arguments:
+  tc2q-profile-name:
+    description: Name of TC to Queue Id Mapping Profile
+    suggested-values:
+    - tc-2-queue-id-mapping
+  queue0-tc:
+    description: Traffic Class to Queue0
+    optional: true
+    suggested-values:
+    - 0
+  queue1-tc:
+    description: Traffic Class to Queue1
+    optional: true
+    suggested-values:
+    - 1
+  queue2-tc:
+    description: Traffic Class to Queue2
+    optional: true
+    suggested-values:
+    - 2
+  queue3-tc:
+    description: Traffic Class to Queue3
+    optional: true
+    suggested-values:
+    - 3
+  queue4-tc:
+    description: Traffic Class to Queue4
+    optional: true
+    suggested-values:
+    - 4
+  queue5-tc:
+    description: Traffic Class to Queue5
+    optional: true
+    suggested-values:
+    - 5
+  queue6-tc:
+    description: Traffic Class to Queue6
+    optional: true
+    suggested-values:
+    - 6
+  queue7-tc:
+    description: Traffic Class to Queue7
+    optional: true
+    suggested-values:
+    - 7
+  queue0:
+    description: Local Queue-Id 0
+    optional: true
+    suggested-values:
+    - 0
+  queue1:
+    description: Local Queue-Id 1
+    optional: true
+    suggested-values:
+    - 1
+  queue2:
+    description: Local Queue-Id 2
+    optional: true
+    suggested-values:
+    - 2
+  queue3:
+    description: Local Queue-Id 3
+    optional: true
+    suggested-values:
+    - 3
+  queue4:
+    description: Local Queue-Id 4
+    optional: true
+    suggested-values:
+    - 4
+  queue5:
+    description: Local Queue-Id 5
+    optional: true
+    suggested-values:
+    - 5
+  queue6:
+    description: Local Queue-Id 6
+    optional: true
+    suggested-values:
+    - 6
+  queue7:
+    description: Local Queue-Id 7
+    optional: true
+    suggested-values:
+    - 7
+domains: unicast>qos>tm
+entity: tc-2-queue-profile
+freemarker: true
+name: Configure Traffic class to Queue Mapping profile
+operation: edit
+sample-id: unicast-qos-tm-tc-2-queue-profile-edit
+status: draft

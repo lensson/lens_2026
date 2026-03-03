@@ -1,0 +1,23 @@
+arguments:
+  ibridge-user-port-name:
+    description: Ibridge user port name
+    optional: true
+    suggested-values:
+    - ibridge_name
+  cc-name:
+    description: The name of CC sample
+    optional: true
+    suggested-values:
+    - cc_name
+  subscriber_profile_name:
+    description: Name of the Subscriber profile
+    suggested-values:
+    - subscriber_profile
+domains: unicast>subscriber
+entity: profile-interface
+freemarker: true
+name: Detach subscriber profile from VLAN sub-interface
+operation: remove
+sample-id: unicast-subscriber-profile-interface-remove
+scope: fiber
+status: draft

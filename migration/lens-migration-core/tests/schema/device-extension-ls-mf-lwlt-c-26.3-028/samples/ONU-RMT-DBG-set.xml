@@ -1,0 +1,17 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="2">
+  <action xmlns="urn:ietf:params:xml:ns:yang:1">
+    <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+      <onu>
+        <name>${onu\-name}</name>
+        <root>
+          <onu-remote-dbg xmlns="urn:bbf:yang:nokia-sdan-remote-debug-mounted">
+            <set-remote-dbg-cmd>
+              <context-id>${context\-id}</context-id>
+              <ascii-format>${debug\-command}</ascii-format>
+            </set-remote-dbg-cmd>
+          </onu-remote-dbg>
+        </root>
+      </onu>
+    </onus>
+  </action>
+</rpc>

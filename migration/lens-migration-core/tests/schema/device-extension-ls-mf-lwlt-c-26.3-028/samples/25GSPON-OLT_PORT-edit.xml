@@ -1,0 +1,35 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <hardware xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware">
+        <component xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${olt\-port\-name}-transceiver</name>
+          <model-name xmlns="urn:bbf:yang:bbf-hardware-extension">${model\-name}</model-name>
+          <parent>${xpon\-cage\-name}</parent>
+          <parent-rel-pos>1</parent-rel-pos>
+          <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</class>
+        </component>
+        <component xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="merge">
+          <name>25gs-${olt\-port\-name}</name>
+          <parent>${olt\-port\-name}-transceiver</parent>
+          <parent-rel-pos>1</parent-rel-pos>
+          <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:transceiver-link-twentyfivegspon</class>
+        </component>
+      </hardware>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${olt\-port\-name}-cgroup</name>
+          <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-group</type>
+          <channel-group xmlns="urn:bbf:yang:bbf-xpon">
+            <polling-period>100</polling-period>
+            <raman-mitigation>raman-none</raman-mitigation>
+            <system-id>00000</system-id>
+          </channel-group>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>

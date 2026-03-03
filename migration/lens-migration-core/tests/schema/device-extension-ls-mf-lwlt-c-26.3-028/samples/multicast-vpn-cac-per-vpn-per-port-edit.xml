@@ -1,0 +1,28 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+     <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+       <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>${interface\-name}</name>
+          <multicast-cac xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-multicast-cac">
+             <cac-per-VPN>
+               <VPN-name>${vpn\-name}</VPN-name>
+<#if max\-group\-number?has_content>
+               <max-group-number>${max\-group\-number}</max-group-number>
+</#if>       
+<#if max\-multicast\-rate\-limit?has_content>
+                <max-multicast-rate-limit>${max\-multicast\-rate\-limit}</max-multicast-rate-limit>
+</#if>         
+<#if multicast\-rate\-limit\-exceed\-action?has_content>
+                <multicast-rate-limit-exceed-action>${multicast\-rate\-limit\-exceed\-action}</multicast-rate-limit-exceed-action>
+</#if>
+            </cac-per-VPN>
+          </multicast-cac>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,36 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ethernet-frame-error-extended-profile:
+    description: Ethernet frame performance monitoring counters threshold profile
+      name
+    suggested-values:
+    - eth_err_ext_tca_profile
+  in-drop-frames-threshold:
+    description: Threshold value for the total number of inbound frames dropped range
+      is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 100
+  out-drop-frames-threshold:
+    description: Threshold value for the total number of outbound frames dropped range
+      is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 1000
+  in-drop-octets-threshold:
+    description: Threshold value for the total number of inbound bytes dropped range
+      is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 50
+domains: onu>system>tca>pm-profiles
+entity: eth-frame-error-extended-tca-profile
+freemarker: true
+name: Configure Ethernet frame error extended TCA profile
+operation: create
+sample-id: onu-system-tca-pm-profiles-eth-frame-error-extended-tca-profile-create
+scope: eonu
+status: draft

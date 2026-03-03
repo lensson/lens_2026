@@ -1,0 +1,18 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  md-id:
+    description: The ID of MD that defines the index to the Maintenance Domain list
+      which needs to be deleted
+    suggested-values:
+    - MD-1
+domains: onu>cfm
+entity: md
+freemarker: true
+name: Delete ONU CFM MD
+operation: remove
+sample-id: onu-cfm-md-remove
+scope: eonu
+status: draft

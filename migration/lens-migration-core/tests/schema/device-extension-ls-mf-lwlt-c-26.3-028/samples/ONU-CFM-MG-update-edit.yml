@@ -1,0 +1,58 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  maintenance-group-id:
+    description: Unique ID which is a key for maintenance group.
+    suggested-values:
+    - MG-2
+  md-id:
+    description: Unique ID which is a key for maintenance domain
+    suggested-values:
+    - MD-1
+  ma-id:
+    description: Unique ID which is a key for maintenance association
+    suggested-values:
+    - MA-1
+  mep-id:
+    description: Unique ID which is a key for maintenance association end point
+    suggested-values:
+    - 1
+  enabled:
+    description: A boolean value that defines the administrative state of MEP, true
+      indicates that the MEP is to function normally, and false indicates that it
+      is to cease functioning.
+    suggested-values:
+    - true
+  ccm-enabled:
+    description: A boolean value which indicates whether the MEP can generate CCMs.
+      If true, the MEP will generate CCM PDUs
+    suggested-values:
+    - true
+  enable:
+    description: A boolean value that is used to enable/disable AIS generation of
+      the MEP
+    suggested-values:
+    - false
+  meglevel:
+    description: It is the level at which the most immediate client layer MIPs and
+      MEPs exist
+    suggested-values:
+    - 4
+  period:
+    description: It determines transmission periodicity of frames with ETH-AIS information
+    suggested-values:
+    - one-minute
+  priority:
+    description: It identifies the priority of frames with ETH-AIS information
+    suggested-values:
+    - 6
+domains: onu>cfm
+entity: mg-update
+freemarker: true
+name: Updating ONU CFM Maintenance Group
+operation: edit
+sample-id: onu-cfm-mg-update-edit
+scope: eonu
+status: draft

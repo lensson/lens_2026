@@ -1,0 +1,6 @@
+domains: system>logging>remote-syslog-collector
+freemarker: true
+name: Retrieve remote syslog collector
+operation: get-config
+sample-id: system-logging-remote-syslog-collector-get-config
+status: draft

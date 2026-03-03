@@ -1,0 +1,19 @@
+<rpc message-id="setLoggingAppRequest" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <loggers xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-logging-app">
+        <enable-logging-for  xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="merge">
+          <app-name>${app\-name}</app-name>
+          <modules>
+            <mod-name>${module\-name}</mod-name>
+            <level>${loglevel}</level>
+          </modules>
+        </enable-logging-for>
+      </loggers>
+    </config>
+  </edit-config>
+</rpc>
+

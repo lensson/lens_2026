@@ -1,0 +1,18 @@
+arguments:
+  file-transfer-protocol-name:
+    allowed-values:
+    - ftp
+    - http
+    - scp
+    - sftp
+    - tftp
+    description: Protocol name to be configured
+    suggested-values:
+    - ftp
+domains: system>file-transfer
+entity: protocol
+freemarker: true
+name: Configure file transfer protocol
+operation: edit
+sample-id: system-file-transfer-protocol-edit
+status: draft

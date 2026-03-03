@@ -1,0 +1,286 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  registrar-proxy-address:
+    description: proxyserv, outproxyserv and aor-host-prt
+    optional: true
+    suggested-values:
+    - sip-server-domain-name
+  dscp:
+    description: DSCP for VOIP signaling packets
+    optional: true
+    suggested-values:
+    - 46
+  rtp-dscp:
+    description: DSCP for VOIP media packets
+    optional: true
+    suggested-values:
+    - 46
+  re-reg-head-start:
+    description: This attribute specifies the time in seconds prior to timeout that
+      causes the SIP agent to start the re-registration process
+    suggested-values:
+    - 300
+  reg-expire-time:
+    description: This attribute specifies the SIP registration expiration time in
+      seconds.
+    suggested-values:
+    - 3600
+  uri-format:
+    description: This attribute specifies the format of the URI in outgoing SIP messages
+    suggested-values:
+    - sip-uri
+  rtp-local-port-min:
+    description: This attribute defines the base UDP port that should be used by RTP
+      for voice traffic
+    suggested-values:
+    - 5000
+  rtp-dtmf-event:
+    description: Enables or disables the handling of DTMF via RTP DTMF events per
+      [IETF RFC 4733]
+    suggested-values:
+    - true
+  media-fax-mode:
+    description: FAX-MODE
+    suggested-values:
+    - g711vbd
+  media-codec1st:
+    description: This attribute specifies codec selection as defined by [IETF RFC
+      3551].
+    suggested-values:
+    - g711-a-law
+  media-pkt-period1st:
+    description: This attribute specifies the packet period selection interval
+    suggested-values:
+    - 20
+  media-silence1st:
+    description: This attribute specifies whether silence suppression is on or off.
+    suggested-values:
+    - 'on'
+  media-codec2nd:
+    description: This attribute specifies codec selection as defined by [IETF RFC
+      3551].
+    suggested-values:
+    - g711-a-law
+  media-pkt-period2nd:
+    description: This attribute specifies the packet period selection interval
+    suggested-values:
+    - 20
+  media-silence2nd:
+    description: This attribute specifies whether silence suppression is on or off.
+    suggested-values:
+    - 'on'
+  media-codec3rd:
+    description: This attribute specifies codec selection as defined by [IETF RFC
+      3551].
+    suggested-values:
+    - g711-a-law
+  media-pkt-period3rd:
+    description: This attribute specifies the packet period selection interval
+    suggested-values:
+    - 20
+  media-silence3rd:
+    description: This attribute specifies whether silence suppression is on or off.
+    suggested-values:
+    - 'on'
+  media-codec4th:
+    description: This attribute specifies codec selection as defined by [IETF RFC
+      3551].
+    suggested-values:
+    - g711-a-law
+  media-pkt-period4th:
+    description: This attribute specifies the packet period selection interval
+    suggested-values:
+    - 20
+  media-silence4th:
+    description: This attribute specifies whether silence suppression is on or off.
+    suggested-values:
+    - 'on'
+  app-mwi-spl-dialtone:
+    description: Message waiting indication special dial tone
+    suggested-values:
+    - special-tone
+  app-mwi-visual-indi:
+    description: Message waiting indication visual indication
+    suggested-values:
+    - led
+  feat-act-caller-id:
+    description: Caller ID activate
+    suggested-values:
+    - '#330#'
+  feat-deact-caller-id:
+    description: Caller ID deactivate
+    suggested-values:
+    - '#331'
+  feat-act-dnd:
+    description: Do not disturb activation
+    suggested-values:
+    - '#332#'
+  feat-deact-dnd:
+    description: Do not disturb deactivation
+    suggested-values:
+    - '#333#'
+  dial-plan-critical-timeout:
+    description: This attribute defines the critical dial timeout for digit map processing
+    suggested-values:
+    - 5
+  dial-plan-partial-timeout:
+    description: This attribute defines the partial dial timeout for digit map processing
+    suggested-values:
+    - 6
+  dial-plan-digit-map:
+    description: a network dial plan table
+    suggested-values:
+    - xxxxxxx|xxxxxxxxxxx
+  voip-echo-cancel:
+    description: The Boolean value enabled specifies that echo cancellation is on;
+      disenabled specifies off
+    suggested-values:
+    - enabled
+  voip-hook-flash-min:
+    description: This attribute defines the minimum duration recognized by the ONU
+      as a switchhook flash
+    suggested-values:
+    - 100
+  voip-hook-flash-max:
+    description: This attribute defines the maximum duration recognized by the ONU
+      as a switchhook flash
+    suggested-values:
+    - 1000
+  app-calling-number:
+    description: caller ID features
+    suggested-values:
+    - operator
+  app-calling-name:
+    description: caller ID features
+    suggested-values:
+    - operator
+  app-caller-id-number:
+    description: caller ID features
+    suggested-values:
+    - public
+  app-caller-id-name:
+    description: caller ID features
+    suggested-values:
+    - public
+  app-call-waiting:
+    description: call waiting features
+    suggested-values:
+    - operator
+  app-call-announce:
+    description: call waiting features,allows to display the identity of second calling
+      party
+    suggested-values:
+    - operator
+  app-call-transfer:
+    description: call processing features
+    suggested-values:
+    - disable
+  app-three-way-calling:
+    description: call processing features
+    suggested-values:
+    - operator
+  app-call-hold:
+    description: call processing features
+    suggested-values:
+    - operator
+  app-call-park:
+    description: call processing features
+    suggested-values:
+    - disable
+  app-direct-connect-feature:
+    description: direct connect feature
+    suggested-values:
+    - disable
+  app-dial-tone-delay-option:
+    description: dial tone delay option.
+    suggested-values:
+    - immediate
+  app-direct-connect-uri:
+    description: direct connect URI.
+    optional: true
+    suggested-values:
+    - none
+  app-flash-on-emergency-call:
+    description: call processing features
+    suggested-values:
+    - disable
+  app-emergency-call-originationg-hold:
+    description: call processing features
+    suggested-values:
+    - disable
+  app-call-fwd-indicate:
+    description: Call presentation features
+    suggested-values:
+    - operator
+  file-name:
+    description: File name
+    optional: true
+    suggested-values:
+    - Etisalat_UAE_Huawei.v6.xml
+  ftp-server-address:
+    description: Ftp server address
+    optional: true
+    suggested-values:
+    - 1.1.1.1
+  user-name:
+    description: User name for file transfer to be validated
+    optional: true
+    suggested-values:
+    - username
+  password:
+    description: The authentication password for file transfer
+    optional: true
+    sensitive: true
+    suggested-values:
+    - password
+  realm:
+    description: The authentication realm for file transfer
+    optional: true
+    suggested-values:
+    - nokia
+  dtmf-mode:
+    description: The processing of the DTMF and telephone event tones(rfc4733)
+    suggested-values:
+    - audio
+  jitter-target:
+    description: Target value of jitter buffer
+    suggested-values:
+    - 0
+  max-jitter-buffer:
+    description: Maximum buffer value of jitter buffer
+    suggested-values:
+    - 0
+  pstn-protocol-variant:
+    description: Country code for the POTS line
+    suggested-values:
+    - 0
+  dtmf-digit-levels:
+    description: The power level of DTMF digits that may be generated towards the
+      subscriber set
+    suggested-values:
+    - 0
+  dtmf-digit-duration:
+    description: The duration of DTMF digits that may be generated towards the subscriber
+      set.
+    suggested-values:
+    - 0
+  release-timer:
+    description: This parameter contains a release timer defined in seconds.
+    suggested-values:
+    - 10
+  cas-event:
+    description: Enables or disables handling of channel-associated signaling (CAS)
+      via RTP Tone events per IETF RFC 4733.
+    suggested-values:
+    - true
+domains: onu>transport>voip-sip
+entity: agent
+freemarker: true
+name: Edit VOIP SIP Agent
+operation: edit
+sample-id: onu-transport-voip-sip-agent-edit
+scope: eonu
+status: draft

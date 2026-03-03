@@ -1,0 +1,19 @@
+arguments:
+  ibridge-user-port-name:
+    description: The name of the local VLAN port on the OLT. In case ibridge-user-port-name
+      and cc-name are given, ibridge-user-port-name will take precedence.
+    optional: true
+    suggested-values:
+    - user-port-1
+  cc-name:
+    description: The name of the local cross-connect on the OLT.
+    optional: true
+    suggested-values:
+    - cc-1
+domains: unicast>forwarding
+entity: interface-xpon-ipfix
+freemarker: true
+name: Retrieve interface xpon ipfix statistics
+operation: get
+sample-id: unicast-forwarding-interface-xpon-ipfix-get
+status: draft

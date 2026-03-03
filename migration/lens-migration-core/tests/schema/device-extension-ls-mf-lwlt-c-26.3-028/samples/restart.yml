@@ -1,0 +1,7 @@
+available-locally: true
+domains: system>callhome
+freemarker: true
+name: Restart callhome
+operation: restart
+sample-id: system-callhome-restart
+status: draft

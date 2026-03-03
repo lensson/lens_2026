@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  network-port-name:
+    description: Multicast Network Port Name
+    suggested-values:
+    - mc-network-port
+  vpn-name:
+    description: Multicast VPN Name
+    suggested-values:
+    - mc-vpn
+domains: onu>multicast>vpn
+entity: network-port
+freemarker: true
+name: Delete multicast VPN network port
+operation: delete
+sample-id: onu-multicast-vpn-network-port-delete
+scope: eonu
+status: draft

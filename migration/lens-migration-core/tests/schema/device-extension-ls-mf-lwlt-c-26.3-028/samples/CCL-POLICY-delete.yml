@@ -1,0 +1,17 @@
+arguments:
+  ccl-policy-name:
+    description: ccl policy name
+    suggested-values:
+    - ccl-policy
+  classifier-name-list:
+    description: all classifiers name in ccl policy
+    suggested-values:
+    - - classifier1
+domains: unicast>qos>policy-profiles
+entity: ccl_policy
+freemarker: true
+name: Remove QoS CCL policy
+operation: remove
+sample-id: unicast-qos-policy-profiles-ccl_policy-remove
+scope: not(mx) and not(dpu) and not(qos-fiber-xpon-hwv5)
+status: draft

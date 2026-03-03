@@ -1,0 +1,78 @@
+arguments:
+  name:
+    description: Login name of the user.
+    suggested-values:
+    - test_user
+  password:
+    description: Login password of the user. The new password if password reset is
+      configured. This new password shall follow the configured password policy. The
+      reset action shall require the new password to be specified once by the administrator.
+      The user when logging in with reset password shall be forced to change password
+      on first login.
+    optional: true
+    sensitive: true
+    suggested-values:
+    - Ab123456!
+  homedir:
+    description: Absolute path to user's home directory.
+    optional: true
+    suggested-values:
+    - /isam/logs/syslog
+  algorithm:
+    description: The algorithm used to create a user's public key. This can be configured
+      with a value of either ssh-rsa or ssh-dss.
+    optional: true
+    suggested-values:
+    - ssh-rsa
+  public-key:
+    description: A user's public key in base64 format without any spaces. This key
+      will be used to authenticate a user entering the system. Supported key types
+      are in rsa1024/rsa2048/dss1024 types. Please be aware no validation of this
+      value takes place.
+    optional: true
+    suggested-values:
+    - AAAAB3NzaC1yc2EAAAABIwAAAQEApswKnJ1uMpV0OLP4O/+s83R4i1H9BxpH356ESRtbl6XcbmMbik8CRvGUIbeCYoLspUfvry0tj2LASC3Alaa46n3nW3DVNagV8iSkoDcUexfYw76BF35yZwfIZZB81J0ifieKQSPrPk5DC6JMJ/LHzNMymmyO7nqzxhIFteJM2mu2ZlX0Ah4tdMambaUYabesBAhHN2oDYz/Xv6sK09kAtGSmHp2gRPIAtgsXkEBvhjPFyFbGZN2yMhPmjTka+5/PYCqzPychw1UityzWrW6YFUiRi9LbZyUMD+9RplrwH9clcASDm8BKxqSDFwhwJdPnG338iaUFUCQ/HrCLp9THnQ==
+  password-expiry:
+    description: Password ageing time, i.e. the time in days within which the password
+      expiration happens.If its value is zero password will not age.The users password
+      can be configured to expire after a certain amount of time. Default value of
+      password expiration time is disabled. Expire time is the period during which
+      a password can be used, before the system requires the user to change it.
+    optional: true
+    suggested-values:
+    - 0
+  password-expiry-notification:
+    description: This parameter will set the days prior to pasword ageing.The user
+      can be notified when the password expiration time approaches. Password ageing
+      is not applicable for admin user.
+    optional: true
+    suggested-values:
+    - 0
+  password-history-policy:
+    description: Password history length, i.e. the number of recently used password.Recently
+      used passwords are stored for each user. The administrator can configure how
+      many passwords shall be used before an already used one can be reused. This
+      capability is called password history policy.
+    optional: true
+    suggested-values:
+    - 3
+  disable:
+    description: handles the ability of an administrator user, to disable a user's
+      account.A non-admin user cannot disable itself.Disable of user account cause
+      the session of the user to be terminated. When a user is disabled/enabled, a
+      notification will be sent over NETCONF.
+    optional: true
+    suggested-values:
+    - false
+  new-password-at-login:
+    description: Enable/Disable prompting a user to change password at next CLI login.
+    optional: true
+    suggested-values:
+    - true
+domains: system>users
+freemarker: true
+name: Create/Modify user
+operation: edit
+sample-id: system-users-edit
+scope: local-auth or model2-dpu
+status: draft

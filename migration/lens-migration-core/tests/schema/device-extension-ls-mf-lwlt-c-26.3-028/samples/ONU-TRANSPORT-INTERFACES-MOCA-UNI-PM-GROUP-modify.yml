@@ -1,0 +1,22 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  moca-name:
+    description: MoCA uni interface name
+    suggested-values:
+    - moca-uni-1-1-1
+  pm_group:
+    description: Modifies pm group of a MoCA UNI interface,Values :[ moca-interface-pm
+      moca-ethernet-pm ]
+    suggested-values:
+    - moca-ethernet-pm
+domains: onu>transport>moca-uni
+entity: pm-group
+freemarker: true
+name: Modify MoCA UNI interface performance monitoring group
+operation: modify
+sample-id: onu-transport-moca-uni-pm-group-modify
+scope: eonu
+status: draft

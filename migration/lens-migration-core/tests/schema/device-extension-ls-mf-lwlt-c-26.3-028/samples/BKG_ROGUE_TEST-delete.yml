@@ -1,0 +1,16 @@
+arguments:
+  bkg-test-name:
+    description: Name of the background rogue test.
+    suggested-values:
+    - background-test
+  olt-infrastructure-name:
+    description: The name of the OLT infrastructure on which channel termination created.
+    suggested-values:
+    - xpon-1-1
+domains: transport>xpon>rogue
+entity: bkg_test
+freemarker: true
+name: Remove a background rogue test triggered by PON los
+operation: delete
+sample-id: transport-xpon-rogue-bkg_test-delete
+status: draft

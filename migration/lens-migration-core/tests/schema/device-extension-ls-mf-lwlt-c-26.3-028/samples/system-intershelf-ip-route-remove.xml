@@ -1,0 +1,30 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+<edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+    <routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing">
+      <control-plane-protocols>
+        <control-plane-protocol xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+          <type>static</type>
+          <name>${control\-plane\-protocol\-name}</name>
+        </control-plane-protocol>
+      </control-plane-protocols>
+    </routing>
+    <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+      <interface>
+        <name>${interface\-name}</name>
+        <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+          <address xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+            <ip>${ipv4\-address}</ip>
+          </address>
+        </ipv4>
+        <control-protocol xmlns="urn:ietf:params:xml:ns:yang:nokia-ip-aug" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+          <name>${control\-plane\-protocol\-name}</name>
+        </control-protocol>
+      </interface>
+    </interfaces>
+    </config>
+  </edit-config>
+</rpc>

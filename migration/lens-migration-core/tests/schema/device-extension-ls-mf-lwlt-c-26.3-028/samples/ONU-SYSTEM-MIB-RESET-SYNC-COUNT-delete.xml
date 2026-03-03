@@ -1,0 +1,17 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-template\-name}</name>
+          <onu-management xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+              <mib-reset-sync-count xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">${mib\-reset\-sync\-count}</mib-reset-sync-count>
+          </onu-management>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,13 @@
+arguments:
+  transceiver-name:
+    description: The name of transceiver
+    suggested-values:
+    - sfp1
+domains: equipment>sfp
+entity: xpon-transceiver-criteria
+freemarker: true
+name: Remove power saving configuration at transceiver level
+operation: delete
+sample-id: equipment-sfp-xpon-transceiver-criteria-delete
+scope: xpon
+status: draft

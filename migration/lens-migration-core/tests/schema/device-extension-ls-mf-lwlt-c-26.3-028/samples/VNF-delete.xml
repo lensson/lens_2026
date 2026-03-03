@@ -1,0 +1,21 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">  
+  <edit-config> 
+    <target> 
+      <running/> 
+    </target>  
+    <config> 
+      <virtual-network-functions xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-virtual-network-function">  
+        <virtual-network-function xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${name}</name>
+          <type>${type}</type>
+          <#if type == "vonumgmt">
+          <address>tcp://${nav\-ipaddr}:30802/</address>
+          </#if>
+          <#if type != "vonumgmt">
+          <address>${nav\-ipaddr}</address>
+          </#if>
+        </virtual-network-function> 
+      </virtual-network-functions> 
+    </config> 
+  </edit-config> 
+</rpc>

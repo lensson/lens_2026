@@ -1,0 +1,20 @@
+arguments:
+  component:
+    description: Name of the component, default must be Chassis.
+    suggested-values:
+    - Chassis
+  download-software-name:
+    description: Name of the software which needs to be committed
+    suggested-values:
+    - L6GQAH62.599
+  software-name:
+    description: Name of the application software
+    suggested-values:
+    - application_software
+available-locally: true
+domains: system>software
+freemarker: true
+name: Commit activated software
+operation: commit
+sample-id: system-software-commit
+status: draft

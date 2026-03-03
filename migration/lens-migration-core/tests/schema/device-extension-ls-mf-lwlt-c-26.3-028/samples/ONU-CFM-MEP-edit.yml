@@ -1,0 +1,40 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  maintenance-group-id:
+    description: Unique ID which is a key for maintenance group
+    suggested-values:
+    - MG-1
+  mep-id:
+    description: Unique ID which is a key for maintenance association end point
+    suggested-values:
+    - 1
+  mep-status:
+    description: A boolean value that defines the administrative state of MEP, true
+      indicates that the MEP is to function normally, and false indicates that it
+      is to cease functioning.
+    optional: true
+    suggested-values:
+    - true
+  ccm-status:
+    description: A boolean value which indicates whether the MEP can generate CCMs.
+      If true, the MEP will generate CCM PDUs
+    optional: true
+    suggested-values:
+    - true
+  ais-status:
+    description: A boolean value that is used to enable/disable AIS generation of
+      the MEP
+    optional: true
+    suggested-values:
+    - true
+domains: onu>cfm
+entity: mep
+freemarker: true
+name: Configure MEP status config
+operation: edit
+sample-id: onu-cfm-mep-edit
+scope: eonu
+status: draft

@@ -1,0 +1,30 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="500">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <netconf-server xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-server">
+  <call-home>
+    <netconf-client>
+      <name>${netconf\-client\-name}</name>
+      <endpoints>
+        <endpoint>
+          <name>certificate_endpoint</name>
+          <tls>
+            <client-auth>
+              <cert-maps>
+                <cert-to-name xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+                  <id>1</id>
+                </cert-to-name>
+              </cert-maps>
+            </client-auth>
+          </tls>
+        </endpoint>
+      </endpoints>
+    </netconf-client>
+  </call-home>
+</netconf-server>
+    </config>
+  </edit-config>
+</rpc>

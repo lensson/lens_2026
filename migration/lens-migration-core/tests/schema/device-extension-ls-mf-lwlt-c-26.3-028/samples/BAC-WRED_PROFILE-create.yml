@@ -1,0 +1,42 @@
+arguments:
+  bac-profile-name:
+    suggested-values:
+    - BAC-Wred
+  max-queue-size:
+    suggested-values:
+    - 96000
+  green-min-threshold:
+    suggested-values:
+    - 50
+  green-max-threshold:
+    suggested-values:
+    - 100
+  green-max-probability:
+    suggested-values:
+    - 5
+  yellow-min-threshold:
+    suggested-values:
+    - 50
+  yellow-max-threshold:
+    suggested-values:
+    - 100
+  yellow-max-probability:
+    suggested-values:
+    - 5
+  red-min-threshold:
+    suggested-values:
+    - 50
+  red-max-threshold:
+    suggested-values:
+    - 100
+  red-max-probability:
+    suggested-values:
+    - 5
+domains: unicast>qos>tm
+entity: bac_wred_profile
+freemarker: true
+name: Configure unicast services QoS bac profile wred
+operation: edit
+sample-id: unicast-qos-tm-bac_wred_profile-edit
+scope: not(dpu)
+status: draft

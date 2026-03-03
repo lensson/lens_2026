@@ -1,0 +1,22 @@
+arguments:
+  transceiver-name:
+    description: SFP transceiver name
+    suggested-values:
+    - sfp_transceiver_name
+  cage-name:
+    description: Cage name
+    suggested-values:
+    - C1
+  tca-transceiver-profile:
+    description: tca-transceiver-profile name
+    suggested-values:
+    - transceiver_tca_profile_name
+domains: system>tca
+entity: transceiver-tca-profile
+freemarker: true
+name: Attach-component tca-transceiver-profile
+operation: attach
+sample-id: system-tca-transceiver-tca-profile-attach
+scope: not(eth-copper) and not(eth-copper-ci) and not(fx-nt or mf14-nt or mf2-nt or
+  sf-nt)
+status: draft

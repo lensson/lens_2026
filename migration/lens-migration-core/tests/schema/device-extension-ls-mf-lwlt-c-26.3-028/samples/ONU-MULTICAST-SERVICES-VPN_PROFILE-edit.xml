@@ -1,0 +1,27 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <multicast xmlns="urn:bbf:yang:bbf-mgmd-mounted">
+              <mgmd xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <multicast-snoop-transparent-profile>
+                  <name>${mc\-profile\-name}</name>
+                  <protocol-version>version-${igmp\-protocol\-version}</protocol-version>
+                  <interfaces-to-hosts-data>
+                    <immediate-leave>enabled</immediate-leave>
+                  </interfaces-to-hosts-data>
+                </multicast-snoop-transparent-profile>
+              </mgmd>
+            </multicast>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

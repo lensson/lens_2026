@@ -1,0 +1,22 @@
+arguments:
+  transceiver-name:
+    description: SFP transceiver name
+    suggested-values:
+    - sfp_transceiver_name
+  cage-name:
+    description: Cage name
+    suggested-values:
+    - C1
+  tca-monitoring-enabled:
+    description: Value false or true for tca-monitoring-enabled
+    suggested-values:
+    - 'true'
+domains: system>tca
+entity: tca-monitoring
+freemarker: true
+name: Enable or disable TCA monitoring
+operation: enabled
+sample-id: system-tca-tca-monitoring-enabled
+scope: not(eth-copper) and not(eth-copper-ci) and not(fx-nt or mf14-nt or mf2-nt or
+  sf-nt)
+status: draft

@@ -1,0 +1,6 @@
+domains: system>lockout
+freemarker: true
+name: Retrieve active lockouts information
+operation: get
+sample-id: system-lockout-get
+status: draft

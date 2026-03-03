@@ -1,0 +1,13 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+domains: onu>transport>voip-sip
+entity: agent
+freemarker: true
+name: Remove VOIP SIP Agent
+operation: remove
+sample-id: onu-transport-voip-sip-agent-remove
+scope: eonu
+status: draft

@@ -1,0 +1,49 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <usage xmlns:template-common="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-template-common">template-common:node-from-template-usage</usage>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <interfaces>
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <template-ref>${onu\-template\-voip\-uni\-name}</template-ref>
+                <admin>true</admin>
+                <#if call\-statistics\-enabled?has_content>
+                <pots>
+                  <call-statistics-enabled>${call\-statistics\-enabled}</call-statistics-enabled>
+                </pots>
+                </#if>
+              </interface>
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <template-ref>voip-onu-v-enet</template-ref>
+                <admin>true</admin>
+              </interface>
+            </interfaces>
+            <voip>
+              <sip-termination>
+                <name>${onu\-template\-voip\-uni\-name}</name>
+                <#if sip\-user\-name?has_content>
+                <auth-user-name>${sip\-user\-name}</auth-user-name>
+                </#if>
+                <#if sip\-password?has_content>
+                <digest-password>${sip\-password}</digest-password>
+                </#if>
+                <#if sip\-display\-name?has_content>
+                <sip-uni-display-name>${sip\-display\-name}</sip-uni-display-name>
+                </#if>
+                <#if sip\-user\-aor?has_content>
+                <sip-uni-uri>${sip\-user\-aor}</sip-uni-uri>
+                </#if>
+              </sip-termination>
+            </voip>
+          </template-parameters>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

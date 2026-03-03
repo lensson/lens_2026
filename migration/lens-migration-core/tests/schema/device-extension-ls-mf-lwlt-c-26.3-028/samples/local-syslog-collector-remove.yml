@@ -1,0 +1,11 @@
+arguments:
+  log-file-name:
+    description: name of the file
+    suggested-values:
+    - syslog.log
+domains: system>logging>local-syslog-collector
+freemarker: true
+name: Remove local syslog collector
+operation: remove
+sample-id: system-logging-local-syslog-collector-remove
+status: draft

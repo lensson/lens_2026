@@ -1,0 +1,16 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter>
+      <forwarding xmlns="urn:bbf:yang:bbf-l2-forwarding">
+        <flooding-policies-profiles>
+          <flooding-policies-profile>
+            <name>${selective\-flooding\-policy\-name}</name>
+          </flooding-policies-profile>
+        </flooding-policies-profiles>
+      </forwarding>
+    </filter>
+  </get-config>
+</rpc>

@@ -1,0 +1,12 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get>
+    <filter type="subtree">
+      <hw:hardware-state xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">
+        <hw:component>
+          <hw:name>${hw\-name}</hw:name>
+          <last-self-test-error xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-extension"/>
+        </hw:component>
+      </hw:hardware-state>
+    </filter>
+  </get>
+</rpc>

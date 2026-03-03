@@ -1,0 +1,52 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  pots-port-hw-number:
+    description: ONU POTS UNI Number
+    suggested-values:
+    - 1
+  voip-uni-name:
+    description: VOIP UNI name
+    suggested-values:
+    - POTS1
+  sip-display-name:
+    description: This ASCII string attribute defines the customer ID used for the
+      display attribute in outgoing SIP messages.
+    optional: true
+    suggested-values:
+    - '888888'
+  sip-user-aor:
+    description: the user identification part of the address of record
+    optional: true
+    suggested-values:
+    - '+888888'
+  sip-user-name:
+    description: the SIP user name and password are used for authentication
+    optional: true
+    suggested-values:
+    - '888888'
+  sip-password:
+    description: the SIP user name and password are used for authentication
+    optional: true
+    sensitive: true
+    suggested-values:
+    - '123456'
+  sip-admin:
+    description: Valid values, [true, false]
+    suggested-values:
+    - true
+  call-statistics-enabled:
+    description: Enable the VoIP call statistics for a particular POTS line.
+    optional: true
+    suggested-values:
+    - false
+domains: onu>transport>voip-sip
+entity: uni
+freemarker: true
+name: Edit VOIP UNI
+operation: edit
+sample-id: onu-transport-voip-sip-uni-edit
+scope: eonu
+status: draft

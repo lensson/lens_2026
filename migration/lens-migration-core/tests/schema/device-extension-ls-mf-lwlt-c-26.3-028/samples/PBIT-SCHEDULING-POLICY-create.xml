@@ -1,0 +1,227 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+	<edit-config>
+		<target>
+			<running/>
+		</target>
+		<config>
+			<policies xmlns="urn:bbf:yang:bbf-qos-policies">
+				<policy>
+					<name>${pbit\-scheduling\-policy\-name}</name>
+					<#if pbit0\-tc?has_content>
+						<classifiers>
+							<name>cls0-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>
+					<#if pbit1\-tc?has_content>
+						<classifiers>
+							<name>cls1-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>
+					<#if pbit2\-tc?has_content>
+						<classifiers>
+							<name>cls2-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>
+					<#if pbit3\-tc?has_content>
+						<classifiers>
+							<name>cls3-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>
+					<#if pbit4\-tc?has_content>
+						<classifiers>
+							<name>cls4-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>
+					<#if pbit5\-tc?has_content>
+						<classifiers>
+							<name>cls5-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>
+					<#if pbit6\-tc?has_content>
+						<classifiers>
+							<name>cls6-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>
+					<#if pbit7\-tc?has_content>
+						<classifiers>
+							<name>cls7-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>			
+				</policy>
+			</policies>		
+			<classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+				<#if pbit0\-tc?has_content>
+					<classifier-entry>
+						<name>cls0-${pbit\-scheduling\-policy\-name}</name>
+            <filter-operation>match-all-filter</filter-operation>
+						<match-criteria>
+              <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                <#if cls0\-pbit\-value\-0?has_content>
+                  <index>0</index>
+                  <pbit-value>${cls0\-pbit\-value\-0}</pbit-value>
+                </#if>
+                <#if cls0\-pbit\-value\-1?has_content>
+                  <index>1</index>
+                  <pbit-value>${cls0\-pbit\-value\-1}</pbit-value>
+                </#if>
+              </pbit-marking-list>
+            </match-criteria>
+						<classifier-action-entry-cfg>
+							<action-type>scheduling-traffic-class</action-type>
+							<scheduling-traffic-class>${pbit0\-tc}</scheduling-traffic-class>
+						</classifier-action-entry-cfg>
+        						
+					</classifier-entry>
+				</#if>
+				<#if pbit1\-tc?has_content>
+					<classifier-entry>
+						<name>cls1-${pbit\-scheduling\-policy\-name}</name>
+            <filter-operation>match-all-filter</filter-operation>
+						<match-criteria>
+              <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                <#if cls1\-pbit\-value\-0?has_content>
+                  <index>0</index>
+                  <pbit-value>${cls1\-pbit\-value\-0}</pbit-value>
+                <#elseif cls1\-pbit\-value\-1?has_content>
+                  <index>1</index>
+                  <pbit-value>${cls1\-pbit\-value\-1}</pbit-value>
+                </#if>
+              </pbit-marking-list>
+            </match-criteria>
+						<classifier-action-entry-cfg>
+							<action-type>scheduling-traffic-class</action-type>
+							<scheduling-traffic-class>${pbit1\-tc}</scheduling-traffic-class>
+						</classifier-action-entry-cfg>
+					</classifier-entry>
+				</#if>
+				<#if pbit2\-tc?has_content>
+					<classifier-entry>
+						<name>cls2-${pbit\-scheduling\-policy\-name}</name>
+            <filter-operation>match-all-filter</filter-operation>
+						<match-criteria>
+              <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                <#if cls2\-pbit\-value\-0?has_content>
+                  <index>0</index>
+                  <pbit-value>${cls2\-pbit\-value\-0}</pbit-value>
+                <#elseif cls2\-pbit\-value\-1?has_content>
+                  <index>1</index>
+                  <pbit-value>${cls2\-pbit\-value\-1}</pbit-value>
+                </#if>
+              </pbit-marking-list>
+            </match-criteria>
+						<classifier-action-entry-cfg>
+							<action-type>scheduling-traffic-class</action-type>
+							<scheduling-traffic-class>${pbit2\-tc}</scheduling-traffic-class>
+						</classifier-action-entry-cfg>
+					</classifier-entry>
+				</#if>
+				<#if pbit3\-tc?has_content>
+					<classifier-entry>
+						<name>cls3-${pbit\-scheduling\-policy\-name}</name>
+            <filter-operation>match-all-filter</filter-operation>
+						<match-criteria>
+              <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                <#if cls3\-pbit\-value\-0?has_content>
+                  <index>0</index>
+                  <pbit-value>${cls3\-pbit\-value\-0}</pbit-value>
+                <#elseif cls3\-pbit\-value\-1?has_content>
+                  <index>1</index>
+                  <pbit-value>${cls3\-pbit\-value\-1}</pbit-value>
+                </#if>
+              </pbit-marking-list>
+            </match-criteria>
+						<classifier-action-entry-cfg>
+							<action-type>scheduling-traffic-class</action-type>
+							<scheduling-traffic-class>${pbit3\-tc}</scheduling-traffic-class>
+						</classifier-action-entry-cfg>
+					</classifier-entry>
+				</#if>
+				<#if pbit4\-tc?has_content>
+					<classifier-entry>
+						<name>cls4-${pbit\-scheduling\-policy\-name}</name>
+            <filter-operation>match-all-filter</filter-operation>
+						<match-criteria>
+              <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                <#if cls4\-pbit\-value\-0?has_content>
+                  <index>0</index>
+                  <pbit-value>${cls4\-pbit\-value\-0}</pbit-value>
+                <#elseif cls4\-pbit\-value\-1?has_content>
+                  <index>1</index>
+                  <pbit-value>${cls4\-pbit\-value\-1}</pbit-value>
+                </#if>
+              </pbit-marking-list>
+            </match-criteria>
+						<classifier-action-entry-cfg>
+							<action-type>scheduling-traffic-class</action-type>
+							<scheduling-traffic-class>${pbit4\-tc}</scheduling-traffic-class>
+						</classifier-action-entry-cfg>
+					</classifier-entry>
+				</#if>
+				<#if pbit5\-tc?has_content>
+					<classifier-entry>
+						<name>cls5-${pbit\-scheduling\-policy\-name}</name>
+            <filter-operation>match-all-filter</filter-operation>
+						<match-criteria>
+              <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                <#if cls5\-pbit\-value\-0?has_content>
+                  <index>0</index>
+                  <pbit-value>${cls5\-pbit\-value\-0}</pbit-value>
+                <#elseif cls5\-pbit\-value\-1?has_content>
+                  <index>1</index>
+                  <pbit-value>${cls5\-pbit\-value\-1}</pbit-value>
+                </#if>
+              </pbit-marking-list>
+            </match-criteria>
+						<classifier-action-entry-cfg>
+							<action-type>scheduling-traffic-class</action-type>
+							<scheduling-traffic-class>${pbit5\-tc}</scheduling-traffic-class>
+						</classifier-action-entry-cfg>
+					</classifier-entry>
+				</#if>
+				<#if pbit6\-tc?has_content>
+					<classifier-entry>
+						<name>cls6-${pbit\-scheduling\-policy\-name}</name>
+            <filter-operation>match-all-filter</filter-operation>
+						<match-criteria>
+              <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                <#if cls6\-pbit\-value\-0?has_content>
+                  <index>0</index>
+                  <pbit-value>${cls6\-pbit\-value\-0}</pbit-value>
+                <#elseif cls6\-pbit\-value\-1?has_content>
+                  <index>1</index>
+                  <pbit-value>${cls6\-pbit\-value\-1}</pbit-value>
+                </#if>
+              </pbit-marking-list>
+            </match-criteria>
+						<classifier-action-entry-cfg>
+							<action-type>scheduling-traffic-class</action-type>
+							<scheduling-traffic-class>${pbit6\-tc}</scheduling-traffic-class>
+						</classifier-action-entry-cfg>
+					</classifier-entry>
+				</#if>
+				<#if pbit7\-tc?has_content>
+					<classifier-entry>
+						<name>cls7-${pbit\-scheduling\-policy\-name}</name>
+            <filter-operation>match-all-filter</filter-operation>
+						<match-criteria>
+              <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                <#if cls7\-pbit\-value\-0?has_content>
+                  <index>0</index>
+                  <pbit-value>${cls7\-pbit\-value\-0}</pbit-value>
+                <#elseif cls7\-pbit\-value\-1?has_content>
+                  <index>1</index>
+                  <pbit-value>${cls7\-pbit\-value\-1}</pbit-value>
+                </#if>
+              </pbit-marking-list>
+            </match-criteria>
+						<classifier-action-entry-cfg>
+							<action-type>scheduling-traffic-class</action-type>
+							<scheduling-traffic-class>${pbit7\-tc}</scheduling-traffic-class>
+						</classifier-action-entry-cfg>
+					</classifier-entry>
+				</#if>					
+			</classifiers>
+		</config>
+	</edit-config>
+</rpc>
+

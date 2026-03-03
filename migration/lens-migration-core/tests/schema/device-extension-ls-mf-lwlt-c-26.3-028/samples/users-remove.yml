@@ -1,0 +1,11 @@
+arguments:
+  name:
+    description: User to remove
+    suggested-values:
+    - test_user
+domains: system>users
+freemarker: true
+name: Remove user
+operation: remove
+sample-id: system-users-remove
+status: draft

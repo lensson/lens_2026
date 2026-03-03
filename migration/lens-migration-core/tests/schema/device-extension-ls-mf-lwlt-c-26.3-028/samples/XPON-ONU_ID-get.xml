@@ -1,0 +1,10 @@
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+   <get-free-onu-ids xmlns="http://www.nokia.com/management-solutions/pon-id-allocation">
+       <channel-group-name>${olt\-port\-name}-cgroup</channel-group-name>
+       <xpon-type xmlns:xpon-types="urn:bbf:yang:bbf-xpon-types">xpon-types:${xpon\-technology}</xpon-type>
+       <#if allowed\-onu\-id\-list?has_content>
+       <allowed-id-list>${allowed\-onu\-id\-list}</allowed-id-list>
+       </#if>             
+       <v-ani-name>${onu\-name}</v-ani-name>
+    </get-free-onu-ids>
+</rpc>

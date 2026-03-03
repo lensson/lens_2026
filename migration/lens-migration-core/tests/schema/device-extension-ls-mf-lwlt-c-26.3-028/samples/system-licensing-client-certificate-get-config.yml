@@ -1,0 +1,8 @@
+domains: system>licensing
+entity: client-certificate
+freemarker: true
+name: Retrieve certificate information for connection to License Server
+operation: get-config
+sample-id: system-licensing-client-certificate-get-config
+scope: licensing
+status: draft

@@ -1,0 +1,17 @@
+arguments:
+  bac-profile-name:
+    suggested-values:
+    - BAC-TD
+  max-queue-size:
+    suggested-values:
+    - 96000
+  taildrop-max-threshold:
+    suggested-values:
+    - 100
+domains: unicast>qos>tm
+entity: bac_taildrop_profile
+freemarker: true
+name: Configure unicast services QoS bac profile taildrop
+operation: edit
+sample-id: unicast-qos-tm-bac_taildrop_profile-edit
+status: draft

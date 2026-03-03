@@ -1,0 +1,86 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont-mounted">
+              <tconts>
+                <tcont xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                  <name>${tcont\-name}</name>
+<#if alloc\-id?has_content >
+                  <alloc-id>${alloc\-id}</alloc-id>
+</#if>
+                  <interface-reference>${ani\-name}</interface-reference>
+                  <tm-root xmlns="urn:bbf:yang:bbf-xpongemtcont-qos-mounted">
+<#if queue0\-weight?has_content && queue0\-priority?has_content>
+                    <queue>
+                      <local-queue-id>0</local-queue-id>
+                      <priority>${queue0\-priority}</priority>
+                      <weight>${queue0\-weight}</weight>
+                    </queue>
+</#if>
+<#if queue1\-weight?has_content && queue1\-priority?has_content>
+                    <queue>
+                      <local-queue-id>1</local-queue-id>
+                      <priority>${queue1\-priority}</priority>
+                      <weight>${queue1\-weight}</weight>
+                    </queue>
+</#if>
+<#if queue2\-weight?has_content && queue2\-priority?has_content>
+                    <queue>
+                      <local-queue-id>2</local-queue-id>
+                      <priority>${queue2\-priority}</priority>
+                      <weight>${queue2\-weight}</weight>
+                    </queue>
+</#if>
+<#if queue3\-weight?has_content && queue3\-priority?has_content>
+                    <queue>
+                      <local-queue-id>3</local-queue-id>
+                      <priority>${queue3\-priority}</priority>
+                      <weight>${queue3\-weight}</weight>
+                    </queue>
+</#if>
+<#if queue4\-weight?has_content && queue4\-priority?has_content>
+                    <queue>
+                      <local-queue-id>4</local-queue-id>
+                      <priority>${queue4\-priority}</priority>
+                      <weight>${queue4\-weight}</weight>
+                    </queue>
+</#if>
+<#if queue5\-weight?has_content && queue5\-priority?has_content>
+                    <queue>
+                      <local-queue-id>5</local-queue-id>
+                      <priority>${queue5\-priority}</priority>
+                      <weight>${queue5\-weight}</weight>
+                    </queue>
+</#if>
+<#if queue6\-weight?has_content && queue6\-priority?has_content>
+                    <queue>
+                      <local-queue-id>6</local-queue-id>
+                      <priority>${queue6\-priority}</priority>
+                      <weight>${queue6\-weight}</weight>
+                    </queue>
+</#if>
+<#if queue7\-weight?has_content && queue7\-priority?has_content>
+                    <queue>
+                      <local-queue-id>7</local-queue-id>
+                      <priority>${queue7\-priority}</priority>
+                      <weight>${queue7\-weight}</weight>
+                    </queue>
+</#if>
+                    <tc-id-2-queue-id-mapping-profile-name>${tc\-2\-q\-profile\-name}</tc-id-2-queue-id-mapping-profile-name>
+                  </tm-root>
+                </tcont>
+              </tconts>
+            </xpongemtcont>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

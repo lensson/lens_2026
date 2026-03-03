@@ -1,0 +1,16 @@
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <action xmlns="urn:ietf:params:xml:ns:yang:1">
+    <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+      <interface>
+       <#if cc\-name?has_content>
+          <name>${cc\-name}-USER-VSI</name>
+       <#elseif ibridge\-user\-port\-name?has_content>
+          <name>${ibridge\-user\-port\-name}-VSI</name>
+       </#if>
+       <ipv6-security xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv6-address-spoofing-prevention">
+          <remove-dhcpv6-learned-ip-addresses/>
+        </ipv6-security>
+      </interface>
+    </interfaces-state>
+  </action>
+ </rpc>

@@ -1,0 +1,6 @@
+domains: system>logging>local-syslog-collector
+freemarker: true
+name: Retrieve local syslog collector
+operation: get-config
+sample-id: system-logging-local-syslog-collector-get-config
+status: draft

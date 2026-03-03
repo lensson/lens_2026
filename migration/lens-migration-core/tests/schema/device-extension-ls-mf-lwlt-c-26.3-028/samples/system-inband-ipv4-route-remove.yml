@@ -1,0 +1,25 @@
+arguments:
+  interface-name:
+    description: Name of inband interface
+    suggested-values:
+    - inband
+  ipv4-address:
+    description: Inband interface IPv4 address
+    suggested-values:
+    - 135.251.193.186
+  control-plane-protocol-name:
+    description: The name of the control-plane protocol instance
+    suggested-values:
+    - inband
+  route-dest-prefix:
+    description: Route next-hop
+    suggested-values:
+    - 0.0.0.0/0
+available-locally: true
+domains: system>inband
+entity: ipv4-route
+freemarker: true
+name: Remove static inband management IPv4 address and route
+operation: remove
+sample-id: system-inband-ipv4-route-remove
+status: draft

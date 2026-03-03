@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  maintenance-group-id:
+    description: Unique ID which is a key for maintenance group
+    suggested-values:
+    - MG-1
+  mep-id:
+    description: Unique ID which is a key for maintenance association end point
+    suggested-values:
+    - 1
+domains: onu>cfm
+entity: mep
+freemarker: true
+name: Retrieve ONU CFM MEP Template parameter config
+operation: get-config
+sample-id: onu-cfm-mep-get-config
+scope: eonu
+status: draft

@@ -1,0 +1,14 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+<edit-config>
+ <target>
+   <running/>
+ </target>
+<config>
+  <nokia-itf-tm:interface-speed-monitoring xmlns:nokia-itf-tm="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interface-speed-monitoring">    
+<#if period\-length?has_content>
+     <nokia-itf-tm:period-length>${period\-length}</nokia-itf-tm:period-length>
+</#if>
+   </nokia-itf-tm:interface-speed-monitoring>
+</config>
+</edit-config>
+</rpc>

@@ -1,0 +1,28 @@
+arguments:
+  vpn-name:
+    description: The name of the multicast VPN.
+    optional: false
+    suggested-values:
+    - mc-vpn
+  multicast-package-name:
+    description: The name of the multicast package.
+    optional: true
+    suggested-values:
+    - Pkg-1
+  detailed-output:
+    description: Provides detailed configuration of all the multicast packages in
+      the VPN in the system when enabled and a list of configured multicast package
+      names in the VPN when disabled. This argument will be ignored when the multicast-package-name
+      is provided.
+    optional: false
+    suggested-values:
+    - false
+    - true
+domains: multicast>vpn
+entity: multicast-package
+freemarker: true
+name: Retrieve multicast package configuration
+operation: get-config
+sample-id: multicast-vpn-multicast-package-get-config
+scope: multicast
+status: draft

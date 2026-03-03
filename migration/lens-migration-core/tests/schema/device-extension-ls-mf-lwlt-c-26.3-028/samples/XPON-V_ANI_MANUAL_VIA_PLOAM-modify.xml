@@ -1,0 +1,23 @@
+ <rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${olt\-infrastructure\-name}-cgroup</name>
+          <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-pair</type>
+          <channel-pair xmlns="urn:bbf:yang:bbf-xpon">
+            <onu-enable-disable-ploam-condition xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-if-xpon-aug">
+              <onu-ploam>
+                <serial-number>${onu\-serial\-number}</serial-number>
+                <ploam-function>${ploam\-function}</ploam-function>
+              </onu-ploam>
+            </onu-enable-disable-ploam-condition>
+          </channel-pair>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>

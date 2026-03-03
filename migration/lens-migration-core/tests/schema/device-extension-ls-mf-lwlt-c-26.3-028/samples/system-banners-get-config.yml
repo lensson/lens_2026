@@ -1,0 +1,6 @@
+domains: system>banners
+freemarker: true
+name: Retrieve login and welcome banners
+operation: get-config
+sample-id: system-banners-get-config
+status: draft

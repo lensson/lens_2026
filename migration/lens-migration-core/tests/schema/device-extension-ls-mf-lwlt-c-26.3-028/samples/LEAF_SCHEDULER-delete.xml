@@ -1,0 +1,33 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${olt\-infrastructure\-name}-cpartition</name>
+          <tm-root xmlns="urn:bbf:yang:bbf-qos-traffic-mngt">
+            <#if intermediate\-scheduler\-name?has_content>
+            <scheduler-node xmlns="urn:bbf:yang:bbf-qos-enhanced-scheduling">
+              <name>${intermediate\-scheduler\-name}</name>
+              <child-scheduler-nodes xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="delete">
+                <name>${leaf\-scheduler\-name}</name>
+              </child-scheduler-nodes>
+            </scheduler-node>
+            <#else>
+            <child-scheduler-nodes xmlns="urn:bbf:yang:bbf-qos-enhanced-scheduling" xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="delete">
+              <name>${leaf\-scheduler\-name}</name>
+            </child-scheduler-nodes>			
+            </#if>			
+
+            <scheduler-node xmlns="urn:bbf:yang:bbf-qos-enhanced-scheduling" xmlns:ns2="urn:ietf:params:xml:ns:netconf:base:1.0" ns2:operation="delete">
+              <name>${leaf\-scheduler\-name}</name>
+            </scheduler-node>
+          </tm-root>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>
+

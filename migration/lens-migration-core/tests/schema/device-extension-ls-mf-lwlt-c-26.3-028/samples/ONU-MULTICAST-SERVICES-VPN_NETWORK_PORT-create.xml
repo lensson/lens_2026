@@ -1,0 +1,87 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                <name>${network\-port\-name}-vsi</name>
+<#if vsi\-auto\-instantiate?has_content>
+                <auto-instantiate xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">${vsi\-auto\-instantiate}</auto-instantiate>
+</#if>
+                <type xmlns:bbfift="urn:bbf:yang:bbf-if-type-mounted">bbfift:vlan-sub-interface</type>
+                <enabled>true</enabled>
+                <subif-lower-layer xmlns="urn:bbf:yang:bbf-sub-interfaces-mounted">
+                  <interface>${ani\-name}</interface>
+                </subif-lower-layer>
+                <inline-frame-processing xmlns="urn:bbf:yang:bbf-sub-interfaces-mounted">
+                  <ingress-rule>
+                    <rule>
+                      <name>rule_1</name>
+                      <priority>100</priority>
+                      <flexible-match>
+                        <match-criteria xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+                          <tag>
+                            <index>0</index>
+                            <dot1q-tag>
+                              <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                              <vlan-id>${mcast\-vlan\-id}</vlan-id>
+                              <pbit>any</pbit>
+                              <dei>any</dei>
+                            </dot1q-tag>
+                          </tag>
+                        </match-criteria>
+                      </flexible-match>
+                      <ingress-rewrite>
+                        <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">1</pop-tags>
+                        <push-tag xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+                          <index>0</index>
+                          <dot1q-tag>
+                            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                            <vlan-id>${mcast\-vlan\-id}</vlan-id>
+                            <pbit-from-tag-index>0</pbit-from-tag-index>
+                            <dei-from-tag-index>0</dei-from-tag-index>
+                          </dot1q-tag>
+                        </push-tag>
+                      </ingress-rewrite>
+                    </rule>
+                  </ingress-rule>
+                  <egress-rewrite>
+                    <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">1</pop-tags>
+                    <push-tag xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+                      <index>0</index>
+                      <dot1q-tag>
+                        <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                        <vlan-id>${mcast\-vlan\-id}</vlan-id>
+                        <pbit-from-tag-index>0</pbit-from-tag-index>
+                        <dei-from-tag-index>0</dei-from-tag-index>
+                      </dot1q-tag>
+                    </push-tag>
+                  </egress-rewrite>
+                </inline-frame-processing>
+              </interface>
+            </interfaces>
+            <multicast xmlns="urn:bbf:yang:bbf-mgmd-mounted">
+              <mgmd>
+                <multicast-vpn>
+                  <name>${vpn\-name}</name>
+                  <multicast-network-interface>
+                    <name>${network\-port\-name}</name>
+                    <single-uplink-interface-data>
+                      <vlan-sub-interface>${network\-port\-name}-vsi</vlan-sub-interface>
+                    </single-uplink-interface-data>
+                  </multicast-network-interface>
+                </multicast-vpn>
+              </mgmd>
+            </multicast>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

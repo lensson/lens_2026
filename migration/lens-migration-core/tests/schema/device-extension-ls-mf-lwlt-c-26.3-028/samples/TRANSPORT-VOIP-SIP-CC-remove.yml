@@ -1,0 +1,13 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+domains: transport>voip-sip
+entity: cc
+freemarker: true
+name: Remove VoIP SIP CC
+operation: remove
+sample-id: transport-voip-sip-cc-remove
+scope: ''
+status: draft

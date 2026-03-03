@@ -1,0 +1,66 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  voip-uni-name:
+    description: VOIP UNI name
+    suggested-values:
+    - POTS1
+  mlt-test-name:
+    description: MLT test instance name
+    suggested-values:
+    - mlttest1
+  sip-mlt-mode:
+    description: used to force or deny(normal) the test ifline is busy.
+    optional: true
+    suggested-values:
+    - normal
+  hazard-dc-threshold:
+    description: threshold for declaring Hazardous DC Voltage test pass or fail.
+    optional: true
+    suggested-values:
+    - default
+  hazard-ac-threshold:
+    description: threshold for declaring Hazardous AC Voltage test pass or fail.
+    optional: true
+    suggested-values:
+    - default
+  foreign-dc-threshold:
+    description: threshold for declaring Foreign DC Voltage test pass or fail.
+    optional: true
+    suggested-values:
+    - default
+  foreign-ac-threshold:
+    description: threshold for declaring Foreign AC Voltage test pass or fail.
+    optional: true
+    suggested-values:
+    - default
+  tipgnd-rnggnd-threshold:
+    description: threshold for declaring Tip-Ground to Ring-Ground Resistance test
+      pass or fail.
+    optional: true
+    suggested-values:
+    - default
+  tip-ring-threshold:
+    description: threshold for declaring Tip and Ring Resistance test pass or fail.
+    optional: true
+    suggested-values:
+    - default
+  ring-min-threshold:
+    description: threshold (MIN) for declaring Ringer Load test pass or fail.
+    optional: true
+    suggested-values:
+    - default
+  ring-max-threshold:
+    description: threshold (MAX) for declaring Ringer Load test pass or fail.
+    optional: true
+    suggested-values:
+    - default
+domains: onu>transport>voip-sip
+freemarker: true
+name: Test MLT VOIP
+operation: mlt-test
+sample-id: onu-transport-voip-sip-mlt-test
+scope: eonu
+status: draft

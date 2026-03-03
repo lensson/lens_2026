@@ -1,0 +1,36 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu-template-ani-intf:
+    description: ANI interface name
+    suggested-values:
+    - ani-1-1-1
+  tca-xpon-fec-err-profile:
+    description: ANI XGPON FEC error PM counters TCA profile name
+    optional: true
+    suggested-values:
+    - fec_tca_profile
+  tca-xgpon-xgs-tc-err-profile:
+    description: ANI XGPON TC layer PM counters TCA profile name
+    optional: true
+    suggested-values:
+    - tc_layer_tca_profile
+  tca-xgpon-xgs-ds-err-profile:
+    description: ANI XGPON downstream PM counters TCA profile name
+    optional: true
+    suggested-values:
+    - ds_tca_profile
+  tca-gem-frame-err-profile:
+    description: Aggregate GEM frame error TCA profile name
+    optional: true
+    suggested-values:
+    - agg_gem_err_tca_profile
+domains: onu>transport>gpon>ani
+entity: template
+freemarker: true
+name: Attach ANI interface PM TCA profile
+operation: ani-pm-tca-profiles-ref-attach
+sample-id: onu-transport-gpon-ani-template-ani-pm-tca-profiles-ref-attach
+status: draft

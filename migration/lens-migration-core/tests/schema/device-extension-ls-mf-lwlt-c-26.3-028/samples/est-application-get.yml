@@ -1,0 +1,12 @@
+arguments:
+  profile-name:
+    description: EST profile-name
+    suggested-values:
+    - EstProfile
+domains: system>certificate>est
+entity: application
+freemarker: true
+name: Retrieve the application usage of the certificates under a specific EST profile
+operation: get
+sample-id: system-certificate-est-application-get
+status: draft

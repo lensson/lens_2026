@@ -1,0 +1,15 @@
+arguments:
+  olt-infrastructure-name:
+    suggested-values:
+    - gpon-1-1
+  enable:
+    suggested-values:
+    - true
+domains: unicast>qos>tm
+entity: queue_statistics_flat_scheduler
+freemarker: true
+name: Configure QoS performance and statistics for tm-root to enable
+operation: edit
+sample-id: unicast-qos-tm-queue_statistics_flat_scheduler-edit
+scope: not(mx) and not(dpu) and not(fx-p2p)
+status: draft

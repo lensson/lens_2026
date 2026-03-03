@@ -1,0 +1,18 @@
+arguments:
+  v-ani-name:
+    description: The name of the virtual ANI Interface.
+    suggested-values:
+    - v-ani-1-1-1
+  onu-template-name:
+    description: The name of the ONU template to instantiate.
+    optional: true
+    suggested-values:
+    - onu-template-1
+domains: transport>gpon>v-ani
+freemarker: true
+name: Retrieve GPON ONU on OLT side configuration data
+operation: get-config
+sample-id: transport-gpon-v-ani-get-config
+scope: gpon or gpon-xgs or gpon-xgs-25g or gpon-ngpon2-xgs-25g or gpon-xgs-25g-hs
+  or gpon-xgpon-xgs-25g or gpon-ngpon2-xgpon-xgs-25g or gpon-xgs-25g-50g
+status: draft

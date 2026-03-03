@@ -1,0 +1,7 @@
+domains: system>sessions
+entity: active
+freemarker: true
+name: Retrieve active sessions in system
+operation: get
+sample-id: system-sessions-active-get
+status: draft

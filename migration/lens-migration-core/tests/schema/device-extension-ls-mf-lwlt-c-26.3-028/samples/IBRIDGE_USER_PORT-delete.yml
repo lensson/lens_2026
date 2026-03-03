@@ -1,0 +1,75 @@
+arguments:
+  ibridge-name:
+    description: The name of the IBRIDGE
+    suggested-values:
+    - bridge-1
+  ibridge-user-port-name:
+    description: The name of the local VLAN port on the OLT
+    suggested-values:
+    - user-port-1
+  onu-name:
+    description: ONU name
+    optional: true
+    suggested-values:
+    - ani-1-1-1
+  onu-template-cc-name:
+    description: ONU template CC interface name
+    optional: true
+    suggested-values:
+    - cc-template-1
+  tc0-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 0
+    optional: true
+    suggested-values:
+    - no-sharing
+  tc1-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 1
+    optional: true
+    suggested-values:
+    - no-sharing
+  tc2-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 2
+    optional: true
+    suggested-values:
+    - no-sharing
+  tc3-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 3
+    optional: true
+    suggested-values:
+    - no-sharing
+  tc4-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 4
+    optional: true
+    suggested-values:
+    - no-sharing
+  tc5-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 5
+    optional: true
+    suggested-values:
+    - no-sharing
+  tc6-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 6
+    optional: true
+    suggested-values:
+    - no-sharing
+  tc7-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 7
+    optional: true
+    suggested-values:
+    - no-sharing
+domains: unicast>forwarding
+entity: ibridge_user_port
+freemarker: true
+name: Delete user-port VSI and forwarder port
+operation: delete
+sample-id: unicast-forwarding-ibridge_user_port-delete
+scope: not(fx-p2p)
+status: draft

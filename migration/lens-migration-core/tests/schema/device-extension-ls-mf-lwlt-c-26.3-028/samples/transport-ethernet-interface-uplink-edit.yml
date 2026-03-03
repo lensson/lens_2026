@@ -1,0 +1,79 @@
+arguments:
+  speed-in-gb:
+    description: Supported speeds are given below
+    suggested-values:
+    - eth-if-speed-10gb
+  network-port-name:
+    description: Name of interface
+    suggested-values:
+    - UPLINK1/UPLINK2
+  network-port:
+    description: Name of the transceiver-link
+    suggested-values:
+    - UPLINK_PORT1
+  interface-type:
+    description: Type of the interfaces
+    suggested-values:
+    - ethernetCsmacd
+  duplex:
+    description: Nature of the port
+    suggested-values:
+    - duplex
+  queue:
+    description: Number of local queues
+    optional: true
+    suggested-values:
+    - 2/4
+  queue-profile:
+    description: Queue Profile name
+    suggested-values:
+    - DEFAULT_TC_TO_2Queues
+  queue0-priority:
+    description: Priority of queue0
+    optional: true
+    suggested-values:
+    - 0
+  queue0-weight:
+    description: Weight of queue0
+    optional: true
+    suggested-values:
+    - 1
+  queue1-priority:
+    description: Priority of queue1
+    optional: true
+    suggested-values:
+    - 0
+  queue1-weight:
+    description: Weight of queue1
+    optional: true
+    suggested-values:
+    - 5
+  queue2-priority:
+    description: Priority of queue2
+    optional: true
+    suggested-values:
+    - 2
+  queue2-weight:
+    description: Weight of queue2
+    optional: true
+    suggested-values:
+    - 0
+  queue3-priority:
+    description: Priority of queue3
+    optional: true
+    suggested-values:
+    - 3
+  queue3-weight:
+    description: Weight of queue3
+    optional: true
+    suggested-values:
+    - 0
+available-locally: true
+domains: transport>ethernet
+entity: interface-uplink
+freemarker: true
+name: Create interface on top of SFP
+operation: create
+sample-id: transport-ethernet-interface-uplink-create
+scope: not(inband-no-ipv4) and not(mf2-nt) and not(dpu) and not(mx) and not(df4g)
+status: draft

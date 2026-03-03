@@ -1,0 +1,14 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  name:
+    description: power shed profile name
+domains: onu>transport>powershed
+freemarker: true
+name: Edit powershed to ONU
+operation: edit
+sample-id: onu-transport-powershed-edit
+scope: eonu
+status: draft

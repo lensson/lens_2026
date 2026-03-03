@@ -1,0 +1,12 @@
+arguments:
+  user-interface:
+    description: Name of the user interface.
+    suggested-values:
+    - OLT-VENET
+domains: transport>protocols>802.1x
+entity: dynamic-association-info
+freemarker: true
+name: Retrieve dynamic association info of the mac-based session
+operation: get
+sample-id: transport-protocols-802.1x-dynamic-association-info-get
+status: draft

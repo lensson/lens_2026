@@ -1,0 +1,24 @@
+arguments:
+  intermediate-scheduler-name:
+    suggested-values:
+    - sch-node-ont1
+  olt-infrastructure-name:
+    suggested-values:
+    - gpon-1-1
+  shaper-profile-name:
+    optional: true
+  weight:
+    optional: true
+    suggested-values:
+    - 1
+  tc2q-profile-name:
+    optional: true
+    suggested-values:
+    - DEFAULT_TC_TO_8Queues
+domains: unicast>qos>tm
+entity: intermediate_scheduler
+freemarker: true
+name: Configure unicast services QoS intermediate scheduler
+operation: edit
+sample-id: unicast-qos-tm-intermediate_scheduler-edit
+status: draft

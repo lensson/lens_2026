@@ -1,0 +1,6 @@
+domains: system>callhome>tcp-keep-alive
+freemarker: true
+name: Retrieve configured tcp keepalive parameters
+operation: get-config
+sample-id: system-callhome-tcp-keep-alive-get-config
+status: draft

@@ -1,0 +1,34 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <qos-policy-profiles xmlns="urn:bbf:yang:bbf-qos-policies-mounted">
+              <policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${qos\-policy\-profile\-name}</name>
+                <policy-list>
+                  <name>${qos\-policy\-name\-1}</name>
+                </policy-list>
+<#if qos\-policy\-name\-2?has_content >
+                <policy-list>
+                  <name>${qos\-policy\-name\-2}</name>
+                </policy-list>
+</#if>
+<#if qos\-policy\-name\-3?has_content >
+                <policy-list>
+                  <name>${qos\-policy\-name\-3}</name>
+                </policy-list>
+</#if>
+              </policy-profile>
+            </qos-policy-profiles>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  cpu-component-name:
+    description: CPU component name
+    suggested-values:
+    - cpu1
+  cpu-tca-profile:
+    description: cpu-tca-profile name
+    suggested-values:
+    - cpu_tca_profile
+domains: onu>system>tca>pm-profiles
+entity: cpu-tca-profiles-ref
+freemarker: true
+name: Attach CPU TCA profile
+operation: attach
+sample-id: onu-system-tca-pm-profiles-cpu-tca-profiles-ref-attach
+scope: eonu
+status: draft

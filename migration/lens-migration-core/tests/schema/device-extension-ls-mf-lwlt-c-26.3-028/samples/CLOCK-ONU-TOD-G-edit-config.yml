@@ -1,0 +1,18 @@
+arguments:
+  onu-name:
+    description: the custom name of the onu, configured below lt interface interfaces.
+    suggested-values:
+    - ont1_050_fwlt-c
+  tod-enable:
+    description: to enable/disable tod on onu.
+    optional: true
+    suggested-values:
+    - true
+domains: synchronization>lt>ptp
+entity: ToD
+freemarker: true
+name: Configure tod interface for onu
+operation: edit
+sample-id: synchronization-lt-ptp-ToD-edit
+scope: clock-pon and (not clock-df16gm)
+status: draft

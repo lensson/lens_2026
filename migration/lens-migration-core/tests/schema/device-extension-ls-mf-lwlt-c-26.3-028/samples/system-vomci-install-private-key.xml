@@ -1,0 +1,32 @@
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <action xmlns="urn:ietf:params:xml:ns:yang:1">
+  <remote-nf xmlns="urn:bbf:yang:bbf-olt-vomci">
+    <nf-client>
+      <initiate>
+        <remote-server>
+          <name>${remoteserver}</name>
+          <grpc-client xmlns="urn:bbf:yang:bbf-olt-vomci-grpc-client">
+            <access-point>
+              <name>${accesspoint}</name>
+              <grpc-transport-parameters>
+                <tls-client-parameters xmlns="urn:bbf:yang:bbf-olt-vomci-grpc-client-tls">
+                  <client-identity>
+                    <certificate>
+                      <local-definition>
+                        <install-hidden-key>
+                          <private-key>${privatekey}</private-key>
+                        </install-hidden-key>
+                      </local-definition>
+                    </certificate>
+                  </client-identity>
+                </tls-client-parameters>
+              </grpc-transport-parameters>
+            </access-point>
+          </grpc-client>
+        </remote-server>
+      </initiate>
+    </nf-client>
+  </remote-nf>
+ </action>
+</rpc>
+

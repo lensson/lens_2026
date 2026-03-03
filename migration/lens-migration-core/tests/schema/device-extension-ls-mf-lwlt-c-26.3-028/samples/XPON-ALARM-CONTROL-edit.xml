@@ -1,0 +1,43 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+  <xpon xmlns="urn:bbf:yang:bbf-xpon">
+    <channel-termination-loss-of-signal-alarm-control xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-xpon-alarm">
+<#if suppress\-ct\-los\-alarm\-when\-only\-one\-onu\-connected?has_content>
+      <suppress-ct-los-alarm-when-only-one-onu-connected>${suppress\-ct\-los\-alarm\-when\-only\-one\-onu\-connected}</suppress-ct-los-alarm-when-only-one-onu-connected>
+</#if>
+<#if min\-dying\-gasp\-ratio\-to\-declare\-ct\-los\-with\-dying\-gasp?has_content>
+    <min-dying-gasp-ratio-to-declare-ct-los-with-dying-gasp>${min\-dying\-gasp\-ratio\-to\-declare\-ct\-los\-with\-dying\-gasp}</min-dying-gasp-ratio-to-declare-ct-los-with-dying-gasp>
+</#if>
+<#if suppress\-ct\-los\-alarm\-when\-no\-v\-ani\-configured?has_content>
+      <suppress-ct-los-alarm-when-no-v-ani-configured>${suppress\-ct\-los\-alarm\-when\-no\-v\-ani\-configured}</suppress-ct-los-alarm-when-no-v-ani-configured>
+</#if>
+    </channel-termination-loss-of-signal-alarm-control>
+    <onu-present-and-unexpected-alarm-control xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-xpon-alarm">
+<#if report\-onu\-parameters?has_content>
+      <report-onu-parameters>${report\-onu\-parameters}</report-onu-parameters>
+</#if>
+<#if report\-mac\-address?has_content>
+      <report-mac-address>${report\-mac\-address}</report-mac-address>
+</#if>
+<#if suppress\-mac\-addr\-separator?has_content>
+      <suppress-mac-addr-separator>${suppress\-mac\-addr\-separator}</suppress-mac-addr-separator>
+</#if>
+    </onu-present-and-unexpected-alarm-control>
+    <ct-data-path-integrity-alarm-control xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-xpon-alarm">
+<#if ct\-data\-path\-integrity\-alarm\-control?has_content>
+      <alarm-control>${ct\-data\-path\-integrity\-alarm\-control}</alarm-control>
+</#if>
+    </ct-data-path-integrity-alarm-control>
+    <onu-alarm-control xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-xpon-alarm">
+<#if publish\-onu\-dying\-gasp\-on\-ct\-los?has_content>
+      <publish-onu-dying-gasp-on-ct-los>${publish\-onu\-dying\-gasp\-on\-ct\-los}</publish-onu-dying-gasp-on-ct-los>
+</#if>
+    </onu-alarm-control>
+  </xpon>
+</config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,12 @@
+arguments:
+  subscriber_profile_name:
+    description: Name of the Subscriber profile
+    suggested-values:
+    - subscriber_profile
+domains: unicast>subscriber
+entity: profile
+freemarker: true
+name: Remove subscriber profile
+operation: remove
+sample-id: unicast-subscriber-profile-remove
+status: draft

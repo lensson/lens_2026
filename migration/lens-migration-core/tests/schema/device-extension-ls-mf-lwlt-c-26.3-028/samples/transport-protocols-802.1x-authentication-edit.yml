@@ -1,0 +1,27 @@
+arguments:
+  user-interface:
+    description: Name of the user interface.
+    suggested-values:
+    - OLT-VENET
+  enable-authentication:
+    description: If set to true, enables the 802.1X Authentication at user interface
+      level.
+    suggested-values:
+    - true
+    - false
+  uni-name:
+    description: The name of uni on onu side.
+    suggested-values:
+    - uni1_ont1-fglt-b
+  signalling-channel:
+    description: Reference to the vlan-sub-interface for 802.1x packets.
+    suggested-values:
+    - uni1_ont1-fglt-b-user
+domains: transport>protocols>802.1x
+entity: authentication
+freemarker: true
+name: Configure user interface level authentication
+operation: edit
+sample-id: transport-protocols-802.1x-authentication-edit
+scope: fiber
+status: draft

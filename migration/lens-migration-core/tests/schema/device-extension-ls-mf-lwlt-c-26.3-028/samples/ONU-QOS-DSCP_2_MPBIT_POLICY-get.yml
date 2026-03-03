@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  dscp-2-mpbit-policy:
+    description: Policy name
+    suggested-values:
+    - dscp-2-mpbit
+domains: onu>unicast>qos
+entity: dscp-2-mpbit-policy
+freemarker: true
+name: Get QoS dscp to marked pbit
+operation: get
+sample-id: onu-unicast-qos-dscp-2-mpbit-policy-get
+scope: eonu
+status: draft

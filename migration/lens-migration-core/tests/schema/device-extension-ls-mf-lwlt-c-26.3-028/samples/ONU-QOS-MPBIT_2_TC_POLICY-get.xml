@@ -1,0 +1,44 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get>
+    <filter type="subtree">
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <policies xmlns="urn:bbf:yang:bbf-qos-policies-mounted">
+              <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                <name>${mpbit\-2\-tc\-policy}</name>
+              </policy>
+            </policies>
+            <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers-mounted">
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier0</name>
+              </classifier-entry>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier1</name>
+              </classifier-entry>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier2</name>
+              </classifier-entry>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier3</name>
+              </classifier-entry>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier4</name>
+              </classifier-entry>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier5</name>
+              </classifier-entry>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier6</name>
+              </classifier-entry>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier7</name>
+              </classifier-entry>
+            </classifiers>
+          </root>
+        </onu>
+      </onus>
+    </filter>
+  </get>
+</rpc>

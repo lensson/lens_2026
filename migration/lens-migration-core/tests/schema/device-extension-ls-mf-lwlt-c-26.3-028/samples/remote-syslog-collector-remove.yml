@@ -1,0 +1,11 @@
+arguments:
+  syslog-collector-name:
+    description: Remote destination log collector name
+    suggested-values:
+    - logCollector1
+domains: system>logging>remote-syslog-collector
+freemarker: true
+name: Remove remote syslog collector
+operation: remove
+sample-id: system-logging-remote-syslog-collector-remove
+status: draft

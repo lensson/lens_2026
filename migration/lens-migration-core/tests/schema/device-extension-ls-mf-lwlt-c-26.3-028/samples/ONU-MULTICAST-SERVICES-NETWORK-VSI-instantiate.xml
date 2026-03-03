@@ -1,0 +1,32 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <interfaces>
+              <interface>
+                <template-ref>${onu\-template\-mc\-vsi\-name}</template-ref>
+                <name>${onu\-template\-mc\-vsi\-name}</name>
+                <admin>${admin\-state}</admin>
+                <#if mcast\-vlan\-id?has_content>
+                <vsi>
+                  <ingress-rule>
+                    <name>rule_1</name>
+                    <match-criteria-tag-0-vlan-id>${mcast\-vlan\-id}</match-criteria-tag-0-vlan-id>
+                    <ingress-rewrite-tag-0-vlan-id>${mcast\-vlan\-id}</ingress-rewrite-tag-0-vlan-id>
+                  </ingress-rule>
+                </vsi>
+              </#if>
+              </interface>
+            </interfaces>
+          </template-parameters>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

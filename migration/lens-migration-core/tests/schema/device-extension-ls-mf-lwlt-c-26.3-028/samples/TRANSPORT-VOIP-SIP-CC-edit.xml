@@ -1,0 +1,58 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <usage xmlns:template-common="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-template-common">template-common:node-from-template-usage</usage>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <interfaces>
+              <interface>
+               <template-ref>ip-host</template-ref>
+               <name>ip-host</name>
+               <ipv4  xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0"
+                      xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0"
+                      nc:operation="replace">
+                 <#if ip\-origin?has_content>
+                 <origin>${ip\-origin}</origin>
+                 </#if>
+                 <address>
+                   <#if ip\-address?has_content>
+                   <ip>${ip\-address}</ip>
+                   </#if>
+                   <#if netmask?has_content>
+                   <netmask>${netmask}</netmask>
+                   </#if>
+                 </address>
+               </ipv4>
+              </interface>
+            </interfaces>
+            <system>
+             <#if primary\-dns?has_content>
+              <server>
+                <name>pridns</name>
+                <address>${primary\-dns}</address>
+              </server>
+             </#if>
+             <#if secondary\-dns?has_content>
+              <server>
+                <name>backupdns</name>
+                <address>${secondary\-dns}</address>
+              </server>
+             </#if>
+            </system>
+            <#if gateway\-address?has_content>
+            <routing>
+              <next-hop-address>${gateway\-address}</next-hop-address>
+            </routing>
+            </#if>
+          </template-parameters>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>
+

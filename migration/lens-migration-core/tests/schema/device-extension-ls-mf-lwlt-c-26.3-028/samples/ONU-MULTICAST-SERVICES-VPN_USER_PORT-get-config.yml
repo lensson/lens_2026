@@ -1,0 +1,16 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  user-port-name:
+    suggested-values:
+    - mc-user-port
+domains: onu>multicast>vpn
+entity: user-port
+freemarker: true
+name: Get multicast VPN user port configuration
+operation: get-config
+sample-id: onu-multicast-vpn-user-port-get-config
+scope: eonu
+status: draft

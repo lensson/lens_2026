@@ -1,0 +1,12 @@
+arguments:
+  user-interface:
+    description: Name of the user interface.
+    suggested-values:
+    - OLT-VENET
+domains: transport>protocols>802.1x
+freemarker: true
+name: Retrieve user authentication status
+operation: get
+sample-id: transport-protocols-802.1x-get
+scope: fiber
+status: draft

@@ -1,0 +1,11 @@
+arguments:
+  traffic-descriptor-profile-name:
+    description: Traffic descriptor profile name.
+    suggested-values:
+    - tdp-1
+domains: transport>xpon>traffic-descriptor-profile
+freemarker: true
+name: Retrieve xpon upstream traffic descriptor profile config data
+operation: get-config
+sample-id: transport-xpon-traffic-descriptor-profile-get-config
+status: draft

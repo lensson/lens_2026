@@ -1,0 +1,77 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  transceiver-link-tca-profile-name:
+    description: transceiver link tca profile name
+    suggested-values:
+    - transceiver_link_tca_profile
+  rx-power-threshold-low-alarm:
+    description: Value for rx-power-threshold-low-alarm range is -1270 .. 200
+    optional: true
+    suggested-values:
+    - 0
+  rx-power-threshold-low-warning:
+    description: Value for rx-power-threshold-low-warning range is -1270 .. 200
+    optional: true
+    suggested-values:
+    - 0
+  rx-power-threshold-high-warning:
+    description: Value for rx-power-threshold-high-warning range is -1270 .. 200
+    optional: true
+    suggested-values:
+    - 0
+  rx-power-threshold-high-alarm:
+    description: Value for rx-power-threshold-high-alarm range is -1270 .. 200
+    optional: true
+    suggested-values:
+    - 0
+  tx-bias-threshold-low-alarm:
+    description: Value for tx-bias-threshold-low-alarm range is 0 .. 250000
+    optional: true
+    suggested-values:
+    - 100000
+  tx-bias-threshold-low-warning:
+    description: Value for tx-bias-threshold-low-warning range is 0 .. 250000
+    optional: true
+    suggested-values:
+    - 100000
+  tx-bias-threshold-high-warning:
+    description: Value for tx-bias-threshold-high-warning range is 0 .. 250000
+    optional: true
+    suggested-values:
+    - 100000
+  tx-bias-threshold-high-alarm:
+    description: Value for tx-bias-threshold-high-alarm range is 0 .. 250000
+    optional: true
+    suggested-values:
+    - 100000
+  tx-power-threshold-low-alarm:
+    description: Value for tx-power-threshold-low-alarm range is -1270 .. 200
+    optional: true
+    suggested-values:
+    - -100
+  tx-power-threshold-low-warning:
+    description: Value for tx-power-threshold-low-warning range is -1270 .. 200
+    optional: true
+    suggested-values:
+    - -100
+  tx-power-threshold-high-warning:
+    description: tx-power-threshold-high-alarm range is -1270 .. 200
+    optional: true
+    suggested-values:
+    - -100
+  tx-power-threshold-high-alarm:
+    description: tx-power-threshold-high-alarm range is -1270 .. 200
+    optional: true
+    suggested-values:
+    - -100
+domains: onu>system>tca
+entity: transceiver-link-tca-profile
+freemarker: true
+name: Config transceiver-link-tca-profile
+operation: edit
+sample-id: onu-system-tca-transceiver-link-tca-profile-edit
+scope: eonu
+status: draft

@@ -1,0 +1,14 @@
+arguments:
+  subtended-port-support:
+    description: If device can support subtended port, please set as true.
+    optional: true
+    suggested-values:
+    - false
+domains: unicast>forwarding
+entity: profiles
+freemarker: true
+name: Create unicast services forwarding profiles
+operation: create
+sample-id: unicast-forwarding-profiles-create
+scope: not(dpu) and not(mx) and not(fx-p2p)
+status: draft

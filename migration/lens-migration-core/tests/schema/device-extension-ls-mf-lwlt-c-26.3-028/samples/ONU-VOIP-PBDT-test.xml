@@ -1,0 +1,26 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <action xmlns="urn:ietf:params:xml:ns:yang:1">
+    <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+      <onu>
+        <name>${onu\-name}</name>
+        <root>
+          <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+            <interface>
+              <name>${voip\-uni\-name}</name>
+              <phys-voice-itf xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+                <pptp-pots-uni>
+                  <pbdt-test>
+                    <test-name>${pbdt\-test\-name}</test-name>
+<#if dial\-number?has_content>
+                    <dial-number>${dial\-number}</dial-number>
+</#if>
+                  </pbdt-test>
+                </pptp-pots-uni>
+              </phys-voice-itf>
+            </interface>
+          </interfaces-state>
+        </root>
+      </onu>
+    </onus>
+  </action>
+</rpc>

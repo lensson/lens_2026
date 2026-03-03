@@ -1,0 +1,25 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  md-id:
+    description: Unique ID for MD with which the ma is associated.
+    suggested-values:
+    - MD-1
+  ma-id:
+    description: The ID of MA identified by a string with which the MEP is associated
+    suggested-values:
+    - MA-1
+  mep-id:
+    description: The ID of MEP that needs to be deleted
+    suggested-values:
+    - MEP-1
+domains: onu>cfm
+entity: mep
+freemarker: true
+name: Delete ONU CFM MEP
+operation: remove
+sample-id: onu-cfm-mep-remove
+scope: eonu
+status: draft

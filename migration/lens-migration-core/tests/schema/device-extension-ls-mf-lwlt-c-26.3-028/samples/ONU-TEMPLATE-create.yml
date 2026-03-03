@@ -1,0 +1,13 @@
+arguments:
+  onu-name:
+    description: The name of ONU that specifies the template configuration
+    suggested-values:
+    - onu-template-1
+domains: onu
+entity: template
+freemarker: true
+name: Create ONU template subtree
+operation: create
+sample-id: onu-template-create
+scope: eonu
+status: draft

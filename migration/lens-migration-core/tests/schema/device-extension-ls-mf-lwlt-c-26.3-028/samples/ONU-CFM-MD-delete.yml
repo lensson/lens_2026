@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  md-id:
+    description: Unique ID which is a key for maintenance domain
+    suggested-values:
+    - MD1
+domains: onu>cfm
+entity: md
+freemarker: true
+name: Remove MD Template parameter config
+operation: delete
+sample-id: onu-cfm-md-delete
+scope: eonu
+status: draft

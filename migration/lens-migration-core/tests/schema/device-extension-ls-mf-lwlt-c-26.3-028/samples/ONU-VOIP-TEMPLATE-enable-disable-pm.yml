@@ -1,0 +1,25 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu-template:
+    description: ONU template name
+    suggested-values:
+    - ani-template-1
+  onu-template-pots-name:
+    description: POTS interworking node for which performance to be enabled or disabled
+    suggested-values:
+    - POTS1
+  pm-flag:
+    description: '**true** to enable or **false** to disable PM counters for POTS
+      interworking node'
+    suggested-values:
+    - 'true'
+domains: onu>transport>voip-sip
+entity: template
+freemarker: true
+name: Enabling and disabling VOIP PM counters from Template
+operation: enable-disable-pm
+sample-id: onu-transport-voip-sip-template-enable-disable-pm
+status: draft

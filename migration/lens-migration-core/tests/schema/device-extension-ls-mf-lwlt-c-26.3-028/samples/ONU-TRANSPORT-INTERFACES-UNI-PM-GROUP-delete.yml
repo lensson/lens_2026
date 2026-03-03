@@ -1,0 +1,26 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu_uni_intf:
+    description: UNI interface name
+    suggested-values:
+    - ontuni
+  eth-port-hw-option:
+    description: ONU Ethernet HW Option,Values Range:[ethernetCsmacd]
+    suggested-values:
+    - ethernetCsmacd
+  pm_group:
+    description: Deletes pm group of an UNI interface,Values :[ ethernet-us-pm ethernet-ds-pm
+      ethernet-phy-pm ]
+    suggested-values:
+    - ethernet-us-pm
+domains: onu>transport>xpon>enet
+entity: pm-group
+freemarker: true
+name: Delete UNI interface performance monitoring group
+operation: delete
+sample-id: onu-transport-xpon-enet-pm-group-delete
+scope: eonu
+status: draft

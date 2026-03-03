@@ -1,0 +1,109 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  alloc-id:
+    description: ONU Alloc ID
+    optional: true
+    suggested-values:
+    - 256
+  ani-name:
+    description: ANI name reference
+    suggested-values:
+    - ani-1-1-1
+  queue0-priority:
+    description: Queue0 Priority Value
+    optional: true
+    suggested-values:
+    - 0
+  queue0-weight:
+    description: Queue0 Weight Value
+    optional: true
+    suggested-values:
+    - 1
+  queue1-priority:
+    description: Queue1 Priority Value
+    optional: true
+    suggested-values:
+    - 1
+  queue1-weight:
+    description: Queue1 Weight Value
+    optional: true
+    suggested-values:
+    - 1
+  queue2-priority:
+    description: Queue2 Priority Value
+    optional: true
+    suggested-values:
+    - 2
+  queue2-weight:
+    description: Queue2 Weight Value
+    optional: true
+    suggested-values:
+    - 1
+  queue3-priority:
+    description: Queue3 Priority Value
+    optional: true
+    suggested-values:
+    - 3
+  queue3-weight:
+    description: Queue3 Weight Value
+    optional: true
+    suggested-values:
+    - 1
+  queue4-priority:
+    description: Queue4 Priority Value
+    optional: true
+    suggested-values:
+    - 4
+  queue4-weight:
+    description: Queue4 Weight Value
+    optional: true
+    suggested-values:
+    - 1
+  queue5-priority:
+    description: Queue5 Priority Value
+    optional: true
+    suggested-values:
+    - 5
+  queue5-weight:
+    description: Queue5 Weight Value
+    optional: true
+    suggested-values:
+    - 1
+  queue6-priority:
+    description: Queue6 Priority Value
+    optional: true
+    suggested-values:
+    - 6
+  queue6-weight:
+    description: Queue6 Weight Value
+    optional: true
+    suggested-values:
+    - 1
+  queue7-priority:
+    description: Queue7 Priority Value
+    optional: true
+    suggested-values:
+    - 7
+  queue7-weight:
+    description: Queue7 Weight Value
+    optional: true
+    suggested-values:
+    - 1
+  tc-2-q-profile-name:
+    description: TC Id 2 Queue Id Mapping Profile Name
+    suggested-values:
+    - tc-2-queue-id-mapping
+  tcont-name:
+    description: T-CONT Name
+    suggested-values:
+    - tcont-1
+domains: onu>transport>xpon>tcont
+freemarker: true
+name: Create T-CONT
+operation: create
+sample-id: onu-transport-xpon-tcont-create
+scope: eonu
+status: draft

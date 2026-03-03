@@ -1,0 +1,31 @@
+arguments:
+  interface-name:
+    description: The name of a channel pair,eth, ptm or lag.
+    suggested-values:
+    - gpon-1-1-cpair
+  max-group-number:
+    description: Specifies the maximum number of dynamic multicast groups that may
+      be replicated to the interface at any one time.
+    optional: true
+    suggested-values:
+    - 200
+  max-multicast-rate-limit:
+    description: Specifies the total bandwidth available on the interface for multicast
+      traffic in kilobits per second.
+    optional: true
+    suggested-values:
+    - 400000
+  multicast-rate-limit-exceed-action:
+    description: Specifies how a multicast switch shall act when the multicast CAC
+      calculation indicates that accepting the MGMD request would result in a situation
+      where more multicast bandwidth is needed than reserved on the interface.
+    optional: true
+    suggested-values:
+    - drop
+domains: multicast>vpn
+entity: cac-per-port
+freemarker: true
+name: Configure multicast CAC per port
+operation: edit
+sample-id: multicast-vpn-cac-per-port-edit
+status: draft

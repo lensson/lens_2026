@@ -1,0 +1,24 @@
+arguments:
+  bac-profile-name:
+    suggested-values:
+    - BAC-WTD
+  max-queue-size:
+    suggested-values:
+    - 96000
+  green-max-threshold:
+    suggested-values:
+    - 100
+  yellow-max-threshold:
+    suggested-values:
+    - 100
+  red-max-threshold:
+    suggested-values:
+    - 100
+domains: unicast>qos>tm
+entity: bac_wtaildrop_profile
+freemarker: true
+name: Configure unicast services QoS bac profile wtaildrop
+operation: edit
+sample-id: unicast-qos-tm-bac_wtaildrop_profile-edit
+scope: not(dpu)
+status: draft

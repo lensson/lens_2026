@@ -1,0 +1,13 @@
+arguments:
+  policing-profile-name:
+    description: Policing profile name
+    suggested-values:
+    - policing-profile
+domains: unicast>qos>policy-profiles
+entity: policing_profile_with_type_cos
+freemarker: true
+name: Remove QoS policing profile of type COS
+operation: remove
+sample-id: unicast-qos-policy-profiles-policing_profile_with_type_cos-remove
+scope: not(mx) and not(dpu)
+status: draft

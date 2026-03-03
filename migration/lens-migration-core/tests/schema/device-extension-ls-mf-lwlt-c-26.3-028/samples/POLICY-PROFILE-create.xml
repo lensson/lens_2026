@@ -1,0 +1,64 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+	<edit-config>
+		<target>
+			<running/>
+		</target>
+		<config>
+			<qos-policy-profiles xmlns="urn:bbf:yang:bbf-qos-policies">
+				<policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+					<name>${policy\-profile\-name}</name>
+          <#if untag\-policy\-name?has_content>
+          <policy-list>
+            <name>${untag\-policy\-name}</name>
+          </policy-list>
+          </#if>
+          <#if remarking\-policy\-name?has_content>
+          <policy-list>
+            <name>${remarking\-policy\-name}</name>
+          </policy-list>
+          </#if>	
+          <#if igmp\-remarking\-policy\-name?has_content>
+          <policy-list>
+            <name>${igmp\-remarking\-policy\-name}</name>
+          </policy-list>
+          </#if>
+          <#if dscp\-to\-pbit\-alignment\-policy\-name?has_content>
+          <policy-list>
+            <name>${dscp\-to\-pbit\-alignment\-policy\-name}</name>
+          </policy-list>
+          </#if>
+          <#if policing\-tc\-policy\-name?has_content>
+          <policy-list>
+            <name>${policing\-tc\-policy\-name}</name>
+          </policy-list>
+          </#if>
+          <#if ccl\-policy\-name?has_content>
+          <policy-list>
+            <name>${ccl\-policy\-name}</name>
+          </policy-list>
+          </#if>
+          <#if policing\-policy\-name?has_content>
+          <policy-list>
+            <name>${policing\-policy\-name}</name>
+          </policy-list>
+          </#if>          
+          <#if pbit\-scheduling\-policy\-name?has_content>          
+          <policy-list>
+            <name>${pbit\-scheduling\-policy\-name}</name>
+          </policy-list>
+          </#if>
+          <#if count\-policy\-name?has_content>
+          <policy-list>
+            <name>${count\-policy\-name}</name>
+          </policy-list>
+          </#if>
+          <#if color\-policy\-name?has_content>
+          <policy-list>
+            <name>${color\-policy\-name}</name>
+          </policy-list>
+          </#if>
+          </policy-profile>
+          </qos-policy-profiles>
+          </config>
+	</edit-config>
+</rpc>

@@ -1,0 +1,20 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  mc-profile-name:
+    description: Multicast Snooping Profile Name
+    suggested-values:
+    - vpn_profile1
+  vpn-name:
+    description: Multicast VPN Name
+    suggested-values:
+    - mc-vpn
+domains: onu>multicast>vpn
+freemarker: true
+name: Modify multicast VPN service
+operation: modify
+sample-id: onu-multicast-vpn-modify
+scope: eonu
+status: draft

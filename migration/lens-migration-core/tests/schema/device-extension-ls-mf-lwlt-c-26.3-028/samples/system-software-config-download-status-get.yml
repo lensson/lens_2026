@@ -1,0 +1,8 @@
+available-locally: true
+domains: system>software
+freemarker: true
+name: Retrieve downloaded configuration file status
+operation: config-download-status-get
+sample-id: system-software-config-download-status-get
+scope: not(dpu) and not(mx)
+status: draft

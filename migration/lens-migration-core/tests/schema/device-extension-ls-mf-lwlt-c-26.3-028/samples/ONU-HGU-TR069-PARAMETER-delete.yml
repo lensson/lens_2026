@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - onu-1
+  para-index:
+    description: index of the HGU parameter non-sensitive name-value pairs
+    suggested-values:
+    - 1
+  sensitive-para-index:
+    description: index of the HGU parameter sensitive name-value pairs
+    suggested-values:
+    - 2
+domains: onu>transport>hgu-tr069-parameter
+freemarker: true
+name: Delete configured HGU parameter name-value pairs from the HGU devices without
+  using TR-069 server.
+operation: delete
+sample-id: onu-transport-hgu-tr069-parameter-delete
+scope: eonu
+status: draft

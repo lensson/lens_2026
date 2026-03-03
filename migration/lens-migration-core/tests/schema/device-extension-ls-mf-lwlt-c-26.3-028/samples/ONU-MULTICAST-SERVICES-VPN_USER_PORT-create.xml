@@ -1,0 +1,33 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <multicast xmlns="urn:bbf:yang:bbf-mgmd-mounted">
+              <mgmd>
+                <multicast-vpn>
+                  <name>${vpn\-name}</name>
+                  <multicast-interface-to-host>
+                    <name>${user\-port\-name}</name>
+                    <max-group-number>no-limit</max-group-number>
+                    <multicast-rate-limit>0</multicast-rate-limit>
+                    <multicast-rate-limit-exceed-action>best-effort</multicast-rate-limit-exceed-action>
+                    <vlan-sub-interface>${cc\-name}</vlan-sub-interface>
+<#if multicast\-package\-name?has_content>
+                    <multicast-package>${multicast\-package\-name}</multicast-package>
+</#if>
+                  </multicast-interface-to-host>
+                </multicast-vpn>
+              </mgmd>
+            </multicast>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

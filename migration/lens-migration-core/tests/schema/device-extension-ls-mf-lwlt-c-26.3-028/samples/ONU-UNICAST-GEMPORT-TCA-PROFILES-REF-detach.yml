@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  gemport-name:
+    description: GEM port name for which TCA should be enabled or disabled
+    suggested-values:
+    - cc-name-GEM0
+  gemport-tca-profile:
+    description: GEM port PM TCA profile name
+    suggested-values:
+    - gemport_tca_profile
+domains: onu>unicast>forwarding
+entity: gemport-pm-tca-profiles-ref
+freemarker: true
+name: Detach GEM port PM TCA profile
+operation: detach
+sample-id: onu-unicast-forwarding-gemport-pm-tca-profiles-ref-detach
+scope: eonu
+status: draft

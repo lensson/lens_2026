@@ -1,0 +1,11 @@
+arguments:
+  host-id:
+    description: The DSLAM id of the host
+    suggested-values:
+    - 1234
+domains: system>host-id
+freemarker: true
+name: Remove host-id
+operation: remove
+sample-id: system-host-id-remove
+status: draft

@@ -1,0 +1,27 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${moca\-name}</name>
+                <type xmlns:nokia-if-id="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interface-identities-mounted">nokia-if-id:moca-uni</type>
+                <performance xmlns="urn:bbf:yang:bbf-interfaces-performance-management-mounted">
+                  <moca xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interfaces-performance-management-mounted" xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="replace">
+                    <moca-pm-group>${pm_group}</moca-pm-group>
+                  </moca>
+                </performance>
+              </interface>
+            </interfaces>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

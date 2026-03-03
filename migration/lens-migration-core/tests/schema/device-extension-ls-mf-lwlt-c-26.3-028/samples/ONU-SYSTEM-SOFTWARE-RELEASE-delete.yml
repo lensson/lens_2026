@@ -1,0 +1,13 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+domains: onu>system>software
+entity: release
+freemarker: true
+name: Delete ONU management
+operation: delete
+sample-id: onu-system-software-release-delete
+scope: eonu
+status: draft

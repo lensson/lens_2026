@@ -1,0 +1,11 @@
+arguments:
+  icmpv6_profile_name:
+    suggested-values:
+    - icmpv6_profile
+domains: unicast>protocols>icmpv6
+entity: profile
+freemarker: true
+name: Retrieve ICMPv6 profile config
+operation: get-config
+sample-id: unicast-protocols-icmpv6-profile-get-config
+status: draft

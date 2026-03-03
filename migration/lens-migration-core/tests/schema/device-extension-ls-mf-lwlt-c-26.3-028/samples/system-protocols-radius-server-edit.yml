@@ -1,0 +1,125 @@
+arguments:
+  auth-server1-name:
+    description: Name of the primary RADIUS authentication server.
+    suggested-values:
+    - rad1
+  auth-server1-address:
+    description: The address of the primary RADIUS authentication server.
+    suggested-values:
+    - 135.249.20.222
+  auth-server1-port:
+    description: The port number of the primary RADIUS authentication server.
+    suggested-values:
+    - 1812
+  auth-server1-shared-secret:
+    description: The shared secret, which is known to both the RADIUS client and primary
+      authentication server.
+    sensitive: true
+    suggested-values:
+    - nokia
+  auth-server2-name:
+    description: Name of the secondary RADIUS authentication server.
+    optional: true
+    suggested-values:
+    - rad2
+  auth-server2-address:
+    description: The address of the secondary RADIUS authentication server.
+    optional: true
+    suggested-values:
+    - 135.249.20.223
+  auth-server2-port:
+    description: The port number of the secondary RADIUS authentication server.
+    optional: true
+    suggested-values:
+    - 1812
+  auth-server2-shared-secret:
+    description: The shared secret, which is known to both the RADIUS client and secondary
+      authentication server.
+    optional: true
+    sensitive: true
+    suggested-values:
+    - nokia
+  acc-server1-name:
+    description: Name of the primary RADIUS accounting server.
+    optional: true
+    suggested-values:
+    - acc1
+  acc-server1-address:
+    description: The address of the primary RADIUS accounting server.
+    optional: true
+    suggested-values:
+    - 135.249.20.222
+  acc-server1-port:
+    description: The port number of the primary RADIUS accounting server.
+    optional: true
+    suggested-values:
+    - 1813
+  acc-server1-shared-secret:
+    description: The shared secret, which is known to both the RADIUS client and primary
+      accounting server.
+    optional: true
+    sensitive: true
+    suggested-values:
+    - nokia
+  acc-server2-name:
+    description: Name of the secondary RADIUS accounting server.
+    optional: true
+    suggested-values:
+    - acc2
+  acc-server2-address:
+    description: The address of the secondary RADIUS accounting server.
+    optional: true
+    suggested-values:
+    - 135.249.20.223
+  acc-server2-port:
+    description: The port number of the secondary RADIUS accounting server.
+    optional: true
+    suggested-values:
+    - 1813
+  acc-server2-shared-secret:
+    description: The shared secret, which is known to both the RADIUS client and secondary
+      accounting server.
+    optional: true
+    sensitive: true
+    suggested-values:
+    - nokia
+  pinned-ca-certs1:
+    description: A reference to a list of certificate authority (CA) certificates
+      used by the TLS client to authenticate TLS server certificates. A server certificate
+      is authenticated if it has a valid chain of trust to a configured pinned CA
+      certificate for mab-based authentication.
+    optional: true
+    suggested-values:
+    - CA_CERT1
+  pinned-server-certs1:
+    description: A reference to a list of server certificates used by the TLS client
+      to authenticate TLS server certificates. A server certificate is authenticated
+      if it is an exact match to a configured pinned server certificate for mab-based
+      authentication.
+    optional: true
+    suggested-values:
+    - SERVER_CERT1
+  pinned-ca-certs2:
+    description: A reference to a list of certificate authority (CA) certificates
+      used by the TLS client to authenticate TLS server certificates. A server certificate
+      is authenticated if it has a valid chain of trust to a configured pinned CA
+      certificate for mab-based authentication.
+    optional: true
+    suggested-values:
+    - CA_CERT2
+  pinned-server-certs2:
+    description: A reference to a list of server certificates used by the TLS client
+      to authenticate TLS server certificates. A server certificate is authenticated
+      if it is an exact match to a configured pinned server certificate for mab-based
+      authentication.
+    optional: true
+    suggested-values:
+    - SERVER_CERT2
+domains: system>protocols>radius
+entity: server
+freemarker: true
+name: Configure RADIUS servers
+operation: edit
+sample-id: system-protocols-radius-server-edit
+scope: (mx or fiber) and not(model2-dpu)
+status: draft

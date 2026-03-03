@@ -1,0 +1,31 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu-uni1-intf:
+    description: Ethernet UNI interface
+    suggested-values:
+    - ontuni1
+  onu-uni2-intf:
+    description: Ethernet UNI interface
+    suggested-values:
+    - ontuni2
+  lldp-med-plug-and-play-lan-policy-for-voice:
+    description: LLDP MED media policy profile name for VOIP plug-and-play.
+    optional: true
+    suggested-values:
+    - lldp-med-plug-and-play-lan-policy-for-voice
+  lldp-med-media-policies-for-all-apps:
+    description: LLDP MED media policy profile name which defines policies for all
+      application types.
+    optional: true
+    suggested-values:
+    - lldp-med-media-policies-for-all-apps
+domains: onu>lldp-med
+entity: template
+freemarker: true
+name: Attach LLDP-MED Media Policy Profile in template parameters
+operation: attach
+sample-id: onu-lldp-med-template-attach
+status: draft

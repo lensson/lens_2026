@@ -1,0 +1,12 @@
+arguments:
+  pppoe-profile-name:
+    description: Name of the PPPoE Intermediate Agent profile
+    suggested-values:
+    - pppoe_profile
+domains: unicast>protocols>pppoe
+entity: profile
+freemarker: true
+name: Retrieve PPPoE Intermediate Agent profile
+operation: get-config
+sample-id: unicast-protocols-pppoe-profile-get-config
+status: draft

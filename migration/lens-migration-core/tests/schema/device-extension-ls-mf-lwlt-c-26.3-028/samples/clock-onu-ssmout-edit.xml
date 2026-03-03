@@ -1,0 +1,29 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+   <edit-config>
+      <target>
+         <running/>
+      </target>
+      <default-operation>merge</default-operation>
+      <test-option>set</test-option>
+      <error-option>stop-on-error</error-option>
+      <config>
+        <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+         <onu xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+           <name>${onu\-name}</name>
+           <root>
+             <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+                <interface>
+                  <name>${uni\-name}</name>
+                  <ssm-out xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-conf-clock-frequency-mounted">
+                     <#if ssm\-out\-enable?has_content>
+                       <ssm-out-enable>${ssm\-out\-enable}</ssm-out-enable>
+                     </#if>
+                  </ssm-out>
+                </interface>
+            </interfaces>
+           </root>
+         </onu>
+       </onus>
+      </config>
+   </edit-config>
+</rpc>

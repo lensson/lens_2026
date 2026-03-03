@@ -1,0 +1,12 @@
+arguments:
+  profile-name:
+    description: EST profile-name
+    suggested-values:
+    - EstProfile
+domains: system>certificate>est
+entity: end
+freemarker: true
+name: Retrieve information about an EST enrolled End Entity certificate
+operation: get
+sample-id: system-certificate-est-end-get
+status: draft

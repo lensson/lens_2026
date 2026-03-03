@@ -1,0 +1,13 @@
+arguments:
+  user-interface:
+    description: Name of the user interface.
+    suggested-values:
+    - OLT-VENET
+domains: transport>protocols>802.1x
+entity: authentication
+freemarker: true
+name: Remove user interface level authentication
+operation: remove
+sample-id: transport-protocols-802.1x-authentication-remove
+scope: fiber
+status: draft

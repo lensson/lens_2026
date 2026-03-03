@@ -1,0 +1,17 @@
+arguments:
+  olt-infrastructure-name:
+    description: The name of the OLT infrastructure on which channel termination created.
+    suggested-values:
+    - xpon-1-1
+  rogue-test-name:
+    description: The name of the rogue test to be stopped.
+    suggested-values:
+    - manual-test
+    - background-test
+domains: transport>xpon>rogue
+entity: running_test
+freemarker: true
+name: Stop a running rogue test
+operation: action
+sample-id: transport-xpon-rogue-running_test-action
+status: draft

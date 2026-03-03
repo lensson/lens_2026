@@ -1,0 +1,17 @@
+arguments:
+  cc-name:
+    description: The name of CC sample
+    optional: true
+  ibridge-user-port-name:
+    description: Ibridge user port name
+    optional: true
+  icmpv6_filter_enabled:
+    suggested-values:
+    - true
+domains: unicast>protocols>icmpv6
+entity: interface
+freemarker: true
+name: Attach ICMPv6 profile to VLAN sub-interface
+operation: edit
+sample-id: unicast-protocols-icmpv6-interface-edit
+status: draft

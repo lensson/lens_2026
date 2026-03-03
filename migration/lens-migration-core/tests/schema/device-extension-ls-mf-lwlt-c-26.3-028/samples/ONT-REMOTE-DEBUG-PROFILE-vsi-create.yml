@@ -1,0 +1,34 @@
+arguments:
+  vlan-sub-interface:
+    suggested-values:
+    - vsi-name
+  uni-name:
+    suggested-values:
+    - uni_name
+  user-vlan-id:
+    suggested-values:
+    - 100
+  ingress-qos-policy-profile-name:
+    suggested-values:
+    - UPSTREAM_USERPORT
+  egress-qos-policy-profile-name:
+    suggested-values:
+    - DOWNSTREAM_USERPORT
+  olt-infrastructure-name:
+    suggested-values:
+    - ''
+  leaf-scheduler-name:
+    suggested-values:
+    - sch-node
+  tc0-gemport-id:
+    description: For GPON, gemport-id = 2044-onuId and for XGSPON/NGPON2, gemport-id
+      = 65526-onuId.
+    suggested-values:
+    - 2043
+domains: system>ont-remote-debug
+entity: profile
+freemarker: true
+name: Create VSI for ONT remote debug profile
+operation: vsi-create
+sample-id: system-ont-remote-debug-profile-vsi-create
+status: draft

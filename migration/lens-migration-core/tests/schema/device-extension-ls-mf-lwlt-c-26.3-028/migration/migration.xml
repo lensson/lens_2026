@@ -1,0 +1,357 @@
+
+<migrations>
+    <board>LWLT-C</board>
+    <product>LS-MF-LWLT-C</product>
+    <migration>
+        <source>20.12</source>
+        <target>21.3</target>
+        <scripts>
+            <script subtree="nacm">lsr2012_to_lsr2103_nacm_2.xsl</script>
+            <script subtree="aaa">lsr2012_to_lsr2103_nokia_aaa_2.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>21.3</source>
+        <target>21.6</target>
+        <scripts>
+            <script subtree="nacm">lsr2103_to_lsr2106_nacm_1.xsl</script>
+            <script subtree="nokia-logging">lsr2103_to_lsr2106_nokia_logging_app_1.xsl</script>
+            <script subtree="eqpt">lsr2103_to_lsr2106_eqpt_rssi_to_tca_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-a1-remove-prefix_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-b1-identify-vsi_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-b2-create-new-profile_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-b3-update-vsi_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-c1-get-tc-classifiers_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-c2-range-value-to-items_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-c3-single-value-to-item_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-d-create-new-police_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-e-rewrite-new-profile_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-f1-rewrite-new-profile2_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-f2-update-new-names_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-f3-clear-up_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-f4-remove-old-profile_police_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-g1-create-new-common-classifiers_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-g2-merge-new-objects_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-h1-add-attr_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-h2-rm-duplicated_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-h3-del-attr_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-h4-rm-unused-a-pf_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-h4-rm-unused-b-pol_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-h4-rm-unused-c-cls_1.xsl</script>
+            <script subtree="mgmd-ipv6spoof">lsr2103_to_lsr2106_mgmd_ipv6spoof_1.xsl</script>
+            <script subtree="eonu">lsr2103_to_lsr2106_eonu_xponani_1.xsl</script>
+            <script subtree="eonu">lsr2103_to_lsr2106_eonu_system_1.xsl</script>
+            <script subtree="eonu">lsr2103_to_lsr2106_eonu_l2fwd_1.xsl</script>
+            <script subtree="eonu">lsr2103_to_lsr2106_nokia-bbf-qos-classifiers-eonu-dev_1.xsl</script>
+            <script subtree="eonu">lsr2103_to_lsr2106_nokia-bbf-qos_policies-eonu-dev_1.xsl</script>
+            <script subtree="eonu">lsr2103_to_lsr2106_nokia-bbf-qos-policies-sub-interfaces-eonu-dev_1.xsl</script>
+            <script subtree="eonu">lsr2103_to_lsr2106_nokia-bbf-qos-traffic-mngt-eonu-dev_1.xsl</script>
+            <script subtree="eonu">lsr2103_to_lsr2106_nokia-bbf-mgmd-eonu-dev_1.xsl</script>
+            <script subtree="eonu">lsr2103_to_lsr2106_nokia-bbf-xponani-eonu-dev_1.xsl</script>
+            <script subtree="qos">lsr2103_to_lsr2106_qos-k1-rm-onu-classifiers-any-protocol_1.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>21.6</source>
+        <target>21.9</target>
+        <scripts>
+            <script subtree="nacm">lsr2106_to_lsr2109_nacm_1.xsl</script>
+            <script subtree="usage">lsr2106_to_lsr2109_del_usage_nokia-template-common_2.xsl</script>
+            <script subtree="ietf-netconf-server">lsr2106_to_lsr2109_netconf_server_1.xsl</script>
+            <script subtree="nokia-logging">lsr2106_to_lsr2109_nokia_logging_app_1.xsl</script>
+            <script subtree="qos">lsr2106_to_lsr2109_qos-modify-obc-classifier_1.xsl</script>
+            <script subtree="eonu">lsr2106_to_lsr2109_eonu_l2fwd_1.xsl</script>
+            <script subtree="ietf-syslog">lsr2106_to_lsr2109_ietf_syslog_1.xsl</script>
+            <script subtree="l2fwd">lsr2106_to_lsr2109_l2fwd-mac-learning_1.xsl</script>
+            <script subtree="qos">lsr2106_to_lsr2109_qos-policing-mgmt_2.xsl</script>
+            <script subtree="l2fwd-vsi-mac">lsr2106_to_lsr2109_l2fwd_vsi-mac-a1-create_temp_node_1.xsl</script>
+            <script subtree="l2fwd-vsi-mac">lsr2106_to_lsr2109_l2fwd_vsi-mac-a2-create_temp_container_1.xsl</script>
+            <script subtree="l2fwd-vsi-mac">lsr2106_to_lsr2109_l2fwd_vsi-mac-a3-rm-excess-mac_1.xsl</script>
+            <script subtree="l2fwd-vsi-mac">lsr2106_to_lsr2109_l2fwd_vsi-mac-a4-rm_static_mac_1.xsl</script>
+            <script subtree="l2fwd-vsi-mac">lsr2106_to_lsr2109_l2fwd_vsi-mac-a5-rm_temp_1.xsl</script>
+            <script subtree="l2-fwd">lsr2106_to_lsr2109_l2fwd_2.xsl</script>
+            <script subtree="l2-fwd">lsr2106_to_lsr2109_l2fwd_fdb_1.xsl</script>
+            <script subtree="multicast">lsr2106_to_lsr2109_multicast_1.xsl</script>
+            <script subtree="system">lsr2106_to_lsr2109_system_mac_1.xsl</script>
+            <script subtree="qos">lsr2106_to_lsr2109_qos-a0-create-tm-profiles_1.xsl</script>
+            <script subtree="qos">lsr2106_to_lsr2109_qos-a1-create-tc-queue-id-mapping-profile_1.xsl</script>
+            <script subtree="qos">lsr2106_to_lsr2109_qos-a2-attach-profile-to-ct_1.xsl</script>
+            <script subtree="eonu">lsr2106_to_lsr2109_nokia-bbf-xpongemtcont-eonu-dev_1.xsl</script>
+            <script subtree="confdConfig">lsr2106_to_lsr2109_default_confd_dyncfg_init_1.xsl</script>
+            <script subtree="eonu">lsr2106_to_lsr2109_eonu_voip_1.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>21.9</source>
+        <target>21.12</target>
+        <scripts>
+            <script subtree="nacm">lsr2109_to_lsr2112_nacm_1.xsl</script>
+            <script subtree="system">lsr2109_to_lsr2112_system_1.xsl</script>
+            <script subtree="ietf-netconf-server">lsr2109_to_lsr2112_netconf_server_1.xsl</script>
+            <script subtree="multicast">lsr2109_to_lsr2112_multicast_2.xsl</script>
+            <script subtree="l2fwd-l2term">lsr2109_to_lsr2112_l2fwd_l2term_1.xsl</script>
+            <script subtree="interfaces">lsr2109_to_lsr2112_ietf_ip_1.xsl</script>
+            <script subtree="routing">lsr2109_to_lsr2112_ietf_routing_1.xsl</script>
+            <script subtree="link-table">lsr2109_to_lsr2112_delete_link_table_1.xsl</script>
+            <script subtree="ipfix">lsr2109_to_lsr2112_ipfix_lwlt-c.xsl</script>
+            <script subtree="forwarding">lsr2109_to_lsr2112_forwarding-h4-remove-l2cp-from-uni-interface_1.xsl</script>
+            <script subtree="statistics">lsr2109_to_lsr2112-statistics-a1-mark-interfaces_1.xsl</script>
+            <script subtree="statistics">lsr2109_to_lsr2112-statistics-a2-mark-statistice-exceed-dimension_1.xsl</script>
+            <script subtree="statistics">lsr2109_to_lsr2112-statistics-a3-disable-statistics-counter_1.xsl</script>
+            <script subtree="statistics">lsr2109_to_lsr2112-statistics-a4-remove-mark_1.xsl</script>
+            <script subtree="eonu">lsr2109_to_lsr2112_eonu_voip_1.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>21.12</source>
+        <target>22.3</target>
+        <scripts>
+            <script subtree="nacm">lsr2112_to_lsr2203_nacm_1.xsl</script>
+            <script subtree="ipfix">lsr2112_to_lsr2203_ipfix-caches_lwlt-c.xsl</script>
+            <script subtree="ipfix">lsr2112_to_lsr2203_ipfix-caches-2_lwlt-c.xsl</script>
+            <script subtree="nokia-logging">lsr2112_to_lsr2203_nokia_logging_app_1.xsl</script>
+            <script subtree="xPon">lsr2112_to_lsr2203_nokia-sdan-channel-pair-body_1.xsl</script>
+            <script subtree="dhcpv6-ldra-profiles">lsr2112_to_lsr2203_dhcpv6_ldra_profiles_1.xsl</script>
+            <script subtree="ietf-netconf-server">lsr2112_to_lsr2203_netconf_server_1.xsl</script>
+            <script subtree="bbf-alarm-management">lsr2112_to_lsr2203_nokia_alarms_1.xsl</script>
+            <script subtree="nacm">lsr2112_to_lsr2203_cli_user_nacm_1.xsl</script>
+            <script subtree="eonu">lsr2112_to_lsr2203_set_queue_weight_1_to_2_wrr_tcont_1.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>22.3</source>
+        <target>22.6</target>
+        <scripts>
+            <script subtree="nacm">lsr2203_to_lsr2206_nacm_1.xsl</script>
+            <script subtree="eonu">lsr2203_to_lsr2206_hypervisor_eonu_voip_1.xsl</script>
+            <script subtree="ipfix">lsr2203_to_lsr2206_ipfix-caches_lwlt-c.xsl</script>
+            <script subtree="ipfix">lsr2203_to_lsr2206_ipfix-caches-2_lwlt-c.xsl</script>
+            <script subtree="xPon">lsr2203_to_lsr2206_nokia-sdan-xpon-channel-pair-body_1.xsl</script>
+            <script subtree="xpon">lsr2203_to_lsr2206_xpon_tr385_1.xsl</script>
+            <script subtree="xpon">lsr2203_to_lsr2206_xpon_mergexpongem_1.xsl</script>
+            <script subtree="xpon">lsr2203_to_lsr2206_xpon_rmdeprecated_1.xsl</script>
+            <script subtree="xpon">lsr2203_to_lsr2206_xpon_aug_1.xsl</script>
+            <script subtree="qos">lsr2203_to_lsr2206_frame-processing-profile_2.xsl</script>
+            <script subtree="qos">lsr2203_to_lsr2206_update_policing_profile_brugal_1.xsl</script>
+            <script subtree="qos">lsr2203_to_lsr2206_update_bac_profile_1.xsl</script>
+            <script subtree="vnf">lsr2203_to_lsr2206_extodb_vnf_1.xsl</script>
+            <script subtree="eonu">lsr2203_to_lsr2206_hypervisor_xpon_gemtconts_ani_tr385_1.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>22.6</source>
+        <target>22.9</target>
+        <scripts>
+            <script subtree="nacm">lsr2206_to_lsr2209_nacm_1.xsl</script>
+            <script subtree="ipfix">lsr2206_to_lsr2209_ipfix-caches_lwlt-c.xsl</script>
+            <script subtree="ipfix">lsr2206_to_lsr2209_ipfix-caches-2_lwlt-c.xsl</script>
+            <script subtree="aaa">lsr2206_to_lsr2209_nokia-aaa-homedir_1.xsl</script>
+            <script subtree="eonu">lsr2206_to_lsr2209_eonu-clock-ptp-profile-ref_1.xsl</script>
+            <script subtree="qos">lsr2206_to_lsr2209_qos-create-nni-obc-classifier_1.xsl</script>
+            <script subtree="qos">lsr2206_to_lsr2209_qos-create-nni-obc-policy_1.xsl</script>
+            <script subtree="cpu-load-control-cfg">lsr2206_to_lsr2209_qos-create-nni-obc-rate-limit_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-nni-mac-learning-control-profile_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-nni-split-horizon-profile_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-nni-flooding-policy-remove-all-ipv4-prefix_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-nni-flooding-policy-profile-common_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-nni-flooding-policy-h1-identify-forwarder_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-nni-flooding-policy-h2-identify-profiles_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-nni-flooding-policy-h3-ipv4-multicast-address_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-nni-flooding-policy-h4-add-ipv4-prefix_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-nni-flooding-policy-h5-remove-invalied-node_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-nni-flooding-policy-ntp-rip_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_remove_null_l2cp_node_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-h1-add-l2cp-to-nni-interface_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-h2-mark-nni-forwarder_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-h3-add-l2cp-to-network-interface_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-h4-remove-forwarder-mark_1.xsl</script>
+            <script subtree="interfaces">lsr2206_to_lsr2209-interface-uni-vsi-dimension_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-add-subif-lower-layer_1.xsl</script>
+            <script subtree="eodb">lsr2206_to_lsr2209_extodb_vnf_1.xsl</script>
+            <script subtree="eonu">lsr2206_to_lsr2209_nokia-bbf-mgmd-eonu-dev_1.xsl</script>
+            <script subtree="l2fwd">lsr2206_to_lsr2209_l2fwd-a1-vsi-lowerlayer-mac-limit-warning_1.xsl</script>
+            <script subtree="l2fwd">lsr2206_to_lsr2209_l2fwd-a2-vsi-lowerlayer-mac-limit-update_1.xsl</script>
+            <script subtree="nacm">lsr2206_to_lsr2209_eqpt-onu-board-1_1.xsl</script>
+            <script subtree="nacm">lsr2206_to_lsr2209_eqpt-onu-board-2_1.xsl</script>
+            <script subtree="nacm">lsr2206_to_lsr2209_eqpt-onu-board-3_1.xsl</script>
+            <script subtree="nacm">lsr2206_to_lsr2209_eqpt-onu-board-4_1.xsl</script>
+            <script subtree="nacm">lsr2206_to_lsr2209_eqpt-onu-board-5_1.xsl</script>
+            <script subtree="eonu">lsr2206_to_lsr2209_hypervisor_xpon_gemtconts_if_features_1.xsl</script>
+            <script subtree="forwarding">lsr2206_to_lsr2209_forwarding-empty-split-horizon-profile_1.xsl</script>
+            <script subtree="dot1x">lsr2206_to_lsr2209_dot1x_1.xsl</script>
+            <script subtree="eonu">lsr2206_to_lsr2209_nokia-xpon-onu-specials-mounted_remove-onu-v-vrefpoint_1.xsl</script>
+            <script subtree="xpon">lsr2206_to_lsr2209_nokia-xpon-port-layer-if_1.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>22.9</source>
+        <target>22.12</target>
+        <scripts>
+            <script subtree="nacm">lsr2209_to_lsr2212_nacm_1.xsl</script>
+            <script subtree="ipfix">lsr2209_to_lsr2212_ipfix-caches_lwlt-c.xsl</script>
+            <script subtree="ipfix">lsr2209_to_lsr2212_ipfix-caches-2_lwlt-c.xsl</script>
+            <script subtree="clock">lsr2209_to_lsr2212_clock_2.xsl</script>
+            <script subtree="xpon">lsr2209_to_lsr2212_xpon_rmunsupported_1.xsl</script>
+            <script subtree="l2fwd-subif">lsr2209_to_lsr2212_subif_lower_layer_mandatory_1.xsl</script>
+            <script subtree="eonu">lsr2209_to_lsr2212_eonu_nokia-add_queue_id_valid_1.xsl</script>
+            <script subtree="eonu">lsr2209_to_lsr2212_eonu_nokia-bbf-tcont-queue-id_1.xsl</script>
+            <script subtree="eonu">lsr2209_to_lsr2212_eonu_remove_unsupported_1.xsl</script>
+            <script subtree="eonu">lsr2209_to_lsr2212_eonu_nokia-bbf-vlan_sub_interface_1.xsl</script>
+            <script subtree="eonu">lsr2209_to_lsr2212_eonu_nokia-xpongemtcont_1.xsl</script>
+            <script subtree="eonu">lsr2209_to_lsr2212_eonu_voip_1.xsl</script>
+            <script subtree="eonu">lsr2209_to_lsr2212_eonu_nokia-bbf-qos-classifiers_1.xsl</script>
+            <script subtree="l2fwd">lsr2209_to_lsr2212_l2fwd-network-vsi-admin-down-a1-identify_1.xsl</script>
+            <script subtree="l2fwd">lsr2209_to_lsr2212_l2fwd-network-vsi-admin-down-a2-report-warning_1.xsl</script>
+            <script subtree="l2fwd">lsr2209_to_lsr2212_l2fwd-network-vsi-admin-down-a3-modify_1.xsl</script>
+            <script subtree="confdConfig">lsr2209_to_lsr2212_default_confd_dyncfg_init_1.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>22.12</source>
+        <target>23.3</target>
+        <scripts>
+            <script subtree="nacm">lsr2212_to_lsr2303_nacm_1.xsl</script>
+            <script subtree="ipfix">lsr2212_to_lsr2303_ipfix-caches_lwlt-c.xsl</script>
+            <script subtree="ipfix">lsr2212_to_lsr2303_ipfix-caches-2_lwlt-c.xsl</script>
+            <script subtree="xpon">lsr2212_to_lsr2303_xpon_rmunsupported_1.xsl</script>
+            <script subtree="l2fwd">lsr2212_to_lsr2303_l2fwd-not-supported-yang-remove_1.xsl</script>
+            <script subtree="l2fwd">lsr2212_to_lsr2303_l2fwd-not-supported-yang-clean_1.xsl</script>
+            <script subtree="eonu">lsr2212_to_lsr2303_eonu_ptp_profile-unchanged-parameter_1.xsl</script>
+            <script subtree="eonu">lsr2212_to_lsr2303_eonu_qos_remove_unsupported_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_unsupported_list_1.xsl</script>
+            <script subtree="interfaces">lsr2212_to_lsr2303_ietf_interfaces_2.xsl</script>
+            <script subtree="multicast">lsr2212_to_lsr2303_multicast_1.xsl</script>
+            <script subtree="routing">lsr2212_to_lsr2303_ietf_routing_1.xsl</script>
+            <script subtree="inband-forwarder">lsr2212_to_lsr2303_inband_forwarder_1.xsl</script>
+            <script subtree="confdConfig">lsr2212_to_lsr2303_idefault_confd_dyncfg_init_1.xsl</script>
+            <script subtree="confdConfig">lsr2212_to_lsr2303_idefault_confd_dyncfg_init_ext_auth_1.xsl</script>
+            <script subtree="l2fwd">lsr2212_to_lsr2303_l2fwd-us-flow-rule-a1-identify-vsi-vector-profile_1.xsl</script>
+            <script subtree="l2fwd">lsr2212_to_lsr2303_l2fwd-us-flow-rule-a2-identify-related-vsi_1.xsl</script>
+            <script subtree="l2fwd">lsr2212_to_lsr2303_l2fwd-us-flow-rule-a3-identify-related-forwarder_1.xsl</script>
+            <script subtree="l2fwd">lsr2212_to_lsr2303_l2fwd-us-flow-rule-a4-check-marked-forwarder_1.xsl</script>
+            <script subtree="l2fwd">lsr2212_to_lsr2303_l2fwd-us-flow-rule-a5-remove-invalid-node_1.xsl</script>
+            <script subtree="l2fwd">lsr2212_to_lsr2303_untagged-vsis-00-add-tag_1.xsl</script>
+            <script subtree="l2fwd">lsr2212_to_lsr2303_untagged-vsis-01-warn_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_01_construct_cache_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_02_set_enhanced_filter_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_03_construct_classifiers_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_04_calculate_classifier_type_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_05_calculate_policy_type_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_06_resorting_policy_sequence_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_07_construct_new_section_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_08_copy_cache_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_09_clean_cache_and_unused_nodes_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_10_insert_classifier_realname_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_11_insert_policy_realname_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_12_insert_realname_for_reference_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_13_insert_counter_of_same_profile_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_14_insert_grouping_info_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_15_update_profile_name_and_reference_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_16_delete_original_data_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_17_delete_unused_node_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_qos_simplification_18_dimension_checking_1.xsl</script>
+            <script subtree="qos">lsr2212_to_lsr2303_nokia-bbf-qos-enhanced-filters_1.xsl</script>
+            <script subtree="eonu">lsr2212_to_lsr2303_eonu_cfm_1.xsl</script>
+            <script subtree="webui">lsr2212_to_lsr2303_tailf-webui_1.xsl</script>
+            <script subtree="nokia-logging">lsr2212_to_lsr2303_nokia_logging_app_1.xsl</script>
+            <script subtree="nacm">lsr2212_to_lsr2303_nacm_new_groups_1.xsl</script>
+            <script subtree="nacm">lsr2212_to_lsr2303_nacm_new_rules_1.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>23.3</source>
+        <target>23.6</target>
+        <scripts>
+            <script subtree="merged">lsr2303_to_lsr2306_migration_lwlt-c.xsl</script>
+            <script subtree="l2fwd">lsr2303_to_lsr2306_l2fwd-dual-tag-rule-a1-mark-frame-processing-profile_1.xsl</script>
+            <script subtree="l2fwd">lsr2303_to_lsr2306_l2fwd-dual-tag-rule-a2-mark-vsi-vector-profile_1.xsl</script>
+            <script subtree="l2fwd">lsr2303_to_lsr2306_l2fwd-dual-tag-rule-a3-mark-related-vsi_1.xsl</script>
+            <script subtree="l2fwd">lsr2303_to_lsr2306_l2fwd-dual-tag-rule-a4-remove-mark_1.xsl</script>
+            <script subtree="qos">lsr2303_to_lsr2306_qos_8888_01_construct_cache_1.xsl</script>
+            <script subtree="qos">lsr2303_to_lsr2306_qos_8888_02_construct_classifiers_1.xsl</script>
+            <script subtree="qos">lsr2303_to_lsr2306_qos_8888_03_calculate_classifier_type_1.xsl</script>
+            <script subtree="qos">lsr2303_to_lsr2306_qos_8888_04_calculate_policy_type_1.xsl</script>
+            <script subtree="qos">lsr2303_to_lsr2306_qos_8888_05_update_classifier_check_info_section_1.xsl</script>
+            <script subtree="qos">lsr2303_to_lsr2306_qos_8888_06_update_policy_check_info_1.xsl</script>
+            <script subtree="qos">lsr2303_to_lsr2306_qos_8888_07_clean_cache_and_unused_nodes_1.xsl</script>
+            <script subtree="ipv6">lsr2303_to_lsr2306_clear-dhcp-learned-ipv6-addresses-on-operdown_1.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>23.6</source>
+        <target>23.9</target>
+        <scripts>
+            <script subtree="merged">lsr2306_to_lsr2309_migration_lwlt-c.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>23.9</source>
+        <target>23.12</target>
+        <scripts>
+            <script subtree="merged">lsr2309_to_lsr2312_migration_lwlt-c.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>23.12</source>
+        <target>24.3</target>
+        <scripts>
+            <script subtree="merged">lsr2312_to_lsr2403_migration_lwlt-c.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>24.3</source>
+        <target>24.6</target>
+        <scripts>
+            <script subtree="merged">lsr2403_to_lsr2406_migration_lwlt-c.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>24.6</source>
+        <target>24.9</target>
+        <scripts>
+            <script subtree="merged">lsr2406_to_lsr2409_migration_lwlt-c.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>24.9</source>
+        <target>24.12</target>
+        <scripts>
+            <script subtree="merged">lsr2409_to_lsr2412_migration_lwlt-c.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>24.12</source>
+        <target>25.3</target>
+        <scripts>
+            <script subtree="merged">lsr2412_to_lsr2503_migration_lwlt-c.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>25.3</source>
+        <target>25.6</target>
+        <scripts>
+            <script subtree="merged">lsr2503_to_lsr2506_migration_lwlt-c.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>25.6</source>
+        <target>25.9</target>
+        <scripts>
+            <script subtree="merged">lsr2506_to_lsr2509_migration_lwlt-c.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>25.9</source>
+        <target>25.12</target>
+        <scripts>
+            <script subtree="merged">lsr2509_to_lsr2512_migration_lwlt-c.xsl</script>
+        </scripts>
+    </migration>
+    <migration>
+        <source>25.12</source>
+        <target>26.3</target>
+        <scripts>
+            <script subtree="merged">lsr2512_to_lsr2603_migration_lwlt-c.xsl</script>
+        </scripts>
+    </migration>
+</migrations>

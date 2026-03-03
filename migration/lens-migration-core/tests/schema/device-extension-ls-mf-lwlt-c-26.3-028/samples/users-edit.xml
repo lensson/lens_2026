@@ -1,0 +1,49 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <users xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-aaa">
+       <user xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${name}</name>
+          <authentication>
+           <#if password?has_content>
+             <password>${password}</password>
+           </#if>
+           <#if algorithm?has_content || public\-key?has_content>
+            <authorized-key>
+            <#if algorithm?has_content>
+             <algorithm>${algorithm}</algorithm>
+            </#if>
+            <#if public\-key?has_content>
+             <public-key>${public\-key}</public-key>
+            </#if>
+            </authorized-key>
+            </#if>
+           <#if homedir?has_content>
+            <homedir>${homedir}</homedir>
+           </#if>
+          </authentication>
+          <login>
+            <#if password\-expiry?has_content>
+             <password-expiry>${password\-expiry}</password-expiry>
+            </#if>
+            <#if password\-expiry\-notification?has_content>
+             <password-expiry-notification>${password\-expiry\-notification}</password-expiry-notification>
+            </#if>
+            <#if password\-history\-policy?has_content>
+             <password-history-policy>${password\-history\-policy}</password-history-policy>
+            </#if>
+            <#if disable?has_content>
+             <disable>${disable}</disable>
+            </#if>
+            <#if new\-password\-at\-login?has_content>
+             <new-password-at-login>${new\-password\-at\-login}</new-password-at-login>
+            </#if>
+          </login>
+        </user>
+      </users>
+    </config>
+  </edit-config>
+</rpc>

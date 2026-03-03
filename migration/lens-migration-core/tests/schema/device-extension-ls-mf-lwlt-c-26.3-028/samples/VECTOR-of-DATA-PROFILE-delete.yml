@@ -1,0 +1,13 @@
+arguments:
+  vector-of-data-name:
+    description: the name of this profile
+    suggested-values:
+    - user-port-vector-of-data
+domains: unicast>forwarding
+entity: vector-of-data-profile
+freemarker: true
+name: Delete unicast forwarding vector of data profile
+operation: delete
+sample-id: unicast-forwarding-vector-of-data-profile-delete
+scope: fiber
+status: draft

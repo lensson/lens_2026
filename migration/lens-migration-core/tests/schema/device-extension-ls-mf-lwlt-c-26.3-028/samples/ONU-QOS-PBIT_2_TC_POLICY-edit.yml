@@ -1,0 +1,49 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  qos-policy-name:
+    description: Policy name
+    suggested-values:
+    - tc-assignment
+  pbit0-tc:
+    description: Traffic Class Value for PBIT 0
+    optional: true
+    suggested-values:
+    - 0
+  pbit1-tc:
+    description: Traffic Class Value for PBIT 1
+    optional: true
+    suggested-values:
+    - 1
+  pbit2-tc:
+    description: Traffic Class Value for PBIT 2
+    optional: true
+    suggested-values:
+    - 2
+  pbit3-tc:
+    description: Traffic Class Value for PBIT 3
+    optional: true
+    suggested-values:
+    - 3
+  pbit4-tc:
+    description: Traffic Class Value for PBIT 4 (if specified)
+    optional: true
+  pbit5-tc:
+    description: Traffic Class Value for PBIT 5 (if specified)
+    optional: true
+  pbit6-tc:
+    description: Traffic Class Value for PBIT 6 (if specified)
+    optional: true
+  pbit7-tc:
+    description: Traffic Class Value for PBIT 7 (if specified)
+    optional: true
+domains: onu>unicast>qos
+entity: pbit-2-tc-policy
+freemarker: true
+name: Edit pbit list to traffic class policy
+operation: edit
+sample-id: onu-unicast-qos-pbit-2-tc-policy-edit
+scope: eonu
+status: draft

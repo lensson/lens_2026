@@ -1,0 +1,14 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  power-shed-profile-name:
+    description: power shedding profiles name
+domains: onu>transport>powershed
+freemarker: true
+name: Remove powershed profile to ONU
+operation: remove
+sample-id: onu-transport-powershed-remove
+scope: eonu
+status: draft

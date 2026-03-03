@@ -1,0 +1,26 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  md-id:
+    description: Unique ID which is a key for the maintenance domain
+    suggested-values:
+    - MD-1
+  ma-id:
+    description: Unique ID for MA.
+    suggested-values:
+    - MA-1
+  mep-id:
+    description: An integer that is unique among all the MEPs in the same Maintenance
+      Association.
+    suggested-values:
+    - 1
+domains: onu>cfm
+entity: mep
+freemarker: true
+name: Get ONU CFM MEP
+operation: get
+sample-id: onu-cfm-mep-get
+scope: eonu
+status: draft

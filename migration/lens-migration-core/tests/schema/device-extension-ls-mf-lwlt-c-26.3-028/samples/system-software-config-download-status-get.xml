@@ -1,0 +1,19 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get>
+    <filter type="subtree">
+      <hardware-state xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware">
+        <component>
+          <software xmlns="urn:bbf:yang:bbf-software-image-management-one-dot-one">
+            <software>
+              <config-download xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-software-image-management-extension">
+                <current-state>
+                  <state/>
+                </current-state>
+              </config-download>
+            </software>
+          </software>
+        </component>
+      </hardware-state>
+    </filter>
+  </get>
+</rpc>

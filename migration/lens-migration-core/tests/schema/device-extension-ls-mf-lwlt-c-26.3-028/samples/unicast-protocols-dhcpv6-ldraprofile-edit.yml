@@ -1,0 +1,64 @@
+arguments:
+  dhcpv6-profile-name:
+    description: Name of the DHCPv6 Relay Agent profile
+    suggested-values:
+    - dhcpv6_profile
+  interface-id:
+    description: It adds option interface-ID to the relayed RELAY-FORW DHCPv6 messages
+    suggested-values:
+    - interface-id
+  interface-id-syntax:
+    description: interface id syntax will be used to generate a sub option interface
+      ID when no circuit-id is provided for the VLAN sub interface via a referenced
+      subscriber-profiles
+    suggested-values:
+    - INTERFACEID
+  remote-id:
+    description: It adds option remote-ID to the relayed RELAY FORW DHCPv6 messages
+    optional: true
+    suggested-values:
+    - remote-id
+  remote-id-syntax:
+    description: remote id syntax will be used to generate a sub option remote ID
+      when no remote-id is provided for the VLAN sub interface via a referenced subscriber-profiles
+    optional: true
+    suggested-values:
+    - REMOTEID
+  enterprise-number:
+    description: IANA Enterprise Number that identifies the vendor
+    optional: true
+    suggested-values:
+    - 3561
+  start-numbering-from-zero:
+    description: Identification shall be added to the sub-option value then this leaf
+      determines if the slot or port numbering must start from 0 or 1
+    optional: true
+    suggested-values:
+    - false
+    - true
+  use-leading-zero:
+    description: Identification shall be added to the sub-option value then this leaf
+      determines if the slot or port numbering must use leading 0 or not
+    optional: true
+    suggested-values:
+    - false
+    - true
+  vendor-specific-information:
+    description: It adds access loop characteristics code 17 to the relayed RELAY
+      FORW DHCPv6 messages
+    optional: true
+    suggested-values:
+    - vendor-specific-information
+  access-loop-characteristics:
+    description: Broadband line characteristics that are to be added in options
+    optional: true
+    suggested-values:
+    - access-loop-encapsulation
+domains: unicast>protocols>dhcpv6
+entity: ldraprofile
+freemarker: true
+name: Configure DHCPv6 Relay Agent profile
+operation: edit
+sample-id: unicast-protocols-dhcpv6-ldraprofile-edit
+scope: fiber and not(fx-p2p)
+status: draft

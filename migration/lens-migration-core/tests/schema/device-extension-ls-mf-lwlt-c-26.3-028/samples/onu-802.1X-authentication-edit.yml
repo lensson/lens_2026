@@ -1,0 +1,22 @@
+arguments:
+  onu-name:
+    description: ONU name.
+    suggested-values:
+    - ONU-1
+  user-interface:
+    description: Name of the user interface.
+    suggested-values:
+    - OLT-VENET
+  enable-authentication:
+    description: If set to true, enables the 802.1X Authentication at onu.
+    suggested-values:
+    - true
+    - false
+domains: onu>802.1X
+entity: authentication
+freemarker: true
+name: Configure 802.1x authentication data on ONU
+operation: edit
+sample-id: onu-802.1X-authentication-edit
+scope: fiber
+status: draft

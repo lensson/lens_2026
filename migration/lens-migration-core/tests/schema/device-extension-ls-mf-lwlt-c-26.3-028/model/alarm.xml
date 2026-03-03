@@ -1,0 +1,2614 @@
+<?xml version="1.0" ?>
+<domain xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:../../src/alarm/alarmXml/alarm.xsd">
+    <alarms>
+        <alarmtype domain="onumgntolt" id="11">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-OnuMgntOlt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>6</internal-alarm-number>
+                <alarm-type-id>onu-physical-equipment-error</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Physical equipment error message (PEEi) received from ONU. Only supported for GPON. </description>
+                <advice-for-repair>Perform loopback tests. </advice-for-repair>
+                <additional-info>Serial-Number = value, Reg-ID = value, CT-Name = value[, LOID = value]</additional-info>
+            </alarm>
+            <alarm>
+                <internal-alarm-number>7</internal-alarm-number>
+                <alarm-type-id>onu-startup-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Start-up failure (SUFi) detected while activating ONU. </description>
+                <advice-for-repair>Re-range the ONU. </advice-for-repair>
+                <additional-info>Serial-Number = value, Reg-ID = value, CT-Name = value[, LOID = value]</additional-info>
+            </alarm>
+            <alarm>
+                <internal-alarm-number>12</internal-alarm-number>
+                <alarm-type-id>onu-disabled</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>ONU has been autonomously disabled because of misbehaving transmissions. This is actually a defense alarm so that the ONU doesn't affect the entire PON. </description>
+                <advice-for-repair>Reset ONU by administratively putting it out of service and then in service. If alarm occurs again, then ONU must likely be physically repaired or swapped. </advice-for-repair>
+                <additional-info>Serial-Number = value, Reg-ID = value, CT-Name = value[, LOID = value]</additional-info>
+            </alarm>
+            <alarm>
+                <internal-alarm-number>13</internal-alarm-number>
+                <alarm-type-id>onu-message-error</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Invalid PLOAM message received from ONU (MEMi). Only supported for GPON. </description>
+                <advice-for-repair>See if isolated for specific ONU (if not, likely a software error). </advice-for-repair>
+                <additional-info>Serial-Number = value, Reg-ID = value, CT-Name = value[, LOID = value]</additional-info>
+            </alarm>
+            <alarm>
+                <internal-alarm-number>19</internal-alarm-number>
+                <alarm-type-id>onu-deactivation-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Deactivation failure (DFi) for ONU. </description>
+                <advice-for-repair>1. Reset ONU. 2. Replace ONU if Deactivate failure persists. </advice-for-repair>
+                <additional-info>Serial-Number = value, Reg-ID = value, CT-Name = value[, LOID = value]</additional-info>
+            </alarm>
+            <alarm>
+                <internal-alarm-number>22</internal-alarm-number>
+                <alarm-type-id>onu-remote-defect-indication</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Remote defect indication (RDIi) received from ONU. Only supported for GPON. </description>
+                <advice-for-repair>Check received signal from ONU. The OLT transmission was received with errors at the ONU. </advice-for-repair>
+                <additional-info>Serial-Number = value, Reg-ID = value, CT-Name = value[, LOID = value]</additional-info>
+            </alarm>
+            <alarm>
+                <internal-alarm-number>27</internal-alarm-number>
+                <alarm-type-id>onu-differential-reach-exceeded</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>no</service-affecting>
+                <description>ONU has been deactivated because its location on the PON exceeds its differential reach. </description>
+                <advice-for-repair>Check distance between OLT and ONU. </advice-for-repair>
+                <additional-info>Serial-Number = value, Reg-ID = value, CT-Name = value[, LOID = value]</additional-info>
+            </alarm>
+            <alarm>
+                <internal-alarm-number>28</internal-alarm-number>
+                <alarm-type-id>loss-of-omci-channel</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Loss of OMCI channel (LOOCi) with ONU. </description>
+                <advice-for-repair>1. Power Cycle the ONT unit. 2. If problem persists after a power cycle of the ONT unit, re-program registration ID into ONT unit. 3. If problem persists after registration ID re-programming, replace the ONT unit. </advice-for-repair>
+                <additional-info>Serial-Number = value, Reg-ID = value, CT-Name = value[, LOID = value]</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgntolt" id="12">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-OnuMgntOlt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>onu-ploam-rate-threshold-exceeded</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-termination</object-type-class>
+                        <object-type xmlns:bbf-xpon="urn:bbf:yang:bbf-xpon" xmlns:bbf-xpon-onu-s="urn:bbf:yang:bbf-xpon-onu-state" xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        /if:interfaces-state/if:interface/bbf-xpon:channel-termination/bbf-xpon-onu-s:onus-present-on-local-channel-termination/bbf-xpon-onu-s:onu
+        </object-type>
+                    </object>
+                </objects-supported>
+                <severityList>
+                    <severity defaultSeverity="true">major</severity>
+                    <severity>critical</severity>
+                </severityList>
+                <service-affecting>yes</service-affecting>
+                <description>Received PLOAM rate of ONU at OLT PON side, is exceeding a threshold. Depending the level of severity, precautions are taken so that the ONU doesn't affect the entire system. The alarm is cleared when the PLOAM rate drops below the threshold for a certain time, after operator intervention or after a system restart.</description>
+                <advice-for-repair>Repair, remove or replace the misbehaving ONU. When the defective ONU has been dealt with, operator action forget-about-onu-defect is suggested to clear the alarm. When the repaired ONU has been disabled by the operator, the ONU must be enabled again to allow services. In addition, the operator can remove the related entry from the onu-enable-disable-ploam-condition list, if present.</advice-for-repair>
+                <additional-info>Plain text describing the system precautions in case of major or critical excessive PLOAM rate alarm, Reg-ID = value[, LOID = value]</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgntolt" id="14">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-OnuMgntOlt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>onu-present-and-unexpected</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-termination</object-type-class>
+                        <object-type xmlns:bbf-xpon="urn:bbf:yang:bbf-xpon" xmlns:bbf-xpon-onu-s="urn:bbf:yang:bbf-xpon-onu-state" xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        /if:interfaces-state/if:interface/bbf-xpon:channel-termination/bbf-xpon-onu-s:onus-present-on-local-channel-termination/bbf-xpon-onu-s:onu
+        </object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>Unprovisioned ONU detected on PON. </description>
+                <advice-for-repair>No repair necessary and indication to operator that further provisioning should commence, provisioning the detected ONT will automatically clear this alarm.</advice-for-repair>
+                <additional-info>Detected-Reg-Id = value, Detected-Upstream-Rate = value[, Vendor-Id = value, Equipment-Id = value, Hardware-Version = value, Active-Software-Version = value, Model-Name = value][, LOID = value][, MAC-Address = value]</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgntolt" id="15">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-OnuMgntOlt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>rogue-onu-detected</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-termination</object-type-class>
+                        <object-type xmlns:bbf-xpon="urn:bbf:yang:bbf-xpon" xmlns:bbf-xpon-onu-s="urn:bbf:yang:bbf-xpon-onu-state" xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        /if:interfaces-state/if:interface/bbf-xpon:channel-termination/bbf-xpon-onu-s:onus-present-on-local-channel-termination/bbf-xpon-onu-s:onu
+        </object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Rogue ONU detected on PON.</description>
+                <advice-for-repair>Replace or disable of the rogue ont should commence. After the replace or disable, action forget about onu defect is suggested to clear the alarm. </advice-for-repair>
+                <additional-info>ONU detected as Rogue on PON, Reg-ID = value[, LOID = value]</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgntolt" id="34">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-OnuMgntOlt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>17</internal-alarm-number>
+                <alarm-type-id>onu-upstream-rate-mismatch</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>ONU Mismatch detected between actual and planned upstream rate. </description>
+                <advice-for-repair>Correct the ONU configuration for the uptream rate. </advice-for-repair>
+                <additional-info>Serial-Number = value, Reg-ID = value, CT-Name = value[, LOID = value]</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgntolt" id="46">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-OnuMgntOlt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>onu-loss-of-phy-layer</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Loss of physical connectivity with ONU. Possible causes are: 1. ONU does not respond to bandwidth grants (LOSi, LOFi, LOBi). 2. ONU transmission drift exceeds transmission interference (TIWi) threshold. 3. High BER signal failure(SFi). 4. Loss-of-AES-key synchronization (LOKi). 5. Loss-of-PLOAM-channel (LOPCi, LOAi, LOAMi).</description>
+                <advice-for-repair>Check physical connectivity between ONU and OLT.</advice-for-repair>
+                <additional-info>Event = value, Serial-Number = value, Reg-ID = value, CT-Name = value[, LOID = value]</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgntolt" id="47">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-OnuMgntOlt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>absence-of-phy</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Presumed absence of PHY connectivity for pre-configured ONU. This alarm is raised when an ONU with matching credentials has not yet been detected for this configured ONU.</description>
+                <advice-for-repair>Check physical connectivity between ONU and OLT.</advice-for-repair>
+                <additional-info>Serial-Number = value, Reg-ID = value, CT-Name = value[, LOID = value]</additional-info>
+            </alarm>
+            <alarm>
+                <internal-alarm-number>2</internal-alarm-number>
+                <alarm-type-id>onu-dying-gasp</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Loss of signal detected for ONU because of ONU power failure (DGi). </description>
+                <advice-for-repair>Restore power to ONU. Dying gasp indication is due to loss of power input to ONU.</advice-for-repair>
+                <additional-info>Serial-Number = value, Reg-ID = value, CT-Name = value[, LOID = value]</additional-info>
+            </alarm>
+            <alarm>
+                <internal-alarm-number>3</internal-alarm-number>
+                <alarm-type-id>onu-drift-of-window</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>ONU burst transmission drift exceeds drift-of-window (DOWi) threshold. </description>
+                <advice-for-repair>Check quality of line from ONU if condition persists. OLT received a transmission from the ONU at an unexpected place within the upstream virtual frame.</advice-for-repair>
+                <additional-info>Serial-Number = value, Reg-ID = value, CT-Name = value[, LOID = value]</additional-info>
+            </alarm>
+            <alarm>
+                <internal-alarm-number>4</internal-alarm-number>
+                <alarm-type-id>onu-upstream-signal-degradation</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Upstream BER exceeds signal degradation (SDi) threshold.</description>
+                <advice-for-repair>Check quality of line from ONU..</advice-for-repair>
+                <additional-info>Serial-Number = value, Reg-ID = value, CT-Name = value[, LOID = value]</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="callhome" id="99">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-secure-transport-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>non-recommended-cipher</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:nok-typ="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-yang-types">nok-typ:nokia-string-ascii64</object-type-class>
+                        <object-type xmlns:ncs="urn:ietf:params:xml:ns:yang:ietf-netconf-server">/ncs:netconf-server/ncs:call-home/ncs:netconf-client/ncs:name</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>A non-recommended cipher is configured.</description>
+                <advice-for-repair>Replace or remove non-recommended cipher(s).</advice-for-repair>
+                <additional-info>cipher:non-recommended ciphers separated via symbol |</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="certificate" id="102">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-certificate-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>missing-key-pair</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:nok-typ="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-yang-types">nok-typ:nokia-string-ascii64</object-type-class>
+                        <object-type xmlns:ks="urn:ietf:params:xml:ns:yang:ietf-keystore">/ks:keystore/ks:asymmetric-keys/ks:asymmetric-key/ks:name</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>A Keystore key-pair is missing.</description>
+                <advice-for-repair>A new key-pair should be installed</advice-for-repair>
+                <additional-info/>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="certificate" id="116">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-certificate-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>ca-cert-expiration</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:nok-typ="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-yang-types">nok-typ:nokia-string-ascii64</object-type-class>
+                        <object-type xmlns:cert-app="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-certificate-management">/cert-app:certificate/cert-app:certificates-state/cert-app:est-certificates/cert-app:est-profiles/cert-app:ca-certificates/cert-app:ca-certificate</object-type>
+                    </object>
+                </objects-supported>
+                <severityList>
+                    <severity>critical</severity>
+                    <severity>major</severity>
+                    <severity defaultSeverity="true">minor</severity>
+                </severityList>
+                <service-affecting>yes</service-affecting>
+                <description>Certificate is going to or already expired.</description>
+                <advice-for-repair>Replace certificate before expiration date.</advice-for-repair>
+                <additional-info>feature-name:[value], expiry-date: [value]</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="certificate" id="117">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-certificate-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>est-connectivity-or-operations-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:nok-typ="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-yang-types">nok-typ:nokia-string-ascii64</object-type-class>
+                        <object-type xmlns:estc="urn:ietf:params:xml:ns:yang:nokia-sdan-est-client">/estc:est-client/estc:est-certificate-profile/estc:name</object-type>
+                    </object>
+                </objects-supported>
+                <severity>critical</severity>
+                <service-affecting>yes</service-affecting>
+                <description>EST certificate enrollment or EST CA certificate retrieval failure due to (a) either a failure in establishing a connection to the EST server or (b) any other reason the EST server is misbehaving or declining to provide the EST CA certificates or to enroll a new EE certificate</description>
+                <advice-for-repair>Check network connectivity. Verify certificates consistency among client and server. Check why EST server declines providing CA certificates or enrolling a new ceritificate</advice-for-repair>
+                <additional-info>
+                This parameter can contain any of the following four values:
+		1. {Raw text describing the reason for the est server connectivity or TLS handshake failure}
+		2. HTTP error code {value} [{Raw text describing the reason of HTTP error}]
+		3. Server Error with HTTP error code {value}
+		4. Any of the following two parsing error values:
+		   a. The retrieved CA certificates could not be parsed
+		   b. The enrolled certificate could not be parsed
+		   The following error in case of not meeting the constraint of maximum number of retrieved CA certificates
+		   a. The number of retrieved CA certificates exceeds 5
+                   The following error in case of private key generation failure
+                   a. Private key generation failed
+                </additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="certificate" id="52">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-certificate-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>pinned-cert-expiration</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:nok-typ="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-yang-types">nok-typ:nokia-string-ascii64</object-type-class>
+                        <object-type xmlns:cert-app="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-certificate-management">/cert-app:certificate/cert-app:certificates-state/cert-app:pinned-certificates/cert-app:pinned-certificate/cert-app:certificates/cert-app:certificate</object-type>
+                    </object>
+                </objects-supported>
+                <severityList>
+                    <severity>critical</severity>
+                    <severity>major</severity>
+                    <severity defaultSeverity="true">minor</severity>
+                </severityList>
+                <service-affecting>yes</service-affecting>
+                <description>Certificate is going to or already expired.</description>
+                <advice-for-repair>Replace certificate before expiration date.</advice-for-repair>
+                <additional-info>certList name: [value] cert name: [value] cert expiry-date: [value]</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="certificate" id="53">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-certificate-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>end-cert-expiration</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:nok-typ="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-yang-types">nok-typ:nokia-string-ascii64</object-type-class>
+                        <object-type xmlns:cert-app="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-certificate-management">/cert-app:certificate/cert-app:certificates-state/cert-app:end-user-certificates/cert-app:end-certs/cert-app:certificates/cert-app:certificate</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:nok-typ="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-yang-types">nok-typ:nokia-string-ascii64</object-type-class>
+                        <object-type xmlns:cert-app="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-certificate-management">/cert-app:certificate/cert-app:certificates-state/cert-app:est-certificates/cert-app:est-profiles/cert-app:end-user-certificate</object-type>
+                    </object>
+                </objects-supported>
+                <severityList>
+                    <severity>critical</severity>
+                    <severity>major</severity>
+                    <severity defaultSeverity="true">minor</severity>
+                </severityList>
+                <service-affecting>yes</service-affecting>
+                <description>Certificate is going to or already expired.</description>
+                <advice-for-repair>Replace certificate before expiration date.</advice-for-repair>
+                <additional-info>related functionality of the used certificate: [value] cert name: [value] cert expiry-date: [value]</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="dot1x" id="104">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-dot1x-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>dynamic-authorization-attributes-not-present</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbfift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:olt-v-enet</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces" xmlns:nokia-dot1x-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-802-dot1x-ext">/if:interfaces-state/if:interface/nokia-dot1x-ext:pae/nokia-dot1x-ext:mac/nokia-dot1x-ext:session</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Dynamic authorization attributes not present in Access-Accept Message received from RADIUS server.
+     </description>
+                <advice-for-repair>Trigger dynamic CoA request towards Access Node from Dynamic Authorization Client.
+     </advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="dot1x" id="105">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-dot1x-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>no-dynamic-forwarder-attached-to-vsi</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbfift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:olt-v-enet</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces" xmlns:nokia-dot1x-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-802-dot1x-ext">/if:interfaces-state/if:interface/nokia-dot1x-ext:pae/nokia-dot1x-ext:mac/nokia-dot1x-ext:session</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Dynamic forwarder name not present in Access-Accept Message received from RADIUS server. No dynamic forwarder attached to the VSI</description>
+                <advice-for-repair>Trigger dynamic CoA request towards Access Node, containing dynamic forwarder from Dynamic Authorization Client.</advice-for-repair>
+                <additional-info>VSI [vsi-name] - dynamic L2 Forwarder [forwarder-name] attachment failure. Reason : [reason]</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="dot1x" id="106">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-dot1x-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>no-dynamic-qos-profile-attached-to-vsi</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbfift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:olt-v-enet</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces" xmlns:nokia-dot1x-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-802-dot1x-ext">/if:interfaces-state/if:interface/nokia-dot1x-ext:pae/nokia-dot1x-ext:mac/nokia-dot1x-ext:session</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Dynamic QoS profile name not present in Access-Accept Message received from RADIUS server. No dynamic QoS profile attached to the VSI</description>
+                <advice-for-repair>Trigger dynamic CoA request towards Access Node, containing dynamic QoS profile from Dynamic Authorization Client. Operator to check the device configuration.</advice-for-repair>
+                <additional-info>VSI [vsi-name] - dynamic Ingress QoS profile [ingress-qos-profile-name] Egress QoS profile [egress-qos-profile-name] attachment Failure. Reason : [reason]</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="dot1x" id="107">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-dot1x-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>dynamic-vsi-associated-with-another-session</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbfift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:olt-v-enet</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces" xmlns:nokia-dot1x-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-802-dot1x-ext">/if:interfaces-state/if:interface/nokia-dot1x-ext:pae/nokia-dot1x-ext:mac/nokia-dot1x-ext:session</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Dynamic VSI name received from RADIUS Access-Accept Message is part of another existing session.
+     </description>
+                <advice-for-repair>Trigger dynamic CoA request towards Access Node, containing dynamic parameters from Dynamic Authorization Client.
+     </advice-for-repair>
+                <additional-info>VSI [vsi-name] is already associated with an existing session with MAC [MAC Address] and vENET ID [vENET-id] </additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="dot1x" id="91">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-dot1x-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>dot1x-mac-conflict</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbfift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:olt-v-enet</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>802.1x protocol can not authenticate this port as the device MAC since it is already present in the list of authenticated MACs. To clear this alarm kindly resolve the mac address issue on the supplicant device or disable the conflicting port manually.
+     </description>
+                <advice-for-repair>The conflicting port can be manually opened/closed depending on whether the supplicant device MAC address is resolved or not.
+     </advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="100">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-link-tx-fault</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Module transmitter has detected a fault condition related to laser operation or safety </description>
+                <advice-for-repair>Replace transceiver</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="115">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>board-sensor-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:board</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">nokia-hwi:nt</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">nokia-hwi:lt</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>Board sensor failure detected.</description>
+                <advice-for-repair>
+This alarm is reported when a board sensor persistently fails to return a correct value. This failure does not affect traffic, nor board management.
+First try to remove and reseat the board. If that doesn't solve the issue, replace the faulty board with a new one of the same type at an appropriate time in the near future.
+</advice-for-repair>
+                <additional-info>Board sensor failure.</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="13">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-initialization-failure-alarm</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:cage</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Transceiver fails to initialize after poweron</description>
+                <advice-for-repair>Replace transceiver </advice-for-repair>
+                <additional-info>Transceiver in [cage] is failing at poweron&gt;</additional-info>
+            </alarm>
+            <alarm>
+                <internal-alarm-number>2</internal-alarm-number>
+                <alarm-type-id>transceiver-not-accessible-alarm</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:cage</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>The pluggable transceiver module may be physically present but not fully functional</description>
+                <advice-for-repair>1.Lock/unlock SFP;2.Replace with a new SFP;3.Reset the board</advice-for-repair>
+                <additional-info>Transceiver access failure detected in [cage]</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="24">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-property-mismatch-alarm</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Mismatch between configured and installed transceiver</description>
+                <advice-for-repair>Check if the correct model-name has been used in the configuration and if the correct module is installed for this configuration</advice-for-repair>
+                <additional-info>Detected [detected model-name] while expecting [configured model-name]&gt;</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="25">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-presence-mismatch-alarm</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:cage</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>A transceiver is detected while none is configured or a transceiver is configured while none is detected</description>
+                <advice-for-repair>Remove the transceiver and place a dust-cap on the open cage or configure the inserted transceiver for the system or insert the transceiver that matches the configuration</advice-for-repair>
+                <additional-info>Check cage [cage name] on board [board name]</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="28">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-supply-voltage</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severityList>
+                    <severity defaultSeverity="true">critical</severity>
+                    <severity>warning</severity>
+                </severityList>
+                <service-affecting>no</service-affecting>
+                <description>Transceiver Voltage measured by the hardware is exceeding the system defined thresholds</description>
+                <advice-for-repair>Check environment of the system. Check hardware installation manual. Check SFP spec for more information</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="29">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-link-rx-power</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severityList>
+                    <severity defaultSeverity="true">critical</severity>
+                    <severity>warning</severity>
+                </severityList>
+                <service-affecting>no</service-affecting>
+                <description>Transceiver link Rx power measured by the hardware is exceeding the system defined thresholds</description>
+                <advice-for-repair>Check environment of the system. Check hardware installation manual. Check SFP spec for more information</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="30">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-link-tx-power</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severityList>
+                    <severity defaultSeverity="true">critical</severity>
+                    <severity>warning</severity>
+                </severityList>
+                <service-affecting>no</service-affecting>
+                <description>Transceiver link Tx power measured by the hardware is exceeding the system defined thresholds</description>
+                <advice-for-repair>Check environment of the system. Check hardware installation manual. Check SFP spec for more information</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="31">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-link-tx-bias</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severityList>
+                    <severity defaultSeverity="true">critical</severity>
+                    <severity>warning</severity>
+                </severityList>
+                <service-affecting>no</service-affecting>
+                <description>Transceiver link Tx bias current measured by the hardware is exceeding the system defined thresholds</description>
+                <advice-for-repair>Check environment of the system. Check hardware installation manual. Check SFP spec for more information</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="39">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>cpu-usage-exceeding</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:board</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">nokia-hwi:nt</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">nokia-hwi:lt</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>Alarm raised when average percentage of CPU used during the last 15 minutes is above 90%</description>
+                <advice-for-repair>
+     A high CPU during a long period is most likely caused by next events:
+     High amount of protocol control packets from network/user side: reduce/block by installing policers/access control list 
+     Management action requiring a lot of CPU resources: close ongoing NCY session
+     To many IPFIX caches or export rate high: adapt IPFIX configuration
+     The Alarm will be reset immediately when value is less then 80% or when during 1 minute being lower then 90% 
+     </advice-for-repair>
+                <additional-info>resource alarm, type: CPU, exceeds: 90 %</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="4">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>sensor-temperature-high</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:board</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">nokia-hwi:nt</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">nokia-hwi:lt</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:fan-pack</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:ntio</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Temperature measured by the hardware is exceeding the system defined threshold</description>
+                <advice-for-repair>Urgent action is required. Check environment of the system for ambient temperature and airflow. If this high temperature is maintained, the long-term reliability of the system is negatively impacted and unexpected system behavior can start to occur resulting in affected service performance.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="5">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>sensor-temperature-critical</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">nokia-hwi:nt</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">nokia-hwi:lt</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:fan-pack</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:ntio</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:board</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>critical</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Temperature measured by the hardware is exceeding the system defined critical threshold</description>
+                <advice-for-repair>Immediate action is required. Check environment of the system for ambient temperature and airflow. If this critical temperature is maintained the system will be permanently damaged. Some parts of the system will be shut down to avoid permanent damage to occur.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="54">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>memory-usage-exceeding</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:board</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">nokia-hwi:nt</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">nokia-hwi:lt</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>Alarm raised when the average percentage of the memory that was used during the last 1 minute raised above x%.</description>
+                <advice-for-repair>
+     A high memory usage is most likely caused by next events:
+     High amount of ongoing management actions: reduce by closing ongoing NCY sessions
+     Configuration is reaching the systems limits: reduce non essential configuration
+     The Alarm will be reset immediately when value is less then y% or when during 1 minute being lower then x%
+     Note: on most boards x=90%,y=80% while on some Cu boards x=95%,y=85% 
+     </advice-for-repair>
+                <additional-info>resource alarm, type: Memory, exceeds: x %</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="55">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>disk-usage-exceeding</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:board</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">nokia-hwi:nt</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">nokia-hwi:lt</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>Alarm raised when one of the disk is at least 95% full</description>
+                <advice-for-repair>
+     The additional info will indicate for which volumes the occupancy is more then 95%. 
+     volume1: dbase          -- reduce configuration
+     volume2: persistent     -- verify/clean up installed sw images,
+     volume3: internal       -- contact Nokia support,
+     volume4: ont-persistent -- verify/clean up installed ont images,
+     The Alarm will be reset immediately when all volumes are less then 85% used or when during 2 minutes all volumes being lower then 95%.
+     </advice-for-repair>
+                <additional-info>resource alarm, type: NVM, exceeds: 95 %, partition: dbase, partition: persistent</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="6">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-sensor-temperature-low</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>critical</severity>
+                <service-affecting>no</service-affecting>
+                <description>Temperature measured by the hardware is exceeding the system defined critical low threshold</description>
+                <advice-for-repair>Check environment of the system for ambient temperature and airflow. Check hardware installation manual. Check SFP spec for more information</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="7">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-sensor-temperature-low-warning</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>warning</severity>
+                <service-affecting>no</service-affecting>
+                <description>Temperature measured by the hardware is exceeding the system defined warning low threshold</description>
+                <advice-for-repair>Check environment of the system for ambient temperature and airflow. Check hardware installation manual. Check SFP spec for more information</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="8">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-sensor-temperature-high-warning</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>warning</severity>
+                <service-affecting>no</service-affecting>
+                <description>Temperature measured by the hardware is exceeding the system defined warning high threshold</description>
+                <advice-for-repair>Check environment of the system for ambient temperature and airflow. Check hardware installation manual. Check SFP spec for more information</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="eqpt" id="9">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-eqpt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-sensor-temperature-high</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>critical</severity>
+                <service-affecting>no</service-affecting>
+                <description>Temperature measured by the hardware is exceeding the system defined critical high threshold</description>
+                <advice-for-repair>Check environment of the system for ambient temperature and airflow. Check hardware installation manual. Check SFP spec for more information</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="ethmgnt" id="98">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ethmgnt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>backplane-data-link-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Board backplane datalink failure</description>
+                <advice-for-repair>Extract the card and then plug it in again</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="ipfix" id="75">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>connection-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ipfix="urn:ietf:params:xml:ns:yang:ietf-ipfix-psamp">ipfix:ipfix</object-type-class>
+                        <object-type xmlns:ipfix="urn:ietf:params:xml:ns:yang:ietf-ipfix-psamp">/ipfix:ipfix/ipfix:exportingProcess/ipfix:name</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>IPFIX Destination connectivity failure.</description>
+                <advice-for-repair>A connection failure may be due to connection closure initiated by the Collector, or due to the device being unable to establish a connection to the Collector. Check for network connectivity issues (eg. packet loss, routing issues, DNS resolution failures), verify your configuration (eg. destination IP and port, tls settings). Additionally, check for load balancer issues or keepalive settings in case you are facing timeouts due to idle connections.</advice-for-repair>
+                <additional-info>
+                This can contain any of the following two values:
+                1. When connection establishment with some collectors in the exporting process fails - &quot;CollectorName (IP:port) [,CollectorName (IP:port)] [,CollectorName (IP:port)]....&quot; with the failed collector information.
+                2. When connection establishment with all the collectors of the exporting process fails - &quot;Failed to connect to all configured collectors&quot; 
+                </additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="ipfix" id="76">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>handshake-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ipfix="urn:ietf:params:xml:ns:yang:ietf-ipfix-psamp">ipfix:ipfix</object-type-class>
+                        <object-type xmlns:ipfix="urn:ietf:params:xml:ns:yang:ietf-ipfix-psamp">/ipfix:ipfix/ipfix:exportingProcess/ipfix:name</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>IPFIX Destination TLS handshake failure.</description>
+                <advice-for-repair>Verify the certificates validity (eg. expired, revoked or untrusted certificates, certificate chain issues etc), server/client configuration (tls settings) or if there are protocol/algorithm mismatches (tls version, cipher suites etc)</advice-for-repair>
+                <additional-info>
+                &quot;CollectorName (IP:port) [,CollectorName (IP:port)] [,CollectorName (IP:port)]....&quot; with the failed collector information.
+                </additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="ipfix" id="82">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>export-interval-inadequate</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ipfix="urn:ietf:params:xml:ns:yang:ietf-ipfix-psamp">ipfix:ipfix</object-type-class>
+                        <object-type xmlns:ipfix="urn:ietf:params:xml:ns:yang:ietf-ipfix-psamp">/ipfix:ipfix/ipfix:exportingProcess/ipfix:name</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>no</service-affecting>
+                <description>Export interval configured for cache is not adequate to complete data export.</description>
+                <advice-for-repair>Data export for template(s) could not be completed within the configured export-interval. Recommend to increase export-interval of the template(s) if the problem persists in subsequent intervals. Additionally, also check if the overall enabled templates need to be reduced.</advice-for-repair>
+                <additional-info>Template id(s): id1, id2, .., idn </additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="mgntinterface" id="40">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-mgntinterface-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>inband-duplicate-ipv6-address</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ipForward </object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface/if:type</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>no</service-affecting>
+                <description>Duplicate inband IPv6 address configuration</description>
+                <advice-for-repair>Check the configuration of inband ipv6 address</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="ip_antispoofing" id="80">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ip-antispoofing-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>ip-packets-discard-tca</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:vlan-sub-interface</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>warning</severity>
+                <service-affecting>no</service-affecting>
+                <description>If the count of incoming packets with invalid source IPv4 address exceeds the threshold value within a 5-minute interval, an alarm is raised containing the details of the ONT that sent the invalid packet. The alarm is cleared autonomously in the subsequent 5-minute interval if the anti-spoof drop counter value goes below the configured threshold.</description>
+                <advice-for-repair>The operator to identify the ONT from which invalid packets are received and then reset the statistics counters.
+     </advice-for-repair>
+                <additional-info>IPv4 antispoofing counter in ONT:[OntSerialNumber] [alarmStatus] the TCA threshold
+         where [OntSerialNumber] = The serial number of ONT [alarmStatus] = reached | is below</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="ip_antispoofing" id="83">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ip-antispoofing-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>arp-packets-discard-tca</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:vlan-sub-interface</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>warning</severity>
+                <service-affecting>no</service-affecting>
+                <description>If the count of incoming packets with invalid source MAC address exceeds the threshold value within a 5-minute interval, an alarm is raised containing the details of the ONT that sent the invalid packet. The alarm is cleared autonomously in the subsequent 5-minute interval if the anti-spoof drop counter value goes below the configured threshold.</description>
+                <advice-for-repair>The operator to identify the ONT from which invalid packets are received and then reset the statistics counters.
+     </advice-for-repair>
+                <additional-info>ARP antispoofing counter in ONT:[OntSerialNumber] [alarmStatus] the TCA threshold
+         where [OntSerialNumber] = The serial number of ONT [alarmStatus] = reached | is below</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="ip_antispoofing" id="81">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv6-antispoofing-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>ipv6-packets-discard-tca</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:vlan-sub-interface</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>warning</severity>
+                <service-affecting>no</service-affecting>
+                <description>If the count of incoming packets with invalid source IPv6 address exceeds the threshold value within a 5-minute interval, an alarm is raised containing the details of the ONT that sent the invalid packet. The alarm is cleared autonomously in the subsequent 5-minute interval if the anti-spoof drop counter value goes below the configured threshold.</description>
+                <advice-for-repair>The operator to identify the ONT from which invalid packets are received and then reset the statistics counters.
+     </advice-for-repair>
+                <additional-info>IPv6 antispoofing counter in ONT:[OntSerialNumber] [alarmStatus] the TCA threshold
+       where [OntSerialNumber] = The serial number of ONT [alarmStatus] = reached | is below</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="ip_antispoofing" id="84">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv6-antispoofing-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>icmpv6-packets-discard-tca</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:vlan-sub-interface</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>warning</severity>
+                <service-affecting>no</service-affecting>
+                <description>If the count of incoming packets with invalid source MAC address exceeds the threshold value within a 5-minute interval, an alarm is raised containing the details of the ONT that sent the invalid packet. The alarm is cleared autonomously in the subsequent 5-minute interval if the anti-spoof drop counter value goes below the configured threshold.</description>
+                <advice-for-repair>The operator to identify the ONT from which invalid packets are received and then reset the statistics counters.
+     </advice-for-repair>
+                <additional-info>ICMPv6 antispoofing counter in ONT:[OntSerialNumber] [alarmStatus] the TCA threshold
+       where [OntSerialNumber] = The serial number of ONT [alarmStatus] = reached | is below</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="l2forwarding" id="16">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-l2forwarding-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>l2forwarding-duplicate-mac-learning</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:vlan-sub-interface</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>Duplicate MAC Address</description>
+                <advice-for-repair>No special repair action. The conflicted port can be manually closed/open if needed.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="licensing" id="44">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-licensing-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>license-server-connection-lost</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>critical</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Connection with license server fails</description>
+                <advice-for-repair>Check network connectivity. Verify certificates consistency among client and server</advice-for-repair>
+                <additional-info>Plain text describing connection failure cause</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="licensing" id="45">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-licensing-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>license-key-exhausted</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:lic-app="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-licensing-app">lic-app:licensing-state</object-type-class>
+                        <object-type xmlns:lic-app="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-licensing-app">lic-app:licensing-state/lic-app:features</object-type>
+                    </object>
+                </objects-supported>
+                <severity>critical</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Requested license keys cannot be granted by the license server due to lack of free license keys. </description>
+                <advice-for-repair>Check the availability of license keys for the specified feature code on the license server. License key number is violated, additional license keys must be configured for avoiding service interruption. </advice-for-repair>
+                <additional-info>
+                This parameter can contain any of the following three values:
+                1. License violation for feature : [value], Requested capacity: [value], Granted capacity:[value]. Grace period started. Service outage in [value] days and [value] hours since alarm last-changed date.
+                2. License violation for feature : [value], Requested capacity: [value], Granted capacity:[value]. Grace period started. Service outage in less than an hour.
+                3. License violation for feature : [value], Requested capacity: [value], Granted capacity:[value]. Grace period Ended. Service outage expected.
+                </additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1024">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>chassis-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Functional failure on an internal interface. Please refer to equipment alarm in chapter 9.1.1 of ITU-T G.988</description>
+                <advice-for-repair>Command another ONU self-test. If Pass, OK. If Fail, implement creative diagnostics.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1025">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>chassis-battery-charger-power-loss</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>Loss of external power to battery backup unit. This alarm is typically derived through an external interface to a battery backup unit, and indicates that AC is no longer available to maintain battery charge. Please refer to powering alarm in chapter 9.1.1 of ITU-T G.988</description>
+                <advice-for-repair>Need to replace or repair AC power to ONU.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1026">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>chassis-battery-missing</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>Battery is provisioned but missing. Please refer to battery missing alarm in chapter 9.1.1 of ITU-T G.988</description>
+                <advice-for-repair>Change provisioning or determine why battery is missing.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1027">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>chassis-battery-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>Battery is provisioned and present but cannot recharge. Please refer to battery failure alarm in chapter 9.1.1 of ITU-T G.988</description>
+                <advice-for-repair>Replace the failed battery.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1028">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>chassis-battery-low</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>Battery is provisioned and present but its voltage is too low. Please refer to battery low alarm in chapter 9.1.1 of ITU-T G.988</description>
+                <advice-for-repair>If power is present, determine why battery won't charge, or why it's low.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1029">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>chassis-voltage-low-warning</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>No service shutdown at present, but the line power voltage is below its recommended minimum. Service restrictions may be in effect, such as permitting no more than N lines off-hook or ringing at one time. Please refer to alarm voltage yellow alarm in chapter 9.1.1 of ITU-T G.988</description>
+                <advice-for-repair>Check the power source and power connector of the ONU/SFP.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1030">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>chassis-voltage-low</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>Some services have been shut down to avoid power collapse. The operational state of the affected PPTPs indicates the affected services. Please refer to voltage red alarm in chapter 9.1.1 of ITU-T G.988</description>
+                <advice-for-repair>Check the power source and power connector of the ONU/SFP.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1031">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>board-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:board</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>A failure on an internal interface or failed self-test. Please refer to equipment alarm in chapter 9.1.6 of ITU-T G.988</description>
+                <advice-for-repair>Replace the failed ONU card.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1032">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>board-protection-switch</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:board</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>An autonomous equipment protection switch has occurred. This notification is reported by the protected cardholder. Please refer to protection switch alarm in chapter 9.1.5 of ITU-T G.988</description>
+                <advice-for-repair>Check the ONU card.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1033">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>board-id-mismatch</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:board</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Inserted circuit pack has the wrong equipment ID. Please refer to plug-in equipment id mismatch alarm in chapter 9.1.5 of ITU-T G.988</description>
+                <advice-for-repair>Check the configuration</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1034">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>board-improper-presence-mismatch</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:board</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Circuit pack has been removed without being de-provisioned or administratively locked. This is a redundant alarm that helps the OLT distinguish between transitions from state S2 to state S1 (Figure 9.1.5-1) and transitions from state S4 to state S1. This alarm is sent only when a transition occurs from state S2 to state S1. Please refer to improper card removal alarm in chapter 9.1.5 of ITU-T G.988</description>
+                <advice-for-repair>Install missing ONU card or deprovision ONU card and services if no longer supported.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1035">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-link-signal-fail</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:ani</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>critical</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Bit error-based signal fail. Industry practice normally expects the BER to improve by at least an order of magnitude before clearing the alarm. Please refer to SF alarm in chapter 9.2.1 of ITU-T G.988</description>
+                <advice-for-repair>Check quality of fiber connection to ONU and clean the fiber if needed.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1036">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-link-signal-degrade</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:ani</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Bit error-based signal degrade. Industry practice normally expects the BER to improve by at least an order of magnitude before clearing the alarm. Please refer to SD alarm in chapter 9.2.1 of ITU-T G.988</description>
+                <advice-for-repair>Check quality of fiber connection to ONU and clean the fiber if needed.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1037">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>board-presence-mismatch</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:board</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Configured circuit pack is not present. If this alarm is active, none of the mismatch alarms are declared. Please refer to plug-in circuit pack missing alarm in chapter 9.1.5 of ITU-T G.988</description>
+                <advice-for-repair>Install missing ONU card or deprovision ONU card and services if no longer supported.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1038">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>board-property-mismatch</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:board</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Inserted circuit pack is wrong type. Please refer to plug-in type mismatch alarm in chapter 9.1.5 of ITU-T G.988</description>
+                <advice-for-repair>Install correct type ONU card.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1039">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-link-rx-power</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severityList>
+                    <severity defaultSeverity="true">major</severity>
+                    <severity>warning</severity>
+                </severityList>
+                <service-affecting>yes</service-affecting>
+                <description>Received optical power. Please refer to received optical power alarms in chapter 9.2.1(ANI-G) of ITU-T G.988 and chapter 3.1.136(ANI-G Supplemental 1) of latest Nokia ISAM OMCI Interface Specification</description>
+                <advice-for-repair>Check optical attenuator setting or check quality of fiber connection to ONU and clean the fiber if needed. </advice-for-repair>
+                <additional-info>
+     This parameter can contain any of the following four values:
+     1. Rx Power Warning Low (Indicates the received power level of optical module crossed the low warning threshold)
+     2. Rx Power Warning High (Indicates the receive power level of optical module crossed the high warning threshold)
+     3. Low received optical power (Received downstream optical power below threshold)
+     4. High received optical power (Received downstream optical power above threshold)
+     </additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1040">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-sensor-temperature</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severityList>
+                    <severity defaultSeverity="true">major</severity>
+                    <severity>warning</severity>
+                </severityList>
+                <service-affecting>yes</service-affecting>
+                <description>temperature level of optical module. Please refer to temperature level alarms in chapter 9.2.1(ANI-G) of ITU-T G.988 and chapter 3.1.136(ANI-G Supplemental 1) of latest Nokia ISAM OMCI Interface Specification</description>
+                <advice-for-repair>Check the environmental conditions that is causing temperature alarm and take corrective actions.</advice-for-repair>
+                <additional-info>
+     This parameter can contain any of the following four values:
+     1. Temp Warning Low (Indicates the temperature level of optical module crossed the low warning threshold)
+     2. Temp Warning High (Indicates the temperature level of optical module crossed the high warning threshold)
+     3. Temp Low (Indicates the temperature level of optical module crossed the low threshold)
+     4. High Temperature (Indicates the temperature level of optical module crossed the high threshold)
+     </additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1041">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-link-tx-power</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severityList>
+                    <severity defaultSeverity="true">major</severity>
+                    <severity>warning</severity>
+                </severityList>
+                <service-affecting>yes</service-affecting>
+                <description>Transmitted optical power. Please refer to transmit optical power alarms in chapter 9.2.1(ANI-G) of ITU-T G.988 and chapter 3.1.136(ANI-G Supplemental 1) of latest Nokia ISAM OMCI Interface Specification</description>
+                <advice-for-repair>Check and adjust laser Tx power on the ONT/SFP module.</advice-for-repair>
+                <additional-info>
+     This parameter can contain any of the following four values:
+     1. Tx Power Warning Low (Indicates the transmit power level of optical module crossed the low warning threshold)
+     2. Tx Power Warning High (Indicates the transmit power level of optical module crossed the high warning threshold)
+     3. Low transmit optical power (Transmit optical power below lower threshold)
+     4. High transmit optical power (Transmit optical power above upper threshold)
+     </additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1042">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-power-feed-voltage</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severityList>
+                    <severity defaultSeverity="true">major</severity>
+                    <severity>warning</severity>
+                </severityList>
+                <service-affecting>yes</service-affecting>
+                <description>Power feed voltage level of optical module. Please refer to power feed voltage level alarms in chapter 9.2.1(ANI-G) of ITU-T G.988 and chapter 3.1.136(ANI-G Supplemental 1) of latest Nokia ISAM OMCI Interface Specification</description>
+                <advice-for-repair>Check and adjust laser power-feed voltage on the ONT/SFP module.</advice-for-repair>
+                <additional-info>
+     This parameter can contain any of the following four values:
+     1. Voltage Warning Low (Indicates the power feed voltage level of optical module crossed the low warning threshold)
+     2. Voltage Warning High (Indicates the power feed voltage level of optical module crossed the high warning threshold)
+     3. Voltage Low (Indicates the power feed voltage level of optical module crossed the low threshold)
+     4. High Voltage (Indicates the power feed voltage level of optical module crossed the high threshold)
+     </additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1043">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-link-tx-bias</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severityList>
+                    <severity defaultSeverity="true">major</severity>
+                    <severity>warning</severity>
+                </severityList>
+                <service-affecting>yes</service-affecting>
+                <description>Laser bias current determined by vendor. Please refer to laser bias alarms in chapter 9.2.1(ANI-G) of ITU-T G.988 and chapter 3.1.136(ANI-G Supplemental 1) of latest Nokia ISAM OMCI Interface Specification</description>
+                <advice-for-repair>Check and adjust laser bias current on the ONT/SFP module.</advice-for-repair>
+                <additional-info>
+     This parameter can contain any of the following four values:
+     1. Bias Warning Low (Indicates the bias level of optical module crossed the low warning threshold)
+     2. Bias Warning High (Indicates the bias level of optical module crossed the high warning threshold)
+     3. Bias Low (Indicates the bias level of optical module crossed the low threshold)
+     4. Laser bias current (Laser bias current above threshold determined by vendor; laser end of life pending)
+     </additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1044">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>lan-los</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Ethernet link down. Please refer to LAN-LOS alarm in chapter 9.5.1 of ITU-T G.988</description>
+                <advice-for-repair>Check the Ethernet link</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1045">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>sip-termination-register-authorisation-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>no</service-affecting>
+                <description>The SIP register request has failed because of an authorisation failure. Please refer to SIPUA register auth alarm in chapter 9.9.2 of ITU-T G.988(10/2012)</description>
+                <advice-for-repair>Check auth element</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1046">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>sip-termination-register-request-timeout</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>The SIP register request has failed because of a SIP request timeout. Please refer to SIPUA register timeout alarm in chapter 9.9.2 of ITU-T G.988(10/2012)</description>
+                <advice-for-repair>Check network</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1047">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>sip-termination-register-error-response</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>The SIP register request has been replied by the SIP register server with an error response. Please refer to SIPUA register fail alarm in chapter 9.9.2 of ITU-T G.988(10/2012)</description>
+                <advice-for-repair>Check sip server</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1048">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>sip-termination-register-unresolved-dn</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>no</service-affecting>
+                <description>The SIP register request has failed because of a domain name that could not be resolved. Please refer to SIPUA register name alarm in chapter 9.9.3 of ITU-T G.988(10/2012)</description>
+                <advice-for-repair>Check domain name</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1049">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>physical-pots-interface-file-download-failed</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>no</service-affecting>
+                <description>The file download has failed. Please refer to VCD config file error alarm in chapter 9.9.18 of ITU-T G.988(10/2012)</description>
+                <advice-for-repair>Check configuration file</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1050">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>sip-termination-emergency-call-ongoing</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>The SIP termination is actually involved in an emergency call. Vendor-specific 911 alarm</description>
+                <advice-for-repair>When emergency call finish, it will be cleared</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1051">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>onu-software-not-found</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>ONU planned software version isn't found, vendor specific software isn't found, or the ONU do not support vendor specific file</description>
+                <advice-for-repair>For onu software, first, check if the ONT_Release_Mapping.txt file existed. Second, check if planned release, ONU HW version and software version are defined in this file. Third, check if the corresponding software version file is in the file system. For vendor specific software, first,corrected package is created where missing file or missing ONT type is included and the new corrected package is planned on the ONU. Second,un-plan for an ONU not support vendor specific file. </advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1052">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>onu-software-upgrade-failed</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>Onu software or vendor specifc file upgrade failed, including download failure, or activate failure, or commit failure.</description>
+                <advice-for-repair>Check if this software version or vendor specifc file matches the ONU device.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1053">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>sip-termination-register-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:voiceFXS</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>yes</service-affecting>
+                <description>A condition meaning SIP registration failed for the POTS line.</description>
+                <advice-for-repair>The provisioned POTS service SIP registration failed because authentication failed between the ONT and the registration server. Verify security authentication credentials.  Check SIP server configuration. Deprovision service if no longer required.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1054">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>onu-tod-out-of-sync</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Onu has lost the ToD sync from OLT for 30 minutes. Please refer to time unlock alarm in chapter 9.12.19 of ITU-T G.988 </description>
+                <advice-for-repair>Please check clock related configurations and port status.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1055">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>sip-termination-subscribe-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:voiceFXS</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>A condition meaning SIP subscribe failed for the POTS line.</description>
+                <advice-for-repair>The provisioned POTS service SIP invite failed. Check network connectivity and configuration. Verify domain name. Verify security authentication credentials. Check SIP server configuration. Deprovision service if no longer required.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1056">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>sip-termination-invite-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:voiceFXS</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>A condition meaning SIP invite failed for the POTS line.</description>
+                <advice-for-repair>The provisioned POTS service SIP invite failed. Check network connectivity and configuration. Verify domain name. Verify security authentication credentials. Check SIP server configuration. (Note: 480 and 486 responses are not considered failures for this alarm.). Deprovision service if no longer required.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1057">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>ip-host-down</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ipForward</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>It indicates down response received from the ONT, when the IP Host has not been assigned with IP Address within a time period via DHCP.</description>
+                <advice-for-repair>Check whether DHCP server is correctly connected to the ONT. Check whether DHCP server is able to allocate IP Address to the ONT.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1058">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>uni-loop-detect</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                    <object>
+                        <object-type-class xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Ethernet interface Loop detected.</description>
+                <advice-for-repair>Check ONT LAN link and figure out which interfaces are looped.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1059">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>configuration-mismatch</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianahw:chassis</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>ONU configuration failure triggered due to OMCI error response(s)</description>
+                <advice-for-repair>Correct the erroneous configuration, then trigger full re-provisioning by rebooting the ONT</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1060">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>pse-overload-yellow</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>Indicates that the ONU is nearing its maximum ability to supply the known PoE demand of the attached PDs(Powered Device). The thresholds for declaring and clearing this alarm are vendor-specific.Please refer to PSE overload yellow alarm in chapter 9.1.1 of ITU-T G.988</description>
+                <advice-for-repair>Remove or reduce power to one or more PDs</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1061">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>pse-overload-red</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Indicates that the ONU is unable to supply all of the PoE demand of the attached PDs(Powered Device) and has removed or reduced power to at least one PD. Please refer to PSE overload red alarm in chapter 9.1.1 of ITU-T G.988</description>
+                <advice-for-repair>Remove or reduce power to one or more PDs</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1062">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>cpu-usage-exceeding</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:cpu</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>The CPU usage is too high.</description>
+                <advice-for-repair>No repair actions are required.The alarm will autonomously be cleared after utilization reduced to below the thresholds</advice-for-repair>
+                <additional-info>ONT generates TCA alarm when the average CPU utilization over performance monitong period exceeds the configured threshold value</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1063">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>memory-usage-exceeding</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:cpu</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>The memory usage is too high.</description>
+                <advice-for-repair>No repair actions are required. The alarm will autonomously be cleared after utilization reduced to below the thresholds</advice-for-repair>
+                <additional-info>ONT generates TCA alarm when the average memory utilization exceeds the configured threshold value</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1066">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>omci-communication</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>OMCI communication failure</description>
+                <advice-for-repair>No repair actions are required. The alarm will autonomously be cleared after omci communication with the ONU device is restored as result of any trigger (external or internal) that will lead to a successful omci communication attempt towards that ONU device.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1067">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>uni-rf-video-sig-los</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:nokia-if-id-mounted="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interface-identities-mounted">nokia-if-id-mounted:rf-video-uni</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>loss of RF Video signal at UNI. Please refer to video-LOS alarm in chapter 9.13.1 of ITU-T G.988</description>
+                <advice-for-repair>
+                1. Determine why ONT has lost RF video output signal.
+                2. Check the video overlay signal level on fiber.
+                </advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1068">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>uni-rf-video-sig-level-low</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:nokia-if-id-mounted="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interface-identities-mounted">nokia-if-id-mounted:rf-video-uni</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>rf video signal output power level too low. Please refer to Video-OOR-low alarm in chapter 9.13.1 of ITU-T G.988</description>
+                <advice-for-repair>
+                1. Check and adjust the AGC setting on the ONT.
+                2. Reset the ONT, if failure persists replace the ONT.
+                </advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1069">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>uni-rf-video-sig-level-high</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:nokia-if-id-mounted="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interface-identities-mounted">nokia-if-id-mounted:rf-video-uni</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>rf video signal output power level too high. Please refer to Video-OOR-high alarm in chapter 9.13.1 of ITU-T G.988</description>
+                <advice-for-repair>
+                1. Check and adjust the AGC setting on the ONT.
+                2. Reset the ONT, if failure persists replace the ONT.
+                </advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1070">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>ani-rf-video-sig-los</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:nokia-if-id-mounted="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interface-identities-mounted">nokia-if-id-mounted:rf-video-ani</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>loss of RF Video signal at ANI. Please refer to video-LOS alarm in chapter 9.13.2 of ITU-T G.988</description>
+                <advice-for-repair>
+                1. Check ONT's fiber connection.
+                2. Check the video overlay signal input at source.
+                </advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1071">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>ani-rf-video-sig-level-low</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:nokia-if-id-mounted="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interface-identities-mounted">nokia-if-id-mounted:rf-video-ani</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>1550nm optical video signal strength below lower optical threshold. Please refer to Video-OOR-low alarm in chapter 9.13.2 of ITU-T G.988</description>
+                <advice-for-repair>Check RF video signal (1550nm) and increase signal level at source.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1072">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>ani-rf-video-sig-level-high</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:nokia-if-id-mounted="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interface-identities-mounted">nokia-if-id-mounted:rf-video-ani</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>1550nm optical video signal strength above upper optical threshold. Please refer to Video-OOR-high alarm in chapter 9.13.2 of ITU-T G.988</description>
+                <advice-for-repair>Check RF video signal (1550nm) and decrease signal level at source.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1073">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>moca-limited-link</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:nokia-if-id-mounted="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interface-identities-mounted">nokia-if-id-mounted:moca</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description> Indicates that Bandwidth of link between between 2 nodes on the MoCA network is less than specified value.</description>
+                <advice-for-repair>Check the MoCA link.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1074">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>moca-lol</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:nokia-if-id-mounted="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interface-identities-mounted">nokia-if-id-mounted:moca</object-type-class>
+                        <object-type xmlns:if-mounted="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description> Indicates that Loss of link at the MoCA interface.</description>
+                <advice-for-repair>Check the MoCA link.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1075">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-presence-missing</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description> a transceiver is configured on ONU's UNI while none is detected</description>
+                <advice-for-repair>insert the transceiver on ONU's UNI that matches the configuration.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1076">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>transceiver-property-mismatch</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Mismatch between configured and installed transceiver on ONU's UNI</description>
+                <advice-for-repair>Check if the correct planned-module-type has been used in the configuration and if the correct module type is installed for this configuration.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1077">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>voip-network-specific-file-not-found</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>The voice service profile attempted to access a network specific extensions file that is not available in specified ftp server.</description>
+                <advice-for-repair>Check configuration of network specific extensions file</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1078">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>HGUTR069CUST1</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>yes</service-affecting>
+                <description>A condition meaning WAN1 link is down</description>
+                <advice-for-repair>Check network connectivity and configuration. Connect to HGU GUI locally, if available, to get more information on this condition</advice-for-repair>
+                <additional-info>WAN1 link down</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1079">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>HGUTR069CUST2</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>yes</service-affecting>
+                <description>A condition meaning PPPoE authentication failure occurred on WAN1</description>
+                <advice-for-repair>Check PPPoE credentials on the HGU. Connect to HGU GUI locally, if available, to get more information on this condition</advice-for-repair>
+                <additional-info>PPPoE authentication failure on WAN1</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1080">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>HGUTR069CUST3</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>yes</service-affecting>
+                <description>A condition meaning WAN2 link is down</description>
+                <advice-for-repair>Check network connectivity and configuration. Connect to HGU GUI locally, if available, to get more information on this condition</advice-for-repair>
+                <additional-info>WAN2 link down</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1081">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>HGUTR069CUST4</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>yes</service-affecting>
+                <description>A condition meaning PPPoE authentication failure occurred on WAN2</description>
+                <advice-for-repair>Check PPPoE credentials on the HGU. Connect to HGU GUI locally, if available, to get more information on this condition</advice-for-repair>
+                <additional-info>PPPoE authentication failure on WAN2</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1082">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>HGUTR069CUST5</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>yes</service-affecting>
+                <description>A condition meaning WAN3 link is down</description>
+                <advice-for-repair>Check network connectivity and configuration. Connect to HGU GUI locally, if available, to get more information on this condition</advice-for-repair>
+                <additional-info>WAN3 link down</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1083">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>HGUTR069CUST6</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>yes</service-affecting>
+                <description>A condition meaning PPPoE authentication failure occurred on WAN3</description>
+                <advice-for-repair>Check PPPoE credentials on the HGU. Connect to HGU GUI locally, if available, to get more information on this condition</advice-for-repair>
+                <additional-info>PPPoE authentication failure on WAN3</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1084">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>HGUTR069CUST7</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>yes</service-affecting>
+                <description>A condition meaning WAN4 link is down</description>
+                <advice-for-repair>Check network connectivity and configuration. Connect to HGU GUI locally, if available, to get more information on this condition</advice-for-repair>
+                <additional-info>WAN4 link down</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1085">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>HGUTR069CUST8</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>yes</service-affecting>
+                <description>A condition meaning PPPoE authentication failure occurred on WAN4</description>
+                <advice-for-repair>Check PPPoE credentials on the HGU. Connect to HGU GUI locally, if available, to get more information on this condition</advice-for-repair>
+                <additional-info>PPPoE authentication failure on WAN4</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1086">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>onu-freq-out-of-sync</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>ONU has lost frequency reference from OLT. Please refer to time unlock alarm in chapter 9.12.19 of ITU-T G.988 </description>
+                <advice-for-repair>Please check ONU clock related components status.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1087">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>ESMC-loss</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>ONU has lost SSM messages from OLT for 5 seconds. Please refer to time unlock alarm in chapter 9.12.19 of ITU-T G.988 </description>
+                <advice-for-repair>Please check clock related configurations and port status.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1088">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>fan-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw-mounted="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/hw-mounted:hardware/hw-mounted:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>onu's fan is missing or starting up failure</description>
+                <advice-for-repair>plug in or change the onu's fan</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="onumgnt_hypervisor" id="1107">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-onu-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>mep-ethernet-ais</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:dot1q-cfm="urn:ieee:std:802.1Q:yang:ieee802-dot1q-cfm">dot1q-cfm:cfm</object-type-class>
+                        <object-type xmlns:dot1q-cfm-mounted="urn:ieee:std:802.1Q:yang:ieee802-dot1q-cfm-mounted" xmlns:onu="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">/onu:onus/onu:onu/onu:root/dot1q-cfm-mounted:cfm/dot1q-cfm-mounted:maintenance-group</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Ethernet AIS received</description>
+                <advice-for-repair>Check device failures or physical links on remote MEP</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="syslog" id="57">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-syslog-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>handshake-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:syslog="urn:ietf:params:xml:ns:yang:ietf-syslog">syslog:syslog</object-type-class>
+                        <object-type xmlns:syslog="urn:ietf:params:xml:ns:yang:ietf-syslog">/syslog:syslog/syslog:actions/syslog:remote/syslog:destination/syslog:name</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>TLS handshake failure </description>
+                <advice-for-repair>Verify certificates consistency among client and server</advice-for-repair>
+                <additional-info>Remote destination Name: [value] , address: [value], port: [value], Failure reason: [value]</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="syslog" id="58">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-syslog-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>loss-of-connection</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:syslog="urn:ietf:params:xml:ns:yang:ietf-syslog">syslog:syslog</object-type-class>
+                        <object-type xmlns:syslog="urn:ietf:params:xml:ns:yang:ietf-syslog">/syslog:syslog/syslog:actions/syslog:remote/syslog:destination/syslog:name</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>no</service-affecting>
+                <description>Loss of TLS session</description>
+                <advice-for-repair>Check network connectivity</advice-for-repair>
+                <additional-info>Remote destination Name: [value] , address: [value], port: [value], Failure reason: Connection Refused</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="zero-touch-provision" id="92">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-zero-touch-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>completed-sztp-process-requires-closure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>critical</severity>
+                <service-affecting>yes</service-affecting>
+                <description>sZTP process is completed but sZTP config flag remained as enabled</description>
+                <advice-for-repair>Disable sZTP config flag via '/sztp/disabled'</advice-for-repair>
+                <additional-info>sZTP is completed but /sztp/enabled yang leaf is still true. Please disable sZTP  otherwise the board will be rebooted and reverted to factory settings in [value] minutes</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="xponinframgnt" id="10">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-xponInfraMgnt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>channel-termination-communication-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-termination</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>critical</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Cage bring-up failure detected. </description>
+                <advice-for-repair>Reboot the LT card. </advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+            <alarm>
+                <internal-alarm-number>6</internal-alarm-number>
+                <alarm-type-id>channel-termination-rogue-test-ongoing</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-termination</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>no</service-affecting>
+                <description>A diagnostics test is currently active on the Channel Termination looking for misbehaving ONUs. </description>
+                <advice-for-repair>Alarm will clear itself when diagnostics test is finished. </advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+            <alarm>
+                <internal-alarm-number>9</internal-alarm-number>
+                <alarm-type-id>channel-termination-inactive-onu-disabled</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-termination</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>minor</severity>
+                <service-affecting>yes</service-affecting>
+                <description>This alarm indicates that due to 'rogue ONU testing', one or more unknown ONUs on the Channel Termination may have been DISABLED via OLT broadcast. </description>
+                <advice-for-repair>Check ONUs connected to the Channel-Termination for rogue behavior. </advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+            <alarm>
+                <internal-alarm-number>10</internal-alarm-number>
+                <alarm-type-id>channel-termination-optics-mismatch</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-termination</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>This alarm indicates that there is mismatch between the channel-pair configuration and the actual optical module that is plugged in. </description>
+                <advice-for-repair>Correct the channel-pair configuration, or plug in a correct SFP that matches the channel-pair configuration, or do both. </advice-for-repair>
+                <additional-info>
+        This parameter can contain any of the following values:
+        1. Actual SFP burst overhead doesn't match with planned burst overhead.
+        2. Actual SFP downstream wavelength doesn't match with planned wavelength.
+        3. Actual SFP line rate doesn't match with planned line rate.
+        </additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="xponinframgnt" id="48">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-xponInfraMgnt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>channel-termination-loss-of-signal</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-termination</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Loss of signal (PON_LOS) detected on OLT port. </description>
+                <advice-for-repair>Depending on root cause of channel-termination-los (see additional alarm info): restore power to all ONUs connected on the channel-termination, or check feeder fiber for cuts, or check physical connectivity between OLT and ONUs.</advice-for-repair>
+                <additional-info>
+     This parameter can contain any of the following values:
+     1. LOSi/LOBi detected for all ONUs
+     2. Dying Gasp detected for all ONUs
+     </additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="xponinframgnt" id="50">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-xponInfraMgnt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>onu-upstream-rx-power-exceed-threshold</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware-state/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severityList>
+                    <severity defaultSeverity="true">major</severity>
+                    <severity>minor</severity>
+                </severityList>
+                <service-affecting>yes</service-affecting>
+                <description>Received power of ONU at OLT PON side, on per ONU basis, is exceeding the system defined thresholds.</description>
+                <advice-for-repair>Check environment of the system. Check SFP spec for more information.</advice-for-repair>
+                <additional-info>
+    This parameter can contain any of the following four values:
+    1. Received power Warning Low (Indicates the received power of ONU at OLT PON side crossed the low warning threshold)
+    2. Received power Warning High (Indicates the received power of ONU at OLT PON side crossed the high warning threshold)
+    3. Low Received power (Indicates the received power of ONU at OLT PON side below lower alarm threshold)
+    4. High Received power (Indicates the received power of ONU at OLT PON side above upper alarm threshold)
+    </additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="xponinframgnt" id="79">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-xponInfraMgnt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>backplane-link-speed-incompatible</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:board</object-type-class>
+                        <object-type xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">/hw:hardware/hw:component</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>The backplane link speed is not compatible with the PON configuration.</description>
+                <advice-for-repair>Use an NT card with a compatible link speed or change the PON configuration.</advice-for-repair>
+                <additional-info>EVENT=value, where value corresponds to the list of the channel-termination references  where this alarm is detected.</additional-info>
+            </alarm>
+        </alarmtype>
+        <alarmtype domain="xponinframgnt" id="97">
+            <namespace>https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-xponInfraMgnt-alarm-types</namespace>
+            <alarm>
+                <internal-alarm-number>1</internal-alarm-number>
+                <alarm-type-id>channel-termination-data-path-integrity-failure</alarm-type-id>
+                <objects-supported>
+                    <object>
+                        <object-type-class xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-termination</object-type-class>
+                        <object-type xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">/if:interfaces/if:interface</object-type>
+                    </object>
+                </objects-supported>
+                <severity>major</severity>
+                <service-affecting>yes</service-affecting>
+                <description>Data path integrity failure is detected.</description>
+                <advice-for-repair>This failure can be recovered by resetting the LT board where the PON resides.</advice-for-repair>
+                <additional-info>NULL</additional-info>
+            </alarm>
+        </alarmtype>
+    </alarms>
+</domain>

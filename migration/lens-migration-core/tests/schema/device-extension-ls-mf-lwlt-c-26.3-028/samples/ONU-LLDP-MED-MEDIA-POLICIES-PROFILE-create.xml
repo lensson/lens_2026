@@ -1,0 +1,74 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <lldp xmlns="urn:ieee:std:802.1AB:yang:ieee802-dot1ab-lldp-mounted">
+              <lldp-med-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-lldp-mounted">
+                <lldp-med-media-policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                  <name>${lldp\-med\-plug\-and\-play\-lan\-policy\-for\-voice}</name>
+                  <lldp-med-media-policy-per-app>
+                    <app-type>${voice\-app\-type}</app-type>
+                    <vlan-id>${vlan\-id\-voice\-app\-voice\-profile}</vlan-id>
+                    <priority>${pri\-voice\-app\-voice\-profile}</priority>
+                  </lldp-med-media-policy-per-app>
+                </lldp-med-media-policy-profile>
+                <lldp-med-media-policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                  <name>${lldp\-med\-media\-policies\-for\-all\-apps}</name>
+                  <lldp-med-media-policy-per-app>
+                    <app-type>${voice\-app\-type}</app-type>
+                    <vlan-id>${vlan\-id\-voice\-app\-all\-apps\-profile}</vlan-id>
+                    <priority>${pri\-voice\-app\-all\-apps\-profile}</priority>
+                  </lldp-med-media-policy-per-app>
+                  <lldp-med-media-policy-per-app>
+                    <app-type>${guest\-voice\-app\-type}</app-type>
+                    <vlan-id>${vlan\-id\-guest\-voice\-app\-all\-apps\-profile}</vlan-id>
+                    <priority>${pri\-guest\-voice\-app\-all\-apps\-profile}</priority>
+                  </lldp-med-media-policy-per-app>
+                  <lldp-med-media-policy-per-app>
+                    <app-type>${guest\-voice\-signaling\-app\-type}</app-type>
+                    <vlan-id>${vlan\-id\-guest\-voice\-signaling\-app\-all\-apps\-profile}</vlan-id>
+                    <priority>${pri\-guest\-voice\-signaling\-app\-all\-apps\-profile}</priority>
+                  </lldp-med-media-policy-per-app>
+                  <lldp-med-media-policy-per-app>
+                    <app-type>${softphone\-voice\-app\-type}</app-type>
+                    <vlan-id>${vlan\-id\-softphone\-voice\-app\-all\-apps\-profile}</vlan-id>
+                    <priority>${pri\-softphone\-voice\-app\-all\-apps\-profile}</priority>
+                  </lldp-med-media-policy-per-app>
+                  <lldp-med-media-policy-per-app>
+                    <app-type>${streaming\-video\-app\-type}</app-type>
+                    <dscp>${dscp\-streaming\-video\-app\-all\-apps\-profile}</dscp>
+                  </lldp-med-media-policy-per-app>
+                  <lldp-med-media-policy-per-app>
+                    <app-type>${unknown\-app\-type}</app-type>
+                    <media-policy-unknown/>
+                  </lldp-med-media-policy-per-app>
+                  <lldp-med-media-policy-per-app>
+                    <app-type>${video\-conferencing\-app\-type}</app-type>
+                    <vlan-id>${vlan\-id\-video\-conferencing\-app\-all\-apps\-profile}</vlan-id>
+                    <priority>${pri\-video\-conferencing\-app\-all\-apps\-profile}</priority>
+                  </lldp-med-media-policy-per-app>
+                  <lldp-med-media-policy-per-app>
+                    <app-type>${video\-signaling\-app\-type}</app-type>
+                    <vlan-id>${vlan\-id\-video\-signaling\-app\-all\-apps\-profile}</vlan-id>
+                    <priority>${pri\-video\-signaling\-app\-all\-apps\-profile}</priority>
+                  </lldp-med-media-policy-per-app>
+                  <lldp-med-media-policy-per-app>
+                    <app-type>${voice\-signaling\-app\-type}</app-type>
+                    <vlan-id>${vlan\-id\-voice\-signaling\-app\-all\-apps\-profile}</vlan-id>
+                    <priority>${pri\-voice\-signaling\-app\-all\-apps\-profile}</priority>
+                  </lldp-med-media-policy-per-app>
+                </lldp-med-media-policy-profile>
+              </lldp-med-profiles>
+            </lldp>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

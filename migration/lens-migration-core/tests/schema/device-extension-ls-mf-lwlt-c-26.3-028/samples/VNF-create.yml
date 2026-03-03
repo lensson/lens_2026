@@ -1,0 +1,16 @@
+arguments:
+  name:
+    suggested-values:
+    - vOnuMgmt
+  type:
+    suggested-values:
+    - vonumgmt
+  nav-ipaddr:
+    suggested-values:
+    - 10.10.10.11
+domains: system>vnf
+freemarker: true
+name: Configure virtual network function
+operation: edit
+sample-id: system-vnf-edit
+status: draft

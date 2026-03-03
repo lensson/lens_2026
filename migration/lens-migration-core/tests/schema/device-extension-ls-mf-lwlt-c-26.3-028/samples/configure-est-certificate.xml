@@ -1,0 +1,33 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+   <target> <running/> </target>
+    <config>
+    <netconf-server xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-server">
+    <call-home>
+        <netconf-client>
+        <name>${netconf\-client\-name}</name>
+        <endpoints>
+            <endpoint>
+                <name>certificate_endpoint</name>
+                <tls>
+                    <#if server\-auth\-est\-profile\-name?has_content>
+                    <server-identity>
+                        <est-certificate-profile-reference xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-netconf-server">
+                        <est-certificate-profile>${server\-auth\-est\-profile\-name}</est-certificate-profile>
+                        </est-certificate-profile-reference>
+                    </server-identity>
+                    </#if>
+                    <#if client\-auth\-est\-profile\-name?has_content>
+                    <client-auth>
+                        <est-certificate-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-netconf-server">${client\-auth\-est\-profile\-name}</est-certificate-profile>
+                    </client-auth>
+                    </#if>
+                </tls>
+            </endpoint>
+        </endpoints>
+        </netconf-client>
+    </call-home>
+    </netconf-server>
+      </config>
+     </edit-config>
+ </rpc>

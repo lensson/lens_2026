@@ -1,0 +1,29 @@
+arguments:
+  alarm-type-id:
+    description: Identifies an alarm type. Only identities of concrete alarm types
+      (present in the alarm inventory) can be configured. Usage of an abstract alarm
+      type will be rejected. Refer to alarms guide or alarm-inventory for the available
+      alarm types as well as for their namespaces. This parameter must be configured
+      in combination with alarm-type-ns.
+    optional: true
+    suggested-values:
+    - end-cert-expiration
+  alarm-type-ns:
+    description: The namespace of configured alarm-type-id. Refer to alarms guide
+      or alarm-inventory for the applicable namespace per alarm type id. This parameter
+      must be configured in combination with alarm-type-id.
+    optional: true
+    suggested-values:
+    - https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-certificate-alarm-types
+  disable-system-clearance-delay:
+    description: Disable alarm clearance delay on system level, if it is set to true.
+    suggested-values:
+    - false
+available-locally: true
+domains: system>alarms>control
+entity: clearance-delay
+freemarker: true
+name: Remove alarm clearance delay
+operation: remove
+sample-id: system-alarms-control-clearance-delay-remove
+status: draft

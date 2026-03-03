@@ -1,0 +1,31 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <multicast xmlns="urn:bbf:yang:bbf-mgmd">
+        <mgmd>
+          <multicast-vpn>
+            <name>${vpn\-name}</name>
+            <multicast-interface-to-host>
+                <name>${vpn\-host\-port\-name}</name>
+<#if ibridge\-user\-port\-name?has_content>
+                <vlan-sub-interface>${ibridge\-user\-port\-name}-VSI</vlan-sub-interface>
+<#elseif cc\-name?has_content>
+                <vlan-sub-interface>${cc\-name}-USER-VSI</vlan-sub-interface>
+</#if>
+<#if unmatched\-join\-processing\-user\-port\-name?has_content>
+                <data-path-vlan-sub-interface>${unmatched\-join\-processing\-user\-port\-name}</data-path-vlan-sub-interface>
+</#if>
+<#if max\-group\-number?has_content>
+                <max-group-number>${max\-group\-number}</max-group-number>
+</#if>
+                <multicast-package>${multicast\-package\-name}</multicast-package>
+            </multicast-interface-to-host>
+          </multicast-vpn>
+        </mgmd>
+      </multicast>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,16 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  component-name:
+    description: component name
+  power-shed-profile-name:
+    description: power shedding profiles name
+domains: onu>transport>powershed
+freemarker: true
+name: Detach powershed profile to ONU
+operation: detach
+sample-id: onu-transport-powershed-detach
+scope: eonu
+status: draft

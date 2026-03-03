@@ -1,0 +1,16 @@
+arguments:
+  group-name:
+    description: Group name associated with this entry.
+    suggested-values:
+    - admin-group
+  user-name:
+    description: Users name to be removed from the group
+    optional: true
+    suggested-values:
+    - test_user
+domains: system>authorization>groups
+freemarker: true
+name: Remove user from a system group
+operation: remove
+sample-id: system-authorization-groups-remove
+status: draft

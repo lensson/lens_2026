@@ -1,0 +1,20 @@
+arguments:
+  feature-name:
+    description: Indicates by which feature the certificate is used
+    suggested-values:
+    - syslog
+  certificate-name:
+    description: User can choose for which of the available certificates, the data
+      will be displayed
+    suggested-values:
+    - logCollector2
+  format:
+    description: Format could be either "raw" (encoded) or "details" (decoded)
+    suggested-values:
+    - raw
+domains: system>certificate>end-user
+freemarker: true
+name: Display an end-user certificate
+operation: show-cert
+sample-id: system-certificate-end-user-show-cert
+status: draft

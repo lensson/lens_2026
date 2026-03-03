@@ -1,0 +1,446 @@
+arguments:
+  policing-profile-name:
+    description: Policing profile name
+    suggested-values:
+    - policing-profile
+  policing-scope:
+    description: the scope of the policer instance sharing is within ethernet-interface
+      or vlan-sub-interface, without configuring scope means sharing within ccl conditions
+      in same vsi.
+    optional: true
+  policing-type-cos:
+    description: type of policer trtcm-with-cos (two-rate-three-color-marker-with-cos)
+      or trtcm-mef-with-cos(two-rate-three-color-marker-mef-with-cos)
+    suggested-values:
+    - trtcm
+  policing-coupling-flag:
+    description: flag indicating whether tokens that would overflow the C-bucket should
+      be added to the E-bucket
+    suggested-values:
+    - 0
+    - 1
+  policing-cir:
+    description: the average rate of traffic that respect the guarantees of bandwidth
+    suggested-values:
+    - 20000000
+  policing-eir:
+    description: how much traffic exceeding the CIR can be admitted in the network
+      with the assurance that it will not be discarded directly by the policer.
+    suggested-values:
+    - 10000000
+  policing-pir:
+    description: average rate of traffic that is admitted in the network with the
+      assurance that it will not be discarded directly by the policer.
+    suggested-values:
+    - 10000000
+  policing-cbs:
+    description: the amount of traffic that can be admitted above the CIR and is considered
+      green.
+    suggested-values:
+    - 10240
+  policing-ebs:
+    description: the amount of excessive traffic that can be admitted above the EIR
+      without being discarded directly by the policer (yellow).
+    suggested-values:
+    - 10240
+  policing-pbs:
+    description: the amount of traffic that can be admitted above the PIR (burst)
+      without being discarded directly by the policer (yellow).
+    suggested-values:
+    - 10240
+  policing-tc-cbs-0:
+    description: Identifies the policing-traffic-class value in cbs bucket
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-cbs-1:
+    description: Identifies the policing-traffic-class value in cbs bucket
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-cbs-2:
+    description: Identifies the policing-traffic-class value in cbs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-cbs-3:
+    description: Identifies the policing-traffic-class value in cbs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-cbs-4:
+    description: Identifies the policing-traffic-class value in cbs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-cbs-5:
+    description: Identifies the policing-traffic-class value in cbs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-cbs-6:
+    description: Identifies the policing-traffic-class value in cbs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-cbs-7:
+    description: Identifies the policing-traffic-class value in cbs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-pbs-0:
+    description: Identifies the policing-traffic-class value in pbs bucket
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-pbs-1:
+    description: Identifies the policing-traffic-class value in pbs bucket
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-pbs-2:
+    description: Identifies the policing-traffic-class value in pbs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-pbs-3:
+    description: Identifies the policing-traffic-class value in pbs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-pbs-4:
+    description: Identifies the policing-traffic-class value in pbs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-pbs-5:
+    description: Identifies the policing-traffic-class value in pbs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-pbs-6:
+    description: Identifies the policing-traffic-class value in pbs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-pbs-7:
+    description: Identifies the policing-traffic-class value in pbs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-ebs-0:
+    description: Identifies the policing-traffic-class value in ebs bucket
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-ebs-1:
+    description: Identifies the policing-traffic-class value in ebs bucket
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-ebs-2:
+    description: Identifies the policing-traffic-class value in ebs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-ebs-3:
+    description: Identifies the policing-traffic-class value in ebs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-ebs-4:
+    description: Identifies the policing-traffic-class value in ebs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-ebs-5:
+    description: Identifies the policing-traffic-class value in ebs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-ebs-6:
+    description: Identifies the policing-traffic-class value in ebs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-ebs-7:
+    description: Identifies the policing-traffic-class value in ebs bucket
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  policing-tc-cbs-threshold-0:
+    description: Identifies the threshold value for a policing-tc-cbs-0
+    suggested-values:
+    - 95
+  policing-tc-cbs-threshold-1:
+    description: Identifies the threshold value for a policing-tc-cbs-1
+    suggested-values:
+    - 95
+  policing-tc-cbs-threshold-2:
+    description: Identifies the threshold value for a policing-tc-cbs-2
+    suggested-values:
+    - 95
+  policing-tc-cbs-threshold-3:
+    description: Identifies the threshold value for a policing-tc-cbs-3
+    suggested-values:
+    - 95
+  policing-tc-cbs-threshold-4:
+    description: Identifies the threshold value for a policing-tc-cbs-4
+    suggested-values:
+    - 95
+  policing-tc-cbs-threshold-5:
+    description: Identifies the threshold value for a policing-tc-cbs-5
+    suggested-values:
+    - 95
+  policing-tc-cbs-threshold-6:
+    description: Identifies the threshold value for a policing-tc-cbs-6
+    suggested-values:
+    - 95
+  policing-tc-cbs-threshold-7:
+    description: Identifies the threshold value for a policing-tc-cbs-7
+    suggested-values:
+    - 95
+  policing-tc-pbs-threshold-0:
+    description: Identifies the threshold value for a policing-tc-pbs-0
+    suggested-values:
+    - 95
+  policing-tc-pbs-threshold-1:
+    description: Identifies the threshold value for a policing-tc-pbs-1
+    suggested-values:
+    - 95
+  policing-tc-pbs-threshold-2:
+    description: Identifies the threshold value for a policing-tc-pbs-2
+    suggested-values:
+    - 95
+  policing-tc-pbs-threshold-3:
+    description: Identifies the threshold value for a policing-tc-pbs-3
+    suggested-values:
+    - 95
+  policing-tc-pbs-threshold-4:
+    description: Identifies the threshold value for a policing-tc-pbs-4
+    suggested-values:
+    - 95
+  policing-tc-pbs-threshold-5:
+    description: Identifies the threshold value for a policing-tc-pbs-5
+    suggested-values:
+    - 95
+  policing-tc-pbs-threshold-6:
+    description: Identifies the threshold value for a policing-tc-pbs-6
+    suggested-values:
+    - 95
+  policing-tc-pbs-threshold-7:
+    description: Identifies the threshold value for a policing-tc-pbs-7
+    suggested-values:
+    - 95
+  policing-tc-ebs-threshold-0:
+    description: Identifies the threshold value for a policing-tc-ebs-0
+    suggested-values:
+    - 95
+  policing-tc-ebs-threshold-1:
+    description: Identifies the threshold value for a policing-tc-ebs-1
+    suggested-values:
+    - 95
+  policing-tc-ebs-threshold-2:
+    description: Identifies the threshold value for a policing-tc-ebs-2
+    suggested-values:
+    - 95
+  policing-tc-ebs-threshold-3:
+    description: Identifies the threshold value for a policing-tc-ebs-3
+    suggested-values:
+    - 95
+  policing-tc-ebs-threshold-4:
+    description: Identifies the threshold value for a policing-tc-ebs-4
+    suggested-values:
+    - 95
+  policing-tc-ebs-threshold-5:
+    description: Identifies the threshold value for a policing-tc-ebs-5
+    suggested-values:
+    - 95
+  policing-tc-ebs-threshold-6:
+    description: Identifies the threshold value for a policing-tc-ebs-6
+    suggested-values:
+    - 95
+  policing-tc-ebs-threshold-7:
+    description: Identifies the threshold value for a policing-tc-ebs-7
+    suggested-values:
+    - 95
+  policing-pre-handling-profile-name:
+    description: Policing pre handling profile name
+    optional: true
+    suggested-values:
+    - policing-pre-handling-profile
+  policing-action-profile-name:
+    description: Policing action profile name
+    optional: true
+    suggested-values:
+    - policing-action-profile
+domains: unicast>qos>policy-profiles
+entity: policing_profile_with_type_cos
+freemarker: true
+name: Configure QoS policing profile of type COS
+operation: edit
+sample-id: unicast-qos-policy-profiles-policing_profile_with_type_cos-edit
+scope: not(mx) and not(dpu)
+status: draft

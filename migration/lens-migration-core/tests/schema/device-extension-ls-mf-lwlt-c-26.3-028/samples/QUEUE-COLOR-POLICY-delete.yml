@@ -1,0 +1,13 @@
+arguments:
+  color-policy-name:
+    description: Policy name
+    suggested-values:
+    - color-policy
+domains: unicast>qos>policy-profiles
+entity: queue_color_policy
+freemarker: true
+name: Remove QoS Queue color policy
+operation: remove
+sample-id: unicast-qos-policy-profiles-queue_color_policy-remove
+scope: not(mx) and not(dpu) and not(qos-fiber-xpon-hwv5)
+status: draft

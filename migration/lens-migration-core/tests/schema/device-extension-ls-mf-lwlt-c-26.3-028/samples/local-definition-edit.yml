@@ -1,0 +1,13 @@
+arguments:
+  netconf-client-name:
+    description: Name of NETCONF clients list
+    suggested-values:
+    - nc-client
+available-locally: true
+domains: system>callhome
+entity: local-definition
+freemarker: true
+name: Create the local-definition node
+operation: edit
+sample-id: system-callhome-local-definition-edit
+status: draft

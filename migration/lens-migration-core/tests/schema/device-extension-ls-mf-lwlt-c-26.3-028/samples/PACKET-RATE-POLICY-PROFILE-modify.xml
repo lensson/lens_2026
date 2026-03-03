@@ -1,0 +1,21 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+        <classifier-entry>
+          <name>${packet-rate-policy-profile-name|PacketRateLimit0}</name>
+          <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-rc="urn:bbf:yang:bbf-qos-rate-control">bbf-qos-rc:rate-limit-frames</action-type>
+            <rate-limit-frames xmlns="urn:bbf:yang:bbf-qos-rate-control">
+              <rate>${rate|100}</rate>
+              <burst-size>${burst-size|80}</burst-size>
+            </rate-limit-frames>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+      </classifiers>
+    </config>
+  </edit-config>
+</rpc>

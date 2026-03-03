@@ -1,0 +1,17 @@
+arguments:
+  group-name:
+    description: Group name associated with this entry.
+    optional: true
+    suggested-values:
+    - admin-group
+  user-name:
+    description: User name to be found in group.
+    optional: true
+    suggested-values:
+    - admin
+domains: system>authorization>groups
+freemarker: true
+name: Retrieve users of a system group
+operation: get-config
+sample-id: system-authorization-groups-get-config
+status: draft

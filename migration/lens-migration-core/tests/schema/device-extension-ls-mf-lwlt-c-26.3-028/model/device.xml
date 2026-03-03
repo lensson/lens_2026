@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Device type="LS-MF-LWLT-C" version="26.3" build="028"
+       xmlns="http://www.nokia.com/anv/schemas/device/1.0"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <requestTimeoutInSeconds>7200</requestTimeoutInSeconds>
+    <maxSizeForSelectAttribute>4096</maxSizeForSelectAttribute>
+    <useMultipleNetconfSessions>true</useMultipleNetconfSessions>
+    <capabilities>
+        <value>urn:ietf:params:netconf:base:1.0</value>
+        <value>urn:ietf:params:netconf:base:1.1</value>
+        <value>urn:ietf:params:netconf:capability:writable-running:1.0</value>
+        <value>urn:ietf:params:netconf:capability:notification:1.0</value>
+        <value>urn:ietf:params:netconf:capability:interleave:1.0</value>
+    </capabilities>
+    <excludedFromHello>
+    </excludedFromHello>
+    <deviceMisalignmentOperation>COPY_CONFIG</deviceMisalignmentOperation>
+    <softwareInstaller>nokia-zip-tar</softwareInstaller>
+    <softwareLocation>
+        <hardwareComponentName>Chassis</hardwareComponentName>
+        <softwareName>application_software</softwareName>
+    </softwareLocation>
+    <discoverBeforeCopyConfig>
+        <filter type="subtree" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+           <nacm xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-acm">
+              <groups/>
+              <rule-list/>
+           </nacm>
+      <hardware xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware">
+         <component>
+            <name>Chassis</name>
+            <model-name xmlns="urn:bbf:yang:bbf-hardware-extension"/>
+         </component>
+         <component>
+            <name>Slot</name>
+            <parent-rel-pos/>
+         </component>
+      </hardware>
+        </filter>
+    </discoverBeforeCopyConfig>
+    <tlsfingerprint>
+        <supportedHashAlgo>md5</supportedHashAlgo>
+        <supportedHashAlgo>sha1</supportedHashAlgo>
+        <supportedHashAlgo>sha224</supportedHashAlgo>
+        <supportedHashAlgo>sha256</supportedHashAlgo>
+        <supportedHashAlgo>sha384</supportedHashAlgo>
+        <supportedHashAlgo>sha512</supportedHashAlgo>
+    </tlsfingerprint>
+    <ignoredFromTypeReleaseCheck>
+        <value>Module missing in plug: (urn:bbf:yang:nokia-sdan-li?revision=2025-12-16)nokia-sdan-li</value>
+        <value>Module missing in plug: (urn:bbf:yang:nokia-sdan-li-ip-filter?revision=2025-01-03)nokia-sdan-li-ip-filter</value>
+        <value>Module missing in plug: (urn:bbf:yang:nokia-sdan-li-system?revision=2025-01-03)nokia-sdan-li-system</value>
+        <value>Deviation missing in plug: (http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-li-common-dev?revision=2025-12-03)nokia-sdan-li-common-dev on (urn:bbf:yang:nokia-sdan-li?revision=2025-12-16)nokia-sdan-li</value>
+        <value>Deviation missing in plug: (http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-li-ip-filter-common-dev?revision=2025-10-22)nokia-sdan-li-ip-filter-common-dev on (urn:bbf:yang:nokia-sdan-li-ip-filter?revision=2025-01-03)nokia-sdan-li-ip-filter</value>
+        <value>Deviation missing in plug: (urn:bbf:yang:nokia-sdan-li-system-common-dev?revision=2025-10-22)nokia-sdan-li-system-common-dev on (urn:bbf:yang:nokia-sdan-li-system?revision=2025-01-03)nokia-sdan-li-system</value>
+    </ignoredFromTypeReleaseCheck>
+</Device>

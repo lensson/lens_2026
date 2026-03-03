@@ -1,0 +1,47 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ACS-server-uri:
+    description: ACS server uri
+  reference-onu-v-vrefpoint:
+    description: reference onu vrefpoint interface name
+  authentication-user-name:
+    description: Authentication user name
+    suggested-values:
+    - admin
+  authentication-user-password:
+    description: authentication user password.
+    sensitive: true
+    suggested-values:
+    - admin
+  authentication-validation-scheme:
+    description: In almost all the deployment scenarios, validation scheme with md5-digest
+      is selected
+    suggested-values:
+    - md5-digest
+  management-VLAN:
+    description: TR-069 management traffic VLAN
+    suggested-values:
+    - 100
+  management-pbit:
+    description: TR-069 management traffic pbit
+    suggested-values:
+    - 0
+  management-dei:
+    description: TR-069 management traffic dei
+    suggested-values:
+    - 1
+  admin-state:
+    description: In almost all the deployment scenarios, the TR-069 connection is
+      configured with unlocked.
+    suggested-values:
+    - unlocked
+domains: onu>transport>tr069
+freemarker: true
+name: Edit TR069 to ONU
+operation: edit
+sample-id: onu-transport-tr069-edit
+scope: eonu
+status: draft

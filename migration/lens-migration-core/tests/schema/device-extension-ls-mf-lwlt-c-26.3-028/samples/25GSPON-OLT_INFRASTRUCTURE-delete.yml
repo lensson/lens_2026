@@ -1,0 +1,12 @@
+arguments:
+  olt-infrastructure-name:
+    description: OLT infrastructure name.
+    suggested-values:
+    - 25gspon-2-1
+domains: transport>25gspon>olt-infrastructure
+freemarker: true
+name: Remove 25gspon olt infrastructure
+operation: delete
+sample-id: transport-25gspon-olt-infrastructure-delete
+scope: 25gspon
+status: draft

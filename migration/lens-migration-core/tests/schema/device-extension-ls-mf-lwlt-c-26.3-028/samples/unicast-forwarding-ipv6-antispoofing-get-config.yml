@@ -1,0 +1,14 @@
+arguments:
+  cc-name:
+    description: The name of CC sample. In IBRIDGE senario, leave it empty
+    optional: true
+  ibridge-user-port-name:
+    description: The name of IBRIDGE-USER-PORT sample. In CC senario, leave it empty
+    optional: true
+domains: unicast>forwarding>ipv6-antispoofing
+freemarker: true
+name: Retrieve IPv6 antispoofing configuration data
+operation: get-config
+sample-id: unicast-forwarding-ipv6-antispoofing-get-config
+scope: fiber
+status: draft

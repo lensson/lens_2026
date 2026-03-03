@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  timezone-name:
+    description: Time zone name as used by the Time Zone Database
+    suggested-values:
+    - Europe/Stockholm
+domains: onu>system>date-time>timezone
+entity: name
+freemarker: true
+name: Configure system timezone name
+operation: edit
+sample-id: onu-system-date-time-timezone-name-edit
+scope: eonu
+status: draft

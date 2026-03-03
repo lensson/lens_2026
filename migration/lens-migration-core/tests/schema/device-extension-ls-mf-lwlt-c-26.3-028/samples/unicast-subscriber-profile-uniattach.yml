@@ -1,0 +1,17 @@
+arguments:
+  enet-name:
+    description: The name of the virtual ENET
+    suggested-values:
+    - uni-1-1-1-1
+  subscriber_profile_name:
+    description: Name of the Subscriber profile
+    suggested-values:
+    - subscriber_profile
+domains: unicast>subscriber
+entity: profile-uni-interface
+freemarker: true
+name: Attach subscriber profile to UNI interface
+operation: edit
+sample-id: unicast-subscriber-profile-uni-interface-edit
+scope: not(fx-p2p) and not(dpu) and not(mx)
+status: draft

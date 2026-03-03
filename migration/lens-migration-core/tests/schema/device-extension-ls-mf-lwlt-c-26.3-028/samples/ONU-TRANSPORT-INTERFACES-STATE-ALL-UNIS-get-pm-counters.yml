@@ -1,0 +1,12 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+domains: onu>transport>xpon>aggregate-pm>enet
+freemarker: true
+name: Get PM counters
+operation: get-pm-counters
+sample-id: onu-transport-xpon-aggregate-pm-enet-get-pm-counters
+scope: eonu
+status: draft

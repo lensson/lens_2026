@@ -1,0 +1,54 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get>
+    <filter type="subtree">
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <hardware-state xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted">
+              <component xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+<#if eth\-port\-hw\-option== "veip" >
+                <name>VEIPPORT${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:virtual-port</class>
+<#else>
+<#if special\-integrated\-ONUs?has_content && special\-integrated\-ONUs== true >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:rj45</class>
+<#else>
+<#if eth\-port\-hw\-option== "rj45" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:rj45</class>
+<#else>
+<#if pluggable\-optical\-electrical\-SFP?has_content && pluggable\-optical\-electrical\-SFP== true >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</class>
+<#else>
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:${eth\-port\-hw\-option}</class>
+</#if>
+</#if>
+</#if>
+</#if>
+              </component>
+<#if pluggable\-optical\-electrical\-SFP?has_content && pluggable\-optical\-electrical\-SFP== true >
+              <component xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                <name>25G_cage</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:cage-uni</class>
+              </component>
+              <component xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                <name>25G_transceiver</name>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</class>
+              </component>
+</#if>
+            </hardware-state>
+            <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                <name>${enet\-name}</name>
+              </interface>
+            </interfaces-state>
+          </root>
+        </onu>
+      </onus>
+    </filter>
+  </get>
+</rpc>

@@ -1,0 +1,20 @@
+arguments:
+  tc2q-prof-name:
+    description: Name of the TC-2-Queue mapping profile. If this is not provided,
+      then all the configured TC-2-Queue mapping profiles will be retrieved.
+    optional: true
+    suggested-values:
+    - 8queues
+  detailed-output:
+    description: Provides detailed profile configuration data of all the TC-2-Queue
+      mapping profiles in the system when enabled and only TC-2-Queue mapping profile
+      names when disabled. This argument will be ignored when tc2q-prof-name is provided.
+    suggested-values:
+    - false
+domains: unicast>qos>tm
+entity: tc-2-queue-profile
+freemarker: true
+name: Retrieve Traffic class to Queue mapping profile
+operation: get-config
+sample-id: unicast-qos-tm-tc-2-queue-profile-get-config
+status: draft

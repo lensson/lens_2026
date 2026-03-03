@@ -1,0 +1,13 @@
+arguments:
+  network-policy-profile-name:
+    description: QoS Policy profile name
+    suggested-values:
+    - up-egress-qos
+domains: multicast>qos
+entity: network_policy_profile
+freemarker: true
+name: Delete MULTICAST SERVICES QoS POLICY PROFILE
+operation: delete
+sample-id: multicast-qos-network_policy_profile-delete
+scope: multicast-fiber and not(dpu)
+status: draft

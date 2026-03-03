@@ -1,0 +1,126 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="merge">
+          <name>${olt\-infrastructure\-name}-cpartition</name>
+          <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-partition</type>
+          <channel-partition xmlns="urn:bbf:yang:bbf-xpon">
+            <channel-group-ref>${olt\-port\-name}-cgroup</channel-group-ref>
+            <#if scg\-index?has_content>
+            <channel-partition-index>${scg\-index}</channel-partition-index>
+            <#else>
+            <channel-partition-index>1</channel-partition-index>
+            </#if>
+<#if fec\-downstream\-enable?has_content>
+            <downstream-fec>${fec\-downstream\-enable}</downstream-fec>
+</#if>
+            <multicast-aes-indicator>false</multicast-aes-indicator>
+<#if authentication\-method?has_content>
+            <authentication-method>${authentication\-method}</authentication-method>
+<#else>
+            <authentication-method>serial-number</authentication-method>
+</#if>
+<#if closest\-onu\-distance?has_content>
+            <closest-onu-distance>${closest\-onu\-distance}</closest-onu-distance>
+</#if>
+<#if maximum\-differential\-xpon\-distance?has_content>
+            <maximum-differential-xpon-distance>${maximum\-differential\-xpon\-distance}</maximum-differential-xpon-distance>
+</#if>
+<#if early\-fetch\-onu\-loid\-info?has_content>
+            <early-fetch-onu-loid-info xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-xpon-channel-partition">${early\-fetch\-onu\-loid\-info}</early-fetch-onu-loid-info>
+</#if>
+<#if loid\-alternate\-fetch\-fall\-back?has_content>
+      <loid-alternate-fetch-fall-back xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-xpon-channel-partition">${loid\-alternate\-fetch\-fall\-back}</loid-alternate-fetch-fall-back>
+</#if>
+          </channel-partition>
+        </interface>
+        <interface xmlns:ns2="urn:ietf:params:xml:ns:netconf:base:1.0" ns2:operation="merge">
+          <name>${olt\-infrastructure\-name}-cpair</name>
+          <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-pair</type>
+<#if ber\-tca\-profile?has_content>
+          <ber-tca-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-if-xpon-aug">${ber\-tca\-profile}</ber-tca-profile>
+</#if>
+          <channel-pair xmlns="urn:bbf:yang:bbf-xpon">
+            <channel-group-ref>${olt\-port\-name}-cgroup</channel-group-ref>
+            <channel-partition-ref>${olt\-infrastructure\-name}-cpartition</channel-partition-ref>
+            <channel-pair-type xmlns:bbf-xpon-types="urn:bbf:yang:bbf-xpon-types">bbf-xpon-types:gpon</channel-pair-type>
+<#if gpon\-pon\-id\-interval?has_content>
+            <gpon-pon-id-interval>${gpon\-pon\-id\-interval}</gpon-pon-id-interval>
+</#if>
+<#if authentication\-fail\-control?has_content>
+            <onu-ploam-authentication-fail-control xmlns="urn:bbf:yang:bbf-xpon-ploam-authentication">${authentication\-fail\-control}</onu-ploam-authentication-fail-control>
+</#if>
+<#if specific\-polling\-period?has_content>
+   <#if specific\-polling\-period == 0>
+      <specific-polling-period xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-if-xpon-aug">polling-disabled</specific-polling-period>
+   <#else>
+      <specific-polling-period xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-if-xpon-aug">${specific\-polling\-period}</specific-polling-period>
+   </#if>
+</#if>
+<#if us\-omci\-granting?has_content>
+            <us-omci-granting>${us\-omci\-granting}</us-omci-granting>
+</#if>
+          </channel-pair>
+        </interface>
+        <interface xmlns:ns3="urn:ietf:params:xml:ns:netconf:base:1.0" ns3:operation="merge">
+          <name>${olt\-infrastructure\-name}-primary-ctermination</name>
+          <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-termination</type>
+<#if ct\-enabled?has_content>
+          <enabled>${ct\-enabled}</enabled>
+</#if>
+<#if pm\-enable?has_content>
+          <performance xmlns="urn:bbf:yang:bbf-interfaces-performance-management">
+            <enable>${pm\-enable}</enable>
+            <dba-congestion-monitoring xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-dba-congestion-monitoring">
+<#if dba\-congestion\-monitoring\-enable?has_content>
+              <enable>${dba\-congestion\-monitoring\-enable}</enable>
+</#if>
+<#if dba\-congestion\-monitoring\-threshold?has_content>
+              <threshold>${dba\-congestion\-monitoring\-threshold}</threshold>
+</#if>
+          </dba-congestion-monitoring>
+          </performance>
+</#if>
+<#if speed\-monitoring\-enable?has_content>
+          <speed-monitoring xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interface-speed-monitoring">
+            <enable>${speed\-monitoring\-enable}</enable>
+          </speed-monitoring>
+</#if>
+          <port-layer-if xmlns="urn:bbf:yang:bbf-interface-port-reference">${olt\-port\-name}</port-layer-if>
+          <channel-termination xmlns="urn:bbf:yang:bbf-xpon">
+            <channel-pair-ref>${olt\-infrastructure\-name}-cpair</channel-pair-ref>
+<#if gpon\-pon\-id?has_content>
+            <gpon-pon-id>${gpon\-pon\-id}</gpon-pon-id>
+</#if>
+            <ber-calc-period>10</ber-calc-period>
+            <location xmlns:bbf-xpon-types="urn:bbf:yang:bbf-xpon-types">bbf-xpon-types:inside-olt</location>
+            <channel-termination-type xmlns:bbf-xpon-types="urn:bbf:yang:bbf-xpon-types">bbf-xpon-types:gpon</channel-termination-type>
+<#if meant\-for\-type\-b\-primary\-role?has_content>
+<meant-for-type-b-primary-role>${meant\-for\-type\-b\-primary\-role}</meant-for-type-b-primary-role>
+</#if>
+<#if laser\-on\-by\-default?has_content>
+<laser-on-by-default  xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-if-xpon-aug">${laser\-on\-by\-default}</laser-on-by-default>
+</#if>
+<#if slot\-id?has_content && port\-id?has_content && access\-node\-id?has_content>
+    <channel-termination-type-b-pon-location-data xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-if-xpon-aug">
+      <slot-id>${slot\-id}</slot-id>
+      <port-id>${port\-id}</port-id>
+<#if gpon\-pon\-id?has_content>
+      <gpon-pon-id>${gpon\-pon\-id}</gpon-pon-id>
+</#if>
+      <access-node-id>${access\-node\-id}</access-node-id>
+    </channel-termination-type-b-pon-location-data>
+<#if host\-id\-of\-primary\-side?has_content>
+      <host-id-of-primary-side xmlns="urn:broadband-forum-org:yang:nokia-sdan-xpon-channel-termination">${host\-id\-of\-primary\-side}</host-id-of-primary-side>
+</#if>
+</#if>
+          </channel-termination>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>

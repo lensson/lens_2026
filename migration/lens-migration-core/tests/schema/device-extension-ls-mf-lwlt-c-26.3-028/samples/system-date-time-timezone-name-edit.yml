@@ -1,0 +1,13 @@
+arguments:
+  timezone-name:
+    description: Time zone name as used by the Time Zone Database
+    suggested-values:
+    - Europe/Stockholm
+available-locally: true
+domains: system>date-time>timezone
+entity: name
+freemarker: true
+name: Configure system timezone name
+operation: edit
+sample-id: system-date-time-timezone-name-edit
+status: draft

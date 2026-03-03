@@ -1,0 +1,16 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  test-name:
+    description: An arbitrary name correlating the test request with the test result
+    suggested-values:
+    - self-test1
+domains: onu>equipment
+freemarker: true
+name: Hardware Self Test
+operation: self-test
+sample-id: onu-equipment-self-test
+scope: eonu
+status: draft

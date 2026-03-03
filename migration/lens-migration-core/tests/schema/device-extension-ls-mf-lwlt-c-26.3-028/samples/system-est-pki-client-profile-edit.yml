@@ -1,0 +1,98 @@
+arguments:
+  est-profile-name:
+    description: The EST PKI client profile name
+    suggested-values:
+    - EstProfile
+  est-server-url:
+    description: The URL of the EST PKI server
+    suggested-values:
+    - https://one.certificateauthority.com/mypki/.well-known/est
+  pinned-ca-list:
+    description: Reference to pinned-ca-list for EST PKI server authentication
+    suggested-values:
+    - est
+  use-certificate-auth:
+    description: If TRUE, the factory pre-installed, Nokia signed device certificate
+      will be used for EST client authentication
+    optional: true
+    suggested-values:
+    - true
+  http-username:
+    description: The username for http client authentication
+    optional: true
+    suggested-values:
+    - estuser
+  http-password:
+    description: The password for http client authentication
+    optional: true
+    suggested-values:
+    - estpwd
+  tls-version:
+    description: A TLS version to add to the list of acceptable TLS versions of hello
+      parameters
+    optional: true
+    suggested-values:
+    - tls13
+  cipher-suite:
+    description: A cipher suite to add to the list of acceptable cipher suites of
+      hello parameters
+    optional: true
+    suggested-values:
+    - tls-chacha20-poly1305-sha256
+  private-key-algorithm:
+    description: The private key generation algorithm
+    optional: true
+    suggested-values:
+    - rsa4096
+  subject-distinguished-name:
+    description: A subject distinguished name for the certificate signing request
+      (CSR)
+    optional: true
+    suggested-values:
+    - CN=example.com
+  subject-alternative-name:
+    description: A subject alternative name for the certificate signing request (CSR)
+    optional: true
+    suggested-values:
+    - IP=192.168.200.10
+  auto-fill-duid-attributes:
+    description: Whether to include the DUID in the certificate signing request (CSR).
+      The DUID is added in /SerialNumber subject attribute
+    optional: true
+    suggested-values:
+    - true
+  restart-connection-after-certificate-update:
+    description: Whether the connection of the service using the end certificate will
+      be restarted upon certificate re-enrollment
+    optional: true
+    suggested-values:
+    - true
+  key-policy:
+    description: Whether a new private key will be generated for upcoming re-enrollment
+    optional: true
+    suggested-values:
+    - reuse-existing-key
+  end-entity-certificate-renew-schedule-type:
+    description: Whether to check for re-enrollment end-entity certificate AFTER the
+      issuing date or BEFORE expiring date
+    optional: true
+    suggested-values:
+    - before-expiry
+  end-entity-certificate-renew-schedule-interval:
+    description: The interval in days for the end entity certificate renew schedule
+      type
+    optional: true
+    suggested-values:
+    - 10
+  ca-certificate-renew-interval:
+    description: The interval in days for the ca certificates renewal
+    optional: true
+    suggested-values:
+    - 30
+domains: system>est
+entity: pki-client-profile
+freemarker: true
+name: Configure EST PKI Server
+operation: edit
+sample-id: system-est-pki-client-profile-edit
+status: draft

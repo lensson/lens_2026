@@ -1,0 +1,19 @@
+arguments:
+  network-address:
+    description: IPv4, IPv6 or FQDN address of the License Server
+    optional: true
+    suggested-values:
+    - 192.168.200.13
+  network-port:
+    description: HTTPs port of the License Server
+    optional: true
+    suggested-values:
+    - 8443
+domains: system>licensing
+entity: server
+freemarker: true
+name: Configure License Server
+operation: edit
+sample-id: system-licensing-server-edit
+scope: licensing
+status: draft

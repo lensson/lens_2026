@@ -1,0 +1,60 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+<config>
+  <cfm xmlns="urn:ieee:std:802.1Q:yang:ieee802-dot1q-cfm">
+    <maintenance-group>
+      <maintenance-group-id>${maintenance\-group\-id}</maintenance-group-id>
+      <md-id>${md\-id}</md-id>
+      <ma-id>${ma\-id}</ma-id>
+      <#if mep\-id?has_content>
+      <mep>
+        <mep-id>${mep\-id}</mep-id>
+        <direction>${direction}</direction>
+	<#if ccm\-ltm\-priority?has_content>
+        <ccm-ltm-priority>${ccm\-ltm\-priority}</ccm-ltm-priority>
+        </#if>
+	<#if inactive\-remote\-mep?has_content>
+        <inactive-remote-mep>
+          <inactive-rmep-id>${inactive\-remote\-mep}</inactive-rmep-id>
+        </inactive-remote-mep>
+        </#if>
+	<#if ccm\-enabled?has_content || fault\-alarm\-transmission?has_content || lowest\-priority\-defect?has_content || fng\-alarm\-time?has_content || fng\-reset\-time?has_content>
+        <continuity-check>
+	  <#if ccm\-enabled?has_content>
+            <ccm-enabled>${ccm\-enabled}</ccm-enabled>
+          </#if>
+	  <#if fault\-alarm\-transmission?has_content>
+            <fault-alarm-transmission>${fault\-alarm\-transmission}</fault-alarm-transmission>
+          </#if>
+	  <#if lowest\-priority\-defect?has_content>
+            <lowest-priority-defect>${lowest\-priority\-defect}</lowest-priority-defect>
+          </#if>
+	    <#if fng\-alarm\-time?has_content>
+          <fng-alarm-time>${fng\-alarm\-time}</fng-alarm-time>
+          </#if>
+	  <#if fng\-reset\-time?has_content>
+            <fng-reset-time>${fng\-reset\-time}</fng-reset-time>
+          </#if>
+        </continuity-check>
+        </#if>
+	<#if ccm\-ltm\-inner\-tag\-priority?has_content>
+        <ccm-ltm-inner-tag-priority xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-ieee802-dot1q-cfm-aug">${ccm\-ltm\-inner\-tag\-priority}</ccm-ltm-inner-tag-priority>
+        </#if>
+        <#if mep\-state?has_content>
+        <enabled>${mep\-state}</enabled>
+        </#if>
+        <interface xmlns="urn:bbf:yang:bbf-oam-cfm-mp-to-interface">${interface}</interface>
+      </mep>
+      </#if>
+      <#if forwarder?has_content>
+      <forwarder xmlns="urn:bbf:yang:bbf-oam-cfm-ma-to-forwarder">${forwarder}</forwarder>
+      </#if>
+    </maintenance-group>
+  </cfm>
+</config>
+  </edit-config>
+</rpc>
+

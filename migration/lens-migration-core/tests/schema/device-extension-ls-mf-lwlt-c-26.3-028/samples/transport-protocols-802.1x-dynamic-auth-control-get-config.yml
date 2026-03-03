@@ -1,0 +1,13 @@
+arguments:
+  user-interface:
+    description: Name of the user interface.
+    suggested-values:
+    - OLT-VENET
+domains: transport>protocols>802.1x
+entity: dynamic-auth-control
+freemarker: true
+name: Retrieve user interface-level 802.1X Dynamic Authorization request processing
+  control configuration
+operation: get-config
+sample-id: transport-protocols-802.1x-dynamic-auth-control-get-config
+status: draft

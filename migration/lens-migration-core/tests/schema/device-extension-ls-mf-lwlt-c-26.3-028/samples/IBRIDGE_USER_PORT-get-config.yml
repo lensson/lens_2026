@@ -1,0 +1,23 @@
+arguments:
+  ibridge-user-port-name:
+    description: The name of the local VLAN port on the OLT
+    suggested-values:
+    - user-port-1
+  onu-name:
+    description: ONU name
+    optional: true
+    suggested-values:
+    - ani-1-1-1
+  onu-template-cc-name:
+    description: ONU template CC interface name
+    optional: true
+    suggested-values:
+    - cc-template-1
+domains: unicast>forwarding
+entity: ibridge_user_port
+freemarker: true
+name: Retrieve unicast services forwarding ibridge user port config data
+operation: get-config
+sample-id: unicast-forwarding-ibridge_user_port-get-config
+scope: not(fx-p2p)
+status: draft

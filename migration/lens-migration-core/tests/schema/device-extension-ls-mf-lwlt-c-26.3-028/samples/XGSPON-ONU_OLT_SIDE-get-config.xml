@@ -1,0 +1,15 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter type="subtree">
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>${v\-ani\-name}</name>
+          <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</type>
+        </interface>
+      </interfaces>
+    </filter>
+  </get-config>
+</rpc>

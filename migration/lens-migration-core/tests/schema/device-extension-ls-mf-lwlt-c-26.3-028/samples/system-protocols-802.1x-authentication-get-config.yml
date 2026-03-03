@@ -1,0 +1,8 @@
+domains: system>protocols>802.1x
+entity: authentication
+freemarker: true
+name: Retrieve system level authentication configuration
+operation: get-config
+sample-id: system-protocols-802.1x-authentication-get-config
+scope: fiber
+status: draft

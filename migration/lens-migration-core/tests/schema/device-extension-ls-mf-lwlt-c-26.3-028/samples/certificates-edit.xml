@@ -1,0 +1,27 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+   <target> <running/> </target>
+    <config>
+     <netconf-server xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-server">
+	  <call-home>
+       <netconf-client xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+        <name>${netconf\-client\-name}</name>
+         <endpoints>
+          <endpoint>
+           <name>certificate_endpoint</name>
+            <tls>
+             <#if ca\-name?has_content>
+             <client-auth>
+              <pinned-ca-certs>${ca\-name}</pinned-ca-certs>
+             </client-auth>
+             </#if>
+            </tls>
+           </endpoint>
+          </endpoints>
+         </netconf-client>
+        </call-home>
+       </netconf-server>
+      </config>
+     </edit-config>
+ </rpc>
+

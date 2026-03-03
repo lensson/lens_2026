@@ -1,0 +1,8 @@
+domains: unicast>qos>tm
+entity: default-uni-bac-profile
+freemarker: true
+name: Remove default QoS Traffic Management(TM) Buffer Acceptance Control(BAC) profiles
+  for user interfaces
+operation: remove
+sample-id: unicast-qos-tm-default-uni-bac-profile-remove
+status: draft

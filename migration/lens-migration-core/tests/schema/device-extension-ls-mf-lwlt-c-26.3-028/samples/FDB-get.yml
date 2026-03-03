@@ -1,0 +1,19 @@
+arguments:
+  service-name:
+    description: The name of the IBRIDGE (or) the IBRIDGE with user-to-user traffic
+      enabled (or) the multiple uplink interfaces IBRIDGE (or) the multiple uplink
+      interfaces IBRIDGE with user-to-user traffic enabled (or) the local cross-connect
+      on the OLT (or) the remote cross-connect on the OLT
+    suggested-values:
+    - bridge-1
+    - multi-uplink-bridge-1
+    - localcc-1
+    - remotecc-1
+domains: unicast>forwarding
+entity: fdb
+freemarker: true
+name: Retrieve unicast services forwarding fdb
+operation: get
+sample-id: unicast-forwarding-fdb-get
+scope: not(dpu) and not(mx) and not(fx-p2p-uplink)
+status: draft

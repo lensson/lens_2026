@@ -1,0 +1,35 @@
+arguments:
+  assured-bandwidth:
+    description: Represents a portion of the link capacity that is allocated to the
+      given traffic flow as long as the flow has unsatisfied traffic demand, regardless
+      of the overall traffic conditions.
+    suggested-values:
+    - 1000000
+  fixed-bandwidth:
+    description: Represents the reserved portion of the link capacity that is allocated
+      to the given traffic flow, regardless of its traffic demand and the overall
+      traffic load conditions.
+    suggested-values:
+    - 1000000
+  maximum-bandwidth:
+    description: Represents the upper limit on the total bandwidth that can be allocated
+      to the traffic flow under any traffic conditions.
+    suggested-values:
+    - 1250000000
+  jitter-tolerance:
+    description: Minimum time interval over which an active traffic flow shall receive
+      an allocation of the size corresponding at least to the assigned bandwidth,
+      expressed as multiple of 125us upstream physical frame.
+    optional: true
+    suggested-values:
+    - 8
+  traffic-descriptor-profile-name:
+    description: Traffic descriptor profile name.
+    suggested-values:
+    - tdp-1
+domains: transport>xpon>traffic-descriptor-profile
+freemarker: true
+name: Edit traffic descriptor profile
+operation: edit
+sample-id: transport-xpon-traffic-descriptor-profile-edit
+status: draft

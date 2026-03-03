@@ -1,0 +1,23 @@
+arguments:
+  vpn-name:
+    description: The name of a multicast vpn.
+    suggested-values:
+    - mc-vpn
+  multicast-package-name:
+    description: The name of a multicast package.
+    suggested-values:
+    - Pkg-1
+  is-preview:
+    description: Indicates the multicast channels of this package can be joined as
+      controlled by the preview configuration data or not.
+    suggested-values:
+    - false
+    - true
+domains: multicast>vpn
+entity: multicast-package
+freemarker: true
+name: Configure multicast package
+operation: edit
+sample-id: multicast-vpn-multicast-package-edit
+scope: multicast
+status: draft

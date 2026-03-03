@@ -1,0 +1,10 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-free-alloc-ids xmlns="http://www.nokia.com/management-solutions/pon-id-allocation">
+    <channel-group-name>${olt\-port\-name}-cgroup</channel-group-name>
+    <xpon-type xmlns:xpon-types="urn:bbf:yang:bbf-xpon-types">xpon-types:${xpon\-technology}</xpon-type>
+    <#if allowed\-alloc\-id\-list?has_content>
+    <allowed-id-list>${allowed\-alloc\-id\-list}</allowed-id-list>
+    </#if>
+    <tcont-name>${tcont\-name}</tcont-name>
+  </get-free-alloc-ids>
+</rpc>

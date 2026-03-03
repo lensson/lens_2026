@@ -1,0 +1,6 @@
+domains: system>banners
+freemarker: true
+name: Remove login and welcome banners
+operation: remove
+sample-id: system-banners-remove
+status: draft

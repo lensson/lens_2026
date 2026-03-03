@@ -1,0 +1,39 @@
+arguments:
+  secondary-inband-interface-name:
+    description: Name of secondary inband interface
+    suggested-values:
+    - inband2
+  tag-value:
+    description: Tagging of secondary inband interface
+    optional: true
+    suggested-values:
+    - mgnt-access
+  secondary-l2term-interface-name:
+    description: Name of secondary l2 termination interface
+    suggested-values:
+    - inband2-l2term
+  secondary-vlan-subinterface-name:
+    description: Name of secondary vlan sub-interface
+    suggested-values:
+    - sinband2
+  secondary-forwarder-name:
+    description: Name of secondary forwarder
+    suggested-values:
+    - inband2-forwarder
+  vlan-id:
+    description: Vlan value
+    suggested-values:
+    - '4092'
+  subif-lowerlayer:
+    description: Subif lower layer
+    suggested-values:
+    - agg01
+available-locally: true
+domains: system>inband
+entity: secondary-inband
+freemarker: true
+name: Create secondary inband management interface and its lower layers
+operation: edit
+sample-id: system-inband-secondary-inband-edit
+scope: route-multiple
+status: draft

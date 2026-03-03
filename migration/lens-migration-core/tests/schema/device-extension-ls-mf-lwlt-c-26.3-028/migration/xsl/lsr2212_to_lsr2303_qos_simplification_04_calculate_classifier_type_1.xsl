@@ -1,0 +1,342 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:bbf-qos-filt="urn:bbf:yang:bbf-qos-filters" xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters" xmlns:bbf-qos-pol="urn:bbf:yang:bbf-qos-policies" xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers" xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing" xmlns:nokia-qos-filt="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext" xmlns:nokia-sdan-qos-policing-extension="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension" xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension" xmlns="" version="1.0">
+
+  <xsl:strip-space elements="*"/>
+  <xsl:output method="xml" indent="yes"/>
+
+
+  <!-- enum enhanced filter type-->
+  <xsl:variable name="F_EN_FILTER_WITHOUT_FLOW_COLOR" select="'F_EN_FILTER_WITHOUT_FLOW_COLOR'"/>
+  <xsl:variable name="F_EN_FILTER_FLOW_COLOR" select="'F_EN_FILTER_FLOW_COLOR'"/>
+
+
+  <!-- Filter Type enumeration -->
+  <!-- Inline filter enumeration -->
+  <xsl:variable name="F_MATCH_ALL" select="'F_MATCH_ALL'"/>
+  <xsl:variable name="F_ANY_PROTOCOL" select="'F_ANY_PROTOCOL'"/>
+  <xsl:variable name="F_PRECEDENC_RANGE" select="'F_PRECEDENC_RANGE'"/>
+  <xsl:variable name="F_UNMETERED" select="'F_UNMETERED'"/>
+  <!-- inline and enhanced-classifier in common -->
+  <xsl:variable name="F_UNTAGGED" select="'F_UNTAGGED'"/>
+  <xsl:variable name="F_FLOW_COLOR" select="'F_FLOW_COLOR'"/>
+  <xsl:variable name="F_DSCP_RANGE" select="'F_DSCP_RANGE'"/>
+  <xsl:variable name="F_DSCP_ANY" select="'F_DSCP_ANY'"/>
+  <xsl:variable name="F_PROTOCOL_IGMP" select="'F_PROTOCOL_IGMP'"/>
+  <xsl:variable name="F_PROTOCOL_NOT_IGMP" select="'F_PROTOCOL_NOT_IGMP'"/>
+  <xsl:variable name="F_IN_PBIT_LIST" select="'F_IN_PBIT_LIST'"/>
+  <xsl:variable name="F_IN_DEI" select="'F_IN_DEI'"/>
+  <xsl:variable name="F_PBIT_MARKING" select="'F_PBIT_MARKING'"/>
+  <xsl:variable name="F_DEI_MARKING" select="'F_DEI_MARKING'"/>
+  <!-- any frame filter enumeration -->
+  <xsl:variable name="F_ANY_FRAME" select="'F_ANY_FRAME'"/>
+
+  <!-- enhanced classifier enumeration -->
+  <xsl:variable name="F_EN_SOURCE_MAC" select="'F_EN_SOURCE_MAC'"/>
+  <xsl:variable name="F_EN_DEST_MAC" select="'F_EN_DEST_MAC'"/>
+  <xsl:variable name="F_EN_ETHERNET_FRAME_TYPE" select="'F_EN_ETHERNET_FRAME_TYPE'"/>
+  <xsl:variable name="F_EN_ETHERNET_FRAME_TYPE_IPV4" select="'F_EN_ETHERNET_FRAME_TYPE_IPV4'"/>
+  <xsl:variable name="F_EN_ETHERNET_FRAME_TYPE_IPV6" select="'F_EN_ETHERNET_FRAME_TYPE_IPV6'"/>
+  <xsl:variable name="F_EN_ETHERNET_FRAME_TYPE_PPPOE" select="'F_EN_ETHERNET_FRAME_TYPE_PPPOE'"/>
+  <xsl:variable name="F_EN_ETHERNET_FRAME_TYPE_UNKNOWN" select="'F_EN_ETHERNET_FRAME_TYPE_UNKNOWN'"/>
+  <xsl:variable name="F_EN_IPV4" select="'F_EN_IPV4'"/>
+  <xsl:variable name="F_EN_IPV6" select="'F_EN_IPV6'"/>
+  <xsl:variable name="F_EN_IP_COMMON_DSCP" select="'F_EN_IP_COMMON_DSCP'"/>
+  <xsl:variable name="F_EN_IP_COMMON_IGMP" select="'F_EN_IP_COMMON_IGMP'"/>
+  <xsl:variable name="F_EN_IP_COMMON_NOT_DSCP_DSCPRANGE_IGMP" select="'F_EN_IP_COMMON_NOT_DSCP_DSCPRANGE_IGMP'"/>
+  <xsl:variable name="F_EN_TRANSPORT" select="'F_EN_TRANSPORT'"/>
+  <xsl:variable name="F_PROTOCOL_ARP" select="'F_PROTOCOL_ARP'"/>
+  <xsl:variable name="F_UNKNOWN" select="'F_UNKNOWN'"/>
+
+  <!-- Classifier Action Type enumeration -->
+  <xsl:variable name="A_PBIT_MARKING" select="'A_PBIT_MARKING'"/>
+  <xsl:variable name="A_DEI_MARKING" select="'A_DEI_MARKING'"/>
+  <xsl:variable name="A_DSCP_MARKING" select="'A_DSCP_MARKING'"/>
+  <xsl:variable name="A_SCHEDULING_TRAFFIC" select="'A_SCHEDULING_TRAFFIC'"/>
+  <xsl:variable name="A_FLOW_COLOR" select="'A_FLOW_COLOR'"/>
+  <xsl:variable name="A_BAC_COLOR" select="'A_BAC_COLOR'"/>
+  <xsl:variable name="A_DISCARD" select="'A_DISCARD'"/>
+  <xsl:variable name="A_POLICING" select="'A_POLICING'"/>
+  <xsl:variable name="A_PASS" select="'A_PASS'"/>
+  <xsl:variable name="A_RATE_LIMIT" select="'A_RATE_LIMIT'"/>
+  <xsl:variable name="A_PBIT_POLICING_TC" select="'A_PBIT_POLICING_TC'"/>
+  <xsl:variable name="A_COUNT" select="'A_COUNT'"/>
+  <xsl:variable name="A_UNKNOWN" select="'A_UNKNOWN'"/>
+
+  <!-- Classifier Type -->
+  <!-- type 1 -->
+  <xsl:variable name="CLS_TYPE_IGMP_TO_PBITMARKING" select="'CLS_TYPE_IGMP_TO_PBITMARKING'"/>
+  <xsl:variable name="CLS_TYPE_UNTAGGED_TO_PBITMARKING" select="'CLS_TYPE_UNTAGGED_TO_PBITMARKING'"/>
+  <xsl:variable name="CLS_TYPE_PBIT_TO_PBITMARKING" select="'CLS_TYPE_PBIT_TO_PBITMARKING'"/>
+  <xsl:variable name="CLS_TYPE_DSCP_TO_PBITMARKING" select="'CLS_TYPE_DSCP_TO_PBITMARKING'"/>
+  <!-- type 2 -->
+  <xsl:variable name="CLS_TYPE_ACTION_FLOW_COLOR" select="'CLS_TYPE_ACTION_FLOW_COLOR'"/>
+  <!-- type 3 -->
+  <xsl:variable name="CLS_TYPE_PBIT_TO_POLICING_TC" select="'CLS_TYPE_PBIT_TO_POLICING_TC'"/>
+  <!-- type 4 -->
+  <xsl:variable name="CLS_TYPE_ACTION_WITH_POLICING" select="'CLS_TYPE_ACTION_WITH_POLICING'"/>
+  <xsl:variable name="CLS_TYPE_ACTION_WITH_PASS" select="'CLS_TYPE_ACTION_WITH_PASS'"/>
+  <xsl:variable name="CLS_TYPE_ACTION_WITH_DISCARD" select="'CLS_TYPE_ACTION_WITH_DISCARD'"/>
+  <xsl:variable name="CLS_TYPE_ACTION_WITH_PBITMARKING_AND_FLOWCOLOR" select="'CLS_TYPE_ACTION_WITH_PBITMARKING_AND_FLOWCOLOR'"/>
+  <xsl:variable name="CLS_TYPE_EN_FILTER_WITHOUT_FLOW_COLOR" select="'CLS_TYPE_EN_FILTER_WITHOUT_FLOW_COLOR'"/>
+  <xsl:variable name="CLS_TYPE_EN_CLS_WITH_MAC_OR_IP_OR_PORT" select="'CLS_TYPE_EN_CLS_WITH_MAC_OR_IP_OR_PORT'"/>
+  <xsl:variable name="CLS_TYPE_FILTER_WITH_PROTOCAL_NOT_IGMP" select="'CLS_TYPE_FILTER_WITH_PROTOCAL_NOT_IGMP'"/>
+  <xsl:variable name="CLS_TYPE_DEI_MARKING_OR_IN_DEI_TO_PBIT_MARKING" select="'CLS_TYPE_DEI_MARKING_OR_IN_DEI_TO_PBIT_MARKING'"/>
+  <xsl:variable name="CLS_TYPE_FILTER_MORE_THAN_TWO_TYPE_OF_ANYFRAME_DSCP_IGMP_PBIT" select="'CLS_TYPE_FILTER_MORE_THAN_TWO_TYPE_OF_ANYFRAME_DSCP_IGMP_PBIT'"/>
+  <!-- type 5 -->
+  <xsl:variable name="CLS_TYPE_UNMETERED_TO_POLICING" select="'CLS_TYPE_UNMETERED_TO_POLICING'"/>
+  <xsl:variable name="CLS_TYPE_MATCHALL_TO_POLICING" select="'CLS_TYPE_MATCHALL_TO_POLICING'"/>
+  <xsl:variable name="CLS_TYPE_ANYFRAME_CLS_TO_POLICING" select="'CLS_TYPE_ANYFRAME_CLS_TO_POLICING'"/>
+  <!-- type 6 -->
+  <xsl:variable name="CLS_TYPE_EN_FILTER_WITH_FOLOW_COLOR" select="'CLS_TYPE_EN_FILTER_WITH_FOLOW_COLOR'"/>
+  <xsl:variable name="CLS_TYPE_FILTER_WITH_FLOW_COLOR" select="'CLS_TYPE_FILTER_WITH_FLOW_COLOR'"/>
+  <!-- type 7 -->
+  <xsl:variable name="CLS_TYPE_ACTION_COUNT" select="'CLS_TYPE_ACTION_COUNT'"/>
+  <!-- type 8 -->
+  <xsl:variable name="CLS_TYPE_ACTION_WITH_SCHEDULING_TC" select="'CLS_TYPE_ACTION_WITH_SCHEDULING_TC'"/>
+  <!-- type 9 -->
+  <xsl:variable name="CLS_TYPE_MATCHALL_TO_RATE_LIMIT" select="'CLS_TYPE_MATCHALL_TO_RATE_LIMIT'"/>
+  <!-- type 10 -->
+  <xsl:variable name="CLS_TYPE_ACTION_QUEUE_COLOR" select="'CLS_TYPE_ACTION_QUEUE_COLOR'"/>
+  <!-- unknown type -->
+  <xsl:variable name="CLS_TYPE_INVALID" select="'CLS_TYPE_INVALID'"/>
+
+  <!-- default rule -->
+  <xsl:template match="*">
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates/>
+    </xsl:copy>
+  </xsl:template>
+
+
+  <xsl:template match="*[     local-name() = 'classifier'     and parent::*[local-name() = 'classifiers']     and ancestor::*[local-name() = 'classifiers']     and ancestor::*[local-name() = 'policy']     and ancestor::*[local-name() = 'current']     and ancestor::*[local-name() = 'policy-profile']     and ancestor::*[local-name() = 'qos-policy-profiles' and namespace-uri() = 'urn:bbf:yang:bbf-qos-policies']   ]">
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+<xsl:apply-templates/>
+<xsl:element name="classifier-type">
+        <xsl:call-template name="calculateClassifierType">
+          <xsl:with-param name="classifierSec" select="current()"/>
+        </xsl:call-template>
+      </xsl:element>
+    </xsl:copy>
+  </xsl:template>
+
+  <!-- =========================== policy cache start ========================== -->
+  <xsl:template match="*[     local-name() = 'classifiers'     and parent::*[local-name() = 'policy-migration-cache']     and ancestor::*[local-name() = 'policy']     and ancestor::*[local-name() = 'policies' and namespace-uri() = 'urn:bbf:yang:bbf-qos-policies']   ]">
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+<xsl:apply-templates/>
+<xsl:element name="classifier-type">
+        <xsl:call-template name="calculateClassifierType">
+          <xsl:with-param name="classifierSec" select="current()"/>
+        </xsl:call-template>
+      </xsl:element>
+    </xsl:copy>
+  </xsl:template>
+  <!-- =========================== policy cache end ========================== -->
+  
+  <!-- ==================================== Infra Function ================================ -->
+
+  <!-- main indentification process which cursor at classifier -->
+  <xsl:template name="calculateClassifierType">
+    <xsl:param name="classifierSec"/>
+
+    <xsl:variable name="actionTypesStringVar">
+      <xsl:call-template name="mergeActions">
+        <xsl:with-param name="classifierSec" select="$classifierSec"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:variable name="enhancdFilterType">
+      <xsl:value-of select="$classifierSec/child::*[local-name() = 'filters']/child::*[local-name() = 'ref-filter']/child::*[local-name() = 'type']"/>
+    </xsl:variable>
+
+    <xsl:variable name="selfFilterTypes">
+      <xsl:value-of select="$classifierSec/child::*[local-name() = 'filters']/child::*[local-name() = 'self-filter-types']"/>
+    </xsl:variable>
+
+    <xsl:variable name="anyFrame">
+      <xsl:value-of select="$classifierSec/*[local-name() = 'any-frame']"/>
+    </xsl:variable>
+
+    <xsl:variable name="filterOperation">
+      <xsl:value-of select="$classifierSec/*[local-name() = 'filter-operation']"/>
+    </xsl:variable>
+
+    <xsl:variable name="isClsTypeFilterMoreThanTwoOfAnyFrameDscpIgmpPbitVar">
+      <xsl:call-template name="isClsTypeFilterMoreThanTwoOfAnyFrameDscpIgmpPbit">
+        <xsl:with-param name="anyFrameParam" select="$anyFrame"/>
+        <xsl:with-param name="selfFilterTypeParam" select="$selfFilterTypes"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:choose>
+      <!-- type rate-limit -->
+      <xsl:when test="contains($actionTypesStringVar,$A_RATE_LIMIT)">
+        <xsl:value-of select="$CLS_TYPE_MATCHALL_TO_RATE_LIMIT"/>
+      </xsl:when>
+
+      <!-- type scheduler-->
+      <xsl:when test="contains($actionTypesStringVar, $A_SCHEDULING_TRAFFIC)">
+        <xsl:value-of select="$CLS_TYPE_ACTION_WITH_SCHEDULING_TC"/>
+      </xsl:when>
+
+      <!-- type action -->
+      <!-- inline or enhanced classifer filter type -->
+      <xsl:when test="$enhancdFilterType = $F_EN_FILTER_FLOW_COLOR">
+        <xsl:value-of select="$CLS_TYPE_EN_FILTER_WITH_FOLOW_COLOR"/>
+      </xsl:when>
+      <xsl:when test="contains($selfFilterTypes,$F_FLOW_COLOR)">
+        <xsl:value-of select="$CLS_TYPE_FILTER_WITH_FLOW_COLOR"/>
+      </xsl:when>
+      <xsl:when test="contains($actionTypesStringVar,$A_BAC_COLOR)         and (contains($selfFilterTypes,$F_PBIT_MARKING)         or contains($selfFilterTypes,$F_IN_PBIT_LIST)         or contains($selfFilterTypes,$F_DEI_MARKING)         or contains($selfFilterTypes,$F_IN_DEI))">
+        <xsl:value-of select="$CLS_TYPE_ACTION_QUEUE_COLOR"/>
+      </xsl:when>
+
+      <!-- type policer -->
+      <!-- CLS_TYPE_ANYFRAME_CLS_TO_POLICING -->
+      <xsl:when test="$anyFrame = $F_ANY_FRAME and contains($actionTypesStringVar,$A_POLICING)">
+        <xsl:value-of select="$CLS_TYPE_ANYFRAME_CLS_TO_POLICING"/>
+      </xsl:when>
+      <!-- CLS_TYPE_MATCHALL_TO_POLICING -->
+      <xsl:when test="contains($selfFilterTypes,$F_MATCH_ALL) and contains($actionTypesStringVar,$A_POLICING)">
+        <xsl:value-of select="$CLS_TYPE_MATCHALL_TO_POLICING"/>
+      </xsl:when>
+      <!-- CLS_TYPE_UNMETERED_TO_POLICING -->
+      <xsl:when test="contains($selfFilterTypes,$F_UNMETERED) and contains($actionTypesStringVar,$A_POLICING)">
+        <xsl:value-of select="$CLS_TYPE_UNMETERED_TO_POLICING"/>
+      </xsl:when>
+
+      <!-- type CCL -->
+      <!-- CLS_TYPE_ACTION_WITH_POLICING -->
+      <xsl:when test="contains($actionTypesStringVar,$A_POLICING)">
+        <xsl:value-of select="$CLS_TYPE_ACTION_WITH_POLICING"/>
+      </xsl:when>
+      <!-- CLS_TYPE_ACTION_WITH_PASS -->
+      <xsl:when test="contains($actionTypesStringVar,$A_PASS)">
+        <xsl:value-of select="$CLS_TYPE_ACTION_WITH_PASS"/>
+      </xsl:when>
+      <!-- CLS_TYPE_ACTION_WITH_DISCARD -->
+      <xsl:when test="contains($actionTypesStringVar,$A_DISCARD)">
+        <xsl:value-of select="$CLS_TYPE_ACTION_WITH_DISCARD"/>
+      </xsl:when>
+      <!-- CLS_TYPE_ACTION_WITH_PBITMARKING_AND_FLOWCOLOR -->
+      <xsl:when test="contains($actionTypesStringVar,$A_PBIT_MARKING) and contains($actionTypesStringVar,$A_FLOW_COLOR)">
+        <xsl:value-of select="$CLS_TYPE_ACTION_WITH_PBITMARKING_AND_FLOWCOLOR"/>
+      </xsl:when>
+      <!-- CLS_TYPE_EN_FILTER_WITHOUT_FLOW_COLOR -->
+      <xsl:when test="$enhancdFilterType = $F_EN_FILTER_WITHOUT_FLOW_COLOR">
+        <xsl:value-of select="$CLS_TYPE_EN_FILTER_WITHOUT_FLOW_COLOR"/>
+      </xsl:when>
+      <!-- CLS_TYPE_EN_CLS_WITH_MAC_OR_IP_OR_PORT -->
+      <xsl:when test="             contains($selfFilterTypes,$F_EN_SOURCE_MAC) or contains($selfFilterTypes,$F_EN_DEST_MAC)             or contains($selfFilterTypes,$F_EN_IPV4) or contains($selfFilterTypes,$F_EN_IPV6)             or contains($selfFilterTypes,$F_EN_IP_COMMON_NOT_DSCP_DSCPRANGE_IGMP) or contains($selfFilterTypes,$F_EN_TRANSPORT)">
+        <xsl:value-of select="$CLS_TYPE_EN_CLS_WITH_MAC_OR_IP_OR_PORT"/>
+      </xsl:when>
+      <!-- CLS_TYPE_FILTER_WITH_PROTOCAL_NOT_IGMP -->
+      <xsl:when test="contains($selfFilterTypes,$F_PROTOCOL_NOT_IGMP)">
+        <xsl:value-of select="$CLS_TYPE_FILTER_WITH_PROTOCAL_NOT_IGMP"/>
+      </xsl:when>
+      <!-- CLS_TYPE_DEI_MARKING_OR_IN_DEI_TO_PBIT_MARKING -->
+      <xsl:when test="             (contains($selfFilterTypes,$F_DEI_MARKING) or contains($selfFilterTypes,$F_IN_DEI))             and (contains($actionTypesStringVar,$A_PBIT_MARKING) and not(contains($actionTypesStringVar,$A_DEI_MARKING)))">
+        <xsl:value-of select="$CLS_TYPE_DEI_MARKING_OR_IN_DEI_TO_PBIT_MARKING"/>
+      </xsl:when>
+      <!-- CLS_TYPE_FILTER_MORE_THAN_TWO_TYPE_OF_ANYFRAME_DSCP_IGMP_PBIT -->
+      <xsl:when test="$isClsTypeFilterMoreThanTwoOfAnyFrameDscpIgmpPbitVar = 'true'">
+        <xsl:value-of select="$CLS_TYPE_FILTER_MORE_THAN_TWO_TYPE_OF_ANYFRAME_DSCP_IGMP_PBIT"/>
+      </xsl:when>
+
+      <!-- type pre-color -->
+      <!-- CLS_TYPE_ACTION_FLOW_COLOR -->
+      <xsl:when test="contains($actionTypesStringVar, $A_FLOW_COLOR)">
+        <xsl:value-of select="$CLS_TYPE_ACTION_FLOW_COLOR"/>
+      </xsl:when>
+
+      <!-- type marker -->
+      <!-- CLS_TYPE_PBIT_TO_PBITMARKING -->
+      <xsl:when test="             (contains($selfFilterTypes,$F_PBIT_MARKING) or contains($selfFilterTypes,$F_IN_PBIT_LIST))             and contains($actionTypesStringVar,$A_PBIT_MARKING)">
+        <xsl:value-of select="$CLS_TYPE_PBIT_TO_PBITMARKING"/>
+      </xsl:when>
+      <!-- CLS_TYPE_IGMP_TO_PBITMARKING -->
+      <xsl:when test="             (contains($selfFilterTypes,$F_PROTOCOL_IGMP) or contains($selfFilterTypes,$F_EN_IP_COMMON_IGMP))             and contains($actionTypesStringVar, $A_PBIT_MARKING)">
+        <xsl:value-of select="$CLS_TYPE_IGMP_TO_PBITMARKING"/>
+      </xsl:when>
+      <!-- CLS_TYPE_UNTAGGED_TO_PBITMARKING -->
+      <xsl:when test="contains($selfFilterTypes,$F_UNTAGGED) and contains($actionTypesStringVar, $A_PBIT_MARKING)">
+        <xsl:value-of select="$CLS_TYPE_UNTAGGED_TO_PBITMARKING"/>
+      </xsl:when>
+      <!-- CLS_TYPE_DSCP_TO_PBITMARKING -->
+      <xsl:when test="             (contains($selfFilterTypes,$F_DSCP_RANGE) or contains($selfFilterTypes,$F_EN_IP_COMMON_DSCP))             and contains($actionTypesStringVar, $A_PBIT_MARKING)">
+        <xsl:value-of select="$CLS_TYPE_DSCP_TO_PBITMARKING"/>
+      </xsl:when>
+      <!-- CLS_TYPE_PBIT_TO_POLICING_TC -->
+      <xsl:when test="             (contains($selfFilterTypes,$F_IN_PBIT_LIST) or contains($selfFilterTypes,$F_PBIT_MARKING))             and contains($actionTypesStringVar, $A_PBIT_POLICING_TC)">
+        <xsl:value-of select="$CLS_TYPE_PBIT_TO_POLICING_TC"/>
+      </xsl:when>
+      <!-- CLS_TYPE_ACTION_COUNT -->
+      <xsl:when test="contains($actionTypesStringVar, $A_COUNT)">
+        <xsl:value-of select="$CLS_TYPE_ACTION_COUNT"/>
+      </xsl:when>
+
+      <xsl:otherwise>
+        <xsl:value-of select="$CLS_TYPE_INVALID"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="isClsTypeFilterMoreThanTwoOfAnyFrameDscpIgmpPbit">
+    <xsl:param name="selfFilterTypeParam"/>
+    <xsl:param name="anyFrameParam"/>
+
+    <xsl:variable name="num1">
+      <xsl:if test="$anyFrameParam = $F_ANY_FRAME">
+        <xsl:value-of select="1"/>
+      </xsl:if>
+    </xsl:variable>
+
+    <xsl:variable name="num2">
+      <xsl:if test="contains($selfFilterTypeParam,$F_DSCP_RANGE) or contains($selfFilterTypeParam,$F_EN_IP_COMMON_DSCP)">
+        <xsl:value-of select="2"/>
+      </xsl:if>
+    </xsl:variable>
+
+    <xsl:variable name="num3">
+      <xsl:if test="contains($selfFilterTypeParam,$F_PROTOCOL_IGMP)">
+        <xsl:value-of select="3"/>
+      </xsl:if>
+    </xsl:variable>
+
+    <xsl:variable name="num4">
+      <xsl:if test="contains($selfFilterTypeParam,$F_IN_PBIT_LIST) or contains($selfFilterTypeParam,$F_PBIT_MARKING)">
+        <xsl:value-of select="4"/>
+      </xsl:if>
+    </xsl:variable>
+
+    <xsl:variable name="num">
+      <xsl:value-of select="concat(num1,num2,num3,num4)"/>
+    </xsl:variable>
+
+    <xsl:choose>
+      <xsl:when test="string-length(num) &gt; 1">
+        <xsl:value-of select="true"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="false"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="mergeActions">
+    <xsl:param name="classifierSec"/>
+    <xsl:for-each select="$classifierSec/child::*[local-name() = 'actions']/child::*[local-name() = 'action']/child::*[local-name() = 'type']">
+      <xsl:choose>
+        <xsl:when test="position() = 1">
+          <xsl:value-of select="current()"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="','"/>
+          <xsl:value-of select="current()"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:template>
+</xsl:stylesheet>

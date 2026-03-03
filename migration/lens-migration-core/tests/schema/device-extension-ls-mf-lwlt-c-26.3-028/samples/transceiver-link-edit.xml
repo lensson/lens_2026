@@ -1,0 +1,21 @@
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <hardware xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware">
+        <component ns0:operation="create" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>${transceiver\-link\-name}</name>
+          <#if transceiver\-link\-type == "transceiver-link">
+          <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:${transceiver\-link\-type}</class>
+          <#else>
+          <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:${transceiver\-link\-type}</class>
+          </#if>
+          <parent>${transceiver\-name}</parent>
+          <parent-rel-pos>1</parent-rel-pos>
+        </component>
+      </hardware>
+    </config>
+  </edit-config>
+</rpc>

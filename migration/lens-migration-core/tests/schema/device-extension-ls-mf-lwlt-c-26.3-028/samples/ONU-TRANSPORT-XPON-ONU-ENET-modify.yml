@@ -1,0 +1,91 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  eth-port-hw-number:
+    description: ONU ENET Number
+    suggested-values:
+    - 1
+  eth-port-hw-option:
+    allowed-values:
+    - rj45
+    - rj45-10-100M
+    - rj45-1G
+    - rj45-10G
+    - rj45-2.5G
+    - rj45-5G
+    - rj45-25G
+    - rj45-40G
+    - veip
+    description: ONU Ethernet HW Option,Values Range:[rj45, rj45-10-100M, rj45-1G,
+      rj45-10, rj45-2.5G, rj45-5G, rj45-25G, rj45-40G,veip],port type specification
+      is required if ONU support multiple electrical UNI port type. Otherwise,if ONU
+      only has one rj45 port type, port type specification is not required,this value
+      just setting rj45. This parameter should be blank for pluggable-optical-electrical-SFP
+      and special-integrated-ONUs.
+    suggested-values:
+    - rj45
+  pluggable-optical-electrical-SFP:
+    allowed-values:
+    - true
+    - false
+    description: This attribute is indicate that for UNI, if an pluggable optical/electrical
+      SFP is used or not
+    optional: true
+    suggested-values:
+    - false
+  special-integrated-ONUs:
+    allowed-values:
+    - true
+    - false
+    description: This attribute is indicate that this kind ONU will report several
+      different virtual boards for ethernet ports with same port type,Configure these
+      special ONUs with virtual-borad-number and port-id, special onu list:[U-00160CP-P,G-00240G-M]
+    optional: true
+    suggested-values:
+    - false
+  virtual-board-number:
+    description: This attribute is defined on port, it is used to configure virtual
+      board number reported by ONU      (just as legacy parent-rel-pos on board).
+    optional: true
+    suggested-values:
+    - 1
+  port-id:
+    description: This attribute is defined on port. In OMCI, some ONUs have multiple
+      UNI ports on top of one virtual Boards unknown to the ONU YANG HW model.This
+      data node provides port identifer used by OMCI for this port in the ONU.This
+      port number is ONU vendor specific.
+    optional: true
+    suggested-values:
+    - 1
+  enet-name:
+    description: ONU ENET interface name
+    suggested-values:
+    - uni-1-1-1
+  disable-upon-ponlos:
+    description: Indicates whether a UNI must be disabled or not when the ONU detects
+      a DSLOS
+    optional: true
+  power-over-ethernet-control:
+    description: This attribute is defined on port, it is used to config power-over-ethernet-control,only
+      support for rj45*
+    optional: true
+    suggested-values:
+    - true
+  ani-name:
+    description: The name of the ONU ANI Interface
+    optional: true
+    suggested-values:
+    - ani-1-1-1
+  fec:
+    description: Indicates whether FEC has to be enabled or not on the ONU ENET interface.  Currently
+      only supported for 25G ONU ENET interface
+    optional: true
+domains: onu>transport>xpon>enet
+freemarker: true
+name: Modify ethernet uni interface
+operation: modify
+sample-id: onu-transport-xpon-enet-modify
+scope: eonu
+status: draft

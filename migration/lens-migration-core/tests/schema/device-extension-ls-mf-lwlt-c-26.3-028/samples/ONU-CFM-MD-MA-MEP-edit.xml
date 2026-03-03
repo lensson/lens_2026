@@ -1,0 +1,36 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <cfm xmlns="urn:ieee:std:802.1Q:yang:ieee802-dot1q-cfm-mounted">
+              <maintenance-domain>
+                <md-id>${md\-id}</md-id>
+                <md-level>${md\-level}</md-level>
+                <char-string>${md\-name}</char-string>
+                <mhf-creation>mhf-none</mhf-creation>
+                <id-permission>send-id-none</id-permission>
+                <maintenance-association>
+                  <ma-id>${ma\-id}</ma-id>
+                  <char-string>${ma\-name}</char-string>
+                  <ccm-interval>${ccm\-interval}</ccm-interval>
+                  <mhf-creation>${ma\-mhf\-creation}</mhf-creation>
+                  <id-permission>send-id-defer</id-permission>
+                  <ma-vlan-id>${ma\-vlan\-id}</ma-vlan-id>
+                  <maintenance-association-mep>
+                    <mep-id>${mep\-id}</mep-id>
+                  </maintenance-association-mep>
+                </maintenance-association>
+              </maintenance-domain>
+            </cfm>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

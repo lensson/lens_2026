@@ -1,0 +1,18 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  xgponani-downstream-error-profile:
+    description: ANI XGPON downstream performance monitoring counters threshold profile
+      name
+    suggested-values:
+    - ds_tca_profile
+domains: onu>system>tca>pm-profiles
+entity: ani-xgpon-ds-pm-tca-profile
+freemarker: true
+name: Remove ANI XGPON Downstream PM TCA profile
+operation: remove
+sample-id: onu-system-tca-pm-profiles-ani-xgpon-ds-pm-tca-profile-remove
+scope: eonu
+status: draft

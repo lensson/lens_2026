@@ -1,0 +1,116 @@
+arguments:
+  leaf-scheduler-name:
+    suggested-values:
+    - sch-node-uni1
+  olt-infrastructure-name:
+    suggested-values:
+    - gpon-1-1
+  tc2q-profile-name:
+    optional: true
+    suggested-values:
+    - DEFAULT_TC_TO_8Queues
+  intermediate-scheduler-name:
+    optional: true
+    suggested-values:
+    - sch-node-ont1
+  shaper-profile-name:
+    optional: true
+  weight:
+    optional: true
+    suggested-values:
+    - 1
+  queue0-bac-profile-name:
+    optional: true
+    suggested-values:
+    - UNI_BECLQ
+  queue0-shaper-profile-name:
+    optional: true
+  queue0-priority:
+    optional: true
+    suggested-values:
+    - 5
+  queue0-weight:
+    optional: true
+    suggested-values:
+    - 34
+  queue1-bac-profile-name:
+    optional: true
+    suggested-values:
+    - UNI_BECLQ
+  queue1-shaper-profile-name:
+    optional: true
+  queue1-priority:
+    optional: true
+    suggested-values:
+    - 5
+  queue1-weight:
+    optional: true
+    suggested-values:
+    - 66
+  queue2-bac-profile-name:
+    optional: true
+    suggested-values:
+    - UNI_VideoQ
+  queue2-shaper-profile-name:
+    optional: true
+  queue2-priority:
+    optional: true
+    suggested-values:
+    - 6
+  queue2-weight:
+    optional: true
+    suggested-values:
+    - 1
+  queue3-bac-profile-name:
+    optional: true
+    suggested-values:
+    - UNI_VoiceQ
+  queue3-shaper-profile-name:
+    optional: true
+  queue3-priority:
+    optional: true
+    suggested-values:
+    - 7
+  queue3-weight:
+    optional: true
+    suggested-values:
+    - 1
+  queue4-bac-profile-name:
+    optional: true
+  queue4-shaper-profile-name:
+    optional: true
+  queue4-priority:
+    optional: true
+  queue4-weight:
+    optional: true
+  queue5-bac-profile-name:
+    optional: true
+  queue5-shaper-profile-name:
+    optional: true
+  queue5-priority:
+    optional: true
+  queue5-weight:
+    optional: true
+  queue6-bac-profile-name:
+    optional: true
+  queue6-shaper-profile-name:
+    optional: true
+  queue6-priority:
+    optional: true
+  queue6-weight:
+    optional: true
+  queue7-bac-profile-name:
+    optional: true
+  queue7-shaper-profile-name:
+    optional: true
+  queue7-priority:
+    optional: true
+  queue7-weight:
+    optional: true
+domains: unicast>qos>tm
+entity: leaf_scheduler
+freemarker: true
+name: Configure unicast services QoS leaf scheduler
+operation: edit
+sample-id: unicast-qos-tm-leaf_scheduler-edit
+status: draft

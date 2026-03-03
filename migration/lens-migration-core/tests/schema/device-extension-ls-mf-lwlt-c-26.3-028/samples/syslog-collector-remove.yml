@@ -1,0 +1,6 @@
+domains: system>logging>syslog-collector
+freemarker: true
+name: Remove all syslog destinations
+operation: remove
+sample-id: system-logging-syslog-collector-remove
+status: draft

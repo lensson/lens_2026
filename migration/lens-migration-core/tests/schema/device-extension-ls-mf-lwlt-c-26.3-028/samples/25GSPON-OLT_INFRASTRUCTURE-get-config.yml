@@ -1,0 +1,12 @@
+arguments:
+  olt-infrastructure-name:
+    description: OLT infrastructure name.
+    suggested-values:
+    - 25gspon-2-1
+domains: transport>25gspon>olt-infrastructure
+freemarker: true
+name: Retrieve 25gspon olt infrastructure configuration data
+operation: get-config
+sample-id: transport-25gspon-olt-infrastructure-get-config
+scope: 25gspon
+status: draft

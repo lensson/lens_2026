@@ -1,0 +1,21 @@
+arguments:
+  shaper-profile-name:
+    description: name of the profile
+    suggested-values:
+    - SHAPER-PROF
+  pir:
+    description: The Peak Information Rate, in kilobits per second
+    suggested-values:
+    - 100000
+  pbs:
+    description: The Peak Burst Size, in bytes
+    suggested-values:
+    - 1500
+domains: unicast>qos>tm
+entity: shaper_profile
+freemarker: true
+name: Configure unicast services QoS shaper profile
+operation: edit
+sample-id: unicast-qos-tm-shaper_profile-edit
+scope: not(mx) and not(dpu)
+status: draft

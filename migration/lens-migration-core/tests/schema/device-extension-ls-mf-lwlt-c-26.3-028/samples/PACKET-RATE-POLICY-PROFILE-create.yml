@@ -1,0 +1,18 @@
+arguments:
+  packet-rate-policy-profile-name:
+    suggested-values:
+    - PacketRateLimit0
+  burst-size:
+    suggested-values:
+    - 80
+  rate:
+    suggested-values:
+    - 100
+domains: system>cpu
+entity: packet-rate-policy-profile
+freemarker: false
+name: Create CPU packet rate limit policy
+operation: create
+sample-id: system-cpu-packet-rate-policy-profile-create
+scope: not(dpu)
+status: draft

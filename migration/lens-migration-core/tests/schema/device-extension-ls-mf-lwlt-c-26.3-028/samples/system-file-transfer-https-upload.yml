@@ -1,0 +1,41 @@
+arguments:
+  host-url:
+    description: https server url
+    suggested-values:
+    - https://host:port
+  certificate-type:
+    description: Certificate type, allowed values are pinned-ca-certs pinned-server-certs
+      or est-certificate-profile.
+    suggested-values:
+    - pinned-ca-certs
+    - pinned-server-certs
+    - est-certificate-profile
+  certificate-list-name:
+    description: Certificate name, based on the certificate type.
+    suggested-values:
+    - CA-GROUP
+    - SERVER-CERT
+    - EST-PROFILE
+  category-type:
+    description: Define files category
+    suggested-values:
+    - syslog
+  compression:
+    description: Compression format, allowed values is gzip or lzop (default is gzip)
+    optional: true
+    suggested-values:
+    - gzip
+    - lzop
+  filename:
+    description: The name of the file that will be uploaded, in case that is omitted
+      all the files of the specifed category will be uploaded
+    optional: true
+    suggested-values:
+    - syslog.log
+domains: system>file-transfer
+entity: https
+freemarker: true
+name: Upload files using HTTPs protocol
+operation: upload
+sample-id: system-file-transfer-https-upload
+status: draft

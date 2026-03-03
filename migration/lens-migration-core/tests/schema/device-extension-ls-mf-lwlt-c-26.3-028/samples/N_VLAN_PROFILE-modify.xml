@@ -1,0 +1,56 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <frame-processing-profiles xmlns="urn:bbf:yang:bbf-frame-processing-profile">
+      <frame-processing-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+        <name>${n\-vlan\-profile\-name}</name>
+        <priority>100</priority>
+        <#if n\-vlan\-id?has_content>
+        <match-criteria>
+          <tag>
+            <index>0</index>
+            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+            <#if n\-vlan\-id == 0>
+            <vlan-id>priority-tagged</vlan-id>
+            <#else>
+            <vlan-id>${n\-vlan\-id}</vlan-id>
+            </#if>
+            <pbit>any</pbit>
+            <dei>any</dei>
+          </tag>
+        </match-criteria>
+        <ingress-rewrite>
+          <pop-tags>1</pop-tags>
+          <copy-from-tags-to-marking-list>
+            <tag-index>0</tag-index>
+            <pbit-marking-index>0</pbit-marking-index>
+            <dei-marking-index>0</dei-marking-index>
+          </copy-from-tags-to-marking-list>
+        </ingress-rewrite>
+        <#if n\-vlan\-tag\-from?has_content>
+        <egress-rewrite>
+          <push-tag>
+            <index>0</index>
+            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+            <vlan-id>${n\-vlan\-id}</vlan-id>
+            <pbit-marking-index>${n\-vlan\-tag\-from}</pbit-marking-index>
+            <dei-marking-index>${n\-vlan\-tag\-from}</dei-marking-index>
+          </push-tag>
+        </egress-rewrite>
+        <#else>
+        <egress-rewrite xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+        </egress-rewrite>
+        </#if>
+        <#else>
+        <match-criteria>
+          <untagged/>
+        </match-criteria>
+        </#if>
+      </frame-processing-profile>
+      </frame-processing-profiles>
+    </config>
+  </edit-config>
+</rpc>

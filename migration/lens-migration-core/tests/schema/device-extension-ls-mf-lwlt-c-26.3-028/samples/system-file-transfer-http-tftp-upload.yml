@@ -1,0 +1,28 @@
+arguments:
+  host-url:
+    description: tftp or http server url
+    suggested-values:
+    - protocol://host
+  category-type:
+    description: Define files category
+    suggested-values:
+    - syslog
+  compression:
+    description: Compression format, allowed values is gzip or lzop (default is gzip)
+    optional: true
+    suggested-values:
+    - gzip
+    - lzop
+  filename:
+    description: The name of the file that will be uploaded, in case that is omitted
+      all the files of the specifed category will be uploaded
+    optional: true
+    suggested-values:
+    - syslog.log
+domains: system>file-transfer
+entity: http-tftp
+freemarker: true
+name: Upload files using HTTP or TFTP protocol
+operation: upload
+sample-id: system-file-transfer-http-tftp-upload
+status: draft

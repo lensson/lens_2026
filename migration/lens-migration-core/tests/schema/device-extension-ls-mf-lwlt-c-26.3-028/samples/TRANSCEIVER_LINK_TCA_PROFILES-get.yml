@@ -1,0 +1,9 @@
+domains: system>tca
+entity: tca-profiles
+freemarker: true
+name: Retrieve TCA-profiles
+operation: get
+sample-id: system-tca-tca-profiles-get
+scope: not(eth-copper) and not(eth-copper-ci) and not(fx-nt or mf14-nt or mf2-nt or
+  sf-nt)
+status: draft

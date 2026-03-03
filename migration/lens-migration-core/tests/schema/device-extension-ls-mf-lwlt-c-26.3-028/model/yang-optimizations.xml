@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<yang-optimizations>
+    <container-with-presence>
+		<!-- Category 1 -->
+		<add-presence-stmt>/ietf-interfaces:interfaces/interface/bbf-interface-usage:interface-usage</add-presence-stmt>
+        <add-presence-stmt>/ietf-interfaces:interfaces/interface/bbf-qos-enhanced-scheduling:egress-tm-objects</add-presence-stmt>
+        <add-presence-stmt>/ietf-interfaces:interfaces/interface/bbf-qos-traffic-mngt:tm-root</add-presence-stmt>
+		<add-presence-stmt>/bbf-xpongemtcont:tconts-config/tcont/bbf-qos-traffic-mngt:tm-root</add-presence-stmt>
+		<add-presence-stmt>/ietf-interfaces:interfaces/interface/bbf-subscriber-profiles:subscriber-profile</add-presence-stmt>
+		<!-- Category 2 -->
+		<add-presence-stmt>/ietf-interfaces:interfaces/interface/bbf-sub-interfaces:subif-lower-layer</add-presence-stmt>
+		<add-presence-stmt>/ietf-interfaces:interfaces/interface/bbf-xpon:channel-group</add-presence-stmt>
+		<add-presence-stmt>/ietf-interfaces:interfaces/interface/bbf-xpon:channel-partition</add-presence-stmt>
+		<add-presence-stmt>/ietf-interfaces:interfaces/interface/bbf-xpon:channel-pair</add-presence-stmt>
+		<add-presence-stmt>/ietf-interfaces:interfaces/interface/bbf-xpon:channel-termination</add-presence-stmt>
+		<add-presence-stmt>/ietf-interfaces:interfaces/interface/bbf-xponvani:v-ani</add-presence-stmt>
+		<add-presence-stmt>/ietf-interfaces:interfaces/interface/bbf-xponvani:olt-v-enet</add-presence-stmt>
+		<add-presence-stmt>/ietf-interfaces:interfaces/interface/ethernet:ethernet</add-presence-stmt>
+		<add-presence-stmt>/ietf-interfaces:interfaces/interface/nokia-l2-forwarding-termination-itf:l2-termination-interface</add-presence-stmt>
+    </container-with-presence>
+</yang-optimizations>

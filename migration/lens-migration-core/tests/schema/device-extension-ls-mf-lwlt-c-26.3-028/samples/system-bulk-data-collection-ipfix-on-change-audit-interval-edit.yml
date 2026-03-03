@@ -1,0 +1,15 @@
+arguments:
+  on-change-audit-interval:
+    description: Value in seconds for a periodic audit of on-change templates.
+    suggested-values:
+    - 3600
+    - 5400
+    - 7200
+    - '...'
+domains: system>bulk-data-collection>ipfix
+entity: on-change-audit-interval
+freemarker: true
+name: Configure on-change audit-interval
+operation: edit
+sample-id: system-bulk-data-collection-ipfix-on-change-audit-interval-edit
+status: draft

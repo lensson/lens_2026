@@ -1,0 +1,30 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ani-name:
+    description: The name of an Access Node Interface.
+    suggested-values:
+    - ani-1-1-1
+  vpn-name:
+    description: The name of a multicast uncontrolled vpn.
+    suggested-values:
+    - mc-uncontrolled-vpn
+  mc-gemport-id:
+    description: Multicast Gemport ID value, must be 2047 for GPON or 65534 for XGS
+      PON and NGPON2
+    suggested-values:
+    - 2047
+  enet-name:
+    description: The name of the ONU ENET interface that will be created
+    suggested-values:
+    - uni-1-1-1
+domains: onu>multicast>vpn
+entity: uncontrolled-vpn
+freemarker: true
+name: Configure multicast uncontrolled VPN
+operation: edit
+sample-id: onu-multicast-vpn-uncontrolled-vpn-edit
+scope: eonu
+status: draft

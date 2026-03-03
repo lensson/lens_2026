@@ -1,0 +1,13 @@
+arguments:
+  netconf-client-name:
+    description: Name of the NETCONF client
+    suggested-values:
+    - nc-client
+available-locally: true
+domains: system>callhome>tls-hello-params
+entity: ciphers
+freemarker: true
+name: Retrieve TLS ciphers
+operation: get-config
+sample-id: system-callhome-tls-hello-params-ciphers-get-config
+status: draft

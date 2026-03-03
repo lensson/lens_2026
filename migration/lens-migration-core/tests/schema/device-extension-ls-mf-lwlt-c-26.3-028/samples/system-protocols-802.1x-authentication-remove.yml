@@ -1,0 +1,8 @@
+domains: system>protocols>802.1x
+entity: authentication
+freemarker: true
+name: Remove system level authentication
+operation: remove
+sample-id: system-protocols-802.1x-authentication-remove
+scope: fiber
+status: draft

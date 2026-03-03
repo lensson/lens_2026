@@ -1,0 +1,22 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+    <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont">
+      <traffic-descriptor-profiles>
+        <traffic-descriptor-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${traffic\-descriptor\-profile\-name}</name>
+          <fixed-bandwidth>${fixed\-bandwidth}</fixed-bandwidth>
+          <assured-bandwidth>${assured\-bandwidth}</assured-bandwidth>
+          <maximum-bandwidth>${maximum\-bandwidth}</maximum-bandwidth>
+          <#if jitter\-tolerance?has_content>
+          <jitter-tolerance xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-traffic-descriptor-profile-aug">${jitter\-tolerance}</jitter-tolerance>
+          </#if>  
+        </traffic-descriptor-profile>
+      </traffic-descriptor-profiles>
+      </xpongemtcont>
+    </config>
+  </edit-config>
+</rpc>

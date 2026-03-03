@@ -1,0 +1,13 @@
+arguments:
+  ibridge-name:
+    description: the name of the IBRIDGE
+    suggested-values:
+    - bridge-1
+domains: unicast>forwarding
+entity: ibridge
+freemarker: true
+name: Delete unicast services forwarding ibridge
+operation: delete
+sample-id: unicast-forwarding-ibridge-delete
+scope: fiber
+status: draft

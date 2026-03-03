@@ -1,0 +1,19 @@
+arguments:
+  ibridge-user-port-name:
+    description: Ibridge user port name
+    optional: true
+  cc-name:
+    description: The name of CC sample
+    optional: true
+  vlanrange-profile-name:
+    description: Vlan range profile name reference to protocol
+    suggested-values:
+    - vlanrange_profile
+domains: unicast>protocols>pppoe
+entity: vlanrange
+freemarker: true
+name: Detach PPPoE Intermediate Agent profile with vlanrange in VLAN sub-interface
+operation: remove
+sample-id: unicast-protocols-pppoe-vlanrange-remove
+scope: fiber
+status: draft

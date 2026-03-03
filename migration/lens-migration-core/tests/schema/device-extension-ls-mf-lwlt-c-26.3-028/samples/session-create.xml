@@ -1,0 +1,18 @@
+<rpc message-id="createProTracingSession" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <protocol-tracing xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-protocol-tracing" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="merge">
+        <session>
+            <name>${session\-name}</name>
+            <interface>${interface}</interface>
+            <protocol-selector>${protocols}</protocol-selector>
+            <enabled>${enabled}</enabled>
+        </session>
+      </protocol-tracing>
+    </config>
+  </edit-config>
+</rpc>
+

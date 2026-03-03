@@ -1,0 +1,56 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <#if cc\-name?has_content>
+          <name>${cc\-name}-USER-VSI</name>
+          <#elseif ibridge\-user\-port\-name?has_content>
+          <name>${ibridge\-user\-port\-name}-VSI</name>
+          </#if>
+          <ipv6-security xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv6-address-spoofing-prevention">
+            <prevent-ipv6-address-spoofing>${enable\-ipv6\-security}</prevent-ipv6-address-spoofing>
+            <#if learn\-addresses\-from\-dhcpv6?has_content>
+              <#if learn\-addresses\-from\-dhcpv6 == true>
+                <learn-addresses-from-dhcpv6/>
+              <#else>
+                <learn-addresses-from-dhcpv6 xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove"/>
+              </#if>
+            </#if>
+            <#if enable\-ipv6\-security == true && max\-address?has_content>
+              <max-address>${max\-address}</max-address>
+            <#elseif enable\-ipv6\-security == false>
+              <max-address xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove"/>
+            </#if>
+          </ipv6-security>
+        </interface>
+        <#if ipv6\-security\-statistics?has_content>
+          <#if ipv6\-security\-statistics == true>
+            <ipv6-security-statistics xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv6-address-spoofing-prevention">
+              <interface>
+                <#if cc\-name?has_content>
+                <name>${cc\-name}-USER-VSI</name>
+                <#elseif ibridge\-user\-port\-name?has_content>
+                <name>${ibridge\-user\-port\-name}-VSI</name>
+                </#if>
+              </interface>
+            </ipv6-security-statistics>
+          <#else>
+            <ipv6-security-statistics xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv6-address-spoofing-prevention">
+              <interface xmlns:ns9="urn:ietf:params:xml:ns:netconf:base:1.0" ns9:operation="remove">
+                <#if cc\-name?has_content>
+                <name>${cc\-name}-USER-VSI</name>
+                <#elseif ibridge\-user\-port\-name?has_content>
+                <name>${ibridge\-user\-port\-name}-VSI</name>
+                </#if>
+              </interface>
+            </ipv6-security-statistics>
+          </#if>
+        </#if>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>

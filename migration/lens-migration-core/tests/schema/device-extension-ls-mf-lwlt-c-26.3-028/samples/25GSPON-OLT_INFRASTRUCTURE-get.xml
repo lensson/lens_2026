@@ -1,0 +1,17 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get>
+    <filter type="subtree">
+      <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>${olt\-infrastructure\-name}-cpartition</name>
+        </interface>
+        <interface>
+          <name>${olt\-infrastructure\-name}-cpair</name>
+        </interface>
+        <interface>
+          <name>${olt\-infrastructure\-name}-primary-ctermination</name>
+        </interface>
+      </interfaces-state>
+    </filter>
+  </get>
+</rpc>

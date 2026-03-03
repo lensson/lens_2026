@@ -1,0 +1,53 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  md-id:
+    description: Unique ID for MD.
+    suggested-values:
+    - MD-1
+  md-level:
+    description: Integer (0-7) that defines the level of MD.
+    suggested-values:
+    - 3
+  md-name:
+    description: A string that defines the name of the MD.
+    suggested-values:
+    - MD1
+  ma-id:
+    description: Unique ID for MA.
+    suggested-values:
+    - MA-1
+  ma-name:
+    description: A string that defines the name of the MA.
+    suggested-values:
+    - MA1
+  ma-mhf-creation:
+    description: The value indicating whether the management entity can create MHFs
+      (MIP Half Function) for the created Maintenance Association.
+    suggested-values:
+    - mhf-none
+  ccm-interval:
+    description: The interval between CCM transmissions to be used by all MEPs in
+      the Maintenance Association.
+    suggested-values:
+    - 1sec
+  ma-vlan-id:
+    description: The VLAN ID under MA for Auto created MIPS is of 12 bits represented
+      in a 2-octet integer.
+    suggested-values:
+    - 2
+  mep-id:
+    description: An integer that is unique among all the MEPs in the same Maintenance
+      Association.
+    suggested-values:
+    - 1
+domains: onu>cfm
+entity: md-ma-mep
+freemarker: true
+name: Configure CFM MD, MA and MEP on ONU UNI/VSI/VEIP
+operation: edit
+sample-id: onu-cfm-md-ma-mep-edit
+scope: eonu
+status: draft

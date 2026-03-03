@@ -1,0 +1,7 @@
+domains: system>bulk-data-collection>ipfix
+entity: randomize-data-collection
+freemarker: true
+name: Retrieve IPFIX randomize-data-collection enablement value
+operation: get-config
+sample-id: system-bulk-data-collection-ipfix-randomize-data-collection-get-config
+status: draft

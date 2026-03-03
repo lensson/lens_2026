@@ -1,0 +1,69 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <tm-profiles xmlns="urn:bbf:yang:bbf-qos-traffic-mngt-mounted">
+              <tc-id-2-queue-id-mapping-profile>
+                <name>${tc\-2\-q\-profile\-name}</name>
+<#if tc0\-queue\-id?has_content>
+                <mapping-entry>
+                  <traffic-class-id>${tc0\-queue\-id}</traffic-class-id>
+                  <local-queue-id>0</local-queue-id>
+                </mapping-entry>
+</#if>
+<#if tc1\-queue\-id?has_content>
+                <mapping-entry>
+                  <traffic-class-id>${tc1\-queue\-id}</traffic-class-id>
+                  <local-queue-id>1</local-queue-id>
+                </mapping-entry>
+</#if>
+<#if tc2\-queue\-id?has_content>
+                <mapping-entry>
+                  <traffic-class-id>${tc2\-queue\-id}</traffic-class-id>
+                  <local-queue-id>2</local-queue-id>
+                </mapping-entry>
+</#if>
+<#if tc3\-queue\-id?has_content>
+                <mapping-entry>
+                  <traffic-class-id>${tc3\-queue\-id}</traffic-class-id>
+                  <local-queue-id>3</local-queue-id>
+                </mapping-entry>
+</#if>
+<#if tc4\-queue\-id?has_content>
+                <mapping-entry>
+                  <traffic-class-id>${tc4\-queue\-id}</traffic-class-id>
+                  <local-queue-id>4</local-queue-id>
+                </mapping-entry>
+</#if>
+<#if tc5\-queue\-id?has_content>
+                <mapping-entry>
+                  <traffic-class-id>${tc5\-queue\-id}</traffic-class-id>
+                  <local-queue-id>5</local-queue-id>
+                </mapping-entry>
+</#if>
+<#if tc6\-queue\-id?has_content>
+                <mapping-entry>
+                  <traffic-class-id>${tc6\-queue\-id}</traffic-class-id>
+                  <local-queue-id>6</local-queue-id>
+                </mapping-entry>
+</#if>
+<#if tc7\-queue\-id?has_content>
+                <mapping-entry>
+                  <traffic-class-id>${tc7\-queue\-id}</traffic-class-id>
+                  <local-queue-id>7</local-queue-id>
+                </mapping-entry>
+</#if>
+              </tc-id-2-queue-id-mapping-profile>
+            </tm-profiles>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

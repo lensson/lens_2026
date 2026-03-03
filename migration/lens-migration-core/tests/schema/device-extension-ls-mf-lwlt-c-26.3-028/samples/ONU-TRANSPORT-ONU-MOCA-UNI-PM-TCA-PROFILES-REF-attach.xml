@@ -1,0 +1,29 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface>
+                <name>${moca\-name}</name>
+                <performance xmlns="urn:bbf:yang:bbf-interfaces-performance-management-mounted">
+<#if tca\-moca\-ethernet\-frame\-profile?has_content>
+                  <tca-moca-ethernet-frame-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interfaces-performance-management-mounted" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">${tca\-moca\-ethernet\-frame\-profile}</tca-moca-ethernet-frame-profile>
+</#if>
+<#if tca\-moca\-interface\-profile?has_content>
+                  <tca-moca-interface-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interfaces-performance-management-mounted" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">${tca\-moca\-interface\-profile}</tca-moca-interface-profile>
+</#if>
+                </performance>
+              </interface>
+            </interfaces>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

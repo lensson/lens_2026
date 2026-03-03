@@ -1,0 +1,100 @@
+arguments:
+  policy-name:
+    description: Name of the RADIUS policy.
+    suggested-values:
+    - policy
+  nas-port-id-syntax:
+    description: Keywords such as Chassis, Slot, Port, Onuslot, Onuport, ShSlt, ShPrt,
+      LzPrt with delimiters are allowed. "eth Chassis:Slot:Port:Onuslot:Onuport:ShSlt:ShPrt:LzPrt"
+      or "efm Chassis/Slot/Port/Onuslot/Onuport/ShSlt/ShPrt/LzPrt" shall be replaced
+      in RADIUS message as 'eth 1:1:8:1:1:1:8:008' or 'efm 1/1/10/1/1/1/10/010' respectively.
+    optional: true
+    suggested-values:
+    - eth Chassis:Slot:Port:Onuslot:Onuport:ShSlt:ShPrt:LzPrt
+  nas-id:
+    description: NAS-Identifier used in messages towards RADIUS servers.
+    suggested-values:
+    - nas1
+  nas-ip-address:
+    description: NAS-IP-Address used in messages towards RADIUS servers. If this parameter
+      is not configured, then the Lightspan Access Node system IP address is filled
+      as nas-ip-address in the RADIUS messages.
+    optional: true
+    suggested-values:
+    - 135.249.55.242
+  calling-station-id-format:
+    description: Format of the Calling-Station-Id parameter in RADIUS packets.
+    optional: true
+    suggested-values:
+    - hex-format
+    - ascii-format
+  auth-server1-name:
+    description: The primary RADIUS authentication server.
+    suggested-values:
+    - rad1
+  auth-server2-name:
+    description: The secondary RADIUS authentication server.
+    optional: true
+    suggested-values:
+    - rad2
+  acc-server1-name:
+    description: The primary RADIUS accounting server.
+    suggested-values:
+    - acc1
+  acc-server2-name:
+    description: The secondary RADIUS accounting server.
+    optional: true
+    suggested-values:
+    - acc2
+  accounting-interim-interval:
+    description: The amount of time (in seconds) between sending interim messages
+      to the accounting server.
+    optional: true
+    suggested-values:
+    - 200
+  domain-name:
+    description: Name of the domain.
+    suggested-values:
+    - domain
+  timeout:
+    description: The amount of time (in seconds) the resolver will wait for a response
+      from each remote name server before retrying the query via a different name
+      server.
+    optional: true
+    suggested-values:
+    - 200
+  attempts:
+    description: The number of times the resolver will send a query to all of its
+      name servers before giving up and returning an error to the calling application.
+    optional: true
+    suggested-values:
+    - 2
+  disable-accounting:
+    description: Indicates to disable accounting when the value is true.
+    optional: true
+    suggested-values:
+    - false
+    - true
+  accept-or-reject-all:
+    description: Controls whether to accept or reject user sessions in case the authentication
+      server is not reachable during 802.1X user session establishment.
+    optional: true
+    suggested-values:
+    - reject-all
+    - accept-all
+  accounting-on-reboot:
+    description: Controls whether or not the Radius client sends accounting-on related
+      messages to the accounting server associated with 802.1x sessions in case of
+      system restart/reboot event.
+    optional: true
+    suggested-values:
+    - false
+    - true
+domains: system>protocols>802.1x
+entity: radius-connection
+freemarker: true
+name: Configure RADIUS connection parameters
+operation: edit
+sample-id: system-protocols-802.1x-radius-connection-edit
+scope: user-auth-fiber and not(fx-p2p)
+status: draft

@@ -1,0 +1,24 @@
+arguments:
+  dhcpv6-profile-name:
+    description: Name of the DHCPv6 Relay Agent profile
+    suggested-values:
+    - dhcpv6_profile
+  vendor-specific-information:
+    description: It adds access loop characteristics code 17 to the relayed RELAY
+      FORW DHCPv6 messages
+    optional: true
+    suggested-values:
+    - vendor-specific-information
+  xpon-access-loop-syntax:
+    description: Access Loop sub-options that are to be added in option 17
+    optional: true
+    suggested-values:
+    - bbf-xpon-acc-type:onu-maximum-data-rate-upstream
+domains: unicast>protocols>dhcpv6
+entity: ldraprofile-xpon-accessloop
+freemarker: true
+name: Configure xpon-access-loop-characteristics to DHCPv6 Relay Agent profile
+operation: edit
+sample-id: unicast-protocols-dhcpv6-ldraprofile-xpon-accessloop-edit
+scope: not(fx-p2p)
+status: draft

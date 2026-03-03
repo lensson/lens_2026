@@ -1,0 +1,19 @@
+arguments:
+  user-interface:
+    description: Name of the user interface.
+    suggested-values:
+    - OLT-VENET
+  authentication-mode:
+    description: The object identifies the authentication mode of the interface.
+    suggested-values:
+    - port
+    - mac-based
+    - mab-based
+domains: transport>protocols>802.1x
+entity: timers
+freemarker: true
+name: Remove user interface level timers
+operation: remove
+sample-id: transport-protocols-802.1x-timers-remove
+scope: fiber
+status: draft

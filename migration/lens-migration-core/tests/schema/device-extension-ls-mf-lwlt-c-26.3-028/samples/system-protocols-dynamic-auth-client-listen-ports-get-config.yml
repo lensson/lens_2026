@@ -1,0 +1,7 @@
+domains: system>protocols>dynamic-auth-client
+entity: listen-ports
+freemarker: true
+name: Retrieve Dynamic Authorization Server listen ports configuration
+operation: get-config
+sample-id: system-protocols-dynamic-auth-client-listen-ports-get-config
+status: draft

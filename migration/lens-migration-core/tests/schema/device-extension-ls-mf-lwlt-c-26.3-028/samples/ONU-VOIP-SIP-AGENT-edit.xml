@@ -1,0 +1,295 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <pots-profiles xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+              <pots-uni-characteristics-profiles>
+                <pots-uni-characteristics-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>agent</name>
+                  <impedance>600</impedance>
+                  <rx-gain>0</rx-gain>
+                  <tx-gain>0</tx-gain>
+                  <echo-cancel-enabled>${voip\-echo\-cancel}</echo-cancel-enabled>
+                  <off-hook-announcement-type>not-applicable</off-hook-announcement-type>
+                  <hook-flash-min>${voip\-hook\-flash\-min}</hook-flash-min>
+                  <hook-flash-max>${voip\-hook\-flash\-max}</hook-flash-max>
+                  <jitter-target>${jitter\-target}</jitter-target>
+                  <max-jitter-buffer>${max\-jitter\-buffer}</max-jitter-buffer>
+                  <pstn-protocol-variant>${pstn\-protocol\-variant}</pstn-protocol-variant>
+                  <dtmf-digit-levels>${dtmf\-digit\-levels}</dtmf-digit-levels>
+                  <dtmf-digit-duration>${dtmf\-digit\-duration}</dtmf-digit-duration>
+                </pots-uni-characteristics-profile>
+              </pots-uni-characteristics-profiles>
+            </pots-profiles>
+            <media-profiles xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+              <media-transport-profiles>
+                <media-transport-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>agent</name>
+                  <min-port-range>${rtp\-local\-port\-min}</min-port-range>
+                  <max-port-range>60000</max-port-range>
+                </media-transport-profile>
+              </media-transport-profiles>
+              <media-voice-call-profiles>
+                <media-voice-call-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>agent</name>
+                  <voice-call-codec-profile>agent</voice-call-codec-profile>
+                  <media-transport-profile>agent</media-transport-profile>
+                </media-voice-call-profile>
+              </media-voice-call-profiles>
+              <media-codec-profiles>
+                <media-codec-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>agent</name>
+                  <codec-selection-1st-order>${media\-codec1st}</codec-selection-1st-order>
+                  <codec-packetization-time-1st-order>${media\-pkt\-period1st}</codec-packetization-time-1st-order>
+                  <silence-suppression-1st-order>${media\-silence1st}</silence-suppression-1st-order>
+                  <codec-selection-2nd-order>${media\-codec2nd}</codec-selection-2nd-order>
+                  <codec-packetization-time-2nd-order>${media\-pkt\-period2nd}</codec-packetization-time-2nd-order>
+                  <silence-suppression-2nd-order>${media\-silence2nd}</silence-suppression-2nd-order>
+                  <codec-selection-3rd-order>${media\-codec3rd}</codec-selection-3rd-order>
+                  <codec-packetization-time-3rd-order>${media\-pkt\-period3rd}</codec-packetization-time-3rd-order>
+                  <silence-suppression-3rd-order>${media\-silence3rd}</silence-suppression-3rd-order>
+                  <codec-selection-4th-order>${media\-codec4th}</codec-selection-4th-order>
+                  <codec-packetization-time-4th-order>${media\-pkt\-period4th}</codec-packetization-time-4th-order>
+                  <silence-suppression-4th-order>${media\-silence4th}</silence-suppression-4th-order>
+                </media-codec-profile>
+              </media-codec-profiles>
+            </media-profiles>
+            <sip-profiles xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+              <supplementary-services-profiles>
+                <supplementary-services-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>agent</name>
+                  <calling-number>
+                    <control>${app\-calling\-number}</control>
+                  </calling-number>
+                  <calling-name>
+                    <control>${app\-calling\-name}</control>
+                  </calling-name>
+                  <callerid>
+                    <control>operator</control>
+                    <status>${app\-caller\-id\-number}</status>
+                  </callerid>
+                  <callerid-name>
+                    <control>operator</control>
+                    <status>${app\-caller\-id\-name}</status>
+                  </callerid-name>
+                  <call-waiting>
+                    <control>${app\-call\-waiting}</control>
+                    <cw-caller-id-announcement>${app\-call\-announce}</cw-caller-id-announcement>
+                  </call-waiting>
+                  <Three-party-conference>
+                    <control>${app\-three\-way\-calling}</control>
+                  </Three-party-conference>
+                  <call-hold>
+                    <control>${app\-call\-hold}</control>
+                  </call-hold>
+                  <call-forwarding-ind>
+                    <control>${app\-call\-fwd\-indicate}</control>
+                  </call-forwarding-ind>
+                  <call-park>
+                    <control>${app\-call\-park}</control>
+                  </call-park>
+                  <attended-call-transfer>
+                    <control>${app\-call\-transfer}</control>
+                  </attended-call-transfer>
+                  <unattended-call-transfer>
+                    <control>${app\-call\-transfer}</control>
+                  </unattended-call-transfer>
+                  <flash-on-emergency-call>
+                    <control>${app\-flash\-on\-emergency\-call}</control>
+                  </flash-on-emergency-call>
+                  <emergency-call-originating-hold>
+                    <control>${app\-emergency\-call\-originationg\-hold}</control>
+                  </emergency-call-originating-hold>
+                  <direct-connect-service>
+                    <control>${app\-direct\-connect\-feature}</control>
+                    <connect-type>${app\-dial\-tone\-delay\-option}</connect-type>
+<#if app\-direct\-connect\-uri?has_content>
+                    <connect-uri>${app\-direct\-connect\-uri}</connect-uri>
+</#if>
+                  </direct-connect-service>
+                </supplementary-services-profile>
+              </supplementary-services-profiles>
+              <dialplan-digitmap-profiles>
+                <dialplan-digitmap-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>agent</name>
+                  <dialplan-characteristics>
+                    <sip-dialing-short-timer>${dial\-plan\-critical\-timeout}</sip-dialing-short-timer>
+                    <sip-dialing-long-timer>${dial\-plan\-partial\-timeout}</sip-dialing-long-timer>
+                  </dialplan-characteristics>
+                  <digitmap>
+                    <digit-map-pattern>${dial\-plan\-digit\-map}</digit-map-pattern>
+                  </digitmap>
+                </dialplan-digitmap-profile>
+              </dialplan-digitmap-profiles>
+              <feature-access-codes-profiles>
+                <feature-access-codes-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>agent</name>
+                  <callerid-feature-access-codes>
+                    <service-activation-code>${feat\-act\-caller\-id}</service-activation-code>
+                    <service-deactivation-code>${feat\-deact\-caller\-id}</service-deactivation-code>
+                  </callerid-feature-access-codes>
+                  <do-not-disturb-feature-access-codes>
+                    <service-activation-code>${feat\-act\-dnd}</service-activation-code>
+                    <service-deactivation-code>${feat\-deact\-dnd}</service-deactivation-code>
+                  </do-not-disturb-feature-access-codes>
+                </feature-access-codes-profile>
+              </feature-access-codes-profiles>
+              <sip-registerchar-profiles>
+                <sip-registerchar-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>agent</name>
+                  <re-register-interval>${reg\-expire\-time}</re-register-interval>
+                  <re-register-precursory-start-time>${re\-reg\-head\-start}</re-register-precursory-start-time>
+                </sip-registerchar-profile>
+              </sip-registerchar-profiles>
+              <subscription-profiles>
+                <subscription-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>agent</name>
+                  <sip-event-package>
+                    <sip-event-package-name>agent</sip-event-package-name>
+                    <enabled>enable</enabled>
+                    <subscribe-method>
+                      <notification-characteristics>
+                        <tone>${app\-mwi\-spl\-dialtone}</tone>
+                        <visual-indication>${app\-mwi\-visual\-indi}</visual-indication>
+                      </notification-characteristics>
+                    </subscribe-method>
+                  </sip-event-package>
+                </subscription-profile>
+              </subscription-profiles>
+            </sip-profiles>
+            <media-forwarders xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+              <media-forwarder xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>agent</name>
+                <fax-modem-transition-mode>${media\-fax\-mode}</fax-modem-transition-mode>
+                <dtmf-events>${rtp\-dtmf\-event}</dtmf-events>
+                <rfc4733-mode>${dtmf\-mode}</rfc4733-mode>
+                <cas-events>${cas\-event}</cas-events>
+<#if file\-name?has_content>
+                <file-download-method>ftp-download</file-download-method>
+                <file-name>${file\-name}</file-name>
+                <download-characteristics>
+<#if ftp\-server\-address?has_content>
+                  <ftp-server>${ftp\-server\-address}</ftp-server>
+</#if>
+                  <authentication-scheme>md5-digest-authentication</authentication-scheme>
+<#if user\-name?has_content>
+                  <user-name>${user\-name}</user-name>
+</#if>
+<#if password?has_content>
+                  <password>${password}</password>
+</#if>
+<#if realm?has_content>
+                  <realm>${realm}</realm>
+</#if>
+                </download-characteristics>
+</#if>
+                <media-x-connect xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="merge">
+                  <name>agent</name>
+<#if rtp\-dscp?has_content>
+                  <media-dscp-mark>${rtp\-dscp}</media-dscp-mark>
+<#else>
+                  <media-dscp-mark>24</media-dscp-mark>
+</#if>
+                  <voice-call-profile>agent</voice-call-profile>
+                </media-x-connect>
+              </media-forwarder>
+            </media-forwarders>
+            <sip-signaling xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+              <voip-service-providers>
+                <voip-service-provider xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>agent</name>
+                  <dialplan-characteristics>agent</dialplan-characteristics>
+                  <suppl-services-feature-access-codes>agent</suppl-services-feature-access-codes>
+                  <subscription-profile>agent</subscription-profile>
+                </voip-service-provider>
+              </voip-service-providers>
+              <sip-server-pools>
+                <sip-server-pool xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>agent</name>
+                  <sip-servers xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="merge">
+                    <name>proxy</name>
+                    <sip-server-address>
+                      <address-type>fqdn</address-type>
+                      <fully-qualified-domain>
+<#if registrar\-proxy\-address?has_content>
+                        <fully-qualified-domain-name>${registrar\-proxy\-address}</fully-qualified-domain-name>
+</#if>
+                      </fully-qualified-domain>
+                    </sip-server-address>
+                    <sip-server-role>proxy</sip-server-role>
+                  </sip-servers>
+                  <sip-servers xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="merge">
+                    <name>outboundproxy</name>
+                    <sip-server-address>
+                      <address-type>fqdn</address-type>
+                      <fully-qualified-domain>
+<#if registrar\-proxy\-address?has_content>
+                        <fully-qualified-domain-name>${registrar\-proxy\-address}</fully-qualified-domain-name>
+</#if>
+                      </fully-qualified-domain>
+                    </sip-server-address>
+                    <sip-server-role>outbound-proxy</sip-server-role>
+                  </sip-servers>
+                  <sip-servers xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="merge">
+                    <name>registrar</name>
+                    <sip-server-address>
+                      <address-type>fqdn</address-type>
+                      <fully-qualified-domain>
+<#if registrar\-proxy\-address?has_content>
+                        <fully-qualified-domain-name>${registrar\-proxy\-address}</fully-qualified-domain-name>
+</#if>
+                      </fully-qualified-domain>
+                    </sip-server-address>
+                    <sip-server-role>registrar</sip-server-role>
+                  </sip-servers>
+                </sip-server-pool>
+              </sip-server-pools>
+              <voip-access-gateways>
+                <voip-access-gateway xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>agent</name>
+                  <voip-service-provider>agent</voip-service-provider>
+                  <vag-sip-register-profile>agent</vag-sip-register-profile>
+                  <vag-primary-site-first-hop-sip-servers>agent</vag-primary-site-first-hop-sip-servers>
+                </voip-access-gateway>
+              </voip-access-gateways>
+              <voip-service-gateways>
+                <voip-service-gateway xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>agent</name>
+                  <voip-access-gateways>agent</voip-access-gateways>
+<#if dscp?has_content>
+                  <sip-dscp-mark>${dscp}</sip-dscp-mark>
+<#else>
+                  <sip-dscp-mark>24</sip-dscp-mark>
+</#if>
+                  <media-forwarder>agent</media-forwarder>
+                  <release-timer>${release\-timer}</release-timer>
+                </voip-service-gateway>
+              </voip-service-gateways>
+              <sip-user-agents>
+                <sip-user-agent xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>agent</name>
+                  <voip-service-gateway>agent</voip-service-gateway>
+<#if registrar\-proxy\-address?has_content>
+                  <sip-user-agent-domain>${registrar\-proxy\-address}</sip-user-agent-domain>
+</#if>
+                  <sip-uni-uri-type>${uri\-format}</sip-uni-uri-type>
+                  <sip-ua-transport-protocol-priority>
+                    <sip-ua-transport>udp</sip-ua-transport>
+                    <sip-ua-transport-priority>1</sip-ua-transport-priority>
+                    <sip-ua-transport-port>5060</sip-ua-transport-port>
+                  </sip-ua-transport-protocol-priority>
+                </sip-user-agent>
+              </sip-user-agents>
+            </sip-signaling>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

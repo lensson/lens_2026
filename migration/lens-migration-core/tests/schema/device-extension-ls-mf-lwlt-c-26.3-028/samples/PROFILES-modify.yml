@@ -1,0 +1,26 @@
+arguments:
+  in-port:
+    description: The interface usage type of the in port
+    suggested-values:
+    - user-port
+  out-port:
+    description: The interface usage type of the out port
+    suggested-values:
+    - user-port
+  receive-interface-usage:
+    description: Defines MAC address learning rules for frames received on a port
+      for which the interface usage of the underlying interface is of this value
+    suggested-values:
+    - user-port
+  mac-can-not-move-to:
+    description: The interface-usage value to which MAC addresses can not move
+    suggested-values:
+    - user-port
+domains: unicast>forwarding
+entity: profiles
+freemarker: true
+name: Modify unicast services forwarding profiles
+operation: modify
+sample-id: unicast-forwarding-profiles-modify
+scope: not(dpu) and not(mx) and not(fx-p2p)
+status: draft

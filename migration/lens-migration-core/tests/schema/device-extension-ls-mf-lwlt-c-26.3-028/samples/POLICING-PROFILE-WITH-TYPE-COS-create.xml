@@ -1,0 +1,224 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <policing-profiles xmlns="urn:bbf:yang:bbf-qos-policing">
+        <policing-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${policing\-profile\-name}</name>
+		  <#if policing\-scope?has_content>
+          <scope xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">bbf-qos-cls:${policing\-scope}</scope>
+		  </#if>
+          <#if policing\-type\-cos == 'trtcm-with-cos'>
+          <two-rate-three-color-marker-with-cos xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+            <cir>${policing\-cir}</cir>
+            <cbs>${policing\-cbs}</cbs>
+            <cbs-tc-threshold>
+             <policing-tc-threshold>
+              <tc>${policing\-tc\-cbs\-0}</tc>
+              <threshold>${policing\-tc\-cbs\-threshold\-0}</threshold>
+             </policing-tc-threshold>
+             <policing-tc-threshold>
+              <tc>${policing\-tc\-cbs\-1}</tc>
+              <threshold>${policing\-tc\-cbs\-threshold\-1}</threshold>
+             </policing-tc-threshold>
+             <#if policing\-tc\-cbs\-2?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-cbs\-2}</tc>
+                 <threshold>${policing\-tc\-cbs\-threshold\-2}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-cbs\-3?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-cbs\-3}</tc>
+                 <threshold>${policing\-tc\-cbs\-threshold\-3}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-cbs\-4?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-cbs\-4}</tc>
+                 <threshold>${policing\-tc\-cbs\-threshold\-4}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-cbs\-5?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-cbs\-5}</tc>
+                 <threshold>${policing\-tc\-cbs\-threshold\-5}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-cbs\-6?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-cbs\-6}</tc>
+                 <threshold>${policing\-tc\-cbs\-threshold\-6}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-cbs\-7?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-cbs\-7}</tc>
+                 <threshold>${policing\-tc\-cbs\-threshold\-7}</threshold>
+                </policing-tc-threshold>
+             </#if>
+            </cbs-tc-threshold>
+            <pir>${policing\-pir}</pir>
+            <pbs>${policing\-pbs}</pbs>
+            <pbs-tc-threshold>
+             <policing-tc-threshold>
+              <tc>${policing\-tc\-pbs\-0}</tc>
+              <threshold>${policing\-tc\-pbs\-threshold\-0}</threshold>
+             </policing-tc-threshold>
+             <policing-tc-threshold>
+              <tc>${policing\-tc\-pbs\-1}</tc>
+              <threshold>${policing\-tc\-pbs\-threshold\-1}</threshold>
+             </policing-tc-threshold>
+             <#if policing\-tc\-pbs\-2?has_content>
+               <policing-tc-threshold>
+                <tc>${policing\-tc\-pbs\-2}</tc>
+                <threshold>${policing\-tc\-pbs\-threshold\-2}</threshold>
+               </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-pbs\-3?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-pbs\-3}</tc>
+                 <threshold>${policing\-tc\-pbs\-threshold\-3}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-pbs\-4?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-pbs\-4}</tc>
+                 <threshold>${policing\-tc\-pbs\-threshold\-4}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-pbs\-5?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-pbs\-5}</tc>
+                 <threshold>${policing\-tc\-pbs\-threshold\-5}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-pbs\-6?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-pbs\-6}</tc>
+                 <threshold>${policing\-tc\-pbs\-threshold\-6}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-pbs\-7?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-pbs\-7}</tc>
+                 <threshold>${policing\-tc\-pbs\-threshold\-7}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             </pbs-tc-threshold>
+            </two-rate-three-color-marker-with-cos>
+           </#if>
+           <#if policing\-type\-cos == 'trtcm-mef-with-cos'>
+           <two-rate-three-color-marker-mef-with-cos xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+             <cir>${policing\-cir}</cir>
+             <cbs>${policing\-cbs}</cbs>
+             <cbs-tc-threshold>
+              <policing-tc-threshold>
+               <tc>${policing\-tc\-cbs\-0}</tc>
+               <threshold>${policing\-tc\-cbs\-threshold\-0}</threshold>
+              </policing-tc-threshold>
+              <policing-tc-threshold>
+               <tc>${policing\-tc\-cbs\-1}</tc>
+               <threshold>${policing\-tc\-cbs\-threshold\-1}</threshold>
+              </policing-tc-threshold>
+             <#if policing\-tc\-cbs\-2?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-cbs\-2}</tc>
+                 <threshold>${policing\-tc\-cbs\-threshold\-2}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-cbs\-3?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-cbs\-3}</tc>
+                 <threshold>${policing\-tc\-cbs\-threshold\-3}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-cbs\-4?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-cbs\-4}</tc>
+                 <threshold>${policing\-tc\-cbs\-threshold\-4}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-cbs\-5?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-cbs\-5}</tc>
+                 <threshold>${policing\-tc\-cbs\-threshold\-5}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-cbs\-6?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-cbs\-6}</tc>
+                 <threshold>${policing\-tc\-cbs\-threshold\-6}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-cbs\-7?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-cbs\-7}</tc>
+                 <threshold>${policing\-tc\-cbs\-threshold\-7}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             </cbs-tc-threshold>
+             <eir>${policing\-eir}</eir>
+             <ebs>${policing\-ebs}</ebs>
+             <couple-flag>${policing\-coupling\-flag}</couple-flag>
+             <ebs-tc-threshold>
+              <policing-tc-threshold>
+               <tc>${policing\-tc\-ebs\-0}</tc>
+               <threshold>${policing\-tc\-ebs\-threshold\-0}</threshold>
+              </policing-tc-threshold>
+              <policing-tc-threshold>
+               <tc>${policing\-tc\-ebs\-1}</tc>
+               <threshold>${policing\-tc\-ebs\-threshold\-1}</threshold>
+              </policing-tc-threshold>
+             <#if policing\-tc\-ebs\-2?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-ebs\-2}</tc>
+                 <threshold>${policing\-tc\-ebs\-threshold\-2}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-ebs\-3?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-ebs\-3}</tc>
+                 <threshold>${policing\-tc\-ebs\-threshold\-3}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-ebs\-4?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-ebs\-4}</tc>
+                 <threshold>${policing\-tc\-ebs\-threshold\-4}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-ebs\-5?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-ebs\-5}</tc>
+                 <threshold>${policing\-tc\-ebs\-threshold\-5}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-ebs\-6?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-ebs\-6}</tc>
+                 <threshold>${policing\-tc\-ebs\-threshold\-6}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             <#if policing\-tc\-ebs\-7?has_content>
+                <policing-tc-threshold>
+                 <tc>${policing\-tc\-ebs\-7}</tc>
+                 <threshold>${policing\-tc\-ebs\-threshold\-7}</threshold>
+                </policing-tc-threshold>
+             </#if>
+             </ebs-tc-threshold>
+           </two-rate-three-color-marker-mef-with-cos>
+           </#if>
+          <#if policing\-pre\-handling\-profile\-name?has_content>
+            <policing-pre-handling-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension" ns0:operation="merge">${policing\-pre\-handling\-profile\-name}</policing-pre-handling-profile>
+          </#if>
+          <#if policing\-action\-profile\-name?has_content>
+            <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension" ns0:operation="merge">${policing\-action\-profile\-name}</policing-action-profile>
+          </#if>
+        </policing-profile>
+      </policing-profiles>
+    </config>
+  </edit-config>
+</rpc>

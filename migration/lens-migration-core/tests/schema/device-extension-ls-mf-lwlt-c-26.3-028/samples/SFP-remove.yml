@@ -1,0 +1,12 @@
+arguments:
+  transceiver-name:
+    description: The name of transceiver
+    suggested-values:
+    - sfp1
+domains: equipment>sfp
+freemarker: true
+name: Remove SFP
+operation: remove
+sample-id: equipment-sfp-remove
+scope: xpon
+status: draft

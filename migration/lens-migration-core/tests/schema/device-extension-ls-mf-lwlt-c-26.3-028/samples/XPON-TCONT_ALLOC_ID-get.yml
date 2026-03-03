@@ -1,0 +1,26 @@
+arguments:
+  allowed-alloc-id-list:
+    description: An allowed ID list for allocating free ALLOC IDs, the format can
+      be 257-1023 or 256,270,1023 or 256-900,1000-1023
+    optional: true
+  olt-port-name:
+    description: Channel group
+    suggested-values:
+    - cp1
+  xpon-technology:
+    description: Type of Pon
+    suggested-values:
+    - gpon
+  tcont-name:
+    description: TCONT Interface name
+    suggested-values:
+    - tcont-1
+domains: transport>xpon>id
+entity: tcont_alloc
+freemarker: true
+name: Retrieve transport XPON T-CONT ALLOC ID
+network-virtualizer: true
+operation: get
+sample-id: transport-xpon-id-tcont_alloc-get
+scope: xpon
+status: draft

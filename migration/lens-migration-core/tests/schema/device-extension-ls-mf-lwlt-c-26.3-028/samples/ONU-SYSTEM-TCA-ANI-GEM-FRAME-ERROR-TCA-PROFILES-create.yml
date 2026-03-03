@@ -1,0 +1,35 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  gem-frame-error-profile:
+    description: ANI aggregate GEM performance monitoring threshold profile name
+    suggested-values:
+    - aggr_gem_tca_profile
+  in-lost-gem-frames-threshold:
+    description: Threshold value for the number of lost GEM frames count in downstream
+      range is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 10
+  out-lost-gem-frames-threshold:
+    description: Threshold value for the number of lost GEM frames count in upstream  range
+      is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 11
+  bad-gem-header-error-threshold:
+    description: Threshold value for number of grants received for unknown profiles  range
+      is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 10
+domains: onu>system>tca>pm-profiles
+entity: ani-agg-gem-tca-profile
+freemarker: true
+name: Config ANI aggregate GEM PM TCA profile
+operation: create
+sample-id: onu-system-tca-pm-profiles-ani-agg-gem-tca-profile-create
+scope: eonu
+status: draft

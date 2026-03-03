@@ -1,0 +1,31 @@
+arguments:
+  attempts:
+    description: Maximum number of attempts to resolve a domain name
+    suggested-values:
+    - 2
+  domain1:
+    description: Domain that will be used for resolving a host name
+    suggested-values:
+    - cn
+  domain2:
+    description: Domain that will be used for resolving a host name
+    optional: true
+    suggested-values:
+    - com
+  domain3:
+    description: Domain that will be used for resolving a host name
+    optional: true
+    suggested-values:
+    - net
+  timeout:
+    description: The amount of time the resolver will wait for a response from a remote
+      name server
+    suggested-values:
+    - 5
+domains: system>dns
+entity: search-domains
+freemarker: true
+name: Configure system domain name server
+operation: edit
+sample-id: system-dns-search-domains-edit
+status: draft

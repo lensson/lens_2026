@@ -1,0 +1,331 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <forwarding xmlns="urn:bbf:yang:bbf-l2-forwarding">
+        <flooding-policies-profiles>
+          <flooding-policies-profile>
+            <name>${selective\-flooding\-policy\-name}</name>
+            <#if ds\-uni\-flood\-broadcast\-address\-frame?has_content>
+            <flooding-policy>
+              <name>dn_bc</name>
+              <in-interface-usages>
+                <interface-usages>network-port</interface-usages>
+              </in-interface-usages>
+              <destination-address>
+                <broadcast-address/>
+              </destination-address>
+              <#if ds\-uni\-flood\-broadcast\-address\-frame>
+              <out-interface-usages>
+                <interface-usages>user-port</interface-usages>
+                <#if subtended\-port\-support?has_content && subtended\-port\-support>
+                <interface-usages>subtended-node-port</interface-usages>
+                </#if>
+              </out-interface-usages>
+              <#else>
+              <#if subtended\-port\-support?has_content && subtended\-port\-support>
+              <out-interface-usages>
+                <interface-usages>subtended-node-port</interface-usages>
+              </out-interface-usages>
+              <#else>
+              <discard/>
+              </#if>
+              </#if>
+            </flooding-policy>
+            </#if>
+            <#if ds\-uni\-flood\-unknown\-unicast\-frame?has_content>
+            <flooding-policy>
+              <name>dn_uc</name>
+              <in-interface-usages>
+                <interface-usages>network-port</interface-usages>
+              </in-interface-usages>
+              <destination-address>
+                <unicast-address/>
+              </destination-address>
+              <#if ds\-uni\-flood\-unknown\-unicast\-frame>
+              <out-interface-usages>
+                <interface-usages>user-port</interface-usages>
+                <#if subtended\-port\-support?has_content && subtended\-port\-support>
+                <interface-usages>subtended-node-port</interface-usages>
+                </#if>
+              </out-interface-usages>
+              <#else>
+              <#if subtended\-port\-support?has_content && subtended\-port\-support>
+              <out-interface-usages>
+                <interface-usages>subtended-node-port</interface-usages>
+              </out-interface-usages>
+              <#else>
+              <discard/>
+              </#if>
+              </#if>
+            </flooding-policy>
+            </#if>
+            <#if ds\-flood\-ntp\-multicast\-address\-frame?has_content>
+            <flooding-policy>
+              <name>dn_ntp</name>
+              <in-interface-usages>
+                <interface-usages>network-port</interface-usages>
+              </in-interface-usages>
+              <destination-address>
+                <ntp-multicast-address/>
+              </destination-address>
+              <#if ds\-flood\-ntp\-multicast\-address\-frame>
+              <out-interface-usages>
+                <interface-usages>user-port</interface-usages>
+                <#if subtended\-port\-support?has_content && subtended\-port\-support>
+                <interface-usages>subtended-node-port</interface-usages>
+                </#if>
+              </out-interface-usages>
+              <#else>
+              <discard/>
+              </#if>
+            </flooding-policy>
+            </#if>
+            <#if ds\-uni\-flood\-rip\-multicast\-address\-frame?has_content>
+            <flooding-policy>
+              <name>dn_rip</name>
+              <in-interface-usages>
+                <interface-usages>network-port</interface-usages>
+              </in-interface-usages>
+              <destination-address>
+                <rip-multicast-address/>
+              </destination-address>
+              <#if ds\-uni\-flood\-rip\-multicast\-address\-frame>
+              <out-interface-usages>
+                <interface-usages>user-port</interface-usages>
+                <#if subtended\-port\-support?has_content && subtended\-port\-support>
+                <interface-usages>subtended-node-port</interface-usages>
+                </#if>
+              </out-interface-usages>
+              <#else>
+              <#if subtended\-port\-support?has_content && subtended\-port\-support>
+              <out-interface-usages>
+                <interface-usages>subtended-node-port</interface-usages>
+              </out-interface-usages>
+              <#else>
+              <discard/>
+              </#if>
+              </#if>
+            </flooding-policy>
+            </#if>
+            <#if ds\-nni\-flood\-ipv4\-multicast\-behavior?has_content && ds\-nni\-flood\-ipv4\-multicast\-behavior == "flood_nni_limited">
+            <flooding-policy>
+              <name>dn_IPv4MC_NNI_Limited</name>
+              <in-interface-usages>
+                <interface-usages>network-port</interface-usages>
+              </in-interface-usages>
+              <destination-address>
+                <ipv4-prefix>224.0.0.0/24</ipv4-prefix>
+              </destination-address>
+              <out-interface-usages>
+                <interface-usages>subtended-node-port</interface-usages>
+              </out-interface-usages>
+            </flooding-policy>
+            </#if>
+            <#if ds\-uni\-flood\-ipv4\-multicast\-address\-frame?has_content || ds\-nni\-flood\-ipv4\-multicast\-behavior?has_content >
+            <flooding-policy>
+              <name>dn_IPv4MC</name>
+              <in-interface-usages>
+                <interface-usages>network-port</interface-usages>
+              </in-interface-usages>
+              <destination-address>
+                <ipv4-multicast-address/>
+              </destination-address>
+              <#if subtended\-port\-support?has_content && subtended\-port\-support>
+              <#if ds\-nni\-flood\-ipv4\-multicast\-behavior?has_content && ds\-nni\-flood\-ipv4\-multicast\-behavior == "flood_nni_limited">
+              <discard/>
+              <#else>
+              <out-interface-usages>
+                <#if ds\-uni\-flood\-ipv4\-multicast\-address\-frame?has_content && ds\-uni\-flood\-ipv4\-multicast\-address\-frame>
+                <interface-usages>user-port</interface-usages>
+                </#if>
+                <interface-usages>subtended-node-port</interface-usages>
+              </out-interface-usages>
+              </#if>
+              <#else>
+              <#if ds\-uni\-flood\-ipv4\-multicast\-address\-frame>
+              <out-interface-usages>
+                <interface-usages>user-port</interface-usages>
+              </out-interface-usages>
+              <#else>
+              <discard/>
+              </#if>
+              </#if>
+            </flooding-policy>
+            </#if>
+            <#if ds\-uni\-flood\-ipv6\-multicast\-address\-frame?has_content>
+            <flooding-policy>
+              <name>dn_IPv6MC</name>
+              <in-interface-usages>
+                <interface-usages>network-port</interface-usages>
+              </in-interface-usages>
+              <destination-address>
+                <ipv6-multicast-address/>
+              </destination-address>
+              <#if ds\-uni\-flood\-ipv6\-multicast\-address\-frame>
+              <out-interface-usages>
+                <interface-usages>user-port</interface-usages>
+                <#if subtended\-port\-support?has_content && subtended\-port\-support>
+                <interface-usages>subtended-node-port</interface-usages>
+                </#if>
+              </out-interface-usages>
+              <#else>
+              <#if subtended\-port\-support?has_content && subtended\-port\-support>
+              <out-interface-usages>
+                <interface-usages>subtended-node-port</interface-usages>
+              </out-interface-usages>
+              <#else>
+              <discard/>
+              </#if>
+              </#if>
+            </flooding-policy>
+            </#if>
+            <#if ds\-uni\-flood\-any\-multicast\-mac\-frame?has_content>
+            <flooding-policy>
+              <name>dn_MC</name>
+              <in-interface-usages>
+                <interface-usages>network-port</interface-usages>
+              </in-interface-usages>
+              <destination-address>
+                <any-multicast-mac-address/>
+              </destination-address>
+              <#if ds\-uni\-flood\-any\-multicast\-mac\-frame>
+              <out-interface-usages>
+                <interface-usages>user-port</interface-usages>
+                <#if subtended\-port\-support?has_content && subtended\-port\-support>
+                <interface-usages>subtended-node-port</interface-usages>
+                </#if>
+              </out-interface-usages>
+              <#else>
+              <#if subtended\-port\-support?has_content && subtended\-port\-support>
+              <out-interface-usages>
+                <interface-usages>subtended-node-port</interface-usages>
+              </out-interface-usages>
+              <#else>
+              <discard/>
+              </#if>
+              </#if>
+            </flooding-policy>
+            </#if>
+            <flooding-policy>
+              <name>dn_any</name>
+              <in-interface-usages>
+                <interface-usages>network-port</interface-usages>
+              </in-interface-usages>
+              <destination-address>
+                <any-frame/>
+              </destination-address>
+              <#if ds\-uni\-flood\-any\-frame?has_content && ds\-uni\-flood\-any\-frame>
+              <out-interface-usages>
+                <interface-usages>user-port</interface-usages>
+                <#if subtended\-port\-support?has_content && subtended\-port\-support>
+                <interface-usages>subtended-node-port</interface-usages>
+                </#if>
+              </out-interface-usages>
+              <#else>
+              <#if subtended\-port\-support?has_content && subtended\-port\-support>
+              <out-interface-usages>
+                <interface-usages>subtended-node-port</interface-usages>
+              </out-interface-usages>
+              <#else>
+              <discard/>
+              </#if>
+              </#if>
+            </flooding-policy>
+
+            <#if us\-flood\-ntp\-multicast\-address\-frame?has_content>
+            <flooding-policy>
+              <name>up_ntp</name>
+              <in-interface-usages>
+                <interface-usages>user-port</interface-usages>
+              </in-interface-usages>
+              <destination-address>
+                <ntp-multicast-address/>
+              </destination-address>
+              <#if us\-flood\-ntp\-multicast\-address\-frame>
+              <out-interface-usages>
+                <interface-usages>network-port</interface-usages>
+              </out-interface-usages>
+              <#else>
+              <discard/>
+              </#if>
+            </flooding-policy>
+            </#if>
+            <#if us\-flood\-rip\-multicast\-address\-frame?has_content>
+            <flooding-policy>
+              <name>up_rip</name>
+              <in-interface-usages>
+                <interface-usages>user-port</interface-usages>
+              </in-interface-usages>
+              <destination-address>
+                <rip-multicast-address/>
+              </destination-address>
+              <#if us\-flood\-rip\-multicast\-address\-frame>
+              <out-interface-usages>
+                <interface-usages>network-port</interface-usages>
+              </out-interface-usages>
+              <#else>
+              <discard/>
+              </#if>
+            </flooding-policy>
+            </#if>
+            <#if us\-flood\-ipv4\-multicast\-address\-frame?has_content>
+            <flooding-policy>
+              <name>up_IPv4MC</name>
+              <in-interface-usages>
+                <interface-usages>user-port</interface-usages>
+              </in-interface-usages>
+              <destination-address>
+                <ipv4-multicast-address/>
+              </destination-address>
+              <#if us\-flood\-ipv4\-multicast\-address\-frame>
+              <out-interface-usages>
+                <interface-usages>network-port</interface-usages>
+              </out-interface-usages>
+              <#else>
+              <discard/>
+              </#if>
+            </flooding-policy>
+            </#if>
+            <#if us\-flood\-ipv6\-multicast\-address\-frame?has_content>
+            <flooding-policy>
+              <name>up_IPv6MC</name>
+              <in-interface-usages>
+                <interface-usages>user-port</interface-usages>
+              </in-interface-usages>
+              <destination-address>
+                <ipv6-multicast-address/>
+              </destination-address>
+              <#if us\-flood\-ipv6\-multicast\-address\-frame>
+              <out-interface-usages>
+                <interface-usages>network-port</interface-usages>
+              </out-interface-usages>
+              <#else>
+              <discard/>
+              </#if>
+            </flooding-policy>
+            </#if>
+            <flooding-policy>
+              <name>up_MC</name>
+              <in-interface-usages>
+                <interface-usages>user-port</interface-usages>
+              </in-interface-usages>
+              <destination-address>
+                <any-multicast-mac-address/>
+              </destination-address>
+              <#if us\-flood\-any\-multicast\-mac\-frame?has_content && us\-flood\-any\-multicast\-mac\-frame>
+              <out-interface-usages>
+                <interface-usages>network-port</interface-usages>
+              </out-interface-usages>
+              <#else>
+              <discard/>
+              </#if>
+            </flooding-policy>
+          </flooding-policies-profile>
+        </flooding-policies-profiles>
+      </forwarding>
+    </config>
+  </edit-config>
+</rpc>

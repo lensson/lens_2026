@@ -1,0 +1,19 @@
+arguments:
+  network-port-name:
+    description: Name of interface
+    suggested-values:
+    - X1/X2
+  enable:
+    description: Parameter to enable or disable the interface
+    suggested-values:
+    - true
+    - false
+available-locally: true
+domains: transport>ethernet
+entity: interface-admin-status
+freemarker: true
+name: Configure admin-status of interface to enable or disable.
+operation: edit
+sample-id: transport-ethernet-interface-admin-status-edit
+scope: not(inband-no-ipv4) and not(mf2-nt) and not(mx) and not(dpu)
+status: draft

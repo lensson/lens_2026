@@ -1,0 +1,6 @@
+domains: system>logging>application-log
+freemarker: true
+name: Retrieve log level for an application
+operation: get-config
+sample-id: system-logging-application-log-get-config
+status: draft

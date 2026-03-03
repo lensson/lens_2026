@@ -1,0 +1,13 @@
+arguments:
+  olt-infrastructure-name:
+    description: OLT infrastructure name.
+    suggested-values:
+    - xpon-1-1
+domains: transport>xpon>interface-statistics>ethernet-errors
+freemarker: false
+name: Retrieve the Channel Termination interface statistics related to errored Ethernet
+  frames.
+operation: get
+sample-id: transport-xpon-interface-statistics-ethernet-errors-get
+scope: xpon
+status: draft

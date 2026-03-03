@@ -1,0 +1,223 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <policies xmlns="urn:bbf:yang:bbf-qos-policies-mounted">
+              <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${dscp\-2\-mpbit\-policy}</name>
+<#if dscp0\-mpbit?has_content>
+                <classifiers>
+                  <name>policy-${dscp\-2\-mpbit\-policy}_classifier0</name>
+                </classifiers>
+</#if>
+<#if dscp1\-mpbit?has_content>
+                <classifiers>
+                  <name>policy-${dscp\-2\-mpbit\-policy}_classifier1</name>
+                </classifiers>
+</#if>
+<#if dscp2\-mpbit?has_content>
+                <classifiers>
+                  <name>policy-${dscp\-2\-mpbit\-policy}_classifier2</name>
+                </classifiers>
+</#if>
+<#if dscp3\-mpbit?has_content>
+                <classifiers>
+                  <name>policy-${dscp\-2\-mpbit\-policy}_classifier3</name>
+                </classifiers>
+</#if>
+<#if dscp4\-mpbit?has_content>
+                <classifiers>
+                  <name>policy-${dscp\-2\-mpbit\-policy}_classifier4</name>
+                </classifiers>
+</#if>
+<#if dscp5\-mpbit?has_content>
+                <classifiers>
+                  <name>policy-${dscp\-2\-mpbit\-policy}_classifier5</name>
+                </classifiers>
+</#if>
+<#if dscp6\-mpbit?has_content>
+                <classifiers>
+                  <name>policy-${dscp\-2\-mpbit\-policy}_classifier6</name>
+                </classifiers>
+</#if>
+<#if dscp7\-mpbit?has_content>
+                <classifiers>
+                  <name>policy-${dscp\-2\-mpbit\-policy}_classifier7</name>
+                </classifiers>
+</#if>
+              </policy>
+            </policies>
+            <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers-mounted">
+<#if dscp0\-mpbit?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${dscp\-2\-mpbit\-policy}_classifier0</name>
+                <match-criteria>
+                  <untagged/>
+<#if dscp0\-mpbit?has_content && dscp0\-mpbit != "untag">
+                  <dscp-range>${dscp0\-mpbit}</dscp-range>
+</#if>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>pbit-marking</action-type>
+                  <pbit-marking-cfg>
+                    <pbit-marking-list>
+                      <index>0</index>
+                      <pbit-value>0</pbit-value>
+                    </pbit-marking-list>
+                  </pbit-marking-cfg>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if dscp1\-mpbit?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${dscp\-2\-mpbit\-policy}_classifier1</name>
+                <match-criteria>
+                  <untagged/>
+<#if dscp1\-mpbit?has_content && dscp1\-mpbit != "untag">
+                  <dscp-range>${dscp1\-mpbit}</dscp-range>
+</#if>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>pbit-marking</action-type>
+                  <pbit-marking-cfg>
+                    <pbit-marking-list>
+                      <index>0</index>
+                      <pbit-value>1</pbit-value>
+                    </pbit-marking-list>
+                  </pbit-marking-cfg>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if dscp2\-mpbit?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${dscp\-2\-mpbit\-policy}_classifier2</name>
+                <match-criteria>
+                  <untagged/>
+<#if dscp2\-mpbit?has_content && dscp2\-mpbit != "untag">
+                  <dscp-range>${dscp2\-mpbit}</dscp-range>
+</#if>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>pbit-marking</action-type>
+                  <pbit-marking-cfg>
+                    <pbit-marking-list>
+                      <index>0</index>
+                      <pbit-value>2</pbit-value>
+                    </pbit-marking-list>
+                  </pbit-marking-cfg>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if dscp3\-mpbit?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${dscp\-2\-mpbit\-policy}_classifier3</name>
+                <match-criteria>
+                  <untagged/>
+<#if dscp3\-mpbit?has_content && dscp3\-mpbit != "untag">
+                  <dscp-range>${dscp3\-mpbit}</dscp-range>
+</#if>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>pbit-marking</action-type>
+                  <pbit-marking-cfg>
+                    <pbit-marking-list>
+                      <index>0</index>
+                      <pbit-value>3</pbit-value>
+                    </pbit-marking-list>
+                  </pbit-marking-cfg>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if dscp4\-mpbit?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${dscp\-2\-mpbit\-policy}_classifier4</name>
+                <match-criteria>
+                  <untagged/>
+<#if dscp4\-mpbit?has_content && dscp4\-mpbit != "untag">
+                  <dscp-range>${dscp4\-mpbit}</dscp-range>
+</#if>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>pbit-marking</action-type>
+                  <pbit-marking-cfg>
+                    <pbit-marking-list>
+                      <index>0</index>
+                      <pbit-value>4</pbit-value>
+                    </pbit-marking-list>
+                  </pbit-marking-cfg>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if dscp5\-mpbit?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${dscp\-2\-mpbit\-policy}_classifier5</name>
+                <match-criteria>
+                  <untagged/>
+<#if dscp5\-mpbit?has_content && dscp5\-mpbit != "untag">
+                  <dscp-range>${dscp5\-mpbit}</dscp-range>
+</#if>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>pbit-marking</action-type>
+                  <pbit-marking-cfg>
+                    <pbit-marking-list>
+                      <index>0</index>
+                      <pbit-value>5</pbit-value>
+                    </pbit-marking-list>
+                  </pbit-marking-cfg>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if dscp6\-mpbit?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${dscp\-2\-mpbit\-policy}_classifier6</name>
+                <match-criteria>
+                  <untagged/>
+<#if dscp6\-mpbit?has_content && dscp6\-mpbit != "untag">
+                  <dscp-range>${dscp6\-mpbit}</dscp-range>
+</#if>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>pbit-marking</action-type>
+                  <pbit-marking-cfg>
+                    <pbit-marking-list>
+                      <index>0</index>
+                      <pbit-value>6</pbit-value>
+                    </pbit-marking-list>
+                  </pbit-marking-cfg>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if dscp7\-mpbit?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${dscp\-2\-mpbit\-policy}_classifier7</name>
+                <match-criteria>
+                  <untagged/>
+<#if dscp7\-mpbit?has_content && dscp7\-mpbit != "untag">
+                  <dscp-range>${dscp7\-mpbit}</dscp-range>
+</#if>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>pbit-marking</action-type>
+                  <pbit-marking-cfg>
+                    <pbit-marking-list>
+                      <index>0</index>
+                      <pbit-value>7</pbit-value>
+                    </pbit-marking-list>
+                  </pbit-marking-cfg>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+            </classifiers>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

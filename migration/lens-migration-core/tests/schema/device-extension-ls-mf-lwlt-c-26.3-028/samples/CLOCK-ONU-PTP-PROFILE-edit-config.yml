@@ -1,0 +1,42 @@
+arguments:
+  onu-name:
+    description: the custom name of the onu.
+    suggested-values:
+    - ont1_050_fwlt-c
+  profile-type:
+    allowed-values:
+    - g8275dot1
+    - ccsa
+    description: the spec type of the PTP profile. allowed values are [g8275dot1,
+      ccsa]. Recommend to using same ptp profile type with OLT.
+    suggested-values:
+    - g8275dot1
+  profile-name:
+    description: the custom name of the PTP profile.
+    suggested-values:
+    - g8275.1_profile_default
+  dest-mac-addr-forwardable:
+    allowed-values:
+    - forwardable
+    - non-forwardable
+    description: the dest-mac-addr-forwardable value of the PTP profile. allowed values
+      are ['forwardable', 'non-forwardable']
+    optional: true
+    suggested-values:
+    - forwardable
+  step-mode:
+    allowed-values:
+    - one-step
+    - two-step
+    description: the step-mode value of the PTP profile.
+    optional: true
+    suggested-values:
+    - one-step
+domains: onu>synchronization>ptp
+entity: profile
+freemarker: true
+name: Configure ptp profile for onu
+operation: edit
+sample-id: onu-synchronization-ptp-profile-edit
+scope: clock-pon or clock-df16gm or clock-df32gm
+status: draft

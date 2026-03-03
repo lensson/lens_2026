@@ -1,0 +1,24 @@
+arguments:
+  service-name:
+    description: The name of the IBRIDGE (or) the IBRIDGE with user-to-user traffic
+      enabled (or) the multiple uplink interfaces IBRIDGE (or) the multiple uplink
+      interfaces IBRIDGE with user-to-user traffic enabled (or) the local cross-connect
+      on the OLT (or) the remote cross-connect on the OLT
+    optional: true
+    suggested-values:
+    - bridge-1
+  vsi-name:
+    description: The name of the VLAN sub-interface.
+    suggested-values:
+    - user-port-1-VSI
+    - bridge-1-NETWORK-VSI
+    - cc-1-USER-VSI
+    - cc-1-NETWORK-VSI
+domains: unicast>forwarding
+entity: mac-per-vsi
+freemarker: true
+name: Retrieve MAC-address learned on VLAN sub-interface
+operation: get
+sample-id: unicast-forwarding-mac-per-vsi-get
+scope: not(dpu) and not(mx) and not(fx-p2p-uplink)
+status: draft

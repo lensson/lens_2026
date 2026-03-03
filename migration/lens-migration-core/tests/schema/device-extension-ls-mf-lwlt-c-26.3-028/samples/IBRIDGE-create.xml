@@ -1,0 +1,151 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+    <frame-processing-profiles xmlns="urn:bbf:yang:bbf-frame-processing-profile">
+      <frame-processing-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+        <name>${ibridge\-name}-PROFILE</name>
+        <priority>100</priority>
+        <match-criteria>
+          <tag>
+            <index>0</index>
+            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+            <vlan-id>${o\-vlan\-id}</vlan-id>
+            <pbit>any</pbit>
+            <dei>any</dei>
+          </tag>
+          <#if i\-vlan\-id?has_content>
+          <tag>
+            <index>1</index>
+            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+            <vlan-id>${i\-vlan\-id}</vlan-id>
+            <pbit>any</pbit>
+            <dei>any</dei>
+          </tag>
+          </#if>
+        </match-criteria>
+        <ingress-rewrite>
+          <#if i\-vlan\-id?has_content>
+          <pop-tags>2</pop-tags>
+          <copy-from-tags-to-marking-list>
+            <tag-index>0</tag-index>
+            <pbit-marking-index>0</pbit-marking-index>
+            <dei-marking-index>0</dei-marking-index>
+          </copy-from-tags-to-marking-list>
+          <copy-from-tags-to-marking-list>
+            <tag-index>1</tag-index>
+            <pbit-marking-index>1</pbit-marking-index>
+            <dei-marking-index>1</dei-marking-index>
+          </copy-from-tags-to-marking-list>
+          <#else>
+          <pop-tags>1</pop-tags>
+          <copy-from-tags-to-marking-list>
+            <tag-index>0</tag-index>
+            <pbit-marking-index>0</pbit-marking-index>
+            <dei-marking-index>0</dei-marking-index>
+          </copy-from-tags-to-marking-list>
+          </#if>
+        </ingress-rewrite>
+        <egress-rewrite>
+          <push-tag>
+            <index>0</index>
+            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+            <vlan-id>${o\-vlan\-id}</vlan-id>
+            <pbit-marking-index>0</pbit-marking-index>
+            <dei-marking-index>0</dei-marking-index>
+          </push-tag>
+          <#if i\-vlan\-id?has_content>
+          <push-tag>
+             <index>1</index>
+             <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+             <vlan-id>${i\-vlan\-id}</vlan-id>
+             <pbit-marking-index>0</pbit-marking-index>
+             <dei-marking-index>0</dei-marking-index>
+           </push-tag>
+           </#if>
+        </egress-rewrite>
+       </frame-processing-profile>
+      </frame-processing-profiles>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+          <name>${ibridge\-name}-NETWORK-VSI</name>
+          <type xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:vlan-sub-interface</type>
+          <interface-usage xmlns="urn:bbf:yang:bbf-interface-usage">
+		        <#if interface\-usage?has_content>
+            <interface-usage>${interface\-usage}</interface-usage>
+		        <#else>
+    		    <interface-usage>network-port</interface-usage>
+		        </#if>
+          </interface-usage>
+          <mac-learning xmlns="urn:bbf:yang:bbf-l2-forwarding">        
+            <mac-learning-enable>false</mac-learning-enable>        
+          </mac-learning>
+          <#if network\-port\-name?has_content>
+          <subif-lower-layer xmlns="urn:bbf:yang:bbf-sub-interfaces">
+            <interface>${network\-port\-name}</interface>
+          </subif-lower-layer>
+          </#if>
+          <enabled>true</enabled>
+          <l2cp xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-l2cp">
+            <l2cp-address-service>l2cp-pass-00-02to0f-10-2x</l2cp-address-service>
+          </l2cp>
+          <frame-processing-profile-ref xmlns="urn:bbf:yang:bbf-frame-processing-profile">${ibridge\-name}-PROFILE</frame-processing-profile-ref>
+          <#if network\-vsi\-egress\-qos\-policy\-profile?has_content>
+          <egress-qos-policy-profile xmlns="urn:bbf:yang:bbf-qos-policies">${network\-vsi\-egress\-qos\-policy\-profile}</egress-qos-policy-profile>
+          </#if>
+          <#if network\-vsi\-ingress\-qos\-policy\-profile?has_content>
+          <ingress-qos-policy-profile xmlns="urn:bbf:yang:bbf-qos-policies">${network\-vsi\-ingress\-qos\-policy\-profile}</ingress-qos-policy-profile>
+          </#if>
+        </interface>
+      </interfaces>
+      <forwarding xmlns="urn:bbf:yang:bbf-l2-forwarding">
+        <forwarding-databases>
+          <forwarding-database xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="create">
+            <name>${ibridge\-name}-FWD-DATABASE</name>
+            <#if max\-number\-mac\-addresses\-fwd\-database?has_content>
+            <max-number-mac-addresses>${max\-number\-mac\-addresses\-fwd\-database}</max-number-mac-addresses>
+            </#if>
+            <#if aging\-timer\-fwd\-database?has_content>
+            <aging-timer>${aging\-timer\-fwd\-database}</aging-timer>
+            </#if>
+            <#if mac\-conflict?has_content && mac\-conflict>
+            <mac-learning-control>
+              <generate-mac-learning-alarm>true</generate-mac-learning-alarm>
+              <mac-learning-control-profile>mlcp1</mac-learning-control-profile>
+            </mac-learning-control>
+            </#if>
+          </forwarding-database>
+        </forwarding-databases>
+        <forwarders>
+          <forwarder xmlns:ns2="urn:ietf:params:xml:ns:netconf:base:1.0" ns2:operation="create">
+            <name>${ibridge\-name}-FWD</name>
+            <arp-security xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-arp-downstream-security.yang">
+              <downstream-arp-broadcast>${arp\-security}</downstream-arp-broadcast>
+            </arp-security>
+            <ports>
+              <port>
+                <name>${network\-port\-name}-FWD-NETWORK-PORT</name>
+                <sub-interface>${ibridge\-name}-NETWORK-VSI</sub-interface>
+              </port>
+            </ports>
+            <mac-learning>
+              <forwarding-database>${ibridge\-name}-FWD-DATABASE</forwarding-database>
+            </mac-learning>
+            <split-horizon-profiles>
+              <#if split\-horizon\-profile\-name?has_content>
+              <split-horizon-profile>${split\-horizon\-profile\-name}</split-horizon-profile>
+              <#else>
+              <split-horizon-profile>no-user-to-user-communication</split-horizon-profile>
+              </#if>
+            </split-horizon-profiles>
+            <flooding-policies>
+              <flooding-policies-profile>${flooding\-profile\-name}</flooding-policies-profile>
+            </flooding-policies>
+          </forwarder>
+        </forwarders>
+      </forwarding>
+    </config>
+  </edit-config>
+</rpc>

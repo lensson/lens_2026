@@ -1,0 +1,8 @@
+available-locally: true
+domains: system>callhome
+entity: enable
+freemarker: true
+name: Enable PMA callhome
+operation: edit
+sample-id: system-callhome-enable-edit
+status: draft

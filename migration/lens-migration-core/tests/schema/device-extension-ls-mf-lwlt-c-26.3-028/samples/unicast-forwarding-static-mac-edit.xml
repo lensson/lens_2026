@@ -1,0 +1,27 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <forwarding xmlns="urn:bbf:yang:bbf-l2-forwarding">
+      <forwarding-databases>
+        <forwarding-database xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="merge">
+          <name>${service\-name}-FWD-DATABASE</name>
+            <static-mac-address>
+              <mac-address>${static\-mac\-address}</mac-address>
+              <static-forwarder-port-ref>
+                <forwarder>${service\-name}-FWD</forwarder>
+<#if network\-port\-name?has_content>
+                <port>${network\-port\-name}-FWD-NETWORK-PORT</port>
+<#elseif user\-port\-name?has_content>
+                <port>${user\-port\-name}-FWD-USER-PORT</port>
+</#if>
+              </static-forwarder-port-ref>
+            </static-mac-address>
+          </forwarding-database>
+        </forwarding-databases>
+      </forwarding>
+    </config>
+  </edit-config>
+</rpc>

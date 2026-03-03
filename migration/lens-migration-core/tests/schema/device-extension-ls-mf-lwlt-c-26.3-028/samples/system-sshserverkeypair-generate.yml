@@ -1,0 +1,17 @@
+arguments:
+  algorithm:
+    description: The algorithm to be used when generating the asymmetric key.
+    suggested-values:
+    - rsa2048
+  host-key-name:
+    description: An arbitrary name for this host-key
+    suggested-values:
+    - ssh-rsa
+available-locally: true
+domains: system>ssh-server
+entity: keys
+freemarker: true
+name: Generate ssh server key-pair
+operation: generate-hidden-key
+sample-id: system-ssh-server-keys-generate-hidden-key
+status: draft

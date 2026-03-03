@@ -1,0 +1,28 @@
+This macro configures a local syslog collector.
+
+Pre-condition:
+
+The following procedures must be fulfilled before local log file can be configured
+
+* Enable the required logging levels of each Application/Submodule, otherwise WARNING and above logs from applications will be generated.
+
+Description:
+
+* Configure a local log file for collecting the generated from applications syslog messages (facility USER).
+* Only one local active file can be created on the device.
+* File name should be configured.
+
+
+Input parameters:
+
+* advance-action: if action is LOG (default) then message will be logged. If action is BLOCK then the message will not be logged.
+* advance-compare: if compare is EQUALS-OR-HIGHER (default) then the severity comparison operation will be equals or higher. Else if compare is EQUALS then the severity comparison operation will be equals.
+* facility: represents the process that creates the syslog event. For example, USER facility refers to all applications that can be listed with "get all active applications" and their log level can be configured explicitly. Available facilities are USER, SYSLOG, NTP, FTP and default facility is USER.
+* log-file-name: file name length must be up to 31 characters and must contain only alphanumeric characters, underscores "_", hyphens "-" and dot "." (only one dot allowed).
+* max-file-size: size in the range of 1 up to 10 megabytes. The size of active file is checked periodically. When the system identify that the actual file size is greater than maximum allowed value a log rotation take place.
+* number-of-files: number of rotated files retained on the device. Allowed range is 0..10, with default: 1. Value 0 indicate that overwrite of the file will take place.
+* pattern-match: string that can be used to select a syslog message for logging
+* retention-count: specifies the length of time that completed/closed log event files should be stored in the file system before they are removed. Values must be in hours and could be either 24 (daily), 168 (7*24 weekly), 720 (30*24 monthly).
+* rollover-count: syslog messages that arrive after the rollover period cause the current log file to be closed and a new file to be opened. Values must be in minutes and could be either 60 (hourly), 1440 (daily), 10080 (weekly).
+* severity: by default the severity with equal or higher importance from the given value are allowed. Severity configured for file take precedence over the one configured in application level
+

@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ani-name:
+    description: The name on an Access Node Interface.
+    suggested-values:
+    - ANI
+  ber-tca-profile:
+    description: ber-tca-profile name
+    suggested-values:
+    - ber_tca_profile
+domains: onu>system>tca
+entity: ber-tca-profile
+freemarker: true
+name: Detach ber-tca-profile
+operation: detach
+sample-id: onu-system-tca-ber-tca-profile-detach
+scope: eonu
+status: draft

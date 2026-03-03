@@ -1,0 +1,77 @@
+arguments:
+  ibridge-name:
+    description: the name of the IBRIDGE
+    suggested-values:
+    - bridge-1
+  i-vlan-id:
+    description: Inner VLAN ID at network side, it's optional
+    optional: true
+    suggested-values:
+    - 1
+  o-vlan-id:
+    description: Outer VLAN ID at network side
+    suggested-values:
+    - 101
+  flooding-profile-name:
+    suggested-values:
+    - drop_all
+  interface-usage:
+    description: the interface-usage of network VSI
+    optional: true
+    suggested-values:
+    - network-port
+    - inherit
+  network-port-name:
+    description: the name of network VSI lower layer
+    optional: true
+    suggested-values:
+    - BP_Eth
+  arp-security:
+    description: Configures ARP security. If set to apply-layer2-forwarding, downstream
+      ARP broadcast packets are forwarded according to forwarding rules configured
+      for the forwarder. If set to secured-with-fallback-to-layer2, downstream ARP
+      broadcast packet is forwarded to one of the ports of the forwarder based on
+      the target protocol address available in the payload of the ARP packet. If no
+      such port can be identified then the packet is forwarded according to forwarding
+      rules configured for the forwarder.
+    suggested-values:
+    - apply-layer2-forwarding
+    - secured-with-fallback-to-layer2
+  split-horizon-profile-name:
+    description: the name of user defined split horizon profile
+    optional: true
+    suggested-values:
+    - no-user-to-user-communication
+  mac-conflict:
+    description: enable or disabel mac conflict
+    optional: true
+    suggested-values:
+    - false
+  max-number-mac-addresses-fwd-database:
+    description: Configures max-number-mac on forearder_database
+    optional: true
+    suggested-values:
+    - 4294967295
+  aging-timer-fwd-database:
+    description: Configures aging-timer on forwarder_database
+    optional: true
+    suggested-values:
+    - 300
+  network-vsi-egress-qos-policy-profile:
+    description: Qos policy profile for downstream traffic at egress network side.
+    optional: true
+    suggested-values:
+    - DOWNSTREAM_PROFILE
+  network-vsi-ingress-qos-policy-profile:
+    description: The qos policy profile for upstream traffic at ingress network side.
+    optional: true
+    suggested-values:
+    - UPSTREAM_PROFILE
+domains: unicast>forwarding
+entity: ibridge
+freemarker: true
+name: Create unicast services forwarding ibridge
+operation: create
+sample-id: unicast-forwarding-ibridge-create
+scope: fiber
+status: draft

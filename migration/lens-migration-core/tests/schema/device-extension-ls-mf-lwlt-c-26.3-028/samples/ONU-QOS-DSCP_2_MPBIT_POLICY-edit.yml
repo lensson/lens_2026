@@ -1,0 +1,53 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  dscp0-mpbit:
+    description: Value for marked pbit to traffic class 0, value could be number list
+      (0-10) or (0,3,10), any, untag to indicate write pbit for untagged package
+    optional: true
+    suggested-values:
+    - '0'
+  dscp1-mpbit:
+    description: Value for marked pbit to traffic class 1, value could be number list
+      (0-10) or (0,3,10), any, untag to indicate write pbit for untagged package
+    optional: true
+    suggested-values:
+    - '1'
+  dscp2-mpbit:
+    description: Value for marked pbit to traffic class 2, value could be number list
+      (0-10) or (0,3,10), any, untag to indicate write pbit for untagged package
+    optional: true
+    suggested-values:
+    - '2'
+  dscp3-mpbit:
+    description: Value for marked pbit to traffic class 3, value could be number list
+      (0-10) or (0,3,10), any, untag to indicate write pbit for untagged package
+    optional: true
+    suggested-values:
+    - '3'
+  dscp4-mpbit:
+    description: Value for marked pbit to traffic class 4 (if specified)
+    optional: true
+  dscp5-mpbit:
+    description: Value for marked pbit to traffic class 5 (if specified)
+    optional: true
+  dscp6-mpbit:
+    description: Value for marked pbit to traffic class 6 (if specified)
+    optional: true
+  dscp7-mpbit:
+    description: Value for marked pbit to traffic class 7 (if specified)
+    optional: true
+  dscp-2-mpbit-policy:
+    description: Policy name
+    suggested-values:
+    - dscp-2-mpbit
+domains: onu>unicast>qos
+entity: dscp-2-mpbit-policy
+freemarker: true
+name: Edit QoS dscp to marked pbit
+operation: edit
+sample-id: onu-unicast-qos-dscp-2-mpbit-policy-edit
+scope: eonu
+status: draft

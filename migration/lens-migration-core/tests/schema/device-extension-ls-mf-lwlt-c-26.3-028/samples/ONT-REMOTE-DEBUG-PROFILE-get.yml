@@ -1,0 +1,11 @@
+arguments:
+  debug-ont-ssh-profile-name:
+    suggested-values:
+    - profile_name
+domains: system>ont-remote-debug
+entity: profile
+freemarker: true
+name: Retrieve ONT remote debug status details
+operation: get
+sample-id: system-ont-remote-debug-profile-get
+status: draft

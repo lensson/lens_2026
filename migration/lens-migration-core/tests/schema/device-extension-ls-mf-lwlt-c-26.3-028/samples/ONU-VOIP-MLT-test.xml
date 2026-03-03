@@ -1,0 +1,50 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <action xmlns="urn:ietf:params:xml:ns:yang:1">
+    <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+      <onu>
+        <name>${onu\-name}</name>
+        <root>
+          <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+            <interface>
+              <name>${voip\-uni\-name}</name>
+              <phys-voice-itf xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+                <pptp-pots-uni>
+                  <mlt>
+                    <test-name>${mlt\-test\-name}</test-name>
+<#if sip\-mlt\-mode?has_content>
+                    <test-mode>${sip\-mlt\-mode}</test-mode>
+</#if>
+<#if hazard\-dc\-threshold?has_content>
+                    <dc-hazardous-voltage-threshold>${hazard\-dc\-threshold}</dc-hazardous-voltage-threshold>
+</#if>
+<#if hazard\-ac\-threshold?has_content>
+                    <ac-hazardous-voltage-threshold>${hazard\-ac\-threshold}</ac-hazardous-voltage-threshold>
+</#if>
+<#if foreign\-dc\-threshold?has_content>
+                    <dc-foreign-voltage-threshold>${foreign\-dc\-threshold}</dc-foreign-voltage-threshold>
+</#if>
+<#if foreign\-ac\-threshold?has_content>
+                    <ac-foreign-voltage-threshold>${foreign\-ac\-threshold}</ac-foreign-voltage-threshold>
+</#if>
+<#if tipgnd\-rnggnd\-threshold?has_content>
+                    <tip-ground-and-ring-ground-resistance-threshold>${tipgnd\-rnggnd\-threshold}</tip-ground-and-ring-ground-resistance-threshold>
+</#if>
+<#if tip\-ring\-threshold?has_content>
+                    <tip-ring-resistance-threshold>${tip\-ring\-threshold}</tip-ring-resistance-threshold>
+</#if>
+<#if ring\-min\-threshold?has_content>
+                    <ringer-equivalence-minimum-threshold>${ring\-min\-threshold}</ringer-equivalence-minimum-threshold>
+</#if>
+<#if ring\-max\-threshold?has_content>
+                    <ringer-equivalence-maximum-threshold>${ring\-max\-threshold}</ringer-equivalence-maximum-threshold>
+</#if>
+                  </mlt>
+                </pptp-pots-uni>
+              </phys-voice-itf>
+            </interface>
+          </interfaces-state>
+        </root>
+      </onu>
+    </onus>
+  </action>
+</rpc>

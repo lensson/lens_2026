@@ -1,0 +1,13 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+domains: onu>system>software
+entity: status
+freemarker: true
+name: Retrieve status of all software versions
+operation: get
+sample-id: onu-system-software-status-get
+scope: eonu
+status: draft

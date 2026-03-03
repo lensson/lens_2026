@@ -1,0 +1,12 @@
+arguments:
+  pppoe-profile-name:
+    description: Name of the PPPoE Intermediate Agent profile
+    suggested-values:
+    - pppoe_profile
+domains: unicast>protocols>pppoe
+entity: profile
+freemarker: true
+name: Remove PPPoE Intermediate Agent profile
+operation: remove
+sample-id: unicast-protocols-pppoe-profile-remove
+status: draft

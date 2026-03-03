@@ -1,0 +1,9 @@
+available-locally: true
+domains: system>software
+entity: software_release
+freemarker: true
+name: Get running version of Lightspan software
+operation: get
+sample-id: system-software-software_release-get
+scope: not(dpu) and not(mx)
+status: draft

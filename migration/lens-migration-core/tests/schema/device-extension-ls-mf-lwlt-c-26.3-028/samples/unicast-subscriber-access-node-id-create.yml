@@ -1,0 +1,14 @@
+arguments:
+  access-node-id:
+    description: An identifier representing the access node.
+    optional: true
+    suggested-values:
+    - access-node-not-configured
+    - nokia
+domains: unicast>subscriber
+entity: access-node-id
+freemarker: true
+name: Configure access node ID
+operation: edit
+sample-id: unicast-subscriber-access-node-id-edit
+status: draft

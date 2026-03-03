@@ -1,0 +1,17 @@
+arguments:
+  action-to-rogueonu:
+    description: Indicates the mitigation action to ONUs suspected rogue.
+    suggested-values:
+    - none
+    - deactivate-onu
+  rogue-profile-name:
+    description: Name of the rogue test profile.
+    suggested-values:
+    - rogue-test-profile1
+domains: transport>xpon>rogue
+entity: profile
+freemarker: true
+name: Edit rogue profile
+operation: edit
+sample-id: transport-xpon-rogue-profile-edit
+status: draft

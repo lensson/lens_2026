@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  cpu-component-name:
+    description: CPU component name
+    suggested-values:
+    - cpu1
+  cpu-tca-profile:
+    description: cpu-tca-profile name
+    suggested-values:
+    - cpu_tca_profile
+domains: onu>system>tca>pm-profiles
+entity: cpu-tca-profile-ref
+freemarker: true
+name: Detach CPU TCA profile
+operation: detach
+sample-id: onu-system-tca-pm-profiles-cpu-tca-profile-ref-detach
+scope: eonu
+status: draft

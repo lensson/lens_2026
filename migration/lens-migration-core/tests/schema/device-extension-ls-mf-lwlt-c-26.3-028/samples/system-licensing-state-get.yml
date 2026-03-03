@@ -1,0 +1,14 @@
+arguments:
+  feature-code:
+    description: define specific feature-code to show
+    optional: true
+    suggested-values:
+    - 1
+domains: system>licensing
+entity: state
+freemarker: true
+name: Retrieve licensing state
+operation: get
+sample-id: system-licensing-state-get
+scope: licensing
+status: draft

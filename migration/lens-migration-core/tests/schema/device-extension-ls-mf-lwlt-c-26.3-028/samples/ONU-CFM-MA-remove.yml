@@ -1,0 +1,22 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  md-id:
+    description: Unique ID for MD with which the ma is associated.
+    suggested-values:
+    - MD-1
+  ma-id:
+    description: The ID of MA that defines the key of the Maintenance Association
+      list of entries that needs to be deleted
+    suggested-values:
+    - MA-1
+domains: onu>cfm
+entity: ma
+freemarker: true
+name: Delete ONU CFM MA
+operation: remove
+sample-id: onu-cfm-ma-remove
+scope: eonu
+status: draft

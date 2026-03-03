@@ -1,0 +1,21 @@
+arguments:
+  venet-interface-name:
+    description: Name of the user interface.
+    suggested-values:
+    - OLT-VENET
+  remove-mac-addresses-from-uni:
+    description: Not setting the variable defaults the value to be 'false'. Setting
+      this parameter to 'true' would trigger the flush FDB for the dynamically learnt
+      MACs on this VENET port, if the remote UNI goes down.
+    suggested-values:
+    - false
+    - true
+domains: unicast>forwarding
+entity: flush-rem-uni-down
+freemarker: true
+name: Enable/Disable removal of dynamically learnt MACs when the remote uni goes down
+  for the OLT-V-ENET interface.
+operation: edit
+sample-id: unicast-forwarding-flush-rem-uni-down-edit
+scope: not(dpu) and not(mx) and not(fx-p2p)
+status: draft

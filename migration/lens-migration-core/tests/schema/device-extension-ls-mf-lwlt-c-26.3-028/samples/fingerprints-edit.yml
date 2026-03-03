@@ -1,0 +1,44 @@
+arguments:
+  id:
+    description: Id of fingerprint
+    suggested-values:
+    - 1
+  fingerprint:
+    description: Fingerprint of the root, intermediate, or client certificate of the
+      NETCONF client that will initiate the call-home. A tls-fingerprint value is
+      composed of a 1-octet hashing algorithm identifier followed by the fingerprint
+      value. The first octet value identifying the hashing algorithm is taken from
+      the IANA 'TLS HashAlgorithm Registry' (RFC 5246). The remaining octets are filled
+      using the results of the hashing algorithm. For example, for SHA-256 (identifier
+      04), SHA-384 (identifier 05), and SHA-512 (identifier 06), the fingerprint value
+      should follow the format (04:YY:YY:YY:...:YY), (05:YY:YY:YY:...:YY), and (06:YY:YY:YY:...:YY)
+      respectively.
+    suggested-values:
+    - 06:8F:73:87:C8:3D:CB:AA:B2:E3:DA
+  map-type:
+    description: Specifies how the NETCONF username is derived from the certificate.
+      If the value is 'specified', the username is taken from the name field that
+      is explicitly configured. If the value is 'san-rfc822-name', the username is
+      derived from the rfc822Name (i.e email) field in the certificate's subjectAltName.
+    suggested-values:
+    - specified
+    - san-rfc822-name
+  name:
+    description: The NETCONF username that is only defined when map-type is 'specified',
+      allowing 1-11 characters with alphanumeric characters, underscores (_), and
+      plus signs (+) only.
+    optional: true
+    suggested-values:
+    - user
+  netconf-client-name:
+    description: Name of NETCONF clients list.
+    suggested-values:
+    - nc-client
+available-locally: true
+domains: system>callhome>certificates
+entity: fingerprints
+freemarker: true
+name: Add TLS fingerprints
+operation: edit
+sample-id: system-callhome-certificates-fingerprints-edit
+status: draft

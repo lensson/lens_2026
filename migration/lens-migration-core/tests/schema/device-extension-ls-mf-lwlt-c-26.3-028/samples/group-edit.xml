@@ -1,0 +1,19 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <target>
+    <running/>
+  </target>
+  <config>
+    <nacm xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-acm">
+      <groups>
+        <group>
+          <name>${group\-name}</name>
+           <#if user\-name?has_content>
+             <user-name>${user\-name}</user-name>
+           </#if>
+        </group>
+      </groups>
+    </nacm>
+  </config>
+ </edit-config>
+</rpc>

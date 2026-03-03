@@ -1,0 +1,99 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  moca-ethernet-tca-profile:
+    description: Moca Ethernet performance monitoring counters threshold profile name
+    suggested-values:
+    - moca_eth_tca_profile
+  in-unicast-packets-threshold:
+    description: Threshold value for the incoming unicast packets where range is 1
+      .. 4294967294
+    optional: true
+    suggested-values:
+    - 100
+  in-discarded-packets-threshold:
+    description: Threshold value for the incoming discarded packets where range is
+      1 .. 4294967294
+    optional: true
+    suggested-values:
+    - 1000
+  in-errored-packets-threshold:
+    description: Threshold value for the incoming errored packets where range is 1
+      .. 4294967294
+    optional: true
+    suggested-values:
+    - 50
+  in-unknown-packets-threshold:
+    description: Threshold value for the incoming unknown packets where range is 1
+      .. 4294967294
+    optional: true
+    suggested-values:
+    - 50
+  in-multicast-packets-threshold:
+    description: Threshold value for the incoming multicast packets where range is
+      1 .. 4294967294
+    optional: true
+    suggested-values:
+    - 100
+  in-broadcast-packets-threshold:
+    description: Threshold value for the incoming broadcast packets where range is
+      1 .. 4294967294
+    optional: true
+    suggested-values:
+    - 100
+  in-octets-threshold:
+    description: Threshold value for the incoming octets where range is 1 .. 4294967294
+    optional: true
+    suggested-values:
+    - 50
+  out-unicast-packets-threshold:
+    description: Threshold value for the outgoing unicast packets where range is 1
+      .. 4294967294
+    optional: true
+    suggested-values:
+    - 100
+  out-discarded-packets-threshold:
+    description: Threshold value for the outgoing discarded packets where range is
+      1 .. 4294967294
+    optional: true
+    suggested-values:
+    - 50
+  out-errored-packets-threshold:
+    description: Threshold value for the outgoing errored packets where range is 1
+      .. 4294967294
+    optional: true
+    suggested-values:
+    - 100
+  out-unknown-packets-threshold:
+    description: Threshold value for the outgoing unknown packets where range is 1
+      .. 4294967294
+    optional: true
+    suggested-values:
+    - 100
+  out-multicast-packets-threshold:
+    description: Threshold value for the outgoing multicast packets where range is
+      1 .. 4294967294
+    optional: true
+    suggested-values:
+    - 50
+  out-broadcast-packets-threshold:
+    description: Threshold value for the outgoing broadcast packets where range is
+      1 .. 4294967294
+    optional: true
+    suggested-values:
+    - 100
+  out-octets-threshold:
+    description: Threshold value for the outgoing octets where range is 1 .. 4294967294
+    optional: true
+    suggested-values:
+    - 50
+domains: onu>system>tca>pm-profiles
+entity: moca-eth-tca-profile
+freemarker: true
+name: Configure Moca Ethernet TCA profile
+operation: create
+sample-id: onu-system-tca-pm-profiles-moca-eth-tca-profile-create
+scope: eonu
+status: draft

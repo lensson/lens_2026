@@ -1,0 +1,67 @@
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+          <name>${vlan\-sub\-interface}</name>
+          <type xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:vlan-sub-interface</type>
+          <interface-usage xmlns="urn:bbf:yang:bbf-interface-usage">
+            <interface-usage>user-port</interface-usage>
+          </interface-usage>
+          <subif-lower-layer xmlns="urn:bbf:yang:bbf-sub-interfaces">
+            <interface>${uni\-name}</interface>
+          </subif-lower-layer>
+          <inline-frame-processing xmlns="urn:bbf:yang:bbf-sub-interfaces">
+            <ingress-rule>
+              <rule>
+                <name>${vlan\-sub\-interface}</name>
+                <priority>100</priority>
+                <flexible-match>
+                  <match-criteria xmlns="urn:bbf:yang:bbf-sub-interface-tagging">
+                    <tag>
+                    <index>0</index>
+                    <dot1q-tag>
+                      <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                      <vlan-id>priority-tagged</vlan-id>
+                    </dot1q-tag>
+                    </tag>
+                  </match-criteria>
+                </flexible-match>
+              </rule>
+            </ingress-rule>
+            <egress-rewrite>
+              <push-tag xmlns="urn:bbf:yang:bbf-sub-interface-tagging">
+                <index>0</index>
+                <dot1q-tag>
+                  <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                      <vlan-id>${user\-vlan\-id}</vlan-id>
+                  <pbit-from-tag-index>0</pbit-from-tag-index>
+                  <dei-from-tag-index>0</dei-from-tag-index>
+                </dot1q-tag>
+              </push-tag>
+            </egress-rewrite>
+          </inline-frame-processing>
+          <ingress-qos-policy-profile xmlns="urn:bbf:yang:bbf-qos-policies">${ingress\-qos\-policy\-profile\-name}</ingress-qos-policy-profile>
+          <egress-qos-policy-profile xmlns="urn:bbf:yang:bbf-qos-policies">${egress\-qos\-policy\-profile\-name}</egress-qos-policy-profile>
+          <egress-tm-objects xmlns="urn:bbf:yang:bbf-qos-enhanced-scheduling">
+            <root-if-name>${olt\-infrastructure\-name}</root-if-name>
+            <scheduler-node-name>${leaf\-scheduler\-name}</scheduler-node-name>
+          </egress-tm-objects>
+        </interface>
+      </interfaces>
+      <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont">
+      <gemports>
+        <gemport xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="create">
+          <name>${vlan\-sub\-interface}-gem1</name>
+          <interface>${vlan\-sub\-interface}</interface>
+          <traffic-class>0</traffic-class>
+          <gemport-id>${tc0\-gemport\-id}</gemport-id>
+        </gemport>
+      </gemports>
+     </xpongemtcont>
+    </config>
+  </edit-config>
+</rpc>

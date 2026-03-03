@@ -1,0 +1,32 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                <name>${ani\-name}</name>
+                <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type-mounted">bbf-xponift:ani</type>
+                <enabled>true</enabled>
+                <port-layer-if xmlns="urn:bbf:yang:bbf-interface-port-reference-mounted">ANI-PORT</port-layer-if>
+              </interface>
+<#if rf\-video\-ani\-name?has_content >
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                <name>${rf\-video\-ani\-name}</name>
+                <type xmlns:nokia-if-id="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-if-id:rf-video-ani</type>
+                <enabled>true</enabled>
+                <port-layer-if xmlns="urn:bbf:yang:bbf-interface-port-reference-mounted">ANI-PORT</port-layer-if>
+              </interface>
+</#if>
+            </interfaces>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

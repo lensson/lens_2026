@@ -1,0 +1,24 @@
+arguments:
+  component:
+    description: Name of the component, default must be Chassis.
+    suggested-values:
+    - Chassis
+  download-software-name:
+    description: Name of the on-going software download
+    suggested-values:
+    - L6GQAF62.100
+  software-name:
+    description: Name of the application software
+    suggested-values:
+    - application_software
+    - FGLT-B_software
+    - ont_software
+    - transformation_software
+    - onu_vendor_specific_software
+available-locally: true
+domains: system>software
+freemarker: true
+name: Stop ongoing software download
+operation: abort
+sample-id: system-software-abort
+status: draft

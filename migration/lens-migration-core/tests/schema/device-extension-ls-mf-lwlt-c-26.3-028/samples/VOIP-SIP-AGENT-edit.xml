@@ -1,0 +1,64 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <usage xmlns:template-common="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-template-common">template-common:node-from-template-usage</usage>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <voip>
+              <media-forwarder>
+                <name>agent</name>
+                <#if file\-name?has_content>
+                <file-name>${file\-name}</file-name>
+                </#if>
+                <#if ftp\-server\-address?has_content>
+                <ftp-server>${ftp\-server\-address}</ftp-server>
+                </#if>
+                <#if user\-name?has_content>
+                <user-name>${user\-name}</user-name>
+                </#if>
+                <#if password?has_content>
+                <password>${password}</password>
+                </#if>
+                <#if realm?has_content>
+                <realm>${realm}</realm>
+                </#if>
+              </media-forwarder>
+              <#if registrar\-proxy\-address?has_content>
+              <sip-server-pools>
+                <name>agent</name>
+                <sip-servers>
+                  <name>proxy</name>
+                  <fully-qualified-domain-name>${registrar\-proxy\-address}</fully-qualified-domain-name>
+                </sip-servers>
+                <sip-servers>
+                  <name>outboundproxy</name>
+                  <fully-qualified-domain-name>${registrar\-proxy\-address}</fully-qualified-domain-name>
+                </sip-servers >
+                <sip-servers>
+                  <name>registrar</name>
+                  <fully-qualified-domain-name>${registrar\-proxy\-address}</fully-qualified-domain-name>
+                </sip-servers>
+              </sip-server-pools>
+              <sip-user-agent>
+                <name>agent</name>
+                <sip-user-agent-domain>${registrar\-proxy\-address}</sip-user-agent-domain>
+              </sip-user-agent>
+              </#if>
+              <#if app\-direct\-connect\-uri?has_content>
+              <supplementary-services-profile>
+                <name>agent</name>
+                <connect-uri>${app\-direct\-connect\-uri}</connect-uri>
+              </supplementary-services-profile>
+              </#if>
+            </voip>
+          </template-parameters>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,28 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter>
+      <tconts xmlns="urn:bbf:yang:bbf-xpongemtcont">
+        <tcont>
+          <name>${tcont\-name}</name>
+        </tcont>
+      </tconts>
+      <#if onu\-template\-tcont\-name?has_content && v\-ani\-name?has_content>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${v\-ani\-name}</name>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <tconts>
+              <tcont>
+                <template-ref>${onu\-template\-tcont\-name}</template-ref>
+              </tcont>
+            </tconts>	
+          </template-parameters>
+        </onu>
+      </onus>
+      </#if>
+    </filter>
+  </get-config>
+</rpc>

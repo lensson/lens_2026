@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  pbit-2-mpbit-policy:
+    description: pbit to marked pbit policy name
+    suggested-values:
+    - pbit-2-mpbit
+domains: onu>unicast>qos
+entity: pbit-2-mpbit-policy
+freemarker: true
+name: Remove QoS pbit to marked pbit policy
+operation: remove
+sample-id: onu-unicast-qos-pbit-2-mpbit-policy-remove
+scope: eonu
+status: draft

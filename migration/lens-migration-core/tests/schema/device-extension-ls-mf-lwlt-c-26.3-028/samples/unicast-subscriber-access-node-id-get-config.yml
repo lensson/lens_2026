@@ -1,0 +1,7 @@
+domains: unicast>subscriber
+entity: access-node-id
+freemarker: true
+name: Retrieve access node ID
+operation: get-config
+sample-id: unicast-subscriber-access-node-id-get-config
+status: draft

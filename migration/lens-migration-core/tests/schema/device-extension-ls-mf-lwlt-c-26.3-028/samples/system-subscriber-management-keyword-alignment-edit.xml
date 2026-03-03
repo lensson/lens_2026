@@ -1,0 +1,19 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
+        <subscriber-management xmlns="urn:bbf:yang:bbf-subscriber-profiles">
+        <#if onu\-slot\-minimum\-string\-length?has_content>
+	  <onu-slot-minimum-string-length xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-keyword-alignment-aug" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">${onu\-slot\-minimum\-string\-length}</onu-slot-minimum-string-length>
+        </#if>
+        <#if onu\-port\-minimum\-string\-length?has_content>
+	  <onu-port-minimum-string-length xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-keyword-alignment-aug" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">${onu\-port\-minimum\-string\-length}</onu-port-minimum-string-length>
+        </#if>
+        </subscriber-management>
+      </system>
+    </config>
+  </edit-config>
+</rpc>

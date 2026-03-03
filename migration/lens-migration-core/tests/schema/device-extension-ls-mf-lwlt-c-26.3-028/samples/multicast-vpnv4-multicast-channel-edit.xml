@@ -1,0 +1,34 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <multicast xmlns="urn:bbf:yang:bbf-mgmd">
+        <mgmd>
+          <multicast-vpn>
+              <name>${vpn\-name}</name>
+              <multicast-channel>
+                  <name>${multicast\-channel\-name}</name>
+                  <network-interface>${vpn\-network\-interface\-name}</network-interface>
+                  <ipv4>
+<#if source\-ipv4\-address?has_content>
+                      <source-ipv4-address>${source\-ipv4\-address}</source-ipv4-address>
+</#if>
+                      <group-ipv4-address>${group\-ipv4\-address}</group-ipv4-address>
+                      <group-ipv4-address-end>${group\-ipv4\-address\-end}</group-ipv4-address-end>
+                  </ipv4>
+<#if channel\-rate?has_content>
+                  <channel-rate>${channel\-rate}</channel-rate>
+</#if>
+              </multicast-channel>
+              <multicast-package>
+                  <name>${multicast\-package\-name}</name>
+                  <multicast-channel-list>${multicast\-channel\-name}</multicast-channel-list>
+              </multicast-package>
+          </multicast-vpn>
+        </mgmd>
+      </multicast>
+    </config>
+  </edit-config>
+</rpc>

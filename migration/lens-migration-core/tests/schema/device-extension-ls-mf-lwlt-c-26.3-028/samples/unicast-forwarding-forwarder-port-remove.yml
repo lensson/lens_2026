@@ -1,0 +1,17 @@
+arguments:
+  forwarder-name:
+    description: The name of the forwarder.
+    suggested-values:
+    - fwd-1
+  forwarder-port-name:
+    description: The name of the forwarder port.
+    suggested-values:
+    - user-port-1
+domains: unicast>forwarding
+entity: forwarder-port
+freemarker: true
+name: Detach VLAN sub-interface from forwarder
+operation: remove
+sample-id: unicast-forwarding-forwarder-port-remove
+scope: l2fwd-qos-dyn-association
+status: draft

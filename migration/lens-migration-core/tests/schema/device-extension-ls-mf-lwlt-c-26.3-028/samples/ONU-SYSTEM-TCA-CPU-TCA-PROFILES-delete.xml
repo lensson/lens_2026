@@ -1,0 +1,23 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <tca-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-profiles-mounted">
+              <pm-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-hardware-pm-threshold-profiles-mounted">
+                <system-load-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+                  <name>${cpu\-tca\-profile}</name>
+                </system-load-profile>
+              </pm-profiles>
+            </tca-profiles>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

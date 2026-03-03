@@ -1,0 +1,16 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu_ani_intf:
+    description: ANI interface name
+    suggested-values:
+    - ontani
+domains: onu>transport>gpon>ani
+freemarker: true
+name: Get PM counters
+operation: get-pm-counters
+sample-id: onu-transport-gpon-ani-get-pm-counters
+scope: eonu
+status: draft

@@ -1,0 +1,13 @@
+arguments:
+  onu-name:
+    description: the custom name of the onu.
+    suggested-values:
+    - ont1_050_fwlt-c
+domains: onu>synchronization>ssm
+entity: onu-ssm-status
+freemarker: true
+name: Retrieves ONU SyncE/SSM status
+operation: get
+sample-id: onu-synchronization-ssm-onu-ssm-status-get
+scope: clock-onu-ssm or clock-df16gm or clock-df32gm
+status: draft

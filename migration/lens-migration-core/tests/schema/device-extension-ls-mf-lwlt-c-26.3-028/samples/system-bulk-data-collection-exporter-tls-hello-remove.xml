@@ -1,0 +1,39 @@
+ <rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <ipfix xmlns="urn:ietf:params:xml:ns:yang:ietf-ipfix-psamp">
+        <exportingProcess xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${exporter\-name}</name>
+          <destination>
+            <name>${collector\-name}</name>
+            <tcpExporter>
+              <certificate xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix">
+                <#if tls\-version?has_content || cipher\-suite?has_content>
+                  <hello-params>
+                <#else>
+                  <hello-params xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="remove">
+                </#if>
+                <#if tls\-version?has_content>
+                  <tls-versions>
+                    <tls-version xmlns:tlscmn="urn:ietf:params:xml:ns:yang:ietf-tls-common"
+                    xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="remove">tlscmn:${tls\-version}</tls-version>
+                  </tls-versions>
+                </#if>
+                <#if cipher\-suite?has_content>
+                  <cipher-suites>
+                    <cipher-suite xmlns:tlscsa="urn:ietf:params:xml:ns:yang:iana-tls-cipher-suite-algs"
+                    xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="remove">tlscsa:${cipher\-suite}</cipher-suite>
+                  </cipher-suites>
+                </#if>
+                </hello-params>
+              </certificate>
+            </tcpExporter>
+          </destination>
+        </exportingProcess>
+      </ipfix>
+    </config>
+  </edit-config>
+</rpc>

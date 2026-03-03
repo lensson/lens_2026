@@ -1,0 +1,14 @@
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <debug-ont-ssh xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ont-remote-debug">
+        <access-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+          <name>${debug\-ont\-ssh\-profile\-name}</name>
+        </access-entry>
+      </debug-ont-ssh>
+    </config>
+  </edit-config>
+</rpc>

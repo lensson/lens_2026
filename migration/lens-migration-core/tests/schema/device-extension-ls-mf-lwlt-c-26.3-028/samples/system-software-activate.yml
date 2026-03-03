@@ -1,0 +1,26 @@
+arguments:
+  component:
+    description: Name of the component, default must be Chassis.
+    suggested-values:
+    - Chassis
+  download-software-name:
+    description: Name of the software to be activated
+    suggested-values:
+    - L6GQAF20.100
+  software-name:
+    description: Name of the application software
+    suggested-values:
+    - application_software
+  default-datastore:
+    description: Activation of software along with configuration DB clean-up.
+    optional: true
+    suggested-values:
+    - true
+    - false
+available-locally: true
+domains: system>software
+freemarker: true
+name: Activate downloaded software
+operation: activate
+sample-id: system-software-activate
+status: draft

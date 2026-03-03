@@ -1,0 +1,16 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  voice-pots-port-support:
+    description: Boolean value for voice POTS Port Support
+    suggested-values:
+    - true
+domains: onu>equipment
+freemarker: true
+name: Delete hardware component
+operation: delete
+sample-id: onu-equipment-delete
+scope: eonu
+status: draft

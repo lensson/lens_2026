@@ -1,0 +1,23 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <forwarding xmlns="urn:bbf:yang:bbf-l2-forwarding">
+        <forwarders>
+          <forwarder xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+            <#if cc\-name?has_content>
+            <name>${cc\-name}-FWD</name>
+            <#elseif ibridge\-name?has_content>
+            <name>${ibridge\-name}-FWD</name>
+            </#if>
+            <l2-dhcpv4-relay xmlns="urn:bbf:yang:bbf-l2-dhcpv4-relay-forwarding">
+              <downstream-broadcast-flooding>${bc\-flooding}</downstream-broadcast-flooding>
+            </l2-dhcpv4-relay>
+          </forwarder>
+        </forwarders>
+      </forwarding>
+    </config>
+  </edit-config>
+</rpc>

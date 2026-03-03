@@ -1,0 +1,12 @@
+arguments:
+  vlanrange_profile_name:
+    description: Name of the vlan-range profile
+    suggested-values:
+    - vlanrange_profile
+domains: unicast>subscriber
+entity: vlan-range-profile
+freemarker: true
+name: Retrieve vlanrange profile config
+operation: get-config
+sample-id: unicast-subscriber-vlan-range-profile-get-config
+status: draft

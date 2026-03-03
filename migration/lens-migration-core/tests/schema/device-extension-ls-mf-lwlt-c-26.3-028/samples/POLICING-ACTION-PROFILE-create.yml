@@ -1,0 +1,160 @@
+arguments:
+  policing-action-profile-name:
+    description: policing action profile name
+    suggested-values:
+    - policing-action-profile
+  green-bac-color:
+    description: bac color for green packets
+    optional: true
+    suggested-values:
+    - green
+  green-i-marking-pbit:
+    description: marking inner TAG p-bit for green packets
+    optional: true
+    suggested-values:
+    - 0
+  green-o-marking-pbit:
+    description: marking outer TAG p-bit for green packets
+    optional: true
+    suggested-values:
+    - 0
+  green-i-marking-dei:
+    description: marking inner TAG dei for green packets
+    optional: true
+    suggested-values:
+    - 0
+  green-o-marking-dei:
+    description: marking outer TAG dei for green packets
+    optional: true
+    suggested-values:
+    - 0
+  green-metered-flow:
+    allowed-values:
+    - true
+    - false
+    description: true if flow is metered by policer
+    optional: true
+    suggested-values:
+    - true
+  green-metered-color:
+    allowed-values:
+    - true
+    - false
+    description: true if color is set by policer
+    optional: true
+    suggested-values:
+    - true
+  green-discard:
+    allowed-values:
+    - true
+    - false
+    description: true if packet is discard
+    optional: true
+    suggested-values:
+    - false
+  yellow-bac-color:
+    description: bac color for yellow packets
+    optional: true
+    suggested-values:
+    - yellow
+  yellow-i-marking-pbit:
+    description: marking inner TAG p-bit for yellow packets
+    optional: true
+    suggested-values:
+    - 0
+  yellow-o-marking-pbit:
+    description: marking outer TAG p-bit for yellow packets
+    optional: true
+    suggested-values:
+    - 0
+  yellow-i-marking-dei:
+    description: marking inner TAG dei for yellow packets
+    optional: true
+    suggested-values:
+    - 1
+  yellow-o-marking-dei:
+    description: marking outer TAG dei for yellow packets
+    optional: true
+    suggested-values:
+    - 1
+  yellow-metered-flow:
+    allowed-values:
+    - true
+    - false
+    description: true if flow is metered by policer
+    optional: true
+    suggested-values:
+    - true
+  yellow-metered-color:
+    allowed-values:
+    - true
+    - false
+    description: true if color is set by policer
+    optional: true
+    suggested-values:
+    - true
+  yellow-discard:
+    allowed-values:
+    - true
+    - false
+    description: true if packet is discard
+    optional: true
+    suggested-values:
+    - false
+  red-bac-color:
+    description: bac color for red packets
+    optional: true
+    suggested-values:
+    - red
+  red-i-marking-pbit:
+    description: marking inner TAG p-bit for red packets
+    optional: true
+    suggested-values:
+    - 0
+  red-o-marking-pbit:
+    description: marking outer TAG p-bit for red packets
+    optional: true
+    suggested-values:
+    - 0
+  red-i-marking-dei:
+    description: marking inner TAG dei for red packets
+    optional: true
+    suggested-values:
+    - 1
+  red-o-marking-dei:
+    description: marking outer TAG dei for red packets
+    optional: true
+    suggested-values:
+    - 1
+  red-metered-flow:
+    allowed-values:
+    - true
+    - false
+    description: true if flow is metered by policer
+    optional: true
+    suggested-values:
+    - true
+  red-metered-color:
+    allowed-values:
+    - true
+    - false
+    description: true if color is set by policer
+    optional: true
+    suggested-values:
+    - true
+  red-discard:
+    allowed-values:
+    - true
+    - false
+    description: true if packet is discard
+    optional: true
+    suggested-values:
+    - true
+domains: unicast>qos>policy-profiles
+entity: policing_action_profile
+freemarker: true
+name: Configure QoS policing action profile
+operation: edit
+sample-id: unicast-qos-policy-profiles-policing_action_profile-edit
+scope: not(mx) and not(dpu)
+status: draft

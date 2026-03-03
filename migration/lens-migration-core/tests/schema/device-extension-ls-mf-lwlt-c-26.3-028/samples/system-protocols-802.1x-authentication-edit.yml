@@ -1,0 +1,14 @@
+arguments:
+  authentication-server:
+    description: Indicates that a user will be authenticated using radius communication
+      to a remote server.
+    suggested-values:
+    - radius
+domains: system>protocols>802.1x
+entity: authentication
+freemarker: true
+name: Configure system level authentication
+operation: edit
+sample-id: system-protocols-802.1x-authentication-edit
+scope: fiber
+status: draft

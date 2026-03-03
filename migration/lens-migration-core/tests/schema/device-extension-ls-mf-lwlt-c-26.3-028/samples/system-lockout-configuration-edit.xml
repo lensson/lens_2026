@@ -1,0 +1,20 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <system-security xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-aaa" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+        <#if lockout\-duration?has_content>
+          <lockout-duration>${lockout\-duration}</lockout-duration>
+        </#if>
+        <#if max\-retry\-attempts?has_content>
+          <max-retry-attempts>${max\-retry\-attempts}</max-retry-attempts>
+        </#if>
+        <#if lockout\-type?has_content>
+          <lockout-type>${lockout\-type}</lockout-type>
+        </#if>
+      </system-security>
+    </config>
+  </edit-config>
+</rpc>

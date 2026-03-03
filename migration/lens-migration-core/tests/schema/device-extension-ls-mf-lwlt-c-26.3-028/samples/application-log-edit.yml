@@ -1,0 +1,19 @@
+arguments:
+  app-name:
+    description: application name
+    suggested-values:
+    - logMgr_app
+  loglevel:
+    description: severity level
+    suggested-values:
+    - info
+  module-name:
+    description: logger name
+    suggested-values:
+    - logMgr
+domains: system>logging>application-log
+freemarker: true
+name: Configure log level for an application
+operation: edit
+sample-id: system-logging-application-log-edit
+status: draft

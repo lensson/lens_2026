@@ -1,0 +1,7 @@
+domains: system>bulk-data-collection>exporter
+entity: state
+freemarker: true
+name: Retrieve IPFIX exporter operational data
+operation: get
+sample-id: system-bulk-data-collection-exporter-state-get
+status: draft

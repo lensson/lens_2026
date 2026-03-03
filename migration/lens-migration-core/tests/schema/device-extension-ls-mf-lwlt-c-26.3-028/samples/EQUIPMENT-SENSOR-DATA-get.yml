@@ -1,0 +1,6 @@
+domains: equipment>sensor-data
+freemarker: true
+name: Get operational data of the SENSOR-DATA
+operation: get
+sample-id: equipment-sensor-data-get
+status: draft

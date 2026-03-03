@@ -1,0 +1,13 @@
+arguments:
+  port-bounce-interval:
+    description: Port bounce interval ranges from 1 to 300.
+    suggested-values:
+    - 5
+domains: system>protocols>dynamic-auth-client
+entity: port-bounce
+freemarker: true
+name: Configure port bounce interval
+operation: edit
+sample-id: system-protocols-dynamic-auth-client-port-bounce-edit
+scope: fiber
+status: draft

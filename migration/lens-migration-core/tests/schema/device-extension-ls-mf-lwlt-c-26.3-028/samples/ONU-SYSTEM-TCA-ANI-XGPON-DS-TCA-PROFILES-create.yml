@@ -1,0 +1,29 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  xgponani-downstream-error-profile:
+    description: ANI XGPON downstream PM counters threshold profile name
+    suggested-values:
+    - ds_tca_profile
+  ploam-mic-error-threshold:
+    description: Threshold value for number of MIC errors detected in downstream PLOAM
+      messages range is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 10
+  omci-mic-error-threshold:
+    description: Threshold value for number of MIC errors detected in OMCI messages
+      directed to the ONU  range is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 11
+domains: onu>system>tca>pm-profiles
+entity: ani-xgpon-ds-pm-tca-profile
+freemarker: true
+name: Config ANI XGPON Downstream PM TCA profile
+operation: create
+sample-id: onu-system-tca-pm-profiles-ani-xgpon-ds-pm-tca-profile-create
+scope: eonu
+status: draft

@@ -1,0 +1,13 @@
+arguments:
+  onu-name:
+    description: The name of ONU that specifies the template configuration
+    suggested-values:
+    - onu-template-1
+domains: onu
+entity: template
+freemarker: true
+name: Delete ONU template subtree
+operation: delete
+sample-id: onu-template-delete
+scope: eonu
+status: draft

@@ -1,0 +1,15 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <pppoe-profiles xmlns="urn:bbf:yang:bbf-pppoe-intermediate-agent">
+        <pppoe-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${pppoe\-profile\-name}</name>
+          <upstream-tag-transparency xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-pppoe-upstream-tag-transparency"/>
+        </pppoe-profile>
+      </pppoe-profiles>
+    </config>
+  </edit-config>
+</rpc>

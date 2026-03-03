@@ -1,0 +1,20 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu-template-uni-intf:
+    description: ENET interface name
+    suggested-values:
+    - uni-template-1
+  pm_counter_size:
+    description: Modifies pm counter size of an UNI interface,Values Range:[32bit-performance-monitoring,64bit-performance-monitoring]
+    suggested-values:
+    - 32bit-performance-monitoring
+domains: onu>transport>xpon>enet
+entity: template
+freemarker: true
+name: Modify UNI interface performance monitoring countersize
+operation: enet-pm-countersize-modify
+sample-id: onu-transport-xpon-enet-template-enet-pm-countersize-modify
+status: draft

@@ -1,0 +1,14 @@
+arguments:
+  transceiver-link-tca-profile-name:
+    description: transceiver link TCA profile name
+    suggested-values:
+    - transceiver-link-tca-profile
+domains: system>tca
+entity: transceiver-link-tca-profile
+freemarker: true
+name: Remove transceiver-link-tca-profile
+operation: remove
+sample-id: system-tca-transceiver-link-tca-profile-remove
+scope: not(eth-copper) and not(eth-copper-ci) and not(fx-nt or mf14-nt or mf2-nt or
+  sf-nt)
+status: draft

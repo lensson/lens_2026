@@ -1,0 +1,36 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+                <name>${vpn\-name}-onu-v-enet</name>
+              </interface>
+              <interface>
+                <name>${ani\-name}</name>
+                <ani xmlns="urn:bbf:yang:bbf-xponani-mounted">
+                  <multicast-gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+                    <name>mc-gemport</name>
+                  </multicast-gemport>
+                </ani>
+              </interface>
+            </interfaces>
+            <multicast xmlns="urn:bbf:yang:bbf-mgmd-mounted">
+              <mgmd>
+                <multicast-vpn xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+                  <name>${vpn\-name}</name>
+                </multicast-vpn>
+              </mgmd>
+            </multicast>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

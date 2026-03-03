@@ -1,0 +1,33 @@
+arguments:
+  service-name:
+    description: The name of the IBRIDGE (or) the IBRIDGE with user-to-user traffic
+      enabled (or) the multiple uplink interfaces IBRIDGE (or) the multiple uplink
+      interfaces IBRIDGE with user-to-user traffic enabled (or) the local cross-connect
+      on the OLT (or) the remote cross-connect on the OLT
+    suggested-values:
+    - bridge-1
+    - multi-uplink-bridge-1
+    - localcc-1
+    - remotecc-1
+  static-mac-address:
+    description: The mac address to be added to the interface
+    suggested-values:
+    - 00:09:23:33:44:01
+  network-port-name:
+    description: The name of the network VSI lower layer
+    optional: true
+    suggested-values:
+    - BP_Eth
+  user-port-name:
+    description: The name of the local VLAN port on the OLT
+    optional: true
+    suggested-values:
+    - user-port-1
+domains: unicast>forwarding
+entity: static-mac
+freemarker: true
+name: Configure static MAC-address on interface
+operation: edit
+sample-id: unicast-forwarding-static-mac-edit
+scope: not(dpu) and not(mx) and not(fx-p2p-uplink)
+status: draft

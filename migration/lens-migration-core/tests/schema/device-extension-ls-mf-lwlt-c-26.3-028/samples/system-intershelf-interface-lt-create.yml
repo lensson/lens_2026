@@ -1,0 +1,18 @@
+arguments:
+  interface-name:
+    description: Name of IP interface
+    suggested-values:
+    - inter-shelf
+  vlan-id:
+    description: Value of vlan-id
+    suggested-values:
+    - 4092
+available-locally: true
+domains: system>inband
+entity: intershelf-interface-lt
+freemarker: true
+name: Create inter-shelf management interface
+operation: create
+sample-id: system-inband-intershelf-interface-lt-create
+scope: inband-no-ipv4-inter-shelf
+status: draft

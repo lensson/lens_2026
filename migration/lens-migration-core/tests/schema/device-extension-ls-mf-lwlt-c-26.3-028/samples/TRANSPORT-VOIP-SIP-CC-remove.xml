@@ -1,0 +1,34 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+         <onu>
+          <name>${onu\-name}</name>
+          <usage xmlns:template-common="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-template-common">template-common:node-from-template-usage</usage>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <interfaces>
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+               <template-ref>ip-host</template-ref>
+              </interface>
+            </interfaces>
+            <system>
+              <server xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>pridns</name>
+              </server>
+              <server xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>backupdns</name>
+              </server>
+            </system>
+            <routing >
+              <next-hop-address xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove"/>
+            </routing>
+          </template-parameters>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>
+

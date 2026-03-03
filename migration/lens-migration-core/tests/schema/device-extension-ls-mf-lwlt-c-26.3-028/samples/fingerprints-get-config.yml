@@ -1,0 +1,13 @@
+arguments:
+  netconf-client-name:
+    description: Name of NETCONF clients list.
+    suggested-values:
+    - nc-client
+available-locally: true
+domains: system>callhome>certificates
+entity: fingerprints
+freemarker: true
+name: Retrieve TLS fingerprints
+operation: get-config
+sample-id: system-callhome-certificates-fingerprints-get-config
+status: draft

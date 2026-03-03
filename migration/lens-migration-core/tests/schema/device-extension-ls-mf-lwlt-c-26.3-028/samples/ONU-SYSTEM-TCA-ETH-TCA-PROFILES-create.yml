@@ -1,0 +1,42 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ethernet-frame-error-profile:
+    description: Ethernet frame performance monitoring counters threshold profile
+      name
+    suggested-values:
+    - eth_tca_profile
+  drop-events-threshold:
+    description: Threhsold value for the total number of events in which inbound packets
+      were dropped range is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 100
+  eth-crc-tca-threshold:
+    description: Threhsold value for number of received packets dropped due to Ethernet
+      CRC error range is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 1000
+  undersize-pkts-threshold:
+    description: Threshold value for the total number of undersized packets received
+      range is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 50
+  oversize-pkts-threshold:
+    description: Threshold value for the total number of oversized packets received
+      range is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 50
+domains: onu>system>tca>pm-profiles
+entity: eth-frame-tca-profile
+freemarker: true
+name: Configure Ethernet frame error TCA profile
+operation: create
+sample-id: onu-system-tca-pm-profiles-eth-frame-tca-profile-create
+scope: eonu
+status: draft

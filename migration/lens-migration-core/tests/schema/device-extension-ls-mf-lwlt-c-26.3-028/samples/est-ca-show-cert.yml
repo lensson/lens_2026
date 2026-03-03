@@ -1,0 +1,20 @@
+arguments:
+  profile-name:
+    description: EST profile-name
+    suggested-values:
+    - EstProfile
+  certificate-name:
+    description: Certificate name
+    suggested-values:
+    - cert0
+  format:
+    description: Format could be either "raw" (encoded) or "details" (decoded)
+    suggested-values:
+    - raw
+domains: system>certificate>est
+entity: ca
+freemarker: true
+name: Display an EST enrolled CA certificate
+operation: show-cert
+sample-id: system-certificate-est-ca-show-cert
+status: draft

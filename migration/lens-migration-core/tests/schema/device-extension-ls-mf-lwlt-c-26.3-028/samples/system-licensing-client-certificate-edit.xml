@@ -1,0 +1,51 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <licensing xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-licensing-app">
+        <certificate>
+          <#if tls\-version?has_content || cipher\-suite?has_content>
+            <hello-params xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+              <#if tls\-version?has_content>
+                <tls-versions>
+                  <tls-version xmlns:tlscmn="urn:ietf:params:xml:ns:yang:ietf-tls-common">tlscmn:${tls\-version}</tls-version>
+                </tls-versions>
+              </#if>
+              <#if cipher\-suite?has_content>
+                <cipher-suites>
+                  <cipher-suite xmlns:tlscsa="urn:ietf:params:xml:ns:yang:iana-tls-cipher-suite-algs">tlscsa:${cipher\-suite}</cipher-suite>
+                </cipher-suites>
+              </#if>
+            </hello-params>
+          </#if>
+          <#if pinned\-ca\-list?has_content>
+            <server-auth xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="replace">
+              <pinned-ca-certs>${pinned\-ca\-list}</pinned-ca-certs>
+            </server-auth>
+           <#elseif server\-auth\-est\-profile\-name?has_content>
+            <server-auth xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="replace">
+              <est-certificate-profile>${server\-auth\-est\-profile\-name}</est-certificate-profile>
+            </server-auth>
+          </#if>
+	  <#if certificate?has_content || client\-auth\-est\-profile\-name?has_content>
+            <client-identity>
+              <certificate>
+                <#if certificate?has_content>
+                  <local-definition xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                    <cert>${certificate}</cert>
+                  </local-definition>
+                <#else>
+                  <est-certificate-profile-reference xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                    <est-certificate-profile>${client\-auth\-est\-profile\-name}</est-certificate-profile>
+                  </est-certificate-profile-reference>
+                </#if>
+              </certificate>
+            </client-identity>
+          </#if>
+        </certificate>
+      </licensing>
+    </config>
+  </edit-config>
+</rpc>

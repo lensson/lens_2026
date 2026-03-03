@@ -1,0 +1,28 @@
+arguments:
+  auth-server1-name:
+    description: Name of the primary RADIUS authentication server.
+    suggested-values:
+    - rad1
+  auth-server2-name:
+    description: Name of the secondary RADIUS authentication server.
+    optional: true
+    suggested-values:
+    - rad2
+  acc-server1-name:
+    description: Name of the primary RADIUS accounting server.
+    optional: true
+    suggested-values:
+    - acc1
+  acc-server2-name:
+    description: Name of the secondary RADIUS accounting server.
+    optional: true
+    suggested-values:
+    - acc2
+domains: system>protocols>radius
+entity: server
+freemarker: true
+name: Remove RADIUS servers
+operation: remove
+sample-id: system-protocols-radius-server-remove
+scope: not(model2-dpu)
+status: draft

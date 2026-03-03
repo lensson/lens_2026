@@ -1,0 +1,6 @@
+domains: equipment>temperature-sensor-thresholds
+freemarker: true
+name: Get operational data of the TEMPERATURE-SENSOR-THRESHOLDS
+operation: get
+sample-id: equipment-temperature-sensor-thresholds-get
+status: draft

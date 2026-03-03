@@ -1,0 +1,26 @@
+arguments:
+  onu-slot-minimum-string-length:
+    description: Determines if the ONU slot numbering MUST use leading 0's or not,
+      and how many 0's are added to achieve the desired string length. e.g., configuring
+      2 and if slot-id = 1, keyword Onuslot will be replaced by value 01. It indicates
+      the minimum string length and actual value can be larger if needed. e.g., configuring
+      1 and slot-id = 12 would be allowed since string length 2 >= 1"
+    optional: true
+    suggested-values:
+    - 2
+  onu-port-minimum-string-length:
+    description: Determines if the ONU port numbering MUST use leading 0's or not,
+      and how many 0's are added to achieve the desired string length. e.g., configuring
+      2 and if port-id = 1, keyword Onuport will be replaced by value 01. It indicates
+      the minimum string length and actual value can be larger if needed. e.g., configuring
+      1 and port-id = 12 would be allowed since string length 2 >= 1"
+    optional: true
+    suggested-values:
+    - 2
+domains: system>subscriber-management
+entity: keyword-alignment
+freemarker: true
+name: Configure ONU slot/port minimum string length
+operation: edit
+sample-id: system-subscriber-management-keyword-alignment-edit
+status: draft

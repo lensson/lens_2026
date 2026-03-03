@@ -1,0 +1,50 @@
+arguments:
+  collector-name:
+    description: collector name
+    suggested-values:
+    - Collector1
+  dest-ip-address:
+    description: destination ip address
+    optional: true
+    suggested-values:
+    - 192.0.2.16
+  dest-fqdn:
+    description: destination FQDN
+    optional: true
+    suggested-values:
+    - sdan.nokia.com
+  dest-port:
+    description: destination port
+    suggested-values:
+    - 4739
+  exporter-name:
+    description: exporter name
+    suggested-values:
+    - Exporter1
+  username:
+    description: username
+    suggested-values:
+    - admin
+  password:
+    description: password
+    sensitive: true
+    suggested-values:
+    - $0$admin
+  priority:
+    description: priority
+    suggested-values:
+    - 2
+  retransmission-timeout:
+    description: retransmission timeout(in secs)
+    suggested-values:
+    - 10
+  ipfix-exporting-enable:
+    description: export enable flag
+    suggested-values:
+    - true
+domains: system>bulk-data-collection>exporter
+freemarker: true
+name: Configure IPFIX TCP collector
+operation: edit
+sample-id: system-bulk-data-collection-exporter-edit
+status: draft

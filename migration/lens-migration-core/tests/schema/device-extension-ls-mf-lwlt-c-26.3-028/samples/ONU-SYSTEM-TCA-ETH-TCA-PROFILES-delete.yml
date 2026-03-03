@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ethernet-frame-error-profile:
+    description: Ethernet frame performance monitoring TCA profile name
+    suggested-values:
+    - eth_tca_profile
+domains: onu>system>tca>pm-profiles
+entity: eth-frame-tca-profile
+freemarker: true
+name: Remove Ethernet frame error TCA profile
+operation: remove
+sample-id: onu-system-tca-pm-profiles-eth-frame-tca-profile-remove
+scope: eonu
+status: draft

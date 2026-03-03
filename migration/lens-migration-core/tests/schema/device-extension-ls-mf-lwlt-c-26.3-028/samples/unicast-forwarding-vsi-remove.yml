@@ -1,0 +1,32 @@
+arguments:
+  network_user-outer-vlan-id:
+    description: Outer VLAN-id of the network (or) user interface. If this argument
+      is not provided, untagged will be the default.
+    optional: true
+    suggested-values:
+    - 1
+  network-inner-vlan-id:
+    description: Inner VLAN-id of the network interface. This argument will be ignored
+      if network-outer-vlan-id is not provided.
+    optional: true
+    suggested-values:
+    - 1
+  network_user-is-match-all:
+    description: Needs to be set to true when the VLAN sub-interface is configured
+      to match all traffic. Example, the user VLAN sub-interface in a CC tunnel forwarder.
+    optional: true
+    suggested-values:
+    - false
+  network_user-interface:
+    description: Name of the network (or) user interface.
+    suggested-values:
+    - agg01
+    - ETH-NTA/X2
+    - ETH-NTB/X2
+domains: unicast>forwarding
+entity: vsi
+freemarker: true
+name: Remove VLAN sub-interface
+operation: remove
+sample-id: unicast-forwarding-vsi-remove
+status: draft

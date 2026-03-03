@@ -1,0 +1,29 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <forwarding xmlns="urn:bbf:yang:bbf-l2-forwarding">
+        <split-horizon-profiles>
+          <split-horizon-profile>
+            <name>no-user-to-user-communication</name>
+            <split-horizon>
+              <in-interface-usage>${in\-port}</in-interface-usage>
+              <out-interface-usage>${out\-port}</out-interface-usage>
+            </split-horizon>
+          </split-horizon-profile>
+        </split-horizon-profiles>
+        <mac-learning-control-profiles>
+          <mac-learning-control-profile>
+            <name>mlcp1</name>
+            <mac-learning-rule>
+              <receiving-interface-usage>${receive\-interface\-usage}</receiving-interface-usage>
+              <mac-can-not-move-to>${mac\-can\-not\-move\-to}</mac-can-not-move-to>
+            </mac-learning-rule>
+          </mac-learning-control-profile>
+        </mac-learning-control-profiles>
+      </forwarding>
+    </config>
+  </edit-config>
+</rpc>

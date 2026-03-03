@@ -1,0 +1,13 @@
+arguments:
+  transceiver-name:
+    description: The name of transceiver
+    suggested-values:
+    - sfp1
+available-locally: true
+domains: equipment>sfp
+freemarker: true
+name: Retrieve operational data of the SFP
+operation: get
+sample-id: equipment-sfp-get
+scope: xpon
+status: draft

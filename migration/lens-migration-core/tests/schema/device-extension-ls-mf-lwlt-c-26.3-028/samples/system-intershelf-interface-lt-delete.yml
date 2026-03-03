@@ -1,0 +1,14 @@
+arguments:
+  interface-name:
+    description: Name of IP interface
+    suggested-values:
+    - inter-shelf
+available-locally: true
+domains: system>inband
+entity: intershelf-interface-lt
+freemarker: true
+name: Delete inter-shelf management interface
+operation: delete
+sample-id: system-inband-intershelf-interface-lt-delete
+scope: inband-no-ipv4-inter-shelf
+status: draft

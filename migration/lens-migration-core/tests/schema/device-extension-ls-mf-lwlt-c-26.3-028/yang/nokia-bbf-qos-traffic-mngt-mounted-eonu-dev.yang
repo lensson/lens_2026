@@ -1,0 +1,190 @@
+module nokia-bbf-qos-traffic-mngt-mounted-eonu-dev {
+  namespace
+    "http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-bbf-qos-traffic-mngt-mounted-eonu-dev";
+
+  prefix  nokia-bbf-qos-traffic-mngt-mounted-eonu-dev;
+
+
+  import bbf-fiber-onu-emulated-mount {
+    prefix onu;
+  }
+
+  import ietf-interfaces-mounted {
+    prefix if-mounted;
+  }
+
+  import bbf-qos-traffic-mngt-mounted {
+      prefix bbf-qos-tm-mounted;
+  }
+
+  import iana-if-type-mounted {
+    prefix ianaift-mounted;
+  }
+
+  import bbf-xpon-if-type-mounted {
+    prefix bbf-xponift-mounted;
+  }
+
+  organization
+    "Nokia";
+
+  contact
+    "isam.yang@nokia.com";
+
+  description
+    "This module contains a collection of YANG deviations on top 
+     of standard for supporting BBF/bbf-qos-traffic-mgnt YANG module.
+
+     This specification is published by Nokia under Non-Disclosure
+     Agreement(s) (NDA) with specific parties and has to be considered
+     as Confidential Information as defined in such NDA. Nokia 
+     reserves the right to revise this document for any reason, 
+     including but not limited to conformity with standards 
+     promulgated by various agencies, utilisation of advances in the 
+     state of the technical areas, or the reflection of changes in the
+     design of any equipment, techniques, or procedures described or 
+     referred to herein.
+
+     The product specifications and other technical or performance 
+     information contained herein are subject to change without 
+     notice. Updates of this document will be issued under the above 
+     NDA's.lic-appsufficiency, accuracy, or utility of any 
+     information or opinion contained herein. Nokia expressly advises 
+     that any use of for any purpose or reliance upon this technical 
+     reference is at the risk of the user and that Nokia shall not be 
+     liable for any damage or injury incurred by any person arising 
+     out of the sufficiency, accuracy, or utility of any information 
+     or opinion contained herein.
+
+     This document is not to be construed as a suggestion to any 
+     manufacturer to modify or change any of its products, nor does 
+     this document represent any commitment by Nokia to sell or 
+     purchase any product. Nothing contained herein shall be construed
+     as conferring by implication, estoppel, or otherwise any license 
+     or right under any patent, whether or not the use of any 
+     information herein necessarily employs an invention of any 
+     existing or later issued patent.
+
+     Nokia reserves the right not to offer any or all of these
+     products and to withdraw any or all of them at any future time.
+
+     Copyright (C) 2017-2018, Nokia. All Rights Reserved.";
+
+  /* revision */
+
+  revision 2025-12-09 {
+    description
+      "allow tm-root on interface and add deviations";
+    reference
+      "Nokia specific";
+  }
+
+  revision 2024-11-28 {
+    description
+      "update deviation yang to check bac-entry must be not-supported";
+    reference
+      "Nokia specific";
+  }
+
+  revision 2022-08-08 {
+    description
+      "add deviation for tm-root on interface";
+    reference
+      "Nokia specific";
+  }
+
+  revision 2022-05-04 {
+    description
+      "Removed pre-emption deviation as there is an feature for this";
+    reference
+      "Nokia specific";
+  }
+
+  revision 2021-04-08 {
+    description
+      "Adding Deviations for not supported Yang leaves";
+    reference
+      "Nokia specific";
+  }
+
+  deviation '/onu:onus/onu:onu/onu:root/bbf-qos-tm-mounted:tm-profiles/bbf-qos-tm-mounted:bac-entry' {
+    description
+       "This deviation assures that bac-entry config is not supported.";
+    deviate not-supported;
+  }
+
+  deviation '/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface/bbf-qos-tm-mounted:tm-root/bbf-qos-tm-mounted:children-type/bbf-qos-tm-mounted:queues/bbf-qos-tm-mounted:queue/bbf-qos-tm-mounted:bac-name' {
+      deviate not-supported;
+  }
+
+  deviation "/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface/bbf-qos-tm-mounted:tm-root/bbf-qos-tm-mounted:children-type/bbf-qos-tm-mounted:queues/bbf-qos-tm-mounted:queue" {
+    deviate add {
+       must "../../if-mounted:type = 'ianaift-mounted:ethernetCsmacd' or "
+           +"../../if-mounted:type = 'bbf-xponift-mounted:onu-v-vrefpoint'" {
+            error-message "only Eth/Veip interface can configure downstream tm-root queues";
+       }
+
+       must "boolean(../bbf-qos-tm-mounted:tc-id-2-queue-id-mapping-profile-name)" {
+            error-message "tc-id-2-queue-id-mapping-profile name should not be empty when queue is configured in interface tm-root.";
+       }
+
+       must "not(boolean(../bbf-qos-tm-mounted:tc-id-2-queue-id-mapping-profile-name)) or "
+           +"(../../../../bbf-qos-tm-mounted:tm-profiles/bbf-qos-tm-mounted:tc-id-2-queue-id-mapping-profile[bbf-qos-tm-mounted:name = current()/../bbf-qos-tm-mounted:tc-id-2-queue-id-mapping-profile-name]/bbf-qos-tm-mounted:mapping-entry/bbf-qos-tm-mounted:local-queue-id) = current()/bbf-qos-tm-mounted:local-queue-id" {
+           error-message "downstream tm-root queue local-queue-id should be included in its tc2queue profile local-queue-id.";
+       }
+    }
+  }
+
+  deviation "/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface/bbf-qos-tm-mounted:tm-root/bbf-qos-tm-mounted:tc-id-2-queue-id-mapping-profile-name" {
+    deviate add {
+       must "../../if-mounted:type = 'ianaift-mounted:ethernetCsmacd' or "
+           +"../../if-mounted:type = 'bbf-xponift-mounted:onu-v-vrefpoint'" {
+            error-message "only Eth/Veip interface can configure downstream tm-root queues";
+       }
+
+       must "boolean(../bbf-qos-tm-mounted:queue)" {
+            error-message "queue should not be empty when tc-id-2-queue-id-mapping-profile-name is configured in interface tm-root.";
+       }
+
+       must "count(../../../../bbf-qos-tm-mounted:tm-profiles/bbf-qos-tm-mounted:tc-id-2-queue-id-mapping-profile[bbf-qos-tm-mounted:name = current()]/bbf-qos-tm-mounted:mapping-entry) = 8 or "
+           +"count(../../../../bbf-qos-tm-mounted:tm-profiles/bbf-qos-tm-mounted:tc-id-2-queue-id-mapping-profile[bbf-qos-tm-mounted:name = current()]/bbf-qos-tm-mounted:mapping-entry) = 4" {
+            error-message "when tm-root configured in interface, its tc2queue profile only support 4 or 8 entries";
+       }
+    }
+  }
+
+  deviation "/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface/bbf-qos-tm-mounted:tm-root/bbf-qos-tm-mounted:children-type/bbf-qos-tm-mounted:queues/bbf-qos-tm-mounted:queue/bbf-qos-tm-mounted:queue-scheduling-cfg-type/bbf-qos-tm-mounted:inline/bbf-qos-tm-mounted:priority" {
+    deviate add {
+      must "count(../../bbf-qos-tm-mounted:queue[bbf-qos-tm-mounted:priority = current()]) = 1 or "
+          +"../bbf-qos-tm-mounted:weight > 1" {
+            error-message "weight empty or 0 or 1 is not supported for WRR queues that share the same priority";
+      }
+
+      must "not((count(../../bbf-qos-tm-mounted:queue[bbf-qos-tm-mounted:priority = current()]) > 1) and
+                (count(../../bbf-qos-tm-mounted:queue[bbf-qos-tm-mounted:priority != current()]) > 1))"
+          +"or (count(../../bbf-qos-tm-mounted:queue[bbf-qos-tm-mounted:priority < current()]) = 0)" {
+            error-message "(1) only one set of WRR queues with same priorities is supported (2) priority of WRR queues should be lower than SP queues for mix of downstream SP and WRR scheduling";
+      }
+
+      must ". != 0 or "
+          +"count(../../bbf-qos-tm-mounted:queue[not(boolean(bbf-qos-tm-mounted:priority))]) = 0" {
+            error-message "To avoid ambiguity, queue with priority 0 cannot coexist with other queue with empty priority";
+      }
+
+      must "count(../../bbf-qos-tm-mounted:queue[bbf-qos-tm-mounted:priority = current()]) = 1 or "
+          +"count(../../bbf-qos-tm-mounted:queue[not(boolean(bbf-qos-tm-mounted:priority))]) = 0" {
+            error-message "WRR queues' priorities must either have the same value or all be empty. WRR queues with same priorities and queue with empty priority cannot coexist";
+      }
+    }
+  }
+
+  deviation "/onu:onus/onu:onu/onu:root/if-mounted:interfaces/if-mounted:interface/bbf-qos-tm-mounted:tm-root/bbf-qos-tm-mounted:children-type/bbf-qos-tm-mounted:queues/bbf-qos-tm-mounted:queue/bbf-qos-tm-mounted:queue-scheduling-cfg-type/bbf-qos-tm-mounted:inline/bbf-qos-tm-mounted:weight" {
+    deviate add {
+      must "boolean(../bbf-qos-tm-mounted:priority) or "
+          +"count(../../bbf-qos-tm-mounted:queue[not(boolean(bbf-qos-tm-mounted:priority))]) = 1 or "
+          +". > 1" {
+            error-message "queues with empty priorities are treated as WRR scheduling, weight 0 or 1 is not supported";
+      }
+    }
+  }
+}

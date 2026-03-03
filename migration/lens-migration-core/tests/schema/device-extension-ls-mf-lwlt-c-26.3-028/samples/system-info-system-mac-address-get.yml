@@ -1,0 +1,9 @@
+available-locally: true
+domains: system>info
+entity: system-mac-address
+freemarker: true
+name: Get system mac address
+operation: get
+sample-id: system-info-system-mac-address-get
+scope: not(dpu)
+status: draft

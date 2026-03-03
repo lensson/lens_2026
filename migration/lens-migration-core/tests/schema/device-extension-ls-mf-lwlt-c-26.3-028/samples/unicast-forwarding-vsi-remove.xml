@@ -1,0 +1,23 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="remove">
+<#if network_user\-is\-match\-all?has_content && network_user\-is\-match\-all == true>
+          <name>VSI-${network_user\-interface}/any</name>
+<#elseif network_user\-outer\-vlan\-id?has_content && network\-inner\-vlan\-id?has_content>
+          <name>VSI-${network_user\-interface}/${network_user\-outer\-vlan\-id}/${network\-inner\-vlan\-id}</name>
+<#elseif network_user\-outer\-vlan\-id?has_content>
+          <name>VSI-${network_user\-interface}/${network_user\-outer\-vlan\-id}</name>
+<#else>
+          <name>VSI-${network_user\-interface}/untagged</name>
+</#if>
+          <type xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:vlan-sub-interface</type>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>

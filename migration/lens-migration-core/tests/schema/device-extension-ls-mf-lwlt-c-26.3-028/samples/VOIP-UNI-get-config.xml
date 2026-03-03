@@ -1,0 +1,30 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter type="subtree">
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <usage xmlns:template-common="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-template-common">template-common:node-from-template-usage</usage>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <interfaces>
+              <interface>
+                <template-ref>${onu\-template\-voip\-uni\-name}</template-ref>
+              </interface>
+              <interface>
+                <template-ref>voip-onu-v-enet</template-ref>
+              </interface>
+            </interfaces>
+            <voip>
+              <sip-termination xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                <name>${onu\-template\-voip\-uni\-name}</name>
+              </sip-termination>
+            </voip>
+          </template-parameters>
+        </onu>
+      </onus>
+    </filter>
+  </get-config>
+</rpc>

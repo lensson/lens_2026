@@ -1,0 +1,13 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+domains: onu>equipment
+entity: system-hardware
+freemarker: true
+name: Reset ONT to default config
+operation: system-hardware-reset-to-default
+sample-id: onu-equipment-system-hardware-system-hardware-reset-to-default
+scope: eonu
+status: draft

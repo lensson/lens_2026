@@ -1,0 +1,14 @@
+arguments:
+  ont:
+    suggested-values:
+    - ont1
+  remoteserver:
+    suggested-values:
+    - vomci
+domains: system>vomci
+entity: vani
+freemarker: true
+name: Configure vomci remote-server for v-ani
+operation: config
+sample-id: system-vomci-vani-config
+status: draft

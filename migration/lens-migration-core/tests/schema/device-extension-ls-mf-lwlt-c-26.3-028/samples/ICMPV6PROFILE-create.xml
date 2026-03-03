@@ -1,0 +1,18 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+	     <icmpv6-profiles xmlns="urn:bbf:yang:bbf-icmpv6">
+        <icmpv6-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${icmpv6_profile_name}</name>
+          <line-identification-option-format>
+            <default-circuit-id-syntax>${circuit_id_syntax}</default-circuit-id-syntax>
+        </line-identification-option-format>
+        </icmpv6-profile>
+      </icmpv6-profiles>
+        </config>
+	  </edit-config>
+</rpc>
+

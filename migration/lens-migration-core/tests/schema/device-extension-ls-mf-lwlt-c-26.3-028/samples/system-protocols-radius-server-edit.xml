@@ -1,0 +1,88 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1"> 
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
+        <radius>
+          <server>
+            <name>${auth\-server1\-name}</name>
+            <udp>
+              <address>${auth\-server1\-address}</address>
+              <authentication-port>${auth\-server1\-port}</authentication-port>
+              <shared-secret>${auth\-server1\-shared\-secret}</shared-secret>
+            </udp>
+            <#if pinned\-ca\-certs1?has_content || pinned\-server\-certs1?has_content>
+              <server-auth xmlns="urn:aul:params:xml:ns:yang:nokia-radius">
+                <#if pinned\-ca\-certs1?has_content>
+                  <pinned-ca-certs>${pinned\-ca\-certs1}</pinned-ca-certs>
+                <#elseif pinned\-server\-certs1?has_content>
+                  <pinned-server-certs>${pinned\-server\-certs1}</pinned-server-certs>
+                </#if>
+              </server-auth>
+            </#if>
+          </server>
+          <#if auth\-server2\-name?has_content>
+            <server>
+             <name>${auth\-server2\-name}</name>
+             <udp>
+               <#if auth\-server2\-address?has_content>
+               <address>${auth\-server2\-address}</address>
+               </#if>
+               <#if auth\-server2\-port?has_content>
+               <authentication-port>${auth\-server2\-port}</authentication-port>
+               </#if>
+               <#if auth\-server2\-shared\-secret?has_content>
+               <shared-secret>${auth\-server2\-shared\-secret}</shared-secret>
+               </#if>
+             </udp>
+            <#if auth\-server2\-address?has_content && (pinned\-ca\-certs2?has_content || pinned\-server\-certs2?has_content)>
+              <server-auth xmlns="urn:aul:params:xml:ns:yang:nokia-radius">
+                <#if pinned\-ca\-certs2?has_content>
+                  <pinned-ca-certs>${pinned\-ca\-certs2}</pinned-ca-certs>
+                <#elseif pinned\-server\-certs2?has_content>
+                  <pinned-server-certs>${pinned\-server\-certs2}</pinned-server-certs>
+                </#if>
+              </server-auth>
+            </#if>
+            </server>
+          </#if>
+          <#if acc\-server1\-name?has_content>
+            <server>
+              <name>${acc\-server1\-name}</name>
+              <udp>
+                <#if acc\-server1\-address?has_content>
+                <address>${acc\-server1\-address}</address>
+                </#if>
+                <#if acc\-server1\-port?has_content>
+                <authentication-port>${acc\-server1\-port}</authentication-port>
+                </#if>
+                <#if acc\-server1\-shared\-secret?has_content>
+                <shared-secret>${acc\-server1\-shared\-secret}</shared-secret>
+                </#if>
+              </udp>
+            </server>
+          </#if>
+          <#if acc\-server2\-name?has_content>
+            <server>
+              <name>${acc\-server2\-name}</name>
+              <udp>
+                <#if acc\-server2\-address?has_content>
+                <address>${acc\-server2\-address}</address>
+                </#if>
+                <#if acc\-server2\-port?has_content>
+                <authentication-port>${acc\-server2\-port}</authentication-port>
+                </#if>
+                <#if acc\-server2\-shared\-secret?has_content>
+                <shared-secret>${acc\-server2\-shared\-secret}</shared-secret>
+                </#if>
+              </udp>
+            </server>
+          </#if>
+        </radius>
+      </system>
+    </config>
+  </edit-config>
+</rpc>
+

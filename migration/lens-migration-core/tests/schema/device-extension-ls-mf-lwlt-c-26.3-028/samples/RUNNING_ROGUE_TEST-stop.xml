@@ -1,0 +1,14 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <action xmlns="urn:ietf:params:xml:ns:yang:1">
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">
+          <name>${olt\-infrastructure\-name}-primary-ctermination</name>
+          <channel-termination xmlns="urn:bbf:yang:bbf-xpon">
+            <rogue-test-stop xmlns="urn:broadband-forum-org:yang:bbf-fiber-rogue-nodes">
+              <test-name>${rogue\-test\-name}</test-name>
+            </rogue-test-stop>
+          </channel-termination>
+        </interface>
+      </interfaces>
+  </action>
+</rpc>

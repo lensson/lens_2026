@@ -1,0 +1,21 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+ <get-config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <source>
+    <running/>
+  </source>
+  <filter type="subtree">
+    <nacm xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-acm">
+      <groups>
+        <group>
+           <#if group\-name?has_content>
+            <name>${group\-name}</name>
+           </#if>
+           <#if user\-name?has_content>
+            <user-name>${user\-name}</user-name>
+           </#if>
+        </group>
+      </groups>
+    </nacm>
+  </filter>
+</get-config>
+</rpc>

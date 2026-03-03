@@ -1,0 +1,8 @@
+domains: system>subscriber-management
+entity: mac-address-string-to-hex-conversion
+freemarker: true
+name: Retrieve configuration to convert PPPoE/DHCPv4/DHCPv6 MAC address string to
+  hexadecimal format
+operation: get-config
+sample-id: system-subscriber-management-mac-address-string-to-hex-conversion-get-config
+status: draft

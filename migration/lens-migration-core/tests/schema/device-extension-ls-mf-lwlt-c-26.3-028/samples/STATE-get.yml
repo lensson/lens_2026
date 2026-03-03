@@ -1,0 +1,13 @@
+arguments:
+  vsi_name:
+    description: The name of a VLAN sub-interface
+    suggested-values:
+    - VSI/10
+domains: unicast>forwarding
+entity: state
+freemarker: true
+name: Retrieve unicast services forwarding state
+operation: get
+sample-id: unicast-forwarding-state-get
+scope: fiber
+status: draft

@@ -1,0 +1,15 @@
+arguments:
+  ibridge-user-port-name:
+    description: Ibridge user port name
+    optional: true
+  cc-name:
+    description: The name of CC sample
+    optional: true
+domains: unicast>protocols>dhcpv6
+entity: fiber-interface
+freemarker: true
+name: Detach DHCPv6 Relay Agent profile from VLAN sub-interface
+operation: remove
+sample-id: unicast-protocols-dhcpv6-fiber-interface-remove
+scope: fiber
+status: draft

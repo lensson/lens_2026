@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu-template-voip-uni-name:
+    description: ONU template VoIP UNI interface name
+    suggested-values:
+    - voip-uni-template-1
+domains: transport>voip-sip
+entity: uni
+freemarker: true
+name: Remove VOIP UNI
+operation: remove
+sample-id: transport-voip-sip-uni-remove
+scope: ''
+status: draft

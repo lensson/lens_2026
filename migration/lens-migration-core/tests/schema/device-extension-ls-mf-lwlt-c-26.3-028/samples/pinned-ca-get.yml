@@ -1,0 +1,15 @@
+arguments:
+  certificate-list-name:
+    description: Name of pinned certificates list
+    suggested-values:
+    - CA-GROUP
+  certificate-name:
+    description: Certificate name
+    suggested-values:
+    - CA
+domains: system>certificate>pinned-ca
+freemarker: true
+name: Retrieve information about pinned certificates
+operation: get
+sample-id: system-certificate-pinned-ca-get
+status: draft

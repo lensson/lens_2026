@@ -1,0 +1,17 @@
+arguments:
+  range:
+    description: The leaf specifies the set of VLAN-ids for which protocol awareness
+      is applied.
+    suggested-values:
+    - 1-3000
+  vlanrange_profile_name:
+    description: Name of the vlan-range profile
+    suggested-values:
+    - vlanrange_profile
+domains: unicast>subscriber
+entity: vlan-range-profile
+freemarker: true
+name: Configure vlanrange profile
+operation: edit
+sample-id: unicast-subscriber-vlan-range-profile-edit
+status: draft

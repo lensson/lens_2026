@@ -1,0 +1,14 @@
+ <rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+	    <filter type="subtree">
+      <icmpv6-profiles xmlns="urn:bbf:yang:bbf-icmpv6">
+        <icmpv6-profile>
+          <name>${icmpv6_profile_name}</name>
+        </icmpv6-profile>
+      </icmpv6-profiles>
+    </filter>
+	     </get-config>
+</rpc>

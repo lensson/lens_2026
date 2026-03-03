@@ -1,0 +1,493 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+    <edit-config>
+    <target>
+    <running/>
+    </target>
+    <config>
+    <policies xmlns="urn:bbf:yang:bbf-qos-policies">
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+        <name>${count\-policy\-name}</name>
+        <#if pbit\-type == "in-pbit-list">
+        <#if pbit\-0?has_content>
+            <classifiers>
+                <name>classifier0-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if pbit\-1?has_content>
+            <classifiers>
+                <name>classifier1-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if pbit\-2?has_content>
+            <classifiers>
+                <name>classifier2-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if pbit\-3?has_content>
+            <classifiers>
+                <name>classifier3-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if pbit\-4?has_content>
+            <classifiers>
+                <name>classifier4-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if pbit\-5?has_content>
+            <classifiers>
+                <name>classifier5-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if pbit\-6?has_content>
+            <classifiers>
+                <name>classifier6-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if pbit\-7?has_content>
+            <classifiers>
+                <name>classifier7-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        </#if>
+        <#if pbit\-type == "pbit-marking-list">
+        <#if pbit\-value0\-for\-index\-0?has_content>
+            <classifiers>
+                <name>classifier0-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if pbit\-value1\-for\-index\-0?has_content>
+            <classifiers>
+                <name>classifier1-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if pbit\-value2\-for\-index\-0?has_content>
+            <classifiers>
+                <name>classifier2-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if pbit\-value3\-for\-index\-0?has_content>
+            <classifiers>
+                <name>classifier3-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if pbit\-value4\-for\-index\-0?has_content>
+            <classifiers>
+                <name>classifier4-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if pbit\-value5\-for\-index\-0?has_content>
+            <classifiers>
+                <name>classifier5-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if pbit\-value6\-for\-index\-0?has_content>
+            <classifiers>
+                <name>classifier6-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if pbit\-value7\-for\-index\-0?has_content>
+            <classifiers>
+                <name>classifier7-${count\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        </#if>
+        </policy>
+    </policies>
+    <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+        <#if pbit\-type == "in-pbit-list">
+        <#if pbit\-0?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier0-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${pbit\-0}</in-pbit-list>
+                </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>
+        <#if pbit\-1?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier1-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${pbit\-1}</in-pbit-list>
+                </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>
+        <#if pbit\-2?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier2-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${pbit\-2}</in-pbit-list>
+                </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>
+        <#if pbit\-3?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier3-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${pbit\-3}</in-pbit-list>
+                </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>
+        <#if pbit\-4?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier4-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${pbit\-4}</in-pbit-list>
+                </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>
+        <#if pbit\-5?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier5-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${pbit\-5}</in-pbit-list>
+                </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>
+        <#if pbit\-6?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier6-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${pbit\-6}</in-pbit-list>
+                </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>
+        <#if pbit\-7?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier7-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${pbit\-7}</in-pbit-list>
+                </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>
+        </#if>
+        <#if pbit\-type == "pbit-marking-list">
+        <#if pbit\-index\-0?has_content>
+        <#if pbit\-value0\-for\-index\-0?has_content>
+	    <classifier-entry>
+                <name>classifier0-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>0</index>
+                    <pbit-value>0</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>	
+        <#if pbit\-value1\-for\-index\-0?has_content>
+            <classifier-entry>
+                <name>classifier1-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>0</index>
+                    <pbit-value>1</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>	
+        <#if pbit\-value2\-for\-index\-0?has_content>
+            <classifier-entry>
+                <name>classifier2-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>0</index>
+                    <pbit-value>2</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>	
+        <#if pbit\-value3\-for\-index\-0?has_content>
+            <classifier-entry>
+                <name>classifier3-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>0</index>
+                    <pbit-value>3</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>	
+        <#if pbit\-value4\-for\-index\-0?has_content>
+            <classifier-entry>
+                <name>classifier4-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>0</index>
+                    <pbit-value>4</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>
+        <#if pbit\-value5\-for\-index\-0?has_content>
+            <classifier-entry>
+                <name>classifier5-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>0</index>
+                    <pbit-value>5</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>	
+        <#if pbit\-value6\-for\-index\-0?has_content>
+            <classifier-entry>
+                <name>classifier6-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>0</index>
+                    <pbit-value>6</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>	
+        <#if pbit\-value7\-for\-index\-0?has_content>
+            <classifier-entry>
+                <name>classifier7-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>0</index>
+                    <pbit-value>7</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>
+        </#if>
+        <#if pbit\-index\-1?has_content>
+        <#if pbit\-value0\-for\-index\-1?has_content>
+            <classifier-entry>
+                <name>classifier0-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>1</index>
+                    <pbit-value>0</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>	
+        <#if pbit\-value1\-for\-index\-1?has_content>
+            <classifier-entry>
+                <name>classifier1-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>1</index>
+                    <pbit-value>1</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>	
+        <#if pbit\-value2\-for\-index\-1?has_content>
+            <classifier-entry>
+                <name>classifier2-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>1</index>
+                    <pbit-value>2</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>	
+        <#if pbit\-value3\-for\-index\-1?has_content>
+            <classifier-entry>
+                <name>classifier3-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>1</index>
+                    <pbit-value>3</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>	
+        <#if pbit\-value4\-for\-index\-1?has_content>
+            <classifier-entry>
+                <name>classifier4-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>1</index>
+                    <pbit-value>4</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>
+        <#if pbit\-value5\-for\-index\-1?has_content>
+            <classifier-entry>
+                <name>classifier5-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>1</index>
+                    <pbit-value>5</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>	
+        <#if pbit\-value6\-for\-index\-1?has_content>
+            <classifier-entry>
+                <name>classifier6-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>1</index>
+                    <pbit-value>6</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>	
+        <#if pbit\-value7\-for\-index\-1?has_content>
+            <classifier-entry>
+                <name>classifier7-${count\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+                    <index>1</index>
+                    <pbit-value>7</pbit-value>
+                </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">nokia-qos-cls-ext:count</action-type>
+                    <count xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"/>
+                </classifier-action-entry-cfg>
+            </classifier-entry>
+        </#if>		
+        </#if>
+        </#if>				
+    </classifiers>
+    </config>
+    </edit-config>
+</rpc>
+

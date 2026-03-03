@@ -1,0 +1,23 @@
+arguments:
+  cc-name:
+    description: The name of CC sample. In IBRIDGE senario, leave it empty
+    optional: true
+  ibridge-user-port-name:
+    description: The name of IBRIDGE-USER-PORT sample. In CC senario, leave it empty
+    optional: true
+  ip-address:
+    description: An IPv6 address assigned to the interface.
+    suggested-values:
+    - 2000::1
+  prefix-length:
+    description: The length of the prefix identifying the subnet.
+    suggested-values:
+    - 64
+domains: unicast>forwarding>ipv6-antispoofing
+entity: static-ip
+freemarker: true
+name: Configure static IPv6 address
+operation: edit
+sample-id: unicast-forwarding-ipv6-antispoofing-static-ip-edit
+scope: fiber
+status: draft

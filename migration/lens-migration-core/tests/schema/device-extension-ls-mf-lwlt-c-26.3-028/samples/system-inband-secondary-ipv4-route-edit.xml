@@ -1,0 +1,91 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+<edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+    <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+      <interface>
+        <name>${interface\-name}</name>
+        <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="replace">
+          <address>
+            <ip>${ipv4\-address}</ip>
+            <netmask>${netmask}</netmask>
+          </address>
+        </ipv4>
+        <control-protocol xmlns="urn:ietf:params:xml:ns:yang:nokia-ip-aug">
+          <name>${control\-plane\-protocol\-name}</name>
+        </control-protocol>
+      </interface>
+      <#if vlan\-sub\-interface?has_content && l2\-term\-interface?has_content && vlan\-id?has_content>
+      <interface>
+        <name>${vlan\-sub\-interface}</name>
+        <inline-frame-processing xmlns="urn:bbf:yang:bbf-sub-interfaces">
+          <ingress-rule>
+            <rule>
+              <name>rule-1</name>
+              <priority>100</priority>
+              <flexible-match>
+                <match-criteria xmlns="urn:bbf:yang:bbf-sub-interface-tagging">
+                  <tag>
+                    <index>0</index>
+                    <dot1q-tag>
+                      <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                      <vlan-id>${vlan\-id}</vlan-id>
+                      <pbit>any</pbit>
+                      <dei>any</dei>
+                    </dot1q-tag>
+                  </tag>
+                </match-criteria>
+              </flexible-match>
+              <ingress-rewrite>
+                <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging">1</pop-tags>
+              </ingress-rewrite>
+            </rule>
+          </ingress-rule>
+        </inline-frame-processing>
+      </interface>
+      <interface>
+      <name>${l2\-term\-interface}</name>
+       <type xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:l2-termination</type>
+        <interface-usage xmlns="urn:bbf:yang:bbf-interface-usage">
+          <interface-usage>user-port</interface-usage>
+        </interface-usage>
+        <l2-termination xmlns="urn:bbf:yang:bbf-l2-terminations">
+          <ingress-rewrite>
+            <pop-tags>0</pop-tags>
+          </ingress-rewrite>
+          <egress-rewrite>
+            <push-tag>
+              <index>0</index>
+              <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+              <vlan-id>${vlan\-id}</vlan-id>
+              <pbit>0</pbit>
+            </push-tag>
+          </egress-rewrite>
+        </l2-termination>
+      </interface>
+      </#if>
+    </interfaces>
+    <routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing">
+        <control-plane-protocols>
+          <control-plane-protocol>
+            <type>static</type>
+            <name>${control\-plane\-protocol\-name}</name>
+            <default-route xmlns="urn:ietf:params:xml:ns:yang:nokia-routing-aug">false</default-route>
+            <static-routes>
+              <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ipv4-unicast-routing">
+                <route xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="replace">
+                  <destination-prefix>${route\-dest\-prefix}</destination-prefix>
+                  <next-hop>
+                    <next-hop-address>${route\-next\-hop}</next-hop-address>
+                  </next-hop>
+                </route>
+              </ipv4>
+            </static-routes>
+          </control-plane-protocol>
+        </control-plane-protocols>
+    </routing>
+    </config>
+  </edit-config>
+</rpc>

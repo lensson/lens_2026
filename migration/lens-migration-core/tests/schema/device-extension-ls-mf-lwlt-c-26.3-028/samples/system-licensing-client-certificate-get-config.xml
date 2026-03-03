@@ -1,0 +1,18 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter type="subtree">
+      <licensing xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-licensing-app">
+        <certificate>
+           <server-auth xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0"></server-auth>
+           <hello-params xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0"></hello-params>
+           <client-identity>
+            <certificate xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0"></certificate>
+          </client-identity>
+        </certificate>
+      </licensing>
+    </filter>
+  </get-config>
+</rpc>

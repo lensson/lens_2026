@@ -1,0 +1,28 @@
+arguments:
+  allowed-gemport-id-list:
+    description: An allowed ID list for allocating free GEM port IDs, the format can
+      be 257-1915 or 257,260,270 or 256-300,400-1915
+    optional: true
+  olt-port-name:
+    description: Channel group
+    suggested-values:
+    - cp1
+  xpon-technology:
+    description: Type of Pon
+    suggested-values:
+    - gpon
+  ibridge-user-port-name:
+    description: Ibridge user port name
+    optional: true
+  cc-name:
+    description: CC name
+    optional: true
+domains: transport>xpon>id
+entity: gemport
+freemarker: true
+name: Retrieve transport XPON GEM port ID
+network-virtualizer: true
+operation: get
+sample-id: transport-xpon-id-gemport-get
+scope: xpon
+status: draft

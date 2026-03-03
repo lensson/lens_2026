@@ -1,0 +1,48 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter type="subtree">
+      <if:interfaces xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <if:interface>
+<#if network_user\-interface?has_content && (network_user\-outer\-vlan\-id?has_content || (network_user\-is\-untagged?has_content && network_user\-is\-untagged == true) || (network_user\-is\-match\-all?has_content && (network_user\-is\-match\-all == true)))>
+  <#if network_user\-is\-untagged?has_content && network_user\-is\-untagged == true>
+          <if:name>VSI-${network_user\-interface}/untagged</if:name>
+  <#elseif network_user\-is\-match\-all?has_content && network_user\-is\-match\-all == true>
+          <if:name>VSI-${network_user\-interface}/any</if:name>
+  <#elseif network_user\-outer\-vlan\-id?has_content && network\-inner\-vlan\-id?has_content>
+          <if:name>VSI-${network_user\-interface}/${network_user\-outer\-vlan\-id}/${network\-inner\-vlan\-id}</if:name>
+  <#else>
+          <if:name>VSI-${network_user\-interface}/${network_user\-outer\-vlan\-id}</if:name>
+  </#if>
+          <if:type xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:vlan-sub-interface</if:type>
+<#else>
+  <#if detailed\-output == false>
+    <#if network_user\-interface?has_content>
+          <bbf-subif:subif-lower-layer xmlns:bbf-subif="urn:bbf:yang:bbf-sub-interfaces">
+            <bbf-subif:interface>${network_user\-interface}</bbf-subif:interface>
+          </bbf-subif:subif-lower-layer>
+    <#else>
+          <if:type xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:vlan-sub-interface</if:type>
+          <if:name/>
+    </#if>
+  <#else>
+          <if:name/>
+          <if:type xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:vlan-sub-interface</if:type>
+          <if:enabled/>
+          <interface-usage xmlns="urn:bbf:yang:bbf-interface-usage"/>
+          <subif-lower-layer xmlns="urn:bbf:yang:bbf-sub-interfaces"/>
+          <inline-frame-processing xmlns="urn:bbf:yang:bbf-sub-interfaces"/>
+          <mac-learning xmlns="urn:bbf:yang:bbf-l2-forwarding"/>
+          <ingress-qos-policy-profile xmlns="urn:bbf:yang:bbf-qos-policies"/>
+          <egress-qos-policy-profile xmlns="urn:bbf:yang:bbf-qos-policies"/>
+          <pae xmlns="urn:ieee:std:802.1X:yang:ieee802-dot1x" />
+          <performance xmlns="urn:bbf:yang:bbf-interfaces-performance-management"/>
+  </#if>
+</#if>
+        </if:interface>
+      </if:interfaces>
+    </filter>
+  </get-config>
+</rpc>

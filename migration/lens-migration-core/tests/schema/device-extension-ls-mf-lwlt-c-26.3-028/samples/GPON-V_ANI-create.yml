@@ -1,0 +1,71 @@
+arguments:
+  v-ani-name:
+    description: The name of the virtual ANI Interface that will be created.
+    suggested-values:
+    - v-ani-1-1-1
+  olt-infrastructure-name:
+    description: The name of the OLT infrastructure on which the v-ani interface will
+      be created.
+    suggested-values:
+    - gpon-1-1
+  onu-template-name:
+    description: The name of the ONU template to instantiate.
+    optional: true
+    suggested-values:
+    - onu-template-1
+  onu-id:
+    description: The ONU ID used at the transport layer.
+    suggested-values:
+    - 1
+  onu-serial-number:
+    description: The serial number of the ONT which the OLT expects to show up.
+    optional: true
+    suggested-values:
+    - ALCLF1091001
+  onu-registration-id:
+    description: A string that has been assigned to the subscriber on the management
+      level, entered into and stored in non-volatile storage at the ONU.  It is used
+      to identify a particular ONU installed at a particular location.
+    optional: true
+  onu-loid:
+    description: The Logical ONU ID (LOID) value that the OLT expects to retrieve
+      from ONU. A string that has been assigned to the subscriber on the management
+      level, entered into and stored in non-volatile storage at the ONU.  It is used
+      to identify a particular ONU installed at a particular location.
+    optional: true
+  pm-enable:
+    description: If true, enables performance counters on this interface.
+    optional: true
+  upstream-fec-enable:
+    description: Used to enable/disable use of FEC in upstream direction for this
+      specific ONU.
+    optional: true
+  mgmt-aes:
+    description: Whether AES encryption should be enabled/disabled for the management
+      GEM port of this ONU.
+    suggested-values:
+    - 'false'
+  v-onu-mgmt:
+    description: Whether this ONU is managed by virtual ONU management.
+    optional: true
+    suggested-values:
+    - false
+  speed-monitoring-enable:
+    description: If true, enables speed monitoring for the interface for the supported
+      periods.
+    optional: true
+    suggested-values:
+    - true
+  dbru-control:
+    description: Used to control whether the OLT applies DBRu or not for this ONU.
+    optional: true
+    suggested-values:
+    - enable-if-supported-by-onu
+domains: transport>gpon>v-ani
+freemarker: true
+name: Add GPON ONU on OLT side
+operation: create
+sample-id: transport-gpon-v-ani-create
+scope: gpon or gpon-xgs or gpon-xgs-25g or gpon-ngpon2-xgs-25g or gpon-xgs-25g-hs
+  or gpon-xgpon-xgs-25g or gpon-ngpon2-xgpon-xgs-25g or gpon-xgs-25g-50g
+status: draft

@@ -1,0 +1,16 @@
+arguments:
+  hw-name:
+    description: Name of the harware which needs to be selftest.If the command is
+      operated on NT,the value is LT-name. if the command is executed on LT, the value
+      is Board.
+    suggested-values:
+    - Board
+domains: equipment>lt
+entity: selftest
+freemarker: true
+name: Reset LT with selftest
+operation: reset
+sample-id: equipment-lt-selftest-reset
+scope: not(eth-copper) and not(eth-copper-ci) and not(dpu) and not(mx) and not(hwv1-uplink)
+  and not(hwv3-uplink) and not(df32gm)
+status: draft

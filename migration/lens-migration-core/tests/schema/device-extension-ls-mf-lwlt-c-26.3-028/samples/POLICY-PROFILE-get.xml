@@ -1,0 +1,11 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+	<get>
+		<filter type="subtree">
+			<qos-policy-profiles xmlns="urn:bbf:yang:bbf-qos-policies">
+				<policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+					<name>${policy\-profile\-name}</name>
+				</policy-profile>
+			</qos-policy-profiles>
+		</filter>
+	</get>
+</rpc>

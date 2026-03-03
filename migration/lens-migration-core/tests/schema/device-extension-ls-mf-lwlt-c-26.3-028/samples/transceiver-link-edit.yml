@@ -1,0 +1,27 @@
+arguments:
+  transceiver-link-name:
+    description: The name of transceiver-link
+    suggested-values:
+    - port1
+  transceiver-name:
+    description: The name of transceiver
+    suggested-values:
+    - sfp1
+  transceiver-link-type:
+    description: The type of transceiver-link
+    suggested-values:
+    - transceiver-link-gpon
+    - transceiver-link
+    - transceiver-link-ngpon
+    - transceiver-link-twentyfivegspon
+    - transceiver-link-hspon
+    - rj45
+available-locally: true
+domains: equipment>sfp
+entity: transceiver-link
+freemarker: true
+name: Configure transceiver-link on the board
+operation: edit
+sample-id: equipment-sfp-transceiver-link-edit
+scope: xpon or fx-p2p
+status: draft

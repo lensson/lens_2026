@@ -1,0 +1,26 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get>
+    <filter type="subtree">
+      <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>${olt\-infrastructure\-name}-primary-ctermination</name>
+          <tm-root xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-queue-monitoring">
+            <scheduler-node xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-queue-monitoring-extension">
+              <name>${scheduler\-name}</name>
+              <queue>
+              <#if queue\-id?has_content>
+                <local-queue-id>${queue\-id}</local-queue-id>
+              <#else>
+                <local-queue-id/>
+              </#if>                
+                <performance>
+                  <intervals-15min/>
+                </performance>
+              </queue>
+            </scheduler-node>
+          </tm-root>
+        </interface>
+      </interfaces-state>
+    </filter>
+  </get>
+</rpc>

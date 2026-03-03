@@ -1,0 +1,98 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <est-client xmlns="urn:ietf:params:xml:ns:yang:nokia-sdan-est-client">
+        <est-certificate-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${est\-profile\-name}</name>
+          <est-server>
+            <est-server-url>${est\-server\-url}</est-server-url>
+            <server-authentication>
+              <server-auth>
+                <pinned-ca-certs>${pinned\-ca\-list}</pinned-ca-certs>
+              </server-auth>
+            </server-authentication>
+            <client-authentication>
+              <#if use\-certificate\-auth?has_content && use\-certificate\-auth==true>
+              <certificate-auth>
+                <private-key-reference>factory-callhome-key</private-key-reference>
+                <certificate-reference>factory-callhome-cert</certificate-reference>
+              </certificate-auth>
+              </#if>
+              <#if http\-username?has_content || http\-password?has_content>
+              <https-auth>
+                <#if http\-username?has_content>
+                <username>${http\-username}</username>
+                </#if>
+                <#if http\-password?has_content>
+                <password>${http\-password}</password>
+                </#if>
+              </https-auth>
+              </#if>
+            </client-authentication>
+            <#if tls\-version?has_content || cipher\-suite?has_content>
+            <hello-params>
+              <#if tls\-version?has_content>
+                <tls-versions>
+                  <tls-version xmlns:tlscmn="urn:ietf:params:xml:ns:yang:ietf-tls-common">tlscmn:${tls\-version}</tls-version>
+                </tls-versions>
+              </#if>
+              <#if cipher\-suite?has_content>
+                <cipher-suites>
+                  <cipher-suite xmlns:tlscsa="urn:ietf:params:xml:ns:yang:iana-tls-cipher-suite-algs">tlscsa:${cipher\-suite}</cipher-suite>
+                </cipher-suites>
+              </#if>
+            </hello-params>
+          </#if>
+          </est-server>
+          <#if private\-key\-algorithm?has_content>
+          <private-key-generation>
+            <private-key-algorithm xmlns:ct="urn:ietf:params:xml:ns:yang:ietf-crypto-types">ct:${private\-key\-algorithm}</private-key-algorithm>
+          </private-key-generation>
+          </#if>
+          <certificate-request-attributes>
+            <explicit-provision-policy>
+              <#if subject\-distinguished\-name?has_content>
+              <subject-distinguished-names>${subject\-distinguished\-name}</subject-distinguished-names>
+              </#if>
+              <#if subject\-alternative\-name?has_content>
+              <subject-alternative-names>${subject\-alternative\-name}</subject-alternative-names>
+              </#if>
+              <#if auto\-fill\-duid\-attributes?has_content>
+              <auto-fill-duid-attributes>${auto\-fill\-duid\-attributes}</auto-fill-duid-attributes>
+              </#if>
+            </explicit-provision-policy>
+          </certificate-request-attributes>
+          <#if restart\-connection\-after\-certificate\-update?has_content || key\-policy?has_content || (end\-entity\-certificate\-renew\-schedule\-type?has_content && end\-entity\-certificate\-renew\-schedule\-interval?has_content)>
+          <end-entity-certificate-renew-policy>
+            <#if key\-policy=="reuse-existing-key">
+            <reuse-existing-key>enabled</reuse-existing-key>
+            </#if>
+            <#if key\-policy=="generate-new-key">
+            <generate-new-key>enabled</generate-new-key>
+            </#if>
+            <#if end\-entity\-certificate\-renew\-schedule\-type=="before-expiry">
+            <before-expiry>${end\-entity\-certificate\-renew\-schedule\-interval}</before-expiry>
+            </#if>
+            <#if end\-entity\-certificate\-renew\-schedule\-type=="after-issue">
+            <after-issue>${end\-entity\-certificate\-renew\-schedule\-interval}</after-issue>
+            </#if>
+            <#if restart\-connection\-after\-certificate\-update?has_content>
+            <certificate-update-strategy-options>
+              <restart-connection-after-certificate-update>${restart\-connection\-after\-certificate\-update}</restart-connection-after-certificate-update>
+            </certificate-update-strategy-options>
+            </#if>
+          </end-entity-certificate-renew-policy>
+          </#if>
+          <#if ca\-certificate\-renew\-interval?has_content>
+          <ca-certificate-renew-policy>
+            <renew-interval>${ca\-certificate\-renew\-interval}</renew-interval>
+          </ca-certificate-renew-policy>
+          </#if>
+        </est-certificate-profile>
+      </est-client>
+    </config>
+  </edit-config>
+</rpc>

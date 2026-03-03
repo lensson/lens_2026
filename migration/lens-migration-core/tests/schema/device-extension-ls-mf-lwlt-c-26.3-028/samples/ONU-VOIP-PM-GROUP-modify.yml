@@ -1,0 +1,22 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  pots-name:
+    description: POTS interworking node for which performance group
+    suggested-values:
+    - POTS1
+  pm_group:
+    description: Modifies pm group of an POTS interworking node,Values :[ call-control-pm
+      rtp-pm ]
+    suggested-values:
+    - call-control-pm
+domains: onu>transport>voip-sip
+entity: pm-group
+freemarker: true
+name: Modify POTS interworking node PM group
+operation: modify
+sample-id: onu-transport-voip-sip-pm-group-modify
+scope: eonu
+status: draft

@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  xgpon-tc-layer-tca-profile:
+    description: ANI XGPON TC layer PM counters threshold profile name
+    suggested-values:
+    - tc_layer_tca_profile
+domains: onu>system>tca>pm-profiles
+entity: ani-xgpon-tc-pm-tca-profile
+freemarker: true
+name: Remove ANI XGPON TC layer PM TCA profile
+operation: remove
+sample-id: onu-system-tca-pm-profiles-ani-xgpon-tc-pm-tca-profile-remove
+scope: eonu
+status: draft

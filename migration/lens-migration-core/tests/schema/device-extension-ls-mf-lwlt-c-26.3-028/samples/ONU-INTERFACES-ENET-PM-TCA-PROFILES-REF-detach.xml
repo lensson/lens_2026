@@ -1,0 +1,34 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <interfaces>
+              <interface>
+                <template-ref>${onu\-template\-uni\-intf}</template-ref>
+                <pm-tca-profile-ref>
+                <#if ethernet\-frame\-error\-profile?has_content>        
+                  <eth-frame-err-us xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">${ethernet\-frame\-error\-profile}</eth-frame-err-us>
+                  <eth-frame-err-ds xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">${ethernet\-frame\-error\-profile}</eth-frame-err-ds>
+                </#if>
+                <#if ethernet\-physical\-layer\-error\-profile?has_content>
+                  <eth-physical-layer-err xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">${ethernet\-physical\-layer\-error\-profile}</eth-physical-layer-err>
+                </#if>
+                <#if ethernet\-frame\-error\-extended\-profile?has_content>        
+                    <eth-frame-err-extended xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">${ethernet\-frame\-error\-extended\-profile}</eth-frame-err-extended>
+                </#if> 
+                </pm-tca-profile-ref>
+              </interface>
+            </interfaces>
+          </template-parameters>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>
+

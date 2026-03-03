@@ -1,0 +1,17 @@
+arguments:
+  ca-name:
+    description: Name of pinned certificates list
+    optional: true
+    suggested-values:
+    - CA-GROUP
+  netconf-client-name:
+    description: Name of NETCONF clients list
+    suggested-values:
+    - nc-client
+available-locally: true
+domains: system>callhome>certificates
+freemarker: true
+name: Configure client CA certificate information for callhome
+operation: edit
+sample-id: system-callhome-certificates-edit
+status: draft

@@ -1,0 +1,17 @@
+arguments:
+  interface-name:
+    description: The name of a channel pair,eth,or lag.
+    suggested-values:
+    - gpon-1-1-cpair
+  vpn-name:
+    description: The name of a multicast vpn.
+    suggested-values:
+    - mc-vpn
+domains: multicast>vpn
+entity: cac-per-vpn-per-port
+freemarker: true
+name: Remove multicast CAC per VPN per port
+operation: remove
+sample-id: multicast-vpn-cac-per-vpn-per-port-remove
+scope: not(mx)
+status: draft

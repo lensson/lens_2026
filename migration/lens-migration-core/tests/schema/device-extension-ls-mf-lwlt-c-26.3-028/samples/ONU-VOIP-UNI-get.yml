@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  voip-uni-name:
+    description: VOIP UNI name
+    suggested-values:
+    - POTS1
+domains: onu>transport>voip-sip
+entity: uni
+freemarker: true
+name: Get VOIP UNI
+operation: get
+sample-id: onu-transport-voip-sip-uni-get
+scope: eonu
+status: draft

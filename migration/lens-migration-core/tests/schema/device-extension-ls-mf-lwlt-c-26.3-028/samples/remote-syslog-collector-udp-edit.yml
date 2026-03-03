@@ -1,0 +1,55 @@
+arguments:
+  syslog-collector-name:
+    description: Remote destination log collector name
+    suggested-values:
+    - logCollector1
+  ipaddress:
+    description: 'Uniquely specifies the address of the remote collector. One of the
+      following MUST be specified: an ipv4/ipv6 address or a hostname'
+    suggested-values:
+    - 10.0.0.1
+  port:
+    description: The port-number of remote collector to deliver syslog messages. The
+      default port is 514. Port 0 is not allowed to be configured.
+    suggested-values:
+    - 514
+  advance-action:
+    description: If action is LOG (default) then message will be logged. If action
+      is BLOCK then the message will not be logged.
+    optional: true
+    suggested-values:
+    - log
+  advance-compare:
+    description: If compare is EQUALS-OR-HIGHER (default) then the severity comparison
+      operation will be equals or higher. Else if compare is EQUALS then the severity
+      comparison operation will be equals.
+    optional: true
+    suggested-values:
+    - equals-or-higher
+  facility:
+    description: represents the process that creates the syslog event. For example,
+      USER facility refers to all applications that can be listed with "get all active
+      applications" and their log level can be configured explicitly. Available facilities
+      are USER, SYSLOG, NTP, FTP and default facility is USER.
+    optional: true
+    suggested-values:
+    - user
+  severity:
+    description: by default the severity with equal or higher importance from the
+      given value are allowed. Severity configured for remote collector take precedence
+      over the one configured in application level
+    optional: true
+    suggested-values:
+    - info
+  pattern-match:
+    description: string that can be used to select a syslog message for logging
+    optional: true
+    suggested-values:
+    - logMgr
+domains: system>logging>remote-syslog-collector
+entity: udp
+freemarker: true
+name: Configure remote syslog collector over UDP
+operation: edit
+sample-id: system-logging-remote-syslog-collector-udp-edit
+status: draft

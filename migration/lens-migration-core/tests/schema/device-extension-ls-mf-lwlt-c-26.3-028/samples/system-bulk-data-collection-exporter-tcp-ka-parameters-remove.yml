@@ -1,0 +1,12 @@
+arguments:
+  exporter-name:
+    description: exporter name
+    suggested-values:
+    - Exporter1
+domains: system>bulk-data-collection>exporter
+entity: tcp-ka-parameters
+freemarker: true
+name: Remove IPFIX TCP Keep-Alive configuration
+operation: remove
+sample-id: system-bulk-data-collection-exporter-tcp-ka-parameters-remove
+status: draft

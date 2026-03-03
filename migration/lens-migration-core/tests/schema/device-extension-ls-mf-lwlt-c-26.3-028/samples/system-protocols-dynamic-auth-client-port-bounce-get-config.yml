@@ -1,0 +1,8 @@
+domains: system>protocols>dynamic-auth-client
+entity: port-bounce
+freemarker: true
+name: Retrieve port bounce interval
+operation: get-config
+sample-id: system-protocols-dynamic-auth-client-port-bounce-get-config
+scope: fiber
+status: draft

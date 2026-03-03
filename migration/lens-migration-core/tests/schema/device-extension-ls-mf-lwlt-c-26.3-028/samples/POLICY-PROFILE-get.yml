@@ -1,0 +1,12 @@
+arguments:
+  policy-profile-name:
+    description: QoS Policy profile name
+    suggested-values:
+    - ds-egress-qos
+domains: unicast>qos>policy-profiles
+freemarker: true
+name: Retrieve QoS policy profile
+operation: retrieve
+sample-id: unicast-qos-policy-profiles-retrieve
+scope: not(mx) and not(dpu)
+status: draft

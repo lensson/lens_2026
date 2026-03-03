@@ -1,0 +1,13 @@
+arguments:
+  olt-port-name:
+    description: OLT infrastructure port name.
+    suggested-values:
+    - port-1
+domains: transport>mpm>olt-port
+freemarker: true
+name: Retrieve mpm OLT port configuration data
+operation: get-config
+sample-id: transport-mpm-olt-port-get-config
+scope: gpon-xgs or gpon-xgs-25g or gpon-ngpon2-xgs-25g or gpon-xgs-25g-hs or gpon-xgpon-xgs-25g
+  or gpon-ngpon2-xgpon-xgs-25g or gpon-xgs-25g-50g
+status: draft

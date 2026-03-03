@@ -1,0 +1,31 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ping-test-name:
+    description: PING test instance name
+    suggested-values:
+    - pingtest1
+  target-ip-address:
+    description: target IP address of the PING
+    optional: true
+    suggested-values:
+    - 1.2.3.4
+  target-domain-name:
+    description: target domain name of the PING
+    optional: true
+    suggested-values:
+    - www.nokia.com
+  count:
+    description: the number of the PING attempts
+    optional: true
+    suggested-values:
+    - '1'
+domains: onu>transport>voip-sip
+freemarker: true
+name: Test PING
+operation: ping-test
+sample-id: onu-transport-voip-sip-ping-test
+scope: eonu
+status: draft

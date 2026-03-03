@@ -1,0 +1,23 @@
+arguments:
+  ibridge-user-port-name:
+    description: Ibridge user port name
+    optional: true
+    suggested-values:
+    - ibrige_name
+  cc-name:
+    description: The name of CC sample
+    optional: true
+    suggested-values:
+    - cc_name
+  subscriber_profile_name:
+    description: Name of the Subscriber profile
+    suggested-values:
+    - subscriber_profile
+domains: unicast>subscriber
+entity: profile-interface
+freemarker: true
+name: Attach subscriber profile to VLAN sub-interface
+operation: edit
+sample-id: unicast-subscriber-profile-interface-edit
+scope: fiber
+status: draft

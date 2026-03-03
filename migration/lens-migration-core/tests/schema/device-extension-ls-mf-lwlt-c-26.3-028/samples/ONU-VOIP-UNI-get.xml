@@ -1,0 +1,41 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get>
+    <filter type="subtree">
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                <name>${voip\-uni\-name}</name>
+              </interface>
+            </interfaces-state>
+            <pots-interworking-nodes-state xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+              <pots-interworking>
+                <name>${voip\-uni\-name}</name>
+                <pots-x-connections>
+                  <sip-sessions>
+                    <media-codec-used/>
+                    <media-packet-period/>
+                    <session-type/>
+                    <session-failure-reason/>
+                  </sip-sessions>
+                </pots-x-connections>
+              </pots-interworking>
+            </pots-interworking-nodes-state>
+            <sip-signaling-state xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+              <sip-terminations>
+                <sip-termination>
+                  <sip-user-name>${voip\-uni\-name}</sip-user-name>
+                  <sip-termination-registration-state/>
+                  <sip-termination-call-state/>
+                  <emergency-call-status/>
+                </sip-termination>
+              </sip-terminations>
+            </sip-signaling-state>
+          </root>
+        </onu>
+      </onus>
+    </filter>
+  </get>
+</rpc>

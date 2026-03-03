@@ -1,0 +1,40 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter type="subtree">
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>${olt\-infrastructure\-name}-cpartition</name>
+          <tm-root xmlns="urn:bbf:yang:bbf-qos-traffic-mngt">
+            <queue>
+              <local-queue-id>0</local-queue-id>
+            </queue>
+            <queue>
+              <local-queue-id>1</local-queue-id>
+            </queue>
+            <queue>
+              <local-queue-id>2</local-queue-id>
+            </queue>
+            <queue>
+              <local-queue-id>3</local-queue-id>
+            </queue>
+            <queue>
+              <local-queue-id>4</local-queue-id>
+            </queue>
+            <queue>
+              <local-queue-id>5</local-queue-id>
+            </queue>
+            <queue>
+              <local-queue-id>6</local-queue-id>
+            </queue>
+            <queue>
+              <local-queue-id>7</local-queue-id>
+            </queue>
+          </tm-root>
+        </interface>
+      </interfaces>
+    </filter>
+  </get-config>
+</rpc>

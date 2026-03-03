@@ -1,0 +1,66 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
+        <radius>
+          <policy xmlns="urn:aul:params:xml:ns:yang:nokia-radius">
+            <name>${policy\-name}</name>
+            <#if nas\-port\-id\-syntax?has_content>
+              <nas-port-id-syntax>${nas\-port\-id\-syntax}</nas-port-id-syntax>
+            </#if>
+            <nas-id>${nas\-id}</nas-id>
+            <#if nas\-ip\-address?has_content>
+              <nas-ip-address>${nas\-ip\-address}</nas-ip-address>
+            </#if>
+            <#if calling\-station\-id\-format?has_content>
+              <calling-station-id-format>${calling\-station\-id\-format}</calling-station-id-format>
+            </#if>
+            <keep-domain-name>true</keep-domain-name>
+            <disable-eap>true</disable-eap>
+            <auth-server-first>${auth\-server1\-name}</auth-server-first>
+            <#if auth\-server2\-name?has_content>
+              <auth-server-second>${auth\-server2\-name}</auth-server-second>
+            </#if>
+            <acct-server-first>${acc\-server1\-name}</acct-server-first>
+            <#if acc\-server2\-name?has_content>
+              <acct-server-second>${acc\-server2\-name}</acct-server-second>
+            </#if>
+            <#if accounting\-interim\-interval?has_content>
+              <acct-interval>${accounting\-interim\-interval}</acct-interval>
+            </#if>
+            <#if disable\-accounting?has_content>
+              <disable-accounting>${disable\-accounting}</disable-accounting>
+            </#if>
+          </policy>
+          <domain xmlns="urn:aul:params:xml:ns:yang:nokia-radius">
+            <name>${domain\-name}</name>
+            <authenticator>${policy\-name}</authenticator>
+          </domain>
+          <connection-policy xmlns="urn:aul:params:xml:ns:yang:nokia-radius">
+            <domain-name>${domain\-name}</domain-name>
+            <reject-no-domain>false</reject-no-domain>
+            <reject-inv-domain>false</reject-inv-domain>
+            <#if accept\-or\-reject\-all?has_content>
+              <accept-or-reject-all>${accept\-or\-reject\-all}</accept-or-reject-all>
+            </#if>
+            <#if accounting\-on\-reboot?has_content>
+              <accounting-on-reboot>${accounting\-on\-reboot}</accounting-on-reboot>
+            </#if>
+          </connection-policy>
+          <options>
+            <#if timeout?has_content>
+              <timeout>${timeout}</timeout>
+            </#if>
+            <#if attempts?has_content>
+              <attempts>${attempts}</attempts>
+            </#if>
+          </options>
+        </radius>
+      </system>
+    </config>
+  </edit-config>
+</rpc>
+

@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu-template-hw-component-name:
+    description: Chassis hardware component name
+    suggested-values:
+    - ont_onu_template
+  admin-state:
+    description: '**locked** to lock or **unlocked** to unlock the ONU'
+    suggested-values:
+    - locked
+    - unlocked
+domains: onu>equipment
+entity: template
+freemarker: true
+name: Modify hardware chassis admin-state in template-parameters
+operation: onu-chassis-admin-state-modify
+sample-id: onu-equipment-template-onu-chassis-admin-state-modify
+status: draft

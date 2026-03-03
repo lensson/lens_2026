@@ -1,0 +1,34 @@
+arguments:
+  interface-name:
+    description: Name of inter-shelf interface
+    suggested-values:
+    - inter-shelf
+  ipv4-address:
+    description: Inter-shelf interface IPv4 address
+    suggested-values:
+    - 135.251.194.186
+  netmask:
+    description: Subnet mask
+    suggested-values:
+    - 255.255.255.128
+  control-plane-protocol-name:
+    description: The name of the control-plane protocol instance
+    suggested-values:
+    - inter-shelf
+  route-dest-prefix:
+    description: IPv4 destination prefix
+    suggested-values:
+    - 0.0.0.0/0
+  route-next-hop:
+    description: Route next-hop
+    suggested-values:
+    - 135.251.194.129
+available-locally: true
+domains: system>inband
+entity: intershelf-ip-route
+freemarker: true
+name: Configure static IPv4 address, route for inter-shelf management interface
+operation: edit
+sample-id: system-inband-intershelf-ip-route-edit
+scope: inband-no-ipv4-inter-shelf
+status: draft

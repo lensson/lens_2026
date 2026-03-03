@@ -1,0 +1,17 @@
+
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1"> 
+<edit-config> 
+<target> 
+<running/> 
+</target>
+ <config> 
+ <l2-dhcpv4-relay-profiles xmlns="urn:bbf:yang:bbf-l2-dhcpv4-relay"> 
+ <l2-dhcpv4-relay-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete"> 
+ <name>${dhcp\-profile\-name}</name>
+ <option82-format/> 
+ </l2-dhcpv4-relay-profile> 
+ </l2-dhcpv4-relay-profiles> 
+ </config> 
+ </edit-config> 
+ </rpc>
+     

@@ -1,0 +1,19 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="setSyslogFileCollector">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <syslog xmlns="urn:ietf:params:xml:ns:yang:ietf-syslog">
+        <actions>
+          <file>
+            <log-file xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="remove">
+              <name>${log\-file\-name}</name>
+            </log-file>
+          </file>
+        </actions>
+      </syslog>
+    </config>
+  </edit-config>
+</rpc>
+

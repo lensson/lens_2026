@@ -1,0 +1,19 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <action xmlns="urn:ietf:params:xml:ns:yang:1">
+    <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+      <onu>
+        <name>${onu\-name}</name>
+        <root>
+          <hardware-state xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted">
+            <component>
+              <name>CHASSIS</name>
+              <self-test xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-hardware-component-test-mounted">
+                <test-name>${test\-name}</test-name>
+              </self-test>
+            </component>
+          </hardware-state>
+        </root>
+      </onu>
+    </onus>
+  </action>
+</rpc>

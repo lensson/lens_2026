@@ -1,0 +1,117 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${interface_name}</name>
+          <inline-frame-processing xmlns="urn:bbf:yang:bbf-sub-interfaces">
+            <ingress-rule>
+              <#if untagged_user_traffic>
+              <rule>
+                <name>rule_1</name>
+                <priority>100</priority>
+                <flexible-match>
+                  <match-criteria xmlns="urn:bbf:yang:bbf-sub-interface-tagging">
+                    <untagged/>
+                  </match-criteria>
+                </flexible-match>
+              </rule>
+              <#else>
+              <rule xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                <name>rule_1</name>
+              </rule>
+              </#if>
+              <#if n\-vlan\-id?has_content>
+              <rule>
+                <name>rule_2</name>
+                <priority>50</priority>
+                <flexible-match>
+                  <match-criteria xmlns="urn:bbf:yang:bbf-sub-interface-tagging">
+                    <tag>
+                      <index>0</index>
+                      <dot1q-tag>
+                        <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                        <#if n\-vlan\-id == 0>
+                        <vlan-id>priority-tagged</vlan-id>
+                        <#else>
+                        <vlan-id>${n\-vlan\-id}</vlan-id>
+                        </#if>
+                        <pbit>any</pbit>
+                        <dei>any</dei>
+                      </dot1q-tag>
+                    </tag>
+                  </match-criteria>
+                </flexible-match>
+                <ingress-rewrite>
+                  <copy-from-tags-to-marking-list xmlns="urn:bbf:yang:bbf-qos-policies-sub-itf-rewrite">
+                    <tag-index>0</tag-index>
+                    <dei-marking-index>0</dei-marking-index>
+                  </copy-from-tags-to-marking-list>
+                  <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging">1</pop-tags>
+                </ingress-rewrite>
+              </rule>
+              <#else>
+              <rule xmlns:ns2="urn:ietf:params:xml:ns:netconf:base:1.0" ns2:operation="remove">
+                <name>rule_2</name>
+              </rule>
+              </#if>
+              <#if n\-vlan\-id?has_content && n\-vlan\-id == 0>
+              <rule xmlns:ns3="urn:ietf:params:xml:ns:netconf:base:1.0" ns3:operation="remove">
+                <name>rule_3</name>
+              </rule>
+              <#elseif priority_tagged_user_traffic>
+              <rule>
+                <name>rule_3</name>
+                <priority>80</priority>
+                <flexible-match>
+                  <match-criteria xmlns="urn:bbf:yang:bbf-sub-interface-tagging">
+                    <tag>
+                      <index>0</index>
+                      <dot1q-tag>
+                        <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                        <vlan-id>priority-tagged</vlan-id>
+                        <pbit>any</pbit>
+                        <dei>any</dei>
+                      </dot1q-tag>
+                    </tag>
+                  </match-criteria>
+                </flexible-match>
+                <ingress-rewrite>
+                  <copy-from-tags-to-marking-list xmlns="urn:bbf:yang:bbf-qos-policies-sub-itf-rewrite">
+                    <tag-index>0</tag-index>
+                    <dei-marking-index>0</dei-marking-index>
+                  </copy-from-tags-to-marking-list>
+                  <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging">1</pop-tags>
+                </ingress-rewrite>
+              </rule>
+              <#else>
+              <rule xmlns:ns4="urn:ietf:params:xml:ns:netconf:base:1.0" ns4:operation="remove">
+                <name>rule_3</name>
+              </rule>
+              </#if>
+            </ingress-rule>
+            <#if n\-vlan\-id?has_content && egress_marking_index?has_content>
+            <egress-rewrite>
+              <push-tag xmlns="urn:bbf:yang:bbf-sub-interface-tagging">
+                <index>0</index>
+                <dot1q-tag>
+                  <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                  <vlan-id>${n\-vlan\-id}</vlan-id>
+                  <pbit-marking-index xmlns="urn:bbf:yang:bbf-qos-policies-sub-interfaces">${egress_marking_index}</pbit-marking-index>
+                  <dei-marking-index xmlns="urn:bbf:yang:bbf-qos-policies-sub-interfaces">${egress_marking_index}</dei-marking-index>
+                </dot1q-tag>
+              </push-tag>
+            </egress-rewrite>
+            <#else>
+            <egress-rewrite xmlns:ns5="urn:ietf:params:xml:ns:netconf:base:1.0" ns5:operation="remove">
+            </egress-rewrite>
+            </#if>
+          </inline-frame-processing>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>

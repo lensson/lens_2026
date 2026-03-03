@@ -1,0 +1,19 @@
+arguments:
+  certificate-list-name:
+    description: Certificate list name
+    suggested-values:
+    - CA-GROUP
+  certificate-name:
+    description: Certificate name
+    suggested-values:
+    - CA
+  format:
+    description: Format could be either "raw" (encoded) or "details" (decoded)
+    suggested-values:
+    - raw
+domains: system>certificate>pinned-ca
+freemarker: true
+name: Display a pinned certificate
+operation: show-cert
+sample-id: system-certificate-pinned-ca-show-cert
+status: draft

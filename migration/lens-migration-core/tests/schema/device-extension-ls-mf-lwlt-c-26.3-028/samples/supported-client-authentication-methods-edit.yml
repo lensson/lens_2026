@@ -1,0 +1,13 @@
+arguments:
+  authentication-method:
+    description: The authentication method to be configured in the system.
+    suggested-values:
+    - password
+    - publickey
+domains: system>authentication
+entity: supported-client-authentication-methods
+freemarker: true
+name: Configure system supported authentication methods
+operation: edit
+sample-id: system-authentication-supported-client-authentication-methods-edit
+status: draft

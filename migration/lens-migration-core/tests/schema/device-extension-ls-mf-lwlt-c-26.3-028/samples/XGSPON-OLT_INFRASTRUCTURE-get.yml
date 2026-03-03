@@ -1,0 +1,13 @@
+arguments:
+  olt-infrastructure-name:
+    description: OLT infrastructure name.
+    suggested-values:
+    - xgspon-1-1
+domains: transport>xgspon>olt-infrastructure
+freemarker: true
+name: Retrieve xgspon olt_infrastructure operational data
+operation: get
+sample-id: transport-xgspon-olt-infrastructure-get
+scope: ngpon2-xgs or gpon-xgs or gpon-xgs-25g or gpon-ngpon2-xgs-25g or gpon-xgs-25g-hs
+  or gpon-xgpon-xgs-25g or gpon-ngpon2-xgpon-xgs-25g or gpon-xgs-25g-50g
+status: draft

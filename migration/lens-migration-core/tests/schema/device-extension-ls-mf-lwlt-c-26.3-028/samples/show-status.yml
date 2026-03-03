@@ -1,0 +1,12 @@
+arguments:
+  session-name:
+    optional: true
+    suggested-values:
+    - custom_session_1
+domains: system>protocol-tracing
+freemarker: true
+name: Retrieve protocol-tracing configuration status.
+operation: get
+sample-id: system-protocol-tracing-get
+scope: protocol-tracing-copper or protocol-tracing-fiber
+status: draft

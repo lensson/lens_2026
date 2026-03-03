@@ -1,0 +1,26 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <lldp xmlns="urn:ieee:std:802.1AB:yang:ieee802-dot1ab-lldp-mounted">
+              <lldp-med-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-lldp-mounted">
+                <lldp-med-media-policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+                  <name>${lldp\-med\-plug\-and\-play\-lan\-policy\-for\-voice}</name>
+                </lldp-med-media-policy-profile>
+                <lldp-med-media-policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+                  <name>${lldp\-med\-media\-policies\-for\-all\-apps}</name>
+                </lldp-med-media-policy-profile>
+              </lldp-med-profiles>
+            </lldp>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

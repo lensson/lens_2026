@@ -1,0 +1,14 @@
+arguments:
+  interface-name:
+    description: Name of IP interface
+    suggested-values:
+    - inband
+available-locally: true
+domains: system>inband
+entity: interface-lt
+freemarker: true
+name: Delete inband management interface
+operation: delete
+sample-id: system-inband-interface-lt-delete
+scope: inband-no-ipv4-l2fwd
+status: draft

@@ -1,0 +1,18 @@
+arguments:
+  maintenance-group-id:
+    description: The maintenance group provides a handle for the MD and MA combination.
+    suggested-values:
+    - MG
+  mep-id:
+    description: The list of all MEPs that belong to this Maintenance Association.
+    optional: true
+    suggested-values:
+    - 8191
+domains: unicast>protocols>cfm
+entity: mep
+freemarker: true
+name: Remove CFM MEPs
+operation: remove
+sample-id: unicast-protocols-cfm-mep-remove
+scope: cfm-user or cfm-network or cfm-user-fiber or ccm or eth-ais
+status: draft

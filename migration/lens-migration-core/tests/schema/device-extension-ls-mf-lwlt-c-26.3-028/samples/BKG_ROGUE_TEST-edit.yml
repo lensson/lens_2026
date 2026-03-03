@@ -1,0 +1,26 @@
+arguments:
+  activate:
+    description: Enable or disable background rogue test.
+    optional: true
+    suggested-values:
+    - 'false'
+    - 'true'
+  bkg-test-name:
+    description: Name of the background rogue test.
+    suggested-values:
+    - background-test
+  olt-infrastructure-name:
+    description: The name of the OLT infrastructure on which channel termination created.
+    suggested-values:
+    - xpon-1-1
+  rogue-test-profile-ref:
+    description: Reference to a rogue test profile.
+    suggested-values:
+    - rogue-test-profile1
+domains: transport>xpon>rogue
+entity: bkg_test
+freemarker: true
+name: Edit background rogue test triggered by PON los
+operation: edit
+sample-id: transport-xpon-rogue-bkg_test-edit
+status: draft

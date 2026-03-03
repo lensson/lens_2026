@@ -1,0 +1,19 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <policies xmlns="urn:bbf:yang:bbf-qos-policies">
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+          <name>${packet-rate-policy-profile-name|PacketRateLimit0}</name>
+        </policy>
+      </policies>
+      <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+          <name>${packet-rate-policy-profile-name}</name>
+        </classifier-entry> 
+      </classifiers>
+    </config>
+  </edit-config>
+</rpc>

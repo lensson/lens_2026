@@ -1,0 +1,19 @@
+arguments:
+  vlanrange-profile-name:
+    description: Vlan range profile name reference to protocol
+    suggested-values:
+    - vlanrange_profile
+  ibridge-user-port-name:
+    description: Ibridge user port name
+    optional: true
+  cc-name:
+    description: The name of CC sample
+    optional: true
+domains: unicast>protocols>dhcpv6
+entity: vlanrange
+freemarker: true
+name: Attach DHCPv6 Relay Agent profile with VLAN range in VLAN sub-interface
+operation: edit
+sample-id: unicast-protocols-dhcpv6-vlanrange-edit
+scope: fiber
+status: draft

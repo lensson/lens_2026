@@ -1,0 +1,14 @@
+arguments:
+  ssh-key-type:
+    description: ssh puplic key type
+    suggested-values:
+    - ssh-rsa
+    - ssh-dss
+    - ecdsa-sha2-nistp256
+domains: system>file-transfer
+entity: ssh-auth-publickey
+freemarker: true
+name: Retrieve SSH public keys
+operation: get
+sample-id: system-file-transfer-ssh-auth-publickey-get
+status: draft

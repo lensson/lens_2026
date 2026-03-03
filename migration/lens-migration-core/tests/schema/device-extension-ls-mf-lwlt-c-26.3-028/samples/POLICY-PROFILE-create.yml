@@ -1,0 +1,44 @@
+arguments:
+  policy-profile-name:
+    description: QoS policy profile name
+    suggested-values:
+    - ds-egress-qos
+  untag-policy-name:
+    description: Untag policy name
+    optional: true
+  remarking-policy-name:
+    description: Remark policy name
+    optional: true
+  igmp-remarking-policy-name:
+    description: Remark IGMP policy name
+    optional: true
+  policing-tc-policy-name:
+    description: Policing tc policy name
+    optional: true
+  dscp-to-pbit-alignment-policy-name:
+    description: DSCP to Pbit policy name
+    optional: true
+  ccl-policy-name:
+    description: CCL policy name
+    optional: true
+  policing-policy-name:
+    description: Policing policy name
+    optional: true
+  pbit-scheduling-policy-name:
+    description: Scheduling policy name
+    optional: true
+    suggested-values:
+    - pbit-schedule-policy
+  count-policy-name:
+    description: count policy name
+    optional: true
+  color-policy-name:
+    description: color policy name
+    optional: true
+domains: unicast>qos>policy-profiles
+freemarker: true
+name: Configure QoS policy profile
+operation: edit
+sample-id: unicast-qos-policy-profiles-edit
+scope: not(mx) and not(dpu)
+status: draft

@@ -1,0 +1,25 @@
+arguments:
+  onu-name:
+    description: the custom name of the onu.
+    suggested-values:
+    - ont1_050_fwlt-c
+  profile-type:
+    allowed-values:
+    - g8275dot1
+    - ccsa
+    description: the spec type of the ptp profile. allowed values are [g8275dot1,
+      ccsa]
+    suggested-values:
+    - g8275dot1
+  profile-name:
+    description: the custom name of the ptp profile.
+    suggested-values:
+    - G8275.1_profile_default_onu
+domains: onu>synchronization>ptp
+entity: profile
+freemarker: true
+name: Remove ptp profile for onu
+operation: delete
+sample-id: onu-synchronization-ptp-profile-delete
+scope: clock-pon or clock-df16gm or clock-df32gm
+status: draft

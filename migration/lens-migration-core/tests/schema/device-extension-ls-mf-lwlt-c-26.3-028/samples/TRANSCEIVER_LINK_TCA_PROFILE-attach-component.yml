@@ -1,0 +1,26 @@
+arguments:
+  transceiver-link-name:
+    description: SFP transceive-link name
+    suggested-values:
+    - sfp_transceiver_link_name
+  transceiver-name:
+    description: SFP transceive name
+    suggested-values:
+    - sfp_transceiver_name
+  parent-rel-pos:
+    description: Parent rel pos
+    suggested-values:
+    - 1
+  transceiver-link-tca-profile:
+    description: transceiver-link-tca-profile name
+    suggested-values:
+    - transceiver_link_tca_profile_name
+domains: system>tca
+entity: transceiver-link-tca-profile
+freemarker: true
+name: Attach component transceiver-link-tca-profile
+operation: attach
+sample-id: system-tca-transceiver-link-tca-profile-attach
+scope: not(eth-copper) and not(eth-copper-ci) and not(fx-nt or mf14-nt or mf2-nt or
+  sf-nt)
+status: draft

@@ -1,0 +1,6 @@
+domains: system>bulk-data-collection>exporter
+freemarker: true
+name: Retrieve configured IPFIX exporter
+operation: get-config
+sample-id: system-bulk-data-collection-exporter-get-config
+status: draft

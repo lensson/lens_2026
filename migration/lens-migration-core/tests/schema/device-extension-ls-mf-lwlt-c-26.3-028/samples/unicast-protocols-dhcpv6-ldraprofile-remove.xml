@@ -1,0 +1,17 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <dhcpv6-ldra-profiles xmlns="urn:bbf:yang:bbf-ldra">
+        <dhcpv6-ldra-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+          <name>${dhcpv6\-profile\-name}</name>
+                 </dhcpv6-ldra-profile>
+      </dhcpv6-ldra-profiles>
+                </config>
+        </edit-config>
+</rpc>
+
+
+

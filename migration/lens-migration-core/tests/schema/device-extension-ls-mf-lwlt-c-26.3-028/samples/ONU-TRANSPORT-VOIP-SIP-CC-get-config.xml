@@ -1,0 +1,74 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter type="subtree">
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <policies xmlns="urn:bbf:yang:bbf-qos-policies-mounted">
+              <policy>
+                <name>any-2-tc</name>
+              </policy>
+            </policies>
+            <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers-mounted">
+              <classifier-entry>
+                <name>policy-any-2-tc_classifier0</name>
+              </classifier-entry>
+              <classifier-entry>
+                <name>policy-any-2-tc_classifier1</name>
+              </classifier-entry>
+              <classifier-entry>
+                <name>policy-any-2-tc_classifier2</name>
+              </classifier-entry>
+              <classifier-entry>
+                <name>policy-any-2-tc_classifier3</name>
+              </classifier-entry>
+              <classifier-entry>
+                <name>policy-any-2-tc_classifier4</name>
+              </classifier-entry>
+              <classifier-entry>
+                <name>policy-any-2-tc_classifier5</name>
+              </classifier-entry>
+              <classifier-entry>
+                <name>policy-any-2-tc_classifier6</name>
+              </classifier-entry>
+              <classifier-entry>
+                <name>policy-any-2-tc_classifier7</name>
+              </classifier-entry>
+            </classifiers>
+            <qos-policy-profiles xmlns="urn:bbf:yang:bbf-qos-policies-mounted">
+              <policy-profile>
+                <name>us-egress-qos</name>
+              </policy-profile>
+            </qos-policy-profiles>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface>
+                <name>voip-onu-v-enet</name>
+              </interface>
+              <interface>
+                <name>${voip\-cc\-name}</name>
+              </interface>
+              <interface>
+                <name>ip-host</name>
+              </interface>
+            </interfaces>
+            <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system-mounted">
+              <dns-resolver/>
+            </system>
+            <routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing-mounted">
+              <control-plane-protocols/>
+            </routing>
+            <gemports xmlns="urn:bbf:yang:bbf-xpongemtcont-mounted">
+              <gemport>
+                <name>${voip\-cc\-name}-GEM${tc}</name>
+              </gemport>
+            </gemports>
+          </root>
+        </onu>
+      </onus>
+    </filter>
+  </get-config>
+</rpc>

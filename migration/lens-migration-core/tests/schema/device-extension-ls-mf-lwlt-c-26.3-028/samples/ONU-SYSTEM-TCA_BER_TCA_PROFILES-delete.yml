@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ber-tca-profile-name:
+    description: BER TCA Profile Name
+    suggested-values:
+    - ber_tca_profile
+domains: onu>system>tca
+entity: ber-tca-profile
+freemarker: true
+name: Remove BER TCA Profiles
+operation: remove
+sample-id: onu-system-tca-ber-tca-profile-remove
+scope: eonu
+status: draft

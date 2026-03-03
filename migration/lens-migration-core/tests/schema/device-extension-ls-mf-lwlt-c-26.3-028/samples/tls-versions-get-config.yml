@@ -1,0 +1,13 @@
+arguments:
+  netconf-client-name:
+    description: Name of the NETCONF client
+    suggested-values:
+    - nc-client
+available-locally: true
+domains: system>callhome>tls-hello-params
+entity: versions
+freemarker: true
+name: Retrieve TLS versions
+operation: get-config
+sample-id: system-callhome-tls-hello-params-versions-get-config
+status: draft

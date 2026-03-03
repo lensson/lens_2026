@@ -1,0 +1,24 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${olt\-infrastructure\-name}-primary-ctermination</name>
+          <channel-termination xmlns="urn:bbf:yang:bbf-xpon">
+            <background-rogue-test xmlns="urn:broadband-forum-org:yang:bbf-fiber-rogue-nodes" ns0:operation="merge">
+              <name>${bkg\-test\-name}</name>
+                <#if activate?has_content>
+                  <activated>${activate}</activated>
+                </#if>                  
+              <rogue-test-profile-ref>${rogue\-test\-profile\-ref}</rogue-test-profile-ref>
+              <start-trigger>pon-los</start-trigger>
+            </background-rogue-test>
+          </channel-termination>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>

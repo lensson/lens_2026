@@ -1,0 +1,19 @@
+arguments:
+  user-interface:
+    description: Name of the user interface.
+    suggested-values:
+    - OLT-VENET
+  dynamic-auth-control:
+    description: Controls the processing of Dynamic Authorization requests.
+    suggested-values:
+    - nokia-dyn-auth-types:dynamic-auth-enable-coa-and-dm
+    - nokia-dyn-auth-types:dynamic-auth-enable-only-coa
+    - nokia-dyn-auth-types:dynamic-auth-enable-only-dm
+domains: transport>protocols>802.1x
+entity: dynamic-auth-control
+freemarker: true
+name: Configure user interface-level 802.1X Dynamic Authorization request processing
+  control
+operation: edit
+sample-id: transport-protocols-802.1x-dynamic-auth-control-edit
+status: draft

@@ -1,0 +1,13 @@
+arguments:
+  interface:
+    description: The user vlan-sub-interface on which the PPPoE Client simulation
+      is to be performed
+    suggested-values:
+    - uni1-user
+domains: unicast>protocols>simulation
+entity: pppoe-config
+freemarker: true
+name: Unconfigure user VLAN sub-interface from PPPoE Client Simulator
+operation: remove
+sample-id: unicast-protocols-simulation-pppoe-config-remove
+status: draft

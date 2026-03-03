@@ -1,0 +1,13 @@
+arguments:
+  interface:
+    description: The user vlan-sub-interface on which the PPPoE Client simulation
+      is to be performed
+    suggested-values:
+    - uni1-user
+domains: unicast>protocols>simulation
+entity: pppoe-stop
+freemarker: true
+name: Perform PPPoE Client session simulation stop action
+operation: action
+sample-id: unicast-protocols-simulation-pppoe-stop-action
+status: draft

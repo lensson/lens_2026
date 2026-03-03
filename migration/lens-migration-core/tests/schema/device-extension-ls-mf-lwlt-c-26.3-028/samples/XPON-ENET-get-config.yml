@@ -1,0 +1,22 @@
+arguments:
+  enet-name:
+    description: The name of the virtual ENET UNI.
+    suggested-values:
+    - uni-1-1-1-1
+  onu-name:
+    description: ONU name
+    optional: true
+    suggested-values:
+    - v-ani-1-1-1
+  onu-template-enet-name:
+    description: ENET interface name
+    optional: true
+    suggested-values:
+    - uni-template-1
+domains: transport>xpon>enet
+freemarker: true
+name: Retrieve ethernet uni configuration data
+operation: get-config
+sample-id: transport-xpon-enet-get-config
+scope: not(fx-p2p)
+status: draft

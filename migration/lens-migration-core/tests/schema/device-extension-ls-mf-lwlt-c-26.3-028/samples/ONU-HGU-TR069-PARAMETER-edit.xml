@@ -1,0 +1,35 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <onus>
+              <onu>
+                <name>${onu\-name}</name>
+                <root>
+                  <hgu-tr069-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-hgu-tr069-mounted">
+                    <name-value-pair>
+                      <index>${para\-index}</index>
+                      <param-name>${para\-name}</param-name>
+                      <param-value>${para\-value}</param-value>
+                    </name-value-pair>
+                    <name-sensitive-value-pair>
+                      <index>${sensitive\-para\-index}</index>
+                      <param-name>${sensitive\-para\-name}</param-name>
+                      <param-value>${sensitive\-para\-value}</param-value>
+                    </name-sensitive-value-pair>
+                  </hgu-tr069-parameters>
+                </root>
+              </onu>
+            </onus>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

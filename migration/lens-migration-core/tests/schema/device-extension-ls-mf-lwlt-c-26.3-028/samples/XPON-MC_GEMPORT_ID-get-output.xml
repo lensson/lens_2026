@@ -1,0 +1,11 @@
+<OutputParameters xmlns="http://www.nokia.com/anv/schemas/sample/1.0">
+  <OutputParameter>
+    <name>MC-GEMPORT-ID</name>
+    <xpath>
+      //ponid:gemport-id
+    </xpath>
+    <xpathNamespaces>
+      ponid="http://www.nokia.com/management-solutions/pon-id-allocation"
+    </xpathNamespaces>
+  </OutputParameter>
+</OutputParameters>

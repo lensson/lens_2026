@@ -1,0 +1,12 @@
+arguments:
+  dhcpv6-profile-name:
+    description: Name of the DHCPv6 Relay Agent profile
+    suggested-values:
+    - dhcpv6_profile
+domains: unicast>protocols>dhcpv6
+entity: ldraprofile
+freemarker: true
+name: Remove DHCPv6 Relay Agent profile
+operation: remove
+sample-id: unicast-protocols-dhcpv6-ldraprofile-remove
+status: draft

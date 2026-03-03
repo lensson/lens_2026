@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: the custom name of the onu.
+    suggested-values:
+    - ont1_050_fwlt-c
+  uni-name:
+    description: the custom name of the uni interface.
+    suggested-values:
+    - uni1_ont1_050_fwlt
+domains: onu>synchronization>ssm
+entity: ssmout
+freemarker: true
+name: Delete ssmout for ONU UNI interface
+operation: delete
+sample-id: onu-synchronization-ssm-ssmout-delete
+scope: clock-onu-ssm or clock-df16gm or clock-df32gm
+status: draft

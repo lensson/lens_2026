@@ -1,0 +1,59 @@
+arguments:
+  pppoe-profile-name:
+    description: Name of the PPPoE Intermediate Agent profile
+    suggested-values:
+    - pppoe_profile
+  circuit-id:
+    description: Option 82 sub-option
+    optional: true
+    suggested-values:
+    - circuit-id
+  circuit-id-syntax:
+    description: circuit id syntax will be used to generate a sub option circuit ID
+      when no circuit-id is provided for the VLAN sub interface via a referenced subscriber-profiles
+    optional: true
+    suggested-values:
+    - Access_Node_ID:Q-VID:U-VID:DUVID:N-VID:N2VID
+  remote-id:
+    description: Option 82 sub-option
+    optional: true
+    suggested-values:
+    - remote-id
+  remote-id-syntax:
+    description: remote id syntax will be used to generate a sub option remote ID
+      when no remote-id is provided for the VLAN sub interface via a referenced subscriber-profiles
+    optional: true
+    suggested-values:
+    - Access_Node_ID:Q-VID:U-VID:DUVID:N-VID:N2VID
+  start-numbering-from-zero:
+    description: Identification shall be added to the sub-option value then this leaf
+      determines if the slot or port numbering must start from 0 or 1
+    optional: true
+    suggested-values:
+    - true
+    - false
+  use-leading-zero:
+    description: Identification shall be added to the sub-option value then this leaf
+      determines if the slot or port numbering must use leading 0 or not
+    optional: true
+    suggested-values:
+    - false
+    - true
+  access-loop-characteristics:
+    description: Access loop characteristics to be added in the vendor-specific tag
+    optional: true
+    suggested-values:
+    - access-loop-characteristics
+  access-loop-suboptions:
+    description: Broadband line characteristics that are to be added in option 82
+    optional: true
+    suggested-values:
+    - access-loop-encapsulation
+domains: unicast>protocols>pppoe
+entity: profile
+freemarker: true
+name: Configure PPPoE Intermediate Agent profile
+operation: edit
+sample-id: unicast-protocols-pppoe-profile-edit
+scope: fiber and not(fx-p2p)
+status: draft

@@ -1,0 +1,57 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <tca-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-profiles-mounted">
+              <transceiver-link-tca-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${transceiver\-link\-tca\-profile\-name}</name>
+<#if rx\-power\-threshold\-low\-alarm?has_content>
+                <rx-power-threshold-low-alarm>${rx\-power\-threshold\-low\-alarm}</rx-power-threshold-low-alarm>
+</#if>
+<#if rx\-power\-threshold\-low\-warning?has_content>
+                <rx-power-threshold-low-warning>${rx\-power\-threshold\-low\-warning}</rx-power-threshold-low-warning>
+</#if>
+<#if rx\-power\-threshold\-high\-warning?has_content>
+                <rx-power-threshold-high-warning>${rx\-power\-threshold\-high\-warning}</rx-power-threshold-high-warning>
+</#if>
+<#if rx\-power\-threshold\-high\-alarm?has_content>
+                <rx-power-threshold-high-alarm>${rx\-power\-threshold\-high\-alarm}</rx-power-threshold-high-alarm>
+</#if>
+<#if tx\-bias\-threshold\-low\-alarm?has_content>
+                <tx-bias-threshold-low-alarm>${tx\-bias\-threshold\-low\-alarm}</tx-bias-threshold-low-alarm>
+</#if>
+<#if tx\-bias\-threshold\-low\-warning?has_content>
+                <tx-bias-threshold-low-warning>${tx\-bias\-threshold\-low\-warning}</tx-bias-threshold-low-warning>
+</#if>
+<#if tx\-bias\-threshold\-high\-warning?has_content>
+                <tx-bias-threshold-high-warning>${tx\-bias\-threshold\-high\-warning}</tx-bias-threshold-high-warning>
+</#if>
+<#if tx\-bias\-threshold\-high\-alarm?has_content>
+                <tx-bias-threshold-high-alarm>${tx\-bias\-threshold\-high\-alarm}</tx-bias-threshold-high-alarm>
+</#if>
+<#if tx\-power\-threshold\-low\-alarm?has_content>
+                <tx-power-threshold-low-alarm>${tx\-power\-threshold\-low\-alarm}</tx-power-threshold-low-alarm>
+</#if>
+<#if tx\-power\-threshold\-low\-warning?has_content>
+                <tx-power-threshold-low-warning>${tx\-power\-threshold\-low\-warning}</tx-power-threshold-low-warning>
+</#if>
+<#if tx\-power\-threshold\-high\-warning?has_content>
+                <tx-power-threshold-high-warning>${tx\-power\-threshold\-high\-warning}</tx-power-threshold-high-warning>
+</#if>
+<#if tx\-power\-threshold\-high\-alarm?has_content>
+                <tx-power-threshold-high-alarm>${tx\-power\-threshold\-high\-alarm}</tx-power-threshold-high-alarm>
+</#if>
+              </transceiver-link-tca-profile>
+            </tca-profiles>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

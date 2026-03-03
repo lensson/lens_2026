@@ -1,0 +1,16 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+    <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont">
+      <traffic-descriptor-profiles>
+        <traffic-descriptor-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${traffic\-descriptor\-profile\-name}</name>
+        </traffic-descriptor-profile>
+      </traffic-descriptor-profiles>
+      </xpongemtcont>
+    </config>
+  </edit-config>
+</rpc>

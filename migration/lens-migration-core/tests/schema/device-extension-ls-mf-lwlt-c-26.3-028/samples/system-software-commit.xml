@@ -1,0 +1,22 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="d715e000-fcd8-11e7-8791-c4346b258b42">
+  <action xmlns="urn:ietf:params:xml:ns:yang:1">
+    <hardware-state xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware">
+      <component>
+        <name>${component}</name>
+        <software xmlns="urn:bbf:yang:bbf-software-image-management-one-dot-one">
+          <software>
+            <name>${software\-name}</name>
+            <revisions>
+              <revision>
+                <name>${download\-software\-name}</name>
+                <commit-revision>
+                  <commit/>
+                </commit-revision>
+              </revision>
+            </revisions>
+          </software>
+        </software>
+      </component>
+    </hardware-state>
+  </action>
+</rpc>

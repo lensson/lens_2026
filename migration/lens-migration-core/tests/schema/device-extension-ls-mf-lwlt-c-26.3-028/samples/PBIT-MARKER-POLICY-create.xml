@@ -1,0 +1,888 @@
+ <rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <policies xmlns="urn:bbf:yang:bbf-qos-policies">
+        <policy>
+          <name>${remarking\-policy\-name}</name>
+		  <#if marker\-policy\-type == "tagged only" || marker\-policy\-type == "tagged and untagged">
+          <classifiers>
+            <name>${remarking\-policy\-name}_classifier0</name>
+          </classifiers>
+          <classifiers>
+            <name>${remarking\-policy\-name}_classifier1</name>
+          </classifiers>
+          <classifiers>
+            <name>${remarking\-policy\-name}_classifier2</name>
+          </classifiers>
+          <classifiers>
+            <name>${remarking\-policy\-name}_classifier3</name>
+          </classifiers>
+          <classifiers>
+            <name>${remarking\-policy\-name}_classifier4</name>
+          </classifiers>
+          <classifiers>
+            <name>${remarking\-policy\-name}_classifier5</name>
+          </classifiers>
+          <classifiers>
+            <name>${remarking\-policy\-name}_classifier6</name>
+          </classifiers>
+          <classifiers>
+            <name>${remarking\-policy\-name}_classifier7</name>
+          </classifiers>
+		  <#if marker\-policy\-type == "tagged and untagged">
+          <classifiers>
+            <name>${remarking\-policy\-name}_classifier_untagged</name>
+          </classifiers>
+		  </#if>
+		  </#if>		  
+        </policy>
+      </policies>
+      <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+	    <#if marker\-policy\-type == "tagged only" || marker\-policy\-type == "tagged and untagged">
+        <classifier-entry>
+          <name>${remarking\-policy\-name}_classifier0</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+		  <#if vsi\-tag\-number == "dual">
+            <tag>
+            <index>0</index>
+            <in-pbit-list>0-7</in-pbit-list>
+            </tag>
+            <tag>
+            <index>1</index>
+            <in-pbit-list>0</in-pbit-list>
+            </tag>
+		  <#else>
+		    <tag>
+            <index>0</index>
+            <in-pbit-list>0</in-pbit-list>
+            </tag>
+		  </#if>
+          </vlans>
+          <#if pbit0\-to\-outer\-pbit\-marking?has_content || copy\-pbit\-from\-outer\-frame\-tag?has_content || copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>pbit-marking</action-type>
+            <pbit-marking-cfg>
+		  <#if pbit0\-to\-outer\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>0</index>
+                <pbit-value>${pbit0\-to\-outer\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              <#if pbit0\-to\-inner\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>1</index>
+                <pbit-value>${pbit0\-to\-inner\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              </#if>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+             <pbit-marking-list>
+               <index>0</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+             <pbit-marking-list>
+               <index>1</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag?has_content && copy\-pbit\-from\-outer\-frame\-tag>
+              <pbit-marking-list>
+                <index>0</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+              </pbit-marking-list>
+              <#if copy\-pbit\-from\-inner\-frame\-tag?has_content && copy\-pbit\-from\-inner\-frame\-tag>
+              <pbit-marking-list>
+                <index>1</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">1</pbit-from-frame-tag>
+              </pbit-marking-list>
+              </#if>
+          </#if>
+            </pbit-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+          <#if dei0\-to\-outer\-dei\-marking?has_content || copy\-dei\-from\-outer\-frame\-tag?has_content || copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>dei-marking</action-type>
+            <dei-marking-cfg>
+		  <#if dei0\-to\-outer\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>0</index>
+                <dei-value>${dei0\-to\-outer\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              <#if dei0\-to\-inner\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>1</index>
+                <dei-value>${dei0\-to\-inner\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              </#if>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag?has_content && copy\-dei\-from\-outer\-frame\-tag>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <#if copy\-dei\-from\-inner\-frame\-tag?has_content && copy\-dei\-from\-inner\-frame\-tag>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">1</dei-from-frame-tag>
+              </dei-marking-list>
+              </#if>
+          </#if>
+            </dei-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+        </classifier-entry>
+        <classifier-entry>
+          <name>${remarking\-policy\-name}_classifier1</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+		  <#if vsi\-tag\-number == "dual">
+            <tag>
+            <index>0</index>
+            <in-pbit-list>0-7</in-pbit-list>
+            </tag>
+            <tag>
+            <index>1</index>
+            <in-pbit-list>1</in-pbit-list>
+            </tag>
+		  <#else>
+		    <tag>
+            <index>0</index>
+            <in-pbit-list>1</in-pbit-list>
+            </tag>
+		  </#if>
+          </vlans>
+          <#if pbit1\-to\-outer\-pbit\-marking?has_content || copy\-pbit\-from\-outer\-frame\-tag?has_content || copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>pbit-marking</action-type>
+            <pbit-marking-cfg>
+		  <#if pbit1\-to\-outer\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>0</index>
+                <pbit-value>${pbit1\-to\-outer\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              <#if pbit1\-to\-inner\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>1</index>
+                <pbit-value>${pbit1\-to\-inner\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              </#if>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+             <pbit-marking-list>
+               <index>0</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+             <pbit-marking-list>
+               <index>1</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag?has_content && copy\-pbit\-from\-outer\-frame\-tag>
+              <pbit-marking-list>
+                <index>0</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+              </pbit-marking-list>
+              <#if copy\-pbit\-from\-inner\-frame\-tag?has_content && copy\-pbit\-from\-inner\-frame\-tag>
+              <pbit-marking-list>
+                <index>1</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">1</pbit-from-frame-tag>
+              </pbit-marking-list>
+              </#if>
+          </#if>
+            </pbit-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+          <#if dei0\-to\-outer\-dei\-marking?has_content || copy\-dei\-from\-outer\-frame\-tag?has_content || copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>dei-marking</action-type>
+            <dei-marking-cfg>
+		  <#if dei0\-to\-outer\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>0</index>
+                <dei-value>${dei0\-to\-outer\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              <#if dei0\-to\-inner\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>1</index>
+                <dei-value>${dei0\-to\-inner\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              </#if>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag?has_content && copy\-dei\-from\-outer\-frame\-tag>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <#if copy\-dei\-from\-inner\-frame\-tag?has_content && copy\-dei\-from\-inner\-frame\-tag>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">1</dei-from-frame-tag>
+              </dei-marking-list>
+              </#if>
+          </#if>
+            </dei-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+        </classifier-entry>
+        <classifier-entry>
+          <name>${remarking\-policy\-name}_classifier2</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+		  <#if vsi\-tag\-number == "dual">
+            <tag>
+            <index>0</index>
+            <in-pbit-list>0-7</in-pbit-list>
+            </tag>
+            <tag>
+            <index>1</index>
+            <in-pbit-list>2</in-pbit-list>
+            </tag>
+		  <#else>
+		    <tag>
+            <index>0</index>
+            <in-pbit-list>2</in-pbit-list>
+            </tag>
+		  </#if>
+          </vlans>
+          <#if pbit2\-to\-outer\-pbit\-marking?has_content || copy\-pbit\-from\-outer\-frame\-tag?has_content || copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>pbit-marking</action-type>
+            <pbit-marking-cfg>
+		  <#if pbit2\-to\-outer\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>0</index>
+                <pbit-value>${pbit2\-to\-outer\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              <#if pbit2\-to\-inner\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>1</index>
+                <pbit-value>${pbit2\-to\-inner\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              </#if>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+             <pbit-marking-list>
+               <index>0</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+             <pbit-marking-list>
+               <index>1</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag?has_content && copy\-pbit\-from\-outer\-frame\-tag>
+              <pbit-marking-list>
+                <index>0</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+              </pbit-marking-list>
+              <#if copy\-pbit\-from\-inner\-frame\-tag?has_content && copy\-pbit\-from\-inner\-frame\-tag>
+              <pbit-marking-list>
+                <index>1</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">1</pbit-from-frame-tag>
+              </pbit-marking-list>
+              </#if>
+          </#if>
+            </pbit-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+          <#if dei0\-to\-outer\-dei\-marking?has_content || copy\-dei\-from\-outer\-frame\-tag?has_content || copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>dei-marking</action-type>
+            <dei-marking-cfg>
+		  <#if dei0\-to\-outer\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>0</index>
+                <dei-value>${dei0\-to\-outer\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              <#if dei0\-to\-inner\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>1</index>
+                <dei-value>${dei0\-to\-inner\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              </#if>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag?has_content && copy\-dei\-from\-outer\-frame\-tag>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <#if copy\-dei\-from\-inner\-frame\-tag?has_content && copy\-dei\-from\-inner\-frame\-tag>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">1</dei-from-frame-tag>
+              </dei-marking-list>
+              </#if>
+          </#if>
+            </dei-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+        </classifier-entry>
+        <classifier-entry>
+          <name>${remarking\-policy\-name}_classifier3</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+		  <#if vsi\-tag\-number == "dual">
+            <tag>
+            <index>0</index>
+            <in-pbit-list>0-7</in-pbit-list>
+            </tag>
+            <tag>
+            <index>1</index>
+            <in-pbit-list>3</in-pbit-list>
+            </tag>
+		  <#else>
+		    <tag>
+            <index>0</index>
+            <in-pbit-list>3</in-pbit-list>
+            </tag>
+		  </#if>
+          </vlans>
+          <#if pbit3\-to\-outer\-pbit\-marking?has_content || copy\-pbit\-from\-outer\-frame\-tag?has_content || copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>pbit-marking</action-type>
+            <pbit-marking-cfg>
+		  <#if pbit3\-to\-outer\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>0</index>
+                <pbit-value>${pbit3\-to\-outer\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              <#if pbit3\-to\-inner\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>1</index>
+                <pbit-value>${pbit3\-to\-inner\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              </#if>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+             <pbit-marking-list>
+               <index>0</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+             <pbit-marking-list>
+               <index>1</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag?has_content && copy\-pbit\-from\-outer\-frame\-tag>
+              <pbit-marking-list>
+                <index>0</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+              </pbit-marking-list>
+              <#if copy\-pbit\-from\-inner\-frame\-tag?has_content && copy\-pbit\-from\-inner\-frame\-tag>
+              <pbit-marking-list>
+                <index>1</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">1</pbit-from-frame-tag>
+              </pbit-marking-list>
+              </#if>
+          </#if>
+            </pbit-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+          <#if dei0\-to\-outer\-dei\-marking?has_content || copy\-dei\-from\-outer\-frame\-tag?has_content || copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>dei-marking</action-type>
+            <dei-marking-cfg>
+		  <#if dei0\-to\-outer\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>0</index>
+                <dei-value>${dei0\-to\-outer\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              <#if dei0\-to\-inner\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>1</index>
+                <dei-value>${dei0\-to\-inner\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              </#if>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag?has_content && copy\-dei\-from\-outer\-frame\-tag>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <#if copy\-dei\-from\-inner\-frame\-tag?has_content && copy\-dei\-from\-inner\-frame\-tag>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">1</dei-from-frame-tag>
+              </dei-marking-list>
+              </#if>
+          </#if>
+            </dei-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+        </classifier-entry>
+		<classifier-entry>
+          <name>${remarking\-policy\-name}_classifier4</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+		  <#if vsi\-tag\-number == "dual">
+            <tag>
+            <index>0</index>
+            <in-pbit-list>0-7</in-pbit-list>
+            </tag>
+            <tag>
+            <index>1</index>
+            <in-pbit-list>4</in-pbit-list>
+            </tag>
+		  <#else>
+		    <tag>
+            <index>0</index>
+            <in-pbit-list>4</in-pbit-list>
+            </tag>
+		  </#if>
+          </vlans>
+          <#if pbit4\-to\-outer\-pbit\-marking?has_content || copy\-pbit\-from\-outer\-frame\-tag?has_content || copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>pbit-marking</action-type>
+            <pbit-marking-cfg>
+		  <#if pbit4\-to\-outer\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>0</index>
+                <pbit-value>${pbit4\-to\-outer\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              <#if pbit4\-to\-inner\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>1</index>
+                <pbit-value>${pbit4\-to\-inner\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              </#if>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+             <pbit-marking-list>
+               <index>0</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+             <pbit-marking-list>
+               <index>1</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag?has_content && copy\-pbit\-from\-outer\-frame\-tag>
+              <pbit-marking-list>
+                <index>0</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+              </pbit-marking-list>
+              <#if copy\-pbit\-from\-inner\-frame\-tag?has_content && copy\-pbit\-from\-inner\-frame\-tag>
+              <pbit-marking-list>
+                <index>1</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">1</pbit-from-frame-tag>
+              </pbit-marking-list>
+              </#if>
+          </#if>
+            </pbit-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+          <#if dei0\-to\-outer\-dei\-marking?has_content || copy\-dei\-from\-outer\-frame\-tag?has_content || copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>dei-marking</action-type>
+            <dei-marking-cfg>
+		  <#if dei0\-to\-outer\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>0</index>
+                <dei-value>${dei0\-to\-outer\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              <#if dei0\-to\-inner\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>1</index>
+                <dei-value>${dei0\-to\-inner\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              </#if>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag?has_content && copy\-dei\-from\-outer\-frame\-tag>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <#if copy\-dei\-from\-inner\-frame\-tag?has_content && copy\-dei\-from\-inner\-frame\-tag>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">1</dei-from-frame-tag>
+              </dei-marking-list>
+              </#if>
+          </#if>
+            </dei-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+        </classifier-entry>
+        <classifier-entry>
+          <name>${remarking\-policy\-name}_classifier5</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+		  <#if vsi\-tag\-number == "dual">
+            <tag>
+            <index>0</index>
+            <in-pbit-list>0-7</in-pbit-list>
+            </tag>
+            <tag>
+            <index>1</index>
+            <in-pbit-list>5</in-pbit-list>
+            </tag>
+		  <#else>
+		    <tag>
+            <index>0</index>
+            <in-pbit-list>5</in-pbit-list>
+            </tag>
+		  </#if>
+          </vlans>
+          <#if pbit5\-to\-outer\-pbit\-marking?has_content || copy\-pbit\-from\-outer\-frame\-tag?has_content || copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>pbit-marking</action-type>
+            <pbit-marking-cfg>
+		  <#if pbit5\-to\-outer\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>0</index>
+                <pbit-value>${pbit5\-to\-outer\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              <#if pbit5\-to\-inner\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>1</index>
+                <pbit-value>${pbit5\-to\-inner\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              </#if>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+             <pbit-marking-list>
+               <index>0</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+             <pbit-marking-list>
+               <index>1</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag?has_content && copy\-pbit\-from\-outer\-frame\-tag>
+              <pbit-marking-list>
+                <index>0</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+              </pbit-marking-list>
+              <#if copy\-pbit\-from\-inner\-frame\-tag?has_content && copy\-pbit\-from\-inner\-frame\-tag>
+              <pbit-marking-list>
+                <index>1</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">1</pbit-from-frame-tag>
+              </pbit-marking-list>
+              </#if>
+          </#if>
+            </pbit-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+          <#if dei0\-to\-outer\-dei\-marking?has_content || copy\-dei\-from\-outer\-frame\-tag?has_content || copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>dei-marking</action-type>
+            <dei-marking-cfg>
+		  <#if dei0\-to\-outer\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>0</index>
+                <dei-value>${dei0\-to\-outer\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              <#if dei0\-to\-inner\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>1</index>
+                <dei-value>${dei0\-to\-inner\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              </#if>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag?has_content && copy\-dei\-from\-outer\-frame\-tag>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <#if copy\-dei\-from\-inner\-frame\-tag?has_content && copy\-dei\-from\-inner\-frame\-tag>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">1</dei-from-frame-tag>
+              </dei-marking-list>
+              </#if>
+          </#if>
+            </dei-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+        </classifier-entry>
+        <classifier-entry>
+          <name>${remarking\-policy\-name}_classifier6</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+		  <#if vsi\-tag\-number == "dual">
+            <tag>
+            <index>0</index>
+            <in-pbit-list>0-7</in-pbit-list>
+            </tag>
+            <tag>
+            <index>1</index>
+            <in-pbit-list>6</in-pbit-list>
+            </tag>
+		  <#else>
+		    <tag>
+            <index>0</index>
+            <in-pbit-list>6</in-pbit-list>
+            </tag>
+		  </#if>
+          </vlans>
+          <#if pbit6\-to\-outer\-pbit\-marking?has_content || copy\-pbit\-from\-outer\-frame\-tag?has_content || copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>pbit-marking</action-type>
+            <pbit-marking-cfg>
+		  <#if pbit6\-to\-outer\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>0</index>
+                <pbit-value>${pbit6\-to\-outer\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              <#if pbit6\-to\-inner\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>1</index>
+                <pbit-value>${pbit6\-to\-inner\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              </#if>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+             <pbit-marking-list>
+               <index>0</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+             <pbit-marking-list>
+               <index>1</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag?has_content && copy\-pbit\-from\-outer\-frame\-tag>
+              <pbit-marking-list>
+                <index>0</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+              </pbit-marking-list>
+              <#if copy\-pbit\-from\-inner\-frame\-tag?has_content && copy\-pbit\-from\-inner\-frame\-tag>
+              <pbit-marking-list>
+                <index>1</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">1</pbit-from-frame-tag>
+              </pbit-marking-list>
+              </#if>
+          </#if>
+            </pbit-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+          <#if dei0\-to\-outer\-dei\-marking?has_content || copy\-dei\-from\-outer\-frame\-tag?has_content || copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>dei-marking</action-type>
+            <dei-marking-cfg>
+		  <#if dei0\-to\-outer\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>0</index>
+                <dei-value>${dei0\-to\-outer\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              <#if dei0\-to\-inner\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>1</index>
+                <dei-value>${dei0\-to\-inner\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              </#if>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag?has_content && copy\-dei\-from\-outer\-frame\-tag>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <#if copy\-dei\-from\-inner\-frame\-tag?has_content && copy\-dei\-from\-inner\-frame\-tag>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">1</dei-from-frame-tag>
+              </dei-marking-list>
+              </#if>
+          </#if>
+            </dei-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+        </classifier-entry>
+        <classifier-entry>
+          <name>${remarking\-policy\-name}_classifier7</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+		  <#if vsi\-tag\-number == "dual">
+            <tag>
+            <index>0</index>
+            <in-pbit-list>0-7</in-pbit-list>
+            </tag>
+            <tag>
+            <index>1</index>
+            <in-pbit-list>7</in-pbit-list>
+            </tag>
+		  <#else>
+		    <tag>
+            <index>0</index>
+            <in-pbit-list>7</in-pbit-list>
+            </tag>
+		  </#if>
+          </vlans>
+          <#if pbit7\-to\-outer\-pbit\-marking?has_content || copy\-pbit\-from\-outer\-frame\-tag?has_content || copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>pbit-marking</action-type>
+            <pbit-marking-cfg>
+		  <#if pbit7\-to\-outer\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>0</index>
+                <pbit-value>${pbit7\-to\-outer\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              <#if pbit7\-to\-inner\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>1</index>
+                <pbit-value>${pbit7\-to\-inner\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              </#if>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-pbit\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+             <pbit-marking-list>
+               <index>0</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+             <pbit-marking-list>
+               <index>1</index>
+               <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+             </pbit-marking-list>
+          <#elseif copy\-pbit\-from\-outer\-frame\-tag?has_content && copy\-pbit\-from\-outer\-frame\-tag>
+              <pbit-marking-list>
+                <index>0</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0</pbit-from-frame-tag>
+              </pbit-marking-list>
+              <#if copy\-pbit\-from\-inner\-frame\-tag?has_content && copy\-pbit\-from\-inner\-frame\-tag>
+              <pbit-marking-list>
+                <index>1</index>
+                <pbit-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">1</pbit-from-frame-tag>
+              </pbit-marking-list>
+              </#if>
+          </#if>
+            </pbit-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+          <#if dei0\-to\-outer\-dei\-marking?has_content || copy\-dei\-from\-outer\-frame\-tag?has_content || copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>dei-marking</action-type>
+            <dei-marking-cfg>
+		  <#if dei0\-to\-outer\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>0</index>
+                <dei-value>${dei0\-to\-outer\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              <#if dei0\-to\-inner\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>1</index>
+                <dei-value>${dei0\-to\-inner\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              </#if>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1?has_content && copy\-dei\-from\-outer\-frame\-tag\-to\-markinglist0and1>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+          <#elseif copy\-dei\-from\-outer\-frame\-tag?has_content && copy\-dei\-from\-outer\-frame\-tag>
+              <dei-marking-list>
+                <index>0</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">0</dei-from-frame-tag>
+              </dei-marking-list>
+              <#if copy\-dei\-from\-inner\-frame\-tag?has_content && copy\-dei\-from\-inner\-frame\-tag>
+              <dei-marking-list>
+                <index>1</index>
+                <dei-from-frame-tag xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension-dei">1</dei-from-frame-tag>
+              </dei-marking-list>
+              </#if>
+          </#if>
+            </dei-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+        </classifier-entry>
+		<#if marker\-policy\-type == "tagged and untagged">
+        <classifier-entry>
+          <name>${remarking\-policy\-name}_classifier_untagged</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+            <untagged/>
+          </vlans>
+          <#if untagged\-to\-outer\-pbit\-marking?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>pbit-marking</action-type>
+            <pbit-marking-cfg>
+		  <#if untagged\-to\-outer\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>0</index>
+                <pbit-value>${untagged\-to\-outer\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              <#if untagged\-to\-inner\-pbit\-marking?has_content>
+			  <pbit-marking-list>
+                <index>1</index>
+                <pbit-value>${untagged\-to\-inner\-pbit\-marking}</pbit-value>
+              </pbit-marking-list>
+              </#if>
+          </#if>
+            </pbit-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+          <#if dei0\-to\-outer\-dei\-marking?has_content>
+          <classifier-action-entry-cfg>
+            <action-type>dei-marking</action-type>
+            <dei-marking-cfg>
+		  <#if dei0\-to\-outer\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>0</index>
+                <dei-value>${dei0\-to\-outer\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              <#if dei0\-to\-inner\-dei\-marking?has_content>
+			  <dei-marking-list>
+                <index>1</index>
+                <dei-value>${dei0\-to\-inner\-dei\-marking}</dei-value>
+              </dei-marking-list>
+              </#if>
+          </#if>
+            </dei-marking-cfg>
+          </classifier-action-entry-cfg>
+          </#if>
+        </classifier-entry>
+		</#if>
+		</#if>
+      </classifiers>
+    </config>
+  </edit-config>
+</rpc>

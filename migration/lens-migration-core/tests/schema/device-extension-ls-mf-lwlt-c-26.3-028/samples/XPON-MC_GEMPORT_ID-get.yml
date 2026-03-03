@@ -1,0 +1,18 @@
+arguments:
+  olt-infrastructure-name:
+    description: Channel group
+    suggested-values:
+    - cp1
+  xpon-technology:
+    description: Type of Pon
+    suggested-values:
+    - gpon
+domains: transport>xpon>id
+entity: mc_gemport
+freemarker: true
+name: Retrieve transport XPON multicast GEM port ID
+network-virtualizer: true
+operation: get
+sample-id: transport-xpon-id-mc_gemport-get
+scope: xpon
+status: draft

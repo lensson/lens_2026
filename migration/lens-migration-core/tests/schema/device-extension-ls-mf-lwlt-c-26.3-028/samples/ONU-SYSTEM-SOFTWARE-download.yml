@@ -1,0 +1,26 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  software-name:
+    description: SOFTWARE-NAME
+    suggested-values:
+    - 3FExxxxxxxxxxx
+  software-operation-name:
+    description: SOFTWARE-OPERATION-NAME
+    suggested-values:
+    - application_software
+    - onu_vendor_specific_software_1
+    - onu_vendor_specific_software_2
+  url:
+    description: URL
+    suggested-values:
+    - https://xxx.xxx.xxx.xxx/build/ONT/3FExxxxxxxxxxx
+domains: onu>system>software
+freemarker: true
+name: Download new software
+operation: download
+sample-id: onu-system-software-download
+scope: eonu
+status: draft

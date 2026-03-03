@@ -1,0 +1,15 @@
+arguments:
+  license-key-name:
+    description: The name of the CDE License Key XML file to retrieve. If this entry
+      is not provided, then all CDE License Keys are retrieved
+    optional: true
+    suggested-values:
+    - A12345
+domains: system>licensing
+entity: cde-license-key
+freemarker: true
+name: Retrieve a single CDE License Key or all CDE License Keys
+operation: get-config
+sample-id: system-licensing-cde-license-key-get-config
+scope: licensing
+status: draft

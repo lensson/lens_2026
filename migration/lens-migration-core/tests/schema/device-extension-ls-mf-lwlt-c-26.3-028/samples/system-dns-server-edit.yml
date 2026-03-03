@@ -1,0 +1,20 @@
+arguments:
+  dns-server-address:
+    description: Both IPv4 and IPv6 addresses are supported.
+    suggested-values:
+    - 1.1.1.1
+  dns-server-name:
+    description: An arbitrary name for the DNS server
+    suggested-values:
+    - DNS-SERVER1
+  dns-server-port:
+    description: The port number of DNS server
+    suggested-values:
+    - 53
+domains: system>dns
+entity: server
+freemarker: true
+name: Configure DNS server
+operation: edit
+sample-id: system-dns-server-edit
+status: draft

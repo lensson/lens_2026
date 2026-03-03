@@ -1,0 +1,19 @@
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>${vlan\-sub\-interface}</name>
+        </interface>
+      </interfaces>
+      <gemports xmlns="urn:bbf:yang:bbf-xpongemtcont">
+        <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>${vlan\-sub\-interface}-gem1</name>
+        </gemport>
+      </gemports>
+    </filter>
+  </get-config>
+</rpc>

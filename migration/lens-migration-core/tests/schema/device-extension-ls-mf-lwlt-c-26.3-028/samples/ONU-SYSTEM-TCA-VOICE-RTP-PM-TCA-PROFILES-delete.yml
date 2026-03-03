@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  rtp-failure-tca-profile:
+    description: POTS RTP performance monitoring TCA profile name
+    suggested-values:
+    - rtp_tca_profile
+domains: onu>system>tca>pm-profiles
+entity: rtp-tca-profile
+freemarker: true
+name: Remove POTS RTP PM TCA profile
+operation: remove
+sample-id: onu-system-tca-pm-profiles-rtp-tca-profile-remove
+scope: eonu
+status: draft

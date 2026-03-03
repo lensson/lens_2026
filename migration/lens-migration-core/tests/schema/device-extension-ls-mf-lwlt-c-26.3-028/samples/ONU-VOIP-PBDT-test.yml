@@ -1,0 +1,25 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  voip-uni-name:
+    description: VOIP UNI name
+    suggested-values:
+    - POTS1
+  pbdt-test-name:
+    description: PBDT test instance name
+    suggested-values:
+    - pbdttest1
+  dial-number:
+    description: Phone number to be dialed for the SIP pull-break test
+    optional: true
+    suggested-values:
+    - '888888'
+domains: onu>transport>voip-sip
+freemarker: true
+name: Test PBDT VOIP
+operation: pbdt-test
+sample-id: onu-transport-voip-sip-pbdt-test
+scope: eonu
+status: draft

@@ -1,0 +1,17 @@
+arguments:
+  untag-policy-name:
+    description: Policy name
+    suggested-values:
+    - untag-policy
+  default-pbit:
+    description: the default pbit value for untagged packets
+    suggested-values:
+    - 0
+domains: unicast>qos>policy-profiles
+entity: untag_policy
+freemarker: true
+name: Configure QoS untag policy
+operation: edit
+sample-id: unicast-qos-policy-profiles-untag_policy-edit
+scope: not(mx) and not(dpu) and not(fx-p2p)
+status: draft

@@ -1,0 +1,25 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu_uni_intf:
+    description: UNI interface name
+    suggested-values:
+    - ontuni
+  eth-port-hw-option:
+    description: ONU Ethernet HW Option,Values Range:[ethernetCsmacd,veip]
+    suggested-values:
+    - ethernetCsmacd
+  pm_counter_size:
+    description: Modifies pm counter size of an UNI interface,Values Range:[32bit-performance-monitoring,64bit-performance-monitoring]
+    suggested-values:
+    - 32bit-performance-monitoring
+domains: onu>transport>xpon>enet
+entity: pm-countersize
+freemarker: true
+name: Modify UNI interface performance monitoring countersize
+operation: modify
+sample-id: onu-transport-xpon-enet-pm-countersize-modify
+scope: eonu
+status: draft

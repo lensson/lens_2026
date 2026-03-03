@@ -1,0 +1,24 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${interface\-name}</name>
+                <ais xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ethernet-cfm-oam-ais-mounted">
+                  <auto-shutdown>${auto\-shutdown}</auto-shutdown>
+                </ais>
+              </interface>
+            </interfaces>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

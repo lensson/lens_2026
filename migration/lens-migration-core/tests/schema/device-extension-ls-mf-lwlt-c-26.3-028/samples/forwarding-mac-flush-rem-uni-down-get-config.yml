@@ -1,0 +1,13 @@
+arguments:
+  venet-interface-name:
+    description: Name of the user interface.
+    suggested-values:
+    - OLT-VENET
+domains: unicast>forwarding
+entity: flush-rem-uni-down
+freemarker: true
+name: Retrieve the remove mac on uni down for OLT-VENET interface
+operation: get-config
+sample-id: unicast-forwarding-flush-rem-uni-down-get-config
+scope: not(dpu) and not(mx) and not(fx-p2p)
+status: draft

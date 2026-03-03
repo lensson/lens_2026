@@ -1,0 +1,17 @@
+arguments:
+  software-name:
+    description: Name of the (predefined) ONT software type.
+    suggested-values:
+    - ont_software
+  delete-software-name:
+    description: Revision name of the ont_software to be deleted
+    suggested-values:
+    - 02.01.55
+domains: system>software
+entity: ont-software
+freemarker: true
+name: Delete downloaded ONT software
+operation: delete
+sample-id: system-software-ont-software-delete
+scope: not(dpu) and not(mx) and not(fx-p2p) and not(fx-lt or mf-lt)
+status: draft

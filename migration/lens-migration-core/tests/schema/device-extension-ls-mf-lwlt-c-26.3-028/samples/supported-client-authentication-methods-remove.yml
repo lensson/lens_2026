@@ -1,0 +1,12 @@
+arguments:
+  authentication-method:
+    description: The authentication method to be deleted from the system.
+    suggested-values:
+    - password
+domains: system>authentication
+entity: supported-client-authentication-methods
+freemarker: true
+name: Remove one supported authentication method
+operation: remove
+sample-id: system-authentication-supported-client-authentication-methods-remove
+status: draft

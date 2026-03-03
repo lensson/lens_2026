@@ -1,0 +1,26 @@
+<cur-release-version>26.3</cur-release-version>
+<release-versions>
+    <version>20.12</version>
+    <version>21.3</version>
+    <version>21.6</version>
+    <version>21.9</version>
+    <version>21.12</version>
+    <version>22.3</version>
+    <version>22.6</version>
+    <version>22.9</version>
+    <version>22.12</version>
+    <version>23.3</version>
+    <version>23.6</version>
+    <version>23.9</version>
+    <version>23.12</version>
+    <version>24.3</version>
+    <version>24.6</version>
+    <version>24.9</version>
+    <version>24.12</version>
+    <version>25.3</version>
+    <version>25.6</version>
+    <version>25.9</version>
+    <version>25.12</version>
+    <version>26.3</version>
+</release-versions>
+

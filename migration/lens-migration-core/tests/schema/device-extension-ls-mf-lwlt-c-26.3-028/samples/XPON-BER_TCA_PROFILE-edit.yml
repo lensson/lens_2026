@@ -1,0 +1,32 @@
+arguments:
+  ber-tca-profile:
+    description: Name of the ber-tca profile.
+    suggested-values:
+    - pofile1
+  sd-threshold:
+    description: Bit error rate (BER) threshold for detecting the SD alarm.
+    optional: true
+    suggested-values:
+    - 9
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 10
+  sf-threshold:
+    description: Bit error rate (BER) threshold for detecting the SF alarm.
+    optional: true
+    suggested-values:
+    - 5
+    - 3
+    - 4
+    - 6
+    - 7
+    - 8
+domains: transport>xpon>ber-tca-profile
+freemarker: true
+name: create/modify ber tca profile
+operation: edit
+sample-id: transport-xpon-ber-tca-profile-edit
+status: draft

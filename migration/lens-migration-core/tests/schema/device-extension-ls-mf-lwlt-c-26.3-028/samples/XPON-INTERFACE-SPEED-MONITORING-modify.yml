@@ -1,0 +1,12 @@
+arguments:
+  period-length:
+    description: the monitoring period over which the data will be collected.
+    suggested-values:
+    - 5-minutes
+domains: transport>xpon>speed-monitoring
+freemarker: true
+name: Modify interface speed monitoring
+operation: modify
+sample-id: transport-xpon-speed-monitoring-modify
+scope: xpon
+status: draft

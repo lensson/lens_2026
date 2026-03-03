@@ -1,0 +1,22 @@
+arguments:
+  xpon-cage-name:
+    description: Cage name.
+    suggested-values:
+    - C1
+  model-name:
+    description: Model number of SFP plugged in the cage (model number can be a generic
+      model-name or a dedicated 3FE number).
+    suggested-values:
+    - NOKIA_NGPON
+  olt-port-name:
+    description: OLT infrastructure port name.
+    suggested-values:
+    - port-1
+domains: transport>xgspon>olt-port
+freemarker: true
+name: Edit xgspon OLT port
+operation: edit
+sample-id: transport-xgspon-olt-port-edit
+scope: ngpon2-xgs or gpon-xgs or gpon-xgs-25g or gpon-ngpon2-xgs-25g or gpon-xgs-25g-hs
+  or gpon-xgpon-xgs-25g or gpon-ngpon2-xgpon-xgs-25g or gpon-xgs-25g-50g
+status: draft

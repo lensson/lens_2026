@@ -1,0 +1,197 @@
+arguments:
+  enet-name:
+    description: The name of the virtual ENET that will be created
+    suggested-values:
+    - uni-1-1-1-1
+  v-ani-name:
+    description: The name of the ONU V-ANI Interface on which the virtual ENET is
+      created
+    suggested-values:
+    - v-ani-1-1-1
+  description:
+    description: Description of the interface.
+    optional: true
+  interface-usage:
+    description: The ethernet port type, default is uni, can also set as subtended-node-port.
+    optional: true
+  max-number-mac-addresses-interface:
+    description: Configures max-number-mac on interface
+    optional: true
+    suggested-values:
+    - 4294967295
+  v-ethernet-id:
+    description: The v-ethernet-id is used to generate v-mac for the v-enet interface.
+    optional: true
+    suggested-values:
+    - 1
+  packet-rate-policy-profile-name:
+    description: The name of referenced policy, which actions in the referenced classifiers
+      all are rate-limit-frames.
+    optional: true
+    suggested-values:
+    - obcRateLimitPol
+  olt-infrastructure-name:
+    description: The OLT infrastructure name used as root for traffic scheduling
+    optional: true
+    suggested-values:
+    - gpon-1-1
+  leaf-scheduler-name:
+    description: The leaf scheduler name to which the traffic is sent in downstream
+    optional: true
+    suggested-values:
+    - sch-node-uni1
+  onu-uniloopdetect-enable-flag:
+    description: Uni Loop detect enable or disable for an ONU template.
+    optional: true
+    suggested-values:
+    - 'true'
+  onu-uniloopdetect-auto-shut-off:
+    description: Uni Loop detect auto shut off for an ONU template.
+    optional: true
+    suggested-values:
+    - 'true'
+  eth-port-hw-option:
+    description: ONU Ethernet HW Option, Values Range:[1 ,10, 25, veip]
+    optional: true
+    suggested-values:
+    - '1'
+  onu-template-enet-name:
+    description: ENET interface name
+    optional: true
+    suggested-values:
+    - uni-template-1
+  fec-flag:
+    description: ONU Ethernet FEC Option, Values Range:[enable ,disable, per-802.3]
+    optional: true
+    suggested-values:
+    - per-802.3
+  gemport-sharing:
+    description: Used to indicate whether gemport sharing is enabled. Setting this
+      variable to false means that gemports are associated with VLAN sub-interface;
+      setting this variable to true means that gemports are not associated with VLAN
+      sub-interface and they are shared between the VLAN sub-interfaces on top of
+      the lower layer interface. Not setting this variable defaults the value to be
+      false(gemport sharing is disabled)
+    optional: true
+    suggested-values:
+    - false
+    - true
+  tc0-gemport-id:
+    description: The GEM Port ID used for the configured Traffic Class
+    optional: true
+    suggested-values:
+    - 1024
+  tc0-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 0
+    optional: true
+    suggested-values:
+    - no-sharing
+  tc1-gemport-id:
+    description: The GEM Port ID used for the configured Traffic Class
+    optional: true
+    suggested-values:
+    - 1025
+  tc1-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 1
+    optional: true
+    suggested-values:
+    - no-sharing
+  tc2-gemport-id:
+    description: The GEM Port ID used for the configured Traffic Class
+    optional: true
+    suggested-values:
+    - 1026
+  tc2-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 2
+    optional: true
+    suggested-values:
+    - no-sharing
+  tc3-gemport-id:
+    description: The GEM Port ID used for the configured Traffic Class
+    optional: true
+    suggested-values:
+    - 1027
+  tc3-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 3
+    optional: true
+    suggested-values:
+    - no-sharing
+  tc4-gemport-id:
+    description: The GEM Port ID used for the configured Traffic Class
+    optional: true
+    suggested-values:
+    - 1028
+  tc4-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 4
+    optional: true
+    suggested-values:
+    - no-sharing
+  tc5-gemport-id:
+    description: The GEM Port ID used for the configured Traffic Class
+    optional: true
+    suggested-values:
+    - 1029
+  tc5-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 5
+    optional: true
+    suggested-values:
+    - no-sharing
+  tc6-gemport-id:
+    description: The GEM Port ID used for the configured Traffic Class
+    optional: true
+    suggested-values:
+    - 1030
+  tc6-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 6
+    optional: true
+    suggested-values:
+    - no-sharing
+  tc7-gemport-id:
+    description: The GEM Port ID used for the configured Traffic Class
+    optional: true
+    suggested-values:
+    - 1031
+  tc7-gemport-set-name:
+    description: GEMPORT set name to indicate no-sharing, uni-sharing or onu-sharing
+      for traffic class 7
+    optional: true
+    suggested-values:
+    - no-sharing
+  downstream-aes:
+    description: Used to designate whether AES should be enabled/disabled for GEM
+      ports for the downstream direction
+    optional: true
+    suggested-values:
+    - false
+  upstream-aes:
+    description: Used to designate whether AES should be enabled/disabled for GEM
+      ports for the upstream direction
+    optional: true
+    suggested-values:
+    - false
+  slot-id:
+    description: Used to identify the ONU (virtual) slot; this value can be inserted
+      in various protocol messages
+    optional: true
+    suggested-values:
+    - 1
+  port-id:
+    description: Used to identify the ONU Ethernet UNI port under a given ONU (virtual)
+      slot; this value can be inserted in various protocol messages
+    optional: true
+    suggested-values:
+    - 1
+domains: transport>xpon>enet
+freemarker: true
+name: Edit Ethernet port
+operation: edit
+sample-id: transport-xpon-enet-edit
+scope: not(fx-p2p)
+status: draft

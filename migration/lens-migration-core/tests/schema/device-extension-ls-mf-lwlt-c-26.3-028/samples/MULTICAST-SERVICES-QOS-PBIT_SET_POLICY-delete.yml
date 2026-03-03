@@ -1,0 +1,13 @@
+arguments:
+  pbit-set-policy-name:
+    description: Policy name
+    suggested-values:
+    - igmp-pbit-set
+domains: multicast>qos
+entity: pbit_set_policy
+freemarker: true
+name: Delete MULTICAST SERVICES IGMP POLICY
+operation: delete
+sample-id: multicast-qos-pbit_set_policy-delete
+scope: multicast-fiber and not(dpu)
+status: draft

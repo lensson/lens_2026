@@ -1,0 +1,28 @@
+arguments:
+  n-vlan-profile-name:
+    description: the name of this profile
+    suggested-values:
+    - CC-USER-PROFILE
+    - IBRIDGE-USER-PROFILE
+  n-vlan-id:
+    description: VLAN ID received from the ONU, if not specified, it means matching
+      untagged
+    optional: true
+    suggested-values:
+    - 200
+  n-vlan-tag-from:
+    description: It's a VLAN tag index to indicate to use which pbit/DEI in the outer
+      VLAN tag or inner VLAN tag at egress side. If the VLAN-TAG is 0, it indicates
+      outer VLAN tag. If the VLAN-TAG is 1, it indicates inner VLAN tag. If not specified,
+      it indicates untag at egress side.
+    optional: true
+    suggested-values:
+    - 0
+domains: unicast>forwarding
+entity: n_vlan_profile
+freemarker: true
+name: Modify unicast services forwarding N_VLAN profile
+operation: modify
+sample-id: unicast-forwarding-n_vlan_profile-modify
+scope: not(dpu) and not(mx) and not(fx-p2p)
+status: draft

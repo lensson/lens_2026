@@ -1,0 +1,13 @@
+arguments:
+  count-policy-name:
+    description: Policy name
+    suggested-values:
+    - count-policy
+domains: unicast>qos>policy-profiles
+entity: count_policy
+freemarker: true
+name: Remove QoS count policy
+operation: remove
+sample-id: unicast-qos-policy-profiles-count_policy-remove
+scope: not(mx) and not(dpu) and not(fx-p2p) and not(qos-fiber-xpon-hwv5)
+status: draft

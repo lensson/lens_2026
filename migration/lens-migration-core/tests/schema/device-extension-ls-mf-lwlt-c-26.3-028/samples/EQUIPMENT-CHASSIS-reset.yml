@@ -1,0 +1,14 @@
+arguments:
+  reset-type:
+    description: Reset type option for the respective hardware component.
+    suggested-values:
+    - hardware-reset
+    - hardware-reset-to-default-configuration
+    - hardware-reset-with-self-test
+domains: equipment>chassis
+freemarker: true
+name: Reset chassis
+operation: reset
+sample-id: equipment-chassis-reset
+scope: not(inband-l2term) and not(eth-copper) and not(eth-copper-ci) and not(df32gm)
+status: draft

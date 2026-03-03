@@ -1,0 +1,47 @@
+arguments:
+  policing-pre-handling-profile-name:
+    description: policing-pre-handling-profile name
+    suggested-values:
+    - policing-pre-handling-profile
+  vlan-tag:
+    description: Vlan tag index
+    suggested-values:
+    - 0
+  pbits-green:
+    description: pbits that pre-colored as green
+    optional: true
+    suggested-values:
+    - - 5
+      - 6
+      - 7
+  pbits-yellow:
+    description: pbits that pre-colored as yellow
+    optional: true
+    suggested-values:
+    - - 2
+      - 3
+      - 4
+  pbits-red:
+    description: pbits that pre-colored as red
+    optional: true
+    suggested-values:
+    - - 0
+      - 1
+  dei0-color:
+    description: pre-color for dei 0
+    optional: true
+    suggested-values:
+    - green
+  dei1-color:
+    description: pre-color for dei 1
+    optional: true
+    suggested-values:
+    - yellow
+domains: unicast>qos>policy-profiles
+entity: policing_pre_handling_profile
+freemarker: true
+name: Configure QoS policing pre-handling profile
+operation: edit
+sample-id: unicast-qos-policy-profiles-policing_pre_handling_profile-edit
+scope: not(mx) and not(dpu) and not(qos-fiber-xpon-hwv5)
+status: draft

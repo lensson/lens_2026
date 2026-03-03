@@ -1,0 +1,13 @@
+arguments:
+  vani-interface-name:
+    description: The name of the v-ani interface
+    suggested-values:
+    - VANI
+domains: unicast>forwarding
+entity: vani-interface-statistics
+freemarker: true
+name: Reset clear the statistics related to a v-ani interface
+operation: reset
+sample-id: unicast-forwarding-vani-interface-statistics-reset
+scope: not(mx) and not(fx-p2p)
+status: draft

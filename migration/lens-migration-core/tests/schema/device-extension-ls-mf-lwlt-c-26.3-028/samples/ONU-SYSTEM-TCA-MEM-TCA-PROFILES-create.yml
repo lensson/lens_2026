@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  memory-tca-profile:
+    description: Memory threshold profile name
+    suggested-values:
+    - memory_tca_profile
+  memory-tca-threshold:
+    description: value for threshold range is 0..100
+    suggested-values:
+    - 90
+domains: onu>system>tca>pm-profiles
+entity: memory-tca-profile
+freemarker: true
+name: Configure memory tca profile
+operation: create
+sample-id: onu-system-tca-pm-profiles-memory-tca-profile-create
+scope: eonu
+status: draft

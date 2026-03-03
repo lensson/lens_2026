@@ -1,0 +1,17 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <confdConfig xmlns="http://tail-f.com/ns/confd_dyncfg/1.0">
+        <ssh>
+          <algorithms>
+            <kex xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove"/>
+            <serverHostKey xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove"/>
+          </algorithms>
+        </ssh>
+      </confdConfig>
+    </config>
+  </edit-config>
+</rpc>

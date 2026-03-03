@@ -1,0 +1,22 @@
+arguments:
+  interface-name:
+    description: Name of inter-shelf interface
+    suggested-values:
+    - inter-shelf
+  ipv4-address:
+    description: Inter-shelf interface IPv4 address
+    suggested-values:
+    - 135.251.194.186
+  control-plane-protocol-name:
+    description: The name of the control-plane protocol instance
+    suggested-values:
+    - inter-shelf
+available-locally: true
+domains: system>inband
+entity: intershelf-ip-route
+freemarker: true
+name: Remove static inter-shelf management IPv4 address and route
+operation: remove
+sample-id: system-inband-intershelf-ip-route-remove
+scope: inband-no-ipv4-inter-shelf
+status: draft

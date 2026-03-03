@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  component-name:
+    description: CPU component name
+    suggested-values:
+    - cpu1
+  pm-flag:
+    description: '**true** to enable or **false** to disable PM counters for a CPU
+      component'
+    suggested-values:
+    - 'true'
+domains: onu>system>cpu
+freemarker: true
+name: Set PM state for CPU component
+operation: pm-enable
+sample-id: onu-system-cpu-pm-enable
+scope: eonu
+status: draft

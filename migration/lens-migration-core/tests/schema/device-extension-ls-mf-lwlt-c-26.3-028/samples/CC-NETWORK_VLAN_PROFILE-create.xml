@@ -1,0 +1,100 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <frame-processing-profiles xmlns="urn:bbf:yang:bbf-frame-processing-profile">
+       <frame-processing-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+        <name>CC-SINGLE-VLAN-PROFILE</name>
+        <priority>100</priority>
+        <match-criteria>
+          <tag>
+            <index>0</index>
+            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+            <vlan-id>parameter-vlan-id</vlan-id>
+            <pbit>any</pbit>
+            <dei>any</dei>
+          </tag>
+        </match-criteria>
+        <ingress-rewrite>
+          <pop-tags>1</pop-tags>
+          <copy-from-tags-to-marking-list>
+            <tag-index>0</tag-index>
+            <pbit-marking-index>0</pbit-marking-index>
+            <dei-marking-index>0</dei-marking-index>
+          </copy-from-tags-to-marking-list>
+        </ingress-rewrite>
+        <egress-rewrite>
+          <push-tag>
+            <index>0</index>
+            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+            <vlan-id>vlan-id-from-match</vlan-id>
+            <pbit-marking-index>0</pbit-marking-index>
+            <dei-marking-index>0</dei-marking-index>
+          </push-tag>
+        </egress-rewrite>
+      </frame-processing-profile>
+      <frame-processing-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+        <name>CC-QINQ-VLAN-PROFILE</name>
+        <priority>100</priority>
+        <match-criteria>
+          <tag>
+            <index>0</index>
+            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+            <vlan-id>parameter-vlan-id</vlan-id>
+            <pbit>any</pbit>
+            <dei>any</dei>
+          </tag>
+          <tag>
+            <index>1</index>
+            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+            <vlan-id>parameter-vlan-id</vlan-id>
+            <pbit>any</pbit>
+            <dei>any</dei>
+          </tag>
+        </match-criteria>
+        <ingress-rewrite>
+          <pop-tags>2</pop-tags>
+          <copy-from-tags-to-marking-list>
+            <tag-index>0</tag-index>
+            <pbit-marking-index>0</pbit-marking-index>
+            <dei-marking-index>0</dei-marking-index>
+          </copy-from-tags-to-marking-list>
+          <copy-from-tags-to-marking-list>
+            <tag-index>1</tag-index>
+            <pbit-marking-index>1</pbit-marking-index>
+            <dei-marking-index>1</dei-marking-index>
+          </copy-from-tags-to-marking-list>
+        </ingress-rewrite>
+        <egress-rewrite>
+          <push-tag>
+            <index>0</index>
+            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+            <vlan-id>vlan-id-from-match</vlan-id>
+            <#if s\-vlan\-pbit\-dei\-marking\-list\-index?has_content>
+            <pbit-marking-index>${s\-vlan\-pbit\-dei\-marking\-list\-index}</pbit-marking-index>
+            <dei-marking-index>${s\-vlan\-pbit\-dei\-marking\-list\-index}</dei-marking-index>
+            <#else>
+            <pbit-marking-index>0</pbit-marking-index>
+            <dei-marking-index>0</dei-marking-index>
+            </#if>
+           </push-tag>
+          <push-tag>
+            <index>1</index>
+            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+            <vlan-id>vlan-id-from-match</vlan-id>
+            <#if c\-vlan\-pbit\-dei\-marking\-list\-index?has_content>
+            <pbit-marking-index>${c\-vlan\-pbit\-dei\-marking\-list\-index}</pbit-marking-index>
+            <dei-marking-index>${c\-vlan\-pbit\-dei\-marking\-list\-index}</dei-marking-index>
+            <#else>
+            <pbit-marking-index>0</pbit-marking-index>
+            <dei-marking-index>0</dei-marking-index>
+            </#if>
+          </push-tag>
+        </egress-rewrite>
+       </frame-processing-profile>
+      </frame-processing-profiles>
+    </config>
+  </edit-config>
+</rpc>

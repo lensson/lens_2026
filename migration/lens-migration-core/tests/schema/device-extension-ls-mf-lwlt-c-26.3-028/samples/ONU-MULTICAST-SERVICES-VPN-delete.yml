@@ -1,0 +1,16 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  vpn-name:
+    description: The name of a multicast vpn.
+    suggested-values:
+    - mc-vpn
+domains: onu>multicast>vpn
+freemarker: true
+name: Delete multicast VPN service
+operation: delete
+sample-id: onu-multicast-vpn-delete
+scope: eonu
+status: draft

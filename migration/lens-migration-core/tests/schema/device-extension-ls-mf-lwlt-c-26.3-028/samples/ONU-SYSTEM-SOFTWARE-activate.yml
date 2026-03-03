@@ -1,0 +1,22 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  software-name:
+    description: SOFTWARE-NAME
+    suggested-values:
+    - 3FExxxxxxxxxxx
+  software-operation-name:
+    description: SOFTWARE-OPERATION-NAME
+    suggested-values:
+    - application_software
+    - onu_vendor_specific_software_1
+    - onu_vendor_specific_software_2
+domains: onu>system>software
+freemarker: true
+name: Activate downloaded software
+operation: activate
+sample-id: onu-system-software-activate
+scope: eonu
+status: draft

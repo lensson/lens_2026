@@ -1,0 +1,14 @@
+arguments:
+  venet-interface-name:
+    description: The name of the olt-v-enet or a VLAN sub-interface
+    suggested-values:
+    - VSI
+domains: unicast>forwarding
+entity: interface-statistics
+freemarker: true
+name: Reset clear the statistics related to a olt-v-enet or a list of VLAN sub-interfaces
+  belong to the olt-v-enet
+operation: reset
+sample-id: unicast-forwarding-interface-statistics-reset
+scope: not(mx) and not(fx-p2p)
+status: draft

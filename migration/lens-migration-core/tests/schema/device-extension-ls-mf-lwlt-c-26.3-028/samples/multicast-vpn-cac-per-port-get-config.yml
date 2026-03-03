@@ -1,0 +1,12 @@
+arguments:
+  interface-name:
+    description: The name of a channel pair,eth, ptm or lag.
+    suggested-values:
+    - gpon-1-1-cpair
+domains: multicast>vpn
+entity: cac-per-port
+freemarker: true
+name: Retrieve multicast CAC per port
+operation: get-config
+sample-id: multicast-vpn-cac-per-port-get-config
+status: draft

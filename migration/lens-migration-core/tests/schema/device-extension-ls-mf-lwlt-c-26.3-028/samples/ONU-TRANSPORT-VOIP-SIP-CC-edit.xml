@@ -1,0 +1,334 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <policies xmlns="urn:bbf:yang:bbf-qos-policies-mounted">
+              <policy>
+                <name>voip-policy-utg1</name>
+                <classifiers>
+                  <name>voip-classifier-utg2pml</name>
+                </classifiers>
+              </policy>
+              <policy>
+                <name>mpbit-2-tc</name>
+                <classifiers>
+                  <name>policy-mpbit-2-tc_classifier0</name>
+                </classifiers>
+                <classifiers>
+                  <name>policy-mpbit-2-tc_classifier1</name>
+                </classifiers>
+                <classifiers>
+                  <name>policy-mpbit-2-tc_classifier2</name>
+                </classifiers>
+                <classifiers>
+                  <name>policy-mpbit-2-tc_classifier3</name>
+                </classifiers>
+                <classifiers>
+                  <name>policy-mpbit-2-tc_classifier4</name>
+                </classifiers>
+                <classifiers>
+                  <name>policy-mpbit-2-tc_classifier5</name>
+                </classifiers>
+                <classifiers>
+                  <name>policy-mpbit-2-tc_classifier6</name>
+                </classifiers>
+                <classifiers>
+                  <name>policy-mpbit-2-tc_classifier7</name>
+                </classifiers>
+              </policy>
+            </policies>
+            <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers-mounted">
+              <classifier-entry>
+                <name>voip-classifier-utg2pml</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <untagged/>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>pbit-marking</action-type>
+                  <pbit-marking-cfg>
+                    <pbit-marking-list>
+                      <index>0</index>
+                      <pbit-value>${us\-pbit}</pbit-value>
+                    </pbit-marking-list>
+                  </pbit-marking-cfg>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+              <classifier-entry>
+                <name>policy-mpbit-2-tc_classifier0</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing-mounted">
+                    <index>0</index>
+                    <pbit-value>0</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+              <classifier-entry>
+                <name>policy-mpbit-2-tc_classifier1</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing-mounted">
+                    <index>0</index>
+                    <pbit-value>1</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+              <classifier-entry>
+                <name>policy-mpbit-2-tc_classifier2</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing-mounted">
+                    <index>0</index>
+                    <pbit-value>2</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+              <classifier-entry>
+                <name>policy-mpbit-2-tc_classifier3</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing-mounted">
+                    <index>0</index>
+                    <pbit-value>3</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+              <classifier-entry>
+                <name>policy-mpbit-2-tc_classifier4</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing-mounted">
+                    <index>0</index>
+                    <pbit-value>4</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+              <classifier-entry>
+                <name>policy-mpbit-2-tc_classifier5</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing-mounted">
+                    <index>0</index>
+                    <pbit-value>5</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+              <classifier-entry>
+                <name>policy-mpbit-2-tc_classifier6</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing-mounted">
+                    <index>0</index>
+                    <pbit-value>6</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+              <classifier-entry>
+                <name>policy-mpbit-2-tc_classifier7</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing-mounted">
+                    <index>0</index>
+                    <pbit-value>7</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+            </classifiers>
+            <qos-policy-profiles xmlns="urn:bbf:yang:bbf-qos-policies-mounted">
+              <policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>us-egress-qos</name>
+                <policy-list>
+                  <name>voip-policy-utg1</name>
+                </policy-list>
+                <policy-list>
+                  <name>mpbit-2-tc</name>
+                </policy-list>
+              </policy-profile>
+            </qos-policy-profiles>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>voip-onu-v-enet</name>
+                <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type-mounted">bbf-xponift:onu-v-enet</type>
+                <onu-v-enet xmlns="urn:bbf:yang:bbf-xponani-mounted">
+                  <ani>${ani\-name}</ani>
+                </onu-v-enet>
+              </interface>
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${voip\-cc\-name}</name>
+                <type xmlns:bbfift="urn:bbf:yang:bbf-if-type-mounted">bbfift:vlan-sub-interface</type>
+                <subif-lower-layer xmlns="urn:bbf:yang:bbf-sub-interfaces-mounted">
+                  <interface>voip-onu-v-enet</interface>
+                </subif-lower-layer>
+                <inline-frame-processing xmlns="urn:bbf:yang:bbf-sub-interfaces-mounted">
+                  <ingress-rule>
+                    <rule>
+                      <name>rule_1</name>
+                      <priority>100</priority>
+                      <flexible-match>
+                        <match-criteria xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+                          <untagged/>
+                        </match-criteria>
+                      </flexible-match>
+                      <ingress-rewrite>
+                        <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">0</pop-tags>
+                        <push-tag xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+                          <index>0</index>
+                          <dot1q-tag>
+                            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                            <vlan-id>${n\-vlan\-id}</vlan-id>
+                            <pbit-marking-index xmlns="urn:bbf:yang:bbf-qos-policies-sub-interfaces-mounted">0</pbit-marking-index>
+                            <write-dei-0/>
+                          </dot1q-tag>
+                        </push-tag>
+                      </ingress-rewrite>
+                    </rule>
+                  </ingress-rule>
+                  <egress-rewrite>
+                    <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">1</pop-tags>
+                  </egress-rewrite>
+                </inline-frame-processing>
+                <ingress-qos-policy-profile xmlns="urn:bbf:yang:bbf-qos-policies-mounted">us-egress-qos</ingress-qos-policy-profile>
+              </interface>
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="replace">
+                <name>ip-host</name>
+                <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type-mounted">ianaift:ipForward</type>
+                <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip-mounted">
+                  <enabled>true</enabled>
+                  <ip-address-acquisition-method xmlns="urn:ietf:params:xml:ns:yang:nokia-ip-aug-mounted">
+<#if ip\-origin?has_content>
+                    <origin>${ip\-origin}</origin>
+</#if>
+                  </ip-address-acquisition-method>
+                  <address>
+<#if ip\-address?has_content>
+                    <ip>${ip\-address}</ip>
+<#else>
+                    <ip>0.0.0.2</ip>
+</#if>
+<#if netmask?has_content>
+                    <netmask>${netmask}</netmask>
+<#else>
+                    <netmask>255.255.255.0</netmask>
+</#if>
+                  </address>
+                  <dhcp xmlns="urn:ietf:params:xml:ns:yang:nokia-ip-aug-mounted">
+<#if dhcp\-dscp?has_content>
+                    <dscp-mark>${dhcp\-dscp}</dscp-mark>
+<#else>
+                    <dscp-mark>24</dscp-mark>
+</#if>
+                  </dhcp>
+                </ipv4>
+                <ipif-lower-layer xmlns="urn:ietf:params:xml:ns:yang:nokia-ip-aug-mounted">
+                  <sub-interface>${voip\-cc\-name}</sub-interface>
+                </ipif-lower-layer>
+                <ip-diagnose-control xmlns="urn:ietf:params:xml:ns:yang:nokia-ip-aug-mounted">
+                  <respond-to-pings>${ping}</respond-to-pings>
+                  <respond-to-traceroute-messages>${traceroute}</respond-to-traceroute-messages>
+                </ip-diagnose-control>
+              </interface>
+            </interfaces>
+            <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system-mounted">
+              <dns-resolver>
+                <server xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>pridns</name>
+                  <udp-and-tcp>
+<#if primary\-dns?has_content>
+                    <address>${primary\-dns}</address>
+<#else>
+                    <address>0.0.0.0</address>
+</#if>
+                  </udp-and-tcp>
+                </server>
+                <server xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>backupdns</name>
+                  <udp-and-tcp>
+<#if secondary\-dns?has_content>
+                    <address>${secondary\-dns}</address>
+<#else>
+                    <address>0.0.0.0</address>
+</#if>
+                  </udp-and-tcp>
+                </server>
+              </dns-resolver>
+            </system>
+            <routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing-mounted">
+              <control-plane-protocols>
+                <control-plane-protocol xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <type>static</type>
+                  <name>default-route</name>
+                  <static-routes>
+                    <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ipv4-unicast-routing-mounted">
+                      <route xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="merge">
+                        <destination-prefix>0.0.0.0/0</destination-prefix>
+                        <next-hop>
+<#if gateway\-address?has_content>
+                          <next-hop-address>${gateway\-address}</next-hop-address>
+<#else>
+                          <next-hop-address>0.0.0.1</next-hop-address>
+</#if>
+                        </next-hop>
+                      </route>
+                    </ipv4>
+                  </static-routes>
+                </control-plane-protocol>
+              </control-plane-protocols>
+            </routing>
+            <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont-mounted">
+              <gemports>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${voip\-cc\-name}-GEM${tc}</name>
+                  <interface>${voip\-cc\-name}</interface>
+                  <traffic-class>${tc}</traffic-class>
+                  <tcont-ref>${gemport\-t\-cont}</tcont-ref>
+<#if gemport\-id?has_content>
+                  <gemport-id>${gemport\-id}</gemport-id>
+</#if>
+                </gemport>
+              </gemports>
+            </xpongemtcont>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,14 @@
+arguments:
+  xpon-transceiver-criteria:
+    description: configure power saving mode.
+    suggested-values:
+    - if-no-vani-configured
+    - none
+domains: system>power-saving
+entity: xpon-transceiver-criteria
+freemarker: true
+name: Configure power saving at system level
+operation: edit
+sample-id: system-power-saving-xpon-transceiver-criteria-edit
+scope: xpon
+status: draft

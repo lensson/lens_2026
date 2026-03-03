@@ -1,0 +1,29 @@
+arguments:
+  ibridge-user-port-name:
+    description: Ibridge user port name
+    optional: true
+  cc-name:
+    description: The name of CC sample
+    optional: true
+  enable:
+    description: Enables L2 DHCPv4 Relay Agent option 82 when configured as true
+    suggested-values:
+    - true
+  trusted-port:
+    description: On a trusted port the option 82 from the user is accepted in upstream
+      packets and it is not removed from downstream packets and vice versa for untrusted
+      port
+    suggested-values:
+    - false
+  dhcp-profile-name:
+    description: Name of the DHCPv4 Relay Agent profile
+    suggested-values:
+    - dhcp_profile
+domains: unicast>protocols>dhcp
+entity: interface
+freemarker: true
+name: Attach L2 DHCPv4 Relay Agent profile to VLAN sub-interface
+operation: edit
+sample-id: unicast-protocols-dhcp-interface-edit
+scope: fiber
+status: draft

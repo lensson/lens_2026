@@ -1,0 +1,18 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get>
+    <filter type="subtree">
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <qos-policy-profiles xmlns="urn:bbf:yang:bbf-qos-policies-mounted">
+              <policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                <name>${qos\-policy\-profile\-name}</name>
+              </policy-profile>
+            </qos-policy-profiles>
+          </root>
+        </onu>
+      </onus>
+    </filter>
+  </get>
+</rpc>

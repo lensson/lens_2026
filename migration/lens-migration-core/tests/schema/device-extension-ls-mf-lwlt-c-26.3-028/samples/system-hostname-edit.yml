@@ -1,0 +1,12 @@
+arguments:
+  host-name:
+    description: The name for the host
+    suggested-values:
+    - NOKIA-FN
+available-locally: true
+domains: system>hostname
+freemarker: true
+name: Configure hostname
+operation: edit
+sample-id: system-hostname-edit
+status: draft

@@ -1,0 +1,20 @@
+arguments:
+  interface-statistics-mode:
+    allowed-values:
+    - best-effort
+    - 'false'
+    optional: true
+    suggested-values:
+    - best-effort
+  vani-interface-name:
+    description: The name of the v-ani interface who will enable the statistics.
+    suggested-values:
+    - VANI
+domains: unicast>forwarding
+entity: vani-interface-statistics
+freemarker: true
+name: Enable statistics on v-ani interface
+operation: enable
+sample-id: unicast-forwarding-vani-interface-statistics-enable
+scope: not(mx) and not(fx-p2p)
+status: draft

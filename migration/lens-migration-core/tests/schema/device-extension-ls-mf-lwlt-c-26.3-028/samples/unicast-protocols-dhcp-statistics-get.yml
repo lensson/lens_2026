@@ -1,0 +1,19 @@
+arguments:
+  ibridge-user-port-name:
+    description: The name of Ibridge user port name for L2 DHCPv4 Relay Agent statistics
+      counter needs to be retrieved
+    optional: true
+    suggested-values:
+    - bridge-port-1
+  cc-name:
+    description: The name of CC user port name for L2 DHCPv4 Relay Agent statistics
+      counter needs to be retrieved
+    optional: true
+domains: unicast>protocols>dhcp
+entity: statistics
+freemarker: true
+name: Retrieve L2 DHCPv4 Relay Agent statistics
+operation: get
+sample-id: unicast-protocols-dhcp-statistics-get
+scope: fiber
+status: draft

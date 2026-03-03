@@ -1,0 +1,20 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+ <edit-config>
+   <target>
+     <running/>
+   </target>
+   <config>
+     <system-security xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-aaa">
+       <client-authentication>
+            <supported-authentication-methods xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+              <#if authentication\-method == 'password'>
+                <password/>
+              <#elseif authentication\-method == 'publickey'>
+                <publickey/>
+              </#if>
+            </supported-authentication-methods>
+       </client-authentication>
+     </system-security>
+   </config>
+ </edit-config>
+</rpc>

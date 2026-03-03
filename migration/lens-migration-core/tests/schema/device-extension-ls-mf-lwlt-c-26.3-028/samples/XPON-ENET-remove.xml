@@ -1,0 +1,120 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${enet\-name}</name>
+          <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:olt-v-enet</type>
+        </interface>
+      </interfaces>
+      <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont">
+      <gemports>
+        <gemport xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+          <name>${enet\-name}-GEM0</name>
+        </gemport>
+        <gemport xmlns:ns2="urn:ietf:params:xml:ns:netconf:base:1.0" ns2:operation="remove">
+          <name>${enet\-name}-GEM1</name>
+        </gemport>
+        <gemport xmlns:ns3="urn:ietf:params:xml:ns:netconf:base:1.0" ns3:operation="remove">
+          <name>${enet\-name}-GEM2</name>
+        </gemport>
+        <gemport xmlns:ns4="urn:ietf:params:xml:ns:netconf:base:1.0" ns4:operation="remove">
+          <name>${enet\-name}-GEM3</name>
+        </gemport>
+        <gemport xmlns:ns5="urn:ietf:params:xml:ns:netconf:base:1.0" ns5:operation="remove">
+          <name>${enet\-name}-GEM4</name>
+        </gemport>
+        <gemport xmlns:ns6="urn:ietf:params:xml:ns:netconf:base:1.0" ns6:operation="remove">
+          <name>${enet\-name}-GEM5</name>
+        </gemport>
+        <gemport xmlns:ns7="urn:ietf:params:xml:ns:netconf:base:1.0" ns7:operation="remove">
+          <name>${enet\-name}-GEM6</name>
+        </gemport>
+        <gemport xmlns:ns8="urn:ietf:params:xml:ns:netconf:base:1.0" ns8:operation="remove">
+          <name>${enet\-name}-GEM7</name>
+        </gemport>
+      </gemports>
+      </xpongemtcont>
+      <#if onu\-name?has_content>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <usage xmlns:template-common="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-template-common">template-common:node-from-template-usage</usage>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <uni-loop-detection xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+            </uni-loop-detection>
+<#if onu\-template\-enet\-name?has_content>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+                <template-ref>${onu\-template\-enet\-name}</template-ref>
+              </interface>
+            </interfaces>
+            <gemports>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <#if tc0\-gemport\-set\-name?has_content>
+                <template-ref>${tc0\-gemport\-set\-name}-${onu\-template\-enet\-name}-GEM0</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-enet\-name}-GEM0</template-ref>
+                </#if>
+              </gemport>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <#if tc1\-gemport\-set\-name?has_content>
+                <template-ref>${tc1\-gemport\-set\-name}-${onu\-template\-enet\-name}-GEM1</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-enet\-name}-GEM1</template-ref>
+                </#if>
+              </gemport>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <#if tc2\-gemport\-set\-name?has_content>
+                <template-ref>${tc2\-gemport\-set\-name}-${onu\-template\-enet\-name}-GEM2</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-enet\-name}-GEM2</template-ref>
+                </#if>
+              </gemport>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <#if tc3\-gemport\-set\-name?has_content>
+                <template-ref>${tc3\-gemport\-set\-name}-${onu\-template\-enet\-name}-GEM3</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-enet\-name}-GEM3</template-ref>
+                </#if>
+              </gemport>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <#if tc4\-gemport\-set\-name?has_content>
+                <template-ref>${tc4\-gemport\-set\-name}-${onu\-template\-enet\-name}-GEM4</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-enet\-name}-GEM4</template-ref>
+                </#if>
+              </gemport>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <#if tc5\-gemport\-set\-name?has_content>
+                <template-ref>${tc5\-gemport\-set\-name}-${onu\-template\-enet\-name}-GEM5</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-enet\-name}-GEM5</template-ref>
+                </#if>
+              </gemport>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <#if tc6\-gemport\-set\-name?has_content>
+                <template-ref>${tc6\-gemport\-set\-name}-${onu\-template\-enet\-name}-GEM6</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-enet\-name}-GEM6</template-ref>
+                </#if>
+              </gemport>
+              <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <#if tc7\-gemport\-set\-name?has_content>
+                <template-ref>${tc7\-gemport\-set\-name}-${onu\-template\-enet\-name}-GEM7</template-ref>
+                <#else>
+                <template-ref>${onu\-template\-enet\-name}-GEM7</template-ref>
+                </#if>
+              </gemport>
+            </gemports>
+</#if>
+          </template-parameters>
+        </onu>
+      </onus>
+      </#if>
+    </config>
+  </edit-config>
+</rpc>

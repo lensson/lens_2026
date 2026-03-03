@@ -1,0 +1,11 @@
+arguments:
+  traffic-descriptor-profile-name:
+    description: Traffic descriptor profile name.
+    suggested-values:
+    - tdp-1
+domains: transport>xpon>traffic-descriptor-profile
+freemarker: true
+name: Remove xpon upstream traffic descriptor profile
+operation: delete
+sample-id: transport-xpon-traffic-descriptor-profile-delete
+status: draft

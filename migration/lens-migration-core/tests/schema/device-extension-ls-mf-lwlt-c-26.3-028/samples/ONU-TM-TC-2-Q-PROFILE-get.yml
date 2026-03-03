@@ -1,0 +1,16 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  tc-2-q-profile-name:
+    description: TC 2 Queue Id Mapping
+    suggested-values:
+    - tc-2-queue-id-mapping
+domains: onu>transport>tm
+freemarker: true
+name: Get traffic class id to queue id mapping profile
+operation: get
+sample-id: onu-transport-tm-get
+scope: eonu
+status: draft

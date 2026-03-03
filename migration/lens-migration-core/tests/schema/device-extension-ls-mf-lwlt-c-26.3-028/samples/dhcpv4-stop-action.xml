@@ -1,0 +1,10 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+<action xmlns="urn:ietf:params:xml:ns:yang:1">
+    <dhcpv4-client-simulator xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-dhcpv4-client-simulator">
+      <session>
+      <interface>${interface}</interface>
+        <stop-client-session/>
+	</session>
+    </dhcpv4-client-simulator>
+</action>
+</rpc>

@@ -1,0 +1,8 @@
+available-locally: true
+domains: system>persistent
+entity: connectivity-data
+freemarker: true
+name: Save persistent connectivity data for inband connectivity
+operation: save
+sample-id: system-persistent-connectivity-data-save
+status: draft

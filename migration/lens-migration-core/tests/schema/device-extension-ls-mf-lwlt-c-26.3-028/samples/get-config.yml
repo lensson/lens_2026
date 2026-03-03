@@ -1,0 +1,7 @@
+available-locally: true
+domains: system>callhome
+freemarker: true
+name: Retrieve configured callhome parameters
+operation: get-config
+sample-id: system-callhome-get-config
+status: draft

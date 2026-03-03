@@ -1,0 +1,48 @@
+arguments:
+  interface-name:
+    description: Name of inband interface
+    suggested-values:
+    - inband
+  ipv6-address:
+    description: Inband interface IPv6 address
+    suggested-values:
+    - 2001:0A90:FF0:C203::0A50:5951
+  prefix-length:
+    description: The length of the subnet prefix
+    suggested-values:
+    - 123
+  control-plane-protocol-name:
+    description: The name of the control-plane protocol instance
+    suggested-values:
+    - inband
+  route6-dest-prefix:
+    description: IPv6 destination prefix
+    suggested-values:
+    - ::/0
+  route6-next-hop:
+    description: Route next-hop
+    suggested-values:
+    - 2001:0A90:FF0:C203::0A50:5941
+  vlan-sub-interface:
+    description: Name of vlan sub-interface
+    optional: true
+    suggested-values:
+    - sinband
+  l2-term-interface:
+    description: Name of l2 termination interface
+    optional: true
+    suggested-values:
+    - inband-l2term
+  vlan-id:
+    description: Vlan value
+    optional: true
+    suggested-values:
+    - '4000'
+available-locally: true
+domains: system>inband
+entity: ipv6-route
+freemarker: true
+name: Configure static inband management IPv6 address, route and VLAN
+operation: edit
+sample-id: system-inband-ipv6-route-edit
+status: draft

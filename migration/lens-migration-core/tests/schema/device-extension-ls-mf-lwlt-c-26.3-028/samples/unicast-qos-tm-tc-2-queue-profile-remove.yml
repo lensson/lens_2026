@@ -1,0 +1,13 @@
+arguments:
+  tc2q-profile-name:
+    description: Name of TC-to-Queue profile.
+    optional: false
+    suggested-values:
+    - tc-2-queue-id-mapping
+domains: unicast>qos>tm
+entity: tc-2-queue-profile
+freemarker: true
+name: Remove Traffic Class to Queue id Mapping profile
+operation: remove
+sample-id: unicast-qos-tm-tc-2-queue-profile-remove
+status: draft

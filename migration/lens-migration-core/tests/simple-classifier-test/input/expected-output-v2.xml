@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Simple test case for XSLT generation tool
+  Based on bbf-qos-classifiers YANG module
+
+  This is the NEW VERSION (v2) configuration
+
+  Changes from v1:
+  1. Renamed 'high-priority-classifier' to 'priority-high-class'
+  2. Changed traffic class value from 1 to 0 for high priority
+  3. Added new 'medium-priority-classifier'
+  4. Removed 'best-effort-classifier'
+-->
+<classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+
+  <!-- Classifier Entry 1: High Priority Traffic (RENAMED) -->
+  <classifier-entry>
+    <name>priority-high-class</name>
+    <description>Classifier for high priority traffic with P-bit 6 and 7</description>
+
+    <!-- Action: Mark for scheduling traffic class 0 (CHANGED from 1 to 0) -->
+    <classifier-action-entry-cfg>
+      <action-type>scheduling-traffic-class</action-type>
+      <scheduling-traffic-class>0</scheduling-traffic-class>
+    </classifier-action-entry-cfg>
+  </classifier-entry>
+
+  <!-- Classifier Entry 2: Medium Priority Traffic (NEW) -->
+  <classifier-entry>
+    <name>medium-priority-classifier</name>
+    <description>Classifier for medium priority traffic with P-bit 4 and 5</description>
+
+    <!-- Action: Mark for scheduling traffic class 2 -->
+    <classifier-action-entry-cfg>
+      <action-type>scheduling-traffic-class</action-type>
+      <scheduling-traffic-class>2</scheduling-traffic-class>
+    </classifier-action-entry-cfg>
+  </classifier-entry>
+
+  <!-- Classifier Entry 3: Low Priority Traffic (UNCHANGED) -->
+  <classifier-entry>
+    <name>low-priority-classifier</name>
+    <description>Classifier for low priority traffic with P-bit 0 and 1</description>
+
+    <!-- Action: Mark for scheduling traffic class 4 -->
+    <classifier-action-entry-cfg>
+      <action-type>scheduling-traffic-class</action-type>
+      <scheduling-traffic-class>4</scheduling-traffic-class>
+    </classifier-action-entry-cfg>
+  </classifier-entry>
+
+  <!-- Note: 'best-effort-classifier' has been REMOVED -->
+
+</classifiers>

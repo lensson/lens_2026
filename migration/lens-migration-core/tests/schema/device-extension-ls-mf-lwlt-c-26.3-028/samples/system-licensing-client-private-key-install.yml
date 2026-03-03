@@ -1,0 +1,14 @@
+arguments:
+  private-key:
+    description: Private key value to be used
+    sensitive: true
+    suggested-values:
+    - MIIJQwIBADANBgkqhkiG9w0BAQE...
+domains: system>licensing
+entity: client-private-key
+freemarker: true
+name: Install private key for connection to License Server
+operation: install
+sample-id: system-licensing-client-private-key-install
+scope: licensing
+status: draft

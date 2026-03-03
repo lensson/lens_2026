@@ -1,0 +1,6 @@
+domains: system>bulk-data-collection>template
+freemarker: true
+name: Retrieve configured IPFIX templates
+operation: get-config
+sample-id: system-bulk-data-collection-template-get-config
+status: draft

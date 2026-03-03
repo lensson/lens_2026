@@ -1,0 +1,44 @@
+arguments:
+  pinned-ca-list:
+    description: The local pinned certificates list name to be used for connection
+      to License Server
+    optional: true
+    suggested-values:
+    - cswl
+  server-auth-est-profile-name:
+    description: The PKI EST profile name to be used to authenticate the License Server
+    optional: true
+    suggested-values:
+    - EstProfile
+  certificate:
+    description: The local end-entity certificate to be used for Mutual TLS with the
+      License Server that will be added to the local-definition
+    optional: true
+    suggested-values:
+    - MIIGOTCCBCGgAwIBAgIBATANBgkq...
+  client-auth-est-profile-name:
+    description: The PKI EST profile name to be used for Mutual TLS with the License
+      Server
+    optional: true
+    suggested-values:
+    - EstProfile
+  tls-version:
+    description: A TLS version to add to the list of acceptable TLS versions of hello
+      parameters
+    optional: true
+    suggested-values:
+    - tls13
+  cipher-suite:
+    description: A cipher suite to add to the list of acceptable cipher suites of
+      hello parameters
+    optional: true
+    suggested-values:
+    - tls-chacha20-poly1305-sha256
+domains: system>licensing
+entity: client-certificate
+freemarker: true
+name: Configure certificate information for connection to License Server
+operation: edit
+sample-id: system-licensing-client-certificate-edit
+scope: licensing
+status: draft

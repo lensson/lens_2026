@@ -1,0 +1,18 @@
+arguments:
+  policing-profile-name:
+    description: Policing profile name
+    suggested-values:
+    - policing-profile
+  policing-pre-handling-profile-name:
+    description: Policing pre handling profile name
+    optional: true
+    suggested-values:
+    - policing-pre-handling-profile
+domains: unicast>qos>policy-profiles
+entity: policing_profile_with_type_cos_pre_handling_profile
+freemarker: true
+name: Remove QoS pre handling profile of type COS
+operation: remove
+sample-id: unicast-qos-policy-profiles-policing_profile_with_type_cos_pre_handling_profile-remove
+scope: not(mx) and not(dpu)
+status: draft

@@ -1,0 +1,14 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  reference-onu-v-vrefpoint:
+    description: reference onu vrefpoint interface name
+domains: onu>transport>tr069
+freemarker: true
+name: Remove TR069 to ONU
+operation: remove
+sample-id: onu-transport-tr069-remove
+scope: eonu
+status: draft

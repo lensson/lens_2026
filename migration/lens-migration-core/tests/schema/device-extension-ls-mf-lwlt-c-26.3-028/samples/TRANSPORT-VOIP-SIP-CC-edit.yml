@@ -1,0 +1,43 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ip-origin:
+    description: the methods to get IP, dhcp or static
+    optional: true
+    suggested-values:
+    - dhcp
+  ip-address:
+    description: IP address of the IP Host at the ONT.
+    optional: true
+    suggested-values:
+    - 1.1.1.1
+  netmask:
+    description: IP address network mask of the IP Host at the ONT.
+    optional: true
+    suggested-values:
+    - 255.0.0.0
+  primary-dns:
+    description: Address of the primary DNS server.
+    optional: true
+    suggested-values:
+    - 0.0.0.0
+  secondary-dns:
+    description: Address of the secondary DNS server.
+    optional: true
+    suggested-values:
+    - 0.0.0.0
+  gateway-address:
+    description: IP address of the default router
+    optional: true
+    suggested-values:
+    - 1.1.1.2
+domains: transport>voip-sip
+entity: cc
+freemarker: true
+name: Edit TRANSPORT VOIP SIP CC
+operation: edit
+sample-id: transport-voip-sip-cc-edit
+scope: ''
+status: draft

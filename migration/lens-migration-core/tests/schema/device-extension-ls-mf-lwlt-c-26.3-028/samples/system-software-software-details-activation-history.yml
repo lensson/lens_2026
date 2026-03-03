@@ -1,0 +1,17 @@
+arguments:
+  component:
+    description: Name of the component, default must be Chassis.
+    suggested-values:
+    - Chassis
+  download-software-name:
+    description: Name of the software for which activation history is needed.
+    suggested-values:
+    - ZJNDAQ2212.550
+available-locally: true
+domains: system>software
+freemarker: true
+name: Retrieve activation history details of software.
+operation: activation-history-get
+sample-id: system-software-activation-history-get
+scope: not(eth-copper) and not(eth-copper-ci)
+status: draft

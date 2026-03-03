@@ -1,0 +1,24 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <hardware xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted">
+              <component>
+                <name>${component\-name}</name>
+                <performance xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-hardware-cpu-performance-management-mounted">
+                  <cpu-mem-util-group xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">${pm_group}</cpu-mem-util-group>
+                </performance>
+              </component>
+            </hardware>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

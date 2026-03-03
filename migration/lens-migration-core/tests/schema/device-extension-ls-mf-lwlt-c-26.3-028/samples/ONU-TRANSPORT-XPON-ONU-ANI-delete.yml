@@ -1,0 +1,16 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ani-name:
+    description: ONU ANI Interface name or RF VIDEO ANI Interface name
+    suggested-values:
+    - ani-1-1-1
+domains: onu>transport>gpon>ani
+freemarker: true
+name: Delete ONU ani interface
+operation: delete
+sample-id: onu-transport-gpon-ani-delete
+scope: eonu
+status: draft

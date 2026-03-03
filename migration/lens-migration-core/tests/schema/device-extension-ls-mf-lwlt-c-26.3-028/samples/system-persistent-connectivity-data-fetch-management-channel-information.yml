@@ -1,0 +1,8 @@
+available-locally: true
+domains: system>persistent
+entity: connectivity-data
+freemarker: true
+name: Fetch management channel information
+operation: fetch-management-channel-information
+sample-id: system-persistent-connectivity-data-fetch-management-channel-information
+status: draft

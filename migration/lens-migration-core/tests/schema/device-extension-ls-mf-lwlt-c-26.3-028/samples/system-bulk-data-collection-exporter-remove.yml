@@ -1,0 +1,11 @@
+arguments:
+  exporter-name:
+    description: exporter name
+    suggested-values:
+    - Exporter1
+domains: system>bulk-data-collection>exporter
+freemarker: true
+name: Remove IPFIX exporter
+operation: remove
+sample-id: system-bulk-data-collection-exporter-remove
+status: draft

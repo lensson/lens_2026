@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ani-name:
+    description: The name of the ONU ANI Interface that will be created
+    suggested-values:
+    - ani-1-1-1
+  rf-video-ani-name:
+    description: The name of the ONU RF VIDEO ANI Interface that will be created
+    optional: true
+    suggested-values:
+    - rf-video-ani-1-1-1
+domains: onu>transport>gpon>ani
+freemarker: true
+name: Create ONU ani interface
+operation: create
+sample-id: onu-transport-gpon-ani-create
+scope: eonu
+status: draft

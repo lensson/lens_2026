@@ -1,0 +1,44 @@
+
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+        <running/>
+    </target>
+      <config>
+        <l2-dhcpv4-relay-profiles xmlns="urn:bbf:yang:bbf-l2-dhcpv4-relay">
+        <l2-dhcpv4-relay-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+        <name>${dhcp\-profile\-name}</name>
+        <#if max\-packet\-size?has_content>
+        <max-packet-size>${max\-packet\-size}</max-packet-size>
+        </#if>
+        <option82-format>
+        <#if circuit\-id?has_content>
+        <suboptions>${circuit\-id}</suboptions>
+        </#if>
+        <#if circuit\-id\-syntax?has_content>
+        <default-circuit-id-syntax>${circuit\-id\-syntax}</default-circuit-id-syntax>
+        </#if>
+        <#if remote\-id?has_content>
+        <suboptions>${remote\-id}</suboptions>
+        </#if>
+        <#if remote\-id\-syntax?has_content>
+        <default-remote-id-syntax>${remote\-id\-syntax}</default-remote-id-syntax>
+        </#if>
+         <#if access\-loop\-characteristics?has_content && access\-loop\-suboptions?has_content>
+        <suboptions>${access\-loop\-characteristics}</suboptions>
+        <access-loop-suboptions>${access\-loop\-suboptions}</access-loop-suboptions>
+	<#elseif access\-loop\-characteristics?has_content>
+        <suboptions>${access\-loop\-characteristics}</suboptions>
+	</#if>
+         <#if start\-numbering\-from\-zero?has_content>
+         <start-numbering-from-zero>${start\-numbering\-from\-zero}</start-numbering-from-zero>
+         </#if>
+         <#if use\-leading\-zero?has_content>
+        <use-leading-zeroes>${use\-leading\-zero}</use-leading-zeroes>
+         </#if>
+        </option82-format>
+        </l2-dhcpv4-relay-profile>
+        </l2-dhcpv4-relay-profiles>
+         </config>
+     </edit-config>
+     </rpc>

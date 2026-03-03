@@ -1,0 +1,65 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <tca-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-profiles-mounted">
+              <pm-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-hardware-pm-threshold-profiles-mounted">
+                <moca-ethernet-frame-tca-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-moca-pm-threshold-profiles-mounted" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                  <name>${moca\-ethernet\-tca\-profile}</name>
+<#if in\-unicast\-packets\-threshold?has_content>
+                  <in-unicast-packets-threshold>${in\-unicast\-packets\-threshold}</in-unicast-packets-threshold>
+</#if>
+<#if in\-discarded\-packets\-threshold?has_content>
+                  <in-discarded-packets-threshold>${in\-discarded\-packets\-threshold}</in-discarded-packets-threshold>
+</#if>
+<#if in\-errored\-packets\-threshold?has_content>
+                  <in-errored-packets-threshold>${in\-errored\-packets\-threshold}</in-errored-packets-threshold>
+</#if>
+<#if in\-unknown\-packets\-threshold?has_content>
+                  <in-unknown-packets-threshold>${in\-unknown\-packets\-threshold}</in-unknown-packets-threshold>
+</#if>
+<#if in\-multicast\-packets\-threshold?has_content>
+                  <in-multicast-packets-threshold>${in\-multicast\-packets\-threshold}</in-multicast-packets-threshold>
+</#if>
+<#if in\-broadcast\-packets\-threshold?has_content>
+                  <in-broadcast-packets-threshold>${in\-broadcast\-packets\-threshold}</in-broadcast-packets-threshold>
+</#if>
+<#if in\-octets\-threshold?has_content>
+                  <in-octets-threshold>${in\-octets\-threshold}</in-octets-threshold>
+</#if>
+<#if out\-unicast\-packets\-threshold?has_content>
+                  <out-unicast-packets-threshold>${out\-unicast\-packets\-threshold}</out-unicast-packets-threshold>
+</#if>
+<#if out\-discarded\-packets\-threshold?has_content>
+                  <out-discarded-packets-threshold>${out\-discarded\-packets\-threshold}</out-discarded-packets-threshold>
+</#if>
+<#if out\-errored\-packets\-threshold?has_content>
+                  <out-errored-packets-threshold>${out\-errored\-packets\-threshold}</out-errored-packets-threshold>
+</#if>
+<#if out\-unknown\-packets\-threshold?has_content>
+                  <out-unknown-packets-threshold>${out\-unknown\-packets\-threshold}</out-unknown-packets-threshold>
+</#if>
+<#if out\-multicast\-packets\-threshold?has_content>
+                  <out-multicast-packets-threshold>${out\-multicast\-packets\-threshold}</out-multicast-packets-threshold>
+</#if>
+<#if out\-broadcast\-packets\-threshold?has_content>
+                  <out-broadcast-packets-threshold>${out\-broadcast\-packets\-threshold}</out-broadcast-packets-threshold>
+</#if>
+<#if out\-octets\-threshold?has_content>
+                  <out-octets-threshold>${out\-octets\-threshold}</out-octets-threshold>
+</#if>
+                </moca-ethernet-frame-tca-profile>
+              </pm-profiles>
+            </tca-profiles>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

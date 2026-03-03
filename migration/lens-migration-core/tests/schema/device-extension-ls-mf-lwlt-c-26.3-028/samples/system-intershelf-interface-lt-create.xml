@@ -1,0 +1,97 @@
+<#assign "lt-type" = "ltpon">
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface  xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>inter-shelf-l2term</name>
+          <type xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:l2-termination</type>
+          <interface-usage xmlns="urn:bbf:yang:bbf-interface-usage">
+            <interface-usage>user-port</interface-usage>
+          </interface-usage>
+          <l2-termination xmlns="urn:bbf:yang:bbf-l2-terminations">
+            <ingress-rewrite>
+              <pop-tags>0</pop-tags>
+            </ingress-rewrite>
+            <egress-rewrite>
+              <push-tag>
+                <index>0</index>
+                <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                <vlan-id>${vlan\-id}</vlan-id>
+                <pbit>0</pbit>
+              </push-tag>
+            </egress-rewrite>
+          </l2-termination>
+        </interface>
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${interface\-name}</name>
+          <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ipForward</type>
+          <ipif-lower-layer xmlns="urn:ietf:params:xml:ns:yang:nokia-ip-aug">
+            <sub-interface>inter-shelf-l2term</sub-interface>
+          </ipif-lower-layer>
+          <tag-ip-intf xmlns="urn:ietf:params:xml:ns:yang:nokia-ip-aug">
+            <tag-ip-intf>inter-shelf-mgnt</tag-ip-intf>
+          </tag-ip-intf>
+        </interface>
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>sub-inter-shelf</name>
+          <type xmlns:bbfift="urn:bbf:yang:bbf-if-type">bbfift:vlan-sub-interface</type>
+          <interface-usage xmlns="urn:bbf:yang:bbf-interface-usage">
+            <#if lt\-type == "ltpon">
+            <interface-usage>network-port</interface-usage>
+            <#else>
+            <interface-usage>inherit</interface-usage>
+            </#if>
+          </interface-usage>
+          <subif-lower-layer xmlns="urn:bbf:yang:bbf-sub-interfaces">
+            <interface>BP_Eth</interface>
+          </subif-lower-layer>
+          <inline-frame-processing xmlns="urn:bbf:yang:bbf-sub-interfaces">
+            <ingress-rule>
+              <rule>
+                <name>rule_1</name>
+                <priority>100</priority>
+                <flexible-match>
+                  <match-criteria xmlns="urn:bbf:yang:bbf-sub-interface-tagging">
+                    <tag>
+                      <index>0</index>
+                      <dot1q-tag>
+                        <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                        <vlan-id>${vlan\-id}</vlan-id>
+                        <pbit>any</pbit>
+                        <dei>any</dei>
+                      </dot1q-tag>
+                    </tag>
+                  </match-criteria>
+                </flexible-match>
+                <ingress-rewrite>
+                  <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging">1</pop-tags>
+                </ingress-rewrite>
+              </rule>
+            </ingress-rule>
+          </inline-frame-processing>
+        </interface>
+      </interfaces>
+      <forwarding xmlns="urn:bbf:yang:bbf-l2-forwarding">
+        <forwarders>
+          <forwarder xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+            <name>inter-shelf-forwarder</name>
+            <ports>
+              <port>
+                <name>inter-shelf-vsi-ref</name>
+                <sub-interface>sub-inter-shelf</sub-interface>
+              </port>
+              <port>
+                <name>inter-shelf-l2term-ref</name>
+                <sub-interface>inter-shelf-l2term</sub-interface>
+              </port>
+            </ports>
+          </forwarder>
+        </forwarders>
+      </forwarding>
+    </config>
+  </edit-config>
+</rpc>

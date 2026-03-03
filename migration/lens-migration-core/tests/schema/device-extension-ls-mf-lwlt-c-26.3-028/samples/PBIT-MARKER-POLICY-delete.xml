@@ -1,0 +1,43 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <policies xmlns="urn:bbf:yang:bbf-qos-policies">
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${remarking\-policy\-name}</name>
+        </policy>
+      </policies>
+	  <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${remarking\-policy\-name}_classifier0</name>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${remarking\-policy\-name}_classifier1</name>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${remarking\-policy\-name}_classifier2</name>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${remarking\-policy\-name}_classifier3</name>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${remarking\-policy\-name}_classifier4</name>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${remarking\-policy\-name}_classifier5</name>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${remarking\-policy\-name}_classifier6</name>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${remarking\-policy\-name}_classifier7</name>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${remarking\-policy\-name}_classifier_untagged</name>
+        </classifier-entry>		
+      </classifiers> 
+    </config>
+  </edit-config>
+</rpc>

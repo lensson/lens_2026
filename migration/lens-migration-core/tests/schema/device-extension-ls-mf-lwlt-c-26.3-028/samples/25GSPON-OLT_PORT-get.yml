@@ -1,0 +1,12 @@
+arguments:
+  olt-port-name:
+    description: OLT infrastructure port name.
+    suggested-values:
+    - port-2
+domains: transport>25gspon>olt-port
+freemarker: true
+name: Retrieve 25gspon olt port operational data
+operation: get
+sample-id: transport-25gspon-olt-port-get
+scope: 25gspon
+status: draft

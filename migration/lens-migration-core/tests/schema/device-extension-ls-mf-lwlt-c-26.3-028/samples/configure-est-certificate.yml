@@ -1,0 +1,25 @@
+arguments:
+  server-auth-est-profile-name:
+    description: The EST profile name to be used for Mutual TLS with the CallHome
+      server
+    optional: true
+    suggested-values:
+    - server-auth-est-profile-name
+  client-auth-est-profile-name:
+    description: The EST CA profile name to be used for Mutual TLS with the CallHome
+      server
+    optional: true
+    suggested-values:
+    - client-auth-est-profile-name
+  netconf-client-name:
+    description: Name of NETCONF clients list
+    suggested-values:
+    - nc-client
+available-locally: true
+domains: system>callhome
+entity: configure-est-certificate
+freemarker: true
+name: Configure EST Certificate and CA information for callhome
+operation: edit
+sample-id: system-callhome-configure-est-certificate-edit
+status: draft

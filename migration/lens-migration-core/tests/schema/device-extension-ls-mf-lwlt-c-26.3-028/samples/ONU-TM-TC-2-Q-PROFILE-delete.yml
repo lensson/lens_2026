@@ -1,0 +1,16 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  tc-2-q-profile-name:
+    description: TC To Queue Id Mapping
+    suggested-values:
+    - tc-2-queue-id-mapping
+domains: onu>transport>tm
+freemarker: true
+name: Delete traffic class id to queue id mapping profile
+operation: delete
+sample-id: onu-transport-tm-delete
+scope: eonu
+status: draft

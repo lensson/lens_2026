@@ -1,0 +1,41 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter type="subtree">
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <usage xmlns:template-common="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-template-common">template-common:node-from-template-usage</usage>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <voip>
+              <sip-server-pools>
+                <name>agent</name>
+                <sip-servers xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                  <name>proxy</name>
+                </sip-servers>
+                <sip-servers xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                  <name>outboundproxy</name>
+                </sip-servers>
+                <sip-servers xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="get">
+                  <name>registrar</name>
+                </sip-servers>
+              </sip-server-pools>
+              <sip-user-agent>
+                <name>agent</name>
+              </sip-user-agent>
+              <media-forwarder>
+                <name>agent</name>
+              </media-forwarder>
+              <supplementary-services-profile>
+                <name>agent</name>
+              </supplementary-services-profile>
+            </voip>
+          </template-parameters>
+        </onu>
+      </onus>
+    </filter>
+  </get-config>
+</rpc>
+

@@ -1,0 +1,8 @@
+domains: system>licensing
+entity: server
+freemarker: true
+name: Retrieve License Server configuration
+operation: get-config
+sample-id: system-licensing-server-get-config
+scope: licensing
+status: draft

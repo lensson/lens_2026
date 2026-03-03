@@ -1,0 +1,18 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ethernet-physical-layer-error-profile:
+    description: Ethernet physical layer performance monitoring threshold profile
+      name
+    suggested-values:
+    - eth_phy_layer_tca_profile
+domains: onu>system>tca>pm-profiles
+entity: eth-phy-tca-profile
+freemarker: true
+name: Remove Ethernet physical layer error TCA profile
+operation: remove
+sample-id: onu-system-tca-pm-profiles-eth-phy-tca-profile-remove
+scope: eonu
+status: draft

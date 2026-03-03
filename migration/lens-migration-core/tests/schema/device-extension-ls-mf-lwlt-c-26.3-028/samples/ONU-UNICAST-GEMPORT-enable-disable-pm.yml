@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  gemport-name:
+    description: GEM port name for which performance to be enabled or disabled
+    suggested-values:
+    - cc-name-GEM0
+  pm-flag:
+    description: '**true** to enable or **false** to disable PM counters for a GEM
+      port'
+    suggested-values:
+    - 'true'
+domains: onu>unicast>forwarding
+freemarker: true
+name: Enabling and disabling PM counters to be fetched
+operation: -gemport-enable-disable-pm-counter
+sample-id: onu-unicast-forwarding--gemport-enable-disable-pm-counter
+scope: eonu
+status: draft

@@ -1,0 +1,12 @@
+arguments:
+  pppoe-profile-name:
+    description: PPPoE user profile name needed for downstream tag removal
+    suggested-values:
+    - pppoe_profile
+domains: unicast>protocols>pppoe
+entity: pppoe-downstream-tag
+freemarker: true
+name: Perform downstream tag removal for PPPoE
+operation: edit
+sample-id: unicast-protocols-pppoe-pppoe-downstream-tag-edit
+status: draft

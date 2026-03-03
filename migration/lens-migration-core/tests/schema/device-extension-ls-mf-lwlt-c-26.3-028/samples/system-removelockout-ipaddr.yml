@@ -1,0 +1,12 @@
+arguments:
+  ip-addr:
+    description: IP address to remove the lockout.
+    suggested-values:
+    - 127.0.0.1
+domains: system>lockout
+entity: ip-address
+freemarker: true
+name: Remove ip lockout
+operation: remove-lockout
+sample-id: system-lockout-ip-address-remove-lockout
+status: draft

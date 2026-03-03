@@ -1,0 +1,20 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <get>
+    <filter type="subtree">
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <cfm xmlns="urn:ieee:std:802.1Q:yang:ieee802-dot1q-cfm-mounted">
+              <cfm-stack xmlns="urn:ieee:std:802.1Q:yang:ieee802-dot1q-cfm-bridge-mounted">
+<#if port?has_content>
+                <port>${port}</port>
+</#if>
+              </cfm-stack>
+            </cfm>
+          </root>
+        </onu>
+      </onus>
+    </filter>
+  </get>
+</rpc>

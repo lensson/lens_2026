@@ -1,0 +1,18 @@
+arguments:
+  file-transfer-protocol-name:
+    allowed-values:
+    - ftp
+    - http
+    - scp
+    - sftp
+    - tftp
+    description: Protocol name to be removed
+    suggested-values:
+    - ftp
+domains: system>file-transfer
+entity: protocol
+freemarker: true
+name: Remove file transfer protocol
+operation: remove
+sample-id: system-file-transfer-protocol-remove
+status: draft

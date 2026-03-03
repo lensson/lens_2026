@@ -1,0 +1,12 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+domains: onu>system>date-time>timezone
+freemarker: true
+name: Retrieve configured timezone from ONU
+operation: get-config
+sample-id: onu-system-date-time-timezone-get-config
+scope: eonu
+status: draft

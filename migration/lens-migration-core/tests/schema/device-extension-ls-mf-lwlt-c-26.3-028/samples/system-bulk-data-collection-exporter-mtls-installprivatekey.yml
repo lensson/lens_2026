@@ -1,0 +1,21 @@
+arguments:
+  exporter-name:
+    description: Exporter name
+    suggested-values:
+    - Exporter1
+  collector-name:
+    description: Collector name
+    suggested-values:
+    - Collector1
+  private-key:
+    description: Private key value to be used
+    sensitive: true
+    suggested-values:
+    - MIIJQwIBADANBgkqhkiG9w0BAQEFAASCCS0wggkpAgEAAoICAQCba
+domains: system>bulk-data-collection>exporter
+entity: mtls
+freemarker: true
+name: Install private key for IPFIX collector
+operation: installprivatekey
+sample-id: system-bulk-data-collection-exporter-mtls-installprivatekey
+status: draft

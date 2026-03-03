@@ -1,0 +1,13 @@
+arguments:
+  shaper-profile-name:
+    description: name of the profile
+    suggested-values:
+    - SHAPER-PROF
+domains: unicast>qos>tm
+entity: shaper_profile
+freemarker: true
+name: Remove unicast services QoS shaper profile
+operation: remove
+sample-id: unicast-qos-tm-shaper_profile-remove
+scope: not(mx) and not(dpu)
+status: draft

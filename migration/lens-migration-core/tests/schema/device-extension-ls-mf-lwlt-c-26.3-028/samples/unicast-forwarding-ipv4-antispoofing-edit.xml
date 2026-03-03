@@ -1,0 +1,56 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <#if cc\-name?has_content>
+          <name>${cc\-name}-USER-VSI</name>
+          <#elseif ibridge\-user\-port\-name?has_content>
+          <name>${ibridge\-user\-port\-name}-VSI</name>
+          </#if>
+          <ipv4-security xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv4-address-spoofing-prevention">
+            <prevent-ipv4-address-spoofing>${enable\-ipv4\-security}</prevent-ipv4-address-spoofing>
+            <#if learn\-addresses\-from\-dhcp?has_content>
+              <#if learn\-addresses\-from\-dhcp == true>
+                <learn-addresses-from-dhcp/>
+              <#else>
+                <learn-addresses-from-dhcp xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove"/>
+              </#if>
+            </#if>
+            <#if enable\-ipv4\-security == true && max\-address?has_content>
+              <max-address>${max\-address}</max-address>
+            <#elseif enable\-ipv4\-security == false>
+              <max-address xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove"/>
+            </#if>
+          </ipv4-security>
+        </interface>
+        <#if ipv4\-security\-statistics?has_content>
+          <#if ipv4\-security\-statistics == true>
+            <ipv4-security-statistics xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv4-address-spoofing-prevention">
+              <interface>
+                <#if cc\-name?has_content>
+                <name>${cc\-name}-USER-VSI</name>
+                <#elseif ibridge\-user\-port\-name?has_content>
+                <name>${ibridge\-user\-port\-name}-VSI</name>
+                </#if>
+              </interface>
+            </ipv4-security-statistics>
+          <#else>
+            <ipv4-security-statistics xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv4-address-spoofing-prevention">
+              <interface xmlns:ns9="urn:ietf:params:xml:ns:netconf:base:1.0" ns9:operation="remove">
+                <#if cc\-name?has_content>
+                <name>${cc\-name}-USER-VSI</name>
+                <#elseif ibridge\-user\-port\-name?has_content>
+                <name>${ibridge\-user\-port\-name}-VSI</name>
+                </#if>
+              </interface>
+            </ipv4-security-statistics>
+          </#if>
+        </#if>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>

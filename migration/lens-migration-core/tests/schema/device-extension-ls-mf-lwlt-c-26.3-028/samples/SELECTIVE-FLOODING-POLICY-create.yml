@@ -1,0 +1,94 @@
+arguments:
+  selective-flooding-policy-name:
+    description: the name of the SELECTIVE-FLOODING-POLICY-NAME
+    suggested-values:
+    - flooding-profile0
+  subtended-port-support:
+    description: If device can support subtended port, please set as true.
+    optional: true
+    suggested-values:
+    - false
+  ds-uni-flood-broadcast-address-frame:
+    description: Enable or disable DS broadcast flooding, it's optional
+    optional: true
+    suggested-values:
+    - false
+  ds-uni-flood-unknown-unicast-frame:
+    description: Enable or disable DLF flooding, it's optional
+    optional: true
+    suggested-values:
+    - false
+  ds-flood-ntp-multicast-address-frame:
+    description: Enable or disable DS NTP flooding, it's optional
+    optional: true
+    suggested-values:
+    - false
+  ds-uni-flood-rip-multicast-address-frame:
+    description: Enable or disable DS RIP flooding, it's optional
+    optional: true
+    suggested-values:
+    - false
+  ds-uni-flood-ipv4-multicast-address-frame:
+    description: Enable or disable DS unknown IPv4 multicast flooding, it's optional
+    optional: true
+    suggested-values:
+    - false
+  ds-nni-flood-ipv4-multicast-behavior:
+    allowed-values:
+    - flood_nni
+    - flood_nni_limited
+    description: The DS ipv4 multicast behavior for subtend node port, you can set
+      as "flood_nni" and "flood_nni_limited". If igmp snooping function is enabled,
+      recommend to set as "flood_nni_limited". When set as "flood_nni_limited", 224.0.0.x
+      will be flooded in NNI port.
+    optional: true
+    suggested-values:
+    - flood_nni
+  ds-uni-flood-ipv6-multicast-address-frame:
+    description: Enable or disable DS unknown IPv6 multicast flooding, it's optional
+    optional: true
+    suggested-values:
+    - false
+  ds-uni-flood-any-multicast-mac-frame:
+    description: Enable or disable DS any multicast flooding, it's optional
+    optional: true
+    suggested-values:
+    - false
+  ds-uni-flood-any-frame:
+    description: Enable or disable DS any frame flooding, it's optional
+    optional: true
+    suggested-values:
+    - false
+  us-flood-ntp-multicast-address-frame:
+    description: Enable or disable US NTP flooding, it's optional
+    optional: true
+    suggested-values:
+    - false
+  us-flood-rip-multicast-address-frame:
+    description: Use 'usRIP_flood' to control flood US RIP, it's optional
+    optional: true
+    suggested-values:
+    - false
+  us-flood-ipv4-multicast-address-frame:
+    description: Enable or disable US unknown IPv4 multicast flooding, it's optional
+    optional: true
+    suggested-values:
+    - false
+  us-flood-ipv6-multicast-address-frame:
+    description: Enable or disable US unknown IPv6 multicast flooding, it's optional
+    optional: true
+    suggested-values:
+    - false
+  us-flood-any-multicast-mac-frame:
+    description: Enable or disable US any multicast flooding, it's optional
+    optional: true
+    suggested-values:
+    - false
+domains: unicast>forwarding
+entity: selective-flooding-policy
+freemarker: true
+name: Create selective flooding profile
+operation: create
+sample-id: unicast-forwarding-selective-flooding-policy-create
+scope: not(mx) and not(dpu) and not(fx-p2p-uplink)
+status: draft

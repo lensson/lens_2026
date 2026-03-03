@@ -1,0 +1,16 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter type="subtree">
+      <est-client xmlns="urn:ietf:params:xml:ns:yang:nokia-sdan-est-client">
+        <#if est\-profile\-name?has_content>
+          <est-certificate-profile>
+            <name>${est\-profile\-name}</name>
+          </est-certificate-profile>
+        </#if>
+      </est-client>
+    </filter>
+  </get-config>
+</rpc>

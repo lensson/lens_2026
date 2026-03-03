@@ -1,0 +1,22 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get>
+    <filter type="subtree">
+      <forwarding-state xmlns="urn:bbf:yang:bbf-l2-forwarding">
+        <forwarding-databases>
+          <forwarding-database>
+<#if service\-name?has_content>
+            <name>${service\-name}-FWD-DATABASE</name>
+</#if>
+            <mac-addresses>
+              <mac-address>
+                <forwarder/>
+                <port/>
+                <sub-interface xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-l2-forwarding-forwarding-database-macaddress">${vsi\-name}</sub-interface>
+              </mac-address>
+            </mac-addresses>
+          </forwarding-database>
+        </forwarding-databases>
+      </forwarding-state>
+    </filter>
+  </get>
+</rpc>

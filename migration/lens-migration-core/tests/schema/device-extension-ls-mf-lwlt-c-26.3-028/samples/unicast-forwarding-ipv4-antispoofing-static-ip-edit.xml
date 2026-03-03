@@ -1,0 +1,24 @@
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+     <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <#if cc\-name?has_content>
+          <name>${cc\-name}-USER-VSI</name>
+          <#elseif ibridge\-user\-port\-name?has_content>
+          <name>${ibridge\-user\-port\-name}-VSI</name>
+          </#if>
+          <ipv4-security xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv4-address-spoofing-prevention">
+            <address>
+              <ip>${ip\-address}</ip>
+              <prefix-length>${prefix\-length}</prefix-length>
+            </address>
+          </ipv4-security>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>

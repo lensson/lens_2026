@@ -1,0 +1,11 @@
+arguments:
+  ont:
+    suggested-values:
+    - ont1
+domains: system>vomci
+entity: vani-state
+freemarker: true
+name: Show vomci state and statistics for v-ani
+operation: get
+sample-id: system-vomci-vani-state-get
+status: draft

@@ -1,0 +1,11 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <filter>
+      <ncserver:netconf-server xmlns:ncserver="urn:ietf:params:xml:ns:yang:ietf-netconf-server">
+        <ncserver:call-home>
+          <nokiancserver:callhome-state xmlns:nokiancserver="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-netconf-server"/>
+        </ncserver:call-home>
+      </ncserver:netconf-server>
+    </filter>
+  </get>
+</rpc>

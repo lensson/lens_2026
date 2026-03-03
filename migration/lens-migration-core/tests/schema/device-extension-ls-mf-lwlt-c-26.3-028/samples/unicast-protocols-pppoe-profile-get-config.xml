@@ -1,0 +1,15 @@
+      
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<get-config>
+<source>
+<running/>
+</source>
+<filter type="subtree">
+<pppoe-profiles xmlns="urn:bbf:yang:bbf-pppoe-intermediate-agent"> 
+  <pppoe-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge"> 
+  <name>${pppoe\-profile\-name}</name> 
+  </pppoe-profile> 
+  </pppoe-profiles> 
+</filter>
+</get-config>
+</rpc>

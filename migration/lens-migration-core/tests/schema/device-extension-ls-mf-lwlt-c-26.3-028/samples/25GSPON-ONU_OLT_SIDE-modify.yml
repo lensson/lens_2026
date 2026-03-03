@@ -1,0 +1,60 @@
+arguments:
+  v-ani-name:
+    description: The name of the virtual ANI Interface.
+    suggested-values:
+    - vani-2-1-1
+  olt-infrastructure-name:
+    description: The name of the OLT infrastructure on which the v-ani interface will
+      be created.
+    optional: true
+  onu-template-name:
+    description: The name of the ONU template to instantiate.
+    optional: true
+    suggested-values:
+    - onu-template-1
+  onu-id:
+    description: The ONU ID used at the transport layer.
+    optional: true
+  pm-enable:
+    description: If true, enables performance counters on this interface.
+    optional: true
+  upstream-fec-enable:
+    description: Used to enable/disable use of FEC in Upstream direction for this
+      specific ONU.
+    optional: true
+  mgmt-aes:
+    description: Whether AES encryption should be enabled/disabled for the management
+      GEM port of this ONU.
+    optional: true
+  onu-serial-number:
+    description: The serial number of the ONT which the OLT expects to show up.
+    optional: true
+  onu-registration-id:
+    description: A string that has been assigned to the subscriber on the management
+      level, entered into and stored in non-volatile storage at the ONU.  It is used
+      to identify a particular ONU installed at a particular location.
+    optional: true
+  onu-loid:
+    description: The Logical ONU ID (LOID) value that the OLT expects to retrieve
+      from ONU. A string that has been assigned to the subscriber on the management
+      level, entered into and stored in non-volatile storage at the ONU.  It is used
+      to identify a particular ONU installed at a particular location.
+    optional: true
+  speed-monitoring-enable:
+    description: If true, enables speed monitoring for the interface for the supported
+      periods.
+    optional: true
+    suggested-values:
+    - true
+  dbru-control:
+    description: Used to control whether the OLT applies DBRu or not for this ONU.
+    optional: true
+    suggested-values:
+    - enable-if-supported-by-onu
+domains: transport>25gspon>v-ani
+freemarker: true
+name: Modify 25gspon onu on olt side
+operation: modify
+sample-id: transport-25gspon-v-ani-modify
+scope: 25gspon
+status: draft

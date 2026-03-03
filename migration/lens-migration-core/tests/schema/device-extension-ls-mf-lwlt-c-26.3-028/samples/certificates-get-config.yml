@@ -1,0 +1,7 @@
+available-locally: true
+domains: system>callhome>certificates
+freemarker: true
+name: Retrieve configured callhome certificate details
+operation: get-config
+sample-id: system-callhome-certificates-get-config
+status: draft

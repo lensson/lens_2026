@@ -1,0 +1,68 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  cc-name:
+    description: The name of the VLAN sub-interface that will be created
+    suggested-values:
+    - cc-1
+  gemport-set-name:
+    description: GEMPORT set name to indicate T-CONT no-sharing, uni-sharing or onu-sharing
+    optional: true
+    suggested-values:
+    - no-sharing
+  enet-name:
+    description: The name of the Ethernet UNI on which to designate whether sharing
+      gemport on the uni
+    optional: true
+    suggested-values:
+    - uni-1-1-1
+  tc0-tcont-name:
+    description: T-CONT name of gemport for the configured Traffic Class 0
+    optional: true
+    suggested-values:
+    - tcont-1
+  tc1-tcont-name:
+    description: T-CONT name of gemport for the configured Traffic Class 1
+    optional: true
+    suggested-values:
+    - tcont-1
+  tc2-tcont-name:
+    description: T-CONT name of gemport for the configured Traffic Class 2
+    optional: true
+    suggested-values:
+    - tcont-1
+  tc3-tcont-name:
+    description: T-CONT name of gemport for the configured Traffic Class 3
+    optional: true
+    suggested-values:
+    - tcont-1
+  tc4-tcont-name:
+    description: T-CONT name of gemport for the configured Traffic Class 4
+    optional: true
+    suggested-values:
+    - tcont-1
+  tc5-tcont-name:
+    description: T-CONT name of gemport for the configured Traffic Class 5
+    optional: true
+    suggested-values:
+    - tcont-1
+  tc6-tcont-name:
+    description: T-CONT name of gemport for the configured Traffic Class 6
+    optional: true
+    suggested-values:
+    - tcont-1
+  tc7-tcont-name:
+    description: T-CONT name of gemport for the configured Traffic Class 7
+    optional: true
+    suggested-values:
+    - tcont-1
+domains: onu>unicast>forwarding
+entity: gemport-set
+freemarker: true
+name: Edit gemport template
+operation: edit
+sample-id: onu-unicast-forwarding-gemport-set-edit
+scope: eonu
+status: draft

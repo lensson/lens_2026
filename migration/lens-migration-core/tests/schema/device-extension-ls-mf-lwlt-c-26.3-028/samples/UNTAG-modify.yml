@@ -1,0 +1,31 @@
+arguments:
+  interface_name:
+    description: the name of the user VLAN sub-interface
+    suggested-values:
+    - uni1_ont1-fglt-b-user
+  untagged_user_traffic:
+    description: the user VSI can receive untagged traffic or not
+    suggested-values:
+    - true
+  priority_tagged_user_traffic:
+    description: the user VSI can receive priority-tagged traffic or not
+    suggested-values:
+    - true
+  n-vlan-id:
+    description: the value of user-side vlan id to match
+    optional: true
+    suggested-values:
+    - 10
+  egress_marking_index:
+    description: the value of egress pbit/dei marking index
+    optional: true
+    suggested-values:
+    - 0
+domains: unicast>forwarding
+entity: untag
+freemarker: true
+name: Modify unicast services forwarding untag
+operation: modify
+sample-id: unicast-forwarding-untag-modify
+scope: not(dpu) and not(mx) and not(fx-p2p)
+status: draft

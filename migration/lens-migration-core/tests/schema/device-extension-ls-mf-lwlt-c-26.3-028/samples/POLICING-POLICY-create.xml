@@ -1,0 +1,35 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <policies xmlns="urn:bbf:yang:bbf-qos-policies">
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${policing\-policy\-name}</name>
+          <classifiers>
+            <name>cls-ratelimit-${policing\-policy\-name}</name>
+          </classifiers>
+        </policy>
+      </policies>    	
+      <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>cls-ratelimit-${policing\-policy\-name}</name>
+          <filter-operation>${filter\-operation}</filter-operation>
+          <#if metered\-flow?has_content>
+            <metered-flow xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">${metered\-flow}</metered-flow>
+          </#if>
+          <#if match\-any\-frame?has_content && match\-any\-frame>
+            <any-frame xmlns="urn:bbf:yang:bbf-qos-enhanced-filters"/>
+          </#if>
+          <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:policing</action-type>
+            <policing xmlns="urn:bbf:yang:bbf-qos-policing">
+              <policing-profile>${policing\-profile\-name}</policing-profile>
+            </policing>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+      </classifiers>
+    </config>
+  </edit-config>
+</rpc>

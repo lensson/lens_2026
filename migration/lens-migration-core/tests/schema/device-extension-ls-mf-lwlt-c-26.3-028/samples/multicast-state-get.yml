@@ -1,0 +1,12 @@
+arguments:
+  multicast-vpn-name:
+    description: The name of a multicast VPN.
+    suggested-values:
+    - vpn-1
+domains: multicast>state
+freemarker: true
+name: Retrieve multicast state and statistics
+operation: get
+sample-id: multicast-state-get
+scope: multicast-fiber and not(mx) and not(dpu)
+status: draft

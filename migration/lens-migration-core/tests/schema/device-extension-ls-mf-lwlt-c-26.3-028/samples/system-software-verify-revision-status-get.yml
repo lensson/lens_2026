@@ -1,0 +1,12 @@
+arguments:
+  component:
+    description: Name of the component, default must be Chassis.
+    suggested-values:
+    - Chassis
+available-locally: true
+domains: system>software
+freemarker: true
+name: Retrieve downloaded software verification status
+operation: verify-revision-status-get
+sample-id: system-software-verify-revision-status-get
+status: draft

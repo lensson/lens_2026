@@ -1,0 +1,23 @@
+arguments:
+  s-vlan-pbit-dei-marking-list-index:
+    description: The index of the marking-list from where the pbit and DEI values
+      should be copied into the egress frame for the S-VLAN. If not configured, 0
+      is assumed.
+    optional: true
+    suggested-values:
+    - 0
+  c-vlan-pbit-dei-marking-list-index:
+    description: The index of the marking-list from where the pbit and DEI values
+      should be copied into the egress frame for the C-VLAN. If not configured, 0
+      is assumed.
+    optional: true
+    suggested-values:
+    - 0
+domains: unicast>forwarding
+entity: cc-network_vlan_profile
+freemarker: true
+name: Create unicast services forwarding cc network VLAN profile
+operation: create
+sample-id: unicast-forwarding-cc-network_vlan_profile-create
+scope: not(dpu) and not(mx)
+status: draft

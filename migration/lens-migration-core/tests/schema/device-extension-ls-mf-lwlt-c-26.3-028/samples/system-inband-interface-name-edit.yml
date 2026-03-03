@@ -1,0 +1,16 @@
+arguments:
+  old-inband-interface-name:
+    description: Name of existing inband interface
+    suggested-values:
+    - old_inband
+  new-inband-interface-name:
+    description: New name of inband interface
+    suggested-values:
+    - inband
+domains: system>inband
+entity: interface-name
+freemarker: true
+name: Rename inband management interface name
+operation: edit
+sample-id: system-inband-interface-name-edit
+status: draft

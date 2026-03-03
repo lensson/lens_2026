@@ -1,0 +1,17 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+    <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+      <interface>
+        <name>${user\-interface}</name>
+        <pae xmlns="urn:ieee:std:802.1X:yang:ieee802-dot1x">
+          <dynamic-auth xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-802-dot1x-ext-dynamic-authorization" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete"/>
+        </pae>
+      </interface>
+    </interfaces>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,12 @@
+arguments:
+  rogue-profile-name:
+    description: Name of the rogue test profile.
+    suggested-values:
+    - rogue-test-profile1
+domains: transport>xpon>rogue
+entity: profile
+freemarker: true
+name: Remove rogue profile
+operation: delete
+sample-id: transport-xpon-rogue-profile-delete
+status: draft

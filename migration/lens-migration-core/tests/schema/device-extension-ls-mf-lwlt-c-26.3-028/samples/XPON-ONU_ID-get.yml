@@ -1,0 +1,26 @@
+arguments:
+  allowed-onu-id-list:
+    description: An allowed ID list for allocating free ONU IDs, the format can be
+      1-127 or 1,10,120 or 1-30,90-127
+    optional: true
+  olt-port-name:
+    description: Channel group
+    suggested-values:
+    - cp1
+  xpon-technology:
+    description: Type of Pon
+    suggested-values:
+    - gpon
+  onu-name:
+    description: the ONU name
+    suggested-values:
+    - v-ani-1-1-1
+domains: transport>xpon>id
+entity: onu
+freemarker: true
+name: Retrieve transport XPON ONU ID
+network-virtualizer: true
+operation: get
+sample-id: transport-xpon-id-onu-get
+scope: xpon
+status: draft

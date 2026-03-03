@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  gemport-tca-profile:
+    description: GEM port performance monitoring TCA threshold profile name
+    suggested-values:
+    - gemport_tca_profile
+domains: onu>system>tca>pm-profiles
+entity: gemport-tca-profile
+freemarker: true
+name: Remove GEM port PM TCA profile
+operation: remove
+sample-id: onu-system-tca-pm-profiles-gemport-tca-profile-remove
+scope: eonu
+status: draft

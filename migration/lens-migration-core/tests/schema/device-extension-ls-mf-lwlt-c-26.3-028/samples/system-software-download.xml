@@ -1,0 +1,52 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+    <action xmlns="urn:ietf:params:xml:ns:yang:1">
+	<hardware-state xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware">
+	    <component>
+		<name>${component}</name>
+		<software xmlns="urn:bbf:yang:bbf-software-image-management-one-dot-one">
+		    <software>
+			<name>${software\-name}</name>
+			<download>
+			    <download-software>
+				<url>${url}</url>
+				<name>${download\-software\-name}</name>
+				<#if verify\-enable?has_content && (verify\-enable == true || verify\-enable == false)>
+				<verify-enable xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-software-digital-signature-verification">${verify\-enable}</verify-enable>
+			</#if>
+			<#if key\-name?has_content && mode\-HTTPS == "False" >
+			    <ssh-auth xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-software-download-sftp-support">{key\-name}</ssh-auth>
+			    </#if>
+			    <#if mode\-HTTPS == "tls" || mode\-HTTPS == "TLS">
+			    <#if server\-public\-key?has_content >
+			    <server-public-key xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-software-image-management-extension">${server\-public\-key}</server-public-key>
+          			</#if>
+         		    </#if>
+			    <#if mode\-HTTPS == "mtls" || mode\-HTTPS == "mTLS">
+			    <#if mTLS\-with\-EST?has_content && mTLS\-with\-EST == false >
+         		    <#if server\-public\-key?has_content >
+         		    <server-public-key xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-software-image-management-extension">${server\-public\-key}</server-public-key>
+        		</#if>
+        		<#if client\-key\-reference?has_content && client\-public\-key\-reference?has_content >
+         		<central-keystore-reference xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-software-image-management-extension">
+        		    <asymmetric-key>${client\-key\-reference}</asymmetric-key>
+        		    <certificate>${client\-public\-key\-reference}</certificate>
+        		</central-keystore-reference>
+        	    </#if>
+        	    </#if>
+        	<#if mTLS\-with\-EST?has_content && mTLS\-with\-EST == true >
+        	<#if server\-auth\-est\-profile\-name?has_content >
+        	<est-ca-certificate-profile-reference xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-software-image-management-extension">${server\-auth\-est\-profile\-name}</est-ca-certificate-profile-reference>
+         	    </#if>
+                 <#if client\-auth\-est\-profile\-name?has_content >
+                 <est-certificate-profile-reference xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-software-image-management-extension">${client\-auth\-est\-profile\-name}</est-certificate-profile-reference>
+                </#if>
+		</#if>
+        	</#if>
+	         </download-software>
+        	</download>
+          </software>
+       </software>
+     </component>
+   </hardware-state>
+  </action>
+</rpc>

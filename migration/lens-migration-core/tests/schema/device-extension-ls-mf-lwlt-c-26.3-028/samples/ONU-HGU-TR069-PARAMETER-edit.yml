@@ -1,0 +1,37 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - onu-1
+  para-index:
+    description: index of the HGU parameter non-sensitive name-value pairs
+    suggested-values:
+    - 1
+  para-name:
+    description: name of the HGU parameter non-sensitive name-value pairs
+    suggested-values:
+    - InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.SSID
+  para-value:
+    description: value of the HGU parameter non-sensitive name-value pairs
+    suggested-values:
+    - ALHN-D8A8
+  sensitive-para-index:
+    description: index of the HGU parameter sensitive name-value pairs
+    suggested-values:
+    - 2
+  sensitive-para-name:
+    description: name of the HGU parameter sensitive name-value pairs
+    suggested-values:
+    - InternetGatewayDevice.WANDevice.1.WANConnectionDevice.2.WANPPPConnection.1.Password
+  sensitive-para-value:
+    description: value of the HGU parameter sensitive name-value pairs
+    suggested-values:
+    - 12345Abc
+domains: onu>transport>hgu-tr069-parameter
+freemarker: true
+name: Send HGU parameter name-value pairs to the HGU devices without using TR-069
+  server.
+operation: edit
+sample-id: onu-transport-hgu-tr069-parameter-edit
+scope: eonu
+status: draft

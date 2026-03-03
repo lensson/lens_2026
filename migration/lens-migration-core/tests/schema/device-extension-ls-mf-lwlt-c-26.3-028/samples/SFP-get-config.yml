@@ -1,0 +1,13 @@
+arguments:
+  transceiver-name:
+    description: The name of transceiver
+    suggested-values:
+    - sfp1
+available-locally: true
+domains: equipment>sfp
+freemarker: true
+name: Retrieve configuration data of the SFP
+operation: get-config
+sample-id: equipment-sfp-get-config
+scope: xpon
+status: draft

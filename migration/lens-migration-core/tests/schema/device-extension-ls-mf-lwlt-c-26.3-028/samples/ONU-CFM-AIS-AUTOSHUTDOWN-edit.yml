@@ -1,0 +1,22 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  interface-name:
+    description: The interface name under which the CFM AIS auto-shutdown is to be
+      enabled
+    suggested-values:
+    - CP1_ont1_venet1
+  auto-shutdown:
+    description: A flag used to indicate whether to shutdown port when AIS is received
+    suggested-values:
+    - false
+domains: onu>cfm
+entity: ais-auto-shutdown
+freemarker: true
+name: Configure ONU CFM AIS auto-shutdown
+operation: edit
+sample-id: onu-cfm-ais-auto-shutdown-edit
+scope: eonu
+status: draft

@@ -1,0 +1,21 @@
+arguments:
+  cc-name:
+    description: CC user port name for PPPoE Intermediate Agent statistics counter
+      needs to be retrived
+    optional: true
+    suggested-values:
+    - cc-1
+  ibridge-user-port-name:
+    description: Ibridge user port name for PPPoE Intermediate Agent statistics counter
+      needs to be retrived
+    optional: true
+    suggested-values:
+    - user-port-1
+domains: unicast>protocols>pppoe
+entity: statistics
+freemarker: true
+name: Retrieve PPPoE Intermediate Agent statistics
+operation: get
+sample-id: unicast-protocols-pppoe-statistics-get
+scope: fiber
+status: draft

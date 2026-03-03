@@ -1,0 +1,20 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu-template-enet-name:
+    description: ENET interface name
+    suggested-values:
+    - uni-template-1
+  pm-flag:
+    description: '**true** to enable or **false** to disable PM counters for an ENET'
+    suggested-values:
+    - 'true'
+domains: onu>transport>xpon>enet
+entity: template
+freemarker: true
+name: Enabling and disabling PM counters for uni to be fetched
+operation: enable-disable-pm-counter
+sample-id: onu-transport-xpon-enet-template-enable-disable-pm-counter
+status: draft

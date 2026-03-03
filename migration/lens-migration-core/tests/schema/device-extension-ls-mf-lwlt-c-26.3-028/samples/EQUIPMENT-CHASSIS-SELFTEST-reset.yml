@@ -1,0 +1,9 @@
+available-locally: true
+domains: equipment>chassis
+entity: selftest
+freemarker: true
+name: Reset chassis with selftest
+operation: reset
+sample-id: equipment-chassis-selftest-reset
+scope: not(eth-copper) and not(eth-copper-ci)
+status: draft

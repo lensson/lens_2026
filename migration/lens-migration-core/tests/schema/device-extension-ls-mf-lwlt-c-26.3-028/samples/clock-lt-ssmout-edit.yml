@@ -1,0 +1,28 @@
+arguments:
+  lt-interface-name:
+    description: the interface name of the LT board.
+    suggested-values:
+    - cp2
+  vlan-profile-name:
+    description: the name of LT SSM Out profile.
+    suggested-values:
+    - vlan_4088
+  ssm-out-vlan-id:
+    description: the ID of LT SSM Out Vlan. It should use the same ESMC-VLAN ID with
+      ONU.
+    optional: true
+    suggested-values:
+    - 4088
+  ssm-out-enable:
+    description: the ssmout status of the LT frequency interface(true/false).
+    optional: true
+    suggested-values:
+    - true
+domains: synchronization>lt>ssm
+entity: ssmout
+freemarker: true
+name: Configure ssmout for LT board frequency interface
+operation: edit
+sample-id: synchronization-lt-ssm-ssmout-edit
+scope: clock-onu-ssm and (not clock-df16gm) and (not clock-df32gm)
+status: draft

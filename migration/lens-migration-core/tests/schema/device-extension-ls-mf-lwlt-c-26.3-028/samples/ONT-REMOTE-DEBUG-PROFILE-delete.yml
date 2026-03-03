@@ -1,0 +1,11 @@
+arguments:
+  debug-ont-ssh-profile-name:
+    suggested-values:
+    - profile_name
+domains: system>ont-remote-debug
+entity: profile
+freemarker: true
+name: Delete ONT remote debug profile
+operation: delete
+sample-id: system-ont-remote-debug-profile-delete
+status: draft

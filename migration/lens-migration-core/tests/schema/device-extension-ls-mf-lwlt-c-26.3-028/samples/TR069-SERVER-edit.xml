@@ -1,0 +1,38 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <usage xmlns:template-common="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-template-common">template-common:node-from-template-usage</usage>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+        	<template-ref>${onu\-template\-name}</template-ref>
+		<intended-beyond-onu-v-vrefpoint>
+		 <reachable-tr069-servers>
+		  <reachable-tr069-server>
+		  <template-ref>${onu\-template\-VEIP}</template-ref>
+                  <#if admin\-state?has_content>
+                    <admin-state>${admin\-state}</admin-state>
+                  </#if>
+                  <#if authentication\-user\-name?has_content || authentication\-user\-password?has_content>
+		  <authentication>
+                          <#if authentication\-user\-name?has_content>
+			  <user-name>${authentication\-user\-name}</user-name>
+                          </#if>
+                          <#if authentication\-user\-password?has_content>
+			  <password>${authentication\-user\-password}</password>
+                          </#if>
+                  </authentication>
+                  </#if>
+		 </reachable-tr069-server>
+	       </reachable-tr069-servers>
+	     </intended-beyond-onu-v-vrefpoint>
+	  </template-parameters>
+	 </onu>
+      </onus>
+   </config>
+ </edit-config>
+</rpc>

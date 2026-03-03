@@ -1,0 +1,11 @@
+arguments:
+  multicast-gemport-name:
+    description: The name of multicast-gemport.
+    suggested-values:
+    - mc-gemport-1
+domains: transport>xpon>multicast-gemport
+freemarker: true
+name: Remove multicast gemport
+operation: delete
+sample-id: transport-xpon-multicast-gemport-delete
+status: draft

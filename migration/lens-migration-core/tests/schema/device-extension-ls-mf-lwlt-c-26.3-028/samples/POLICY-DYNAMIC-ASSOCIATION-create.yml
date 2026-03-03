@@ -1,0 +1,19 @@
+arguments:
+  vsi-interface-name:
+    description: The name of the VLAN sub-interface to configure qos-policy-dynamic-association.
+    suggested-values:
+    - VSI
+  policy-association-control:
+    description: The identity reference to the association-control in qos-policy-dynamic-association
+      container.
+    suggested-values:
+    - nokia-itf-dyn-id:only-dynamic-association-allowed
+domains: unicast>qos>policy-profiles
+entity: policy-dynamic-association
+freemarker: true
+name: Enable a VLAN sub-interface for dynamic qos policy association through 802.1X
+  COA.
+operation: create
+sample-id: unicast-qos-policy-profiles-policy-dynamic-association-create
+scope: l2fwd-qos-dyn-association
+status: draft

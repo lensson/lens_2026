@@ -1,0 +1,42 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  group-ipv4-address:
+    description: The group IP address of the multicast channel.
+    suggested-values:
+    - 224.0.2.225
+  group-ipv4-address-end:
+    description: A group-address-end is valid and then the configuration is for all
+      the group addresses starting from group-address up to and including the group-address-end.
+    suggested-values:
+    - 237.1.1.5
+  multicast-channel-name:
+    description: The name of a multicast channel.
+    suggested-values:
+    - mc-channel-1
+  multicast-package-name:
+    description: The name of a multicast package.
+    suggested-values:
+    - mc-package-1
+  source-ipv4-address:
+    description: The source IP address of the multicast channel.
+    suggested-values:
+    - 0.0.0.0
+  vpn-name:
+    description: The name of a multicast vpn.
+    suggested-values:
+    - mc-vpn
+  network-port-name:
+    description: The name of a multicast network port in VPN.
+    suggested-values:
+    - mc-network-port
+domains: onu>multicast>vpn
+entity: channel
+freemarker: true
+name: Create multicast-channel
+operation: create
+sample-id: onu-multicast-vpn-channel-create
+scope: eonu
+status: draft

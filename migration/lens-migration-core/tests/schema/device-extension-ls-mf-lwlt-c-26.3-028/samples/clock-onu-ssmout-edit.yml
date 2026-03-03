@@ -1,0 +1,22 @@
+arguments:
+  onu-name:
+    description: the custom name of the onu.
+    suggested-values:
+    - ont1_050_fwlt-c
+  uni-name:
+    description: the custom name of the uni interface.
+    suggested-values:
+    - uni1_ont1_050_fwlt
+  ssm-out-enable:
+    description: the ssmout status of the uni interface(true/false).
+    optional: true
+    suggested-values:
+    - false
+domains: onu>synchronization>ssm
+entity: ssmout
+freemarker: true
+name: Configure ssmout for ONU UNI interface
+operation: edit
+sample-id: onu-synchronization-ssm-ssmout-edit
+scope: clock-onu-ssm or clock-df16gm or clock-df32gm
+status: draft

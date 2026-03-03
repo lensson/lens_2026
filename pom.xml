@@ -13,12 +13,13 @@
     <modules>
         <module>parent-poms</module>
 
-
         <module>common</module>
         <module>infra</module>
         <module>platform</module>
+
         <module>lens-blog</module>
 
+        <module>migration</module>
     </modules>
 
 </project>

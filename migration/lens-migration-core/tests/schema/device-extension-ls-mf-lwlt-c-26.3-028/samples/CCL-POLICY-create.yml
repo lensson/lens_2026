@@ -1,0 +1,201 @@
+arguments:
+  ccl-policy-name:
+    description: ccl policy name
+    suggested-values:
+    - ccl-policy
+  classifier-name:
+    description: Classifier name
+    suggested-values:
+    - classifier1
+  enhance-filter-operation:
+    description: Specifies how the entries of the 'filter' list have to be combined,
+      the values should be match-all-filter or match-any-filter
+    suggested-values:
+    - match-all-filter
+  match-any-frame:
+    description: Choose whether the entry use any-frame or enhance-filter
+    optional: true
+    suggested-values:
+    - false
+  src-mac-address:
+    description: Enable/disable setting a filter on the source mac address
+    suggested-values:
+    - false
+  src-broadcast:
+    description: This represents the broadcast mac address of source mac
+    suggested-values:
+    - false
+  src-cfm-multicast:
+    description: This represents a mask for all CFM OAM multicast addresses of source
+      mac
+    suggested-values:
+    - false
+  src-ipv4-multicast:
+    description: This represents a mask for all ipv4 multicast addresses of source
+      mac
+    suggested-values:
+    - false
+  src-ipv6-multicast:
+    description: This represents a mask for all IPv6 multicast addresses of source
+      mac
+    suggested-values:
+    - false
+  src-mac-specific:
+    description: Indicate the value and the mask together identify a set of mac addresses
+      of source mac
+    suggested-values:
+    - false
+  src-mac-value:
+    description: A specific mac address of source mac, e.g. 01:02:03:04:05:06
+    optional: true
+    suggested-values:
+    - 01:02:03:04:05:06
+  src-mac-mask:
+    description: A specific mac address mask of source mac, e.g. FF:FF:FF:FF:FF:FF
+    optional: true
+    suggested-values:
+    - FF:FF:FF:FF:FF:FF
+  dest-mac-address:
+    description: Enable/disable setting a filter on the destination mac address
+    suggested-values:
+    - false
+  dest-broadcast:
+    description: This represents the broadcast mac address of destination mac
+    suggested-values:
+    - false
+  dest-cfm-multicast:
+    description: This represents a mask for all CFM OAM multicast addresses of destination
+      mac
+    suggested-values:
+    - false
+  dest-ipv4-multicast:
+    description: This represents a mask for all ipv4 multicast addresses of destination
+      mac
+    suggested-values:
+    - false
+  dest-ipv6-multicast:
+    description: This represents a mask for all IPv6 multicast addresses of destination
+      mac
+    suggested-values:
+    - false
+  dest-mac-specific:
+    description: Indicate the value and the mask together identify a set of mac addresses
+      of destination mac
+    suggested-values:
+    - false
+  dest-mac-value:
+    description: A specific mac address of destination mac, e.g. 01:02:03:04:05:06
+    optional: true
+    suggested-values:
+    - 01:02:03:04:05:06
+  dest-mac-mask:
+    description: A specific mac address mask of destination mac, e.g. FF:FF:FF:FF:FF:FF
+    optional: true
+    suggested-values:
+    - FF:FF:FF:FF:FF:FF
+  dest-unicast:
+    description: This represents the unicast mac address of destination mac
+    suggested-values:
+    - false
+  dest-any-multicast:
+    description: This represents the any multicast mac address of destination mac
+    suggested-values:
+    - false
+  pbit-list:
+    description: Filter containing P-bit value(s) to be matched with the value of
+      the corresponding packet field, e.g. 0,2-4,7
+    optional: true
+    suggested-values:
+    - 0,2-4,7
+  dei:
+    description: Filter containing DEI bit value to be matched with the values of
+      the corresponding packet fields
+    optional: true
+    suggested-values:
+    - 1
+  ethernet-frame-type:
+    description: The value to be compared with the first Ethertype of an untagged
+      Ethernet frame, e.g. ipv4
+    optional: true
+  ip-version:
+    description: IP version for L3 filter
+    suggested-values:
+    - ipv4
+    - ipv6
+  src-ipv4-address:
+    description: The source ipv4 address in the frame's ipv4 header, e.g. 135.251.160.0/24
+    optional: true
+  dest-ipv4-address:
+    description: The destination ipv4 address in the frame's ipv4 header, e.g. 135.251.160.0/24
+    optional: true
+  src-ipv6-address:
+    description: The source IPV6 address in the frame's IPv6 header, e.g. 2001:3456::/32
+    optional: true
+  dest-ipv6-address:
+    description: The destination IPV6 address in the frame's IPv6 header, e.g. 2001:3456::/32
+    optional: true
+  dscp:
+    description: String identifying the DSCP values and/or range, e.g. 2,34-36,63
+    optional: true
+  protocol:
+    description: Internet Protocol number.  Refers to the protocol of the payload
+    optional: true
+  src-lower-port:
+    description: The lower-port of source port range
+    optional: true
+  src-upper-port:
+    description: The upper-port of source port range
+    optional: true
+  dest-lower-port:
+    description: The lower-port of destination port range
+    optional: true
+  dest-upper-port:
+    description: The upper-port of destination port range
+    optional: true
+  protocols:
+    description: A set of protocols as a criterion for classifying packets, e.g. igmp;dhcpv4;dhcpv6;pppoe-discovery
+    optional: true
+  pbit-marking-list:
+    description: Provides a set of possible P-bit values as a criterion for classifying
+      packets, e.g. 0;1;2
+    optional: true
+  dei-marking-list:
+    description: A DEI value to be used as match criteria
+    optional: true
+  pass-action:
+    description: Make the packets flow for ccl if it is true
+    suggested-values:
+    - false
+  discard-action:
+    description: discard the packets for ccl if it is true
+    suggested-values:
+    - false
+  pbit-marking-action:
+    description: do the p-bit marking for ccl if it is true
+    suggested-values:
+    - false
+  outer-marking-pbit:
+    description: The p-bit marking value of outer TAG
+    optional: true
+    suggested-values:
+    - 2
+  inner-marking-pbit:
+    description: The p-bit marking value of inner TAG
+    optional: true
+  ccl-policing-action:
+    description: Do the policing for ccl if it is true
+    suggested-values:
+    - false
+  policing-profile-name:
+    description: Policing profile which is used by ccl
+    optional: true
+    suggested-values:
+    - policing-profile
+domains: unicast>qos>policy-profiles
+entity: ccl_policy
+freemarker: true
+name: Configure QoS CCL policy
+operation: edit
+sample-id: unicast-qos-policy-profiles-ccl_policy-edit
+scope: not(mx) and not(dpu)
+status: draft

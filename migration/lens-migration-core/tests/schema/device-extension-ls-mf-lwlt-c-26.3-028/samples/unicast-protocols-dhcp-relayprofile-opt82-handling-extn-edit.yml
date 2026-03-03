@@ -1,0 +1,18 @@
+arguments:
+  dhcp-profile-name:
+    description: Name of the DHCPv4 Relay Agent profile
+    suggested-values:
+    - dhcp_profile
+  option82-handling-extn:
+    description: Config to handle option-82 tag in DHCPv4 messages
+    suggested-values:
+    - upstream-tag-replace
+domains: unicast>protocols>dhcp
+entity: opt82-handling-extn
+freemarker: true
+name: Configure option for DHCPv4 Packets received with option82 in L2 DHCPv4 Relay
+  Agent profile
+operation: edit
+sample-id: unicast-protocols-dhcp-opt82-handling-extn-edit
+scope: not(fx-p2p)
+status: draft

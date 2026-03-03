@@ -1,0 +1,23 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  gemport-tca-profile:
+    description: GEM port performance monitoring TCA profile name
+    suggested-values:
+    - gemport_tca_profile
+  enc-key-err-threshold:
+    description: Threshold value for the number of encryption key errors range is
+      0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 100
+domains: onu>system>tca>pm-profiles
+entity: gemport-tca-profile
+freemarker: true
+name: Config GEM port PM TCA profile
+operation: create
+sample-id: onu-system-tca-pm-profiles-gemport-tca-profile-create
+scope: eonu
+status: draft

@@ -1,0 +1,14 @@
+arguments:
+  md-level:
+    description: The Maintenance Domain level.
+    optional: true
+    suggested-values:
+    - 0
+domains: unicast>protocols>cfm
+entity: stack
+freemarker: true
+name: Retrieve interface-state cfm stack details
+operation: retrieve
+sample-id: unicast-protocols-cfm-stack-retrieve
+scope: cfm-user or cfm-network or cfm-user-fiber or ccm
+status: draft

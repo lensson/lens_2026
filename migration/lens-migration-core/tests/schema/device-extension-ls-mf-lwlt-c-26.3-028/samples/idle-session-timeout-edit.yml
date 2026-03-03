@@ -1,0 +1,18 @@
+arguments:
+  cli-idletimeout-time:
+    description: Maximum idle time before terminating a CLI session.
+    optional: true
+    suggested-values:
+    - 30m
+  netconf-idletimeout-time:
+    description: Maximum idle time before terminating a NETCONF session.
+    optional: true
+    suggested-values:
+    - 0m
+domains: system>sessions
+entity: idle-session-timeout
+freemarker: true
+name: Configure idle CLI and NETCONF session timeout
+operation: edit
+sample-id: system-sessions-idle-session-timeout-edit
+status: draft

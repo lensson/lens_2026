@@ -1,0 +1,237 @@
+arguments:
+  pbit-scheduling-policy-name:
+    description: Policy name
+    suggested-values:
+    - pbit-schedule-policy
+  cls0-pbit-value-0:
+    description: The pbit value of outer TAG for classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  cls0-pbit-value-1:
+    description: The pbit value of inner TAG for classifier0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  cls1-pbit-value-0:
+    description: The pbit value of outer TAG for classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  cls1-pbit-value-1:
+    description: The pbit value of inner TAG for classifier1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  cls2-pbit-value-0:
+    description: The pbit value of outer TAG for classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  cls2-pbit-value-1:
+    description: The pbit value of inner TAG for classifier2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  cls3-pbit-value-0:
+    description: The pbit value of outer TAG for classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  cls3-pbit-value-1:
+    description: The pbit value of inner TAG for classifier3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  cls4-pbit-value-0:
+    description: The pbit value of outer TAG for classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  cls4-pbit-value-1:
+    description: The pbit value of inner TAG for classifier4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  cls5-pbit-value-0:
+    description: The pbit value of outer TAG for classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  cls5-pbit-value-1:
+    description: The pbit value of inner TAG for classifier5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  cls6-pbit-value-0:
+    description: The pbit value of outer TAG for classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  cls6-pbit-value-1:
+    description: The pbit value of inner TAG for classifier6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  cls7-pbit-value-0:
+    description: The pbit value of outer TAG for classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  cls7-pbit-value-1:
+    description: The pbit value of inner TAG for classifier7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit0-tc:
+    description: Traffic class to be associated with pbit0
+    optional: true
+    suggested-values:
+    - 0
+  pbit1-tc:
+    description: Traffic class to be associated with pbit1
+    optional: true
+    suggested-values:
+    - 1
+  pbit2-tc:
+    description: Traffic class to be associated with pbit2
+    optional: true
+    suggested-values:
+    - 2
+  pbit3-tc:
+    description: Traffic class to be associated with pbit3
+    optional: true
+    suggested-values:
+    - 3
+  pbit4-tc:
+    description: Traffic class to be associated with pbit4 (if specified)
+    optional: true
+  pbit5-tc:
+    description: Traffic class to be associated with pbit5 (if specified)
+    optional: true
+  pbit6-tc:
+    description: Traffic class to be associated with pbit6 (if specified)
+    optional: true
+  pbit7-tc:
+    description: Traffic class to be associated with pbit7 (if specified)
+    optional: true
+domains: unicast>qos>policy-profiles
+entity: pbit_scheduling_policy
+freemarker: true
+name: Configure QoS pbit scheduling policy
+operation: edit
+sample-id: unicast-qos-policy-profiles-pbit_scheduling_policy-edit
+scope: not(mx) and not(dpu)
+status: draft

@@ -1,0 +1,14 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+<edit-config>
+<target>
+<running/>
+</target>
+<config>
+  <pppoe-client-simulator xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-pppoe-client-simulator">
+    <session>
+      <interface>${interface}</interface>
+    </session>
+  </pppoe-client-simulator>
+</config>
+</edit-config>
+</rpc>

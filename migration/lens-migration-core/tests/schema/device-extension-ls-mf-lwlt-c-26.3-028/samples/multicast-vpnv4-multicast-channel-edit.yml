@@ -1,0 +1,45 @@
+arguments:
+  multicast-channel-name:
+    description: The name of a multicast channel.
+    suggested-values:
+    - Channel-1
+  vpn-name:
+    description: The name of a IPv4 multicast vpn.
+    suggested-values:
+    - mc-vpnv4
+  multicast-package-name:
+    description: The name of a multicast package.
+    suggested-values:
+    - Pkg-1
+  source-ipv4-address:
+    description: The source IP address of the multicast channel.
+    optional: true
+    suggested-values:
+    - 0.0.0.0
+  group-ipv4-address:
+    description: The group IP address of the multicast channel.
+    suggested-values:
+    - 224.0.2.225
+  group-ipv4-address-end:
+    description: A group-address-end is valid and then the configuration is for all
+      the group addresses starting from group-address up to and including the group-address-end.
+    suggested-values:
+    - 237.1.1.5
+  vpn-network-interface-name:
+    description: The name of a multicast network interface.
+    suggested-values:
+    - net-mcv4-itf1
+  channel-rate:
+    description: The bandwidth of the multicast channel to be used at CAC in kilobits
+      per second.
+    optional: true
+    suggested-values:
+    - 4000
+domains: multicast>vpnv4
+entity: multicast-channel
+freemarker: true
+name: Configure IPv4 multicast channel
+operation: edit
+sample-id: multicast-vpnv4-multicast-channel-edit
+scope: multicast
+status: draft

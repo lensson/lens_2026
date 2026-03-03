@@ -1,0 +1,13 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get>
+    <filter type="subtree">
+      <forwarding-state xmlns="urn:bbf:yang:bbf-l2-forwarding">
+        <forwarders>
+          <forwarder>
+            <name>${forwarder\-name}</name>
+          </forwarder>
+        </forwarders>
+      </forwarding-state>
+    </filter>
+  </get>
+</rpc>

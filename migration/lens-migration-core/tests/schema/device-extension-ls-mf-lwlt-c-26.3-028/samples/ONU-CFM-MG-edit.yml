@@ -1,0 +1,74 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  maintenance-group-id:
+    description: Unique ID for Maintenance Group.
+    suggested-values:
+    - MG-2
+  md-id:
+    description: Unique ID for MD.
+    suggested-values:
+    - MD-1
+  ma-id:
+    description: Unique ID for MA.
+    suggested-values:
+    - MA-1
+  mep-id:
+    description: A string that is unique among all the MEPs in the same Maintenance
+      Association.
+    suggested-values:
+    - 1
+  direction:
+    description: The direction in which the MEP faces on the Bridge Port. Example,
+      up or down.
+    suggested-values:
+    - up
+  enabled:
+    description: A boolean value that defines the administrative state of MEP, true
+      indicates that the MEP is to function normally, and false indicates that it
+      is to cease functioning.
+    suggested-values:
+    - true
+  ccm-ltm-priority:
+    description: The priority value for CCMs and LTMs transmitted by the MEP. The
+      default value is the highest priority allowed to pass through the Bridge Port
+      for any of the MEPs VID(s).
+    suggested-values:
+    - 5
+  interface:
+    description: A string that defines the uni where MEP is configured
+    suggested-values:
+    - cp1_ont01_uni1
+  ccm-enabled:
+    description: A boolean value which indicates whether the MEP can generate CCMs.
+      If true, the MEP will generate CCM PDUs
+    suggested-values:
+    - true
+  enable:
+    description: A boolean value that is used to enable/disable AIS generation of
+      the MEP
+    suggested-values:
+    - false
+  meglevel:
+    description: It is the level at which the most immediate client layer MIPs and
+      MEPs exist
+    suggested-values:
+    - 4
+  period:
+    description: It determines transmission periodicity of frames with ETH-AIS information
+    suggested-values:
+    - one-minute
+  priority:
+    description: It identifies the priority of frames with ETH-AIS information
+    suggested-values:
+    - 6
+domains: onu>cfm
+entity: mg
+freemarker: true
+name: Configure ONU CFM Maintenance Group
+operation: edit
+sample-id: onu-cfm-mg-edit
+scope: eonu
+status: draft

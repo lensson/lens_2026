@@ -1,0 +1,26 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <hardware xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware">
+        <component xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+          <name>${transceiver\-name}</name>
+          <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</class>
+          <parent>${cage\-name}</parent>
+          <parent-rel-pos>1</parent-rel-pos>
+          <model-name xmlns="urn:bbf:yang:bbf-hardware-extension">${transceiver\-model\-name}</model-name>
+          <#if admin\-state?has_content>
+            <admin-state>${admin\-state}</admin-state>
+          </#if>
+          <#if power\-saving?has_content>
+          <power-saving xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-power-saving">
+          <xpon-transceiver-criteria xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-xpon-power-saving" xmlns:nokia-sdan-xpon-pwr-savc="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-xpon-power-saving-common">nokia-sdan-xpon-pwr-savc:${power\-saving}</xpon-transceiver-criteria>
+          </power-saving>
+         </#if>
+        </component>
+      </hardware>
+    </config>
+  </edit-config>
+</rpc>

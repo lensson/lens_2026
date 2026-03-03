@@ -1,0 +1,12 @@
+arguments:
+  vpn-name:
+    description: The name of a multicast vpn.
+    suggested-values:
+    - mc-vpn
+domains: multicast>vpn
+freemarker: true
+name: Remove multicast vpn
+operation: remove
+sample-id: multicast-vpn-remove
+scope: multicast
+status: draft

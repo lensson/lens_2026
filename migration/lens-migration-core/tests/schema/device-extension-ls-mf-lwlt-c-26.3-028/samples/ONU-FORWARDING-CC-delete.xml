@@ -1,0 +1,50 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont-mounted">
+              <gemports>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>${cc\-name}-GEM0</name>
+                </gemport>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>${cc\-name}-GEM1</name>
+                </gemport>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>${cc\-name}-GEM2</name>
+                </gemport>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>${cc\-name}-GEM3</name>
+                </gemport>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>${cc\-name}-GEM4</name>
+                </gemport>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>${cc\-name}-GEM5</name>
+                </gemport>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>${cc\-name}-GEM6</name>
+                </gemport>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>${cc\-name}-GEM7</name>
+                </gemport>
+              </gemports>
+            </xpongemtcont>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+                <name>${cc\-name}</name>
+                <type xmlns:bbfift="urn:bbf:yang:bbf-if-type-mounted">bbfift:vlan-sub-interface</type>
+              </interface>
+            </interfaces>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

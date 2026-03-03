@@ -1,0 +1,17 @@
+arguments:
+  welcome-banner:
+    description: text used as welcome banner.
+    optional: true
+    suggested-values:
+    - Hello User
+  login-banner:
+    description: text used as login banner.
+    optional: true
+    suggested-values:
+    - Hello User
+domains: system>banners
+freemarker: true
+name: Configure login and welcome banners
+operation: edit
+sample-id: system-banners-edit
+status: draft

@@ -1,0 +1,26 @@
+arguments:
+  netconf-client-name:
+    description: Name of NETCONF clients list
+    suggested-values:
+    - nc-client
+  endpoint-name:
+    description: The name of specific endpoint
+    suggested-values:
+    - endpoint
+  ip-address:
+    description: The IP address or hostname of the endpoint
+    suggested-values:
+    - 192.168.2.13
+  port:
+    description: The IP port for this endpoint
+    optional: true
+    suggested-values:
+    - 4335
+available-locally: true
+domains: system>callhome
+entity: configure-pma
+freemarker: true
+name: Configure static pma parameters for callhome
+operation: edit
+sample-id: system-callhome-configure-pma-edit
+status: draft

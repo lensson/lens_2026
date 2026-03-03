@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  igmp-protocol-version:
+    description: IGMP protocol version value
+    suggested-values:
+    - 2
+  mc-profile-name:
+    description: The name of the multicast profile.
+    suggested-values:
+    - vpn-profile1
+domains: onu>multicast>vpn
+entity: profile
+freemarker: true
+name: Configure multicast VPN profile
+operation: edit
+sample-id: onu-multicast-vpn-profile-edit
+scope: eonu
+status: draft

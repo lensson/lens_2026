@@ -1,0 +1,13 @@
+arguments:
+  onu-name:
+    description: ONU NAME
+    suggested-values:
+    - olt-1_lt-1_onu-1-1-1
+domains: onu
+entity: actual
+freemarker: true
+name: Delete ONU non template subtree
+operation: delete
+sample-id: onu-actual-delete
+scope: eonu
+status: draft

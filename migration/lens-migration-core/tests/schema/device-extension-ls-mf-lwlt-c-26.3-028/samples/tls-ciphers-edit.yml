@@ -1,0 +1,17 @@
+arguments:
+  netconf-client-name:
+    description: Name of the NETCONF client
+    suggested-values:
+    - nc-client
+  cipher-id:
+    description: YANG identifier of a TLS cipher to add
+    suggested-values:
+    - tls-aes-256-gcm-sha384
+available-locally: true
+domains: system>callhome>tls-hello-params
+entity: ciphers
+freemarker: true
+name: Add TLS ciphers
+operation: edit
+sample-id: system-callhome-tls-hello-params-ciphers-edit
+status: draft

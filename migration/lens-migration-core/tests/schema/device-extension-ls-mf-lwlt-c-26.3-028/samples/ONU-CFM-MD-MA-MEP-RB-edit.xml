@@ -1,0 +1,55 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <cfm>
+              <maintenance-group>
+                <maintenance-group-id>${maintenance\-group\-id}</maintenance-group-id>
+                <mep>
+                    <mep-id>${mep\-id}</mep-id>
+                    <overrule-mep-id>${overrule\-mep\-id}</overrule-mep-id>
+ 		                <#if mep\-status?has_content>
+                      <#if mep\-status>
+                    	  <enabled>true</enabled>
+                      <#else>
+                        <enabled>false</enabled>
+                      </#if>
+		                </#if>
+                    <interface>${interface}</interface>
+		                 <#if ccm\-status?has_content>
+                     <#if ccm\-status>
+                      <continuity-check>
+                        <ccm-enabled>true</ccm-enabled>
+                      </continuity-check>
+                     <#else>
+                      <continuity-check>
+                        <ccm-enabled>false</ccm-enabled>
+                      </continuity-check> 
+                     </#if>                     
+		                </#if>
+		                <#if ais\-status?has_content>
+                    <#if ais\-status>
+                      <ais>
+                        <enable>true</enable>
+                      </ais>
+                    <#else>
+                      <ais>
+                        <enable>false</enable>
+                      </ais>                    
+		                </#if>
+                    </#if>
+                </mep>
+              </maintenance-group>
+            </cfm>
+          </template-parameters>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

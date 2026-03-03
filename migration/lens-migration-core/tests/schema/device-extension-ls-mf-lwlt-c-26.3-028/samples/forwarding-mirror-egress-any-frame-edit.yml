@@ -1,0 +1,18 @@
+arguments:
+  input-interface:
+    description: Input VSI that configures the mirror egress any-frame filter.
+    suggested-values:
+    - ont1-dfmb-a-uni1-user1
+    - ont1-dfmb-a-uni1-net1
+  output-interface:
+    description: References the output VLAN sub-interface.
+    suggested-values:
+    - ont1-dfmb-a-uni1-network1
+    - ont1-dfmb-a-uni1-network2
+domains: unicast>forwarding>mirror>egress
+entity: any-frame
+freemarker: true
+name: Configure mirror egress any-frame filter to the input vlan-sub-interface
+operation: edit
+sample-id: unicast-forwarding-mirror-egress-any-frame-edit
+status: draft

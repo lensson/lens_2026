@@ -1,0 +1,7 @@
+available-locally: true
+domains: system>dns
+freemarker: true
+name: Retrieve current DNS servers and search domains
+operation: get
+sample-id: system-dns-get
+status: draft

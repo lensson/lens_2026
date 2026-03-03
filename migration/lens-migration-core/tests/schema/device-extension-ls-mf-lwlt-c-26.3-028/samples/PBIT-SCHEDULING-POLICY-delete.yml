@@ -1,0 +1,13 @@
+arguments:
+  pbit-scheduling-policy-name:
+    description: Policy name
+    suggested-values:
+    - pbit-schedule-policy
+domains: unicast>qos>policy-profiles
+entity: pbit_scheduling_policy
+freemarker: true
+name: Remove QoS pbit scheduling policy
+operation: remove
+sample-id: unicast-qos-policy-profiles-pbit_scheduling_policy-remove
+scope: not(mx) and not(dpu)
+status: draft

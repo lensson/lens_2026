@@ -1,0 +1,12 @@
+arguments:
+  upload-category-type:
+    description: Category type
+    suggested-values:
+    - syslog
+domains: system>file-transfer
+entity: available-upload-category
+freemarker: true
+name: Retrieve available files and directories for upload
+operation: get
+sample-id: system-file-transfer-available-upload-category-get
+status: draft

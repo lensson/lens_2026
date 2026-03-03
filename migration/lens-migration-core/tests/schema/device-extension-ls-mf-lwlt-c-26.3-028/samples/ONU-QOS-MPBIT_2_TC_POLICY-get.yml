@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  mpbit-2-tc-policy:
+    description: Mpbit to traffic class policy
+    suggested-values:
+    - mpbit-2-tc
+domains: onu>unicast>qos
+entity: mpbit-2-tc-policy
+freemarker: true
+name: Get QoS mpbit to traffic class policy
+operation: get
+sample-id: onu-unicast-qos-mpbit-2-tc-policy-get
+scope: eonu
+status: draft

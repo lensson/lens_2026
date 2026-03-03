@@ -1,0 +1,13 @@
+arguments:
+  randomize-data-collection-enable:
+    description: Either true or false in order to enable or disable the randomize-data-collection
+      functionality
+    suggested-values:
+    - false
+domains: system>bulk-data-collection>ipfix
+entity: randomize-data-collection
+freemarker: true
+name: Configure randomize-data-collection option value
+operation: edit
+sample-id: system-bulk-data-collection-ipfix-randomize-data-collection-edit
+status: draft

@@ -1,0 +1,93 @@
+arguments:
+  cache-name:
+    description: cache name
+    suggested-values:
+    - Cache1
+  export-interval:
+    description: export interval
+    suggested-values:
+    - 900
+  field1-name:
+    description: field name
+    suggested-values:
+    - Field1
+  field1-ie-name:
+    description: field ie name
+    suggested-values:
+    - /if:interfaces-state/if:interface/if:name
+  field2-name:
+    description: field name
+    suggested-values:
+    - Field2
+  field2-ie-name:
+    description: field ie name
+    suggested-values:
+    - /if:interfaces-state/if:interface/if:statistics/if:in-octets
+  field3-name:
+    description: field name
+    optional: true
+    suggested-values:
+    - Field3
+  field3-ie-name:
+    description: field ie name
+    optional: true
+    suggested-values:
+    - /if:interfaces-state/if:interface/if:statistics/if:out-octets
+  field4-name:
+    description: field name
+    optional: true
+    suggested-values:
+    - Field4
+  field4-ie-name:
+    description: field ie name
+    optional: true
+    suggested-values:
+    - /if:interfaces-state/if:interface/if:statistics/if:in-discards
+  field5-name:
+    description: field name
+    optional: true
+    suggested-values:
+    - Field5
+  field5-ie-name:
+    description: field ie name
+    optional: true
+    suggested-values:
+    - /if:interfaces-state/if:interface/if:statistics/if:out-discards
+  reporting-enable:
+    description: reporting enable flag
+    suggested-values:
+    - true
+  exportingProcess:
+    description: This field indicates the exportingProcess name whose destination(s)
+      will be used for pushing the cache's data out. The exportingProcess has to be
+      configured in the cache in order to have the data exported out. Each cache can
+      be configured with max 1 exportingProcess.
+    optional: true
+    suggested-values:
+    - Exporter1
+  interface-type:
+    description: Interface-type is the scope identifier for ipfix data export. If
+      this value is not set data will be exported for all instances.Please note, the
+      prefix & the xml namespace should be updated corresponding to the interface-type
+      used.
+    optional: true
+    suggested-values:
+    - bbfift:vlan-sub-interface
+    - ianaift:ethernetCsmacd
+    - ianaift:ptm
+    - bbf-xponift:onu-v-enet
+    - ..
+  critical-content:
+    description: This field indicates that the cache contains critical data and ipfix-app
+      should retain the data for this cache which could not be exported, when connection
+      with collector is lost. This cache's data will be maintained in ipfix-app's
+      memory and flushed upon connectivity restoration.
+    optional: true
+    suggested-values:
+    - false
+domains: system>bulk-data-collection>template
+freemarker: true
+name: Configure IPFIX periodic cache template
+operation: edit
+sample-id: system-bulk-data-collection-template-edit
+status: draft

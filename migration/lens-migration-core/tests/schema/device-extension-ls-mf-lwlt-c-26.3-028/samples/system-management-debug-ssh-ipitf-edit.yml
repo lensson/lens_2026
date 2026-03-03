@@ -1,0 +1,13 @@
+arguments:
+  debug-ssh-ipitf-enabled:
+    description: Enables (True) or disables (False) DEBUG access via IPforward interface
+    suggested-values:
+    - true
+available-locally: true
+domains: system>management
+entity: debug-ssh-ipitf
+freemarker: true
+name: Configure enabling of DEBUG/SSH via IPitf
+operation: edit
+sample-id: system-management-debug-ssh-ipitf-edit
+status: draft

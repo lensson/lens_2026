@@ -1,0 +1,49 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <#if profile\-type == 'g8275dot1'>
+              <ptp-g8275dot1-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-conf-clock-ptp-mounted">
+                <ptp-g8275dot1-port-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${profile\-name}</name>
+                  <#if dest\-mac\-addr\-forwardable?has_content>
+                    <dest-mac-addr-forwardable>${dest\-mac\-addr\-forwardable}</dest-mac-addr-forwardable>
+                  </#if>
+                  <log-anno-interval>-3</log-anno-interval>
+                  <log-sync-interval>-4</log-sync-interval>
+                  <log-delay-interval>-4</log-delay-interval>
+                  <#if step\-mode?has_content>
+                    <step-mode>${step\-mode}</step-mode>
+                  </#if>
+                </ptp-g8275dot1-port-profile>
+              </ptp-g8275dot1-profiles>
+            </#if>
+            <#if profile\-type == 'ccsa'>
+              <ptp-ccsa-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-conf-clock-ptp-mounted">
+                <ptp-ccsa-port-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${profile\-name}</name>
+
+                  <#if dest\-mac\-addr\-forwardable?has_content>
+                    <dest-mac-addr-forwardable>${dest\-mac\-addr\-forwardable}</dest-mac-addr-forwardable>
+                  </#if>
+                  <log-anno-interval>-3</log-anno-interval>
+                  <log-sync-interval>-4</log-sync-interval>
+                  <log-delay-interval>0</log-delay-interval>
+                  <#if step\-mode?has_content>
+                    <step-mode>${step\-mode}</step-mode>
+                  </#if>
+                </ptp-ccsa-port-profile>
+              </ptp-ccsa-profiles>
+            </#if>
+          </root>
+        </onu>
+      </onus>
+     </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,43 @@
+arguments:
+  onu-name:
+    description: the custom name of the onu.
+    suggested-values:
+    - ont1_050_fwlt-c
+  uni-name:
+    description: the custom name of the uni interface.
+    suggested-values:
+    - uni1_ont1_050_fwlt-c
+  uni-port-layer-if-name:
+    description: the custom name of the uni port layer interface.
+    suggested-values:
+    - ontuni_uni1_ont1_050_fwlt-c
+  autoneg-status:
+    description: to enable/disable auto negotiation function on uni interface.
+    suggested-values:
+    - enable
+  enable:
+    description: to enable/disable PTP on uni interface.
+    optional: true
+    suggested-values:
+    - true
+  profile-type:
+    allowed-values:
+    - g8275dot1
+    - ccsa
+    description: the spec type of the PTP profile.The allowed values are [g8275.1,
+      ccsa]. It should use same PTP profile type for all uni ports on one ONU.
+    suggested-values:
+    - g8275dot1
+  profile-name:
+    description: the custom name of the uni PTP profile.It should use one same PTP
+      profile for all uni ports on one ONU.
+    suggested-values:
+    - g8275.1_profile_default
+domains: onu>synchronization>ptp
+entity: interfaces
+freemarker: true
+name: Configure  ptp interface for onu
+operation: edit
+sample-id: onu-synchronization-ptp-interfaces-edit
+scope: clock-pon or clock-df16gm or clock-df32gm
+status: draft

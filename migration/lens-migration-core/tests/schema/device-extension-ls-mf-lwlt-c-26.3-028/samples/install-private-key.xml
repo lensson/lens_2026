@@ -1,0 +1,26 @@
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <action xmlns="urn:ietf:params:xml:ns:yang:1">
+  <netconf-server xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-server">
+   <call-home>
+    <netconf-client>
+     <name>${netconf\-client\-name}</name>
+      <endpoints>
+       <endpoint>
+        <name>certificate_endpoint</name>
+         <tls>
+          <server-identity>
+           <local-definition>
+            <install-hidden-key>
+            <private-key>${private\-key}</private-key>
+           </install-hidden-key>
+         </local-definition>
+        </server-identity>
+       </tls>
+      </endpoint>
+     </endpoints>
+    </netconf-client>
+   </call-home>
+  </netconf-server>
+ </action>
+</rpc>
+

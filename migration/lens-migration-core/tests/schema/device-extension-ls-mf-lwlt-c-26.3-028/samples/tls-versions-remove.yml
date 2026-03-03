@@ -1,0 +1,17 @@
+arguments:
+  netconf-client-name:
+    description: Name of the NETCONF client
+    suggested-values:
+    - nc-client
+  version-id:
+    description: YANG identifier of a TLS protocol version to remove
+    suggested-values:
+    - tls12
+available-locally: true
+domains: system>callhome>tls-hello-params
+entity: versions
+freemarker: true
+name: Remove TLS versions
+operation: remove
+sample-id: system-callhome-tls-hello-params-versions-remove
+status: draft

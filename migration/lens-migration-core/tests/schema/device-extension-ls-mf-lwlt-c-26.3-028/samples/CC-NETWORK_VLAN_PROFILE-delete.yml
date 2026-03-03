@@ -1,0 +1,8 @@
+domains: unicast>forwarding
+entity: cc-network_vlan_profile
+freemarker: true
+name: Delete unicast services forwarding cc network VLAN profile
+operation: delete
+sample-id: unicast-forwarding-cc-network_vlan_profile-delete
+scope: not(dpu) and not(mx)
+status: draft

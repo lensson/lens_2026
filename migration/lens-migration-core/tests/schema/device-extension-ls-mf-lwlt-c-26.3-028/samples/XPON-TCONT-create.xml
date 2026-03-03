@@ -1,0 +1,34 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+    <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont">
+      <tconts>
+        <tcont xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${tcont\-name}</name>
+          <alloc-id>${alloc\-id}</alloc-id>
+          <interface-reference>${v\-ani\-name}</interface-reference>
+          <traffic-descriptor-profile-ref>${traffic\-descriptor\-profile\-name}</traffic-descriptor-profile-ref>
+        </tcont>
+      </tconts>
+      </xpongemtcont>
+      <#if onu\-template\-tcont\-name?has_content>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${v\-ani\-name}</name>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <tconts>
+              <tcont xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                <template-ref>${onu\-template\-tcont\-name}</template-ref>
+                <id>${alloc\-id}</id>
+              </tcont>
+            </tconts>	
+          </template-parameters>
+        </onu>
+      </onus>
+      </#if>
+    </config>
+  </edit-config>
+</rpc>

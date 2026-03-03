@@ -1,0 +1,6 @@
+domains: system>lockout
+freemarker: true
+name: Retrieve system lockout configuration
+operation: get-config
+sample-id: system-lockout-get-config
+status: draft

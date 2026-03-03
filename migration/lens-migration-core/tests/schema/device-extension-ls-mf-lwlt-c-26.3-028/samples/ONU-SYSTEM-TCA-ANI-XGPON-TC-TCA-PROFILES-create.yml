@@ -1,0 +1,53 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  xgpon-tc-layer-tca-profile:
+    description: ANI XGPON TC layer PM counters threshold profile name
+    suggested-values:
+    - tc_layer_tca_profile
+  psbd-hec-error-threshold:
+    description: Threshold value for number of HEC errors in the downstream physical
+      sync block range is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 10
+  xgtc-hec-error-threshold:
+    description: Threshold value for number of HEC errors detected in the XGTC header  range
+      is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 11
+  unknown-profile-threshold:
+    description: Threshold value for number of grants received for unknown profiles  range
+      is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 10
+  xgem-hec-loss-threshold:
+    description: Threshold value for the number of 4 byte words lost because of an
+      XGEM frame HEC error  range is 0 .. 18446744073709551615
+    optional: true
+    suggested-values:
+    - 12
+  xgem-key-errors-threshold:
+    description: Threshold value for the number of XGEM frames key errors  range is
+      0 .. 18446744073709551615
+    optional: true
+    suggested-values:
+    - 11
+  xgem-hec-error-threshold:
+    description: Threshold value for the number of instances of an XGEM frame HEC
+      error  range is 0 .. 18446744073709551615
+    optional: true
+    suggested-values:
+    - 15
+domains: onu>system>tca>pm-profiles
+entity: ani-xgpon-tc-pm-tca-profile
+freemarker: true
+name: Config ANI XGPON TC layer PM TCA profile
+operation: create
+sample-id: onu-system-tca-pm-profiles-ani-xgpon-tc-pm-tca-profile-create
+scope: eonu
+status: draft

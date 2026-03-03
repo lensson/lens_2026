@@ -1,0 +1,28 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="17">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <alarms xmlns="urn:ietf:params:xml:ns:yang:ietf-alarms">
+        <control>
+          <#if alarm\-type\-id?has_content && alarm\-type\-ns?has_content || disable\-system\-clearance\-delay>
+          <alarms-delay-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-ietf-alarms-aug">
+            <#if alarm\-type\-id?has_content && alarm\-type\-ns?has_content>
+            <alarm-type-profile xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="remove">
+              <alarm-type-id xmlns:al-ns="${alarm\-type\-ns}">al-ns:${alarm\-type\-id}</alarm-type-id>
+            </alarm-type-profile>
+            </#if>
+            <#if disable\-system\-clearance\-delay>
+            <system-clearance-delay xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="remove"/>
+            </#if>
+          </alarms-delay-profile>
+          <#else>
+          <alarms-delay-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-ietf-alarms-aug"
+            xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="remove"/>
+          </#if>
+        </control>
+      </alarms>
+    </config>
+  </edit-config>
+</rpc>

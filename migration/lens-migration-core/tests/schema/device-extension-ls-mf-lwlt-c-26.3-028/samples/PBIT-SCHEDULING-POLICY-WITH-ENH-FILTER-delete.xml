@@ -1,0 +1,41 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+	<edit-config>
+		<target>
+			<running/>
+		</target>
+		<config>
+			<policies xmlns="urn:bbf:yang:bbf-qos-policies">
+				<policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+					<name>${pbit\-scheduling\-policy\-name}</name>
+				</policy>
+			</policies>
+			<classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+					<classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+						<name>cls0-${pbit\-scheduling\-policy\-name}</name>
+					</classifier-entry>
+					<classifier-entry xmlns:ns2="urn:ietf:params:xml:ns:netconf:base:1.0" ns2:operation="remove">
+						<name>cls1-${pbit\-scheduling\-policy\-name}</name>
+					</classifier-entry>
+					<classifier-entry xmlns:ns3="urn:ietf:params:xml:ns:netconf:base:1.0" ns3:operation="remove">
+						<name>cls2-${pbit\-scheduling\-policy\-name}</name>
+					</classifier-entry>
+					<classifier-entry xmlns:ns4="urn:ietf:params:xml:ns:netconf:base:1.0" ns4:operation="remove">
+						<name>cls3-${pbit\-scheduling\-policy\-name}</name>
+					</classifier-entry>
+					<classifier-entry xmlns:ns5="urn:ietf:params:xml:ns:netconf:base:1.0" ns5:operation="remove">
+						<name>cls4-${pbit\-scheduling\-policy\-name}</name>
+					</classifier-entry>
+					<classifier-entry xmlns:ns6="urn:ietf:params:xml:ns:netconf:base:1.0" ns6:operation="remove">
+						<name>cls5-${pbit\-scheduling\-policy\-name}</name>
+					</classifier-entry>
+					<classifier-entry xmlns:ns7="urn:ietf:params:xml:ns:netconf:base:1.0" ns7:operation="remove">
+						<name>cls6-${pbit\-scheduling\-policy\-name}</name>
+					</classifier-entry>
+					<classifier-entry xmlns:ns8="urn:ietf:params:xml:ns:netconf:base:1.0" ns8:operation="remove">
+						<name>cls7-${pbit\-scheduling\-policy\-name}</name>
+					</classifier-entry>
+			</classifiers>
+		</config>
+	</edit-config>
+</rpc>
+

@@ -1,0 +1,8 @@
+domains: unicast>forwarding
+entity: profiles
+freemarker: true
+name: Delete unicast services forwarding profiles
+operation: delete
+sample-id: unicast-forwarding-profiles-delete
+scope: not(dpu) and not(mx) and not(fx-p2p)
+status: draft

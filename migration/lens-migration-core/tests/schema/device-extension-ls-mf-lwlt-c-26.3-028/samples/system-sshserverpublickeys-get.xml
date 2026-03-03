@@ -1,0 +1,16 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+ <get>
+   <filter type="subtree">
+   <system-security xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-aaa">
+       <server-identity>
+            <host-key>
+              <#if host\-key\-name?has_content>
+                <name>${host\-key\-name}</name>
+              </#if>
+            </host-key>
+       </server-identity>
+   </system-security>
+   </filter>
+ </get>
+</rpc>
+

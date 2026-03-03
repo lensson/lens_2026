@@ -1,0 +1,33 @@
+arguments:
+  onu-name:
+    description: ONU name, in case usage = template this identifies the template
+    suggested-values:
+    - ani-1-1-1
+  mib-upload-behavior-value:
+    description: '**mib-upload-per-onu-flavor** to only perform MIB upload when the
+      first ONU of a flavor is discovered or **mib-upload-per-onu** to perform always
+      MIB upload'
+    optional: true
+    suggested-values:
+    - mib-upload-per-onu
+    - mib-upload-per-onu-flavor
+  usage:
+    description: '**template** when this edit applies to an ONU template, **template-overrule**
+      when this edit applies to a template overrule for this ONU, **parameter not
+      used** when this edit applies to an ONU instance,'
+    optional: true
+    suggested-values:
+    - template
+    - template-overrule
+  onu-template:
+    description: a reference to the ONU template, needs to be specified when usage
+      = template-overrule
+    optional: true
+    suggested-values:
+    - onu-template-1
+domains: onu>onu-management
+freemarker: true
+name: Edit onu-management meta-data
+operation: edit
+sample-id: onu-onu-management-edit
+status: draft

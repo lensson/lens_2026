@@ -1,0 +1,17 @@
+<rpc message-id="EstEndCertificateGet" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <get>
+    <filter type="subtree">
+      <certificate xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-certificate-management">
+        <certificates-state>
+          <est-certificates>
+            <est-profiles>
+              <profile>${profile\-name}</profile>
+              <end-user-certificate>
+              </end-user-certificate>
+            </est-profiles>
+          </est-certificates>
+        </certificates-state>
+      </certificate>
+    </filter>
+  </get>
+</rpc>

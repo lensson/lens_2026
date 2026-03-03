@@ -1,0 +1,21 @@
+arguments:
+  interface-statistics-mode:
+    allowed-values:
+    - best-effort
+    - all-available
+    - 'false'
+    optional: true
+    suggested-values:
+    - best-effort
+  vsi-interface-name:
+    description: the name of the vlan-sub-interface who will enable interface statistics.
+    suggested-values:
+    - VSI
+domains: unicast>forwarding
+entity: vsi-interface-statistics
+freemarker: true
+name: Enable statistics on VLAN sub interface
+operation: enable
+sample-id: unicast-forwarding-vsi-interface-statistics-enable
+scope: not(mx)
+status: draft

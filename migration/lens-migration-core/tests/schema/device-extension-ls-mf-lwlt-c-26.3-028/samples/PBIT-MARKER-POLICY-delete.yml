@@ -1,0 +1,13 @@
+arguments:
+  remarking-policy-name:
+    description: pbit marker policy name
+    suggested-values:
+    - pbit-marker-policy
+domains: unicast>qos>policy-profiles
+entity: pbit_marker_policy
+freemarker: true
+name: Remove QoS pbit marker(include untag) policy
+operation: remove
+sample-id: unicast-qos-policy-profiles-pbit_marker_policy-remove
+scope: not(mx) and not(dpu) and not(qos-fiber-standalone-hwv1)
+status: draft

@@ -1,0 +1,18 @@
+arguments:
+  olt-infrastructure-name:
+    suggested-values:
+    - gpon-1-1
+  queue-id:
+    optional: true
+    suggested-values:
+    - 0
+  scheduler-name:
+    suggested-values:
+    - uni-1-1-1-1
+domains: unicast>qos>tm
+entity: queue_performance
+freemarker: true
+name: Retrieve QoS Performance
+operation: get
+sample-id: unicast-qos-tm-queue_performance-get
+status: draft

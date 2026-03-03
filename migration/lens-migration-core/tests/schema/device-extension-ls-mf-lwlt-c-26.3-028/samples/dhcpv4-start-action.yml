@@ -1,0 +1,51 @@
+arguments:
+  interface:
+    description: The user vlan-sub-interface on which the dhcp client simulation is
+      to be performed
+    suggested-values:
+    - uni1-user
+  client-mac:
+    description: MAC address of the Client
+    suggested-values:
+    - 00:00:5e:00:53:af
+  inner-vlan-pbit-value:
+    description: The pbit-value to be inserted in the PBIT field of the inner VLAN
+      tag of the outgoing DHCP packets
+    optional: true
+    suggested-values:
+    - 7
+  outer-vlan-pbit-value:
+    description: The pbit-value to be inserted in the PBIT field of the outer VLAN
+      tag of the outgoing DHCP packets
+    optional: true
+    suggested-values:
+    - 7
+  option-60:
+    description: The Vendor class identifier (option 60) is used by DHCP clients to
+      optionally identify the vendor type and configuration of a DHCP client
+    optional: true
+    suggested-values:
+    - option60
+  mac-address:
+    description: Configures the MAC address as the unique client identifier
+    optional: true
+    suggested-values:
+    - 00:01:02:03:03:04
+  string:
+    description: Configures a string as the unique client identifier
+    optional: true
+    suggested-values:
+    - vendor1
+  time-out:
+    description: The time interval within which the simulated DHCP Client test session
+      is expected to be bound
+    optional: true
+    suggested-values:
+    - 30
+domains: unicast>protocols>simulation
+entity: dhcpv4-start
+freemarker: true
+name: Perform DHCPv4 Client session simulation start action
+operation: action
+sample-id: unicast-protocols-simulation-dhcpv4-start-action
+status: draft

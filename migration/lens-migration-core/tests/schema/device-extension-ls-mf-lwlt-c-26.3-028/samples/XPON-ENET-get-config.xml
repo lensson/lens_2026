@@ -1,0 +1,34 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>${enet\-name}</name>
+          <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:olt-v-enet</type>
+        </interface>
+      </interfaces>
+      <#if onu\-name?has_content>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <usage xmlns:template-common="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-template-common">template-common:node-from-template-usage</usage>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <uni-loop-detection>
+            </uni-loop-detection>
+<#if onu\-template\-enet\-name?has_content>
+            <interfaces>
+              <interface>
+                <template-ref>${onu\-template\-enet\-name}</template-ref>
+              </interface>
+            </interfaces>
+</#if>
+          </template-parameters>
+        </onu>
+      </onus>
+      </#if>
+    </filter>
+  </get-config>
+</rpc>

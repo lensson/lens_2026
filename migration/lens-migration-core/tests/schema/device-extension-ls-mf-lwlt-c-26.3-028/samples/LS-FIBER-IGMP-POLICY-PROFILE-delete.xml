@@ -1,0 +1,24 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <qos-policy-profiles xmlns="urn:bbf:yang:bbf-qos-policies">
+        <policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+          <name>qos_profile_igmp_egress</name>
+        </policy-profile>
+      </qos-policy-profiles>
+      <policies xmlns="urn:bbf:yang:bbf-qos-policies">
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+          <name>policy_igmp_egress</name>
+        </policy>
+      </policies>
+      <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+          <name>classifier_igmp_egress</name>
+        </classifier-entry>
+      </classifiers>
+    </config>
+  </edit-config>
+</rpc>

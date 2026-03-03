@@ -1,0 +1,11 @@
+arguments:
+  app-name:
+    description: application name
+    suggested-values:
+    - logMgr_app
+domains: system>logging>application-log
+freemarker: true
+name: Remove log level for an application
+operation: remove
+sample-id: system-logging-application-log-remove
+status: draft

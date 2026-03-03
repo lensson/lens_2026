@@ -1,0 +1,21 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${vsi\-interface\-name}</name>
+          <statistics xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interfaces-statistics">
+            <#if interface\-statistics\-mode?has_content>
+            <enable>${interface\-statistics\-mode}</enable>
+            <#else>
+            <enable>best-effort</enable>
+            </#if>
+          </statistics>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,28 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  cc-name:
+    description: The name of the VLAN sub-interface that will be created
+    suggested-values:
+    - cc-1
+  enet-name:
+    description: The name of the Ethernet UNI on which to designate whether sharing
+      gemport on the uni
+    optional: true
+    suggested-values:
+    - uni-1-1-1
+  gemport-set-name:
+    description: GEMPORT set name to indicate T-CONT no-sharing, uni-sharing or onu-sharing
+    optional: true
+    suggested-values:
+    - no-sharing
+domains: onu>unicast>forwarding
+entity: gemport-set
+freemarker: true
+name: Remove gemport template
+operation: remove
+sample-id: onu-unicast-forwarding-gemport-set-remove
+scope: eonu
+status: draft

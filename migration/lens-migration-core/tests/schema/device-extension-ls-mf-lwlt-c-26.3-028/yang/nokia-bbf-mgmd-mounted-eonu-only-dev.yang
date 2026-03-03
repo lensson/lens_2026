@@ -1,0 +1,23 @@
+module nokia-bbf-mgmd-mounted-eonu-only-dev {
+  yang-version 1.1;
+  namespace "http://www.nokia.com/Fixed-Networks/BBA/yang/" +
+            "nokia-bbf-mgmd-mounted-eonu-only-dev";
+  prefix nokia-bbf-mgmd-mounted-eonu-only-dev;
+
+  organization
+    "Nokia";
+
+  contact
+    "isam.yang@nokia.com";
+
+  description
+    "The NOKIA IETF/System YANG module supporting
+     deviations on top of standard.";
+
+  revision 2023-06-19 {
+    description
+      "init revision.";
+    reference
+      "Nokia Specific.";
+  }
+}

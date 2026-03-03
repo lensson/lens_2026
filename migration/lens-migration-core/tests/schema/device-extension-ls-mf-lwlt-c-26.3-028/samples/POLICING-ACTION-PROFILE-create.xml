@@ -1,0 +1,137 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <policing-action-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+        <action-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${policing\-action\-profile\-name}</name>
+          <#if green\-bac\-color?has_content || green\-o\-marking\-pbit?has_content || green\-i\-marking\-pbit?has_content || green\-o\-marking\-dei?has_content || green\-i\-marking\-dei?has_content || green\-metered\-flow?has_content || green\-metered\-color?has_content || green\-discard?has_content>
+          <action>
+            <flow-color>green</flow-color>
+	        <#if green\-bac\-color?has_content>
+            <bac-color>${green\-bac\-color}</bac-color>            		    
+            </#if>            
+	        <#if green\-o\-marking\-pbit?has_content>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>${green\-o\-marking\-pbit}</pbit-value>
+            </pbit-marking-list>                
+		    </#if>
+	        <#if green\-i\-marking\-pbit?has_content>
+            <pbit-marking-list>
+              <index>1</index>
+              <pbit-value>${green\-i\-marking\-pbit}</pbit-value>
+            </pbit-marking-list>            
+		    </#if>
+	        <#if green\-o\-marking\-dei?has_content> 
+            <dei-marking-list>
+              <index>0</index>
+              <dei-value>${green\-o\-marking\-dei}</dei-value>
+            </dei-marking-list>            
+		    </#if> 
+	        <#if green\-i\-marking\-dei?has_content> 
+            <dei-marking-list>
+              <index>1</index>
+              <dei-value>${green\-i\-marking\-dei}</dei-value>
+            </dei-marking-list>            
+		    </#if>             
+	        <#if green\-metered\-flow?has_content> 
+            <metered-flow>${green\-metered\-flow}</metered-flow>            
+		    </#if>             
+	        <#if green\-metered\-color?has_content> 
+            <metered-color>${green\-metered\-color}</metered-color>            
+		    </#if>
+	        <#if green\-discard == true> 
+            <discard/>            
+		    </#if>            
+          </action>
+          </#if>  
+          <#if yellow\-bac\-color?has_content || yellow\-o\-marking\-pbit?has_content || yellow\-i\-marking\-pbit?has_content || yellow\-o\-marking\-dei?has_content || yellow\-i\-marking\-dei?has_content || yellow\-metered\-flow?has_content || yellow\-metered\-color?has_content || yellow\-discard?has_content>
+          <action>
+            <flow-color>yellow</flow-color>
+	        <#if yellow\-bac\-color?has_content>
+            <bac-color>${yellow\-bac\-color}</bac-color>            		    
+            </#if>            
+	        <#if yellow\-o\-marking\-pbit?has_content>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>${yellow\-o\-marking\-pbit}</pbit-value>       
+            </pbit-marking-list>              
+		    </#if>
+	        <#if yellow\-i\-marking\-pbit?has_content>
+            <pbit-marking-list>
+              <index>1</index>
+              <pbit-value>${yellow\-i\-marking\-pbit}</pbit-value>
+            </pbit-marking-list>            
+		    </#if>
+	        <#if yellow\-o\-marking\-dei?has_content> 
+            <dei-marking-list>
+              <index>0</index>
+              <dei-value>${yellow\-o\-marking\-dei}</dei-value>
+            </dei-marking-list>            
+		    </#if> 
+	        <#if yellow\-i\-marking\-dei?has_content> 
+            <dei-marking-list>
+              <index>1</index>
+              <dei-value>${yellow\-i\-marking\-dei}</dei-value>
+            </dei-marking-list>            
+		    </#if>             
+	        <#if yellow\-metered\-flow?has_content> 
+            <metered-flow>${yellow\-metered\-flow}</metered-flow>            
+		    </#if>             
+	        <#if yellow\-metered\-color?has_content> 
+            <metered-color>${yellow\-metered\-color}</metered-color>            
+		    </#if>
+	        <#if yellow\-discard == true> 
+            <discard/>            
+		    </#if>            
+          </action>
+          </#if>           
+          <#if red\-bac\-color?has_content || red\-o\-marking\-pbit?has_content || red\-i\-marking\-pbit?has_content || red\-o\-marking\-dei?has_content || red\-i\-marking\-dei?has_content || red\-metered\-flow?has_content || red\-metered\-color?has_content || red\-discard?has_content>
+          <action>
+            <flow-color>red</flow-color>
+	        <#if red\-bac\-color?has_content>
+            <bac-color>${red\-bac\-color}</bac-color>            		    
+            </#if>            
+	        <#if red\-o\-marking\-pbit?has_content>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>${red\-o\-marking\-pbit}</pbit-value>
+            </pbit-marking-list>              
+		    </#if>
+	        <#if red\-i\-marking\-pbit?has_content>
+            <pbit-marking-list>
+              <index>1</index>
+              <pbit-value>${red\-i\-marking\-pbit}</pbit-value>
+            </pbit-marking-list>            
+		    </#if>
+	        <#if red\-o\-marking\-dei?has_content> 
+            <dei-marking-list>
+              <index>0</index>
+              <dei-value>${red\-o\-marking\-dei}</dei-value>
+            </dei-marking-list>            
+		    </#if> 
+	        <#if red\-i\-marking\-dei?has_content> 
+            <dei-marking-list>
+              <index>1</index>
+              <dei-value>${red\-i\-marking\-dei}</dei-value>
+            </dei-marking-list>            
+		    </#if>             
+	        <#if red\-metered\-flow?has_content> 
+            <metered-flow>${red\-metered\-flow}</metered-flow>            
+		    </#if>             
+	        <#if red\-metered\-color?has_content> 
+            <metered-color>${red\-metered\-color}</metered-color>            
+		    </#if>
+	        <#if red\-discard == true> 
+            <discard/>            
+		    </#if>            
+          </action>
+          </#if>       
+        </action-profile>
+      </policing-action-profiles>
+    </config>
+  </edit-config>
+</rpc>    

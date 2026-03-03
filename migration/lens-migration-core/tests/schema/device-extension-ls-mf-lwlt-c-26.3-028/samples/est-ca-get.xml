@@ -1,0 +1,22 @@
+<rpc message-id="EstCaCertificateGet" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <get>
+    <filter type="subtree">
+      <certificate xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-certificate-management">
+        <certificates-state>
+          <est-certificates>
+            <est-profiles>
+              <profile>${profile\-name}</profile>
+              <ca-certificates>
+				<#if certificate\-name?has_content>
+                  <ca-certificate>
+                    <cert>${certificate\-name}</cert>
+                  </ca-certificate>
+				</#if>
+              </ca-certificates>
+            </est-profiles>
+          </est-certificates>
+        </certificates-state>
+      </certificate>
+    </filter>
+  </get>
+</rpc>

@@ -1,0 +1,13 @@
+arguments:
+  ds-pbit-2-tc-policy-name:
+    description: Policy name
+    suggested-values:
+    - ds-tc-assignment
+domains: unicast>qos>policy-profiles
+entity: ds_pbit_2_tc_policy
+freemarker: true
+name: Remove QoS DS pbit-to-tc policy
+operation: remove
+sample-id: unicast-qos-policy-profiles-ds_pbit_2_tc_policy-remove
+scope: not(mx) and not(dpu)
+status: draft

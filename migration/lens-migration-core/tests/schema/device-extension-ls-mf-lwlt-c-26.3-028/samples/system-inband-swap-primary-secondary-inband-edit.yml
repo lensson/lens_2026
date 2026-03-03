@@ -1,0 +1,33 @@
+arguments:
+  old-primary-inband-interface-name:
+    description: Name of existing primary inband interface
+    suggested-values:
+    - inband
+  new-primary-inband-interface-name:
+    description: Name of existing secondary inband interface, i.e., new primary inband
+      interface
+    suggested-values:
+    - inband2
+  old-default-control-plane-protocol-name:
+    description: The name of the control-plane protocol of the existing default route
+    suggested-values:
+    - inband
+  new-default-control-plane-protocol-name:
+    description: The name of the control-plane protocol of the existing non-default
+      route, i.e., new default route
+    suggested-values:
+    - inband2
+  tag-value:
+    description: Tagging of secondary inband interface
+    optional: true
+    suggested-values:
+    - mgnt-access
+available-locally: true
+domains: system>inband
+entity: swap-primary-secondary-inband
+freemarker: true
+name: Swap primary and secondary inband management interface
+operation: edit
+sample-id: system-inband-swap-primary-secondary-inband-edit
+scope: route-multiple
+status: draft

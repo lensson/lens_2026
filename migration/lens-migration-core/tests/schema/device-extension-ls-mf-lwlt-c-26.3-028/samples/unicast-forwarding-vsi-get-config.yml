@@ -1,0 +1,47 @@
+arguments:
+  network_user-outer-vlan-id:
+    description: Outer VLAN-id of the network (or) user interface.
+    optional: true
+    suggested-values:
+    - 1
+  network-inner-vlan-id:
+    description: Inner VLAN-id of the network interface. This argument will be ignored
+      if network-outer-vlan-id is not provided.
+    optional: true
+    suggested-values:
+    - 1
+  network_user-is-untagged:
+    allowed-values:
+    - true
+    description: Indicates if the network (or) user interface is untagged.
+    optional: true
+    suggested-values:
+    - true
+  network_user-is-match-all:
+    description: Needs to be set to true when the VLAN sub-interface is configured
+      to match all traffic. Example, the user VLAN sub-interface in a CC tunnel forwarder.
+    optional: true
+    suggested-values:
+    - false
+  network_user-interface:
+    description: Name of the network (or) user interface.
+    optional: true
+    suggested-values:
+    - agg01
+    - ETH-NTA/X2
+    - ETH-NTB/X2
+  detailed-output:
+    description: Provides detailed information of all the VLAN sub-interfaces in the
+      system when enabled and only the interface names when disabled if the above
+      arguments are not given. Retrieves interface names having lower layer interface
+      as the provided interface if VLAN details (VLAN-id, untagged status) are not
+      given and detailed-output is disabled.
+    suggested-values:
+    - false
+domains: unicast>forwarding
+entity: vsi
+freemarker: true
+name: Retrieve VLAN sub-interface configuration data
+operation: get-config
+sample-id: unicast-forwarding-vsi-get-config
+status: draft

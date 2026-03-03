@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  voip-cc-name:
+    description: VSI name
+    suggested-values:
+    - cc-1
+  tc:
+    description: The Traffic Class for Gemport
+    suggested-values:
+    - 6
+domains: onu>transport>voip-sip
+entity: cc
+freemarker: true
+name: Get Config Transport VOIP SIP CC
+operation: get-config
+sample-id: onu-transport-voip-sip-cc-get-config
+scope: eonu
+status: draft

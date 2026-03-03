@@ -1,0 +1,12 @@
+arguments:
+  session-name:
+    description: Name of the session to remove.
+    suggested-values:
+    - custom_session_1
+domains: system>protocol-tracing
+freemarker: true
+name: Remove an existing protocol-tracing session.
+operation: remove
+sample-id: system-protocol-tracing-remove
+scope: protocol-tracing-copper or protocol-tracing-fiber
+status: draft

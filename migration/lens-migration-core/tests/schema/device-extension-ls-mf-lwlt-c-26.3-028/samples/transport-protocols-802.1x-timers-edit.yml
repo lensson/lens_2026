@@ -1,0 +1,63 @@
+arguments:
+  user-interface:
+    description: Name of the user interface.
+    suggested-values:
+    - OLT-VENET
+  quiet-period:
+    description: Number of seconds that the authenticator remains in the quiet state
+      following a failed authentication exchange with the supplicant.
+    optional: true
+    suggested-values:
+    - 60
+  tx-period:
+    description: The amount of time (in seconds) between sending EAP Request ID messages
+      to the supplicant.
+    optional: true
+    suggested-values:
+    - 30
+  initiate-authentication-request:
+    description: Controls whether or not to send EAP Request ID messages towards all
+      configured and unauthenticated users on the user interface, using an interval
+      defined by tx-period.
+    optional: true
+    suggested-values:
+    - true
+    - false
+  handshake-enable:
+    description: Handshake mechanism is enabled or not.
+    optional: true
+    suggested-values:
+    - false
+  handshake-period:
+    description: The among of time (in range of 5..90 seconds) between handshake messages
+      sent to the supplicant.
+    optional: true
+    suggested-values:
+    - 60
+  authentication-mode:
+    description: The object identifies the authentication mode of the interface.
+    optional: true
+    suggested-values:
+    - port
+    - mac-based
+    - mab-based
+  max-mac-addresses:
+    description: The maximum number mac-address that (in range of 1..2) are allowed
+      to authenticate on the interface.
+    optional: true
+    suggested-values:
+    - 1
+  interface-supplicant-timeout:
+    description: If no reply from supplicant is received within this timeout (in seconds),
+      the authenticator will retry with a new EAP Request.
+    optional: true
+    suggested-values:
+    - 30
+domains: transport>protocols>802.1x
+entity: timers
+freemarker: true
+name: Configure user interface level timers
+operation: edit
+sample-id: transport-protocols-802.1x-timers-edit
+scope: fiber
+status: draft

@@ -1,0 +1,14 @@
+arguments:
+  vsi-interface-name:
+    description: The name of the VLAN sub-interface to configure l2-forwarder-dynamic-association.
+    suggested-values:
+    - VSI
+domains: unicast>forwarding
+entity: dynamic-forwarder-association
+freemarker: true
+name: Disable a VLAN sub-interface for l2 forwarder dynamic association through 802.1X
+  Change Of Authorisation.
+operation: delete
+sample-id: unicast-forwarding-dynamic-forwarder-association-delete
+scope: l2fwd-qos-dyn-association
+status: draft

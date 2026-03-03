@@ -1,0 +1,10 @@
+<rpc message-id="GetActiveApplications" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <get>
+    <filter type="subtree">
+      <loggers xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-logging-app">
+        <active-applications></active-applications>
+      </loggers>
+    </filter>
+  </get>
+</rpc>
+

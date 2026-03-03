@@ -1,0 +1,12 @@
+arguments:
+  name:
+    description: Login name of the user.
+    optional: true
+    suggested-values:
+    - test_user
+domains: system>users
+freemarker: true
+name: Get user in system
+operation: get-config
+sample-id: system-users-get-config
+status: draft

@@ -1,0 +1,29 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  enet-name:
+    description: UNI interface name
+    suggested-values:
+    - uni-1-1-1
+  loopback-duration:
+    description: Indicates for how long the interface shall be kept in loopback mode,
+      Values Range:[infinite,1-93600seconds]
+    optional: true
+    suggested-values:
+    - '1800'
+  loopback-flag:
+    allowed-values:
+    - enable
+    - disable
+    description: enable or disable UNI loopback on an ONU
+    suggested-values:
+    - enable
+domains: onu>transport>xpon>enet
+freemarker: true
+name: Enable or disable UNI interface loopback
+operation: loopback
+sample-id: onu-transport-xpon-enet-loopback
+scope: eonu
+status: draft

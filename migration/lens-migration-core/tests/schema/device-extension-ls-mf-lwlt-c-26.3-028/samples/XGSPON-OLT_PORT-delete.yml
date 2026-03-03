@@ -1,0 +1,13 @@
+arguments:
+  olt-port-name:
+    description: OLT infrastructure port name.
+    suggested-values:
+    - port-1
+domains: transport>xgspon>olt-port
+freemarker: true
+name: Remove xgspon port
+operation: delete
+sample-id: transport-xgspon-olt-port-delete
+scope: ngpon2-xgs or gpon-xgs or gpon-xgs-25g or gpon-ngpon2-xgs-25g or gpon-xgs-25g-hs
+  or gpon-xgpon-xgs-25g or gpon-ngpon2-xgpon-xgs-25g or gpon-xgs-25g-50g
+status: draft

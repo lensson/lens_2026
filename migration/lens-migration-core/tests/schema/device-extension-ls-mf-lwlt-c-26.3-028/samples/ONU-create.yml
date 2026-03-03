@@ -1,0 +1,13 @@
+arguments:
+  onu-name:
+    description: ONU NAME
+    suggested-values:
+    - olt-1_lt-1_onu-1-1-1
+domains: onu
+entity: actual
+freemarker: true
+name: Create ONU non template subtree
+operation: create
+sample-id: onu-actual-create
+scope: eonu
+status: draft

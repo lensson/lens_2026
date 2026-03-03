@@ -1,0 +1,20 @@
+arguments:
+  ibridge-name:
+    description: Ibridge user port name
+    optional: true
+  cc-name:
+    description: The name of CC sample
+    optional: true
+  bc-flooding:
+    description: Downstream broadcast DHCP packets are forwarded according forwarding
+      rules configured for the forwarder
+    suggested-values:
+    - true
+domains: unicast>protocols>dhcp
+entity: downstream-bc-flag
+freemarker: true
+name: Configure downstream BC flag
+operation: edit
+sample-id: unicast-protocols-dhcp-downstream-bc-flag-edit
+scope: fiber
+status: draft

@@ -1,0 +1,23 @@
+arguments:
+  bac-profile-name:
+    suggested-values:
+    - BAC-RED
+  max-queue-size:
+    suggested-values:
+    - 96000
+  min-threshold:
+    suggested-values:
+    - 50
+  max-threshold:
+    suggested-values:
+    - 100
+  max-probability:
+    suggested-values:
+    - 5
+domains: unicast>qos>tm
+entity: bac_red_profile
+freemarker: true
+name: Configure unicast services QoS bac profile red
+operation: edit
+sample-id: unicast-qos-tm-bac_red_profile-edit
+status: draft

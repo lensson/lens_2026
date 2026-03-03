@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: lens-migration-backend
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_SERVER:localhost:8848}
+        namespace: ${NACOS_NAMESPACE:lens_2026}
+        group: ${NACOS_GROUP:DEFAULT_GROUP}
+      config:
+        server-addr: ${NACOS_SERVER:localhost:8848}
+        namespace: ${NACOS_NAMESPACE:lens_2026}
+        group: ${NACOS_GROUP:DEFAULT_GROUP}
+        file-extension: yaml
+        refresh-enabled: true
+    import: "nacos:lens-migration-backend.yaml?group=DEFAULT_GROUP&namespace=lens_2026&refresh=true"
+  config:
+    import: "nacos:lens-migration-backend.yaml?group=DEFAULT_GROUP&namespace=lens_2026&refresh=true"
+
+server:
+  port: 8060
+  forward-headers-strategy: framework
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus

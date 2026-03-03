@@ -1,0 +1,2 @@
+This macro disables callhome.
+

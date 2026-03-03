@@ -1,0 +1,8 @@
+domains: equipment>chassis
+freemarker: true
+name: Get operational data of the chassis
+operation: get
+sample-id: equipment-chassis-get
+scope: not(inband-no-ipv4) and not(eth-copper) and not(eth-copper-ci) and not(hwv1-uplink)
+  and not(hwv3-uplink)
+status: draft

@@ -1,0 +1,84 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <vsi-vector-profiles xmlns="urn:bbf:yang:bbf-vlan-sub-interface-vector">
+      <vsi-vector-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+        <name>${vector\-of\-data\-name}</name>      
+        <interface-usage xmlns="urn:bbf:yang:bbf-vlan-sub-interface-vector-usage">
+            <interface-usage>${interface\-usage}</interface-usage>
+        </interface-usage>
+        <#if l2cp\-pass?has_content>
+        <l2cp xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-vlan-sub-interface-vector-l2cp">
+          <#if l2cp\-pass==true>
+          <l2cp-address-service>l2cp-pass-00-02to0f-10-2x</l2cp-address-service>
+          <#else>
+          <l2cp-address-service>block-l2cp</l2cp-address-service>
+          </#if>
+        </l2cp>
+        </#if>
+        <#if dhcpv4\-profile\-name?has_content>
+        <l2-dhcpv4-relay xmlns="urn:bbf:yang:bbf-vlan-sub-interface-vector-dhcpv4">
+          <enable>true</enable>
+          <trusted-port>false</trusted-port>
+          <profile-ref>${dhcpv4\-profile\-name}</profile-ref>
+          <#if dhcpv4\-allow\-server\-at\-user\-side?has_content>
+          <allow-server-at-user-side xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-vlan-sub-interface-vector-server-at-user-dhcpv4">${dhcpv4\-allow\-server\-at\-user\-side}</allow-server-at-user-side>
+          </#if>
+        </l2-dhcpv4-relay>
+        </#if>
+        <#if dhcpv6\-profile\-name?has_content>
+        <dhcpv6-ldra xmlns="urn:bbf:yang:bbf-vlan-sub-interface-vector-dhcpv6">
+          <enable>true</enable>
+          <trusted-port>false</trusted-port>
+          <profile-ref>${dhcpv6\-profile\-name}</profile-ref>
+          <#if dhcpv6\-allow\-server\-at\-user\-side?has_content>
+          <allow-server-at-user-side xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-vlan-sub-interface-vector-server-at-user-dhcpv6">${dhcpv6\-allow\-server\-at\-user\-side}</allow-server-at-user-side>
+          </#if>
+        </dhcpv6-ldra>
+        </#if>
+        <#if pppoe\-profile\-name?has_content>
+        <pppoe xmlns="urn:bbf:yang:bbf-vlan-sub-interface-vector-pppoe">
+          <enable>true</enable>
+          <profile-ref>${pppoe\-profile\-name}</profile-ref>
+          <#if pppoe\-allow\-server\-at\-user\-side?has_content>
+          <allow-server-at-user-side xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-vlan-sub-interface-vector-server-at-user-pppoe">${pppoe\-allow\-server\-at\-user\-side}</allow-server-at-user-side>
+          </#if>
+        </pppoe>
+        </#if>
+        <#if icmpv6\-profile\-name?has_content>
+        <icmpv6 xmlns="urn:bbf:yang:bbf-vlan-sub-interface-vector-icmpv6">
+          <icmpv6-filter>true</icmpv6-filter>
+          <line-identification-option>true</line-identification-option>
+          <profile-ref>${icmpv6\-profile\-name}</profile-ref>
+        </icmpv6>
+        </#if>
+        <#if ipv4\-antispoofing?has_content>
+        <ipv4-security xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-vlan-sub-interface-vector-ipv4-address-spoofing-prevention">
+            <prevent-ipv4-address-spoofing>${ipv4\-antispoofing}</prevent-ipv4-address-spoofing>
+              <#if ipv4\-antispoofing && learn\-ip\-from\-dhcpv4?has_content && learn\-ip\-from\-dhcpv4>
+              <learn-addresses-from-dhcp/>
+              </#if>
+              <#if ipv4\-antispoofing?has_content && max\-anti\-ip\-address?has_content>
+              <max-address>${max\-anti\-ip\-address}</max-address>
+              </#if>   
+          </ipv4-security>
+        </#if>
+        <#if ipv6\-antispoofing?has_content>
+        <ipv6-security xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-vlan-sub-interface-vector-ipv6-address-spoofing-prevention">
+            <prevent-ipv6-address-spoofing>${ipv6\-antispoofing}</prevent-ipv6-address-spoofing>
+              <#if ipv6\-antispoofing && learn\-ip\-from\-dhcpv6?has_content && learn\-ip\-from\-dhcpv6>
+              <learn-addresses-from-dhcpv6/>
+              </#if>
+              <#if ipv6\-antispoofing?has_content && max\-anti\-ip\-address?has_content>
+              <max-address>${max\-anti\-ip\-address}</max-address>
+              </#if>   
+          </ipv6-security>
+        </#if>
+      </vsi-vector-profile>
+    </vsi-vector-profiles>
+  </config>
+ </edit-config>
+</rpc>

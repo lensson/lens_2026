@@ -1,0 +1,153 @@
+arguments:
+  count-policy-name:
+    description: Policy name
+    suggested-values:
+    - count-policy
+  filter-operation:
+    description: Filters are applicable as any or all filters
+    suggested-values:
+    - match-all-filter
+    - match-any-filter
+  pbit-type:
+    description: the pbit policy type
+    suggested-values:
+    - pbit-marking-list
+    - in-pbit-list
+  pbit-0:
+    description: The p-bit value of outer TAG for counting flow-stats
+    optional: true
+    suggested-values:
+    - 0
+  pbit-1:
+    description: The p-bit value of outer TAG for counting flow-stats
+    optional: true
+    suggested-values:
+    - 1
+  pbit-2:
+    description: The p-bit value of outer TAG for counting flow-stats
+    optional: true
+    suggested-values:
+    - 2
+  pbit-3:
+    description: The p-bit value of outer TAG for counting flow-stats
+    optional: true
+    suggested-values:
+    - 3
+  pbit-4:
+    description: The p-bit value of outer TAG for counting flow-stats
+    optional: true
+    suggested-values:
+    - 4
+  pbit-5:
+    description: The p-bit value of outer TAG for counting flow-stats
+    optional: true
+    suggested-values:
+    - 5
+  pbit-6:
+    description: The p-bit value of outer TAG for counting flow-stats
+    optional: true
+    suggested-values:
+    - 6
+  pbit-7:
+    description: The p-bit value of outer TAG for counting flow-stats
+    optional: true
+    suggested-values:
+    - 7
+  pbit-index-0:
+    description: The index associated with a metadata P-bit value
+    optional: true
+    suggested-values:
+    - 0
+  pbit-index-1:
+    description: The index associated with a metadata P-bit value
+    optional: true
+    suggested-values:
+    - 1
+  pbit-value0-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 0
+  pbit-value1-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 1
+  pbit-value2-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 2
+  pbit-value3-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 3
+  pbit-value4-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 4
+  pbit-value5-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 5
+  pbit-value6-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 6
+  pbit-value7-for-index-0:
+    description: The p-bit value to match for pbit-index-0
+    optional: true
+    suggested-values:
+    - 7
+  pbit-value0-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 0
+  pbit-value1-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 1
+  pbit-value2-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 2
+  pbit-value3-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 3
+  pbit-value4-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 4
+  pbit-value5-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 5
+  pbit-value6-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 6
+  pbit-value7-for-index-1:
+    description: The p-bit value to match for pbit-index-1
+    optional: true
+    suggested-values:
+    - 7
+domains: unicast>qos>policy-profiles
+entity: count_policy
+freemarker: true
+name: Configure QoS count policy
+operation: edit
+sample-id: unicast-qos-policy-profiles-count_policy-edit
+scope: not(mx) and not(dpu) and not(fx-p2p) and not(qos-fiber-xpon-hwv5)
+status: draft

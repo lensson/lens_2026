@@ -1,0 +1,7 @@
+available-locally: true
+domains: system>sztp
+freemarker: true
+name: Retrieve the device serial number
+operation: get
+sample-id: system-sztp-get
+status: draft

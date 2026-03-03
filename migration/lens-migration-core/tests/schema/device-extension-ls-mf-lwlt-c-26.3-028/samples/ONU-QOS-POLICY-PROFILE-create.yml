@@ -1,0 +1,27 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  qos-policy-name-1:
+    description: First QoS Policy name
+    suggested-values:
+    - tc-assignment
+  qos-policy-name-2:
+    description: Second QoS Policy name is empty if not specified
+    optional: true
+  qos-policy-name-3:
+    description: Third QoS Policy name is empty if not specified
+    optional: true
+  qos-policy-profile-name:
+    description: QoS Policy profile name
+    suggested-values:
+    - ingress_qos
+domains: onu>unicast>qos
+entity: policy-profile
+freemarker: true
+name: Create QoS policy profile
+operation: create
+sample-id: onu-unicast-qos-policy-profile-create
+scope: eonu
+status: draft

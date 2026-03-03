@@ -1,0 +1,19 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  multicast-package-name:
+    description: The name of a multicast package.
+  user-port-name:
+    description: The name of a multicast user port.
+  vpn-name:
+    description: The name of a multicast vpn.
+domains: onu>multicast>vpn
+entity: user-port-package
+freemarker: true
+name: Attach multicast package to multicast user port
+operation: attach
+sample-id: onu-multicast-vpn-user-port-package-attach
+scope: eonu
+status: draft

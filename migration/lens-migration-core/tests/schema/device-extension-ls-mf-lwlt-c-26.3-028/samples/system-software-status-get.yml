@@ -1,0 +1,16 @@
+arguments:
+  component:
+    description: Name of the component, default must be Chassis.
+    suggested-values:
+    - Chassis
+  software-name:
+    description: Name of the application software
+    suggested-values:
+    - application_software
+available-locally: true
+domains: system>software
+freemarker: true
+name: Retrieve status of all software versions
+operation: status-get
+sample-id: system-software-status-get
+status: draft

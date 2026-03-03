@@ -1,0 +1,20 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <tm-profiles xmlns="urn:bbf:yang:bbf-qos-traffic-mngt">
+        <bac-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${bac\-profile\-name}</name>
+          <max-queue-size>${max\-queue\-size}</max-queue-size>
+          <red>
+            <min-threshold>${min\-threshold}</min-threshold>
+            <max-threshold>${max\-threshold}</max-threshold>
+            <max-probability>${max\-probability}</max-probability>
+          </red>
+        </bac-entry>
+      </tm-profiles>
+    </config>
+  </edit-config>
+</rpc>

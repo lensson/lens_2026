@@ -1,0 +1,7 @@
+available-locally: true
+domains: system>callhome
+freemarker: true
+name: Retrieve callhome state parameters
+operation: get
+sample-id: system-callhome-get
+status: draft

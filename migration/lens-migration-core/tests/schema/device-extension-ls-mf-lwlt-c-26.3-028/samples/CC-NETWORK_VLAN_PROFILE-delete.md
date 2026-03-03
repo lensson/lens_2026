@@ -1,0 +1,2 @@
+This macro deletes CC-SINGLE-VLAN-PROFILE and CC-QINQ-VLAN-PROFILE.
+

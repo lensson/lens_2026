@@ -1,0 +1,124 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont-mounted">
+              <gemports>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM0</name>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM0</name>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM0</name>
+<#else>
+                  <name>${cc\-name}-GEM0</name>
+</#if>
+                </gemport>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM1</name>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM1</name>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM1</name>
+<#else>
+                  <name>${cc\-name}-GEM1</name>
+</#if>
+                </gemport>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM2</name>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM2</name>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM2</name>
+<#else>
+                  <name>${cc\-name}-GEM2</name>
+</#if>
+                </gemport>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM3</name>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM3</name>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM3</name>
+<#else>
+                  <name>${cc\-name}-GEM3</name>
+</#if>
+                </gemport>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM4</name>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM4</name>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM4</name>
+<#else>
+                  <name>${cc\-name}-GEM4</name>
+</#if>
+                </gemport>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM5</name>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM5</name>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM5</name>
+<#else>
+                  <name>${cc\-name}-GEM5</name>
+</#if>
+                </gemport>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM6</name>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM6</name>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM6</name>
+<#else>
+                  <name>${cc\-name}-GEM6</name>
+</#if>
+                </gemport>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM7</name>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM7</name>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM7</name>
+<#else>
+                  <name>${cc\-name}-GEM7</name>
+</#if>
+                </gemport>
+              </gemports>
+            </xpongemtcont>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,7 @@
+available-locally: true
+domains: system>ssh-server
+freemarker: true
+name: Restore SSH server encryption method and key exchange algorithms
+operation: remove
+sample-id: system-ssh-server-remove
+status: draft

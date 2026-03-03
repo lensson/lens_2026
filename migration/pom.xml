@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.lens</groupId>
+        <artifactId>parent-pom</artifactId>
+        <version>2.0.0-SNAPSHOT</version>
+        <relativePath>../parent-poms/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>migration</artifactId>
+    <packaging>pom</packaging>
+    <version>2.0.0-SNAPSHOT</version>
+    <name>lens_2026/migration</name>
+    <description>YANG Data Migration Tool - AI-powered XSLT generation for device firmware upgrades</description>
+
+    <modules>
+        <module>lens-migration-backend</module>
+        <!-- lens-migration-core is a Python project, configured separately -->
+        <!-- lens-migration-frontend: frontend scaffolding not yet created -->
+    </modules>
+
+</project>

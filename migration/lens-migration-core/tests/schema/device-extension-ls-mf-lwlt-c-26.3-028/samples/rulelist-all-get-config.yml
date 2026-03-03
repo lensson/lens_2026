@@ -1,0 +1,6 @@
+domains: system>authorization>rule-list
+freemarker: true
+name: Retrieve rule-list configuration
+operation: get-config
+sample-id: system-authorization-rule-list-get-config
+status: draft

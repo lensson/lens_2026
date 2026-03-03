@@ -1,0 +1,14 @@
+arguments:
+  ssh-key-type:
+    description: ssh key type
+    suggested-values:
+    - ssh-rsa
+    - ssh-dss
+    - ecdsa-sha2-nistp256
+domains: system>file-transfer
+entity: ssh-key
+freemarker: true
+name: Configure SSH key
+operation: edit
+sample-id: system-file-transfer-ssh-key-edit
+status: draft

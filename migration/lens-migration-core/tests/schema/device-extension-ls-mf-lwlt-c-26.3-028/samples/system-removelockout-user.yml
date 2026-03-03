@@ -1,0 +1,12 @@
+arguments:
+  user-name:
+    description: User name to remove the lockout
+    suggested-values:
+    - test_user
+domains: system>lockout
+entity: user
+freemarker: true
+name: Remove user lockout
+operation: remove-lockout
+sample-id: system-lockout-user-remove-lockout
+status: draft

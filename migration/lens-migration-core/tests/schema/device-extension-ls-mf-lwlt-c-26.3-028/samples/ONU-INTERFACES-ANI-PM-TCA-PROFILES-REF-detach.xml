@@ -1,0 +1,36 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <interfaces>
+              <interface>
+                <template-ref>${onu\-template\-ani\-intf}</template-ref>
+                <pm-tca-profile-ref>
+                <#if tca\-xpon\-fec\-err\-profile?has_content>        
+                  <xponani-fec-err xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">${tca\-xpon\-fec\-err\-profile}</xponani-fec-err>
+</#if>
+<#if tca\-xgpon\-xgs\-tc\-err\-profile?has_content>                  
+	                <xgponani-tc-err xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delwte">${tca\-xgpon\-xgs\-tc\-err\-profile}</xgponani-tc-err>
+</#if>
+<#if tca\-xgpon\-xgs\-ds\-err\-profile?has_content>                  
+                  <xgponani-ds-err xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">${tca\-xgpon\-xgs\-ds\-err\-profile}</xgponani-ds-err>
+</#if>
+<#if tca\-gem\-frame\-err\-profile?has_content>                  
+                  <gem-frame-err xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">${tca\-gem\-frame\-err\-profile}</gem-frame-err>
+</#if>  
+                </pm-tca-profile-ref>
+              </interface>
+            </interfaces>
+          </template-parameters>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>
+

@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  gem-frame-error-profile:
+    description: ANI aggregate GEM performance monitoring threshold profile name
+    suggested-values:
+    - aggr_gem_tca_profile
+domains: onu>system>tca>pm-profiles
+entity: ani-agg-gem-tca-profile
+freemarker: true
+name: Remove ANI aggregate GEM PM TCA profile
+operation: remove
+sample-id: onu-system-tca-pm-profiles-ani-agg-gem-tca-profile-remove
+scope: eonu
+status: draft

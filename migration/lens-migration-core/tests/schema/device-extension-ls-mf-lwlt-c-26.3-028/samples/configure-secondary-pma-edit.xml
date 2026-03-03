@@ -1,0 +1,29 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+  <netconf-server xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-server">
+    <call-home>
+      <netconf-client>
+        <name>${netconf\-client\-name}</name>
+        <secondary-endpoints xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-netconf-server">
+        <endpoints>
+         <endpoint>
+          <name>${endpoint\-name}</name>
+          <#if ip\-address?has_content>
+          <address>${ip\-address}</address>
+          </#if>
+          <#if port?has_content>
+          <port>${port}</port>
+          </#if>
+         </endpoint>
+        </endpoints>
+      </secondary-endpoints>
+      </netconf-client>
+    </call-home>
+  </netconf-server>
+</config>
+</edit-config>
+</rpc>

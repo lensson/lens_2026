@@ -1,0 +1,19 @@
+arguments:
+  network-policy-profile-name:
+    description: QoS Policy profile name
+    suggested-values:
+    - up-egress-qos
+  igmp-remarking-policy-name:
+    description: Remark IGMP Policy name
+    optional: true
+  igmp-tc-policy-name:
+    description: IGMP TC Policy name
+    optional: true
+domains: multicast>qos
+entity: network_policy_profile
+freemarker: true
+name: Create MULTICAST SERVICES QoS POLICY PROFILE
+operation: create
+sample-id: multicast-qos-network_policy_profile-create
+scope: multicast-fiber and not(dpu)
+status: draft

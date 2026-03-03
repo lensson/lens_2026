@@ -1,0 +1,20 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu-template-uni-intf:
+    description: ENET interface name
+    suggested-values:
+    - uni-template-1
+  enet-frame-size:
+    description: Ethernet max frame size to be allowed across the ENET interface
+    suggested-values:
+    - frame-size-9216
+domains: onu>transport>xpon>enet
+entity: template
+freemarker: true
+name: Modify Ethernet UNI max frame size template parameter
+operation: maxframesize-modify
+sample-id: onu-transport-xpon-enet-template-maxframesize-modify
+status: draft

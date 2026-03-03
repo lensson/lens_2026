@@ -1,0 +1,22 @@
+arguments:
+  syslog-collector-name:
+    description: Remote destination log collector name
+    suggested-values:
+    - logCollector1
+  tls-version:
+    description: YANG identifier of a TLS protocol version to add
+    optional: true
+    suggested-values:
+    - tls13
+  cipher-suite:
+    description: YANG identifier of a TLS cipher to add
+    optional: true
+    suggested-values:
+    - tls-aes-256-gcm-sha384
+domains: system>logging>remote-syslog-collector
+entity: hello
+freemarker: true
+name: Remove TLS version or cipher from a remote syslog collector
+operation: remove
+sample-id: system-logging-remote-syslog-collector-hello-remove
+status: draft

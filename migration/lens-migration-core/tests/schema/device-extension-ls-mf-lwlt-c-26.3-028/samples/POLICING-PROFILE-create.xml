@@ -1,0 +1,39 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <policing-profiles xmlns="urn:bbf:yang:bbf-qos-policing">
+        <policing-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${policing\-profile\-name}</name>
+		  <#if policing\-scope?has_content>
+          <scope xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">bbf-qos-cls:${policing\-scope}</scope>
+		  </#if>
+          <#if policing\-type == 'trtcm'>
+          <two-rate-three-color-marker-mef>
+            <couple-flag>${policing\-coupling\-flag}</couple-flag>
+            <color-mode>${policing\-color\-mode}</color-mode>          	
+            <cir>${policing\-cir}</cir>
+            <cbs>${policing\-cbs}</cbs>
+            <eir>${policing\-eir}</eir>
+            <ebs>${policing\-ebs}</ebs>
+          </two-rate-three-color-marker-mef>
+          </#if>
+          <#if policing\-type == 'srtcm'>
+          <single-rate-two-color-marker>
+            <cir>${policing\-cir}</cir>
+            <cbs>${policing\-cbs}</cbs>
+          </single-rate-two-color-marker>	
+          </#if>
+		  <#if policing\-pre\-handling\-profile\-name?has_content>
+          <policing-pre-handling-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">${policing\-pre\-handling\-profile\-name}</policing-pre-handling-profile>
+          </#if>
+		  <#if policing\-action\-profile\-name?has_content>
+          <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">${policing\-action\-profile\-name}</policing-action-profile>
+          </#if>          
+        </policing-profile>
+      </policing-profiles>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  qos-policy-profile-name:
+    description: QoS Policy profile name
+    suggested-values:
+    - ingress_qos
+domains: onu>unicast>qos
+entity: policy-profile
+freemarker: true
+name: Get QoS policy profile
+operation: get
+sample-id: onu-unicast-qos-policy-profile-get
+scope: eonu
+status: draft

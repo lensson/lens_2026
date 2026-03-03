@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  mc-profile-name:
+    description: The name of the multicast profile.
+    suggested-values:
+    - vpn-profile1
+domains: onu>multicast>vpn
+entity: profile
+freemarker: true
+name: Get multicast VPN profile configuration
+operation: get-config
+sample-id: onu-multicast-vpn-profile-get-config
+scope: eonu
+status: draft

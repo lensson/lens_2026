@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name.
+    suggested-values:
+    - ONU-1
+  user-interface:
+    description: Name of the user interface.
+    suggested-values:
+    - OLT-VENET
+domains: onu>802.1X
+entity: authentication
+freemarker: true
+name: Remove 802.1x authentication on ONU
+operation: remove
+sample-id: onu-802.1X-authentication-remove
+scope: fiber
+status: draft

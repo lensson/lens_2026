@@ -1,0 +1,17 @@
+arguments:
+  policy-name:
+    description: Name of the RADIUS policy.
+    suggested-values:
+    - policy
+  domain-name:
+    description: Name of the domain.
+    suggested-values:
+    - domain
+domains: system>protocols>802.1x
+entity: radius-connection
+freemarker: true
+name: Remove RADIUS connection parameters
+operation: remove
+sample-id: system-protocols-802.1x-radius-connection-remove
+scope: user-auth
+status: draft

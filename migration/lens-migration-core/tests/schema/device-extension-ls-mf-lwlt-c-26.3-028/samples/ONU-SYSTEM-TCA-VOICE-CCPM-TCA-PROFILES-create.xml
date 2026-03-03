@@ -1,0 +1,38 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <tca-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-profiles-mounted">
+              <pm-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-hardware-pm-threshold-profiles-mounted">
+                <ccpm-failure-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-voice-pm-threshold-profiles-mounted" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                  <name>${ccpm\-failure\-tca\-profile}</name>
+<#if call\-setup\-fail\-threshold?has_content>
+                  <call-setup-fail-threshold>${call\-setup\-fail\-threshold}</call-setup-fail-threshold>
+</#if>
+<#if call\-setup\-timeout\-threshold?has_content>
+                  <call-setup-timeout-threshold>${call\-setup\-timeout\-threshold}</call-setup-timeout-threshold>
+</#if>
+<#if call\-terminate\-threshold?has_content>
+                  <call-terminate-threshold>${call\-terminate\-threshold}</call-terminate-threshold>
+</#if>
+<#if port\-release\-no\-dialing\-threshold?has_content>
+                  <port-release-no-dialing-threshold>${port\-release\-no\-dialing\-threshold}</port-release-no-dialing-threshold>
+</#if>
+<#if port\-offhook\-timeout\-threshold?has_content>
+                  <port-offhook-timeout-threshold>${port\-offhook\-timeout\-threshold}</port-offhook-timeout-threshold>
+</#if>
+                </ccpm-failure-profile>
+              </pm-profiles>
+            </tca-profiles>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

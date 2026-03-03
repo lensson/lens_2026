@@ -1,0 +1,59 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <tca-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-profiles-mounted">
+              <pm-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-hardware-pm-threshold-profiles-mounted">
+                <ethernet-physical-layer-error-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-ethernet-pm-threshold-profiles-mounted" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                  <name>${ethernet\-physical\-layer\-error\-profile}</name>
+<#if excessive\-collision\-threshold?has_content>
+                  <excessive-collision-threshold>${excessive\-collision\-threshold}</excessive-collision-threshold>
+</#if>
+<#if late\-collision\-threshold?has_content>
+                  <late-collision-threshold>${late\-collision\-threshold}</late-collision-threshold>
+</#if>
+<#if rx\-buffer\-overflow\-threshold?has_content>
+                  <rx-buffer-overflow-threshold>${rx\-buffer\-overflow\-threshold}</rx-buffer-overflow-threshold>
+</#if>
+<#if tx\-buffer\-overflow\-threshold?has_content>
+                  <tx-buffer-overflow-threshold>${tx\-buffer\-overflow\-threshold}</tx-buffer-overflow-threshold>
+</#if>
+<#if single\-collision\-threshold?has_content>
+                  <single-collision-threshold>${single\-collision\-threshold}</single-collision-threshold>
+</#if>
+<#if multiple\-collision\-threshold?has_content>
+                  <multiple-collision-threshold>${multiple\-collision\-threshold}</multiple-collision-threshold>
+</#if>
+<#if sqe\-counter\-threshold?has_content>
+                  <sqe-counter-threshold>${sqe\-counter\-threshold}</sqe-counter-threshold>
+</#if>
+<#if deferred\-tx\-threshold?has_content>
+                  <deferred-tx-threshold>${deferred\-tx\-threshold}</deferred-tx-threshold>
+</#if>
+<#if internal\-mac\-tx\-error\-threshold?has_content>
+                  <internal-mac-tx-error-threshold>${internal\-mac\-tx\-error\-threshold}</internal-mac-tx-error-threshold>
+</#if>
+<#if carrier\-sense\-error\-threshold?has_content>
+                  <carrier-sense-error-threshold>${carrier\-sense\-error\-threshold}</carrier-sense-error-threshold>
+</#if>
+<#if alignment\-error\-threshold?has_content>
+                  <alignment-error-threshold>${alignment\-error\-threshold}</alignment-error-threshold>
+</#if>
+<#if internal\-mac\-rx\-error\-threshold?has_content>
+                  <internal-mac-rx-error-threshold>${internal\-mac\-rx\-error\-threshold}</internal-mac-rx-error-threshold>
+</#if>
+                </ethernet-physical-layer-error-profile>
+              </pm-profiles>
+            </tca-profiles>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

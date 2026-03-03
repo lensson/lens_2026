@@ -1,0 +1,601 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+	<edit-config>
+		<target>
+			<running/>
+		</target>
+		<config>
+			<policies xmlns="urn:bbf:yang:bbf-qos-policies">
+				<policy>
+					<name>${pbit\-scheduling\-policy\-name}</name>
+					<#if pbit0\-tc?has_content>
+						<classifiers>
+							<name>cls0-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>
+					<#if pbit1\-tc?has_content>
+						<classifiers>
+							<name>cls1-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>
+					<#if pbit2\-tc?has_content>
+						<classifiers>
+							<name>cls2-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>
+					<#if pbit3\-tc?has_content>
+						<classifiers>
+							<name>cls3-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>
+					<#if pbit4\-tc?has_content>
+						<classifiers>
+							<name>cls4-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>
+					<#if pbit5\-tc?has_content>
+						<classifiers>
+							<name>cls5-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>
+					<#if pbit6\-tc?has_content>
+						<classifiers>
+							<name>cls6-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>
+					<#if pbit7\-tc?has_content>
+						<classifiers>
+							<name>cls7-${pbit\-scheduling\-policy\-name}</name>
+						</classifiers>
+					</#if>
+				</policy>
+			</policies>
+			<classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+			  <#if pbit0\-tc?has_content>
+			    <classifier-entry>
+			      <name>cls0-${pbit\-scheduling\-policy\-name}</name>
+                              <filter-operation>${filter\-operation}</filter-operation>
+	                      <classifier-action-entry-cfg>
+			        <action-type>scheduling-traffic-class</action-type>
+		                <scheduling-traffic-class>${pbit0\-tc}</scheduling-traffic-class>
+			      </classifier-action-entry-cfg>
+                              <#if pbit\-index0\-cls0?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		  <index>${pbit\-index0\-cls0}</index>
+                  		  <#if pbit\-value0\-for\-index0\-cls0?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index0\-cls0}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index0\-cls0?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index0\-cls0}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index0\-cls0?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index0\-cls0}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index0\-cls0?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index0\-cls0}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index0\-cls0?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index0\-cls0}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index0\-cls0?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index0\-cls0}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index0\-cls0?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index0\-cls0}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index0\-cls0?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index0\-cls0}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+                	      <#if pbit\-index1\-cls0?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		<index>${pbit\-index1\-cls0}</index>
+                  		  <#if pbit\-value0\-for\-index1\-cls0?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index1\-cls0}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index1\-cls0?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index1\-cls0}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index1\-cls0?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index1\-cls0}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index1\-cls0?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index1\-cls0}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index1\-cls0?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index1\-cls0}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index1\-cls0?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index1\-cls0}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index1\-cls0?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index1\-cls0}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index1\-cls0?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index1\-cls0}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+			    </classifier-entry>
+			  </#if>
+			  <#if pbit1\-tc?has_content>
+			    <classifier-entry>
+			      <name>cls1-${pbit\-scheduling\-policy\-name}</name>
+                              <filter-operation>${filter\-operation}</filter-operation>
+	                      <classifier-action-entry-cfg>
+			        <action-type>scheduling-traffic-class</action-type>
+		                <scheduling-traffic-class>${pbit1\-tc}</scheduling-traffic-class>
+			      </classifier-action-entry-cfg>
+                              <#if pbit\-index0\-cls1?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		  <index>${pbit\-index0\-cls1}</index>
+                  		  <#if pbit\-value0\-for\-index0\-cls1?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index0\-cls1}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index0\-cls1?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index0\-cls1}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index0\-cls1?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index0\-cls1}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index0\-cls1?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index0\-cls1}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index0\-cls1?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index0\-cls1}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index0\-cls1?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index0\-cls1}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index0\-cls1?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index0\-cls1}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index0\-cls1?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index0\-cls1}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+                	      <#if pbit\-index1\-cls1?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		<index>${pbit\-index1\-cls1}</index>
+                  		  <#if pbit\-value0\-for\-index1\-cls1?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index1\-cls1}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index1\-cls1?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index1\-cls1}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index1\-cls1?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index1\-cls1}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index1\-cls1?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index1\-cls1}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index1\-cls1?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index1\-cls1}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index1\-cls1?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index1\-cls1}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index1\-cls1?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index1\-cls1}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index1\-cls1?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index1\-cls1}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+			    </classifier-entry>
+			  </#if>
+                          <#if pbit2\-tc?has_content>
+			    <classifier-entry>
+			      <name>cls2-${pbit\-scheduling\-policy\-name}</name>
+                              <filter-operation>${filter\-operation}</filter-operation>
+	                      <classifier-action-entry-cfg>
+			        <action-type>scheduling-traffic-class</action-type>
+		                <scheduling-traffic-class>${pbit2\-tc}</scheduling-traffic-class>
+			      </classifier-action-entry-cfg>
+                              <#if pbit\-index0\-cls2?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		  <index>${pbit\-index0\-cls2}</index>
+                  		  <#if pbit\-value0\-for\-index0\-cls2?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index0\-cls2}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index0\-cls2?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index0\-cls2}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index0\-cls2?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index0\-cls2}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index0\-cls2?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index0\-cls2}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index0\-cls2?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index0\-cls2}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index0\-cls2?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index0\-cls2}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index0\-cls2?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index0\-cls2}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index0\-cls2?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index0\-cls2}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+                	      <#if pbit\-index1\-cls2?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		<index>${pbit\-index1\-cls2}</index>
+                  		  <#if pbit\-value0\-for\-index1\-cls2?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index1\-cls2}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index1\-cls2?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index1\-cls2}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index1\-cls2?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index1\-cls2}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index1\-cls2?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index1\-cls2}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index1\-cls2?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index1\-cls2}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index1\-cls2?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index1\-cls2}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index1\-cls2?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index1\-cls2}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index1\-cls2?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index1\-cls2}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+			    </classifier-entry>
+			  </#if>
+                          <#if pbit3\-tc?has_content>
+			    <classifier-entry>
+			      <name>cls3-${pbit\-scheduling\-policy\-name}</name>
+                              <filter-operation>${filter\-operation}</filter-operation>
+	                      <classifier-action-entry-cfg>
+			        <action-type>scheduling-traffic-class</action-type>
+		                <scheduling-traffic-class>${pbit3\-tc}</scheduling-traffic-class>
+			      </classifier-action-entry-cfg>
+                              <#if pbit\-index0\-cls3?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		  <index>${pbit\-index0\-cls3}</index>
+                  		  <#if pbit\-value0\-for\-index0\-cls3?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index0\-cls3}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index0\-cls3?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index0\-cls3}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index0\-cls3?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index0\-cls3}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index0\-cls3?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index0\-cls3}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index0\-cls3?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index0\-cls3}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index0\-cls3?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index0\-cls3}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index0\-cls3?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index0\-cls3}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index0\-cls3?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index0\-cls3}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+                	      <#if pbit\-index1\-cls3?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		<index>${pbit\-index1\-cls3}</index>
+                  		  <#if pbit\-value0\-for\-index1\-cls3?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index1\-cls3}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index1\-cls3?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index1\-cls3}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index1\-cls3?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index1\-cls3}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index1\-cls3?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index1\-cls3}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index1\-cls3?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index1\-cls3}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index1\-cls3?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index1\-cls3}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index1\-cls3?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index1\-cls3}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index1\-cls3?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index1\-cls3}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+			    </classifier-entry>
+			  </#if>
+                          <#if pbit4\-tc?has_content>
+			    <classifier-entry>
+			      <name>cls4-${pbit\-scheduling\-policy\-name}</name>
+                              <filter-operation>${filter\-operation}</filter-operation>
+	                      <classifier-action-entry-cfg>
+			        <action-type>scheduling-traffic-class</action-type>
+		                <scheduling-traffic-class>${pbit4\-tc}</scheduling-traffic-class>
+			      </classifier-action-entry-cfg>
+                              <#if pbit\-index0\-cls4?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		  <index>${pbit\-index0\-cls4}</index>
+                  		  <#if pbit\-value0\-for\-index0\-cls4?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index0\-cls4}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index0\-cls4?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index0\-cls4}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index0\-cls4?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index0\-cls4}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index0\-cls4?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index0\-cls4}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index0\-cls4?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index0\-cls4}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index0\-cls4?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index0\-cls4}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index0\-cls4?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index0\-cls4}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index0\-cls4?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index0\-cls4}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+                	      <#if pbit\-index1\-cls4?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		<index>${pbit\-index1\-cls4}</index>
+                  		  <#if pbit\-value0\-for\-index1\-cls4?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index1\-cls4}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index1\-cls4?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index1\-cls4}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index1\-cls4?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index1\-cls4}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index1\-cls4?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index1\-cls4}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index1\-cls4?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index1\-cls4}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index1\-cls4?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index1\-cls4}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index1\-cls4?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index1\-cls4}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index1\-cls4?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index1\-cls4}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+			    </classifier-entry>
+			  </#if>
+                          <#if pbit5\-tc?has_content>
+			    <classifier-entry>
+			      <name>cls5-${pbit\-scheduling\-policy\-name}</name>
+                              <filter-operation>${filter\-operation}</filter-operation>
+	                      <classifier-action-entry-cfg>
+			        <action-type>scheduling-traffic-class</action-type>
+		                <scheduling-traffic-class>${pbit5\-tc}</scheduling-traffic-class>
+			      </classifier-action-entry-cfg>
+                              <#if pbit\-index0\-cls5?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		  <index>${pbit\-index0\-cls5}</index>
+                  		  <#if pbit\-value0\-for\-index0\-cls5?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index0\-cls5}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index0\-cls5?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index0\-cls5}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index0\-cls5?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index0\-cls5}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index0\-cls5?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index0\-cls5}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index0\-cls5?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index0\-cls5}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index0\-cls5?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index0\-cls5}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index0\-cls5?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index0\-cls5}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index0\-cls5?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index0\-cls5}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+                	      <#if pbit\-index1\-cls5?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		<index>${pbit\-index1\-cls5}</index>
+                  		  <#if pbit\-value0\-for\-index1\-cls5?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index1\-cls5}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index1\-cls5?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index1\-cls5}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index1\-cls5?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index1\-cls5}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index1\-cls5?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index1\-cls5}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index1\-cls5?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index1\-cls5}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index1\-cls5?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index1\-cls5}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index1\-cls5?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index1\-cls5}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index1\-cls5?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index1\-cls5}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+			    </classifier-entry>
+			  </#if>
+                          <#if pbit6\-tc?has_content>
+			    <classifier-entry>
+			      <name>cls6-${pbit\-scheduling\-policy\-name}</name>
+                              <filter-operation>${filter\-operation}</filter-operation>
+	                      <classifier-action-entry-cfg>
+			        <action-type>scheduling-traffic-class</action-type>
+		                <scheduling-traffic-class>${pbit6\-tc}</scheduling-traffic-class>
+			      </classifier-action-entry-cfg>
+                              <#if pbit\-index0\-cls6?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		  <index>${pbit\-index0\-cls6}</index>
+                  		  <#if pbit\-value0\-for\-index0\-cls6?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index0\-cls6}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index0\-cls6?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index0\-cls6}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index0\-cls6?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index0\-cls6}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index0\-cls6?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index0\-cls6}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index0\-cls6?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index0\-cls6}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index0\-cls6?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index0\-cls6}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index0\-cls6?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index0\-cls6}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index0\-cls6?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index0\-cls6}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+                	      <#if pbit\-index1\-cls6?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		<index>${pbit\-index1\-cls6}</index>
+                  		  <#if pbit\-value0\-for\-index1\-cls6?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index1\-cls6}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index1\-cls6?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index1\-cls6}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index1\-cls6?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index1\-cls6}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index1\-cls6?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index1\-cls6}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index1\-cls6?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index1\-cls6}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index1\-cls6?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index1\-cls6}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index1\-cls6?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index1\-cls6}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index1\-cls6?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index1\-cls6}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+			    </classifier-entry>
+			  </#if>
+                          <#if pbit7\-tc?has_content>
+			    <classifier-entry>
+			      <name>cls7-${pbit\-scheduling\-policy\-name}</name>
+                              <filter-operation>${filter\-operation}</filter-operation>
+	                      <classifier-action-entry-cfg>
+			        <action-type>scheduling-traffic-class</action-type>
+		                <scheduling-traffic-class>${pbit7\-tc}</scheduling-traffic-class>
+			      </classifier-action-entry-cfg>
+                              <#if pbit\-index0\-cls7?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		  <index>${pbit\-index0\-cls7}</index>
+                  		  <#if pbit\-value0\-for\-index0\-cls7?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index0\-cls7}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index0\-cls7?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index0\-cls7}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index0\-cls7?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index0\-cls7}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index0\-cls7?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index0\-cls7}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index0\-cls7?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index0\-cls7}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index0\-cls7?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index0\-cls7}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index0\-cls7?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index0\-cls7}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index0\-cls7?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index0\-cls7}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+                	      <#if pbit\-index1\-cls7?has_content>
+                		<pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  		<index>${pbit\-index1\-cls7}</index>
+                  		  <#if pbit\-value0\-for\-index1\-cls7?has_content>
+                   	            <pbit-value>${pbit\-value0\-for\-index1\-cls7}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value1\-for\-index1\-cls7?has_content>
+                    		    <pbit-value>${pbit\-value1\-for\-index1\-cls7}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value2\-for\-index1\-cls7?has_content>
+                    		    <pbit-value>${pbit\-value2\-for\-index1\-cls7}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value3\-for\-index1\-cls7?has_content>
+                    		    <pbit-value>${pbit\-value3\-for\-index1\-cls7}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value4\-for\-index1\-cls7?has_content>
+                    		    <pbit-value>${pbit\-value4\-for\-index1\-cls7}</pbit-value>
+                                  </#if>
+                  		  <#if pbit\-value5\-for\-index1\-cls7?has_content>
+                    		    <pbit-value>${pbit\-value5\-for\-index1\-cls7}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value6\-for\-index1\-cls7?has_content>
+                    		    <pbit-value>${pbit\-value6\-for\-index1\-cls7}</pbit-value>
+                  		  </#if>
+                  		  <#if pbit\-value7\-for\-index1\-cls7?has_content>
+                    		    <pbit-value>${pbit\-value7\-for\-index1\-cls7}</pbit-value>
+                  		  </#if>
+                		</pbit-marking-list>
+                	      </#if>
+			    </classifier-entry>
+			  </#if>
+			</classifiers>
+		</config>
+	</edit-config>
+</rpc>
+

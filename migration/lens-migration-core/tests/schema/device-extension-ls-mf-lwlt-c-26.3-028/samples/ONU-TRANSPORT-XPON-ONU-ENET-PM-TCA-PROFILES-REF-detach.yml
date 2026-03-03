@@ -1,0 +1,32 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  eth-name:
+    description: ONT UNI interface name (ENET)
+    suggested-values:
+    - cp1_ont01_uni1
+  ethernet-frame-error-profile:
+    description: Ethernet frame error tca profile.
+    optional: true
+    suggested-values:
+    - eth_tca_profile
+  ethernet-physical-layer-error-profile:
+    description: Ethernet physical layer error TCA profile.
+    optional: true
+    suggested-values:
+    - eth_phy_layer_tca_profile
+  ethernet-frame-error-extended-profile:
+    description: Ethernet frame error extended TCA profile.
+    optional: true
+    suggested-values:
+    - eth_error_extended_tca_profile
+domains: onu>transport>xpon>enet
+entity: pm-tca-profiles-ref
+freemarker: true
+name: Detach Ethernet uni interface PM TCA profile
+operation: detach
+sample-id: onu-transport-xpon-enet-pm-tca-profiles-ref-detach
+scope: eonu
+status: draft

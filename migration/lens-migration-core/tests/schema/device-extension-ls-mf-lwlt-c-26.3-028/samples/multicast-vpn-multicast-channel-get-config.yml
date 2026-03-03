@@ -1,0 +1,28 @@
+arguments:
+  vpn-name:
+    description: The name of the multicast VPN.
+    optional: false
+    suggested-values:
+    - mc-vpn
+  multicast-channel-name:
+    description: The name of the multicast channel.
+    optional: true
+    suggested-values:
+    - Channel-1
+  detailed-output:
+    description: Provides detailed configuration of all the multicast channels in
+      the VPN in the system when enabled and a list of configured multicast channel
+      names in the VPN when disabled. This argument will be ignored when the multicast-channel-name
+      is provided.
+    optional: false
+    suggested-values:
+    - false
+    - true
+domains: multicast>vpn
+entity: multicast-channel
+freemarker: true
+name: Retrieve multicast channel configuration
+operation: get-config
+sample-id: multicast-vpn-multicast-channel-get-config
+scope: multicast
+status: draft

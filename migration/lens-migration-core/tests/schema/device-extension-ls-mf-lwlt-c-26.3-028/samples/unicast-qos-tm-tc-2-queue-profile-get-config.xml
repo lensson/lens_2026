@@ -1,0 +1,21 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter type="subtree">
+    <tm-profiles xmlns="urn:bbf:yang:bbf-qos-traffic-mngt">
+    <tc-id-2-queue-id-mapping-profile>
+<#if tc2q\-prof\-name?has_content>
+     <name>${tc2q\-prof\-name}</name>
+<#else>
+   <#if detailed\-output == false>
+      <name/>
+   </#if>
+</#if>
+   </tc-id-2-queue-id-mapping-profile>
+   </tm-profiles>
+   </filter>
+ </get-config>
+</rpc>
+

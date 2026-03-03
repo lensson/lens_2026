@@ -1,0 +1,33 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+<action xmlns="urn:ietf:params:xml:ns:yang:1">
+    <dhcpv4-client-simulator xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-dhcpv4-client-simulator">
+      <session>
+      <interface>${interface}</interface>
+          <start-client-session>
+            <client-mac>${client\-mac}</client-mac>
+            <#if inner\-vlan\-pbit\-value?has_content>
+              <inner-vlan-pbit-value>${inner\-vlan\-pbit\-value}</inner-vlan-pbit-value>
+            </#if>
+            <#if outer\-vlan\-pbit\-value?has_content>
+            <outer-vlan-pbit-value>${outer\-vlan\-pbit\-value}</outer-vlan-pbit-value>
+            </#if>
+            <#if option\-60?has_content>
+            <option-60>${option\-60}</option-60>
+            </#if>
+            <option-61>
+            <#if mac\-address?has_content || string?has_content>
+              <#if mac\-address?has_content>
+	        <mac-address>${mac\-address}</mac-address>
+              <#else>
+                <string>${string}</string>
+              </#if>
+            </#if>
+	    </option-61>
+            <#if time\-out?has_content>
+            <time-out>${time\-out}</time-out>
+            </#if>
+   </start-client-session>
+</session>
+</dhcpv4-client-simulator>
+</action>
+</rpc>

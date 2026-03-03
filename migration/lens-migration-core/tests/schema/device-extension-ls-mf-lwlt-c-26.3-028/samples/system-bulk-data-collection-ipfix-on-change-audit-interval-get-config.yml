@@ -1,0 +1,7 @@
+domains: system>bulk-data-collection>ipfix
+entity: on-change-audit-interval
+freemarker: true
+name: Retrieve on-change audit-interval
+operation: get-config
+sample-id: system-bulk-data-collection-ipfix-on-change-audit-interval-get-config
+status: draft

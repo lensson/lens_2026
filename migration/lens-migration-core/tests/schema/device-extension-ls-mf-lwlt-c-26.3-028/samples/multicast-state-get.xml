@@ -1,0 +1,17 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get>
+    <filter type="subtree">
+      <multicast-state xmlns="urn:bbf:yang:bbf-mgmd">
+        <mgmd>
+          <multicast-vpn>
+            <name>${multicast\-vpn\-name}</name>
+            <multicast-interface-to-host/>
+            <multicast-network-interface/>
+            <multicast-proxy-or-snooper/>
+            <active-channel/>
+          </multicast-vpn>
+        </mgmd>
+      </multicast-state>
+    </filter>
+  </get>
+</rpc>

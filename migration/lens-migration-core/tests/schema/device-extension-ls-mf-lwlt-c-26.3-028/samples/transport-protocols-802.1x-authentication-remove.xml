@@ -1,0 +1,25 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>${user\-interface}</name>
+          <olt-v-enet xmlns="urn:bbf:yang:bbf-xponvani">
+            <uni-name xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-olt-v-enet" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete"/>
+          </olt-v-enet>
+          <pae xmlns="urn:ieee:std:802.1X:yang:ieee802-dot1x">
+            <port-capabilities>
+              <auth xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete"/>
+            </port-capabilities>
+	    <ext-authenticator xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-802-dot1x-ext">
+              <signalling-channel xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-802-dot1x-ext" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete"/>
+	    </ext-authenticator>
+          </pae>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>

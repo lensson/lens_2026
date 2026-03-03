@@ -1,0 +1,12 @@
+arguments:
+  host-id:
+    description: The DSLAM id of the host
+    suggested-values:
+    - 1234
+available-locally: true
+domains: system>host-id
+freemarker: true
+name: Configure the host id
+operation: edit
+sample-id: system-host-id-edit
+status: draft

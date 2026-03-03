@@ -1,0 +1,19 @@
+arguments:
+  vsi-interface-name:
+    description: The name of the VLAN sub-interface on which the pbit statistics are
+      enabled.
+    suggested-values:
+    - cc-1-USER-VSI
+    - user-port-1-VSI
+  pbit-statistics-enable:
+    description: Enable pbit statistics.
+    suggested-values:
+    - true
+    - false
+domains: unicast>forwarding
+entity: vsi-interface-pbit-statistics
+freemarker: true
+name: Enable pbit statistics on VLAN sub-interface.
+operation: edit
+sample-id: unicast-forwarding-vsi-interface-pbit-statistics-edit
+status: draft

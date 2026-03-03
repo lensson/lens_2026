@@ -1,0 +1,191 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <policies xmlns="urn:bbf:yang:bbf-qos-policies-mounted">
+              <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${mpbit\-2\-tc\-policy}</name>
+<#if mpbit0\-tc?has_content>
+                <classifiers>
+                  <name>policy-${mpbit\-2\-tc\-policy}_classifier0</name>
+                </classifiers>
+</#if>
+<#if mpbit1\-tc?has_content>
+                <classifiers>
+                  <name>policy-${mpbit\-2\-tc\-policy}_classifier1</name>
+                </classifiers>
+</#if>
+<#if mpbit2\-tc?has_content>
+                <classifiers>
+                  <name>policy-${mpbit\-2\-tc\-policy}_classifier2</name>
+                </classifiers>
+</#if>
+<#if mpbit3\-tc?has_content>
+                <classifiers>
+                  <name>policy-${mpbit\-2\-tc\-policy}_classifier3</name>
+                </classifiers>
+</#if>
+<#if mpbit4\-tc?has_content>
+                <classifiers>
+                  <name>policy-${mpbit\-2\-tc\-policy}_classifier4</name>
+                </classifiers>
+</#if>
+<#if mpbit5\-tc?has_content>
+                <classifiers>
+                  <name>policy-${mpbit\-2\-tc\-policy}_classifier5</name>
+                </classifiers>
+</#if>
+<#if mpbit6\-tc?has_content>
+                <classifiers>
+                  <name>policy-${mpbit\-2\-tc\-policy}_classifier6</name>
+                </classifiers>
+</#if>
+<#if mpbit7\-tc?has_content>
+                <classifiers>
+                  <name>policy-${mpbit\-2\-tc\-policy}_classifier7</name>
+                </classifiers>
+</#if>
+              </policy>
+            </policies>
+            <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers-mounted">
+<#if mpbit0\-tc?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier0</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list>
+                    <index>0</index>
+                    <pbit-value>0</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${mpbit0\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if mpbit1\-tc?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier1</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list>
+                    <index>0</index>
+                    <pbit-value>1</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${mpbit1\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if mpbit2\-tc?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier2</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list>
+                    <index>0</index>
+                    <pbit-value>2</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${mpbit2\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if mpbit3\-tc?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier3</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list>
+                    <index>0</index>
+                    <pbit-value>3</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${mpbit3\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if mpbit4\-tc?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier4</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list>
+                    <index>0</index>
+                    <pbit-value>4</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${mpbit4\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if mpbit5\-tc?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier5</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list>
+                    <index>0</index>
+                    <pbit-value>5</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${mpbit5\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if mpbit6\-tc?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier6</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list>
+                    <index>0</index>
+                    <pbit-value>6</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${mpbit6\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if mpbit7\-tc?has_content>
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${mpbit\-2\-tc\-policy}_classifier7</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <pbit-marking-list>
+                    <index>0</index>
+                    <pbit-value>7</pbit-value>
+                  </pbit-marking-list>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${mpbit7\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+            </classifiers>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

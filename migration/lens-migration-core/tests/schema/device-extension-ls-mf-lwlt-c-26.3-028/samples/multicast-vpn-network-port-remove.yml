@@ -1,0 +1,20 @@
+arguments:
+  vpn-network-port-name:
+    description: The name of a multicast network port.
+    suggested-values:
+    - net-mc-itf1
+  vpn-name:
+    description: The name of a multicast vpn.
+    suggested-values:
+    - mc-vpn
+  mc-vlan:
+    description: The VLAN-ID used to delete the associated network interface.
+    optional: true
+domains: multicast>vpn
+entity: network-port
+freemarker: true
+name: Remove multicast network port
+operation: remove
+sample-id: multicast-vpn-network-port-remove
+scope: multicast-fiber and not(mx) and not(dpu)
+status: draft

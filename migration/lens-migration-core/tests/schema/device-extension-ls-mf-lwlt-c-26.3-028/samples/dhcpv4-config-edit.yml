@@ -1,0 +1,14 @@
+arguments:
+  interface:
+    description: The user vlan-sub-interface on which the dhcp client simulation is
+      to be performed
+    suggested-values:
+    - uni1-user
+domains: unicast>protocols>simulation
+entity: dhcpv4-config
+freemarker: true
+name: Configure user VLAN sub-interface to start the client session action in DHCPv4
+  client simulator
+operation: edit
+sample-id: unicast-protocols-simulation-dhcpv4-config-edit
+status: draft

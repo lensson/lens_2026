@@ -1,0 +1,29 @@
+arguments:
+  kex:
+    description: The supported key exchange algorithms (as long as their hash functions
+      are implemented in libcrypto) are 'diffie-hellman-group18-sha512', 'diffie-hellman-group14-sha256',
+      'diffie-hellman-group-exchange-sha256', 'diffie-hellman-group-exchange-sha1',
+      'diffie-hellman-group14-sha1' and 'diffie-hellman-group1-sha1'.
+    optional: true
+    suggested-values:
+    - diffie-hellman-group18-sha512
+    - diffie-hellman-group14-sha256
+    - diffie-hellman-group-exchange-sha256
+    - diffie-hellman-group-exchange-sha1
+    - diffie-hellman-group14-sha1
+    - diffie-hellman-group1-sha1
+  serverhostkey:
+    description: The supported serverHostKey algorithms (if implemented in libcrypto)
+      are 'ssh-dss' and 'ssh-rsa', but for any SSH server, it is limited to those
+      algorithms for which there is a host key installed in the directory given by
+      /confdConfig/aaa/sshServerKeyDir.
+    optional: true
+    suggested-values:
+    - ssh-rsa
+available-locally: true
+domains: system>ssh-server
+freemarker: true
+name: Configure SSH server encryption method and key exchange algorithms
+operation: edit
+sample-id: system-ssh-server-edit
+status: draft

@@ -1,0 +1,21 @@
+arguments:
+  exporter-name:
+    description: exporter name
+    suggested-values:
+    - Exporter1
+  collector-name:
+    description: collector name
+    suggested-values:
+    - Collector1
+  client-certificate:
+    description: The local end-entity certificate to be used for Mutual TLS with the
+      IPFIX collector that will be added to the local-definition
+    suggested-values:
+    - MIIGHTCCBAUCAQEwDQYJKoZIhvcNAQELBQAwZzELMAkGA1UEBhMCSU4xIDAeBgNVB....
+domains: system>bulk-data-collection>exporter
+entity: tls-client-certificates
+freemarker: true
+name: Remove IPFIX TLS client certificate
+operation: remove
+sample-id: system-bulk-data-collection-exporter-tls-client-certificates-remove
+status: draft

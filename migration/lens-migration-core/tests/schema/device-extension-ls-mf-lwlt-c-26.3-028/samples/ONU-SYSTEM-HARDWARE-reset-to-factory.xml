@@ -1,0 +1,19 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="2">
+  <action xmlns="urn:ietf:params:xml:ns:yang:1">
+    <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+      <onu>
+        <name>${onu\-name}</name>
+        <root>
+          <hardware-state xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted">
+            <component>
+              <name>CHASSIS</name>
+              <reset xmlns="urn:bbf:yang:bbf-hardware-reset-action-mounted">
+                <reset-type xmlns:nokia-hw-rst-act-ext-mounted="urn:bbf:yang:nokia-hardware-reset-action-extension-mounted">nokia-hw-rst-act-ext-mounted:hardware-reset-hgu-to-factory-datastore</reset-type>
+              </reset>
+            </component>
+          </hardware-state>
+        </root>
+      </onu>
+    </onus>
+  </action>
+</rpc>

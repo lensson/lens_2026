@@ -1,0 +1,73 @@
+ <rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <ipfix xmlns="urn:ietf:params:xml:ns:yang:ietf-ipfix-psamp">
+        <exportingProcess xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${exporter\-name}</name>
+          <exportMode>fallback</exportMode>
+          <re-transmission-timeout xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix">${retransmission\-timeout}</re-transmission-timeout>
+          <destination>
+            <name>${collector\-name}</name>
+            <priority xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix">${priority}</priority>
+            <tcpExporter>
+              <destinationPort>${dest\-port}</destinationPort>
+              <username xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix">${username}</username>
+              <password xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix">${password}</password>
+              <transportLayerSecurity>
+              </transportLayerSecurity>
+              <#if dest\-ip\-address?has_content>
+              <destinationIPAddress>${dest\-ip\-address}</destinationIPAddress>
+              <#elseif dest\-fqdn?has_content>
+              <fqdn xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix">${dest\-fqdn}</fqdn>
+              </#if>
+              <certificate xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix">
+                <#if ca\-name?has_content || server\-auth\-est\-profile\-name?has_content>
+                <server-auth xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="replace">
+                  <#if ca\-name?has_content>
+                  <pinned-ca-certs>${ca\-name}</pinned-ca-certs>
+                  <#else>
+                  <est-certificate-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix">${server\-auth\-est\-profile\-name}</est-certificate-profile>
+                  </#if>
+                </server-auth>
+                </#if>
+                <#if client\-certificate?has_content || client\-auth\-est\-profile\-name?has_content>
+                <client-identity>
+                  <certificate>
+                    <#if client\-certificate?has_content>
+                    <local-definition>
+                      <cert>${client\-certificate}</cert>
+                    </local-definition>
+                    <#else>
+                    <est-certificate-profile-reference xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix">
+                      <est-certificate-profile>${client\-auth\-est\-profile\-name}</est-certificate-profile>
+                    </est-certificate-profile-reference>
+                    </#if>
+                  </certificate>
+                </client-identity>
+                </#if>
+                <#if tls\-version?has_content || cipher\-suite?has_content>
+                <hello-params>
+                  <#if tls\-version?has_content>
+                  <tls-versions>
+                    <tls-version xmlns:tlscmn="urn:ietf:params:xml:ns:yang:ietf-tls-common">tlscmn:${tls\-version}</tls-version>
+                  </tls-versions>
+                  </#if>
+                  <#if cipher\-suite?has_content>
+                  <cipher-suites>
+                    <cipher-suite xmlns:tlscsa="urn:ietf:params:xml:ns:yang:iana-tls-cipher-suite-algs">tlscsa:${cipher\-suite}</cipher-suite>
+                  </cipher-suites>
+                  </#if>
+                </hello-params>
+                </#if>
+              </certificate>
+            </tcpExporter>
+          </destination>
+        </exportingProcess>
+        <ipfix-exporting-enable xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix">true</ipfix-exporting-enable>
+      </ipfix>
+    </config>
+  </edit-config>
+</rpc>

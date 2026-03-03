@@ -1,0 +1,12 @@
+arguments:
+  dhcp-profile-name:
+    description: Name of the DHCPv4 Relay Agent profile
+    suggested-values:
+    - dhcp_profile
+domains: unicast>protocols>dhcp
+entity: relayprofile
+freemarker: true
+name: Remove L2 DHCPv4 Relay Agent profile
+operation: remove
+sample-id: unicast-protocols-dhcp-relayprofile-remove
+status: draft

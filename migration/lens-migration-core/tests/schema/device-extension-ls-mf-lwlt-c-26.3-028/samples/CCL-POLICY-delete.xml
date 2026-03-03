@@ -1,0 +1,28 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <policies xmlns="urn:bbf:yang:bbf-qos-policies">
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${ccl\-policy\-name}</name>
+        </policy>
+      </policies>
+	  <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+      <#list classifier\-name\-list as classifiername>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${classifiername}</name>
+        </classifier-entry>
+      </#list>
+      </classifiers>
+      <filters xmlns="urn:bbf:yang:bbf-qos-filters">
+      <#list classifier\-name\-list as classifiername>
+        <enhanced-filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${classifiername}_enhfilter</name>
+		</enhanced-filter>
+      </#list>
+	  </filters>	  
+    </config>
+  </edit-config>
+</rpc>

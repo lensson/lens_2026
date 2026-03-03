@@ -1,0 +1,7 @@
+domains: system>subscriber-management
+entity: keyword-alignment
+freemarker: true
+name: Remove ONU slot/port minimum string length
+operation: remove
+sample-id: system-subscriber-management-keyword-alignment-remove
+status: draft

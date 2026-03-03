@@ -1,0 +1,12 @@
+arguments:
+  certificate-list-name:
+    description: Certificate list name
+    suggested-values:
+    - CA-GROUP
+available-locally: true
+domains: system>certificate>pinned-ca
+freemarker: true
+name: Remove CA certificate
+operation: remove
+sample-id: system-certificate-pinned-ca-remove
+status: draft

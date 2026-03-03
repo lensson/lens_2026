@@ -1,0 +1,13 @@
+arguments:
+  untag-policy-name:
+    description: Policy name
+    suggested-values:
+    - untag-policy
+domains: unicast>qos>policy-profiles
+entity: untag_policy
+freemarker: true
+name: Remove QoS untag policy
+operation: remove
+sample-id: unicast-qos-policy-profiles-untag_policy-remove
+scope: not(mx) and not(dpu) and not(fx-p2p)
+status: draft

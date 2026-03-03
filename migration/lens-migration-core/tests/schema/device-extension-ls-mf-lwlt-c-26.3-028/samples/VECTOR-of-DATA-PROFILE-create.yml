@@ -1,0 +1,101 @@
+arguments:
+  vector-of-data-name:
+    description: the name of this data vector profile
+    suggested-values:
+    - user-port-vector-of-data
+  interface-usage:
+    allowed-values:
+    - user-port
+    - inherit
+    description: the interface usage of userside vlan subinterface. Subtended-port
+      support inherit
+    suggested-values:
+    - user-port
+  l2cp-pass:
+    description: The configuration to block or allow l2cp packets. It must be true
+      for NNI VSI.
+    optional: true
+    suggested-values:
+    - false
+  dhcpv4-profile-name:
+    description: Name of the DHCPv4 profile
+    optional: true
+    suggested-values:
+    - dhcp_profile
+  dhcpv4-allow-server-at-user-side:
+    description: The configuration to allow exchanging DHCP messages with a DHCP server
+      located at the user side instead of discarding them. This flag does not impact
+      the processing of DHCP messages exchanged with a DHCP client at the user side.
+    optional: true
+    suggested-values:
+    - false
+    - true
+  dhcpv6-profile-name:
+    description: Name of the DHCPv6 profile
+    optional: true
+    suggested-values:
+    - dhcpv6_profile
+  dhcpv6-allow-server-at-user-side:
+    description: The configuration to allow exchanging DHCP messages with a DHCP server
+      located at the user side instead of discarding them. This flag does not impact
+      the processing of DHCP messages exchanged with a DHCP client at the user side.
+    optional: true
+    suggested-values:
+    - false
+    - true
+  pppoe-profile-name:
+    description: Name of the PPPOE profile
+    optional: true
+    suggested-values:
+    - pppoe_profile
+  pppoe-allow-server-at-user-side:
+    description: The configuration to allow exchanging PPPoE messages with a PPPoE
+      server located at the user side instead of discarding them. This flag does not
+      impact the processing of PPPoE messages exchanged with a PPPoE client at the
+      user side.
+    optional: true
+    suggested-values:
+    - false
+    - true
+  icmpv6-profile-name:
+    description: Name of the icmpv6 profile
+    optional: true
+    suggested-values:
+    - icmpv6_profile
+  ipv4-antispoofing:
+    description: enable or disable IPv4 antispoofing
+    optional: true
+    suggested-values:
+    - true
+  learn-ip-from-dhcpv4:
+    description: Control flag to learn IPv4 addresses from the DHCPv4 messages passing
+      the VLAN sub-interface and assign them to the VLAN sub-interface. This setting
+      requires that the ipv4-antispoofing  must be set to true
+    optional: true
+    suggested-values:
+    - false
+  max-anti-ip-address:
+    description: The maximum number of IP addresses that is allowed on this VSI
+    optional: true
+    suggested-values:
+    - 16
+  ipv6-antispoofing:
+    description: enable or disable IPv6 antispoofing
+    optional: true
+    suggested-values:
+    - true
+  learn-ip-from-dhcpv6:
+    description: Control flag to learn IPv6 addresses from the DHCPv6 messages passing
+      the VLAN sub-interface and assign them to the VLAN sub-interface. This setting
+      requires that ipv6-antispoofing must be set to true
+    optional: true
+    suggested-values:
+    - true
+domains: unicast>forwarding
+entity: vector-of-data-profile
+freemarker: true
+name: Create unicast forwarding vector of data profile
+operation: create
+sample-id: unicast-forwarding-vector-of-data-profile-create
+scope: fiber
+status: draft

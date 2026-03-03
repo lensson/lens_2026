@@ -1,0 +1,18 @@
+arguments:
+  tls-version:
+    description: YANG identifier of a TLS protocol version to add
+    optional: true
+    suggested-values:
+    - tls13
+  cipher-suite:
+    description: YANG identifier of a TLS cipher to add
+    optional: true
+    suggested-values:
+    - tls-aes-256-gcm-sha384
+domains: system>file-transfer
+entity: hello
+freemarker: true
+name: Configure TLS version or cipher for HTTPS protocol
+operation: edit
+sample-id: system-file-transfer-hello-edit
+status: draft

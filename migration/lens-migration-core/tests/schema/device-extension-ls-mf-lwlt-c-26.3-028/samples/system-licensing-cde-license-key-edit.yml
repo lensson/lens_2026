@@ -1,0 +1,17 @@
+arguments:
+  license-key-name:
+    description: The name of the CDE License Key XML file to be configured and installed
+    suggested-values:
+    - A12345
+  license-key-content:
+    description: The content of the CDE License Key XML file provided as a raw string
+    suggested-values:
+    - Copy Paste the CDE License Key XML file content
+domains: system>licensing
+entity: cde-license-key
+freemarker: true
+name: Configure and install a CDE License Key
+operation: edit
+sample-id: system-licensing-cde-license-key-edit
+scope: licensing
+status: draft

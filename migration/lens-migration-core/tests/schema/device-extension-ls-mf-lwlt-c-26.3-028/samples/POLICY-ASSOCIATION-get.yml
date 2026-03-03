@@ -1,0 +1,13 @@
+arguments:
+  interface-name:
+    description: Interface name to display qos-policy-association
+    suggested-values:
+    - interface-1
+domains: unicast>qos
+entity: policy-association
+freemarker: true
+name: Retrieve interface's qos-policy-association
+operation: get
+sample-id: unicast-qos-policy-association-get
+scope: l2fwd-qos-dyn-association
+status: draft

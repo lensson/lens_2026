@@ -1,0 +1,15 @@
+arguments:
+  host-key-name:
+    description: The name of the algorithm to display the public key
+    optional: true
+    suggested-values:
+    - ssh-rsa
+    - ssh-dss
+available-locally: true
+domains: system>ssh-server
+entity: public-keys
+freemarker: true
+name: Get SSH server public keys
+operation: get
+sample-id: system-ssh-server-public-keys-get
+status: draft

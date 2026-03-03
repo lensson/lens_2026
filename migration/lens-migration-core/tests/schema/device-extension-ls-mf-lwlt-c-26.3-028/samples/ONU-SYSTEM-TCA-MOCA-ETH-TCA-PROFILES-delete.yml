@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  moca-ethernet-tca-profile:
+    description: Moca Ethernet performance monitoring counters threshold profile name
+    suggested-values:
+    - moca_eth_tca_profile
+domains: onu>system>tca>pm-profiles
+entity: moca-eth-tca-profile
+freemarker: true
+name: Remove Moca Ethernet TCA profile
+operation: remove
+sample-id: onu-system-tca-pm-profiles-moca-eth-tca-profile-remove
+scope: eonu
+status: draft

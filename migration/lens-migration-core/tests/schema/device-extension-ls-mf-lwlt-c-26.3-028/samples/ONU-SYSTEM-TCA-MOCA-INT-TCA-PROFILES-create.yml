@@ -1,0 +1,30 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  moca-interface-tca-profile:
+    description: Moca Interface performance monitoring counters threshold profile
+      name
+    suggested-values:
+    - moca_int_tca_profile
+  in-errored-threshold:
+    description: Threshold value for the incoming errored packets where range is 1
+      .. 4294967294
+    optional: true
+    suggested-values:
+    - 100
+  in-errored-and-missed-threshold:
+    description: Threshold value for the incoming errored and missed packets where
+      range is 1 .. 4294967294
+    optional: true
+    suggested-values:
+    - 50
+domains: onu>system>tca>pm-profiles
+entity: moca-int-tca-profile
+freemarker: true
+name: Configure Moca Interface TCA profile
+operation: create
+sample-id: onu-system-tca-pm-profiles-moca-int-tca-profile-create
+scope: eonu
+status: draft

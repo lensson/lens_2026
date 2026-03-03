@@ -1,0 +1,24 @@
+arguments:
+  ibridge-user-port-name:
+    description: Ibridge user port name
+    optional: true
+  cc-name:
+    description: CC user port name
+    optional: true
+  enable:
+    description: Enable PPPoE Intermediate Agent when configured as true
+    suggested-values:
+    - true
+    - false
+  pppoe-profile-name:
+    description: Name of the PPPoE Intermediate Agent profile reference
+    suggested-values:
+    - pppoe_profile
+domains: unicast>protocols>pppoe
+entity: interface
+freemarker: true
+name: Attach PPPoE Intermediate Agent profile to VLAN sub-interface
+operation: edit
+sample-id: unicast-protocols-pppoe-interface-edit
+scope: fiber
+status: draft

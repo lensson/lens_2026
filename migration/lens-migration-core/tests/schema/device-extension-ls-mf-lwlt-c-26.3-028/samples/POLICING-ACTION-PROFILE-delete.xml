@@ -1,0 +1,14 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <policing-action-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+        <action-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+          <name>${policing\-action\-profile\-name}</name>
+        </action-profile>
+      </policing-action-profiles>
+    </config>
+  </edit-config>
+</rpc>    

@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  pots-name:
+    description: POTS interworking node name for which performance counters need to
+      be fetched
+    suggested-values:
+    - POTS1
+domains: onu>transport>voip-sip
+freemarker: true
+name: Get PM counters for POTS interworking node
+operation: get-pm
+sample-id: onu-transport-voip-sip-get-pm
+scope: eonu
+status: draft

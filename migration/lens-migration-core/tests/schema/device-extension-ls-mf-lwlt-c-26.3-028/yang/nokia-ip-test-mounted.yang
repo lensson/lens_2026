@@ -1,0 +1,261 @@
+module nokia-ip-test-mounted {
+  yang-version 1.1;
+
+  namespace "http://www.nokia.com/Fixed-Networks/BBA/yang/"
+           + "nokia-ip-test-mounted";
+
+  prefix nokia-ip-test-mounted;
+
+ // import ietf-interfaces-mounted {
+ //   prefix if-mounted;
+ // }
+  import ietf-inet-types {
+   prefix inet;
+  }
+ // import iana-if-type-mounted {
+ //   prefix ianaift-mounted;
+ // }
+  import nokia-yang-types-mounted {
+    prefix nok-typ-mounted;
+  }
+  import bbf-fiber-onu-emulated-mount {
+    prefix onu;
+  }
+  import nokia-template-common {
+    prefix template-common;
+  }
+  import nokia-ip-test-identities {
+    prefix nokia-ip-test-identities;
+  }
+
+  organization
+    "Nokia";
+
+  contact
+    "Comments or questions about this Nokia YANG module should be
+     directed to <mailto:isam.mibsupport@nokia.com>.";
+
+  description
+    "This module contains a collection of YANG definitions for
+     supporting Nokia specific requirements as applicable to its
+     access network equipment.
+
+     Specifically, this module contains a collection of YANG
+     definitions for testing IP connectivity.
+
+     This specification is published by Nokia under Non-Disclosure
+     Agreement(s) (NDA) with specific parties and has to be considered
+     as Confidential Information as defined in such NDA. Nokia
+     reserves the right to revise this document for any reason,
+     including but not limited to conformity with standards
+     promulgated by various agencies, utilisation of advances in the
+     state of the technical areas, or the reflection of changes in the
+     design of any equipment, techniques, or procedures described or
+     referred to herein.
+
+     The product specifications and other technical or performance
+     information contained herein are subject to change without
+     notice. Updates of this document will be issued under the above
+     NDA's.
+
+     Nokia makes no representation or warranty, expressed or implied,
+     with respect to the sufficiency, accuracy, or utility of any
+     information or opinion contained herein. Nokia expressly advises
+     that any use of for any purpose or reliance upon this technical
+     reference is at the risk of the user and that Nokia shall not be
+     liable for any damage or injury incurred by any person arising
+     out of the sufficiency, accuracy, or utility of any information
+     or opinion contained herein.
+
+     This document is not to be construed as a suggestion to any
+     manufacturer to modify or change any of its products, nor does
+     this document represent any commitment by Nokia to sell or
+     purchase any product. Nothing contained herein shall be construed
+     as conferring by implication, estoppel, or otherwise any license
+     or right under any patent, whether or not the use of any
+     information herein necessarily employs an invention of any
+     existing or later issued patent.
+
+     Nokia reserves the right not to offer any or all of these
+     products and to withdraw any or all of them at any future time.
+
+     Copyright (C) 2021, Nokia. All Rights Reserved.";
+
+
+  revision 2021-07-30 {
+    description
+      "Initial revision.
+       * Approval Date:    see revision date above.
+       * Publication Date: yyyy-mm-dd.";
+    reference
+      "Nokia specific";
+  }
+/* //Move the identity to a seperate module (nokia-ip-test-identities)
+   //to avoid the suffix "-mounted" issue for eONU
+  identity ping-result-base {
+    description
+      "This identity is used to denote the possible result of an IP
+       ping.";
+  }
+  identity success {
+    base ping-result-base;
+    description
+      "This identity is used to denote a successful ping.";
+  }
+  identity unexpected-icmp-received {
+    base ping-result-base;
+    description
+      "This identity is used to denote that there was an unexpected
+       ICMP message received following the ping request.";
+  }
+  identity no-response {
+    base ping-result-base;
+    description
+      "This identity is used to denote that there was no ICMP message
+       received following the ping request.";
+  }
+  identity unresolved-domain-name {
+    base ping-result-base;
+    description
+      "This identity is used to denote that the target domain name
+       could not be resolved.";
+  }
+  */
+  augment '/onu:onus/onu:onu/onu:root' {
+    when "derived-from-or-self(../onu:usage, 'template-common:node-actual-usage') or "
+         + "derived-from-or-self(../onu:usage, 'template-common:node-from-template-usage')" {
+       description
+         "it should be a node-actual-usage or node-from-template-usage ONU";
+    }
+    description "augment onu root with ip-test";
+    container ip-test {
+      config false;
+      description
+        "Container for IPv4 and IPv6 connectivity tests.";
+      container ipv4 {
+        description
+          "Container for IPv4 connectivity tests.";
+        action ping {
+          description
+            "Ping an explicit IP address or a domain name.
+
+             Successful invocation of this action results in reporting
+             the result through an asynchronous notification.
+
+             No notification will be sent, if the invocation of this
+             action is unsuccessful. In that case the action will be
+             replied with an error and the 'error-app-tag' and
+             'error-message' in the <rpc-error> element returned by the
+             server are to be populated as follows:
+
+             error-app-tag: A string in the form
+                           <module-name>:<identity> where <identity> is
+                           a string version of an identity value based
+                           on the identity
+                           'nok-typ-mounted:action-error-tag' that describes
+                           the reason the error occurred and
+                           <module-name> is the name of the module in
+                           which the identity is defined.
+
+             error-message: A text string describing the cause of the
+                            error when either no defined reason exists
+                            or additional information is available
+                            beyond that defined by the tag itself; it is
+                            a string suitable for human display.";
+
+          input {
+            leaf test-name {
+              type nok-typ-mounted:nokia-string-ascii64;
+              mandatory true;
+              description
+                "Is the instance name of the ping action. Since the ping
+                 action is executed in asynchronous mode, this object is
+                 used by the server to associate the ping action with a
+                 notification message.";
+            }
+            leaf source-interface {
+              type string;
+              description
+                "In case there are several IP interfaces, a source
+                 interface may be specified through this node.";
+            }
+            choice target {
+              mandatory true;
+              description "target choice";
+              case ip-address {
+                leaf target-ip-address{
+                  type inet:ipv4-address;
+                  description
+                    "Explicit IP address of destination.";
+                }
+              }
+              case domain-name {
+                leaf target-domain-name {
+                  type inet:domain-name;
+                  description
+                    "Domain name of destination.";
+                }
+              }
+            }
+            leaf count {
+              type uint8 {
+                range "1..max";
+              }
+              default "1";
+              description
+                "Number of times to ping.";
+            }
+          }
+        }
+        notification ping-result {
+          description
+            "Indicates the result of a ping.";
+          leaf test-name {
+            type nok-typ-mounted:nokia-string-ascii64;
+            mandatory true;
+            description
+              "Since the ping action is executed in asynchronous mode,
+               this object is used by the server to associate the
+               notification message with a ping action.";
+          }
+          leaf actual-ip-address {
+            type inet:ipv4-address;
+            description
+              "The actual IP address used for all ping attempts.";
+          }
+          list attempt {
+            key index;
+            description
+              "Provides the result of each ping attempt.";
+            leaf index {
+              type uint8 {
+                range "1..max";
+              }
+              description
+                "The sequence number of the ping attempt.";
+            }
+            leaf result {
+              type identityref {
+                base nokia-ip-test-identities:ping-result-base;
+              }
+              description
+                "The result of the ping attempt.";
+            }
+            leaf delay {
+              when "../result = 'nokia-ip-test-identities:success'" {
+                description
+                  "Only valid when the ping was successful.";
+              }
+              type uint16;
+              units "ms";
+              description
+                "Provides the measured response delay.";
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+

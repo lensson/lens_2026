@@ -1,0 +1,12 @@
+arguments:
+  olt-infrastructure-name:
+    description: OLT infrastructure name.
+    suggested-values:
+    - xpon-1-1
+domains: transport>xpon>interface-statistics
+freemarker: true
+name: Reset the statistics related to a interface
+operation: reset
+sample-id: transport-xpon-interface-statistics-reset
+scope: xpon
+status: draft

@@ -1,0 +1,16 @@
+arguments:
+  profile-name:
+    description: EST profile-name
+    suggested-values:
+    - EstProfile
+  format:
+    description: Format could be either "raw" (encoded) or "details" (decoded)
+    suggested-values:
+    - raw
+domains: system>certificate>est
+entity: end
+freemarker: true
+name: Display an EST End certificate
+operation: show-cert
+sample-id: system-certificate-est-end-show-cert
+status: draft

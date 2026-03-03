@@ -1,0 +1,12 @@
+arguments:
+  bac-profile-name:
+    suggested-values:
+    - BAC-TD
+domains: unicast>qos>tm
+entity: bac_taildrop_profile
+freemarker: true
+name: Remove unicast services QoS bac profile taildrop
+operation: remove
+sample-id: unicast-qos-tm-bac_taildrop_profile-remove
+scope: not(mx) and not(dpu)
+status: draft

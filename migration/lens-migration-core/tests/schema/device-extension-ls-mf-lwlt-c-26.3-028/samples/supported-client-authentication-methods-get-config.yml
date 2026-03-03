@@ -1,0 +1,7 @@
+domains: system>authentication
+entity: supported-client-authentication-methods
+freemarker: true
+name: Retrieve system supported authentication methods
+operation: get-config
+sample-id: system-authentication-supported-client-authentication-methods-get-config
+status: draft

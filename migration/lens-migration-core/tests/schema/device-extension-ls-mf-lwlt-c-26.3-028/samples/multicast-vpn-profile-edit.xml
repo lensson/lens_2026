@@ -1,0 +1,29 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <multicast xmlns="urn:bbf:yang:bbf-mgmd">
+        <mgmd>
+          <multicast-proxy-profile>
+              <name>${vpn\-profile\-name}</name>
+<#if multicast\-protocol\-version\-v3==true>
+              <protocol-version>version-3</protocol-version>
+</#if>
+<#if multicast\-protocol\-version\-v2==true>
+              <protocol-version>version-2</protocol-version>
+</#if>
+              <interfaces-to-hosts-data>
+<#if immediate\-leave==true>
+                  <immediate-leave>enabled</immediate-leave>
+<#else>
+                  <immediate-leave>disabled</immediate-leave>
+</#if>
+              </interfaces-to-hosts-data>
+          </multicast-proxy-profile>
+        </mgmd>
+      </multicast>
+    </config>
+  </edit-config>
+</rpc>

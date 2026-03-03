@@ -1,0 +1,19 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <forwarding xmlns="urn:bbf:yang:bbf-l2-forwarding">
+        <forwarding-databases>
+          <forwarding-database>
+            <name>${service\-name}-FWD-DATABASE</name>
+            <static-mac-address xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="remove">
+              <mac-address>${static\-mac\-address}</mac-address>
+            </static-mac-address>
+          </forwarding-database>
+        </forwarding-databases>
+      </forwarding>
+    </config>
+  </edit-config>
+</rpc>

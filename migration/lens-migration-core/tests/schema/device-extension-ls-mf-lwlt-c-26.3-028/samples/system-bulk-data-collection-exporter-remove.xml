@@ -1,0 +1,14 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <ipfix xmlns="urn:ietf:params:xml:ns:yang:ietf-ipfix-psamp">
+        <exportingProcess xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+          <name>${exporter\-name}</name>
+        </exportingProcess>
+      </ipfix>
+    </config>
+  </edit-config>
+</rpc>

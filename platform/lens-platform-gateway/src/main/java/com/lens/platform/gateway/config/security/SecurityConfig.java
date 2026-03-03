@@ -34,8 +34,10 @@ public class SecurityConfig {
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http){
         http
             .authorizeExchange(auth -> auth
-                // Public endpoints - proxied swagger UI for backend services (specific paths first)
+                // Public endpoints - proxied swagger UI for platform services
                 .pathMatchers("/v2/lens/platform/*/swagger-ui.html", "/v2/lens/platform/*/swagger-ui/**", "/v2/lens/platform/*/v3/api-docs/**").permitAll()
+                // Public endpoints - proxied swagger UI for migration service
+                .pathMatchers("/v2/lens/migration/swagger-ui.html", "/v2/lens/migration/swagger-ui/**", "/v2/lens/migration/v3/api-docs/**").permitAll()
                 // Public endpoints - gateway's own Swagger UI (must be accessible without login)
                 .pathMatchers("/actuator/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/webjars/**").permitAll()
                 // Login and OAuth2 endpoints

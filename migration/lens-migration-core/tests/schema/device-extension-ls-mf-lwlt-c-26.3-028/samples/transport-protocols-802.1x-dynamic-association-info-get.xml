@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="3">
+  <get>
+  <filter type="subtree">
+  <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+    <interface>
+      <name>${user\-interface}</name>
+      <pae xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-802-dot1x-ext">
+        <mac>
+          <session>
+            <vsi-dynamic-assoc-data xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-802-dot1x-ext-dynamic-authorization"/>
+          </session>
+        </mac>
+      </pae>
+    </interface>
+  </interfaces-state>
+  </filter>
+  </get>
+</rpc>

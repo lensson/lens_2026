@@ -1,0 +1,14 @@
+arguments:
+  lemi-access-enabled:
+    description: Enables (True) or disables (False) LEMI access
+    suggested-values:
+    - true
+available-locally: true
+domains: system>management
+entity: lemi-access-nokia
+freemarker: true
+name: Configure enabling of LEMI access for nokia
+operation: edit
+sample-id: system-management-lemi-access-nokia-edit
+scope: not(fx-nt) and not(fx-p2p)
+status: draft

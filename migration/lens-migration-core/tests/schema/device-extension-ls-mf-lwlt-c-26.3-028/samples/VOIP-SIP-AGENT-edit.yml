@@ -1,0 +1,49 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  registrar-proxy-address:
+    description: Proxyserv, outproxyserv and aor-host-prt, sip-user-agent
+    optional: true
+    suggested-values:
+    - sip-user-agent-domain
+  file-name:
+    description: File name for downloading
+    optional: true
+    suggested-values:
+    - Etisalat_UAE_Huawei.v6.xml
+  ftp-server-address:
+    description: Ftp server address
+    optional: true
+    suggested-values:
+    - 1.1.1.1
+  user-name:
+    description: User name for file transfer to be validated
+    optional: true
+    suggested-values:
+    - username
+  password:
+    description: The authentication password for file transfer
+    optional: true
+    sensitive: true
+    suggested-values:
+    - password
+  realm:
+    description: The authentication realm for file transfer
+    optional: true
+    suggested-values:
+    - nokia
+  app-direct-connect-uri:
+    description: direct connect URI.
+    optional: true
+    suggested-values:
+    - none
+domains: transport>voip-sip
+entity: agent
+freemarker: true
+name: Edit VOIP SIP AGENT
+operation: edit
+sample-id: transport-voip-sip-agent-edit
+scope: ''
+status: draft

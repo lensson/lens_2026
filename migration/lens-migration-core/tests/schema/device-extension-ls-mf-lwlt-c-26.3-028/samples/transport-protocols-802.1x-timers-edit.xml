@@ -1,0 +1,45 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>${user\-interface}</name>
+          <pae xmlns="urn:ieee:std:802.1X:yang:ieee802-dot1x">
+            <authenticator>
+              <#if quiet\-period?has_content>
+                <quiet-period>${quiet\-period}</quiet-period>
+              </#if>
+            </authenticator>
+            <ext-authenticator xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-802-dot1x-ext">
+              <#if tx\-period?has_content>
+                <tx-period>${tx\-period}</tx-period>
+              </#if>
+              <#if initiate\-authentication\-request?has_content>
+                <initiate-authentication-request>${initiate\-authentication\-request}</initiate-authentication-request>
+              </#if>
+              <#if handshake\-enable?has_content>
+                <handshake-enable>${handshake\-enable}</handshake-enable>
+              </#if>
+              <#if handshake\-period?has_content>
+                <handshake-period>${handshake\-period}</handshake-period>
+              </#if>
+              <#if authentication\-mode?has_content>
+                <authentication-mode>${authentication\-mode}</authentication-mode>
+              </#if>
+              <#if authentication\-mode == "mac-based" && max\-mac\-addresses?has_content>
+                <max-number-mac-addresses>${max\-mac\-addresses}</max-number-mac-addresses>
+              </#if>
+              <#if interface\-supplicant\-timeout?has_content>
+                <interface-supplicant-timeout>${interface\-supplicant\-timeout}</interface-supplicant-timeout>
+              </#if>
+            </ext-authenticator>
+          </pae>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>
+

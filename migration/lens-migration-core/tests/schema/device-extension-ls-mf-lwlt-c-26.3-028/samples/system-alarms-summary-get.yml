@@ -1,0 +1,8 @@
+available-locally: true
+domains: system>alarms
+entity: summary
+freemarker: true
+name: Retrieve alarm summary
+operation: get
+sample-id: system-alarms-summary-get
+status: draft

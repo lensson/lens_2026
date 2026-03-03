@@ -1,0 +1,11 @@
+arguments:
+  cli-timer:
+    description: Timer value can be in the range of 0 .. 3600 seconds
+    suggested-values:
+    - 300
+domains: system>callhome>cli-timer
+freemarker: true
+name: Configure the cli-timer for cli access
+operation: edit
+sample-id: system-callhome-cli-timer-edit
+status: draft

@@ -1,0 +1,6 @@
+domains: system>dns
+freemarker: true
+name: Retrieve system domain name server
+operation: get-config
+sample-id: system-dns-get-config
+status: draft

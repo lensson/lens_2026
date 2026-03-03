@@ -1,0 +1,15 @@
+arguments:
+  license-key-name:
+    description: The name of the CDE License Key XML file to remove. If this entry
+      is not provided, then all CDE License Keys are removed
+    optional: true
+    suggested-values:
+    - A12345
+domains: system>licensing
+entity: cde-license-key
+freemarker: true
+name: Remove a single CDE License Key or all CDE License Keys
+operation: remove
+sample-id: system-licensing-cde-license-key-remove
+scope: licensing
+status: draft

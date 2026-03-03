@@ -1,0 +1,449 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+    <edit-config>
+    <target>
+    <running/>
+    </target>
+    <config>
+    <policies xmlns="urn:bbf:yang:bbf-qos-policies">
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+        <name>${color\-policy\-name}</name>
+        <#if match\-type == "pbit-marking-list">
+            <classifiers>
+                <name>enhanced_cls0-${color\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if match\-type == "dei-marking-list">
+        <#if dei\-0?has_content>
+            <classifiers>
+                <name>enhanced_cls0-dei-${color\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if dei\-1?has_content>
+            <classifiers>
+                 <name>enhanced_cls1-dei-${color\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        </#if>
+         <#if match\-type == "in-pbit-list">
+        <#if outer\-tag\-pbit\-to\-color\-0?has_content>
+            <classifiers>
+                <name>classifier0-${color\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if outer\-tag\-pbit\-to\-color\-1?has_content>
+            <classifiers>
+                <name>classifier1-${color\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if outer\-tag\-pbit\-to\-color\-2?has_content>
+            <classifiers>
+                <name>classifier2-${color\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if outer\-tag\-pbit\-to\-color\-3?has_content>
+            <classifiers>
+                <name>classifier3-${color\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if outer\-tag\-pbit\-to\-color\-4?has_content>
+            <classifiers>
+                <name>classifier4-${color\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if outer\-tag\-pbit\-to\-color\-5?has_content>
+            <classifiers>
+                <name>classifier5-${color\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if outer\-tag\-pbit\-to\-color\-6?has_content>
+            <classifiers>
+                <name>classifier6-${color\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if outer\-tag\-pbit\-to\-color\-7?has_content>
+            <classifiers>
+                <name>classifier7-${color\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        </#if>
+        <#if match\-type == "in-dei">
+        <#if outer\-tag\-dei\-to\-color\-0?has_content>
+            <classifiers>
+                <name>classifier0-${color\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        <#if outer\-tag\-dei\-to\-color\-1?has_content>
+            <classifiers>
+                <name>classifier1-${color\-policy\-name}</name>
+            </classifiers>
+        </#if>
+        </#if>
+        </policy>
+    </policies>
+    <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+         <#if match\-type == "in-pbit-list">
+          <#if outer\-tag\-pbit\-to\-color\-0?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier0-${color\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                 <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">${metered\-color}</metered-color>
+                <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${outer\-tag\-pbit\-to\-color\-0}</in-pbit-list>
+                </tag>
+                <#if inner\-tag\-pbit\-to\-color\-0?has_content>
+                <tag>
+                    <index>1</index>
+                    <in-pbit-list>${inner\-tag\-pbit\-to\-color\-0}</in-pbit-list>
+                </tag>
+                </#if>
+                </vlans>
+                <#if color\-0?has_content>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+                     <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">${color\-0}</bac-color>
+                </classifier-action-entry-cfg>
+                </#if>
+            </classifier-entry>
+        </#if>
+        <#if outer\-tag\-pbit\-to\-color\-1?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier1-${color\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                 <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">${metered\-color}</metered-color>
+                <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${outer\-tag\-pbit\-to\-color\-1}</in-pbit-list>
+                </tag>
+                <#if inner\-tag\-pbit\-to\-color\-1?has_content>
+                <tag>
+                    <index>1</index>
+                    <in-pbit-list>${inner\-tag\-pbit\-to\-color\-1}</in-pbit-list>
+                </tag>
+                </#if>
+                </vlans>
+                <#if color\-1?has_content>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+                    <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">${color\-1}</bac-color>
+                </classifier-action-entry-cfg>
+                </#if>
+            </classifier-entry>
+        </#if>
+        <#if outer\-tag\-pbit\-to\-color\-2?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier2-${color\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                 <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">${metered\-color}</metered-color>
+                <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${outer\-tag\-pbit\-to\-color\-2}</in-pbit-list>
+                </tag>
+                <#if inner\-tag\-pbit\-to\-color\-2?has_content>
+                <tag>
+                    <index>1</index>
+                    <in-pbit-list>${inner\-tag\-pbit\-to\-color\-2}</in-pbit-list>
+                </tag>
+                </#if>
+                </vlans>
+                <#if color\-2?has_content>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+                    <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">${color\-2}</bac-color>
+                </classifier-action-entry-cfg>
+                </#if>
+            </classifier-entry>
+        </#if>
+        <#if outer\-tag\-pbit\-to\-color\-3?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier3-${color\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                 <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">${metered\-color}</metered-color>
+                <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${outer\-tag\-pbit\-to\-color\-3}</in-pbit-list>
+                </tag>
+                <#if inner\-tag\-pbit\-to\-color\-3?has_content>
+                <tag>
+                    <index>1</index>
+                    <in-pbit-list>${inner\-tag\-pbit\-to\-color\-3}</in-pbit-list>
+                </tag>
+                </#if>
+                </vlans>
+                <#if color\-3?has_content>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+                    <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">${color\-3}</bac-color>
+                </classifier-action-entry-cfg>
+                </#if>
+            </classifier-entry>
+        </#if>
+        <#if outer\-tag\-pbit\-to\-color\-4?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier4-${color\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                 <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">${metered\-color}</metered-color>
+                <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${outer\-tag\-pbit\-to\-color\-4}</in-pbit-list>
+                </tag>
+                <#if inner\-tag\-pbit\-to\-color\-4?has_content>
+                <tag>
+                    <index>1</index>
+                    <in-pbit-list>${inner\-tag\-pbit\-to\-color\-4}</in-pbit-list>
+                </tag>
+                </#if>
+                </vlans>
+                <#if color\-4?has_content>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+                    <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">${color\-4}</bac-color>
+                </classifier-action-entry-cfg>
+                </#if>
+            </classifier-entry>
+        </#if>
+        <#if outer\-tag\-pbit\-to\-color\-5?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier5-${color\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                 <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">${metered\-color}</metered-color>
+                <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${outer\-tag\-pbit\-to\-color\-5}</in-pbit-list>
+                </tag>
+                <#if inner\-tag\-pbit\-to\-color\-5?has_content>
+                <tag>
+                    <index>1</index>
+                    <in-pbit-list>${inner\-tag\-pbit\-to\-color\-5}</in-pbit-list>
+                </tag>
+                </#if>
+                </vlans>
+                <#if color\-5?has_content>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+                    <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">${color\-5}</bac-color>
+                </classifier-action-entry-cfg>
+                </#if>
+            </classifier-entry>
+        </#if>
+        <#if outer\-tag\-pbit\-to\-color\-6?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier6-${color\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                 <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">${metered\-color}</metered-color>
+                <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${outer\-tag\-pbit\-to\-color\-6}</in-pbit-list>
+                </tag>
+                <#if inner\-tag\-pbit\-to\-color\-6?has_content>
+                <tag>
+                    <index>1</index>
+                    <in-pbit-list>${inner\-tag\-pbit\-to\-color\-6}</in-pbit-list>
+                </tag>
+                </#if>
+                </vlans>
+                <#if color\-6?has_content>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+                    <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">${color\-6}</bac-color>
+                </classifier-action-entry-cfg>
+                </#if>
+        </classifier-entry>
+    </#if>
+        <#if outer\-tag\-pbit\-to\-color\-7?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier7-${color\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                 <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">${metered\-color}</metered-color>
+                <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                <tag>
+                    <index>0</index>
+                    <in-pbit-list>${outer\-tag\-pbit\-to\-color\-7}</in-pbit-list>
+                </tag>
+                <#if inner\-tag\-pbit\-to\-color\-7?has_content>
+                <tag>
+                    <index>1</index>
+                    <in-pbit-list>${inner\-tag\-pbit\-to\-color\-7}</in-pbit-list>
+                </tag>
+                </#if>
+                </vlans>
+                <#if color\-7?has_content>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+                    <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">${color\-7}</bac-color>
+                </classifier-action-entry-cfg>
+                </#if>
+            </classifier-entry>
+        </#if>
+        </#if>
+        <#if match\-type == "in-dei">
+          <#if outer\-tag\-dei\-to\-color\-0?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier0-${color\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                 <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">${metered\-color}</metered-color>
+                <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                <tag>
+                    <index>0</index>
+                    <in-dei>${outer\-tag\-dei\-to\-color\-0}</in-dei>
+                </tag>
+                <#if inner\-tag\-dei\-to\-color\-0?has_content>
+                <tag>
+                    <index>1</index>
+                    <in-dei>${inner\-tag\-dei\-to\-color\-0}</in-dei>
+                </tag>
+                </#if>
+                </vlans>
+                <#if color\-0?has_content>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+                     <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">${color\-0}</bac-color>
+                </classifier-action-entry-cfg>
+                </#if>
+            </classifier-entry>
+        </#if>
+        <#if outer\-tag\-dei\-to\-color\-1?has_content>
+            <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>classifier1-${color\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                 <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">${metered\-color}</metered-color>
+                <vlans xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                <tag>
+                    <index>0</index>
+                    <in-dei>${outer\-tag\-dei\-to\-color\-1}</in-dei>
+                </tag>
+                <#if inner\-tag\-dei\-to\-color\-1?has_content>
+                <tag>
+                    <index>1</index>
+                    <in-dei>${inner\-tag\-dei\-to\-color\-1}</in-dei>
+                </tag>
+                </#if>
+                </vlans>
+                <#if color\-1?has_content>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+                    <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">${color\-1}</bac-color>
+                </classifier-action-entry-cfg>
+                </#if>
+            </classifier-entry>
+        </#if>
+        </#if>
+        <#if match\-type == "pbit-marking-list">
+            <classifier-entry>
+              <name>enhanced_cls0-${color\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">${metered\-color}</metered-color>
+                <#if color\-0?has_content>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+                    <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">${color\-0}</bac-color>
+                </classifier-action-entry-cfg>
+                </#if>
+                <#if pbit\-index\-0?has_content>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  <index>${pbit\-index\-0}</index>
+                  <#if pbit\-value0\-for\-index\-0?has_content>
+                    <pbit-value>0</pbit-value>
+                  </#if>
+                  <#if pbit\-value1\-for\-index\-0?has_content>
+                    <pbit-value>1</pbit-value>
+                  </#if>
+                  <#if pbit\-value2\-for\-index\-0?has_content>
+                    <pbit-value>2</pbit-value>
+                  </#if>
+                  <#if pbit\-value3\-for\-index\-0?has_content>
+                    <pbit-value>3</pbit-value>
+                  </#if>
+                  <#if pbit\-value4\-for\-index\-0?has_content>
+                    <pbit-value>4</pbit-value>
+                  </#if>
+                  <#if pbit\-value5\-for\-index\-0?has_content>
+                    <pbit-value>5</pbit-value>
+                  </#if>
+                  <#if pbit\-value6\-for\-index\-0?has_content>
+                    <pbit-value>6</pbit-value>
+                  </#if>
+                  <#if pbit\-value7\-for\-index\-0?has_content>
+                    <pbit-value>7</pbit-value>
+                  </#if>
+                </pbit-marking-list>
+                </#if>
+                <#if pbit\-index\-1?has_content>
+                <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                  <index>${pbit\-index\-1}</index>
+                  <#if pbit\-value0\-for\-index\-1?has_content>
+                    <pbit-value>0</pbit-value>
+                  </#if>
+                  <#if pbit\-value1\-for\-index\-1?has_content>
+                    <pbit-value>1</pbit-value>
+                  </#if>
+                  <#if pbit\-value2\-for\-index\-1?has_content>
+                    <pbit-value>2</pbit-value>
+                  </#if>
+                  <#if pbit\-value3\-for\-index\-1?has_content>
+                    <pbit-value>3</pbit-value>
+                  </#if>
+                  <#if pbit\-value4\-for\-index\-1?has_content>
+                    <pbit-value>4</pbit-value>
+                  </#if>
+                  <#if pbit\-value5\-for\-index\-1?has_content>
+                    <pbit-value>5</pbit-value>
+                  </#if>
+                  <#if pbit\-value6\-for\-index\-1?has_content>
+                    <pbit-value>6</pbit-value>
+                  </#if>
+                  <#if pbit\-value7\-for\-index\-1?has_content>
+                    <pbit-value>7</pbit-value>
+                  </#if>
+                </pbit-marking-list>
+                </#if>
+            </classifier-entry>
+        </#if>
+        <#if match\-type == "dei-marking-list">
+        <#if dei\-0?has_content && dei\-index?has_content>
+            <classifier-entry>
+              <name>enhanced_cls0-dei-${color\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">${metered\-color}</metered-color>
+                <dei-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                 <index>${dei\-index}</index>
+                 <dei-value>${dei\-0}</dei-value>
+                </dei-marking-list>
+                <#if color\-0?has_content>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+                    <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">${color\-0}</bac-color>
+                </classifier-action-entry-cfg>
+                </#if>
+            </classifier-entry>
+        </#if>
+        <#if dei\-1?has_content && dei\-index?has_content>
+            <classifier-entry>
+              <name>enhanced_cls1-dei-${color\-policy\-name}</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">${metered\-color}</metered-color>
+                <dei-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+                 <index>${dei\-index}</index>
+                 <dei-value>${dei\-1}</dei-value>
+                </dei-marking-list>
+                <#if color\-1?has_content>
+                <classifier-action-entry-cfg>
+                    <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+                    <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">${color\-1}</bac-color>
+                </classifier-action-entry-cfg>
+                </#if>
+            </classifier-entry>
+        </#if>
+        </#if>
+    </classifiers>
+    </config>
+    </edit-config>
+</rpc>
+

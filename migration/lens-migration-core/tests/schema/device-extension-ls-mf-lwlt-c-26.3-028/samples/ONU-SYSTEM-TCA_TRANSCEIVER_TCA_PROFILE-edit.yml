@@ -1,0 +1,57 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  transceiver-tca-profile-name:
+    description: TRANSCEIVER-TCA-PROFILE-NAME
+    suggested-values:
+    - transceiver_tca_profile
+  temperature-threshold-low-alarm:
+    description: Value for TEMPERATURE-THRESHOLD-LOW-ALARM range is -45000 .. 90000
+    optional: true
+    suggested-values:
+    - 0
+  temperature-threshold-low-warning:
+    description: Value for TEMPERATURE-THRESHOLD-LOW-WARNING range is -45000 .. 90000
+    optional: true
+    suggested-values:
+    - 0
+  temperature-threshold-high-warning:
+    description: Value for TEMPERATURE-THRESHOLD-HIGH-WARNING range is -45000 .. 90000
+    optional: true
+    suggested-values:
+    - 0
+  temperature-threshold-high-alarm:
+    description: Value for TEMPERATURE-THRESHOLD-HIGH-ALARM range is -45000 .. 90000
+    optional: true
+    suggested-values:
+    - 0
+  voltage-threshold-low-alarm:
+    description: Value for VOLTAGE-THRESHOLD-LOW-ALARM range is 0 .. 65500
+    optional: true
+    suggested-values:
+    - 10000
+  voltage-threshold-low-warning:
+    description: Value for VOLTAGE-THRESHOLD-LOW-WARNING range is 0 .. 65500
+    optional: true
+    suggested-values:
+    - 10000
+  voltage-threshold-high-warning:
+    description: Value for VOLTAGE-THRESHOLD-HIGH-WARNING range is 0 .. 65500
+    optional: true
+    suggested-values:
+    - 10000
+  voltage-threshold-high-alarm:
+    description: VOLTAGE-THRESHOLD-HIGH-ALARM range is 0 .. 65500
+    optional: true
+    suggested-values:
+    - 10000
+domains: onu>system>tca
+entity: transceiver-tca-profile
+freemarker: true
+name: Config transceiver-TCA-profile
+operation: edit
+sample-id: onu-system-tca-transceiver-tca-profile-edit
+scope: eonu
+status: draft

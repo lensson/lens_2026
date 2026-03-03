@@ -1,0 +1,20 @@
+arguments:
+  index:
+    description: Index number of file transfer operation to be aborted
+    suggested-values:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+domains: system>file-transfer
+freemarker: true
+name: Abort in progress file transfer operation
+operation: abort
+sample-id: system-file-transfer-abort
+status: draft

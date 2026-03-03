@@ -1,0 +1,28 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-free-gemport-ids xmlns="http://www.nokia.com/management-solutions/pon-id-allocation">
+    <channel-group-name>${olt\-port\-name}-cgroup</channel-group-name>
+    <xpon-type xmlns:xpon-types="urn:bbf:yang:bbf-xpon-types">xpon-types:${xpon\-technology}</xpon-type>
+    <#if allowed\-gemport\-id\-list?has_content>
+    <allowed-id-list>${allowed\-gemport\-id\-list}</allowed-id-list>
+    </#if>
+<#if ibridge\-user\-port\-name?has_content>
+    <gemport-name>${ibridge\-user\-port\-name}-GEM0</gemport-name>
+    <gemport-name>${ibridge\-user\-port\-name}-GEM1</gemport-name>
+    <gemport-name>${ibridge\-user\-port\-name}-GEM2</gemport-name>
+    <gemport-name>${ibridge\-user\-port\-name}-GEM3</gemport-name>
+    <gemport-name>${ibridge\-user\-port\-name}-GEM4</gemport-name>
+    <gemport-name>${ibridge\-user\-port\-name}-GEM5</gemport-name>
+    <gemport-name>${ibridge\-user\-port\-name}-GEM6</gemport-name>
+    <gemport-name>${ibridge\-user\-port\-name}-GEM7</gemport-name>
+<#elseif cc\-name?has_content>
+    <gemport-name>${cc\-name}-GEM0</gemport-name>
+    <gemport-name>${cc\-name}-GEM1</gemport-name>
+    <gemport-name>${cc\-name}-GEM2</gemport-name>
+    <gemport-name>${cc\-name}-GEM3</gemport-name>
+    <gemport-name>${cc\-name}-GEM4</gemport-name>
+    <gemport-name>${cc\-name}-GEM5</gemport-name>
+    <gemport-name>${cc\-name}-GEM6</gemport-name>
+    <gemport-name>${cc\-name}-GEM7</gemport-name>
+</#if>
+  </get-free-gemport-ids>
+</rpc>

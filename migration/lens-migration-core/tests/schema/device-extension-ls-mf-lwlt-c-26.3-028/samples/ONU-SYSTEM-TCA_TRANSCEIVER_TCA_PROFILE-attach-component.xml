@@ -1,0 +1,22 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <hardware xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted">
+              <component xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>SFP</name>
+                <tca-transceiver-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-extension-mounted">${tca\-transceiver\-profile}</tca-transceiver-profile>
+              </component>
+            </hardware>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

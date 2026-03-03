@@ -1,0 +1,16 @@
+ 
+     
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<get-config>
+<source>
+<running/>
+</source>
+<filter type="subtree">
+ <subscriber-profiles xmlns="urn:bbf:yang:bbf-subscriber-profiles">
+      <subscriber-profile>
+        <name>${subscriber_profile_name}</name>
+      </subscriber-profile>
+</subscriber-profiles>
+</filter>
+</get-config>
+</rpc>

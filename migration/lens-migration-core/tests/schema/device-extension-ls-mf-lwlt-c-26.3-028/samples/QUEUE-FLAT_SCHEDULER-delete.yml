@@ -1,0 +1,12 @@
+arguments:
+  olt-infrastructure-name:
+    suggested-values:
+    - gpon-1-1
+domains: unicast>qos>tm
+entity: queue_flat_scheduler
+freemarker: true
+name: Remove unicast services QoS queue for tm-root
+operation: remove
+sample-id: unicast-qos-tm-queue_flat_scheduler-remove
+scope: not(mx) and not(dpu) and not(fx-p2p)
+status: draft

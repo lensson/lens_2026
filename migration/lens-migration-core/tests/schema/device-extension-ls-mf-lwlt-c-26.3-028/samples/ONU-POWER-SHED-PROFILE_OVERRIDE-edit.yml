@@ -1,0 +1,15 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  component-name:
+    description: rj11 rj45 rfvideo moca component name
+domains: onu>transport>powershed
+entity: override
+freemarker: true
+name: Edit powershed to RJ11 RJ45 RFVIDEO MOCA
+operation: edit
+sample-id: onu-transport-powershed-override-edit
+scope: eonu
+status: draft

@@ -1,0 +1,52 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="setSyslogFileCollector">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <syslog xmlns="urn:ietf:params:xml:ns:yang:ietf-syslog">
+        <actions>
+          <file>
+            <log-file xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="merge">
+              <name>${log\-file\-name}</name>
+              <#if facility?has_content && severity?has_content>
+                <facility-filter>
+                    <facility-list>
+                      <facility>${facility}</facility>
+                      <severity>${severity}</severity>
+                      <advanced-compare>
+                        <#if advance\-action?has_content>
+                            <action>${advance\-action}</action>
+                        </#if>
+                        <#if advance\-compare?has_content>
+                            <compare>${advance\-compare}</compare>
+                        </#if>
+                      </advanced-compare>
+                    </facility-list>
+                </facility-filter>
+              </#if>
+              <file-rotation>
+                <#if max\-file\-size?has_content>
+                  <max-file-size>${max\-file\-size}</max-file-size>
+                </#if>
+                <#if number\-of\-files?has_content>
+                  <number-of-files>${number\-of\-files}</number-of-files>
+                </#if>
+                <#if rollover\-count?has_content>
+                  <rollover>${rollover\-count}</rollover>
+                </#if>
+                <#if retention\-count?has_content>
+                  <retention>${retention\-count}</retention>
+                </#if>
+              </file-rotation>
+              <#if pattern\-match?has_content>
+                <pattern-match>${pattern\-match}</pattern-match>
+              </#if>
+            </log-file>
+          </file>
+        </actions>
+      </syslog>
+    </config>
+  </edit-config>
+</rpc>
+

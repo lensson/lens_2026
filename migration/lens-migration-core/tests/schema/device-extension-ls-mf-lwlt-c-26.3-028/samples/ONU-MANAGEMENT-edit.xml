@@ -1,0 +1,33 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <#if usage?has_content && usage = "template">
+            <usage xmlns:template-common="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-template-common">template-common:node-template-usage</usage>
+          </#if>
+          <#if usage?has_content && usage = "template-overrule" && onu\-template?has_content>
+            <usage xmlns:template-common="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-template-common">template-common:node-from-template-usage</usage>
+            <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+              <template-ref>${onu\-template}</template-ref>
+              <#if mib\-upload\-behavior\-value?has_content>
+               <mib-upload-behavior  xmlns:nokia-sdan-mib-upload-behavior-types-mounted="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-mib-upload-behavior-types-mounted">nokia-sdan-mib-upload-behavior-types-mounted:${mib\-upload\-behavior\-value}</mib-upload-behavior>
+              </#if>
+            </template-parameters>
+          </#if>
+          <#if usage?has_content = false || usage != "template-overrule">
+            <onu-management xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+              <#if mib\-upload\-behavior\-value?has_content>
+               <mib-upload-behavior  xmlns:nokia-sdan-mib-upload-behavior-types-mounted="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-mib-upload-behavior-types-mounted">nokia-sdan-mib-upload-behavior-types-mounted:${mib\-upload\-behavior\-value}</mib-upload-behavior>
+              </#if>
+            </onu-management>
+          </#if>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

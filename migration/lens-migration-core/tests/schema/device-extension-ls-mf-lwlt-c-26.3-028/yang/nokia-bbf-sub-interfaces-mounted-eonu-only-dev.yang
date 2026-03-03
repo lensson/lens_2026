@@ -1,0 +1,33 @@
+module nokia-bbf-sub-interfaces-mounted-eonu-only-dev {
+  yang-version 1.1;
+  namespace "http://www.nokia.com/Fixed-Networks/BBA/yang/" 
+           + "nokia-bbf-sub-interfaces-mounted-eonu-only-dev";
+
+  prefix nokia-bbf-sub-interfaces-mounted-eonu-only-dev;
+
+
+
+  organization
+    "Nokia";
+
+  contact
+    "isam.yang@nokia.com";
+
+  description
+    "This module contains a collection of YANG deviations on top 
+     of standard for supporting BBF/bbf-sub-interfaces-tagging YANG module.
+     Copyright (C) 2017-2018, Nokia. All Rights Reserved.";
+
+  revision 2022-07-27 {
+    description
+      "Initial revision.";
+    reference
+      "Nokia specific";
+  }
+
+
+
+
+
+}
+

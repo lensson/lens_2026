@@ -1,0 +1,12 @@
+arguments:
+  exporter-name:
+    description: exporter name
+    suggested-values:
+    - Exporter1
+domains: system>bulk-data-collection>ipfix
+entity: collector
+freemarker: true
+name: Revert to the highest priority collector
+operation: revert
+sample-id: system-bulk-data-collection-ipfix-collector-revert
+status: draft

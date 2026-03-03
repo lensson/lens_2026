@@ -1,0 +1,17 @@
+arguments:
+  netconf-client-name:
+    description: Name of NETCONF clients list
+    suggested-values:
+    - nc-client
+  private-key:
+    description: Private key value to be used
+    sensitive: true
+    suggested-values:
+    - MIIJQwIBAD....
+available-locally: true
+domains: system>callhome
+freemarker: true
+name: Install private key for callhome
+operation: install-private-key
+sample-id: system-callhome-install-private-key
+status: draft

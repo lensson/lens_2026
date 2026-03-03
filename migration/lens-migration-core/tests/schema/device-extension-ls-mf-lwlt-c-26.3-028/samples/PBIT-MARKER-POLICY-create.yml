@@ -1,0 +1,207 @@
+arguments:
+  remarking-policy-name:
+    description: pbit marker policy name
+    suggested-values:
+    - pbit-marker-policy
+  marker-policy-type:
+    description: the marker policy type
+    suggested-values:
+    - tagged only
+    - tagged and untagged
+  vsi-tag-number:
+    description: the marker's filter tag number should be aligned with applied vsi's
+      tag number
+    suggested-values:
+    - single
+    - dual
+  pbit0-to-outer-pbit-marking:
+    description: marking outer TAG p-bit for pbit 0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit1-to-outer-pbit-marking:
+    description: marking outer TAG p-bit for pbit 1
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit2-to-outer-pbit-marking:
+    description: marking outer TAG p-bit for pbit 2
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit3-to-outer-pbit-marking:
+    description: marking outer TAG p-bit for pbit 3
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit4-to-outer-pbit-marking:
+    description: marking outer TAG p-bit for pbit 4
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit5-to-outer-pbit-marking:
+    description: marking outer TAG p-bit for pbit 5
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit6-to-outer-pbit-marking:
+    description: marking outer TAG p-bit for pbit 6
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  pbit7-to-outer-pbit-marking:
+    description: marking outer TAG p-bit for pbit 7
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  dei0-to-outer-dei-marking:
+    description: marking outer TAG dei for dei 0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+  untagged-to-outer-pbit-marking:
+    description: marking outer TAG p-bit for untagged
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  copy-pbit-from-outer-frame-tag:
+    description: copy outer tag's pbit to pbit marking index-0
+    optional: true
+    suggested-values:
+    - false
+    - true
+  copy-dei-from-outer-frame-tag:
+    description: copy outer tag's dei to dei marking index-0
+    optional: true
+    suggested-values:
+    - false
+    - true
+  pbit0-to-inner-pbit-marking:
+    description: marking inner TAG p-bit for pbit 0
+    optional: true
+  pbit1-to-inner-pbit-marking:
+    description: marking inner TAG p-bit for pbit 1
+    optional: true
+  pbit2-to-inner-pbit-marking:
+    description: marking inner TAG p-bit for pbit 2
+    optional: true
+  pbit3-to-inner-pbit-marking:
+    description: marking inner TAG p-bit for pbit 3
+    optional: true
+  pbit4-to-inner-pbit-marking:
+    description: marking inner TAG p-bit for pbit 4
+    optional: true
+  pbit5-to-inner-pbit-marking:
+    description: marking inner TAG p-bit for pbit 5
+    optional: true
+  pbit6-to-inner-pbit-marking:
+    description: marking inner TAG p-bit for pbit 6
+    optional: true
+  pbit7-to-inner-pbit-marking:
+    description: marking inner TAG p-bit for pbit 7
+    optional: true
+  dei0-to-inner-dei-marking:
+    description: marking inner TAG dei for dei 0
+    optional: true
+    suggested-values:
+    - 0
+    - 1
+  untagged-to-inner-pbit-marking:
+    description: marking inner TAG p-bit for untagged
+    optional: true
+  copy-pbit-from-inner-frame-tag:
+    description: copy inner tag's pbit to pbit marking index-1
+    optional: true
+    suggested-values:
+    - false
+    - true
+  copy-dei-from-inner-frame-tag:
+    description: copy inner tag's dei to dei marking index-1
+    optional: true
+    suggested-values:
+    - false
+    - true
+  copy-pbit-from-outer-frame-tag-to-markinglist0and1:
+    description: copy outer tag's pbit to pbit marking indexes 0 and 1
+    optional: true
+    suggested-values:
+    - false
+    - true
+  copy-dei-from-outer-frame-tag-to-markinglist0and1:
+    description: copy outer tag's dei to dei marking indexes 0 and 1
+    optional: true
+    suggested-values:
+    - false
+    - true
+domains: unicast>qos>policy-profiles
+entity: pbit_marker_policy
+freemarker: true
+name: Configure QoS pbit marker(include untag) policy
+operation: edit
+sample-id: unicast-qos-policy-profiles-pbit_marker_policy-edit
+scope: not(mx) and not(dpu) and not(qos-fiber-standalone-hwv1)
+status: draft

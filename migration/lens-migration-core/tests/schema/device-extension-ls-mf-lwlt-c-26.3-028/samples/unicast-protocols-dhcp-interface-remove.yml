@@ -1,0 +1,17 @@
+arguments:
+  ibridge-user-port-name:
+    description: CC user port name needs to be detached from VLAN sub interface
+    optional: true
+    suggested-values:
+    - bridge-port-1
+  cc-name:
+    description: Ibridge user port name needs to be detached from VLAN sub interface
+    optional: true
+domains: unicast>protocols>dhcp
+entity: interface
+freemarker: true
+name: Detach L2 DHCPv4 Relay Agent profile from VLAN sub-interface
+operation: remove
+sample-id: unicast-protocols-dhcp-interface-remove
+scope: fiber
+status: draft

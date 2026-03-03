@@ -1,0 +1,28 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  pots-name:
+    description: POTS interworking node for which for which TCA should be enabled
+      or disabled
+    suggested-values:
+    - POTS1
+  ccpm-failure-tca-profile:
+    description: POTS Call control PM TCA profile name
+    optional: true
+    suggested-values:
+    - call_control_tca_profile
+  rtp-failure-tca-profile:
+    description: POTS RTP PM TCA profile name
+    optional: true
+    suggested-values:
+    - rtp_tca_profile
+domains: onu>transport>voip-sip
+entity: pm-tca-profiles-ref
+freemarker: true
+name: Detach pots uni interface PM TCA profile
+operation: detach
+sample-id: onu-transport-voip-sip-pm-tca-profiles-ref-detach
+scope: eonu
+status: draft

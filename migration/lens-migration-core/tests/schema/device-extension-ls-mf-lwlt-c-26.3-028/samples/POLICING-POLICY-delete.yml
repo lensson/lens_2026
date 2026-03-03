@@ -1,0 +1,13 @@
+arguments:
+  policing-policy-name:
+    description: Policy name
+    suggested-values:
+    - policing-policy
+domains: unicast>qos>policy-profiles
+entity: policing_policy
+freemarker: true
+name: Remove QoS policing policy
+operation: remove
+sample-id: unicast-qos-policy-profiles-policing_policy-remove
+scope: not(mx) and not(dpu)
+status: draft

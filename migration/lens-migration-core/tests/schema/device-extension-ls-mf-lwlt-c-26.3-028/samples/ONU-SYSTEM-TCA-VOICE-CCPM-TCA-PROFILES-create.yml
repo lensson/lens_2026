@@ -1,0 +1,46 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ccpm-failure-tca-profile:
+    description: POTS Call Control performance monitoring TCA profile name
+    suggested-values:
+    - call_control_tca_profile
+  call-setup-fail-threshold:
+    description: Threshold value for number of call setup failures range is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 100
+  call-setup-timeout-threshold:
+    description: Threshold value for the number of calls terminated range is 0 ..
+      4294967294
+    optional: true
+    suggested-values:
+    - 10000
+  call-terminate-threshold:
+    description: Threshold for number of calls that were terminated with cause range
+      is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 10
+  port-release-no-dialing-threshold:
+    description: Threshold value for the number of analogue port releases without
+      dialing detected range is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 20
+  port-offhook-timeout-threshold:
+    description: Threshold value for the longest period of a single off-hook detected
+      on the analogue port (time in milliseconds)
+    optional: true
+    suggested-values:
+    - 5000
+domains: onu>system>tca>pm-profiles
+entity: ccpm-tca-profile
+freemarker: true
+name: Config POTS Call control PM TCA profile
+operation: create
+sample-id: onu-system-tca-pm-profiles-ccpm-tca-profile-create
+scope: eonu
+status: draft

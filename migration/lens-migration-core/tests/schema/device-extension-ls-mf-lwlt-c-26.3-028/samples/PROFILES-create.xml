@@ -1,0 +1,55 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <forwarding xmlns="urn:bbf:yang:bbf-l2-forwarding">
+        <split-horizon-profiles>
+          <split-horizon-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+            <name>no-user-to-user-communication</name>
+            <#if subtended\-port\-support?has_content && subtended\-port\-support>
+            <split-horizon>
+              <in-interface-usage>user-port</in-interface-usage>
+              <out-interface-usage>user-port</out-interface-usage>
+              <out-interface-usage>subtended-node-port</out-interface-usage>
+            </split-horizon>
+            <split-horizon>
+              <in-interface-usage>subtended-node-port</in-interface-usage>
+              <out-interface-usage>user-port</out-interface-usage>
+              <out-interface-usage>subtended-node-port</out-interface-usage>
+            </split-horizon>
+            <#else>
+            <split-horizon>
+              <in-interface-usage>user-port</in-interface-usage>
+              <out-interface-usage>user-port</out-interface-usage>
+            </split-horizon>
+            </#if>
+          </split-horizon-profile>
+        </split-horizon-profiles>
+        <mac-learning-control-profiles>
+          <mac-learning-control-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+            <name>mlcp1</name>
+            <#if subtended\-port\-support?has_content && subtended\-port\-support>
+            <mac-learning-rule>
+              <receiving-interface-usage>user-port</receiving-interface-usage>
+              <mac-can-not-move-to>user-port</mac-can-not-move-to>
+              <mac-can-not-move-to>subtended-node-port</mac-can-not-move-to>
+            </mac-learning-rule>
+            <mac-learning-rule>
+              <receiving-interface-usage>subtended-node-port</receiving-interface-usage>
+              <mac-can-not-move-to>user-port</mac-can-not-move-to>
+              <mac-can-not-move-to>subtended-node-port</mac-can-not-move-to>
+            </mac-learning-rule>
+            <#else>
+            <mac-learning-rule>
+              <receiving-interface-usage>user-port</receiving-interface-usage>
+              <mac-can-not-move-to>user-port</mac-can-not-move-to>
+            </mac-learning-rule>
+            </#if>
+          </mac-learning-control-profile>
+        </mac-learning-control-profiles>
+      </forwarding>
+    </config>
+  </edit-config>
+</rpc>

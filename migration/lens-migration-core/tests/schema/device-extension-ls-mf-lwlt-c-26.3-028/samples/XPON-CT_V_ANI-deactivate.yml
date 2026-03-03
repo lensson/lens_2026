@@ -1,0 +1,17 @@
+arguments:
+  olt-infrastructure-name:
+    description: OLT infrastructure name.
+    suggested-values:
+    - xpon-1-1
+  onu-serial-number:
+    description: Serial Number of a ONU.
+    suggested-values:
+    - sn
+    - all
+domains: transport>xpon>v-ani
+entity: ct
+freemarker: true
+name: Deactivate ONU
+operation: deactivate
+sample-id: transport-xpon-v-ani-ct-deactivate
+status: draft

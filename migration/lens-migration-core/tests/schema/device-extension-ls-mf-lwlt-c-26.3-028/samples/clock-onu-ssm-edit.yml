@@ -1,0 +1,31 @@
+arguments:
+  onu-name:
+    description: the custom name of the onu.
+    suggested-values:
+    - ont1_050_fwlt-c
+  admin-state:
+    description: the administrative state of SyncE/SSM funtion.It's only valid for
+      the ONUs which support G.988 ME464.
+    optional: true
+    suggested-values:
+    - unlock
+  QL-options:
+    description: specifies the expected network QL states.It's only valid for the
+      ONUs which support G.988 ME464.
+    optional: true
+    suggested-values:
+    - EEC-option-1
+  ESMC-vlan-id:
+    description: specifies the VLAN associated with LT output SSM messages. It should
+      use the same VLAN ID with LT 'clock-ssm-out-vlan-profile'.
+    optional: true
+    suggested-values:
+    - 4088
+domains: onu>synchronization>ssm
+entity: synce_ssm
+freemarker: true
+name: Configure SyncE/SSM function for ONU
+operation: edit
+sample-id: onu-synchronization-ssm-synce_ssm-edit
+scope: clock-onu-ssm or clock-df16gm or clock-df32gm
+status: draft

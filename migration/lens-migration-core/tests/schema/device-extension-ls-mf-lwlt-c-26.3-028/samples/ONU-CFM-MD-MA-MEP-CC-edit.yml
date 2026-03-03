@@ -1,0 +1,62 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  md-id:
+    description: Unique ID which is a key for maintenance domain
+    suggested-values:
+    - MD1
+  ma-id:
+    description: Unique ID for MA.
+    suggested-values:
+    - MA1
+  ma-name:
+    description: A string that defines the name of the MA.
+    suggested-values:
+    - MA1
+  ma-vlan-id:
+    description: The VLAN ID under MA for Auto created MIPS is of 12 bits represented
+      in a 2-octet integer.
+    optional: true
+    suggested-values:
+    - 2
+  maintenance-group-id:
+    description: Unique ID which is a key for maintenance group
+    suggested-values:
+    - MG-1
+  mep-id:
+    description: Unique ID which is a key for maintenance association end point
+    suggested-values:
+    - 1
+  mep-status:
+    description: A boolean value that defines the administrative state of MEP, true
+      indicates that the MEP is to function normally, and false indicates that it
+      is to cease functioning.
+    optional: true
+    suggested-values:
+    - true
+  interface:
+    description: A string that defines the uni where MEP is configured
+    suggested-values:
+    - cp1_ont01_uni1
+  ccm-status:
+    description: A boolean value which indicates whether the MEP can generate CCMs.
+      If true, the MEP will generate CCM PDUs
+    optional: true
+    suggested-values:
+    - true
+  ais-status:
+    description: A boolean value that is used to enable/disable AIS generation of
+      the MEP
+    optional: true
+    suggested-values:
+    - true
+domains: onu>cfm
+entity: md-ma-mep-cc
+freemarker: true
+name: Configure MD, MA and MEP for CC mode
+operation: edit
+sample-id: onu-cfm-md-ma-mep-cc-edit
+scope: eonu
+status: draft

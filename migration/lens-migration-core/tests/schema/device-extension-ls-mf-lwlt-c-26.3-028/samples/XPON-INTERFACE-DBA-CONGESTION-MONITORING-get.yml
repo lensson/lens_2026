@@ -1,0 +1,13 @@
+arguments:
+  olt-infrastructure-name:
+    description: OLT infrastructure name
+    optional: false
+    suggested-values:
+    - xpon-1-1
+domains: transport>xpon>dba-congestion-monitoring
+freemarker: true
+name: Retrieve the operational data for dba congestion monitoring
+operation: get
+sample-id: transport-xpon-dba-congestion-monitoring-get
+scope: xpon
+status: draft

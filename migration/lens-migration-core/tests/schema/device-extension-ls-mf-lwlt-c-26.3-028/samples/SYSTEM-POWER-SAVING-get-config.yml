@@ -1,0 +1,8 @@
+available-locally: true
+domains: system>power-saving
+freemarker: true
+name: Retrieve configuration data of power saving at system level
+operation: get-config
+sample-id: system-power-saving-get-config
+scope: xpon
+status: draft

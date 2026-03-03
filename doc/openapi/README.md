@@ -1,10 +1,12 @@
-# OpenAPI Documentation Access Guide
+# OpenAPI/Swagger UI Documentation
 
 ## Overview
 
-This directory contains all documentation and guides related to OpenAPI/Swagger UI access across the Lens platform.
+This directory contains comprehensive documentation for OpenAPI/Swagger UI configuration and OAuth2 authentication across the Lens platform.
 
-**Status:** ✅ All platform modules configured for public API documentation access
+**Status:** ✅ All platform modules configured with OAuth2 pre-configured authentication and public Swagger UI access
+
+**Last Updated:** 2026-02-27
 
 ## Accessing API Documentation
 

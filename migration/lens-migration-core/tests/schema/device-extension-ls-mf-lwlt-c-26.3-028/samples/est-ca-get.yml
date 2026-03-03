@@ -1,0 +1,17 @@
+arguments:
+  profile-name:
+    description: EST profile-name
+    suggested-values:
+    - EstProfile
+  certificate-name:
+    description: Certificate name. Can be omitted to view all the CAs for a profile.
+    optional: true
+    suggested-values:
+    - cert0
+domains: system>certificate>est
+entity: ca
+freemarker: true
+name: Retrieve information for an EST enrolled CA certificate
+operation: get
+sample-id: system-certificate-est-ca-get
+status: draft

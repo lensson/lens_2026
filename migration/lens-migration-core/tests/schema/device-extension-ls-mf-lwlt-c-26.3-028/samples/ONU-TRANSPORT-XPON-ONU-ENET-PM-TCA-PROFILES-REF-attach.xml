@@ -1,0 +1,33 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface>
+                <name>${eth\-name}</name>
+                <performance xmlns="urn:bbf:yang:bbf-interfaces-performance-management-mounted">
+<#if ethernet\-frame\-error\-profile?has_content>
+                  <tca-eth-frame-err-us-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interfaces-performance-management-mounted" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">${ethernet\-frame\-error\-profile}</tca-eth-frame-err-us-profile>
+                  <tca-eth-frame-err-ds-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interfaces-performance-management-mounted" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">${ethernet\-frame\-error\-profile}</tca-eth-frame-err-ds-profile>
+</#if>
+<#if ethernet\-physical\-layer\-error\-profile?has_content>
+                  <tca-eth-physical-error-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interfaces-performance-management-mounted" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">${ethernet\-physical\-layer\-error\-profile}</tca-eth-physical-error-profile>
+</#if>
+<#if ethernet\-frame\-error\-extended\-profile?has_content>
+                  <tca-eth-frame-err-extended-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interfaces-performance-management-mounted" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">${ethernet\-frame\-error\-extended\-profile}</tca-eth-frame-err-extended-profile>
+</#if>
+                </performance>
+              </interface>
+            </interfaces>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

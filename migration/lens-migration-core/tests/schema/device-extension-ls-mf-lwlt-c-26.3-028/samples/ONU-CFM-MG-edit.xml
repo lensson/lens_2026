@@ -1,0 +1,39 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <cfm xmlns="urn:ieee:std:802.1Q:yang:ieee802-dot1q-cfm-mounted">
+              <maintenance-group>
+                <maintenance-group-id>${maintenance\-group\-id}</maintenance-group-id>
+                <md-id>${md\-id}</md-id>
+                <ma-id>${ma\-id}</ma-id>
+                <mep>
+                  <mep-id>${mep\-id}</mep-id>
+                  <direction>${direction}</direction>
+                  <enabled>${enabled}</enabled>
+                  <ccm-ltm-priority>${ccm\-ltm\-priority}</ccm-ltm-priority>
+                  <interface xmlns="urn:bbf:yang:bbf-oam-cfm-mep-to-interface-mounted">${interface}</interface>
+                  <continuity-check>
+                    <ccm-enabled>${ccm\-enabled}</ccm-enabled>
+                  </continuity-check>
+                  <ais xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ethernet-cfm-oam-ais-mounted">
+                    <enable>${enable}</enable>
+                    <meglevel>${meglevel}</meglevel>
+                    <period>${period}</period>
+                    <priority>${priority}</priority>
+                  </ais>
+                </mep>
+              </maintenance-group>
+            </cfm>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

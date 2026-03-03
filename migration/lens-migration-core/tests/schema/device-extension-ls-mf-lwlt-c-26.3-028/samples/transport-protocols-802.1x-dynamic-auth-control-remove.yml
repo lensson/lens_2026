@@ -1,0 +1,13 @@
+arguments:
+  user-interface:
+    description: Name of the user interface.
+    suggested-values:
+    - OLT-VENET
+domains: transport>protocols>802.1x
+entity: dynamic-auth-control
+freemarker: true
+name: Remove Dynamic Authorization request processing control from the user interface
+operation: remove
+sample-id: transport-protocols-802.1x-dynamic-auth-control-remove
+scope: fiber
+status: draft

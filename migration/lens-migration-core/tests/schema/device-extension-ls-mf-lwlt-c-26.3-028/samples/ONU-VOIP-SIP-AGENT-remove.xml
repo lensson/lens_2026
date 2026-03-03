@@ -1,0 +1,111 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <pots-profiles xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+              <pots-uni-characteristics-profiles>
+                <pots-uni-characteristics-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>agent</name>
+                </pots-uni-characteristics-profile>
+              </pots-uni-characteristics-profiles>
+            </pots-profiles>
+            <media-profiles xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+              <media-transport-profiles>
+                <media-transport-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>agent</name>
+                </media-transport-profile>
+              </media-transport-profiles>
+              <media-voice-call-profiles>
+                <media-voice-call-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>agent</name>
+                </media-voice-call-profile>
+              </media-voice-call-profiles>
+              <media-codec-profiles>
+                <media-codec-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>agent</name>
+                </media-codec-profile>
+              </media-codec-profiles>
+            </media-profiles>
+            <sip-profiles xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+              <supplementary-services-profiles>
+                <supplementary-services-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>agent</name>
+                </supplementary-services-profile>
+              </supplementary-services-profiles>
+              <dialplan-digitmap-profiles>
+                <dialplan-digitmap-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>agent</name>
+                </dialplan-digitmap-profile>
+              </dialplan-digitmap-profiles>
+              <feature-access-codes-profiles>
+                <feature-access-codes-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>agent</name>
+                </feature-access-codes-profile>
+              </feature-access-codes-profiles>
+              <sip-registerchar-profiles>
+                <sip-registerchar-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>agent</name>
+                </sip-registerchar-profile>
+              </sip-registerchar-profiles>
+              <subscription-profiles>
+                <subscription-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>agent</name>
+                </subscription-profile>
+              </subscription-profiles>
+            </sip-profiles>
+            <media-forwarders xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+              <media-forwarder xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                <name>agent</name>
+                <media-x-connect xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                  <name>agent</name>
+                </media-x-connect>
+              </media-forwarder>
+            </media-forwarders>
+            <sip-signaling xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+              <voip-service-providers>
+                <voip-service-provider xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>agent</name>
+                </voip-service-provider>
+              </voip-service-providers>
+              <sip-server-pools>
+                <sip-server-pool xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>agent</name>
+                  <sip-servers xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                    <name>proxy</name>
+                  </sip-servers>
+                  <sip-servers xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                    <name>outboundproxy</name>
+                  </sip-servers>
+                  <sip-servers xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="remove">
+                    <name>registrar</name>
+                  </sip-servers>
+                </sip-server-pool>
+              </sip-server-pools>
+              <voip-access-gateways>
+                <voip-access-gateway xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>agent</name>
+                </voip-access-gateway>
+              </voip-access-gateways>
+              <voip-service-gateways>
+                <voip-service-gateway xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>agent</name>
+                </voip-service-gateway>
+              </voip-service-gateways>
+              <sip-user-agents>
+                <sip-user-agent xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">
+                  <name>agent</name>
+                </sip-user-agent>
+              </sip-user-agents>
+            </sip-signaling>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

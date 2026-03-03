@@ -1,0 +1,20 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
+        <subscriber-management xmlns="urn:bbf:yang:bbf-subscriber-profiles" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <#if access\-node\-id?has_content>
+            <access-node-id>${access\-node\-id}</access-node-id>
+          <#else>
+            <access-node-id>access-node-not-configured</access-node-id>
+          </#if>
+        </subscriber-management>
+      </system>
+    </config>
+  </edit-config>
+</rpc>
+     
+   

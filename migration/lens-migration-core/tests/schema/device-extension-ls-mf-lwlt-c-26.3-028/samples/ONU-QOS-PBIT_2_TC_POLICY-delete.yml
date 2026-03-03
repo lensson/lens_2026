@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  qos-policy-name:
+    description: Policy name
+    suggested-values:
+    - tc-assignment
+domains: onu>unicast>qos
+entity: pbit-2-tc-policy
+freemarker: true
+name: Remove QoS pbit to traffic class policy
+operation: delete
+sample-id: onu-unicast-qos-pbit-2-tc-policy-delete
+scope: eonu
+status: draft

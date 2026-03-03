@@ -1,0 +1,136 @@
+arguments:
+  olt-infrastructure-name:
+    suggested-values:
+    - gpon-1-1
+  tc2q-profile-name:
+    optional: true
+    suggested-values:
+    - DEFAULT_TC_TO_8Queues
+  queue0-bac-profile-name:
+    optional: true
+    suggested-values:
+    - UNI_BECLQ
+  queue0-shaper-profile-name:
+    optional: true
+    suggested-values:
+    - shaper1
+  queue0-priority:
+    suggested-values:
+    - 5
+  queue0-weight:
+    optional: true
+    suggested-values:
+    - 34
+  queue1-bac-profile-name:
+    optional: true
+    suggested-values:
+    - UNI_BECLQ
+  queue1-shaper-profile-name:
+    optional: true
+    suggested-values:
+    - shaper1
+  queue1-priority:
+    suggested-values:
+    - 5
+  queue1-weight:
+    optional: true
+    suggested-values:
+    - 66
+  queue2-bac-profile-name:
+    optional: true
+    suggested-values:
+    - UNI_VideoQ
+  queue2-shaper-profile-name:
+    optional: true
+    suggested-values:
+    - shaper1
+  queue2-priority:
+    suggested-values:
+    - 6
+  queue2-weight:
+    optional: true
+    suggested-values:
+    - 1
+  queue3-bac-profile-name:
+    optional: true
+    suggested-values:
+    - UNI_VoiceQ
+  queue3-shaper-profile-name:
+    optional: true
+    suggested-values:
+    - shaper1
+  queue3-priority:
+    suggested-values:
+    - 7
+  queue3-weight:
+    optional: true
+    suggested-values:
+    - 11
+  queue4-bac-profile-name:
+    optional: true
+    suggested-values:
+    - UNI_VoiceQ
+  queue4-shaper-profile-name:
+    optional: true
+    suggested-values:
+    - shaper1
+  queue4-priority:
+    suggested-values:
+    - 4
+  queue4-weight:
+    optional: true
+    suggested-values:
+    - 10
+  queue5-bac-profile-name:
+    optional: true
+    suggested-values:
+    - UNI_VoiceQ
+  queue5-shaper-profile-name:
+    optional: true
+    suggested-values:
+    - shaper1
+  queue5-priority:
+    suggested-values:
+    - 3
+  queue5-weight:
+    optional: true
+    suggested-values:
+    - 2
+  queue6-bac-profile-name:
+    optional: true
+    suggested-values:
+    - UNI_VoiceQ
+  queue6-shaper-profile-name:
+    optional: true
+    suggested-values:
+    - shaper1
+  queue6-priority:
+    suggested-values:
+    - 2
+  queue6-weight:
+    optional: true
+    suggested-values:
+    - 4
+  queue7-bac-profile-name:
+    optional: true
+    suggested-values:
+    - UNI_VoiceQ
+  queue7-shaper-profile-name:
+    optional: true
+    suggested-values:
+    - shaper1
+  queue7-priority:
+    suggested-values:
+    - 1
+  queue7-weight:
+    optional: true
+    suggested-values:
+    - 6
+domains: unicast>qos>tm
+entity: queue_flat_scheduler
+freemarker: true
+name: Configure unicast services QoS queue for tm-root
+operation: edit
+sample-id: unicast-qos-tm-queue_flat_scheduler-edit
+scope: not(mx) and not(dpu) and not(fx-p2p)
+status: draft

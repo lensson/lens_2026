@@ -1,0 +1,91 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+  <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+    <name>${olt\-infrastructure\-name}-cpartition</name>
+    <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-partition</type>
+    <channel-partition xmlns="urn:bbf:yang:bbf-xpon">
+      <channel-group-ref>${olt\-port\-name}-cgroup</channel-group-ref>
+            <#if scg\-index?has_content>
+            <channel-partition-index>${scg\-index}</channel-partition-index>
+            <#else>
+            <channel-partition-index>1</channel-partition-index>
+            </#if>
+      <downstream-fec>true</downstream-fec>
+      <multicast-aes-indicator>false</multicast-aes-indicator>
+<#if authentication\-method?has_content>
+            <authentication-method>${authentication\-method}</authentication-method>
+<#else>
+            <authentication-method>serial-number</authentication-method>
+</#if>
+<#if closest\-onu\-distance?has_content>
+      <closest-onu-distance>${closest\-onu\-distance}</closest-onu-distance>
+</#if>
+<#if maximum\-differential\-xpon\-distance?has_content>
+      <maximum-differential-xpon-distance>${maximum\-differential\-xpon\-distance}</maximum-differential-xpon-distance>
+</#if> 
+<#if early\-fetch\-onu\-loid\-info?has_content>
+      <early-fetch-onu-loid-info xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-xpon-channel-partition">${early\-fetch\-onu\-loid\-info}</early-fetch-onu-loid-info>
+</#if>
+<#if loid\-alternate\-fetch\-fall\-back?has_content>
+      <loid-alternate-fetch-fall-back xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-xpon-channel-partition">${loid\-alternate\-fetch\-fall\-back}</loid-alternate-fetch-fall-back>
+</#if>
+    </channel-partition>
+  </interface>
+  <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+    <name>${olt\-infrastructure\-name}-cpair</name>
+    <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-pair</type>
+<#if ber\-tca\-profile?has_content>
+<ber-tca-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-if-xpon-aug">${ber\-tca\-profile}</ber-:tca-profile>    
+</#if>
+    <channel-pair xmlns="urn:bbf:yang:bbf-xpon">
+      <channel-group-ref>${olt\-port\-name}-cgroup</channel-group-ref>
+      <channel-partition-ref>${olt\-infrastructure\-name}-cpartition</channel-partition-ref>
+      <channel-pair-type xmlns:nokia-sdan-xpon-types="urn:broadband-forum-org:yang:nokia-sdan-xpon-types">nokia-sdan-xpon-types:twentyfivegs</channel-pair-type>
+      <ultra-low-latency-mode xmlns="urn:broadband-forum-org:yang:nokia-sdan-xpon-channel-pair-body">false</ultra-low-latency-mode>
+      <twentyfivegs-channel-pair-line-rate xmlns="urn:broadband-forum-org:yang:nokia-sdan-xpon-channel-pair-body" xmlns:nokia-sdan-xpon-types="urn:broadband-forum-org:yang:nokia-sdan-xpon-types">nokia-sdan-xpon-types:unplanned-25gs-cp-line-rate</twentyfivegs-channel-pair-line-rate>
+<#if authentication\-fail\-control?has_content>
+	    <onu-ploam-authentication-fail-control xmlns="urn:bbf:yang:bbf-xpon-ploam-authentication">${authentication\-fail\-control}</onu-ploam-authentication-fail-control>
+</#if>
+<#if specific\-polling\-period?has_content>
+   <#if specific\-polling\-period == 0>
+      <specific-polling-period xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-if-xpon-aug">polling-disabled</specific-polling-period>
+   <#else>
+      <specific-polling-period xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-if-xpon-aug">${specific\-polling\-period}</specific-polling-period>
+   </#if>
+</#if>
+<#if us\-omci\-granting?has_content>
+      <us-omci-granting>${us\-omci\-granting}</us-omci-granting>
+</#if>
+    </channel-pair>
+  </interface>
+  <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+    <name>${olt\-infrastructure\-name}-primary-ctermination</name>
+    <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:channel-termination</type>
+<#if ct\-enabled?has_content>
+      <enabled>${ct\-enabled}</enabled>
+</#if>
+<#if pm\-enable?has_content>
+      <performance xmlns="urn:bbf:yang:bbf-interfaces-performance-management">
+        <enable>${pm\-enable}</enable>
+      </performance>
+</#if>
+    <port-layer-if xmlns="urn:bbf:yang:bbf-interface-port-reference">25gs-${olt\-port\-name}</port-layer-if>
+    <channel-termination xmlns="urn:bbf:yang:bbf-xpon">
+      <channel-pair-ref>${olt\-infrastructure\-name}-cpair</channel-pair-ref>
+<#if twentyfivegs\-pon\-id?has_content>
+      <twentyfivegs-pon-id xmlns="urn:broadband-forum-org:yang:nokia-sdan-xpon-channel-termination">${twentyfivegs\-pon\-id}</twentyfivegs-pon-id>
+</#if>
+      <ber-calc-period>10</ber-calc-period>
+      <location xmlns:bbf-xpon-types="urn:bbf:yang:bbf-xpon-types">bbf-xpon-types:inside-olt</location>
+      <channel-termination-type xmlns:nokia-sdan-xpon-types="urn:broadband-forum-org:yang:nokia-sdan-xpon-types">nokia-sdan-xpon-types:twentyfivegs</channel-termination-type>
+    </channel-termination>
+  </interface>
+</interfaces>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,12 @@
+arguments:
+  session-id:
+    description: Particular session to kill.
+    suggested-values:
+    - 0
+domains: system>sessions
+entity: active
+freemarker: true
+name: Disconnect an active session
+operation: kill-session
+sample-id: system-sessions-active-kill-session
+status: draft

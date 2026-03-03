@@ -1,0 +1,13 @@
+arguments:
+  ibridge-name:
+    description: the name of the IBRIDGE
+    suggested-values:
+    - bridge-1
+domains: unicast>forwarding
+entity: ibridge
+freemarker: true
+name: Retrieve unicast services forwarding ibridge config data
+operation: get-config
+sample-id: unicast-forwarding-ibridge-get-config
+scope: fiber
+status: draft

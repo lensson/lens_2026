@@ -1,0 +1,14 @@
+arguments:
+  network-port-name:
+    description: Name of interface
+    suggested-values:
+    - X1/X2
+available-locally: true
+domains: transport>ethernet
+entity: interface
+freemarker: true
+name: Remove configured interface
+operation: remove
+sample-id: transport-ethernet-interface-remove
+scope: not(inband-no-ipv4) and not(mf2-nt) and not(mx) and not(dpu)
+status: draft

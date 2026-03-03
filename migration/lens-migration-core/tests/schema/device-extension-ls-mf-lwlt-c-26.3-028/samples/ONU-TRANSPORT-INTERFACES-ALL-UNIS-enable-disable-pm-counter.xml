@@ -1,0 +1,25 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <all-unis xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-interfaces-mounted">
+                <ethernet>
+                  <performance xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interfaces-performance-management-mounted">
+                    <enable>${pm_flag}</enable>
+                  </performance>
+                </ethernet>
+              </all-unis>
+            </interfaces>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

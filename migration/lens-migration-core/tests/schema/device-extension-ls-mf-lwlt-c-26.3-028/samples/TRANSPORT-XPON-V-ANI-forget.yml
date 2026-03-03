@@ -1,0 +1,22 @@
+arguments:
+  olt-infrastructure-name:
+    description: OLT infrastructure channel termination name.
+    suggested-values:
+    - xgspon-1-1
+  onu-serial-number:
+    description: Serial number of the defective ONU for which the handling procedure
+      has been completed.
+    suggested-values:
+    - ALCLF1091001
+  defect:
+    description: The specific ONU defect for which the handling procedure has been
+      completed
+    suggested-values:
+    - rogue-onu
+    - overload-upstream-ploam
+domains: transport>xpon>v-ani
+freemarker: true
+name: Forget defective ONU
+operation: forget
+sample-id: transport-xpon-v-ani-forget
+status: draft

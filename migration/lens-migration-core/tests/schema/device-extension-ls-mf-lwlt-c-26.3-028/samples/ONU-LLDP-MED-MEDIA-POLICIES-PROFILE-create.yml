@@ -1,0 +1,143 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  lldp-med-plug-and-play-lan-policy-for-voice:
+    description: LLDP MED media policy profile name for VOIP plug-and-play.
+    suggested-values:
+    - lldp-med-plug-and-play-lan-policy-for-voice
+  lldp-med-media-policies-for-all-apps:
+    description: LLDP MED media policy profile name which defines policies for all
+      application types.
+    suggested-values:
+    - lldp-med-media-policies-for-all-apps
+  voice-app-type:
+    description: Application type in the media end point device is voice.
+    suggested-values:
+    - voice
+  guest-voice-app-type:
+    description: Application type in the media end point device is guest-voice.
+    suggested-values:
+    - guest-voice
+  guest-voice-signaling-app-type:
+    description: Application type in the media end point device is guest-voice-signalling.
+    suggested-values:
+    - guest-voice-signaling
+  softphone-voice-app-type:
+    description: Application type in the media end point device is softphone.
+    suggested-values:
+    - softphone-voice
+  streaming-video-app-type:
+    description: Application type in the media end point device is streaming-video.
+    suggested-values:
+    - streaming-video
+  unknown-app-type:
+    description: Application type in the media end point device is unknown.
+    suggested-values:
+    - unknown
+  video-conferencing-app-type:
+    description: Application type in the media end point device is vide-conferencing.
+    suggested-values:
+    - video-conferencing
+  video-signaling-app-type:
+    description: Application type in the media end point device is video-signaling.
+    suggested-values:
+    - video-signaling
+  voice-signaling-app-type:
+    description: Application type in the media end point device is voice-signaling.
+    suggested-values:
+    - voice-signaling
+  vlan-id-voice-app-voice-profile:
+    description: VLAN ID in the media policy configured for voice application type
+      in voice policy profile.
+    suggested-values:
+    - 100
+  pri-voice-app-voice-profile:
+    description: Priority bits in the media policy configured for voice application
+      type in voice policy profile.
+    suggested-values:
+    - 6
+  vlan-id-voice-app-all-apps-profile:
+    description: VLAN ID in the media policy configured for voice application type
+      in policy profile.
+    suggested-values:
+    - 200
+  pri-voice-app-all-apps-profile:
+    description: Priority bits in the media policy configured for voice application
+      type in policy profile.
+    suggested-values:
+    - 6
+  vlan-id-guest-voice-app-all-apps-profile:
+    description: VLAN ID in the media policy configured for guest-voice application
+      type in policy profile.
+    suggested-values:
+    - 201
+  pri-guest-voice-app-all-apps-profile:
+    description: Priority bits in the media policy configured for guest-voice application
+      type in policy profile.
+    suggested-values:
+    - 5
+  vlan-id-guest-voice-signaling-app-all-apps-profile:
+    description: VLAN ID in the media policy configured for guest-voice-signaling
+      application type in policy profile.
+    suggested-values:
+    - 202
+  pri-guest-voice-signaling-app-all-apps-profile:
+    description: Priority bits in the media policy configured for guest-voice-signaling
+      application type in policy profile.
+    suggested-values:
+    - 5
+  vlan-id-softphone-voice-app-all-apps-profile:
+    description: VLAN ID in the media policy configured for softphone-voice application
+      type in policy profile.
+    suggested-values:
+    - 203
+  pri-softphone-voice-app-all-apps-profile:
+    description: Priority bits in the media policy configured for softphone-voice
+      application type in policy profile.
+    suggested-values:
+    - 4
+  dscp-streaming-video-app-all-apps-profile:
+    description: DSCP in the media policy configured for streaming-video application
+      type in policy profile.
+    suggested-values:
+    - 56
+  vlan-id-video-conferencing-app-all-apps-profile:
+    description: VLAN ID in the media policy configured for video-conferencing application
+      type in policy profile.
+    suggested-values:
+    - 204
+  pri-video-conferencing-app-all-apps-profile:
+    description: Priority bits in the media policy configured for video-conferencing
+      application type in policy profile.
+    suggested-values:
+    - 5
+  vlan-id-video-signaling-app-all-apps-profile:
+    description: VLAN ID in the media policy configured for video-signaling application
+      type in policy profile.
+    suggested-values:
+    - 205
+  pri-video-signaling-app-all-apps-profile:
+    description: Priority bits in the media policy configured for video-signaling
+      application type in policy profile.
+    suggested-values:
+    - 6
+  vlan-id-voice-signaling-app-all-apps-profile:
+    description: VLAN ID in the media policy configured for voice-signaling application
+      type in policy profile.
+    suggested-values:
+    - 206
+  pri-voice-signaling-app-all-apps-profile:
+    description: Priority bits in the media policy configured for voice-signaling
+      application type in policy profile.
+    suggested-values:
+    - 6
+domains: onu>lldp-med
+entity: media-policy-profile
+freemarker: true
+name: Create LLDP-MED Media Policy Profile
+operation: create
+sample-id: onu-lldp-med-media-policy-profile-create
+scope: eonu
+status: draft

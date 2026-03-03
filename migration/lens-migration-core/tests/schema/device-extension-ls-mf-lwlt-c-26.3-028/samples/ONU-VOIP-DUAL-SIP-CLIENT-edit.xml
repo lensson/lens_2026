@@ -1,0 +1,54 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <hardware xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted">
+              <component xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>pots-port-${pots\-port\-hw\-number}</name>
+                <parent>CARD2</parent>
+                <parent-rel-pos>${pots\-port\-hw\-number}</parent-rel-pos>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</class>
+              </component>
+            </hardware>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${voip\-uni\-name}</name>
+                <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type-mounted">ianaift:voiceFXS</type>
+                <phys-voice-itf xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+                  <port-layer-if>pots-port-${pots\-port\-hw\-number}</port-layer-if>
+                  <pptp-pots-uni>
+                    <call-statistics-enabled>${call\-statistics\-enabled}</call-statistics-enabled>
+                  </pptp-pots-uni>
+                </phys-voice-itf>
+                <enabled>${sip\-admin}</enabled>
+              </interface>
+            </interfaces>
+            <voip-configuration-characteristics xmlns="urn:bbf:yang:bbf-voip-configuration-mounted" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+              <configuration-method>tr-104</configuration-method>
+            </voip-configuration-characteristics>
+            <sip-signaling xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+              <sip-terminations>
+                <sip-termination xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <sip-user-name>${voip\-uni\-name}</sip-user-name>
+                </sip-termination>
+              </sip-terminations>
+            </sip-signaling>
+            <pots-interworking-nodes xmlns="urn:bbf:yang:bbf-sip-voip-mounted">
+              <pots-interworking xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${voip\-uni\-name}</name>
+                <phys-pots-itf>${voip\-uni\-name}</phys-pots-itf>
+                <voip-vrefpoint-interface>${veip\-interface\-name}</voip-vrefpoint-interface>
+              </pots-interworking>
+            </pots-interworking-nodes>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,7 @@
+domains: transport>xpon>speed-monitoring
+freemarker: true
+name: Remove interface speed monitoring
+operation: delete
+sample-id: transport-xpon-speed-monitoring-delete
+scope: xpon
+status: draft

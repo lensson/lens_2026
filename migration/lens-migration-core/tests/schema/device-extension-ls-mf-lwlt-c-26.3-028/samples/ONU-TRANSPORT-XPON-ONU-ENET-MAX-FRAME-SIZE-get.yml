@@ -1,0 +1,16 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  enet-name:
+    description: ENET interface name
+    suggested-values:
+    - uni-1-1-1
+domains: onu>transport>xpon>enet
+freemarker: true
+name: Get Ethernet UNI max frame size
+operation: get-max-frame-size
+sample-id: onu-transport-xpon-enet-get-max-frame-size
+scope: eonu
+status: draft

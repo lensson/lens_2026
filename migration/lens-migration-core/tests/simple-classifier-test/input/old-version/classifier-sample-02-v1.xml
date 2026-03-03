@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  simple-classifier-test / sample-02
+  old-version (v1): 5 classifier entries (extended scenario)
+  Paired with: new-version/classifier-sample-02-v2.xml
+-->
+<classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+
+  <!-- Entry 1: High Priority Traffic -->
+  <classifier-entry>
+    <name>high-priority-classifier</name>
+    <description>Classifier for high priority traffic with P-bit 6 and 7</description>
+    <classifier-action-entry-cfg>
+      <action-type>scheduling-traffic-class</action-type>
+      <scheduling-traffic-class>1</scheduling-traffic-class>
+    </classifier-action-entry-cfg>
+  </classifier-entry>
+
+  <!-- Entry 2: Medium-High Priority Traffic -->
+  <classifier-entry>
+    <name>medium-high-priority-classifier</name>
+    <description>Classifier for medium-high priority traffic with P-bit 5</description>
+    <classifier-action-entry-cfg>
+      <action-type>scheduling-traffic-class</action-type>
+      <scheduling-traffic-class>2</scheduling-traffic-class>
+    </classifier-action-entry-cfg>
+  </classifier-entry>
+
+  <!-- Entry 3: Low Priority Traffic -->
+  <classifier-entry>
+    <name>low-priority-classifier</name>
+    <description>Classifier for low priority traffic with P-bit 0 and 1</description>
+    <classifier-action-entry-cfg>
+      <action-type>scheduling-traffic-class</action-type>
+      <scheduling-traffic-class>4</scheduling-traffic-class>
+    </classifier-action-entry-cfg>
+  </classifier-entry>
+
+  <!-- Entry 4: Voice Traffic -->
+  <classifier-entry>
+    <name>voice-classifier</name>
+    <description>Classifier for voice traffic with P-bit 7</description>
+    <classifier-action-entry-cfg>
+      <action-type>scheduling-traffic-class</action-type>
+      <scheduling-traffic-class>0</scheduling-traffic-class>
+    </classifier-action-entry-cfg>
+  </classifier-entry>
+
+  <!-- Entry 5: Best Effort Traffic (will be deleted in v2) -->
+  <classifier-entry>
+    <name>best-effort-classifier</name>
+    <description>Classifier for best effort traffic</description>
+    <classifier-action-entry-cfg>
+      <action-type>pass</action-type>
+      <pass/>
+    </classifier-action-entry-cfg>
+  </classifier-entry>
+
+</classifiers>
+

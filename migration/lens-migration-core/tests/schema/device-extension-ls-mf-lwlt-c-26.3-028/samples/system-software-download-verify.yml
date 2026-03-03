@@ -1,0 +1,20 @@
+arguments:
+  component:
+    description: Name of the component, default must be Chassis.
+    suggested-values:
+    - Chassis
+  software-name:
+    description: Name of the application software
+    suggested-values:
+    - application_software
+  download-software-name:
+    description: Name of the software to be activated
+    suggested-values:
+    - L6GQAF20.100
+available-locally: true
+domains: system>software
+freemarker: true
+name: Verify downloaded software
+operation: download-verify
+sample-id: system-software-download-verify
+status: draft

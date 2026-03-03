@@ -1,0 +1,18 @@
+arguments:
+  remoteserver:
+    suggested-values:
+    - vomci
+  accesspoint:
+    suggested-values:
+    - vomci-grpc
+  privatekey:
+    description: Private key value to be used
+    sensitive: true
+    suggested-values:
+    - MIIJQwIBAD....
+domains: system>vomci
+freemarker: true
+name: Install private key for vomci remote-server
+operation: install-private-key
+sample-id: system-vomci-install-private-key
+status: draft

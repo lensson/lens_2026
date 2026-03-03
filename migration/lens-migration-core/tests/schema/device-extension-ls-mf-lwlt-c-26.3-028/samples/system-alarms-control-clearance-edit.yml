@@ -1,0 +1,44 @@
+arguments:
+  system-clearance-delay:
+    description: Define the minimum time (range of 1..180 seconds) without toggling
+      from cleared to active state for an alarm. Whenever such a transition is detected,
+      the clearance of the alarm will be postponed. This value have system wide impact
+      (affects all the alarm type ids), in case that it is not configured it is considered
+      as disabled on system level.
+    optional: true
+    suggested-values:
+    - 5
+  alarm-type-id:
+    description: Identifies an alarm type. Only identities of concrete alarm types
+      (present in the alarm inventory) can be configured. Usage of an abstract alarm
+      type will be rejected. Refer to alarms guide or alarm-inventory for the available
+      alarm types as well as for their namespaces. This parameter must be configured
+      in combination with alarm-type-ns.
+    optional: true
+    suggested-values:
+    - end-cert-expiration
+  alarm-type-ns:
+    description: The namespace of configured alarm-type-id. Refer to alarms guide
+      or alarm-inventory for the applicable namespace per alarm type id. This parameter
+      must be configured in combination with alarm-type-id.
+    optional: true
+    suggested-values:
+    - https://www.nokia.com/Fixed-Networks/BBA/yang/nokia-certificate-alarm-types
+  clearance-delay:
+    description: Define the minimum timeframe (range of 1..180 seconds) without toggling
+      from cleared to active state for an alarm. Whenever such a transition is detected,
+      the clearance of the alarm will be postponed. This value controls the delay
+      of alarms clearance for a specific alarm-type, also could overrule the clearance
+      delay configuration on system level. If there is no value in clearance-daley,
+      clearance-delay-disable will be configured.
+    optional: true
+    suggested-values:
+    - 10
+available-locally: true
+domains: system>alarms>control
+entity: clearance-delay
+freemarker: true
+name: Configure alarm clearance delay
+operation: edit
+sample-id: system-alarms-control-clearance-delay-edit
+status: draft

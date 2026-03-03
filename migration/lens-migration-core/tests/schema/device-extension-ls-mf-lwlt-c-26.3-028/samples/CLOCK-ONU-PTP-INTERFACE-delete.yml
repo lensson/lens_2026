@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: the custom name of the onu.
+    suggested-values:
+    - ont1_050_fwlt-c
+  uni-name:
+    description: the custom name of the uni interface.
+    suggested-values:
+    - uni1_ont1_050_fwlt-c
+domains: onu>synchronization>ptp
+entity: interfaces
+freemarker: true
+name: Delete  ptp interface for onu
+operation: delete
+sample-id: onu-synchronization-ptp-interfaces-delete
+scope: clock-pon or clock-df16gm or clock-df32gm
+status: draft

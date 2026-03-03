@@ -1,0 +1,34 @@
+arguments:
+  session-name:
+    description: A name to identify this session.
+    suggested-values:
+    - custom_session_1
+  interface:
+    description: Interface can refer to a VLAN-SUB-INTERFACE or its parent interface
+      (eg. vENET, PTM)
+    suggested-values:
+    - VSI_USERx
+    - vENETn
+  protocols:
+    description: protocol-selection to be configured.For multiple protocols, separate
+      them by a space.You can use "all" to enable all protocols.
+    suggested-values:
+    - all
+    - dhcp
+    - dhcpv6
+    - arp
+    - pppoe
+    - igmp
+    - dhcp arp pppoe
+  enabled:
+    description: Tracing status.
+    suggested-values:
+    - true
+    - false
+domains: system>protocol-tracing
+freemarker: true
+name: Create protocol-tracing session for an interface.
+operation: create
+sample-id: system-protocol-tracing-create
+scope: protocol-tracing-copper or protocol-tracing-fiber
+status: draft

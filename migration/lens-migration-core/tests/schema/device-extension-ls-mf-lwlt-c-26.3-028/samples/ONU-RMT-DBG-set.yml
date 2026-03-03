@@ -1,0 +1,20 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  context-id:
+    description: context id to co-relate input action and output notification
+    suggested-values:
+    - dbgcmd1
+  debug-command:
+    description: ONT debug command to be executed
+    suggested-values:
+    - /system/ontver\\
+domains: onu>transport>gpon>rmt-dbg
+freemarker: true
+name: Set ONU Remote Debug Command
+operation: set
+sample-id: onu-transport-gpon-rmt-dbg-set
+scope: eonu
+status: draft

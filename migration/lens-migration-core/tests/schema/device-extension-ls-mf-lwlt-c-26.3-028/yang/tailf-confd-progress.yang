@@ -1,0 +1,22 @@
+module tailf-confd-progress {
+  namespace "http://tail-f.com/ns/confd-progress";
+  prefix confd-progress;
+
+
+  description
+    "This module contains a collection of YANG definitions for
+     tracing progress in ConfD.
+
+     Copyright 2020 Cisco Systems, Inc.
+     All rights reserved.
+     Permission is hereby granted to redistribute this file without
+     modification.";
+
+  revision 2020-06-29 {
+    description
+      "Released as part of ConfD-7.4.
+
+       Initial revision.";
+  }
+
+}

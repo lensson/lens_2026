@@ -1,0 +1,11 @@
+arguments:
+  notify-days:
+    description: Notification threshold in days. Allowed range is 15..90 days.
+    suggested-values:
+    - 90
+domains: system>certificate>certificate-expiration
+freemarker: true
+name: Configure certificates notification expiry threshold
+operation: edit
+sample-id: system-certificate-certificate-expiration-edit
+status: draft

@@ -1,0 +1,17 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+<edit-config>
+<target>
+  <running/>
+</target>
+<config>
+     <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"> 
+     <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+     <name>${enet\-name}</name>
+<subscriber-profile xmlns="urn:bbf:yang:bbf-subscriber-profiles">
+<profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="remove">${subscriber_profile_name}</profile>
+</subscriber-profile>
+</interface>
+</interfaces>
+</config>
+</edit-config>
+</rpc>

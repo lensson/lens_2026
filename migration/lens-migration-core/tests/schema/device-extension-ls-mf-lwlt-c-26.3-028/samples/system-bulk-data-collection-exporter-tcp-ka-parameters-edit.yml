@@ -1,0 +1,24 @@
+arguments:
+  exporter-name:
+    description: exporter name
+    suggested-values:
+    - Exporter1
+  idle-time:
+    description: idle time (in secs)
+    suggested-values:
+    - 10
+  max-probes:
+    description: max probes
+    suggested-values:
+    - 3
+  probe-interval:
+    description: probe interval (in secs)
+    suggested-values:
+    - 5
+domains: system>bulk-data-collection>exporter
+entity: tcp-ka-parameters
+freemarker: true
+name: Configure IPFIX TCP Keep-Alive parameters
+operation: edit
+sample-id: system-bulk-data-collection-exporter-tcp-ka-parameters-edit
+status: draft

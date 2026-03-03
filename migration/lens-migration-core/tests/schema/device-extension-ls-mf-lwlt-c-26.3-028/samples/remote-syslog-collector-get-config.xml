@@ -1,0 +1,15 @@
+<rpc message-id="setLoggingAppRequest" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter type="subtree">
+      <syslog xmlns="urn:ietf:params:xml:ns:yang:ietf-syslog">
+        <actions>
+          <remote>
+          </remote>
+        </actions>
+       </syslog>
+     </filter>
+  </get-config>
+</rpc>

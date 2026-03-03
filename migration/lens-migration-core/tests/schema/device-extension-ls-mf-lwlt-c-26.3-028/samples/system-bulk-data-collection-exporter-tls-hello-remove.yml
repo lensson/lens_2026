@@ -1,0 +1,28 @@
+arguments:
+  exporter-name:
+    description: exporter name
+    suggested-values:
+    - Exporter1
+  collector-name:
+    description: collector name
+    suggested-values:
+    - Collector1
+  tls-version:
+    description: A TLS version to add to the list of acceptable TLS versions of hello
+      parameters
+    optional: true
+    suggested-values:
+    - tls13
+  cipher-suite:
+    description: A cipher suite to add to the list of acceptable cipher suites of
+      hello parameters
+    optional: true
+    suggested-values:
+    - tls-aes-256-gcm-sha384
+domains: system>bulk-data-collection>exporter
+entity: tls-hello
+freemarker: true
+name: Remove TLS version or cipher from a remote IPFIX Collector
+operation: remove
+sample-id: system-bulk-data-collection-exporter-tls-hello-remove
+status: draft

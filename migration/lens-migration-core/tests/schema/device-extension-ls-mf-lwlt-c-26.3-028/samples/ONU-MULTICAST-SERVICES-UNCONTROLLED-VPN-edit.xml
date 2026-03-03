@@ -1,0 +1,48 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${vpn\-name}-onu-v-enet</name>
+                <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type-mounted">bbf-xponift:onu-v-enet</type>
+                <enabled>true</enabled>
+                <onu-v-enet xmlns="urn:bbf:yang:bbf-xponani-mounted">
+                  <ani>${ani\-name}</ani>
+                </onu-v-enet>
+              </interface>
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${ani\-name}</name>
+                <ani xmlns="urn:bbf:yang:bbf-xponani-mounted">
+                  <multicast-gemport>
+                    <name>mc-gemport</name>
+                    <mc-gemport-id>${mc\-gemport\-id}</mc-gemport-id>
+                    <interface>${vpn\-name}-onu-v-enet</interface>
+                    <is-broadcast>false</is-broadcast>
+                  </multicast-gemport>
+                </ani>
+              </interface>
+            </interfaces>
+            <multicast xmlns="urn:bbf:yang:bbf-mgmd-mounted">
+              <mgmd>
+                <multicast-vpn>
+                  <name>${vpn\-name}</name>
+                  <mode xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-mgmd-configuration-snooping-uncontrol-mounted">snoop-transparent-uncontrolled</mode>
+                  <ethernet-interface-to-host-uncontrol xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-mgmd-configuration-snooping-uncontrol-mounted">
+                    <interface>${enet\-name}</interface>
+                  </ethernet-interface-to-host-uncontrol>
+                </multicast-vpn>
+              </mgmd>
+            </multicast>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

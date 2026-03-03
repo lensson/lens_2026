@@ -1,0 +1,1444 @@
+{
+    "ham-mapping-model": {
+        "version": "1.1.0",
+        "ham-objects": [
+            {
+                "ham-object-type": "slot",
+                "network-layer": "",
+                "parent-type": "device",
+                "other-participants-mapping": [
+                    {
+                        "id": {
+                            "source": "virtualizer",
+                            "schema-tree": "/anv:device-manager/anv-device-holders:device",
+                            "data-tree": "${currentDevice}",
+                            "object-type": "ncy-device"
+                        },
+                        "ham-object": {
+                            "source": "virtualizer",
+                            "id": "concat(\"/device=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/slot=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value)"
+                        },
+                        "type-specific-fields": [
+                            {
+                                "name": "board-model-name",
+                                "source": "device",
+                                "value": "/ietf-hardware:hardware/component[derived-from-or-self(class,'nokia-hardware-identities:lt')]/bbf-hardware-extension:model-name",
+                                "internal": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-hardware:hardware/component[derived-from-or-self(class,'iana-hardware:chassis')]",
+                            "data-tree": "concat(\"/ietf-hardware:hardware/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-hardware:hardware-state/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "object-type": "chassis"
+                        },
+                        "ham-object": {
+                            "source": "virtualizer",
+                            "id": "concat(\"/device=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/slot=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value)"
+                        }
+                    },
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-hardware:hardware/component[derived-from-or-self(class,'nokia-hardware-identities:slot-lt')]",
+                            "data-tree": "concat(\"/ietf-hardware:hardware/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-hardware:hardware-state/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "object-type": "slot-lt"
+                        },
+                        "ham-object": {
+                            "source": "virtualizer",
+                            "id": "concat(\"/device=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/slot=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value)"
+                        }
+                    },
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-hardware:hardware/component[derived-from-or-self(class,'nokia-hardware-identities:lt')]",
+                            "data-tree": "concat(\"/ietf-hardware:hardware/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-hardware:hardware-state/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "object-type": "lt"
+                        },
+                        "ham-object": {
+                            "source": "virtualizer",
+                            "id": "concat(\"/device=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/slot=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value)"
+                        }
+                    },
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-interfaces:interfaces/interface[derived-from-or-self(type, 'bbf-if-type:vlan-sub-interface') and (bbf-interface-usage:interface-usage and bbf-interface-usage:interface-usage/interface-usage = 'network-port')]",
+                            "id-value": "./name",
+                            "data-tree": "concat(\"/ietf-interfaces:interfaces/interface=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-interfaces:interfaces-state/interface=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "object-type": "vlan-sub-interface"
+                        },
+                        "ham-object": {
+                            "source": "virtualizer",
+                            "id": "concat(\"/device=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/slot=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value)"
+                        }
+                    }
+                ]
+            },
+            {
+                "ham-object-type": "cage",
+                "network-layer": "",
+                "parent-type": "slot",
+                "main-participant-mapping": [
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-hardware:hardware/component[derived-from-or-self(class,'bbf-hardware-types:cage')]",
+                            "id-value": "./parent-rel-pos",
+                            "data-tree": "concat(\"/ietf-hardware:hardware/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-hardware:hardware-state/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "ham-object-id-format": "concat(\"cage=\", '${cage-id}')",
+                            "object-type": "cage",
+                            "ham-object-friendly-name-proto": "Cage:<1>:<2>.C-<3>",
+                            "nr-id": "'${nrm-id}'"
+                        },
+                        "parent-ham-object": {
+                            "source": "virtualizer",
+                            "id": "concat(\"/device=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/slot=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value)"
+                        },
+                        "type-specific-fields": [
+                            {
+                                "name": "cage-name",
+                                "value": "./name",
+                                "internal": true
+                            },
+                            {
+                                "name": "nrm-object-type",
+                                "value": "\"sfp-cage\""
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "lt-hardware-type",
+                                "value": "\"LS-MF-LWLT-C\"",
+                                "internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "dual-gpon-offset",
+                                "value": "match-table('dual-gpon-mapping-table','${lt-hardware-type}','dual-gpon-type', 'false')",
+                                "internal": true
+                            },
+                            {
+                                "name": "cage-id",
+                                "value": "string((${dual-gpon-offset}*${id-value})+${id-value} - ${dual-gpon-offset})",
+                                "internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "cage-type",
+                                "value": "match-table('cage-type-mapping-table','${lt-hardware-type}','mapped-cage-type', 'false')",
+                                "immutable": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "nrm-id",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" , /anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/slot-id=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value,\"/cage-id=\", '${cage-id}' )",
+                                "internal": true
+                            }
+                        ]
+                    }
+                ],
+                "other-participants-mapping": [
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-hardware:hardware/component[derived-from-or-self(class,'bbf-hardware-types:transceiver')]",
+                            "id-value": "./name",
+                            "data-tree": "concat(\"/ietf-hardware:hardware/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-hardware:hardware-state/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "object-type": "transceiver"
+                        },
+                        "main-participant": {
+                            "source": "device",
+                            "data-tree": "concat(\"/ietf-hardware:hardware/component=url-encode(\",\"'\", parent,\"'\", \")\")",
+                            "parent-object-type": [
+                                "cage"
+                            ]
+                        },
+                        "type-specific-fields": [
+                            {
+                                "name": "expected-model-name",
+                                "value": "/ietf-hardware:hardware/component[name='${id-value}']/bbf-hardware-extension:model-name"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "ham-object-type": "pon",
+                "network-layer": "",
+                "parent-type": "slot",
+                "main-participant-mapping": [
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-hardware:hardware/component[derived-from-or-self(class,'nokia-hardware-identities:transceiver-link-gpon')]",
+                            "id-value": "./name",
+                            "ham-object-id-format": "concat(\"pon=PON-\",'${pon-position}', \"-GPON\" )",
+                            "object-type": "transceiver-link-gpon",
+                            "data-tree": "concat(\"/ietf-hardware:hardware/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-hardware:hardware-state/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "ham-object-friendly-name-proto": "PON Port:<1>:<2>.<3>",
+                            "nr-id": "'${nrm-id}'"
+                        },
+                        "parent-ham-object": {
+                            "source": "virtualizer",
+                            "id": "concat(\"/device=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/slot=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value)"
+                        },
+                        "type-specific-fields": [
+                            {
+                                "name": "nrm-object-type",
+                                "value": "\"termination-point\""
+                            },
+                            {
+                                "name": "cage-name",
+                                "value": "/ietf-hardware:hardware/component[name=/ietf-hardware:hardware/component[name='${id-value}']/parent]/parent",
+                                "internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "lt-hardware-type",
+                                "value": "\"LS-MF-LWLT-C\"",
+                                "internal": true
+                            },
+                            {
+                                "name": "cage-parent-rel-pos",
+                                "value": "/ietf-hardware:hardware/component[name='${cage-name}']/parent-rel-pos",
+                                "internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "dual-gpon-offset",
+                                "value": "match-table('dual-gpon-mapping-table','${lt-hardware-type}','dual-gpon-type', 'false')",
+                                "internal": true
+                            },
+                            {
+                                "name": "cage-relative-position",
+                                "value": "string((${dual-gpon-offset}*${cage-parent-rel-pos})+${cage-parent-rel-pos} - ${dual-gpon-offset})",
+                                "internal": true
+                            },
+                            {
+                                "name": "rel-parent-pos-transceiver-link",
+                                "value": "/ietf-hardware:hardware/component[name='${id-value}']/parent-rel-pos",
+                                "internal": true
+                            },
+                            {
+                                "name": "pon-position",
+                                "value": "string(${cage-relative-position}+(${rel-parent-pos-transceiver-link}-1))",
+                                "internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "sfp-cage-ref",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" , /anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/slot-id=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value,\"/cage-id=\",'${cage-relative-position}' )",
+                                "immutable": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "board-slot-ref",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" , /anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value , \"/slot-id=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value )",
+								"internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "nrm-id",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" ,/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/tp-id=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value,\".PON-\",'${pon-position}' )",
+                                "internal": true
+                            },
+                            {
+                                "name": "is-mpm",
+                                "value": "count(/ietf-hardware:hardware/component[parent=/ietf-hardware:hardware/component[name='${id-value}']/parent and derived-from-or-self(class,'nokia-hardware-identities:transceiver-link-ngpon')])",
+                                "internal": true
+                            },
+                            {
+                                "name": "hardware-type",
+                                "value": "concat(substring('transceiver-link-mpm', 1, number('${is-mpm}')*30),substring('transceiver-link-gpon',1,number('${is-mpm}'-1)*-30) )",
+                                "internal": true
+                            }
+                        ]
+                    }
+                ],
+                "other-participants-mapping": [
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-interfaces:interfaces/interface[derived-from-or-self(type, 'bbf-xpon-if-type:channel-termination')]",
+                            "id-value": "./name",
+                            "object-type": "channel-termination",
+                            "data-tree": "concat(\"/ietf-interfaces:interfaces/interface=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-interfaces:interfaces-state/interface=url-encode(\",\"'\", name,\"'\", \")\")"
+                        },
+                        "main-participant": {
+                            "source": "device",
+                            "data-tree": "concat(\"/ietf-hardware:hardware/component=url-encode(\",\"'\", '${port-layer-if}',\"'\", \")\")",
+                            "parent-object-type": [
+                                "pon"
+                            ]
+                        },
+                        "type-specific-fields": [
+                            {
+                                "name": "description",
+                                "value": "./description"
+                            },
+                            {
+                                "name": "interface-type",
+                                "value": "\"channel-termination\"",
+                                "internal": true
+                            },
+                            {
+                                "name": "interface-usage",
+                                "value": "\"to-be-supported\"",
+                                "internal": true
+                            },
+                            {
+                                "name": "description",
+                                "value": "./description"
+                            },
+                            {
+                                "name": "port-layer-if",
+                                "value": "/ietf-interfaces:interfaces/interface[name='${id-value}']/bbf-if-port-ref:port-layer-if",
+                                "internal": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "ham-object-type": "pon",
+                "network-layer": "",
+                "parent-type": "slot",
+                "main-participant-mapping": [
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-hardware:hardware/component[derived-from-or-self(class,'nokia-hardware-identities:transceiver-link-ngpon')]",
+                            "id-value": "./name",
+                            "ham-object-id-format": "concat(\"pon=PON-\",'${pon-position}', \"-XGS\" )",
+                            "object-type": "transceiver-link-ngpon",
+                            "data-tree": "concat(\"/ietf-hardware:hardware/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-hardware:hardware-state/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "ham-object-friendly-name-proto": "PON Port:<1>:<2>.<3>",
+                            "nr-id": "'${nrm-id}'"
+                        },
+                        "parent-ham-object": {
+                            "source": "virtualizer",
+                            "id": "concat(\"/device=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/slot=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value)"
+                        },
+                        "type-specific-fields": [
+                            {
+                                "name": "nrm-object-type",
+                                "value": "\"termination-point\""
+                            },
+                            {
+                                "name": "cage-name",
+                                "value": "/ietf-hardware:hardware/component[name=/ietf-hardware:hardware/component[name='${id-value}']/parent]/parent",
+                                "internal": true
+                            },
+                            {
+                                "name": "cage-relative-position",
+                                "value": "/ietf-hardware:hardware/component[name='${cage-name}']/parent-rel-pos",
+                                "internal": true
+                            },
+                            {
+                                "name": "rel-parent-pos-transceiver-link",
+                                "value": "/ietf-hardware:hardware/component[name='${id-value}']/parent-rel-pos",
+                                "internal": true
+                            },
+                            {
+                                "name": "pon-position",
+                                "value": "string(${cage-relative-position}+(${rel-parent-pos-transceiver-link}-1))",
+                                "internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "sfp-cage-ref",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" , /anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/slot-id=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value,\"/cage-id=\",'${cage-relative-position}' )",
+                                "immutable": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "board-slot-ref",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" , /anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value , \"/slot-id=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value )",
+								"internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "nrm-id",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" ,/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/tp-id=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value,\".PON-\",'${pon-position}' )",
+                                "internal": true
+                            },
+                            {
+                                "name": "is-mpm",
+                                "value": "count(/ietf-hardware:hardware/component[parent=/ietf-hardware:hardware/component[name='${id-value}']/parent and derived-from-or-self(class,'nokia-hardware-identities:transceiver-link-gpon')])",
+                                "internal": true
+                            },
+                            {
+                                "name": "hardware-type",
+                                "value": "concat(substring('transceiver-link-mpm', 1, number('${is-mpm}')*30),substring('transceiver-link-ngpon',1,number('${is-mpm}'-1)*-30) )",
+                                "internal": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "ham-object-type": "pon",
+                "network-layer": "",
+                "parent-type": "slot",
+                "main-participant-mapping": [
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-hardware:hardware/component[derived-from-or-self(class,'nokia-hardware-identities:transceiver-link-twentyfivegspon')]",
+                            "id-value": "./name",
+                            "ham-object-id-format": "concat(\"pon=PON-\",'${pon-position}', \"-25G\" )",
+                            "object-type": "transceiver-link-twentyfivegspon",
+                            "data-tree": "concat(\"/ietf-hardware:hardware/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-hardware:hardware-state/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "ham-object-friendly-name-proto": "PON Port:<1>:<2>.<3>",
+                            "nr-id": "'${nrm-id}'"
+                        },
+                        "parent-ham-object": {
+                            "source": "virtualizer",
+                            "id": "concat(\"/device=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/slot=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value)"
+                        },
+                        "type-specific-fields": [
+                            {
+                                "name": "nrm-object-type",
+                                "value": "\"termination-point\""
+                            },
+                            {
+                                "name": "cage-name",
+                                "value": "/ietf-hardware:hardware/component[name=/ietf-hardware:hardware/component[name='${id-value}']/parent]/parent",
+                                "internal": true
+                            },
+                            {
+                                "name": "cage-relative-position",
+                                "value": "/ietf-hardware:hardware/component[name='${cage-name}']/parent-rel-pos",
+                                "internal": true
+                            },
+                            {
+                                "name": "rel-parent-pos-transceiver-link",
+                                "value": "/ietf-hardware:hardware/component[name='${id-value}']/parent-rel-pos",
+                                "internal": true
+                            },
+                            {
+                                "name": "pon-position",
+                                "value": "string(${cage-relative-position}+(${rel-parent-pos-transceiver-link}-1))",
+                                "internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "sfp-cage-ref",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" , /anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/slot-id=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value,\"/cage-id=\",'${cage-relative-position}' )",
+                                "immutable": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "board-slot-ref",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" , /anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value , \"/slot-id=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value )",
+								"internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "nrm-id",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" ,/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/tp-id=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value,\".PON-\",'${pon-position}' )",
+                                "internal": true
+                            },
+                            {
+                                "name": "hardware-type",
+                                "value": "\"transceiver-link-twentyfivegspon\"",
+                                "internal": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "ham-object-type": "pon",
+                "network-layer": "",
+                "parent-type": "slot",
+                "main-participant-mapping": [
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-hardware:hardware/component[derived-from-or-self(class,'nokia-hardware-identities:transceiver-link-hspon')]",
+                            "id-value": "./name",
+                            "ham-object-id-format": "concat(\"pon=PON-\",'${pon-position}', \"-50G\" )",
+                            "object-type": "transceiver-link-hspon",
+                            "data-tree": "concat(\"/ietf-hardware:hardware/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-hardware:hardware-state/component=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "ham-object-friendly-name-proto": "PON Port:<1>:<2>.<3>",
+                            "nr-id": "'${nrm-id}'"
+                        },
+                        "parent-ham-object": {
+                            "source": "virtualizer",
+                            "id": "concat(\"/device=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/slot=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value)"
+                        },
+                        "type-specific-fields": [
+                            {
+                                "name": "nrm-object-type",
+                                "value": "\"termination-point\""
+                            },
+                            {
+                                "name": "cage-name",
+                                "value": "/ietf-hardware:hardware/component[name=/ietf-hardware:hardware/component[name='${id-value}']/parent]/parent",
+                                "internal": true
+                            },
+                            {
+                                "name": "cage-relative-position",
+                                "value": "/ietf-hardware:hardware/component[name='${cage-name}']/parent-rel-pos",
+                                "internal": true
+                            },
+                            {
+                                "name": "rel-parent-pos-transceiver-link",
+                                "value": "/ietf-hardware:hardware/component[name='${id-value}']/parent-rel-pos",
+                                "internal": true
+                            },
+                            {
+                                "name": "pon-position",
+                                "value": "string(${cage-relative-position}+(${rel-parent-pos-transceiver-link}-1))",
+                                "internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "sfp-cage-ref",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" , /anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/slot-id=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value,\"/cage-id=\",'${cage-relative-position}' )"
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "board-slot-ref",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" , /anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value , \"/slot-id=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value )",
+								"internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "nrm-id",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" ,/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/tp-id=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value,\".PON-\",'${pon-position}' )",
+                                "internal": true
+                            },
+                            {
+                                "name": "hardware-type",
+                                "value": "\"transceiver-link-hspon\"",
+                                "internal": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "ham-object-type": "pon-link",
+                "network-layer": "",
+                "parent-type": "pon",
+                "main-participant-mapping": [
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-interfaces:interfaces/interface[derived-from-or-self(type, 'bbf-xpon-if-type:channel-pair')]",
+                            "id-value": "./name",
+                            "data-tree": "concat(\"/ietf-interfaces:interfaces/interface=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-interfaces:interfaces-state/interface=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "object-type": "channel-pair",
+                            "ham-object-id-format": "concat(\"pon-link=url-encode(\",\"'${fiber-name}'\", \")\")",
+                            "ham-object-friendly-name-proto": "PON Link:<1>:<2>.<3>.<4>",
+                            "nr-id": "'${nrm-id}'"
+                        },
+                        "type-specific-fields": [
+                            {
+                                "name": "fiber-name",
+                                "value": "./bbf-xpon:channel-pair/channel-group-ref",
+                                "internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "nrm-id",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value, \"/pon-link=\",'${fiber-name}' )",
+                                "internal": true
+                            },
+                            {
+                                "name": "nrm-object-type",
+                                "value": "\"pon-link\""
+                            },
+                            {
+                                "name": "transceiver-link",
+                                "value": "/ietf-interfaces:interfaces/interface[ derived-from-or-self(type, 'bbf-xpon-if-type:channel-termination') and channel-termination/channel-pair-ref ='${id-value}']/bbf-interface-port-reference:port-layer-if",
+                                "internal": true
+                            },
+                            {
+                                "name": "rel-parent-pos-transceiver-link",
+                                "value": "/ietf-hardware:hardware/component[name='${transceiver-link}']/parent-rel-pos",
+                                "internal": true
+                            },
+                            {
+                                "name": "cage-name",
+                                "value": "/ietf-hardware:hardware/component[name=/ietf-hardware:hardware/component[name='${transceiver-link}']/parent]/parent",
+                                "internal": true
+                            },
+                            {
+                                "name": "cage-relative-position",
+                                "value": "/ietf-hardware:hardware/component[name='${cage-name}']/parent-rel-pos",
+                                "internal": true
+                            },
+                            {
+                                "name": "pon-position",
+                                "value": "string(${cage-relative-position}+(${rel-parent-pos-transceiver-link}-1))",
+                                "internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "primary-root-tp-ref",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" , /anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value,\"/tp-id=LT-\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='slot-position']/value,\".PON-\",'${pon-position}' )",
+                                "immutable": true
+                            },
+                            {
+                                "name": "transceiver-link-class",
+                                "value": "/ietf-hardware:hardware/component[name='${transceiver-link}']/class",
+                                "internal": true
+                            },
+                            {
+                                "name": "technology",
+                                "value": "build-array(/ietf-interfaces:interfaces/interface[derived-from-or-self(type, 'bbf-xpon-if-type:channel-pair')]/bbf-xpon:channel-pair[channel-group-ref = '${fiber-name}']/channel-pair-type, match-table('technology-mappings','${ITEM}','technology', 'false'))"
+                            }
+                        ],
+                        "parent-id": {
+                            "source": "device",
+                            "data-tree": "concat(\"/ietf-hardware:hardware/component=url-encode(\",\"'${transceiver-link}'\", \")\")",
+                            "parent-object-type": [
+                                "transceiver-link-gpon",
+                                "transceiver-link-ngpon",
+                                "transceiver-link-twentyfivegspon",
+                                "transceiver-link-hspon"
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ham-object-type": "ont",
+                "network-layer": "",
+                "parent-type": "pon",
+                "main-participant-mapping": [
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-interfaces:interfaces/interface[derived-from-or-self(type, 'bbf-xpon-if-type:v-ani')]",
+                            "id-value": "./name",
+                            "ham-object-id-format": "concat(\"ont=\", '${id-value}')",
+                            "data-tree": "concat(\"/ietf-interfaces:interfaces/interface=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-interfaces:interfaces-state/interface=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "object-type": "v-ani",
+                            "ham-object-friendly-name-proto": "ONT:<1>:<2>.<3>.ONT-<4>",
+                            "nr-id": "'${nrm-id}'"
+                        },
+                        "parent-id": {
+                            "source": "device",
+                            "data-tree": "concat(\"/ietf-hardware:hardware/component=url-encode(\",\"'${transceiver-link}'\", \")\")",
+                            "parent-object-type": [
+                                "transceiver-link-gpon",
+                                "transceiver-link-ngpon",
+                                "transceiver-link-twentyfivegspon",
+                                "transceiver-link-hspon"
+                            ]
+                        },
+                        "type-specific-fields": [
+                            {
+                                "source": "virtualizer",
+                                "name": "device-id",
+                                "value": "/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value",
+                                "internal": true
+                            },
+                            {
+                                "name": "nrm-object-type",
+                                "value": "\"node\""
+                            },
+                            {
+                                "name": "device-type",
+                                "value": "\"onu\"",
+                                "immutable": true
+                            },
+                            {
+                                "name": "preferred-channel-pair",
+                                "value": "/ietf-interfaces:interfaces/interface[name ='${id-value}']/bbf-xponvani:v-ani/preferred-channel-pair",
+                                "internal": true
+                            },
+                            {
+                                "name": "transceiver-link",
+                                "value": "/ietf-interfaces:interfaces/interface[ derived-from-or-self(type, 'bbf-xpon-if-type:channel-termination') and channel-termination/channel-pair-ref ='${preferred-channel-pair}']/bbf-interface-port-reference:port-layer-if",
+                                "internal": true
+                            },
+                            {
+                                "name": "fiber-name",
+                                "value": "/ietf-interfaces:interfaces/interface[ name = '${preferred-channel-pair}' ]/bbf-xpon:channel-pair/channel-group-ref",
+                                "internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "nrm-id",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" ,'${id-value}' )",
+                                "internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "pon-link-ref",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value, \"/pon-link=\", '${fiber-name}')",
+                                "immutable": true
+                            }
+                        ]
+                    }
+                ],
+                "other-participants-mapping": [
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-interfaces:interfaces/interface[derived-from-or-self(type, 'bbf-xpon-if-type:v-ani')]",
+                            "id-value": "./name",
+                            "data-tree": "concat(\"/bbf-fiber-onu-emulated-mount:onus/onu=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "object-type": "onu"
+                        },
+                        "main-participant": {
+                            "source": "device",
+                            "data-tree": "concat(\"/ietf-interfaces:interfaces/interface=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "parent-object-type": [
+                                "v-ani"
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ham-object-type": "uni",
+                "network-layer": "",
+                "parent-type": "ont",
+                "main-participant-mapping": [
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-interfaces:interfaces/interface[derived-from-or-self(type, 'bbf-xpon-if-type:olt-v-enet')]",
+                            "id-value": "./name",
+                            "ham-object-id-format": "concat(\"uni=\", '${uni-name}')",
+                            "data-tree": "concat(\"/ietf-interfaces:interfaces/interface=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-interfaces:interfaces-state/interface=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "object-type": "olt-v-enet",
+                            "ham-object-friendly-name-proto": "UNI:<1>:<2>.<3>.ONT-<4>.UNI-<5>",
+                            "nr-id": "'${nrm-id}'"
+                        },
+                        "parent-id": {
+                            "source": "device",
+                            "data-tree": "concat(\"/ietf-interfaces:interfaces/interface=url-encode(\",\"'${ont-name}'\", \")\")",
+                            "parent-object-type": [
+                                "v-ani"
+                            ]
+                        },
+                        "type-specific-fields": [
+                            {
+                                "name": "nrm-object-type",
+                                "value": "\"termination-point\""
+                            },
+                            {
+                                "name": "ont-name",
+                                "value": "/ietf-interfaces:interfaces/interface[name='${id-value}']/bbf-xponvani:olt-v-enet/lower-layer-interface"
+                            },
+                            {
+                                "name": "uni-name-temp",
+                                "value": "translate(substring-after('${id-value}', '${ont-name}'), '_', '')",
+                                "internal": true
+                            },
+                            {
+                                "name": "uni-name",
+                                "value": "match-table('voice-uni-mapping','${uni-name-temp}','uni', 'true')",
+                                "internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "nrm-id",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" ,'${ont-name}', \"/tp-id=\", '${uni-name}')",
+                                "internal": true
+                            },
+                            {
+                                "name": "interface-type",
+                                "value": "\"to-be-supported\"",
+                                "internal": true
+                            },
+                            {
+                                "name": "interface-usage",
+                                "value": "\"user-port\"",
+                                "internal": true
+                            },
+                            {
+                                "name": "description",
+                                "value": "./description"
+                            }
+                        ]
+                    }
+                ],
+                "other-participants-mapping": [
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/bbf-fiber-onu-emulated-mount:onus/bbf-fiber-onu-emulated-mount:onu/nokia-onus-from-template:template-parameters/interfaces/interface[ starts-with(template-ref, 'ENET_') ]",
+                            "id-value": "template-ref",
+                            "data-tree": "concat(\"/bbf-fiber-onu-emulated-mount:onus/onu=url-encode(\",\"'${onu-name}'\",\")\", \"/root/ietf-interfaces-mounted:interfaces/interface=url-encode(\", \"'${id-value}'\",\")\")",
+                            "state-data-tree": "concat(\"/bbf-fiber-onu-emulated-mount:onus/onu=url-encode(\",\"'${onu-name}'\",\")\", \"/root/ietf-interfaces-mounted:interfaces-state/interface=url-encode(\", \"'${id-value}'\",\")\")",
+                            "object-type": "ethernetCsmacd"
+                        },
+                        "main-participant": {
+                            "source": "device",
+                            "data-tree": "concat(\"/ietf-interfaces:interfaces/interface=url-encode(\",\"'${uni-interface-name}'\", \")\")",
+                            "parent-object-type": [
+                                "olt-v-enet"
+                            ]
+                        },
+                        "type-specific-fields": [
+                            {
+                                "name": "onu-name",
+                                "value": "../../../name",
+                                "internal": true
+                            },
+                            {
+                                "name": "uni-name",
+                                "value": "substring-after('${id-value}', 'ENET_' )",
+                                "internal": true
+                            },
+                            {
+                                "name": "uni-interface-name",
+                                "value": "concat(\"VENET_\", '${onu-name}', \"_\", '${uni-name}' )",
+                                "internal": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/bbf-fiber-onu-emulated-mount:onus/bbf-fiber-onu-emulated-mount:onu/nokia-onus-from-template:template-parameters/interfaces/interface[ starts-with(template-ref, 'POTS_') and derived-from-or-self(../../../usage, 'template-common:node-from-template-usage') ]",
+                            "id-value": "template-ref",
+                            "data-tree": "concat(\"/bbf-fiber-onu-emulated-mount:onus/onu=url-encode(\",\"'${onu-name}'\",\")\", \"/root/ietf-interfaces-mounted:interfaces/interface=url-encode(\", \"'${id-value}'\",\")\")",
+                            "state-data-tree": "concat(\"/bbf-fiber-onu-emulated-mount:onus/onu=url-encode(\",\"'${onu-name}'\",\")\", \"/root/ietf-interfaces-mounted:interfaces-state/interface=url-encode(\", \"'${id-value}'\",\")\")",
+                            "object-type": "voiceFXS"
+                        },
+                        "main-participant": {
+                            "source": "device",
+                            "data-tree": "concat(\"/ietf-interfaces:interfaces/interface=url-encode(\",\"'${uni-interface-name}'\", \")\")",
+                            "parent-object-type": [
+                                "olt-v-enet"
+                            ]
+                        },
+                        "type-specific-fields": [
+                            {
+                                "name": "onu-name",
+                                "value": "../../../name",
+                                "internal": true
+                            },
+                            {
+                                "name": "uni-name",
+                                "value": "substring-after('${id-value}', 'POTS_' )",
+                                "internal": true
+                            },
+                            {
+                                "name": "uni-interface-name",
+                                "value": "concat(\"VENET_\", '${onu-name}', \"_\", '${uni-name}' )",
+                                "internal": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/bbf-fiber-onu-emulated-mount:onus/bbf-fiber-onu-emulated-mount:onu/root/ietf-interfaces-mounted:interfaces/interface[ derived-from-or-self(type, 'iana-if-type-mounted:ethernetCsmacd') and derived-from-or-self(../../../usage, 'template-common:node-actual-usage') ]",
+                            "id-value": "./name",
+                            "data-tree": "concat(\"/bbf-fiber-onu-emulated-mount:onus/onu=url-encode(\",\"'${onu-name}'\",\")\", \"/root/ietf-interfaces-mounted:interfaces/interface=url-encode(\", \"'${id-value}'\",\")\")",
+                            "state-data-tree": "concat(\"/bbf-fiber-onu-emulated-mount:onus/onu=url-encode(\",\"'${onu-name}'\",\")\", \"/root/ietf-interfaces-mounted:interfaces-state/interface=url-encode(\", \"'${id-value}'\",\")\")",
+                            "object-type": "ethernetCsmacd"
+                        },
+                        "main-participant": {
+                            "source": "device",
+                            "data-tree": "concat(\"/ietf-interfaces:interfaces/interface=url-encode(\",\"'${uni-interface-name}'\", \")\")",
+                            "parent-object-type": [
+                                "olt-v-enet"
+                            ]
+                        },
+                        "type-specific-fields": [
+                            {
+                                "name": "onu-name",
+                                "value": "../../../name",
+                                "internal": true
+                            },
+                            {
+                                "name": "uni-name",
+                                "value": "substring-after('${id-value}', 'ENET_UNI_' )",
+                                "internal": true
+                            },
+                            {
+                                "name": "uni-interface-name",
+                                "value": "concat(\"VENET_\", '${onu-name}', \"_\", '${uni-name}' )",
+                                "internal": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/bbf-fiber-onu-emulated-mount:onus/bbf-fiber-onu-emulated-mount:onu/root/ietf-interfaces-mounted:interfaces/interface[ derived-from-or-self(type, 'iana-if-type-mounted:voiceFXS') and derived-from-or-self(../../../usage, 'template-common:node-actual-usage') ]",
+                            "id-value": "./name",
+                            "data-tree": "concat(\"/bbf-fiber-onu-emulated-mount:onus/onu=url-encode(\",\"'${onu-name}'\",\")\", \"/root/ietf-interfaces-mounted:interfaces/interface=url-encode(\", \"'${id-value}'\",\")\")",
+                            "state-data-tree": "concat(\"/bbf-fiber-onu-emulated-mount:onus/onu=url-encode(\",\"'${onu-name}'\",\")\", \"/root/ietf-interfaces-mounted:interfaces-state/interface=url-encode(\", \"'${id-value}'\",\")\")",
+                            "object-type": "voiceFXS"
+                        },
+                        "main-participant": {
+                            "source": "device",
+                            "data-tree": "concat(\"/ietf-interfaces:interfaces/interface=url-encode(\",\"'${uni-interface-name}'\", \")\")",
+                            "parent-object-type": [
+                                "olt-v-enet"
+                            ]
+                        },
+                        "type-specific-fields": [
+                            {
+                                "name": "onu-name",
+                                "value": "../../../name",
+                                "internal": true
+                            },
+                            {
+                                "name": "uni-name",
+                                "value": "substring-after('${id-value}', 'POTS_UNI_' )",
+                                "internal": true
+                            },
+                            {
+                                "name": "uni-interface-name",
+                                "value": "concat(\"VENET_\", '${onu-name}', \"_\", '${uni-name}' )",
+                                "internal": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "ham-object-type": "service",
+                "network-layer": "",
+                "parent-type": "uni",
+                "main-participant-mapping": [
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-interfaces:interfaces/interface[derived-from-or-self(type, 'bbf-if-type:vlan-sub-interface') and not ((bbf-interface-usage:interface-usage and bbf-interface-usage:interface-usage/interface-usage = 'network-port') or starts-with(name, 'VSI_voip')) ]",
+                            "id-value": "./name",
+                            "ham-object-id-format": "concat(\"service=\", '${service-name}')",
+                            "data-tree": "concat(\"/ietf-interfaces:interfaces/interface=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-interfaces:interfaces-state/interface=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "object-type": "vlan-sub-interface",
+                            "ham-object-friendly-name-proto": "Service:<1>:<2>.<3>.ONT-<4>.UNI-<5>.<6>",
+                            "nr-id": "'${nrm-id}'"
+                        },
+                        "parent-id": {
+                            "source": "device",
+                            "data-tree": "concat(\"/ietf-interfaces:interfaces/interface=url-encode(\",\"'${port-layer-if}'\", \")\")",
+                            "parent-object-type": [
+                                "olt-v-enet"
+                            ]
+                        },
+                        "type-specific-fields": [
+                            {
+                                "source": "virtualizer",
+                                "name": "device-id",
+                                "value": "/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value",
+                                "internal": true
+                            },
+                            {
+                                "name": "nrm-object-type",
+                                "value": "\"connection-point\""
+                            },
+                            {
+                                "name": "port-layer-if",
+                                "value": "./bbf-sub-interfaces:subif-lower-layer/interface",
+                                "internal": true
+                            },
+                            {
+                                "name": "ont-name",
+                                "value": "/ietf-interfaces:interfaces/interface[name='${port-layer-if}']/bbf-xponvani:olt-v-enet/lower-layer-interface",
+                                "internal": true
+                            },
+                            {
+                                "name": "uni-name-temp",
+                                "value": "translate(substring-after('${port-layer-if}', '${ont-name}'), '_', '')",
+                                "internal": true
+                            },
+                            {
+                                "name": "uni-name",
+                                "value": "match-table('voice-uni-mapping','${uni-name-temp}','uni', 'true')",
+                                "internal": true
+                            },
+                            {
+                                "name": "tag-0-temp",
+                                "value": "./bbf-frame-processing-profile:tag-0/vlan-id",
+                                "internal": true
+                            },
+                            {
+                                "name": "tag-0",
+                                "value": "match-table('empty-tag0-mapping','${tag-0-temp}','tag0', 'true')",
+                                "internal": true
+                            },
+                            {
+                                "name": "onu-vsi",
+                                "value": "concat(\"VSI\",substring-after('${id-value}', '${ont-name}' ) )",
+                                "internal": true
+                            },
+                            {
+                                "name": "onu-template",
+                                "value": "/bbf-fiber-onu-emulated-mount:onus/onu[name='${ont-name}']/nokia-onus-from-template:template-parameters/template-ref",
+                                "internal": true
+                            },
+                            {
+                                "name": "rule-from-template-parameters",
+                                "value": "/bbf-fiber-onu-emulated-mount:onus/onu[name='${ont-name}']/nokia-onus-from-template:template-parameters/interfaces/interface[(vsi and template-ref='${onu-vsi}') ]/vsi/ingress-rule/name",
+                                "internal": true
+                            },
+                            {
+                                "name": "rule-exists-in-template-parameters",
+                                "value": "string-length('${rule-from-template-parameters}')",
+                                "internal": true
+                            },
+                            {
+                                "name": "rule-name",
+                                "value": "concat(substring('${rule-from-template-parameters}', 1, number('${rule-exists-in-template-parameters}')*100),substring('${id-value}',1,number('${rule-exists-in-template-parameters}'-1)*-100) )",
+                                "internal": true
+                            },
+                            {
+                                "name": "service-name",
+                                "value": "concat('${rule-name}', \":\",'${tag-0}' )",
+                                "internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "nrm-id",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" ,'${ont-name}', \"/tp-id=\", '${uni-name}',\"/cp-id=\", '${service-name}' )",
+                                "internal": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "ham-object-type": "service",
+                "network-layer": "",
+                "parent-type": "uni",
+                "main-participant-mapping": [
+                    {
+                        "id": {
+                            "source": "device",
+                            "schema-tree": "/ietf-interfaces:interfaces/interface[derived-from-or-self(type, 'bbf-if-type:vlan-sub-interface') and   starts-with(name, 'VSI_voip') ]",
+                            "id-value": "./name",
+                            "ham-object-id-format": "concat(\"service=\", '${service-name}')",
+                            "data-tree": "concat(\"/ietf-interfaces:interfaces/interface=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "state-data-tree": "concat(\"/ietf-interfaces:interfaces-state/interface=url-encode(\",\"'\", name,\"'\", \")\")",
+                            "object-type": "vlan-sub-interface",
+                            "ham-object-friendly-name-proto": "Service:<1>:<2>.<3>.ONT-<4>.UNI-<5>.<6>",
+                            "nr-id": "'${nrm-id}'"
+                        },
+                        "parent-id": {
+                            "source": "device",
+                            "data-tree": "concat(\"/ietf-interfaces:interfaces/interface=url-encode(\",\"'${port-layer-if}'\", \")\")",
+                            "parent-object-type": [
+                                "olt-v-enet"
+                            ]
+                        },
+                        "type-specific-fields": [
+                            {
+                                "source": "virtualizer",
+                                "name": "device-id",
+                                "value": "/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='main-device']/value",
+                                "internal": true
+                            },
+                            {
+                                "name": "nrm-object-type",
+                                "value": "\"connection-point\""
+                            },
+                            {
+                                "name": "port-layer-if",
+                                "value": "./bbf-sub-interfaces:subif-lower-layer/interface",
+                                "internal": true
+                            },
+                            {
+                                "name": "ont-name",
+                                "value": "/ietf-interfaces:interfaces/interface[name='${port-layer-if}']/bbf-xponvani:olt-v-enet/lower-layer-interface",
+                                "internal": true
+                            },
+                            {
+                                "name": "uni-name-temp",
+                                "value": "translate(substring-after('${port-layer-if}', '${ont-name}'), '_', '')",
+                                "internal": true
+                            },
+                            {
+                                "name": "uni-name",
+                                "value": "match-table('voice-uni-mapping','${uni-name-temp}','uni', 'true')",
+                                "internal": true
+                            },
+                            {
+                                "name": "tag-0-temp",
+                                "value": "./bbf-frame-processing-profile:tag-0/vlan-id",
+                                "internal": true
+                            },
+                            {
+                                "name": "tag-0",
+                                "value": "match-table('empty-tag0-mapping','${tag-0-temp}','tag0', 'true')",
+                                "internal": true
+                            },
+                            {
+                                "name": "onu-voip-vsi-temp",
+                                "value": "substring-before('${id-value}', '${ont-name}' )",
+                                "internal": true
+                            },
+                            {
+                                "name": "onu-voip-vsi",
+                                "value": "substring('${onu-voip-vsi-temp}', 1, string-length('${onu-voip-vsi-temp}') - 1)",
+                                "internal": true
+                            },
+                            {
+                                "name": "onu-template",
+                                "value": "/bbf-fiber-onu-emulated-mount:onus/onu[name='${ont-name}']/nokia-onus-from-template:template-parameters/template-ref",
+                                "internal": true
+                            },
+                            {
+                                "name": "rule-from-template-parameters",
+                                "value": "/bbf-fiber-onu-emulated-mount:onus/onu[name='${ont-name}']/nokia-onus-from-template:template-parameters/interfaces/interface[ template-ref='${onu-voip-vsi}' ]/vsi/ingress-rule/name",
+                                "internal": true
+                            },
+                            {
+                                "name": "rule-exists-in-template-parameters",
+                                "value": "string-length('${rule-from-template-parameters}')",
+                                "internal": true
+                            },
+                            {
+                                "name": "rule-name",
+                                "value": "concat(substring('${rule-from-template-parameters}', 1, number('${rule-exists-in-template-parameters}')*100),substring('${id-value}',1,number('${rule-exists-in-template-parameters}'-1)*-100) )",
+                                "internal": true
+                            },
+                            {
+                                "name": "service-name",
+                                "value": "concat('${rule-name}', \":\",'${tag-0}' )",
+                                "internal": true
+                            },
+                            {
+                                "source": "virtualizer",
+                                "name": "nrm-id",
+                                "value": "concat(\"/network-id=\",/anv:device-manager/anv-device-holders:device/anv-device-tag:configured-labels/label[name='network-id']/value,\"/node-id=\" ,'${ont-name}', \"/tp-id=\", '${uni-name}',\"/cp-id=\", '${service-name}' )",
+                                "internal": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "ham-mapping-tables": [
+            {
+                "cage-type-mapping-table": [
+                    {
+                        "input": "LS-FX-FGLT-B",
+                        "mapped-cage-type": "pon-sfp"
+                    },
+                    {
+                        "input": "LS-FX-FGLT-D",
+                        "mapped-cage-type": "pon-sfp"
+                    },
+                    {
+                        "input": "LS-FX-FWLT-B",
+                        "mapped-cage-type": "pon-sfp-plus"
+                    },
+                    {
+                        "input": "LS-FX-FWLT-C",
+                        "mapped-cage-type": "pon-sfp-dd"
+                    },
+                    {
+                        "input": "LS-FX-FGUT-A",
+                        "mapped-cage-type": "pon-sfp-dd"
+                    },
+                    {
+                        "input": "LS-FX-FGLT-E",
+                        "mapped-cage-type": "pon-sfp-dd"
+                    },
+                    {
+                        "input": "LS-MF-LWLT-C",
+                        "mapped-cage-type": "pon-sfp-dd"
+                    },
+                    {
+                        "input": "LS-MF-LGLT-D",
+                        "mapped-cage-type": "pon-sfp"
+                    },
+                    {
+                        "input": "LS-MF-LLLT-P",
+                        "mapped-cage-type": "pon-sfp-plus"
+                    },
+                    {
+                        "input": "LS-SF-SFDB-A",
+                        "mapped-cage-type": "pon-sfp-dd"
+                    },
+                    {
+                        "input": "LS-MF-LLLT-A",
+                        "mapped-cage-type": "pon-sfp-dd"
+                    }
+                ]
+            },
+            {
+                "technology-mapping-table": [
+                    {
+                        "input": ".*transceiver-link-gpon",
+                        "mapped-technology": "GPON"
+                    },
+                    {
+                        "input": ".*transceiver-link-ngpon",
+                        "mapped-technology": "XGS"
+                    },
+                    {
+                        "input": ".*transceiver-link-twentyfivegspon",
+                        "mapped-technology": "25G"
+                    },
+                    {
+                        "input": ".*transceiver-link-hspon",
+                        "mapped-technology": "50G"
+                    }
+                ]
+            },
+            {
+                "voice-uni-mapping": [
+                    {
+                        "input": "",
+                        "uni": "VOIP-SIP"
+                    }
+                ]
+            },
+            {
+                "empty-tag0-mapping": [
+                    {
+                        "input": "",
+                        "tag0": "untagged"
+                    }
+                ]
+            },
+            {
+                "dual-gpon-mapping-table": [
+                    {
+                        "input": "LS-FX-FGLT-B",
+                        "dual-gpon-type": "0"
+                    },
+                    {
+                        "input": "LS-FX-FGLT-D",
+                        "dual-gpon-type": "0"
+                    },
+                    {
+                        "input": "LS-FX-FWLT-B",
+                        "dual-gpon-type": "0"
+                    },
+                    {
+                        "input": "LS-FX-FWLT-C",
+                        "dual-gpon-type": "0"
+                    },
+                    {
+                        "input": "LS-FX-FGUT-A",
+                        "dual-gpon-type": "0"
+                    },
+                    {
+                        "input": "LS-FX-FGLT-E",
+                        "dual-gpon-type": "1"
+                    },
+                    {
+                        "input": "LS-MF-LWLT-C",
+                        "dual-gpon-type": "0"
+                    },
+                    {
+                        "input": "LS-MF-LGLT-D",
+                        "dual-gpon-type": "0"
+                    },
+                    {
+                        "input": "LS-MF-LLLT-P",
+                        "dual-gpon-type": "0"
+                    },
+                    {
+                        "input": "LS-SF-SFDB-A",
+                        "dual-gpon-type": "0"
+                    },
+                    {
+                        "input": "LS-MF-LLLT-A",
+                        "dual-gpon-type": "0"
+                    }
+                ]
+            },
+            {
+                "technology-mappings": [
+                    {
+                        "input": ".*bbf-xpon-types:xgs",
+                        "technology": "xgs"
+                    },
+                    {
+                        "input": ".*bbf-xpon-types:gpon",
+                        "technology": "gpon"
+                    },
+                    {
+                        "input": ".*xpon-types:twentyfivegs",
+                        "technology": "twentyfivegs"
+                    },
+                    {
+                        "input": ".*bbf-xpon-types:ngpon2-twdm",
+                        "technology": "ngpon2-twdm"
+                    },
+                    {
+                        "input": ".*bbf-xpon-types:ngpon2-ptp",
+                        "technology": "ngpon2-ptp"
+                    },
+                    {
+                        "input": ".*bbf-xpon-types:xgpon",
+                        "technology": "xgpon"
+                    },
+                    {
+                        "input": ".*bbf-xpon-types:fiftyg-tdm",
+                        "technology": "fiftyg-tdm"
+                    }
+                ]
+            }
+        ],
+        "ham-alarm-mapping-hints": [
+            {
+                "resource-schema-tree": "/ietf-hardware:hardware-state/component/bbf-hw-xcvr:transceiver-link",
+                "participant-schema-tree": "/ietf-interfaces:interfaces-state/component"
+            },
+            {
+                "resource-schema-tree": "/ietf-interfaces:interfaces-state/interface/bbf-xpon:channel-termination",
+                "participant-schema-tree": "/ietf-interfaces:interfaces-state/interface"
+            },
+            {
+                "resource-schema-tree": "/nokia-certificate-management:certificate",
+                "participant-schema-tree": "device"
+            },
+            {
+                "resource-schema-tree": "/ietf-ipfix-psamp:ipfix",
+                "participant-schema-tree": "device"
+            },
+            {
+                "resource-schema-tree": "/nokia-licensing-app:licensing-state",
+                "participant-schema-tree": "device"
+            },
+            {
+                "resource-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu/root/ietf-hardware-mounted:hardware/component",
+                "participant-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu"
+            },
+            {
+                "schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu/root/ietf-interfaces-mounted:interfaces/interface",
+                "participant-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu"
+            },
+            {
+                "schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu/root/ietf-interfaces-mounted:interfaces-state/interface",
+                "participant-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu"
+            },
+            {
+                "resource-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu/root/ieee802-dot1q-cfm-mounted:cfm",
+                "participant-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu"
+            },
+            {
+                "resource-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu/nokia-onus-from-template:template-parameters/voip/sip-termination",
+                "participant-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu"
+            },
+            {
+                "resource-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu/root/bbf-sip-voip-mounted:pots-interworking-nodes-state/pots-interworking",
+                "participant-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu"
+            },
+            {
+                "resource-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu/root/bbf-sip-voip:pots-interworking-nodes/bbf-sip-voip:pots-interworking",
+                "participant-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu"
+            },
+            {
+                "resource-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu/root/bbf-sip-voip-mounted:pots-interworking-nodes/pots-interworking",
+                "participant-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu"
+            },
+            {
+                "resource-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu/root/bbf-sip-voip-mounted:sip-signaling/sip-user-agents/sip-user-agent",
+                "participant-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu"
+            },
+            {
+                "resource-schema-tree": "/ietf-syslog:syslog",
+                "participant-schema-tree": "device"
+            },
+            {
+                "alarm-id-list": [
+                    "nokia-mgntinterface-alarm-types:inband-duplicate-ipv6-address"
+                ],
+                "participant-schema-tree": "device"
+            },
+            {
+                "alarm-id-list": [
+                    "nokia-onu-alarm-types:ip-host-down",
+                    "nokia-onu-alarm-types:sip-termination-subscribe-failure",
+                    "nokia-onu-alarm-types:sip-termination-register-failure",
+                    "nokia-onu-alarm-types:transceiver-link-signal-degrade",
+                    "nokia-onu-alarm-types:transceiver-link-signal-fail",
+                    "nokia-onu-alarm-types:sip-termination-register-authorisation-failure",
+                    "nokia-onu-alarm-types:sip-termination-register-request-timeout",
+                    "nokia-onu-alarm-types:sip-termination-register-error-response",
+                    "nokia-onu-alarm-types:sip-termination-register-unresolved-dn",
+                    "nokia-onu-alarm-types:physical-pots-interface-file-download-failed",
+                    "nokia-onu-alarm-types:sip-termination-emergency-call-ongoing",
+                    "nokia-onu-alarm-types:sip-termination-invite-failure"
+                ],
+                "participant-schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu"
+            }
+        ],
+        "ham-pm-mapping-hints": [
+            {
+                "schema-tree": "/ietf-interfaces:interfaces/interface",
+                "participant-schema-trees": [
+                    "/ietf-interfaces:interfaces/interface"
+                ]
+            },
+            {
+                "schema-tree": "/ietf-interfaces:interfaces-state/interface",
+                "participant-schema-trees": [
+                    "/ietf-interfaces:interfaces-state/interface"
+                ]
+            },
+            {
+                "schema-tree": "/ietf-hardware:hardware/component",
+                "participant-schema-trees": [
+                    "/ietf-hardware:hardware/component"
+                ]
+            },
+            {
+                "schema-tree": "/ietf-hardware:hardware-state/component",
+                "participant-schema-trees": [
+                    "/ietf-hardware:hardware-state/component"
+                ]
+            },
+            {
+                "schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu/root/ietf-interfaces-mounted:interfaces/interface",
+                "participant-schema-trees": [
+                    "/bbf-fiber-onu-emulated-mount:onus/onu/root/ietf-interfaces-mounted:interfaces/interface",
+                    "/bbf-fiber-onu-emulated-mount:onus/onu"
+                ]
+            },
+            {
+                "schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu/root/ietf-interfaces-mounted:interfaces-state/interface",
+                "participant-schema-trees": [
+                    "/bbf-fiber-onu-emulated-mount:onus/onu/root/ietf-interfaces-mounted:interfaces/interface",
+                    "/bbf-fiber-onu-emulated-mount:onus/onu"
+                ]
+            },
+            {
+                "schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu/root/ietf-hardware-mounted:hardware/component",
+                "participant-schema-trees": [
+                    "/bbf-fiber-onu-emulated-mount:onus/onu/root/ietf-interfaces-mounted:interfaces/interface",
+                    "/bbf-fiber-onu-emulated-mount:onus/onu"
+                ]
+            },
+            {
+                "schema-tree": "/bbf-fiber-onu-emulated-mount:onus/onu/root/ietf-hardware-mounted:hardware-state/component",
+                "participant-schema-trees": [
+                    "/bbf-fiber-onu-emulated-mount:onus/onu/root/ietf-interfaces-mounted:interfaces/interface",
+                    "/bbf-fiber-onu-emulated-mount:onus/onu"
+                ]
+            }
+        ]
+    }
+}
+
+

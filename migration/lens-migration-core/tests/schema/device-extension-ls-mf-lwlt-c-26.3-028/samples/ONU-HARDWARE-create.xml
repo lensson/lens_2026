@@ -1,0 +1,51 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <hardware xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted">
+              <component xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                <name>CHASSIS</name>
+                <admin-state>unlocked</admin-state>
+                <class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:chassis</class>
+              </component>
+<#if voice\-pots\-port\-support>
+              <component xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                <name>CARD2</name>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>2</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:board</class>
+              </component>
+</#if>
+              <component xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                <name>CAGE</name>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>0</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:cage</class>
+              </component>
+              <component xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                <name>SFP</name>
+                <parent>CAGE</parent>
+                <parent-rel-pos>0</parent-rel-pos>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</class>
+              </component>
+              <component xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                <name>ANI-PORT</name>
+                <parent>SFP</parent>
+                <parent-rel-pos>1</parent-rel-pos>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</class>
+              </component>
+            </hardware>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

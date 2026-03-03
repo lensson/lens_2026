@@ -1,0 +1,12 @@
+arguments:
+  onu-template-name:
+    description: ONU template name
+    suggested-values:
+    - onu-template-1
+domains: onu>system>mib-reset-sync-count
+freemarker: true
+name: Get mib reset sync count for ONU template
+operation: get-config
+sample-id: onu-system-mib-reset-sync-count-get-config
+scope: eonu
+status: draft

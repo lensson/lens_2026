@@ -1,0 +1,17 @@
+arguments:
+  u2u-loop-avoidance-check-enable:
+    description: Setting this parameter to 'true' will enable the u2u-loop-avoidance-check
+      to exclude the user interface where the traffic is originated and looped back
+      to same user interface, from downstream flooding traffic including broadcast,
+      unknown unicast and unknown multicast.
+    suggested-values:
+    - true
+domains: unicast>forwarding
+entity: u2u-loop-avoidance-check
+freemarker: true
+name: Enable or disable u2u-loop-avoidance-check to exclude the original user port
+  from downstream flooding traffic.
+operation: edit
+sample-id: unicast-forwarding-u2u-loop-avoidance-check-edit
+scope: l2fwd-u2u-loop-avoidance
+status: draft

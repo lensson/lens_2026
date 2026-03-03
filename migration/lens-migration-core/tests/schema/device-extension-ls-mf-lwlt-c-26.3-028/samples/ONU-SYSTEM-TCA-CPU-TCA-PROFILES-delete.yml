@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  cpu-tca-profile:
+    description: CPU threshold profile name
+    suggested-values:
+    - cpu_tca_profile
+domains: onu>system>tca>pm-profiles
+entity: cpu-tca-profile
+freemarker: true
+name: Remove CPU TCA profile
+operation: remove
+sample-id: onu-system-tca-pm-profiles-cpu-tca-profile-remove
+scope: eonu
+status: draft

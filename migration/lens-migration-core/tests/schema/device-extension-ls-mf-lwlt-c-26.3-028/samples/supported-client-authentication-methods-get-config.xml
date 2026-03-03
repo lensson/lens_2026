@@ -1,0 +1,14 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+ <get-config>
+   <source>
+     <running/>
+   </source>
+   <filter type="subtree">
+   <system-security xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-aaa">
+       <client-authentication>
+            <supported-authentication-methods/>
+       </client-authentication>
+   </system-security>
+   </filter>
+ </get-config>
+</rpc>

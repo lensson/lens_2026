@@ -1,0 +1,14 @@
+arguments:
+  transceiver-link-name:
+    description: SFP transceive-link name
+    suggested-values:
+    - port1
+available-locally: true
+domains: equipment>sfp
+entity: transceiver-link
+freemarker: true
+name: Retrieve operational data of the transceiver-link.
+operation: get
+sample-id: equipment-sfp-transceiver-link-get
+scope: xpon or fx-p2p
+status: draft

@@ -1,0 +1,8 @@
+available-locally: true
+domains: system>alarms
+entity: active
+freemarker: true
+name: Retrieve active alarms
+operation: get
+sample-id: system-alarms-active-get
+status: draft

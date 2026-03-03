@@ -1,0 +1,16 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  component-name:
+    description: CPU component name
+    suggested-values:
+    - cpu1
+domains: onu>system>cpu
+freemarker: true
+name: Delete CPU component
+operation: delete
+sample-id: onu-system-cpu-delete
+scope: eonu
+status: draft

@@ -1,0 +1,13 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+domains: onu>system>software
+entity: management-state
+freemarker: true
+name: Get ONU software management state
+operation: get
+sample-id: onu-system-software-management-state-get
+scope: eonu
+status: draft

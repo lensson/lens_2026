@@ -1,0 +1,160 @@
+arguments:
+  olt-infrastructure-name:
+    description: OLT infrastructure name.
+    suggested-values:
+    - gpon-1-1
+  olt-port-name:
+    description: OLT infrastructure port name.
+    suggested-values:
+    - port-1
+  pm-enable:
+    description: If true, enables performance counters on this channel-termination
+      interface.
+    optional: true
+    suggested-values:
+    - false
+  fec-downstream-enable:
+    description: Enable/disable downstream Forward Error Correciton (FEC).
+    optional: true
+    suggested-values:
+    - true
+  authentication-method:
+    description: ONU authentication mode.
+    optional: true
+    suggested-values:
+    - serial-number
+    - registration-id
+    - as-per-v-ani-expected
+    - loid
+  authentication-fail-control:
+    description: Determines how the OLT must react when a discovered ONU fails all
+      authentication possibilities after PLOAM messages exchange.
+    optional: true
+    suggested-values:
+    - keep-onu-ranged
+    - enable-silent-period
+  specific-polling-period:
+    description: Quiet window control specifically to this channel-pair. Value zero
+      means the channel pair will never offer any quiet windows.
+    optional: true
+    test-value: 100
+  scg-index:
+    description: This attribute identifies the partition inside the channel-group.
+    optional: true
+    test-value: 1
+  ber-tca-profile:
+    description: Configuration of an xPON channel pair with ber-tca profile data applyed
+      on all ONUs ranged on given channel-pair.
+    optional: true
+    test-value: profile1
+  speed-monitoring-enable:
+    description: If true, enables speed monitoring for the interface for the supported
+      periods.
+    optional: true
+    suggested-values:
+    - false
+  dba-congestion-monitoring-enable:
+    description: If true, enables DBA congestion monitoring for the interface for
+      the supported periods.
+    optional: true
+    suggested-values:
+    - false
+  dba-congestion-monitoring-threshold:
+    description: Specifies the threshold value in percentage of the PON capacity beyond
+      which the system declares the PON as congested.
+    optional: true
+    suggested-values:
+    - 90
+  ct-enabled:
+    description: The configured, desired state of the interface.
+    optional: true
+    suggested-values:
+    - true
+  meant-for-type-b-primary-role:
+    description: It is for intralt type-b and both CTs which refer to the same CP.
+      One CT is true, the other is false, the value of both CTs cannot be the same.
+      the secondary CT don't allow to be created before the primary CT and only the
+      secondary CT can be deleted when service is configured.
+    optional: true
+    suggested-values:
+    - true
+  laser-on-by-default:
+    description: Control laser-on, none type-b case need be configured true, type-b
+      case need be configured false.
+    optional: true
+    suggested-values:
+    - false
+  slot-id:
+    description: This is typically the slot-id of the board hosting the primary channel-termination.
+    optional: true
+    suggested-values:
+    - 1
+  port-id:
+    description: This is typically the number of the port that terminates the primary
+      channel termination.
+    optional: true
+    suggested-values:
+    - 1
+  access-node-id:
+    description: This is typically the access-node-id of the node which hosts the
+      primary channel termination. In that case the value is identified by the object.
+    optional: true
+    suggested-values:
+    - nokia
+  gpon-pon-id:
+    description: The PON identifier of this channel-termination. It is a string representing
+      7 hexadecimal octets expressed in ASCII.
+    optional: true
+    suggested-values:
+    - '30303030303131'
+  closest-onu-distance:
+    description: The distance of the closest ONU.
+    optional: true
+    suggested-values:
+    - 0
+  maximum-differential-xpon-distance:
+    description: The maximum differential logical reach for a channel partition.
+    optional: true
+    suggested-values:
+    - 20
+    - 40
+  host-id-of-primary-side:
+    description: In case of secondary LT in typeb, configure system host-id of primary
+      LT to host-id-of-primary-side on secondary CT.
+    optional: true
+    suggested-values:
+    - 1
+  early-fetch-onu-loid-info:
+    description: This indicates whether onu-present-and-unexpected alarm is enable
+      report onu loid info.
+    optional: true
+    suggested-values:
+    - false
+  loid-alternate-fetch-fall-back:
+    description: This indicates whether to fallback to proprietary LOID ME after failure
+      to obtain LOID by ONU-G ME.
+    optional: true
+    suggested-values:
+    - false
+  gpon-pon-id-interval:
+    description: This indicates the frequency of transmission of the periodic downstream
+      PON-ID PLOAM message of this G-PON. Value '0' allows not to generate this PLOAM
+      message.
+    optional: true
+    suggested-values:
+    - 0
+  us-omci-granting:
+    description: This attribute modifies the frequency at which the OLT channel-pair
+      port will allocate grants to the ONUs for their OMCI communication.
+    optional: true
+    suggested-values:
+    - conservative
+    - relaxed
+domains: transport>gpon>olt-infrastructure
+freemarker: true
+name: Edit GPON OLT infrastructure
+operation: edit
+sample-id: transport-gpon-olt-infrastructure-edit
+scope: gpon or gpon-xgs or gpon-xgs-25g or gpon-ngpon2-xgs-25g or gpon-xgs-25g-hs
+  or gpon-xgpon-xgs-25g or gpon-ngpon2-xgpon-xgs-25g or gpon-xgs-25g-50g
+status: draft

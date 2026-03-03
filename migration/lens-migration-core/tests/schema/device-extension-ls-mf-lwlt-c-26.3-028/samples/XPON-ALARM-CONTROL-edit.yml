@@ -1,0 +1,61 @@
+arguments:
+  suppress-ct-los-alarm-when-only-one-onu-connected:
+    description: This leaf indicates whether channel-termination-loss-of-signal alarm
+      is suppressed when only one ONU is connected.
+    optional: true
+    suggested-values:
+    - false
+  min-dying-gasp-ratio-to-declare-ct-los-with-dying-gasp:
+    description: Threshold value to evaluate the additional info of the new CT LOS
+      alarm. The threshold expresses the percentage of ONUs active at the time the
+      CT LOS occurred, that raised the dying gasp indication. If the number of ONUs
+      raising dying gasp exceeds this threshold, the additional info of the CT LOS
+      alarm will indicate that a dying gasp is the root cause of the PON failure.
+    optional: true
+    suggested-values:
+    - 100
+  suppress-ct-los-alarm-when-no-v-ani-configured:
+    description: This leaf indicates whether channel-termination-loss-of-signal alarm
+      is suppressed when no v-ani is configured.
+    optional: true
+    suggested-values:
+    - false
+  report-onu-parameters:
+    description: This leaf indicates whether onu-present-and-unexpected alarm is enable
+      report onu parameters.
+    optional: true
+    suggested-values:
+    - false
+  report-mac-address:
+    description: This leaf indicates whether onu-present-and-unexpected alarm is enable
+      report mac address.
+    optional: true
+    suggested-values:
+    - false
+  suppress-mac-addr-separator:
+    description: This leaf indicates whether onu-present-and-unexpected alarm is enable
+      suppress mac address separator.
+    optional: true
+    suggested-values:
+    - false
+  ct-data-path-integrity-alarm-control:
+    description: Threshold value to evaluate the additional info of the data path
+      integrity failure alarm. As well as the threshold to report the alarm, threshold
+      is the percentage beyond which data path integrity alarm will be raised. The
+      value ranges from 1 to 100 or disabled.
+    optional: true
+    suggested-values:
+    - disabled
+  publish-onu-dying-gasp-on-ct-los:
+    description: This leaf indicates whether publish the onu-dying-gasp alarm when
+      there is a channel-termination-loss-of-signal (because of fiber-cut or dying
+      gasp).
+    optional: true
+    suggested-values:
+    - false
+domains: transport>xpon>alarm-control
+freemarker: true
+name: Edit alarm control
+operation: edit
+sample-id: transport-xpon-alarm-control-edit
+status: draft

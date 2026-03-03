@@ -1,0 +1,17 @@
+arguments:
+  component:
+    description: Name of the component, default must be Chassis.
+    suggested-values:
+    - Chassis
+  download-software-name:
+    description: Name of the software for which activation prediction is needed.
+    suggested-values:
+    - ZJNDAQ2212.550
+available-locally: true
+domains: system>software
+freemarker: true
+name: Retrieve activation prediction details of software.
+operation: activation-prediction-get
+sample-id: system-software-activation-prediction-get
+scope: not(eth-copper) and not(eth-copper-ci)
+status: draft

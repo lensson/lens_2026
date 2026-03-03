@@ -1,0 +1,19 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <action xmlns="urn:ietf:params:xml:ns:yang:1">
+      <system-security xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-aaa">
+        <server-identity>
+          <host-key>
+            <name>${host\-key\-name}</name>
+            <public-key>
+              <local-definition>
+                <generate-hidden-key>
+                  <algorithm>${algorithm}</algorithm>
+                </generate-hidden-key>
+              </local-definition>
+            </public-key>
+          </host-key>
+        </server-identity>
+      </system-security>
+  </action>
+</rpc>
+

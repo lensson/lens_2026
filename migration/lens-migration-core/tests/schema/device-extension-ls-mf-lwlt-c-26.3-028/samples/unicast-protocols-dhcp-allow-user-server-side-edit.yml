@@ -1,0 +1,22 @@
+arguments:
+  ibridge-user-port-name:
+    description: Ibridge user port name
+    optional: true
+  cc-name:
+    description: The name of CC sample
+    optional: true
+  allow-server-at-user-side:
+    description: Enable/Disable the option to forward server DHCPv4/DHCPv6 messages
+      from user interface and client DHCPv4/DHCPv6 messages from network side
+    suggested-values:
+    - false
+    - true
+domains: unicast>protocols>dhcp
+entity: allow-server-at-user-side
+freemarker: true
+name: Attach DHCPV4/DHCPv6 Relay Agent profile with allow-server-at-user-side flag
+  in VLAN sub-interface
+operation: edit
+sample-id: unicast-protocols-dhcp-allow-server-at-user-side-edit
+scope: fiber
+status: draft

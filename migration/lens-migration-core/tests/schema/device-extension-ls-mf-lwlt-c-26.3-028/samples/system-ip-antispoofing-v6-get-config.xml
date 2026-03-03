@@ -1,0 +1,13 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter type="subtree">
+      <ipv6-antispoofing-system xmlns="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv6-address-spoofing-prevention">
+      </ipv6-antispoofing-system>
+      <ipv6-antispoof-prefix-mode>
+      </ipv6-antispoof-prefix-mode>
+    </filter>
+  </get-config>
+</rpc>

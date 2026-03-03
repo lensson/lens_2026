@@ -1,0 +1,13 @@
+arguments:
+  olt-infrastructure-name:
+    description: OLT infrastructure name.
+    suggested-values:
+    - gpon-1-1
+domains: transport>gpon>olt-infrastructure
+freemarker: true
+name: Remove GPON OLT infrastructure
+operation: delete
+sample-id: transport-gpon-olt-infrastructure-delete
+scope: gpon or gpon-xgs or gpon-xgs-25g or gpon-ngpon2-xgs-25g or gpon-xgs-25g-hs
+  or gpon-xgpon-xgs-25g or gpon-ngpon2-xgpon-xgs-25g or gpon-xgs-25g-50g
+status: draft

@@ -1,0 +1,18 @@
+arguments:
+  leaf-scheduler-name:
+    suggested-values:
+    - sch-node-uni1
+  olt-infrastructure-name:
+    suggested-values:
+    - gpon-1-1
+  intermediate-scheduler-name:
+    optional: true
+    suggested-values:
+    - sch-node-ont1
+domains: unicast>qos>tm
+entity: leaf_scheduler
+freemarker: true
+name: Remove unicast services QoS leaf scheduler
+operation: remove
+sample-id: unicast-qos-tm-leaf_scheduler-remove
+status: draft

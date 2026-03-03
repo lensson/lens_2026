@@ -1,0 +1,6 @@
+domains: system>logging>active-applications
+freemarker: true
+name: Retrieve all active applications
+operation: get
+sample-id: system-logging-active-applications-get
+status: draft

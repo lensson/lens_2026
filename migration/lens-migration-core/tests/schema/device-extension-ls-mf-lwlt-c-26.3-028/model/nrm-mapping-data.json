@@ -1,0 +1,94 @@
+{
+  "scalars": {
+    "cage-types": [
+      "pon-sfp-dd"
+    ],
+    "expected-model-name": "Lightspan-FX-LWLT-C",
+    "hardware-type": "fixed-chassis"
+  },
+  "tables": {
+    "cage-info": [
+      {
+        "cage-position": "C[1-9]$|C1[0-6]",
+        "sfp-types": [
+          "xpon-sfp",
+          "xpon-sfp-plus",
+          "xpon-sfp-dd",
+          "xpon-xfp"
+        ]
+      },
+      {
+        "cage-position": "C\\d*[2,4,6,8]",
+        "sfp-types": [
+          "xpon-sfp-28"
+        ]
+      }
+    ],
+    "sfp-technology-capabilities": [
+      {
+        "generic-model-names": [
+          "NOKIA_GPON"
+        ],
+        "sfp-model-names": [
+          "3FE53441*"
+        ],
+        "sfp-technologies": [
+          "GPON"
+        ]
+      },
+      {
+        "generic-model-names": [
+          "NOKIA_NGPON"
+        ],
+        "sfp-model-names": [
+          "3FE47548*",
+          "3FE48234*"
+        ],
+        "sfp-technologies": [
+          "XGS"
+        ]
+      },
+      {
+        "generic-model-names": [
+          "NOKIA_MPM"
+        ],
+        "sfp-model-names": [
+          "3FE47581*"
+        ],
+        "sfp-technologies": [
+          "MPM"
+        ]
+      },
+      {
+        "generic-model-names": [
+          "NOKIA_25GSPON"
+        ],
+        "sfp-model-names": [
+          "3FE48259*",
+          "3FE49650*"
+        ],
+        "sfp-technologies": [
+          "25GS PON"
+        ]
+      },
+      {
+        "generic-model-names": [
+          "NON_NOKIA_GPON"
+        ],
+        "sfp-model-names": [],
+        "sfp-technologies": [
+          "GPON"
+        ]
+      },
+      {
+        "generic-model-names": [
+          "NON_NOKIA_NGPON"
+        ],
+        "sfp-model-names": [],
+        "sfp-technologies": [
+          "XGS"
+        ]
+      }
+    ]
+  }
+}

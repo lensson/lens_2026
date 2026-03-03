@@ -1,0 +1,49 @@
+arguments:
+  ds-pbit-2-tc-policy-name:
+    description: Policy name
+    suggested-values:
+    - ds-tc-assignment
+  vlan-tag:
+    description: Vlan tag index
+    suggested-values:
+    - 0
+  pbit0-tc:
+    description: Traffic class to be associated with pbit0
+    optional: true
+    suggested-values:
+    - 0
+  pbit1-tc:
+    description: Traffic class to be associated with pbit1
+    optional: true
+    suggested-values:
+    - 1
+  pbit2-tc:
+    description: Traffic class to be associated with pbit2
+    optional: true
+    suggested-values:
+    - 2
+  pbit3-tc:
+    description: Traffic class to be associated with pbit3
+    optional: true
+    suggested-values:
+    - 3
+  pbit4-tc:
+    description: Traffic class to be associated with pbit4
+    optional: true
+  pbit5-tc:
+    description: Traffic class to be associated with pbit5
+    optional: true
+  pbit6-tc:
+    description: Traffic class to be associated with pbit6
+    optional: true
+  pbit7-tc:
+    description: Traffic class to be associated with pbit7
+    optional: true
+domains: unicast>qos>policy-profiles
+entity: ds_pbit_2_tc_policy
+freemarker: true
+name: Configure QoS DS pbit-to-tc policy
+operation: edit
+sample-id: unicast-qos-policy-profiles-ds_pbit_2_tc_policy-edit
+scope: not(mx) and not(dpu)
+status: draft

@@ -64,6 +64,7 @@ upload_config "lens-platform-gateway"
 upload_config "lens-platform-auth"
 upload_config "lens-platform-system"
 upload_config "lens-platform-monitor"
+upload_config "lens-migration-backend"
 
 echo "=========================================="
 echo "Upload Complete"

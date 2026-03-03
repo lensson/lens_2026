@@ -1,0 +1,13 @@
+arguments:
+  bac-prof-name:
+    description: Name of the Buffer Acceptance Control(BAC) profile.
+    optional: false
+    suggested-values:
+    - BAC-PROFILE-NAME
+domains: unicast>qos>tm
+entity: bac-profile
+freemarker: true
+name: Remove QoS Traffic Management(TM) Buffer Acceptance Control(BAC) profile
+operation: remove
+sample-id: unicast-qos-tm-bac-profile-remove
+status: draft

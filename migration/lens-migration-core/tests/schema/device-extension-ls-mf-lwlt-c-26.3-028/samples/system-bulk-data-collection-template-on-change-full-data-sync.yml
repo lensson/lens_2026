@@ -1,0 +1,12 @@
+arguments:
+  cache-name:
+    description: cache name
+    suggested-values:
+    - OnchangeCache1
+domains: system>bulk-data-collection>template
+entity: on-change
+freemarker: true
+name: Full-data-sync of on-change cache
+operation: full-data-sync
+sample-id: system-bulk-data-collection-template-on-change-full-data-sync
+status: draft

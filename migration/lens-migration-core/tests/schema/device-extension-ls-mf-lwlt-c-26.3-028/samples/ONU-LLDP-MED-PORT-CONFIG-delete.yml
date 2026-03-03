@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu-uni-intf:
+    description: Ethernet UNI interface where LLDP-MED port is configured.
+    suggested-values:
+    - ontuni
+  dest-mac-address:
+    description: Ethernet destination mac-address.
+    suggested-values:
+    - any
+domains: onu>lldp-med
+entity: port
+freemarker: true
+name: Delete LLDP-MED port
+operation: delete
+sample-id: onu-lldp-med-port-delete
+scope: eonu
+status: draft

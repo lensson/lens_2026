@@ -1,0 +1,22 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  chassis-name:
+    description: The name of ONU hardware chassis component
+    suggested-values:
+    - CHASSIS
+  admin-state:
+    description: Administrative state of the ONU hardware chassis component
+    suggested-values:
+    - locked
+    - unlocked
+domains: onu>equipment
+entity: chassis-admin-state
+freemarker: true
+name: Modify hardware chassis component admin-state
+operation: modify
+sample-id: onu-equipment-chassis-admin-state-modify
+scope: eonu
+status: draft

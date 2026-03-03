@@ -1,0 +1,16 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  component-name:
+    description: component name
+  power-shed-profile-name:
+    description: power shedding profiles name
+domains: onu>transport>powershed
+freemarker: true
+name: Attach powershed profile to ONU
+operation: attach
+sample-id: onu-transport-powershed-attach
+scope: eonu
+status: draft

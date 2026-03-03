@@ -1,0 +1,22 @@
+arguments:
+  multicast-channel-name:
+    description: The name of a multicast channel.
+    suggested-values:
+    - Channel-1
+  vpn-name:
+    description: The name of a multicast vpn.
+    suggested-values:
+    - mc-vpn
+  multicast-package-name:
+    description: The name of a multicast package.
+    optional: true
+    suggested-values:
+    - Pkg-1
+domains: multicast>vpn
+entity: multicast-channel
+freemarker: true
+name: Remove multicast channel
+operation: remove
+sample-id: multicast-vpn-multicast-channel-remove
+scope: multicast
+status: draft

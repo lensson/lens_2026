@@ -1,0 +1,8 @@
+available-locally: true
+domains: system>sztp
+entity: enable
+freemarker: true
+name: Enable sZTP
+operation: edit
+sample-id: system-sztp-enable-edit
+status: draft

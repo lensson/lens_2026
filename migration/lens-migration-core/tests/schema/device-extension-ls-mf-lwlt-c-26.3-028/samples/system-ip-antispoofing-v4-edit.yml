@@ -1,0 +1,22 @@
+arguments:
+  on-admindown:
+    description: If set to true, IPv4 addresses learnt via DHCPv4 on an interface
+      will be cleared, whenever the interface state goes to admin-down.
+    optional: true
+    suggested-values:
+    - true
+    - false
+  tca-in-ip-packet-discards:
+    description: Specifies a threshold value of in-ip-packet-discards. When packets
+      with illegal source IP and/or source MAC address exceed the threshold value
+      within certain interval, a TCA alarm will be raised.
+    optional: true
+    suggested-values:
+    - 1000
+domains: system>ip-antispoofing
+entity: v4
+freemarker: true
+name: Configure system level IPv4 antispoofing parameters
+operation: edit
+sample-id: system-ip-antispoofing-v4-edit
+status: draft

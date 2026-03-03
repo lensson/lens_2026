@@ -1,0 +1,188 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont-mounted">
+              <gemports>
+<#if tc0\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM0</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM0</name>
+                  <interface>${enet\-name}</interface>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM0</name>
+                  <interface>${enet\-name}</interface>
+<#else>
+                  <name>${cc\-name}-GEM0</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+                  <traffic-class>0</traffic-class>
+                  <tcont-ref>${tc0\-tcont\-name}</tcont-ref>
+                </gemport>
+</#if>
+<#if tc1\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM1</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM1</name>
+                  <interface>${enet\-name}</interface>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM1</name>
+                  <interface>${enet\-name}</interface>
+<#else>
+                  <name>${cc\-name}-GEM1</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+                  <traffic-class>1</traffic-class>
+                  <tcont-ref>${tc1\-tcont\-name}</tcont-ref>
+                </gemport>
+</#if>
+<#if tc2\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM2</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM2</name>
+                  <interface>${enet\-name}</interface>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM2</name>
+                  <interface>${enet\-name}</interface>
+<#else>
+                  <name>${cc\-name}-GEM2</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+                  <traffic-class>2</traffic-class>
+                  <tcont-ref>${tc2\-tcont\-name}</tcont-ref>
+                </gemport>
+</#if>
+<#if tc3\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM3</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM3</name>
+                  <interface>${enet\-name}</interface>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM3</name>
+                  <interface>${enet\-name}</interface>
+<#else>
+                  <name>${cc\-name}-GEM3</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+                  <traffic-class>3</traffic-class>
+                  <tcont-ref>${tc3\-tcont\-name}</tcont-ref>
+                </gemport>
+</#if>
+<#if tc4\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM4</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM4</name>
+                  <interface>${enet\-name}</interface>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM4</name>
+                  <interface>${enet\-name}</interface>
+<#else>
+                  <name>${cc\-name}-GEM4</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+                  <traffic-class>4</traffic-class>
+                  <tcont-ref>${tc4\-tcont\-name}</tcont-ref>
+                </gemport>
+</#if>
+<#if tc5\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM5</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM5</name>
+                  <interface>${enet\-name}</interface>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM5</name>
+                  <interface>${enet\-name}</interface>
+<#else>
+                  <name>${cc\-name}-GEM5</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+                  <traffic-class>5</traffic-class>
+                  <tcont-ref>${tc5\-tcont\-name}</tcont-ref>
+                </gemport>
+</#if>
+<#if tc6\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM6</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM6</name>
+                  <interface>${enet\-name}</interface>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM6</name>
+                  <interface>${enet\-name}</interface>
+<#else>
+                  <name>${cc\-name}-GEM6</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+                  <traffic-class>6</traffic-class>
+                  <tcont-ref>${tc6\-tcont\-name}</tcont-ref>
+                </gemport>
+</#if>
+<#if tc7\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+<#if gemport\-set\-name?has_content && (!enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${cc\-name}-GEM7</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+<#if gemport\-set\-name?has_content && (enet\-name?has_content)>
+                  <name>${gemport\-set\-name}-${enet\-name}-GEM7</name>
+                  <interface>${enet\-name}</interface>
+</#if>
+<#if (!gemport\-set\-name?has_content) && (enet\-name?has_content)>
+                  <name>${enet\-name}-GEM7</name>
+                  <interface>${enet\-name}</interface>
+<#else>
+                  <name>${cc\-name}-GEM7</name>
+                  <interface>${cc\-name}</interface>
+</#if>
+                  <traffic-class>7</traffic-class>
+                  <tcont-ref>${tc7\-tcont\-name}</tcont-ref>
+                </gemport>
+</#if>
+              </gemports>
+            </xpongemtcont>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

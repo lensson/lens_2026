@@ -1,0 +1,13 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+domains: transport>voip-sip
+entity: agent
+freemarker: true
+name: Get Config VoIP SIP Agent
+operation: get-config
+sample-id: transport-voip-sip-agent-get-config
+scope: ''
+status: draft

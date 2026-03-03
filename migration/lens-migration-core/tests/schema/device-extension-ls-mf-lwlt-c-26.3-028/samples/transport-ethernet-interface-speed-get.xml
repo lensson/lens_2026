@@ -1,0 +1,14 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="12">
+  <get>
+    <filter type="subtree">
+      <if:interfaces-state xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <if:interface>
+          <if:name>${network\-port\-name}</if:name>
+          <eth:Ethernet xmlns:eth="urn:ieee:params:xml:ns:yang:ethernet">
+            <eth:speed/>
+          </eth:Ethernet>
+        </if:interface>
+      </if:interfaces-state>
+    </filter>
+  </get>
+</rpc>

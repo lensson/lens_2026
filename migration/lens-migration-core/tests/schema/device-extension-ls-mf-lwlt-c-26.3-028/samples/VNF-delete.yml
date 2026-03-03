@@ -1,0 +1,16 @@
+arguments:
+  name:
+    suggested-values:
+    - vOnuMgmt
+  type:
+    suggested-values:
+    - vonumgmt
+  nav-ipaddr:
+    suggested-values:
+    - 10.10.10.11
+domains: system>vnf
+freemarker: true
+name: Delete virtual network function
+operation: remove
+sample-id: system-vnf-remove
+status: draft

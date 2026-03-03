@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  cc-name:
+    description: The name of the VLAN Sub Interface.
+    suggested-values:
+    - cc-1
+domains: onu>unicast>forwarding
+entity: cc
+freemarker: true
+name: Get forwarding cross connect configuration
+operation: get-config
+sample-id: onu-unicast-forwarding-cc-get-config
+scope: eonu
+status: draft

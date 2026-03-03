@@ -1,0 +1,45 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>${cc\-name}-NETWORK-VSI</name>
+        </interface>
+        <interface>
+          <name>${cc\-name}-USER-VSI</name>
+        </interface>
+      </interfaces>
+      <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont">
+      <gemports>
+        <gemport>
+          <interface>${cc\-name}-USER-VSI</interface> 
+        </gemport>
+      </gemports>
+      </xpongemtcont>
+      <forwarding xmlns="urn:bbf:yang:bbf-l2-forwarding">
+        <forwarders>
+          <forwarder>
+            <name>${cc\-name}-FWD</name>
+          </forwarder>
+        </forwarders>
+      </forwarding>
+      <#if onu\-template\-cc\-name?has_content && onu\-name?has_content>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <interfaces>
+              <interface>
+                <template-ref>${onu\-template\-cc\-name}</template-ref>
+              </interface>
+            </interfaces>
+          </template-parameters>
+        </onu>
+      </onus>
+      </#if>
+    </filter>
+  </get-config>
+</rpc>

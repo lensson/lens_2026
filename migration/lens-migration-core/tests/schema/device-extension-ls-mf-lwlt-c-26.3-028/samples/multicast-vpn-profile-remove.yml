@@ -1,0 +1,13 @@
+arguments:
+  vpn-profile-name:
+    description: The name of a multicast proxy profile.
+    suggested-values:
+    - vpn_profile1
+domains: multicast>vpn
+entity: profile
+freemarker: true
+name: Remove multicast vpn profile
+operation: remove
+sample-id: multicast-vpn-profile-remove
+scope: multicast
+status: draft

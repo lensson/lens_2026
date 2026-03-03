@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  vpn-name:
+    description: The name of a multicast uncontrolled vpn.
+    suggested-values:
+    - mc-uncontrolled-vpn
+  ani-name:
+    description: The name of an Access Node Interface.
+    suggested-values:
+    - ani-1-1-1
+domains: onu>multicast>vpn
+entity: uncontrolled-vpn
+freemarker: true
+name: Delete multicast uncontrolled VPN
+operation: remove
+sample-id: onu-multicast-vpn-uncontrolled-vpn-remove
+scope: eonu
+status: draft

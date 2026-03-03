@@ -1,0 +1,24 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  enable-flag:
+    description: '**true** to enable or **false** to disable loop detect for an ONT'
+    optional: true
+    suggested-values:
+    - 'true'
+  auto-shut-off:
+    description: '**true** to do auto shut off or **false** to not auto shut off for
+      an ONT'
+    optional: true
+    suggested-values:
+    - 'true'
+domains: onu>transport>xpon>enet
+entity: uni-loop-detect
+freemarker: true
+name: Modify uni loop detect
+operation: edit
+sample-id: onu-transport-xpon-enet-uni-loop-detect-edit
+scope: eonu
+status: draft

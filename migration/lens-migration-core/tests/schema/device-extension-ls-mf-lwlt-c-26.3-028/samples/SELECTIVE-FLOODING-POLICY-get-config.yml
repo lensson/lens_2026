@@ -1,0 +1,12 @@
+arguments:
+  selective-flooding-policy-name:
+    suggested-values:
+    - flooding-profile0
+domains: unicast>forwarding
+entity: selective-flooding-policy
+freemarker: true
+name: Retrieve forwarding flooding profile
+operation: get
+sample-id: unicast-forwarding-selective-flooding-policy-get
+scope: not(mx) and not(dpu) and not(fx-p2p-uplink)
+status: draft

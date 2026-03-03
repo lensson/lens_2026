@@ -1,0 +1,62 @@
+arguments:
+  maintenance-group-id:
+    description: The maintenance group provides a handle for the MD and MA combination.
+    suggested-values:
+    - MG
+  md-id:
+    description: The Maintenance Domain name and name format choice.
+    suggested-values:
+    - MD
+  ma-id:
+    description: The Maintenance Association name and name format choice.
+    suggested-values:
+    - MA
+  mep-id:
+    description: The list of all MEPs that belong to this Maintenance Association.
+    optional: true
+    suggested-values:
+    - 8191
+  direction:
+    description: The direction in which the MEP faces on the Bridge Port.
+    suggested-values:
+    - down
+    - up
+  mep-state:
+    description: The administrative state of the MEP. TRUE indicates that the MEP
+      is to functional normally,and FALSE indicates that it is to cease functioning.
+    optional: true
+    suggested-values:
+    - true
+  interface:
+    description: References the interface on which the MEP shall be created.
+    suggested-values:
+    - uni1_vsi1
+  forwarder:
+    description: All MIPs within a single MA shall reference VLAN sub-interfaces that
+      participate in the same forwarder.
+    optional: true
+    suggested-values:
+    - fwd_common
+  ccm-ltm-priority:
+    description: The priority value for CCMs and LTMs transmitted by the MEP. The
+      default value is the highest priority allowed to pass through the Bridge Port
+      for any of the MEPs VID(s).
+    optional: true
+    suggested-values:
+    - '3'
+  ccm-ltm-inner-tag-priority:
+    description: Priority.3 bit value to be used in the inner tag, if present in the
+      transmitted frame. If this optional leaf is not configured and the CFM packet
+      need to send with the inner tag then default value 7 implicitly considered for
+      the inner tag.
+    optional: true
+    suggested-values:
+    - '3'
+domains: unicast>protocols>cfm
+entity: mg
+freemarker: true
+name: Configure CFM maintenance group
+operation: create
+sample-id: unicast-protocols-cfm-mg-create
+scope: cfm-user or cfm-network or cfm-user-fiber or ccm or eth-ais
+status: draft

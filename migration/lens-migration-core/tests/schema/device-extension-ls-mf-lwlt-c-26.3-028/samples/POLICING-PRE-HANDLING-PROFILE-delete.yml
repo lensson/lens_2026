@@ -1,0 +1,13 @@
+arguments:
+  policing-pre-handling-profile-name:
+    description: policing-pre-handling-profile name
+    suggested-values:
+    - policing-pre-handling-profile
+domains: unicast>qos>policy-profiles
+entity: policing_pre_handling_profile
+freemarker: true
+name: Remove QoS policing pre-handling profile
+operation: remove
+sample-id: unicast-qos-policy-profiles-policing_pre_handling_profile-remove
+scope: not(mx) and not(dpu) and not(qos-fiber-xpon-hwv5)
+status: draft

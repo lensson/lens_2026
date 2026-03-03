@@ -1,0 +1,28 @@
+arguments:
+  vpn-profile-name:
+    description: The name of a multicast proxy profile.
+    suggested-values:
+    - vpn_profile1
+  multicast-protocol-version-v2:
+    description: There is support for IGMP v2 (for IPv4) and/or MLD v1 (for IPv6).
+    suggested-values:
+    - true
+  multicast-protocol-version-v3:
+    description: There is support for IGMP v3 (for IPv4) and/or MLD v2 (for IPv6).
+    suggested-values:
+    - true
+  immediate-leave:
+    description: Immediate leave controls the function by which an interface that
+      receives a leave group message for a certain group might immediately delete
+      the corresponding group record.
+    suggested-values:
+    - false
+    - true
+domains: multicast>vpn
+entity: profile
+freemarker: true
+name: Configure multicast vpn profile
+operation: edit
+sample-id: multicast-vpn-profile-edit
+scope: multicast
+status: draft

@@ -1,0 +1,34 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ani-name:
+    description: The name on an Access Node Interface.
+    suggested-values:
+    - ani-1-1-1
+  vsi-auto-instantiate:
+    description: suggest VSI interface false when creating mcast vsi in a ONU template
+    optional: true
+    suggested-values:
+    - 'false'
+  mcast-vlan-id:
+    description: The VLAN ID for multicast.
+    suggested-values:
+    - 400
+  network-port-name:
+    description: Multicast VPN Network Port Name
+    suggested-values:
+    - mc-network-port
+  vpn-name:
+    description: Multicast VPN Name
+    suggested-values:
+    - mc-vpn
+domains: onu>multicast>vpn
+entity: network-port
+freemarker: true
+name: Create multicast VPN network port
+operation: create
+sample-id: onu-multicast-vpn-network-port-create
+scope: eonu
+status: draft

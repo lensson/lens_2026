@@ -1,0 +1,22 @@
+arguments:
+  olt-infrastructure-name:
+    description: OLT infrastructure name.
+    suggested-values:
+    - xpon-1-1
+  onu-serial-number:
+    description: Serial Number of a ONU
+    suggested-values:
+    - ALCLF1091001
+  ploam-function:
+    description: Whether the ONU should be enabled or disabled by means of 'Disable_Serial_Number'
+      downstream PLOAM message."
+    suggested-values:
+    - disable
+    - enable
+domains: transport>xpon>v-ani
+entity: via_ploam
+freemarker: true
+name: DISABLE OR ENABLE ONU VIA PLOAM
+operation: modify
+sample-id: transport-xpon-v-ani-via_ploam-modify
+status: draft

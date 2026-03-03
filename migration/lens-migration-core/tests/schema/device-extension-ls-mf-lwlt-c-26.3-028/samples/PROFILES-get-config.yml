@@ -1,0 +1,8 @@
+domains: unicast>forwarding
+entity: profiles
+freemarker: true
+name: Retrieve unicast services forwarding profiles
+operation: get
+sample-id: unicast-forwarding-profiles-get
+scope: not(dpu) and not(mx) and not(fx-p2p)
+status: draft

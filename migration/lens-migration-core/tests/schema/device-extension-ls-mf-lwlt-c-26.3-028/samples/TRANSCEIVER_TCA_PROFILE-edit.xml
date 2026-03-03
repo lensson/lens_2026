@@ -1,0 +1,38 @@
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <tca-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-profiles">
+        <transceiver-tca-profile>
+          <name>${transceiver\-tca\-profile\-name}</name>
+          <#if temperature\-threshold\-low\-alarm?has_content>          
+          <temperature-threshold-low-alarm>${temperature\-threshold\-low\-alarm}</temperature-threshold-low-alarm>
+          </#if>
+          <#if temperature\-threshold\-low\-warning?has_content> 
+          <temperature-threshold-low-warning>${temperature\-threshold\-low\-warning}</temperature-threshold-low-warning>
+          </#if>
+          <#if temperature\-threshold\-high\-warning?has_content> 
+          <temperature-threshold-high-warning>${temperature\-threshold\-high\-warning}</temperature-threshold-high-warning>
+          </#if>
+          <#if temperature\-threshold\-high\-alarm?has_content>          
+          <temperature-threshold-high-alarm>${temperature\-threshold\-high\-alarm}</temperature-threshold-high-alarm>
+          </#if>
+          <#if voltage\-threshold\-low\-alarm?has_content>          
+          <voltage-threshold-low-alarm>${voltage\-threshold\-low\-alarm}</voltage-threshold-low-alarm>
+          </#if>
+          <#if voltage\-threshold\-low\-warning?has_content> 
+          <voltage-threshold-low-warning>${voltage\-threshold\-low\-warning}</voltage-threshold-low-warning>
+          </#if>
+          <#if voltage\-threshold\-high\-warning?has_content>
+          <voltage-threshold-high-warning>${voltage\-threshold\-high\-warning}</voltage-threshold-high-warning>
+          </#if>
+          <#if voltage\-threshold\-high\-alarm?has_content>          
+          <voltage-threshold-high-alarm>${voltage\-threshold\-high\-alarm}</voltage-threshold-high-alarm>
+          </#if>          
+        </transceiver-tca-profile>
+      </tca-profiles>
+    </config>
+  </edit-config>
+</rpc>

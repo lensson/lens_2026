@@ -1,0 +1,12 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+ <get-config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <source>
+    <running/>
+  </source>
+  <filter type="subtree">
+    <nacm xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-acm">
+      <rule-list/>
+    </nacm>
+  </filter>
+</get-config>
+</rpc>

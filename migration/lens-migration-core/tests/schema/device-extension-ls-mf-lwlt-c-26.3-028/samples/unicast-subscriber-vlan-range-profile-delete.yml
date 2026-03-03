@@ -1,0 +1,12 @@
+arguments:
+  vlanrange_profile_name:
+    description: Name of the vlan-range profile
+    suggested-values:
+    - vlanrange_profile
+domains: unicast>subscriber
+entity: vlan-range-profile
+freemarker: true
+name: Remove vlanrange profile
+operation: remove
+sample-id: unicast-subscriber-vlan-range-profile-remove
+status: draft

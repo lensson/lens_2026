@@ -1,0 +1,16 @@
+ 
+     
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<get-config>
+<source>
+<running/>
+</source>
+<filter type="subtree">
+<vlan-range-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-vlan-range">
+              <vlan-range-profile>
+                <name>${vlanrange_profile_name}</name>
+</vlan-range-profile>
+            </vlan-range-profiles>
+</filter>
+</get-config>
+</rpc>

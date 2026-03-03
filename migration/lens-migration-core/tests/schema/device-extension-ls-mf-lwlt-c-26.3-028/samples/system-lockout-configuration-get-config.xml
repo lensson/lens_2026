@@ -1,0 +1,15 @@
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter type="subtree">
+      <system-security xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-aaa" >
+        <lockout-duration></lockout-duration>
+        <max-retry-attempts></max-retry-attempts>
+        <lockout-type></lockout-type>
+      </system-security>         
+   </filter>
+  </get-config>
+</rpc>
+

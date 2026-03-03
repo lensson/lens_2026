@@ -1,0 +1,32 @@
+arguments:
+  tcont-name:
+    description: Name of the T-CONT.
+    suggested-values:
+    - v-ani-1-1-1-tcont-1
+  alloc-id:
+    description: T-CONT alloc ID.
+    optional: true
+  v-ani-name:
+    description: Reference to v-ani interface.
+    optional: true
+    suggested-values:
+    - v-ani-1-1-1
+  traffic-descriptor-profile-name:
+    description: Traffic descriptor profile name.
+    optional: true
+    suggested-values:
+    - tdp-1
+  onu-template-tcont-name:
+    description: Identifies within the ONU template a TCONT that is to be instantiated
+      within the actual ONU instance. The actual TCONT will have the data as configured
+      in the template but completed / overruled with the data provided in this list
+      entry.
+    optional: true
+    suggested-values:
+    - tcont-template-1
+domains: transport>xpon>tcont
+freemarker: true
+name: Modify T-CONT to ONU on OLT side
+operation: modify
+sample-id: transport-xpon-tcont-modify
+status: draft

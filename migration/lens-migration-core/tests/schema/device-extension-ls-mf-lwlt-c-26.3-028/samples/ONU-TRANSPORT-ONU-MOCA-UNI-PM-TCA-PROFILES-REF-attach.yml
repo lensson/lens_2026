@@ -1,0 +1,27 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  moca-name:
+    description: ONT UNI interface name (MoCA UNI)
+    suggested-values:
+    - cp1_ont01_moca_uni1
+  tca-moca-ethernet-frame-profile:
+    description: Moca Ethernet frame TCA profile.
+    optional: true
+    suggested-values:
+    - moca_eth_tca_profile
+  tca-moca-interface-profile:
+    description: Moca Interface TCA profile.
+    optional: true
+    suggested-values:
+    - moca_int_tca_profile
+domains: onu>transport>moca-uni
+entity: pm-tca-profiles-ref
+freemarker: true
+name: Attach Moca uni interface PM TCA profile
+operation: attach
+sample-id: onu-transport-moca-uni-pm-tca-profiles-ref-attach
+scope: eonu
+status: draft

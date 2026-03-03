@@ -1,0 +1,8 @@
+domains: system>protocols>radius
+entity: radiusparameters
+freemarker: true
+name: Retrieve RADIUS parameters
+operation: get-config
+sample-id: system-protocols-radius-radiusparameters-get-config
+scope: not(model2-dpu)
+status: draft

@@ -1,0 +1,191 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <policies xmlns="urn:bbf:yang:bbf-qos-policies-mounted">
+              <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${qos\-policy\-name}</name>
+<#if pbit0\-tc?has_content >
+                <classifiers>
+                  <name>policy-${qos\-policy\-name}_classifier0</name>
+                </classifiers>
+</#if>
+<#if pbit1\-tc?has_content >
+                <classifiers>
+                  <name>policy-${qos\-policy\-name}_classifier1</name>
+                </classifiers>
+</#if>
+<#if pbit2\-tc?has_content >
+                <classifiers>
+                  <name>policy-${qos\-policy\-name}_classifier2</name>
+                </classifiers>
+</#if>
+<#if pbit3\-tc?has_content >
+                <classifiers>
+                  <name>policy-${qos\-policy\-name}_classifier3</name>
+                </classifiers>
+</#if>
+<#if pbit4\-tc?has_content >
+                <classifiers>
+                  <name>policy-${qos\-policy\-name}_classifier4</name>
+                </classifiers>
+</#if>
+<#if pbit5\-tc?has_content >
+                <classifiers>
+                  <name>policy-${qos\-policy\-name}_classifier5</name>
+                </classifiers>
+</#if>
+<#if pbit6\-tc?has_content >
+                <classifiers>
+                  <name>policy-${qos\-policy\-name}_classifier6</name>
+                </classifiers>
+</#if>
+<#if pbit7\-tc?has_content >
+                <classifiers>
+                  <name>policy-${qos\-policy\-name}_classifier7</name>
+                </classifiers>
+</#if>
+              </policy>
+            </policies>
+            <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers-mounted">
+<#if pbit0\-tc?has_content >
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${qos\-policy\-name}_classifier0</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <tag>
+                    <index>0</index>
+                    <in-pbit-list>0</in-pbit-list>
+                  </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${pbit0\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if pbit1\-tc?has_content >
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${qos\-policy\-name}_classifier1</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <tag>
+                    <index>0</index>
+                    <in-pbit-list>1</in-pbit-list>
+                  </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${pbit1\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if pbit2\-tc?has_content >
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${qos\-policy\-name}_classifier2</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <tag>
+                    <index>0</index>
+                    <in-pbit-list>2</in-pbit-list>
+                  </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${pbit2\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if pbit3\-tc?has_content >
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${qos\-policy\-name}_classifier3</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <tag>
+                    <index>0</index>
+                    <in-pbit-list>3</in-pbit-list>
+                  </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${pbit3\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if pbit4\-tc?has_content >
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${qos\-policy\-name}_classifier4</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <tag>
+                    <index>0</index>
+                    <in-pbit-list>4</in-pbit-list>
+                  </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${pbit4\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if pbit5\-tc?has_content >
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${qos\-policy\-name}_classifier5</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <tag>
+                    <index>0</index>
+                    <in-pbit-list>5</in-pbit-list>
+                  </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${pbit5\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if pbit6\-tc?has_content >
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${qos\-policy\-name}_classifier6</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <tag>
+                    <index>0</index>
+                    <in-pbit-list>6</in-pbit-list>
+                  </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${pbit6\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+<#if pbit7\-tc?has_content >
+              <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>policy-${qos\-policy\-name}_classifier7</name>
+                <filter-operation>match-all-filter</filter-operation>
+                <match-criteria>
+                  <tag>
+                    <index>0</index>
+                    <in-pbit-list>7</in-pbit-list>
+                  </tag>
+                </match-criteria>
+                <classifier-action-entry-cfg>
+                  <action-type>scheduling-traffic-class</action-type>
+                  <scheduling-traffic-class>${pbit7\-tc}</scheduling-traffic-class>
+                </classifier-action-entry-cfg>
+              </classifier-entry>
+</#if>
+            </classifiers>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

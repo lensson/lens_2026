@@ -1,0 +1,61 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+          <name>${v\-ani\-name}</name>
+          <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type">bbf-xponift:v-ani</type>
+          <#if speed\-monitoring\-enable?has_content>
+            <speed-monitoring xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-interface-speed-monitoring">
+              <enable>${speed\-monitoring\-enable}</enable>
+            </speed-monitoring>
+          </#if>
+          <#if pm\-enable?has_content>
+          <performance xmlns="urn:bbf:yang:bbf-interfaces-performance-management">
+            <enable>${pm\-enable}</enable>
+          </performance>
+          </#if>
+          <v-ani xmlns="urn:bbf:yang:bbf-xponvani">
+            <channel-partition>${olt\-infrastructure\-name}-cpartition</channel-partition>
+            <onu-id>${onu\-id}</onu-id>
+            <#if onu\-serial\-number?has_content>
+            <expected-serial-number>${onu\-serial\-number}</expected-serial-number>
+            </#if>
+            <#if onu\-registration\-id?has_content>
+            <expected-registration-id>${onu\-registration\-id}</expected-registration-id>
+            </#if>
+            <#if onu\-loid?has_content>
+            <expected-loid>${onu\-loid}</expected-loid>
+            </#if>
+            <preferred-channel-pair>${olt\-infrastructure\-name}-cpair</preferred-channel-pair>
+            <management-gemport-aes-indicator>${mgmt\-aes}</management-gemport-aes-indicator>
+            <#if v\-onu\-mgmt?has_content && v\-onu\-mgmt>
+            <#else>
+            <onu-name xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-if-xponvani-aug">${v\-ani\-name}</onu-name>
+            </#if>
+            <#if upstream\-fec\-enable?has_content>
+            <upstream-fec>${upstream\-fec\-enable}</upstream-fec>
+            </#if>
+            <#if dbru\-control?has_content>
+            <dbru-control xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-if-xponvani-aug">${dbru\-control}</dbru-control>
+            </#if>
+          </v-ani>
+        </interface>
+      </interfaces>
+      <#if onu\-template\-name?has_content>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${v\-ani\-name}</name>
+          <usage xmlns:template-common="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-template-common">template-common:node-from-template-usage</usage>
+          <template-parameters xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">
+            <template-ref>${onu\-template\-name}</template-ref>
+          </template-parameters>
+        </onu>
+      </onus>
+      </#if>
+    </config>
+  </edit-config>
+</rpc>

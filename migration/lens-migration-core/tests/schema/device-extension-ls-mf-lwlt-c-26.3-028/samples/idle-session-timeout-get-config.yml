@@ -1,0 +1,7 @@
+domains: system>sessions
+entity: idle-session-timeout
+freemarker: true
+name: Retrieve idle CLI and NETCONF session timeout configuration
+operation: get-config
+sample-id: system-sessions-idle-session-timeout-get-config
+status: draft

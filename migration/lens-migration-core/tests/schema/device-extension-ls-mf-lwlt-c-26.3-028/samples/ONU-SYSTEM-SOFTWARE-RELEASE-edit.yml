@@ -1,0 +1,43 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  active-software-release:
+    description: ACTIVE-SOFTWARE-RELEASE-NAME
+    optional: true
+  passive-software-release:
+    description: PASSIVE-SOFTWARE-RELEASE-NAME
+    optional: true
+  target-delayed-activation:
+    description: TARGET-SOFTWARE-CONTROL
+    optional: true
+    suggested-values:
+    - false
+  vendor-sprcific-type:
+    description: The vendor specific SW Image pair
+    optional: true
+    suggested-values:
+    - onu_vendor_specific_software_1
+  vendor-sprcific-target-delayed-activation:
+    description: This is delay control for vendor-specific file, value true means
+      delayed-activation.
+    optional: true
+    suggested-values:
+    - false
+  target-active-vendor-specific-software:
+    description: This is a string describing the active vendor-specific file package
+      name to be applied on the ONU
+    optional: true
+  target-passive-vendor-specific-software:
+    description: This is a string describing the passive vendor-specific file package
+      name to be applied on the ONU
+    optional: true
+domains: onu>system>software
+entity: release
+freemarker: true
+name: Edit ONU software release
+operation: edit
+sample-id: onu-system-software-release-edit
+scope: eonu
+status: draft

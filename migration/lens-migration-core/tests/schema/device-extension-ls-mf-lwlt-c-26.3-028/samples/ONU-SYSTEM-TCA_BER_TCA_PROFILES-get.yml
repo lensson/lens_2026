@@ -1,0 +1,13 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+domains: onu>system>tca
+entity: ber-tca-profiles
+freemarker: true
+name: Retrieve BER-TCA-profiles
+operation: get
+sample-id: onu-system-tca-ber-tca-profiles-get
+scope: eonu
+status: draft

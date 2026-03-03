@@ -1,0 +1,23 @@
+arguments:
+  debug-ont-ssh-profile-name:
+    suggested-values:
+    - profile_name
+  client-ip-address:
+    suggested-values:
+    - 135.249.1.1
+  ont-mac-address:
+    description: Derived from ONT serial number. It starts with "02:4c:" and followed
+      by last 4 characters of SN. For ex, Mac address for serial number ALCLFA51948B
+      would be 02:4c:fa:51:94:8b.
+    suggested-values:
+    - 02:4c:ff:ff:ff:ff
+  vlan-sub-interface:
+    suggested-values:
+    - vsi-name
+domains: system>ont-remote-debug
+entity: profile
+freemarker: true
+name: Create ONT remote debug profile
+operation: create
+sample-id: system-ont-remote-debug-profile-create
+status: draft

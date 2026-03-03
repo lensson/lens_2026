@@ -1,0 +1,29 @@
+arguments:
+  interface-name:
+    description: interface name on which count policy is attached
+    suggested-values:
+    - interface-1
+  ingress-policy-name:
+    description: policy name in ingress qos-profile
+    suggested-values:
+    - ingress-policy
+  ingress-classifier-name:
+    description: classifier name
+    suggested-values:
+    - ingress-classifier
+  egress-policy-name:
+    description: policy name in egress qos-profile
+    suggested-values:
+    - egress-policy
+  egress-classifier-name:
+    description: classifier name
+    suggested-values:
+    - egress-classifier
+domains: unicast>qos>policy-profiles
+entity: flow-stats
+freemarker: true
+name: Retrieve Flow-stats
+operation: get
+sample-id: unicast-qos-policy-profiles-flow-stats-get
+scope: not(mx) and not(dpu) and not(fx-p2p)
+status: draft

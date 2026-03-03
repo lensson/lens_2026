@@ -1,0 +1,17 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <action xmlns="urn:ietf:params:xml:ns:yang:1">
+    <licensing xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-licensing-app">
+      <certificate>
+        <client-identity>
+          <certificate>
+            <local-definition>
+              <install-hidden-key>
+                <private-key>${private\-key}</private-key>
+              </install-hidden-key>
+            </local-definition>
+          </certificate>
+        </client-identity>
+      </certificate>
+    </licensing>
+  </action>
+</rpc>

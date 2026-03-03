@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Simple test case for XSLT generation tool
+  Based on bbf-qos-classifiers YANG module
+
+  This is the OLD VERSION (v1) configuration
+
+  Scenario: Simple QoS classifier configuration with two classifier entries
+-->
+<classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+
+  <!-- Classifier Entry 1: High Priority Traffic -->
+  <classifier-entry>
+    <name>high-priority-classifier</name>
+    <description>Classifier for high priority traffic with P-bit 6 and 7</description>
+
+    <!-- Action: Mark for scheduling traffic class 1 -->
+    <classifier-action-entry-cfg>
+      <action-type>scheduling-traffic-class</action-type>
+      <scheduling-traffic-class>1</scheduling-traffic-class>
+    </classifier-action-entry-cfg>
+  </classifier-entry>
+
+  <!-- Classifier Entry 2: Low Priority Traffic -->
+  <classifier-entry>
+    <name>low-priority-classifier</name>
+    <description>Classifier for low priority traffic with P-bit 0 and 1</description>
+
+    <!-- Action: Mark for scheduling traffic class 4 -->
+    <classifier-action-entry-cfg>
+      <action-type>scheduling-traffic-class</action-type>
+      <scheduling-traffic-class>4</scheduling-traffic-class>
+    </classifier-action-entry-cfg>
+  </classifier-entry>
+
+  <!-- Classifier Entry 3: Best Effort Traffic -->
+  <classifier-entry>
+    <name>best-effort-classifier</name>
+    <description>Classifier for best effort traffic</description>
+
+    <!-- Action: Pass through -->
+    <classifier-action-entry-cfg>
+      <action-type>pass</action-type>
+      <pass/>
+    </classifier-action-entry-cfg>
+  </classifier-entry>
+
+</classifiers>

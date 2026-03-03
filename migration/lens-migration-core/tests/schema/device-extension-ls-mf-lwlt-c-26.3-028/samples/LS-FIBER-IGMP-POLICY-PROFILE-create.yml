@@ -1,0 +1,28 @@
+arguments:
+  other-policy:
+    description: the other policy in the qos policy profile
+    suggested-values:
+    - pbit-to-four-tcs-egress
+  pbit-for-igmp:
+    description: the pbit for IGMP protocol frame, default value is 7
+    suggested-values:
+    - 7
+  qos-policy-profile-has-more-policy:
+    description: if true, one qos policy profile will add the IGMP policy
+    suggested-values:
+    - true
+  qos-profile-egress:
+    description: the qos policy profile which add IGMP policy
+    suggested-values:
+    - DOWNSTREAM_USERPORT
+  qos-profile-igmp-egress:
+    suggested-values:
+    - qos_profile_igmp_egress
+domains: multicast>qos
+entity: policy-profile
+freemarker: true
+name: Create multicast services QoS policy profile
+operation: create
+sample-id: multicast-qos-policy-profile-create
+scope: multicast-fiber and not(dpu)
+status: draft

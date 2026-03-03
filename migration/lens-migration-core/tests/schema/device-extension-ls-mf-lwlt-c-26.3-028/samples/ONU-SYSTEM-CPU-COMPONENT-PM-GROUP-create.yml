@@ -1,0 +1,22 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  component-name:
+    description: CPU component name
+    suggested-values:
+    - cpu1
+  pm_group:
+    description: Creates pm group of an CPU component,Values :[ cpu-util-pm mem-usage-pm
+      ]
+    suggested-values:
+    - cpu-util-pm
+domains: onu>system>cpu
+entity: component-pm-group
+freemarker: true
+name: Create CPU component performance monitoring group
+operation: create
+sample-id: onu-system-cpu-component-pm-group-create
+scope: eonu
+status: draft

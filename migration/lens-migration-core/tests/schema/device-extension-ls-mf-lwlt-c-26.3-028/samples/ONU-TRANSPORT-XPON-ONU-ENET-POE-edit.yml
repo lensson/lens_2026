@@ -1,0 +1,51 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  eth-port-hw-name:
+    description: name of ONU ENET port
+    suggested-values:
+    - PORT_rj45_1
+  power-over-ethernet-control:
+    allowed-values:
+    - true
+    - false
+    description: This attribute is defined on port, it is used to config power-over-ethernet-control,only
+      support for rj45*
+    suggested-values:
+    - true
+  pse-class-control:
+    allowed-values:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    description: Used to place specific limits on the class of power supported by
+      this port.
+    optional: true
+    suggested-values:
+    - 0
+  power-priority:
+    allowed-values:
+    - critical
+    - high
+    - low
+    description: Indicates that the most highst power priority
+    optional: true
+    suggested-values:
+    - low
+domains: onu>transport>xpon>enet
+entity: poe
+freemarker: true
+name: Edit ONU ENET port poe config
+operation: edit
+sample-id: onu-transport-xpon-enet-poe-edit
+scope: eonu
+status: draft

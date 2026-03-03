@@ -1,0 +1,20 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  multicast-channel-name:
+    description: The name of a multicast channel.
+  multicast-package-name:
+    description: The name of a multicast package.
+    optional: true
+  vpn-name:
+    description: The name of a multicast vpn.
+domains: onu>multicast>vpn
+entity: channel
+freemarker: true
+name: Delete multicast-channel
+operation: delete
+sample-id: onu-multicast-vpn-channel-delete
+scope: eonu
+status: draft

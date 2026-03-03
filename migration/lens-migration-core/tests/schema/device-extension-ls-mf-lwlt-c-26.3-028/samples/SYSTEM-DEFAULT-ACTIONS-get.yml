@@ -1,0 +1,8 @@
+domains: unicast>qos>policy-profiles
+entity: system_default_actions
+freemarker: true
+name: Get QoS system default actions
+operation: get
+sample-id: unicast-qos-policy-profiles-system_default_actions-get
+scope: not(mx) and not(dpu)
+status: draft

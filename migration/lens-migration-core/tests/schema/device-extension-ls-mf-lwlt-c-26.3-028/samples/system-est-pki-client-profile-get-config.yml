@@ -1,0 +1,14 @@
+arguments:
+  est-profile-name:
+    description: The EST profile name to retrieve. If this entry is not provided,
+      then all EST profiles are retrieved.
+    optional: true
+    suggested-values:
+    - EstProfile
+domains: system>est
+entity: pki-client-profile
+freemarker: true
+name: Retrieve an EST profile or all EST profiles
+operation: get-config
+sample-id: system-est-pki-client-profile-get-config
+status: draft

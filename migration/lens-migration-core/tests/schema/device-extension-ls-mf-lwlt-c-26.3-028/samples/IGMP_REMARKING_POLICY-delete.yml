@@ -1,0 +1,13 @@
+arguments:
+  igmp-remarking-policy-name:
+    description: Policy name
+    suggested-values:
+    - igmp-pbit-set
+domains: multicast>qos
+entity: igmp_remarking_policy
+freemarker: true
+name: Delete MULTICAST SERVICES IGMP REMARKING POLICY
+operation: delete
+sample-id: multicast-qos-igmp_remarking_policy-delete
+scope: multicast-fiber and not(dpu)
+status: draft

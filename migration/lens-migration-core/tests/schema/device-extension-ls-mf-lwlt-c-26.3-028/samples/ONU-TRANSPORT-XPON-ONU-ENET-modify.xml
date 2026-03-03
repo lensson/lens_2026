@@ -1,0 +1,157 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <hardware xmlns="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted">
+<#if pluggable\-optical\-electrical\-SFP?has_content && pluggable\-optical\-electrical\-SFP== true >
+              <component xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>25G_cage</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:cage-uni</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>1</parent-rel-pos>
+              </component>
+              <component xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>25G_transceiver</name>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver</class>
+                <parent>25G_cage</parent>
+                <parent-rel-pos>0</parent-rel-pos>
+              </component>
+</#if>
+              <component xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+<#if eth\-port\-hw\-option == "rj45" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:rj45</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if eth\-port\-hw\-option == "rj45-1G" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:rj45-1G</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if eth\-port\-hw\-option == "rj45-5G" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:rj45-5G</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if eth\-port\-hw\-option == "rj45-10-100M" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:rj45-10-100M</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if eth\-port\-hw\-option == "rj45-25G" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:rj45-25G</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if eth\-port\-hw\-option == "rj45-2.5G" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:rj45-2.5G</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if eth\-port\-hw\-option == "rj45-10G" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:rj45-10G</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if eth\-port\-hw\-option == "rj45-40G" >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:rj45-40G</class>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if special\-integrated\-ONUs?has_content && special\-integrated\-ONUs== true >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:rj45</class>
+                <parent>CHASSIS</parent>
+                <admin-state>unlocked</admin-state>
+</#if>
+<#if virtual\-board\-number?has_content>
+                <omci-identifier-helper xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-extension-mounted">
+                  <virtual-board-number>${virtual\-board\-number}</virtual-board-number>
+<#if port\-id?has_content >
+                  <port-id>${port\-id}</port-id>
+</#if>
+                </omci-identifier-helper>
+</#if>
+<#if power\-over\-ethernet\-control?has_content && power\-over\-ethernet\-control == true >
+                <poe xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-power-over-ethernet-control-mounted">
+                  <enable>true</enable>
+                  <pse-class-control>0</pse-class-control>
+                  <power-priority>high</power-priority>
+                </poe>
+</#if>
+<#if power\-over\-ethernet\-control?has_content && power\-over\-ethernet\-control != true >
+                <poe xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-power-over-ethernet-control-mounted">
+                  <enable>false</enable>
+                </poe>
+</#if>
+<#if eth\-port\-hw\-option == "veip" >
+                <name>VEIPPORT${eth\-port\-hw\-number}</name>
+                <parent>CHASSIS</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <class xmlns:nokia-hwi="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-identities">nokia-hwi:virtual-port</class>
+</#if>
+<#if pluggable\-optical\-electrical\-SFP?has_content && pluggable\-optical\-electrical\-SFP== true >
+                <name>PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</name>
+                <parent>25G_transceiver</parent>
+                <parent-rel-pos>${eth\-port\-hw\-number}</parent-rel-pos>
+                <class xmlns:bbf-hwt="urn:bbf:yang:bbf-hardware-types">bbf-hwt:transceiver-link</class>
+</#if>
+              </component>
+            </hardware>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${enet\-name}</name>
+<#if eth\-port\-hw\-option == "veip" >
+                <type xmlns:bbf-xponift="urn:bbf:yang:bbf-xpon-if-type-mounted">bbf-xponift:onu-v-vrefpoint</type>
+                <enabled>true</enabled>
+                <port-layer-if xmlns="urn:bbf:yang:bbf-interface-port-reference-mounted">VEIPPORT${eth\-port\-hw\-number}</port-layer-if>
+                <onu-v-vrefpoint xmlns="urn:bbf:yang:bbf-xponani-mounted">
+<#if ani\-name?has_content>
+                  <related-onu>${ani\-name}</related-onu>
+</#if>
+                </onu-v-vrefpoint>
+<#else>
+                <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type-mounted">ianaift:ethernetCsmacd</type>
+                <port-layer-if xmlns="urn:bbf:yang:bbf-interface-port-reference-mounted">PORT_${eth\-port\-hw\-option}_${eth\-port\-hw\-number}</port-layer-if>
+                <ethernet xmlns="urn:ieee:params:xml:ns:yang:ethernet-mounted">
+                  <auto-negotiation>
+                    <status>enabled</status>
+<#if pluggable\-optical\-electrical\-SFP?has_content && pluggable\-optical\-electrical\-SFP== true && fec?has_content >
+                    <fec>${fec}</fec>
+</#if>
+                  </auto-negotiation>
+                </ethernet>
+</#if>
+<#if disable\-upon\-ponlos?has_content>
+                <disable-upon-ponlos xmlns="urn:bbf:yang:nokia-xpon-onu-specials-mounted">${disable\-upon\-ponlos}</disable-upon-ponlos>
+</#if>
+              </interface>
+            </interfaces>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

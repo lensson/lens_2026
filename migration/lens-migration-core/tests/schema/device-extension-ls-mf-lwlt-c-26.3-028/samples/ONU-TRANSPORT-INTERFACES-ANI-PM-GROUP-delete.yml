@@ -1,0 +1,22 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu_ani_intf:
+    description: ANI interface name
+    suggested-values:
+    - ontani
+  pm_group:
+    description: Deletes pm group of an ANI interface,Values :[ fec-pm bip-pm xgpon-tc-pm
+      xgpon-ds-pm xgpon-us-pm aggr-gem-pm ]
+    suggested-values:
+    - fec-pm
+domains: onu>transport>gpon>ani
+entity: pm-group
+freemarker: true
+name: Delete ANI interface performance monitoring group
+operation: delete
+sample-id: onu-transport-gpon-ani-pm-group-delete
+scope: eonu
+status: draft

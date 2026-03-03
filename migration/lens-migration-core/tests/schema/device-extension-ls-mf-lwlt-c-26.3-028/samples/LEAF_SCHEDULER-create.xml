@@ -1,0 +1,150 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${olt\-infrastructure\-name}-cpartition</name>
+          <tm-root xmlns="urn:bbf:yang:bbf-qos-traffic-mngt">
+          <#if tc2q\-profile\-name?has_content>
+            <tc-id-2-queue-id-mapping-profile-name>${tc2q\-profile\-name}</tc-id-2-queue-id-mapping-profile-name>
+          </#if>
+            <#if intermediate\-scheduler\-name?has_content>
+            <scheduler-node xmlns="urn:bbf:yang:bbf-qos-enhanced-scheduling">
+              <name>${intermediate\-scheduler\-name}</name>
+              <child-scheduler-nodes>
+              <name>${leaf\-scheduler\-name}</name>
+              <#if weight?has_content>		  
+              <weight>${weight}</weight>
+              </#if>
+              </child-scheduler-nodes>
+            </scheduler-node>
+            <#else>
+            <child-scheduler-nodes xmlns="urn:bbf:yang:bbf-qos-enhanced-scheduling">
+              <name>${leaf\-scheduler\-name}</name>
+              <#if weight?has_content>		  
+              <weight>${weight}</weight>
+              </#if>
+            </child-scheduler-nodes>			
+            </#if>
+
+            <scheduler-node xmlns="urn:bbf:yang:bbf-qos-enhanced-scheduling">
+              <name>${leaf\-scheduler\-name}</name>
+              <scheduling-level>20</scheduling-level>
+            <#if shaper\-profile\-name?has_content>
+              <shaper-name>${shaper\-profile\-name}</shaper-name>
+             </#if>
+              <contains-queues>true</contains-queues>
+              <#if queue0\-bac\-profile\-name?has_content && queue0\-priority?has_content>
+              <queue>
+                <local-queue-id>0</local-queue-id>
+                <bac-name>${queue0\-bac\-profile\-name}</bac-name>
+          		<#if queue0\-shaper\-profile\-name?has_content>
+                <shaper-name>${queue0\-shaper\-profile\-name}</shaper-name>
+		    	</#if>
+                <priority>${queue0\-priority}</priority>
+		    	<#if queue0\-weight?has_content>			
+                <weight>${queue0\-weight}</weight>
+		    	</#if>
+              </queue>
+		      </#if>
+              <#if queue1\-bac\-profile\-name?has_content && queue1\-priority?has_content>
+              <queue>
+                <local-queue-id>1</local-queue-id>
+                <bac-name>${queue1\-bac\-profile\-name}</bac-name>
+          		<#if queue1\-shaper\-profile\-name?has_content>
+                <shaper-name>${queue1\-shaper\-profile\-name}</shaper-name>
+		    	</#if>
+                <priority>${queue1\-priority}</priority>
+		    	<#if queue1\-weight?has_content>			
+                <weight>${queue1\-weight}</weight>
+		    	</#if>
+              </queue>
+		      </#if>		  
+              <#if queue2\-bac\-profile\-name?has_content && queue2\-priority?has_content>
+              <queue>
+                <local-queue-id>2</local-queue-id>
+                <bac-name>${queue2\-bac\-profile\-name}</bac-name>
+          		<#if queue2\-shaper\-profile\-name?has_content>
+                <shaper-name>${queue2\-shaper\-profile\-name}</shaper-name>
+		    	</#if>
+                <priority>${queue2\-priority}</priority>
+		    	<#if queue2\-weight?has_content>			
+                <weight>${queue2\-weight}</weight>
+		    	</#if>
+              </queue>
+		      </#if>
+              <#if queue3\-bac\-profile\-name?has_content && queue3\-priority?has_content>
+              <queue>
+                <local-queue-id>3</local-queue-id>
+                <bac-name>${queue3\-bac\-profile\-name}</bac-name>
+          		<#if queue3\-shaper\-profile\-name?has_content>
+                <shaper-name>${queue3\-shaper\-profile\-name}</shaper-name>
+		    	</#if>
+                <priority>${queue3\-priority}</priority>
+		    	<#if queue3\-weight?has_content>			
+                <weight>${queue3\-weight}</weight>
+		    	</#if>
+              </queue>
+		      </#if>
+              <#if queue4\-bac\-profile\-name?has_content && queue4\-priority?has_content>
+              <queue>
+                <local-queue-id>4</local-queue-id>
+                <bac-name>${queue4\-bac\-profile\-name}</bac-name>
+          		<#if queue4\-shaper\-profile\-name?has_content>
+                <shaper-name>${queue4\-shaper\-profile\-name}</shaper-name>
+		    	</#if>
+                <priority>${queue4\-priority}</priority>
+		    	<#if queue4\-weight?has_content>			
+                <weight>${queue4\-weight}</weight>
+		    	</#if>
+              </queue>
+		      </#if>		
+              <#if queue5\-bac\-profile\-name?has_content && queue5\-priority?has_content>
+              <queue>
+                <local-queue-id>5</local-queue-id>
+                <bac-name>${queue5\-bac\-profile\-name}</bac-name>
+          		<#if queue5\-shaper\-profile\-name?has_content>
+                <shaper-name>${queue5\-shaper\-profile\-name}</shaper-name>
+		    	</#if>
+                <priority>${queue5\-priority}</priority>
+		    	<#if queue5\-weight?has_content>			
+                <weight>${queue5\-weight}</weight>
+		    	</#if>
+              </queue>
+		      </#if>		
+              <#if queue6\-bac\-profile\-name?has_content && queue6\-priority?has_content>
+              <queue>
+                <local-queue-id>6</local-queue-id>
+                <bac-name>${queue6\-bac\-profile\-name}</bac-name>
+          		<#if queue6\-shaper\-profile\-name?has_content>
+                <shaper-name>${queue6\-shaper\-profile\-name}</shaper-name>
+		    	</#if>
+                <priority>${queue6\-priority}</priority>
+		    	<#if queue6\-weight?has_content>			
+                <weight>${queue6\-weight}</weight>
+		    	</#if>
+              </queue>
+		      </#if>
+              <#if queue7\-bac\-profile\-name?has_content && queue7\-priority?has_content>
+              <queue>
+                <local-queue-id>7</local-queue-id>
+                <bac-name>${queue7\-bac\-profile\-name}</bac-name>
+          		<#if queue7\-shaper\-profile\-name?has_content>
+                <shaper-name>${queue7\-shaper\-profile\-name}</shaper-name>
+		    	</#if>
+                <priority>${queue7\-priority}</priority>
+		    	<#if queue7\-weight?has_content>			
+                <weight>${queue7\-weight}</weight>
+		    	</#if>
+              </queue>
+		      </#if>		
+            </scheduler-node>
+          </tm-root>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>

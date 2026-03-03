@@ -1,0 +1,41 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <tca-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-hardware-profiles-mounted">
+              <pm-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-hardware-pm-threshold-profiles-mounted">
+                <rtp-failure-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-voice-pm-threshold-profiles-mounted" xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="create">
+                  <name>${rtp\-failure\-tca\-profile}</name>
+<#if rtp\-errors\-threshold?has_content>
+                  <rtp-errors-threshold>${rtp\-errors\-threshold}</rtp-errors-threshold>
+</#if>
+<#if rtp\-packet\-loss\-threshold?has_content>
+                  <rtp-packet-loss-threshold>${rtp\-packet\-loss\-threshold}</rtp-packet-loss-threshold>
+</#if>
+<#if max\-jitter\-threshold?has_content>
+                  <max-jitter-threshold>${max\-jitter\-threshold}</max-jitter-threshold>
+</#if>
+<#if max\-rtcp\-inter\-packet\-time\-threshold?has_content>
+                  <max-rtcp-inter-packet-time-threshold>${max\-rtcp\-inter\-packet\-time\-threshold}</max-rtcp-inter-packet-time-threshold>
+</#if>
+<#if buffer\-underflow\-threshold?has_content>
+                  <buffer-underflow-threshold>${buffer\-underflow\-threshold}</buffer-underflow-threshold>
+</#if>
+<#if buffer\-overflow\-threshold?has_content>
+                  <buffer-overflow-threshold>${buffer\-overflow\-threshold}</buffer-overflow-threshold>
+</#if>
+                </rtp-failure-profile>
+              </pm-profiles>
+            </tca-profiles>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

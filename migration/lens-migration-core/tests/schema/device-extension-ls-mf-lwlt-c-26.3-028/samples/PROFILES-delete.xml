@@ -1,0 +1,21 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <forwarding xmlns="urn:bbf:yang:bbf-l2-forwarding">
+        <split-horizon-profiles>
+          <split-horizon-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+            <name>no-user-to-user-communication</name>
+          </split-horizon-profile>
+        </split-horizon-profiles>
+        <mac-learning-control-profiles>
+          <mac-learning-control-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+            <name>mlcp1</name>
+          </mac-learning-control-profile>
+        </mac-learning-control-profiles>
+      </forwarding>
+    </config>
+  </edit-config>
+</rpc>

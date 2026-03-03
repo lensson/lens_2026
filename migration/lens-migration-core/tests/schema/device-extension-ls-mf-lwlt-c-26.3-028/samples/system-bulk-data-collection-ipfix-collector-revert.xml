@@ -1,0 +1,11 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <action xmlns="urn:ietf:params:xml:ns:yang:1">
+    <ipfix xmlns="urn:ietf:params:xml:ns:yang:ietf-ipfix-psamp">
+      <exportingProcess>
+        <name>${exporter\-name}</name>
+        <revert xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix"/>
+      </exportingProcess>
+    </ipfix>   
+  </action>
+</rpc>
+

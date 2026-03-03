@@ -1,0 +1,21 @@
+arguments:
+  board-name:
+    description: Name of the hardware thats needs to be reset. If this RPC is executed
+      on NT,then the board-name is LT name (fglt-b-1). If this RPC is executed on
+      LT,then the board-name is Board.
+    suggested-values:
+    - Board
+    - fglt-b-1
+  reset-type:
+    description: Reset type option for the respective hardware component.
+    suggested-values:
+    - hardware-reset
+    - hardware-reset-to-default-configuration
+    - hardware-reset-with-self-test
+domains: equipment>lt
+freemarker: true
+name: Reset LT
+operation: reset
+sample-id: equipment-lt-reset
+scope: not(inband-l2term) and not(eth-copper) and not(eth-copper-ci) and not(df32gm)
+status: draft

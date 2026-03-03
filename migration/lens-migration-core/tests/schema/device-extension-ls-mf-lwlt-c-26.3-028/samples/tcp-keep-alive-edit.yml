@@ -1,0 +1,24 @@
+arguments:
+  interval-between-attempts:
+    description: Interval timeframe can be in the range of 1 up to 32767 seconds
+    suggested-values:
+    - 70
+  max-attempts:
+    description: Maximum number of sequential keep-alive messages can be set in the
+      range of 1 up to 127
+    suggested-values:
+    - 3
+  max-wait:
+    description: Maximum time can be in the range of 1 up to32767 seconds
+    suggested-values:
+    - 60
+  netconf-client-name:
+    description: Name of NETCONF clients list
+    suggested-values:
+    - nc-client
+domains: system>callhome>tcp-keep-alive
+freemarker: true
+name: Configure session tcp keepalive parameters
+operation: edit
+sample-id: system-callhome-tcp-keep-alive-edit
+status: draft

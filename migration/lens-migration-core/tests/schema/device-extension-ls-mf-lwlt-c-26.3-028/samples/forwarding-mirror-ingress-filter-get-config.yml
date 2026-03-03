@@ -1,0 +1,13 @@
+arguments:
+  input-interface:
+    description: Input VSI that configures the mirror ingress filter.
+    suggested-values:
+    - ont1-dfmb-a-uni1-user1
+    - ont1-dfmb-a-uni1-net1
+domains: unicast>forwarding>mirror>ingress
+entity: filter
+freemarker: true
+name: Retrive mirror ingress filter from the input vlan-sub-interface
+operation: get-config
+sample-id: unicast-forwarding-mirror-ingress-filter-get-config
+status: draft

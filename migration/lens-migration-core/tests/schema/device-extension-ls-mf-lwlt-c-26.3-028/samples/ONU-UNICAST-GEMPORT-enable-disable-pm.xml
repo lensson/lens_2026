@@ -1,0 +1,26 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont-mounted">
+              <gemports>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${gemport\-name}</name>
+                  <performance xmlns="urn:bbf:yang:bbf-xpongemtcont-gemport-performance-management-mounted">
+                    <enable>${pm\-flag}</enable>
+                  </performance>
+                </gemport>
+              </gemports>
+            </xpongemtcont>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

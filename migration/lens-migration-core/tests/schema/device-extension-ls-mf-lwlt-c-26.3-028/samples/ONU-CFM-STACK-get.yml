@@ -1,0 +1,19 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  port:
+    description: An interface that represents the Bridge Port or Aggregation Port
+      on which MEPs or MIPs might be configured
+    optional: true
+    suggested-values:
+    - cp1_ont01_uni1
+domains: onu>cfm
+entity: stack
+freemarker: true
+name: Get ONU CFM stack for all bridge ports
+operation: get
+sample-id: onu-cfm-stack-get
+scope: eonu
+status: draft

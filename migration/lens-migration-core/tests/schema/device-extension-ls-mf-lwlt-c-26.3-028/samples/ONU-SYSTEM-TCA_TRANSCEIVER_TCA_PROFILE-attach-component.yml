@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  tca-transceiver-profile:
+    description: tca-transceiver-profile name
+    suggested-values:
+    - transceiver_tca_profile
+domains: onu>system>tca
+entity: transceiver-tca-profile
+freemarker: true
+name: Attach-component tca-transceiver-profile
+operation: attach
+sample-id: onu-system-tca-transceiver-tca-profile-attach
+scope: eonu
+status: draft

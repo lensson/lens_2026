@@ -1,0 +1,78 @@
+arguments:
+  component:
+    description: Name of the component, default must be Chassis.
+    suggested-values:
+    - Chassis
+  downloaded-software-name:
+    description: Name of the software to be  downloaded
+    suggested-values:
+    - L6GQAH62.599
+  mode-HTTPS:
+    description: Mode selection for download using https
+    suggested-values:
+    - mTLS
+    - TLS
+    - false
+  mTLS-with-EST:
+    description: Indicates if PKI EST profile names should be used with mTLS during
+      HTTPS-based download.
+    optional: true
+    suggested-values:
+    - false
+    - true
+  server-public-key:
+    description: CA certificate of the server
+    optional: true
+    suggested-values:
+    - CA
+  software-name:
+    description: Name of the application software
+    suggested-values:
+    - application_software
+  config-url:
+    description: URL from which configuration download should be triggered.This URL
+      can use either an IP address or a Fully Qualified Domain Name (FQDN).
+    suggested-values:
+    - https://135.249.1.1/config_file_path/file_name.zip
+    - ftp://username:password@hostname.domain.com/descriptor_file_path
+  client-key-reference:
+    description: The client-key-reference that is going to be used for mTLS download
+      and configuration file encryption
+    optional: true
+    suggested-values:
+    - factory-callhome-key
+  client-public-key-reference:
+    description: The client-public-key-reference that is going to be used for mTLS
+      download and configuration file encryption
+    optional: true
+    suggested-values:
+    - factory-callhome-cert
+  client-auth-est-profile-name:
+    description: The PKI EST profile name to be used for mTLS download and configuration
+      file encryption. This profile will be used for client authentication.
+    optional: true
+    suggested-values:
+    - EstProfile
+  server-auth-est-profile-name:
+    description: The PKI EST profile name to be used for mTLS download and configuration
+      file encryption. This profile will be used for server authentication.
+    optional: true
+    suggested-values:
+    - EstProfile
+  key-name:
+    allowed-values:
+    - ecdsa-sha2-nistp256
+    - ssh-dss
+    - ssh-rsa
+    description: SSH key name to be used for key-based sftp download.
+    optional: true
+    suggested-values:
+    - ecdsa-sha2-nistp256
+available-locally: true
+domains: system>software
+freemarker: true
+name: Download configuration
+operation: config-download
+sample-id: system-software-config-download
+scope: not(dpu) and not(mx)
+status: draft

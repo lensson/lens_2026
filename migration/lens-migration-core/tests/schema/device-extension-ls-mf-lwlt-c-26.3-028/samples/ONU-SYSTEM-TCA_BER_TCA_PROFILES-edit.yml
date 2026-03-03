@@ -1,0 +1,27 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ber-tca-profile:
+    description: BER TCA Profile Name
+    suggested-values:
+    - ber_tca_profile
+  sd-threshold:
+    description: Value for SD Threshold range is 6 .. 9
+    optional: true
+    suggested-values:
+    - 9
+  sf-threshold:
+    description: Value for SF Threshold range is 5 .. 8
+    optional: true
+    suggested-values:
+    - 5
+domains: onu>system>tca
+entity: ber-tca-profiles
+freemarker: true
+name: Config BER TCA profiles
+operation: edit
+sample-id: onu-system-tca-ber-tca-profiles-edit
+scope: eonu
+status: draft

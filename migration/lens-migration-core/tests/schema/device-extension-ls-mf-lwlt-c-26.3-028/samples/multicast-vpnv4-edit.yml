@@ -1,0 +1,43 @@
+arguments:
+  vpn-name:
+    description: The name of a multicast vpn.
+    suggested-values:
+    - mc-vpnv4
+  vpn-profile-name:
+    description: The name of a multicast proxy profile.
+    suggested-values:
+    - vpn_profile1
+  user-side-proxy-ipv4-address:
+    description: Specifies the IP address to be used as source IP address in membership
+      query messages.
+    optional: true
+    suggested-values:
+    - 172.23.1.168
+  unmatched-membership-report-processing:
+    description: Specifies the IPv4 multicast vpn behaviour when the system receives
+      a membership report message for a multicast channel for which there is no explicit
+      configuration in the multicast-channel list.
+    optional: true
+    suggested-values:
+    - discard
+    - forward
+    - snoop-or-proxy
+  network-interface-for-unmatched-reports:
+    description: Identifies the multicast network interface for multicast group addresses
+      for which there is no specific configuration.  It is the interface that is used
+      to send MGMD reports, and inherent it is also the interface from which the system
+      will receive the related multicast packets.
+    optional: true
+    suggested-values:
+    - net-mc-itf100
+  channel-rate-for-unmatched-multicast-channel:
+    description: The bandwidth of the unconfigured multicast channel to be used at
+      CAC in kilobits per sec.
+    optional: true
+domains: multicast>vpnv4
+freemarker: true
+name: Configure IPv4 multicast VPN.
+operation: edit
+sample-id: multicast-vpnv4-edit
+scope: multicast-fiber
+status: draft

@@ -1,0 +1,18 @@
+arguments:
+  packet-rate-policy-profile-name:
+    suggested-values:
+    - PacketRateLimit0
+  burst-size:
+    suggested-values:
+    - 80
+  rate:
+    suggested-values:
+    - 100
+domains: system>cpu
+entity: packet-rate-policy-profile
+freemarker: false
+name: Modify the classifier entry referenced by a cpu packet rate limit policy
+operation: modify
+sample-id: system-cpu-packet-rate-policy-profile-modify
+scope: not(dpu)
+status: draft

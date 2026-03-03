@@ -1,0 +1,51 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <onu-management xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+          	<#if active\-software\-release?has_content>
+                <target-active-software xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <release>${active\-software\-release}</release>
+                </target-active-software>
+            </#if>
+            <#if passive\-software\-release?has_content> 
+                <target-passive-software xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <release>${passive\-software\-release}</release>
+                </target-passive-software>
+            </#if>
+<#if target\-delayed\-activation?has_content && target\-delayed\-activation>
+                <target-software-control>delayed-activation</target-software-control>
+<#else>    
+                <target-software-control>immediate-activation</target-software-control>
+</#if>
+            <#if vendor\-sprcific\-type?has_content>
+            <vendor-specific-software xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <vendor-specific-type>${vendor\-sprcific\-type}</vendor-specific-type>
+                <#if vendor\-sprcific\-target\-delayed\-activation?has_content && vendor\-sprcific\-target\-delayed\-activation>
+                <target-software-control>delayed-activation</target-software-control>
+                <#else>    
+                <target-software-control>immediate-activation</target-software-control>
+                </#if>
+                <#if target\-active\-vendor\-specific\-software?has_content>
+                <target-active-vendor-specific-software>
+                    <vendor-specific-file-package-name>${target\-active\-vendor\-specific\-software}</vendor-specific-file-package-name>
+                </target-active-vendor-specific-software>
+                </#if>
+                <#if target\-passive\-vendor\-specific\-software?has_content>
+                <target-passive-vendor-specific-software>
+                    <vendor-specific-file-package-name>${target\-passive\-vendor\-specific\-software}</vendor-specific-file-package-name>
+                </target-passive-vendor-specific-software>
+                </#if>
+            </vendor-specific-software>
+            </#if>
+          </onu-management>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

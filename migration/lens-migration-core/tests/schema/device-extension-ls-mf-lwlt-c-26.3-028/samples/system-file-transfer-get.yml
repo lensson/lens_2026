@@ -1,0 +1,6 @@
+domains: system>file-transfer
+freemarker: true
+name: Retrieve file transfer configuration
+operation: get
+sample-id: system-file-transfer-get
+status: draft

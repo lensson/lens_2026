@@ -1,0 +1,13 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+domains: onu>equipment
+entity: transceiver-diagnostics
+freemarker: true
+name: Get hardware transceiver diagnostics component
+operation: get
+sample-id: onu-equipment-transceiver-diagnostics-get
+scope: eonu
+status: draft

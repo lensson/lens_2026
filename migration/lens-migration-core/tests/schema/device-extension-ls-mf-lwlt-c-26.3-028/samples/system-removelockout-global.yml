@@ -1,0 +1,7 @@
+domains: system>lockout
+entity: global
+freemarker: true
+name: Remove global lockout
+operation: remove-lockout
+sample-id: system-lockout-global-remove-lockout
+status: draft

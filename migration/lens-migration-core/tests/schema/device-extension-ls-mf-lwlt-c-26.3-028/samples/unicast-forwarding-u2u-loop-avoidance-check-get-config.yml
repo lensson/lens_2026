@@ -1,0 +1,8 @@
+domains: unicast>forwarding
+entity: u2u-loop-avoidance-check
+freemarker: true
+name: Retrieve value of u2u-loop-avoidance-check.
+operation: get-config
+sample-id: unicast-forwarding-u2u-loop-avoidance-check-get-config
+scope: l2fwd-u2u-loop-avoidance
+status: draft

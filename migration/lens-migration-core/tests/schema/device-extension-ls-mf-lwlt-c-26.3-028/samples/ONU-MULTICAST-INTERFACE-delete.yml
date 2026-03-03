@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  ani-name:
+    description: The name on an Access Node Interface.
+    suggested-values:
+    - ani-1-1-1
+  mc-gemport-name:
+    description: The name of multicast-gemport.
+    suggested-values:
+    - mc-gemport
+domains: onu>multicast>vpn
+entity: interface
+freemarker: true
+name: Delete multicast interface
+operation: delete
+sample-id: onu-multicast-vpn-interface-delete
+scope: eonu
+status: draft

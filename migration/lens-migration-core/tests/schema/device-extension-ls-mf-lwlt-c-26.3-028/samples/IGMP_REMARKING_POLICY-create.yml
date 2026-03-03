@@ -1,0 +1,17 @@
+arguments:
+  igmp-remarking-policy-name:
+    description: Policy name
+    suggested-values:
+    - igmp-pbit-set
+  igmp-pbit:
+    description: the pbit for IGMP protocol frame
+    suggested-values:
+    - 6
+domains: multicast>qos
+entity: igmp_remarking_policy
+freemarker: true
+name: Create MULTICAST SERVICES IGMP REMARKING POLICY
+operation: create
+sample-id: multicast-qos-igmp_remarking_policy-create
+scope: multicast-fiber and not(dpu)
+status: draft

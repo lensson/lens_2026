@@ -1,0 +1,20 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+         <#if ibridge\-user\-port\-name?has_content>
+          <name>${ibridge\-user\-port\-name}-VSI</name>
+          <#elseif cc\-name?has_content>
+          <name>${cc\-name}-USER-VSI</name>
+          </#if>
+          <dhcpv6-ldra xmlns="urn:bbf:yang:bbf-ldra" ns0:operation="delete">
+          </dhcpv6-ldra>
+        </interface>
+      </interfaces>
+      </config>
+  </edit-config>
+</rpc>

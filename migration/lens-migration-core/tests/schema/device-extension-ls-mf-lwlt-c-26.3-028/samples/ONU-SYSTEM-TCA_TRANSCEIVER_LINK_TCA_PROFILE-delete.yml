@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  transceiver-link-tca-profile-name:
+    description: transceiver link TCA profile name
+    suggested-values:
+    - transceiver-link-tca-profile
+domains: onu>system>tca
+entity: transceiver-link-tca-profile
+freemarker: true
+name: Remove transceiver-link-tca-profile
+operation: remove
+sample-id: onu-system-tca-transceiver-link-tca-profile-remove
+scope: eonu
+status: draft

@@ -1,0 +1,34 @@
+arguments:
+  policing-policy-name:
+    description: Policy name
+    suggested-values:
+    - policing-policy
+  policing-profile-name:
+    description: Policing profile which is used by unmetered traffic
+    suggested-values:
+    - policing-profile
+  metered-flow:
+    description: true if flow is metered by policer
+    optional: true
+    suggested-values:
+    - true
+    - false
+  filter-operation:
+    description: Filters are applicable as any or all filters
+    suggested-values:
+    - match-all-filter
+    - match-any-filter
+  match-any-frame:
+    description: Check whether the entry use any-frame or not
+    optional: true
+    suggested-values:
+    - true
+    - false
+domains: unicast>qos>policy-profiles
+entity: policing_policy
+freemarker: true
+name: Configure QoS policing policy
+operation: edit
+sample-id: unicast-qos-policy-profiles-policing_policy-edit
+scope: not(mx) and not(dpu)
+status: draft

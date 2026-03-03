@@ -1,0 +1,15 @@
+arguments:
+  cc-name:
+    description: The name of CC sample. In IBRIDGE senario, leave it empty
+    optional: true
+  ibridge-user-port-name:
+    description: The name of IBRIDGE-USER-PORT sample. In CC senario, leave it empty
+    optional: true
+domains: unicast>forwarding>ipv4-antispoofing
+entity: dhcp-ip
+freemarker: true
+name: Remove IPv4 addresses learned from DHCPv4
+operation: clear
+sample-id: unicast-forwarding-ipv4-antispoofing-dhcp-ip-clear
+scope: fiber
+status: draft

@@ -1,0 +1,55 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <ipfix xmlns="urn:ietf:params:xml:ns:yang:ietf-ipfix-psamp">
+        <cache xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <name>${cache\-name}</name>
+          <permanentCache>
+            <exportInterval>${export\-interval}</exportInterval>
+            <cacheLayout>
+              <cacheField>
+                <name>${field1\-name}</name>
+                <ieName>${field1\-ie\-name}</ieName>
+              </cacheField>
+              <cacheField>
+                <name>${field2\-name}</name>
+                <ieName>${field2\-ie\-name}</ieName>
+              </cacheField>
+              <#if field3\-name?has_content && field3\-ie\-name?has_content>
+                <cacheField>
+                  <name>${field3\-name}</name>
+                  <ieName>${field3\-ie\-name}</ieName>
+                </cacheField>
+              </#if>
+              <#if field4\-name?has_content && field4\-ie\-name?has_content>
+                <cacheField>
+                  <name>${field4\-name}</name>
+                  <ieName>${field4\-ie\-name}</ieName>
+                </cacheField>
+              </#if>
+              <#if field5\-name?has_content && field5\-ie\-name?has_content>
+                <cacheField>
+                  <name>${field5\-name}</name>
+                  <ieName>${field5\-ie\-name}</ieName>
+                </cacheField>
+              </#if>
+            </cacheLayout>
+          </permanentCache>
+          <#if exportingProcess?has_content>
+          <exportingProcess>${exportingProcess}</exportingProcess>
+          </#if>
+          <reporting-enable xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix">${reporting\-enable}</reporting-enable>
+          <#if interface\-type?has_content>
+            <interface-type xmlns:bbfift="urn:bbf:yang:bbf-if-type" xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix">bbfift:vlan-sub-interface</interface-type>
+          </#if>
+          <#if critical\-content?has_content>
+            <critical-content xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipfix">${critical\-content}</critical-content>
+          </#if>
+        </cache>
+      </ipfix>
+    </config>
+  </edit-config>
+</rpc>

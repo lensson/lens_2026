@@ -1,0 +1,57 @@
+module nokia-sdan-xpon-channel-pair-body-25g-capable-si {
+
+  namespace "http://www.nokia.com/Fixed-Networks/BBA/yang/"
+    + "nokia-sdan-xpon-channel-pair-body-25g-capable-si";
+
+  prefix nokia-sdan-xpon-channel-pair-body-25g-capable-si;
+
+  import nokia-sdan-service-impact {
+    prefix nokia-si;
+  }
+
+  import ietf-interfaces {
+    prefix if;
+  }
+
+  import bbf-xpon{
+    prefix bbf-xpon;
+  }
+
+  import nokia-sdan-xpon-channel-pair-body {
+    prefix nokia-sdan-xpon-channel-pair-body;
+  }
+
+  organization
+    "Nokia";
+
+  contact
+    "isam.yang@nokia.com";
+
+  description
+    "The NOKIA IETF/System YANG module supporting
+     deviations on top of standard.";
+
+  revision 2023-03-01 {
+    description
+      "Update description.";
+    reference
+      "Nokia Specific.";
+  }
+
+  revision 2022-11-20 {
+    description
+      "Initial revision.";
+    reference
+      "Nokia Specific.";
+  }
+
+  deviation "/if:interfaces/if:interface/bbf-xpon:channel-pair/nokia-sdan-xpon-channel-pair-body:ultra-low-latency-mode" {
+      description
+       "When ultra-low-latency-mode is modified, the interface will be operational down for a short time period.  
+        As a consequence all connected and operational onus under this channel-pair will re-range.  
+        This will result in service interruptions of several seconds.";
+      deviate add {
+        nokia-si:service-impact;
+      }
+  }
+}

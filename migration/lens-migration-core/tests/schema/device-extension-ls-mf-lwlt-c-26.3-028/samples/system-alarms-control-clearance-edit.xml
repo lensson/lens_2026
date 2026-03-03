@@ -1,0 +1,31 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <alarms xmlns="urn:ietf:params:xml:ns:yang:ietf-alarms">
+        <control>
+          <alarms-delay-profile
+            xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-ietf-alarms-aug"
+            xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="merge">
+            <#if system\-clearance\-delay?has_content>
+              <system-clearance-delay>${system\-clearance\-delay}</system-clearance-delay>
+            </#if>
+            <#if alarm\-type\-id?has_content && alarm\-type\-ns?has_content>
+              <alarm-type-profile xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0"
+                nc:operation="merge">
+                <alarm-type-id xmlns:al-ns="${alarm\-type\-ns}">al-ns:${alarm\-type\-id}</alarm-type-id>
+                <#if clearance\-delay?has_content>
+                <clearance-delay>${clearance\-delay}</clearance-delay>
+                <#else>
+                  <clearance-delay-disabled/>
+                </#if>
+              </alarm-type-profile>
+            </#if>
+          </alarms-delay-profile>
+        </control>
+      </alarms>
+    </config>
+  </edit-config>
+</rpc>

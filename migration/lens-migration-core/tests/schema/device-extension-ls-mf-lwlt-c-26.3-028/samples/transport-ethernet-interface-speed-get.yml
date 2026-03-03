@@ -1,0 +1,13 @@
+arguments:
+  network-port-name:
+    description: Name of interface
+    suggested-values:
+    - X1/X2
+domains: transport>ethernet
+entity: interface-speed
+freemarker: true
+name: Retrieve ethernet speed of configured interface
+operation: get
+sample-id: transport-ethernet-interface-speed-get
+scope: not(inband-no-ipv4) and not(mf2-nt) and not(mx) and not(dpu)
+status: draft

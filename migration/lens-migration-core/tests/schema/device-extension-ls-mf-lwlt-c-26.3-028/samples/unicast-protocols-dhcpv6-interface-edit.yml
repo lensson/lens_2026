@@ -1,0 +1,31 @@
+arguments:
+  ibridge-user-port-name:
+    description: Ibridge user port name
+    optional: true
+  cc-name:
+    description: The name of CC sample
+    optional: true
+  trusted-port:
+    description: It marks the client-facing interface as trusted for the DHCPv6 Relay
+      Agent message and it is discarded for untrusted
+    optional: true
+    suggested-values:
+    - false
+    - true
+  enable:
+    description: Enable DHCPv6 Relay Agent  when configured as true
+    suggested-values:
+    - true
+    - false
+  dhcpv6-profile-name:
+    description: Name of the DHCPv6 Relay Agent profile
+    suggested-values:
+    - dhcpv6_profile
+domains: unicast>protocols>dhcpv6
+entity: fiber-interface
+freemarker: true
+name: Attach DHCPv6 Relay Agent profile to VLAN sub-interface
+operation: edit
+sample-id: unicast-protocols-dhcpv6-fiber-interface-edit
+scope: fiber
+status: draft

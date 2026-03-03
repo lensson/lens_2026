@@ -1,0 +1,12 @@
+arguments:
+  user-interface:
+    description: Name of the user interface.
+    suggested-values:
+    - OLT-VENET
+domains: transport>protocols>802.1x
+freemarker: true
+name: Retrieve user interface level timers configuration
+operation: get-config
+sample-id: transport-protocols-802.1x-get-config
+scope: fiber
+status: draft

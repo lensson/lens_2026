@@ -1,0 +1,12 @@
+arguments:
+  pppoe-profile-name:
+    description: PPPoE user profile name needed for upstream tag transparency
+    suggested-values:
+    - pppoe_profile
+domains: unicast>protocols>pppoe
+entity: upstream-tag-transparency
+freemarker: true
+name: Perform upstream tag transparency for PPPoE
+operation: edit
+sample-id: unicast-protocols-pppoe-upstream-tag-transparency-edit
+status: draft

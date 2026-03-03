@@ -1,0 +1,24 @@
+arguments:
+  subscriber_profile_name:
+    description: Name of the Subscriber profile
+    suggested-values:
+    - subscriber_profile
+  circuit_id:
+    description: The circuit ID string to be inserted in the subscriber management
+      protocol packets
+    optional: true
+    suggested-values:
+    - user1_circuit_id
+  remote_id:
+    description: The remote-id string to be inserted in the subscriber management
+      protocol packets
+    optional: true
+    suggested-values:
+    - user1_remote_id
+domains: unicast>subscriber
+entity: profile
+freemarker: true
+name: Configure subscriber profile
+operation: edit
+sample-id: unicast-subscriber-profile-edit
+status: draft

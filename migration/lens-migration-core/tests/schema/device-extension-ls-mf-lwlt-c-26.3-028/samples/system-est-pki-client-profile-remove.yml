@@ -1,0 +1,14 @@
+arguments:
+  est-profile-name:
+    description: The EST profile name to remove. If this entry is not provided, then
+      all EST profiles are removed.
+    optional: true
+    suggested-values:
+    - EstProfile
+domains: system>est
+entity: pki-client-profile
+freemarker: true
+name: Remove an EST profile or all EST profiles
+operation: remove
+sample-id: system-est-pki-client-profile-remove
+status: draft

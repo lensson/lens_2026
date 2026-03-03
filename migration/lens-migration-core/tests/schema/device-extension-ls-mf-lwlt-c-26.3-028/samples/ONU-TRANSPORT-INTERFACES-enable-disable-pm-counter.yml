@@ -1,0 +1,20 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  onu_ani_intf:
+    description: ANI interface name
+    suggested-values:
+    - ontani
+  pm_flag:
+    description: '**true** to enable or **false** to disable PM counters for an ANI'
+    suggested-values:
+    - 'true'
+domains: onu>transport>gpon>ani
+freemarker: true
+name: Set PM state for an ANI interface
+operation: enable-disable-pm-counter
+sample-id: onu-transport-gpon-ani-enable-disable-pm-counter
+scope: eonu
+status: draft

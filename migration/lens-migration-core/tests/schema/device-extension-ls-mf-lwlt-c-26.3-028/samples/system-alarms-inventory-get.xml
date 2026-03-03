@@ -1,0 +1,12 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="0">
+  <get>
+    <filter type="subtree">
+      <alarms:alarms xmlns:alarms="urn:ietf:params:xml:ns:yang:ietf-alarms">
+        <alarms:alarm-inventory/>
+      </alarms:alarms>
+    </filter>
+  </get>
+</rpc>
+
+
+

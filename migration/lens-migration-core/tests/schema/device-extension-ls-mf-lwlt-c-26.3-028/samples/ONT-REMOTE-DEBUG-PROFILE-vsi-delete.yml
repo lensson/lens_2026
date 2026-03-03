@@ -1,0 +1,11 @@
+arguments:
+  vlan-sub-interface:
+    suggested-values:
+    - vsi-name
+domains: system>ont-remote-debug
+entity: profile
+freemarker: true
+name: Delete VSI of ONT remote debug profile
+operation: vsi-delete
+sample-id: system-ont-remote-debug-profile-vsi-delete
+status: draft

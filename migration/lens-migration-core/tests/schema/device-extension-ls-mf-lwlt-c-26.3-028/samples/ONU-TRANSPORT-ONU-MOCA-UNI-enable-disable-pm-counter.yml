@@ -1,0 +1,21 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  moca-name:
+    description: MoCA uni interface name
+    suggested-values:
+    - moca-uni-1-1-1
+  pm-flag:
+    description: '**true** to enable or **false** to disable PM counters for an MoCA
+      UNI interface'
+    suggested-values:
+    - 'true'
+domains: onu>transport>moca-uni
+freemarker: true
+name: Set PM state for an MoCA UNI interface
+operation: enable-disable-pm-counter
+sample-id: onu-transport-moca-uni-enable-disable-pm-counter
+scope: eonu
+status: draft

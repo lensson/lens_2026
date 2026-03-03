@@ -1,0 +1,804 @@
+<?xml version="1.0"?>
+<ns:SlicingConfiguration xmlns:ns="uri://nokia.com/slicing/configuration/schema/model/1.1">
+  <ns:applicationNameSpaces>
+    <ns:nameSpace prefix="anv" nameSpace="http://www.nokia.com/management-solutions/anv"/>
+    <ns:nameSpace prefix="adh" nameSpace="http://www.nokia.com/management-solutions/anv-device-holders"/>
+  </ns:applicationNameSpaces>
+  <ns:deviceTypes>
+    <ns:deviceTypeResources>
+      <ns:deviceNameSpaces>
+        <ns:nameSpace nameSpace="http://www.nokia.com/management-solutions/anv-device-holders" prefix="adh"/>
+        <ns:nameSpace nameSpace="urn:ietf:params:xml:ns:yang:ietf-hardware" prefix="hw"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-hardware-transceivers" prefix="bbf-hw-xcvr"/>
+        <ns:nameSpace nameSpace="urn:ietf:params:xml:ns:yang:ietf-interfaces" prefix="if"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-xpongemtcont" prefix="bbf-xpongemtcont"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-xpon-if-type" prefix="bbf-xponift"/>
+        <ns:nameSpace nameSpace="urn:ietf:params:xml:ns:yang:iana-hardware" prefix="ianahw"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-l2-forwarding" prefix="bbf-l2-fwd"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-xpon" prefix="bbf-xpon"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-sub-interfaces" prefix="bbf-subif"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-pppoe-intermediate-agent" prefix="bbf-pppoe-ia"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-l2-dhcpv4-relay" prefix="bbf-l2-d4r"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-xponvani" prefix="bbf-xponvani"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-interface-usage" prefix="bbf-if-usg"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-sub-interface-tagging" prefix="bbf-subif-tag"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-mgmd" prefix="bbf-mgmd"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-qos-policies" prefix="bbf-qos-pol"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-qos-classifiers" prefix="bbf-qos-cls"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-qos-policing" prefix="bbf-qos-plc"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-qos-traffic-mngt" prefix="bbf-qos-tm"/>
+        <ns:nameSpace nameSpace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-if-xponvani-aug" prefix="nokia-sdan-if-xponvani-aug"/>
+        <ns:nameSpace nameSpace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-traffic-descriptor-profile-aug" prefix="nokia-sdan-traffic-descriptor-profile-aug"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-ldra" prefix="bbf-ldra"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-qos-enhanced-scheduling" prefix="bbf-qos-sched"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-if-type" prefix="bbfift"/>
+        <ns:nameSpace nameSpace="http://www.nokia.com/management-solutions/anv-device-tag" prefix="tag"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-qos-shaping" prefix="bbf-qos-shap"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-xpon-onu-state" prefix="bbf-xpon-onu-s"/>
+        <ns:nameSpace nameSpace="http://www.nokia.com/management-solutions/anv-network-slicing" prefix="slicing"/>
+        <ns:nameSpace nameSpace="http://www.nokia.com/management-solutions/anv" prefix="anv"/>
+        <ns:nameSpace prefix="bbf-frameproc" nameSpace="urn:bbf:yang:bbf-frame-processing-profile"/>
+        <ns:nameSpace nameSpace="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount" prefix="onu"/>
+        <ns:nameSpace nameSpace="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template" prefix="onus-from-template"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-qos-filters" prefix="bbf-qos-filt"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-qos-enhanced-filters" prefix="bbf-qos-enhfilt"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-qos-enhanced-scheduling" prefix="bbf-qos-es"/>
+        <ns:nameSpace nameSpace="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv4-address-spoofing-prevention" prefix="nokia-ipv4-sppr"/>
+        <ns:nameSpace nameSpace="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ipv6-address-spoofing-prevention" prefix="nokia-ipv6-sppr"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-vlan-sub-interface-vector" prefix="bbf-vsi-vctr"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-vlan-sub-interface-vector-pppoe" prefix="bbf-vsi-vctr-pppoe"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-vlan-sub-interface-vector-dhcpv4" prefix="bbf-vsi-vctr-dhcpv4"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-vlan-sub-interface-vector-dhcpv6" prefix="bbf-vsi-vctr-dhcpv6"/>
+        <ns:nameSpace nameSpace="urn:ietf:params:xml:ns:yang:iana-if-type" prefix="ianaift"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-subscriber-profiles" prefix="bbf-subprof"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-icmpv6" prefix="bbf-icmpv6"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-vlan-sub-interface-vector-icmpv6" prefix="bbf-vsi-vctr-icmpv6"/>
+        <ns:nameSpace nameSpace="http://www.nokia.com/management-solutions/anv-device-config-history" prefix="adch"/>
+        <ns:nameSpace nameSpace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension" prefix="nokia-qos-plc-ext"/>
+        <ns:nameSpace nameSpace="urn:ietf:params:xml:ns:yang:ietf-hardware-mounted" prefix="hw-mounted"/>
+        <ns:nameSpace nameSpace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-hardware-component-test-mounted" prefix="nokia-sdan-hardware-component-test-mounted"/>
+        <ns:nameSpace nameSpace="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted" prefix="if-mounted"/>
+        <ns:nameSpace nameSpace="urn:bbf:yang:bbf-sip-voip-mounted" prefix="bbf-sip-voip-mounted"/>
+        <ns:nameSpace nameSpace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-ip-test-mounted" prefix="nokia-ip-test-mounted"/>
+        <ns:nameSpace nameSpace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-vlan-range" prefix="nokia-vlan-range"/>
+        <ns:nameSpace nameSpace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-vlan-range-pppoe" prefix="nokia-vlan-range-pppoe"/>
+        <ns:nameSpace nameSpace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-vlan-range-dhcpv4" prefix="nokia-vlan-range-l2dr4"/>
+        <ns:nameSpace nameSpace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-vlan-range-dhcpv6" prefix="nokia-vlan-range-l2dr6"/>
+        <ns:nameSpace nameSpace="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-vlan-sub-interface-vector-vlan-range-pppoe" prefix="nokia-vsi-vctr-vlan-range-pppoe"/>
+        <ns:nameSpace nameSpace="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-vlan-sub-interface-vector-vlan-range-dhcpv4" prefix="nokia-vsi-vctr-vlan-range-l2dr4"/>
+        <ns:nameSpace nameSpace="uri:http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-vlan-sub-interface-vector-vlan-range-dhcpv6" prefix="nokia-vsi-vctr-vlan-range-l2dr6"/>
+      </ns:deviceNameSpaces>
+
+      <ns:notificationList>
+        <ns:notification name="root/hw-mounted:hardware-state/hw-mounted:component/nokia-sdan-hardware-component-test-mounted:self-test-result" prefix="onu" resourceLeafName="name" referenceUniqueIdentifier="onu" containerSchemaNodeId="onu:onus/onu:onu"/>
+        <ns:notification name="root/if-mounted:interfaces-state/if-mounted:interface/bbf-sip-voip-mounted:phys-voice-itf/bbf-sip-voip-mounted:pptp-pots-uni/bbf-sip-voip-mounted:mlt-result" prefix="onu" resourceLeafName="name" referenceUniqueIdentifier="onu" containerSchemaNodeId="onu:onus/onu:onu"/>
+        <ns:notification name="root/if-mounted:interfaces-state/if-mounted:interface/bbf-sip-voip-mounted:phys-voice-itf/bbf-sip-voip-mounted:pptp-pots-uni/bbf-sip-voip-mounted:pbdt-test-result" prefix="onu" resourceLeafName="name" referenceUniqueIdentifier="onu" containerSchemaNodeId="onu:onus/onu:onu"/>
+        <ns:notification name="root/nokia-ip-test-mounted:ip-test/nokia-ip-test-mounted:ipv4/nokia-ip-test-mounted:ping-result" prefix="onu" resourceLeafName="name" referenceUniqueIdentifier="onu" containerSchemaNodeId="onu:onus/onu:onu"/>
+      </ns:notificationList>
+
+      <ns:deviceSlicingReferences>
+        <ns:slicingResource uniqueIdentifier="sub-interface">
+          <ns:details localName="sub-interface" localNamePrefix="bbf-l2-fwd" referenceUniqueIdentifier="vlan-sub-interface" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-l2-fwd:forwarding/bbf-l2-fwd:forwarders/bbf-l2-fwd:forwarder/bbf-l2-fwd:ports/bbf-l2-fwd:port/bbf-l2-fwd:sub-interface"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="subif-lower-layer-interface">
+          <ns:details localName="interface" localNamePrefix="bbf-subif" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-subif:subif-lower-layer/bbf-subif:interface">
+            <ns:refuid uid="olt-v-enet-interface"/>
+            <ns:refuid uid="ieee8023adlag-interface"/>
+          </ns:details>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="lower-layer-interface">
+          <ns:details localName="lower-layer-interface" localNamePrefix="bbf-xponvani" referenceUniqueIdentifier="v-ani-interface" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-xponvani:olt-v-enet/bbf-xponvani:lower-layer-interface"/>
+          <!-- this leaf-ref must point to v-ani interface type -->
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="interface-reference">
+          <ns:details localName="interface-reference" localNamePrefix="bbf-xpongemtcont" referenceUniqueIdentifier="v-ani-interface" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-xpongemtcont:xpongemtcont/bbf-xpongemtcont:tconts/bbf-xpongemtcont:tcont/bbf-xpongemtcont:interface-reference"/>
+          <!-- this leaf-ref must point to v-ani interface type -->
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="itf-ref">
+          <ns:details localName="itf-ref" localNamePrefix="bbf-xpongemtcont" referenceUniqueIdentifier="vlan-sub-interface" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-xpongemtcont:xpongemtcont/bbf-xpongemtcont:gemports/bbf-xpongemtcont:gemport/bbf-xpongemtcont:interface"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="traffic-descriptor-profile-ref">
+          <ns:details localName="traffic-descriptor-profile-ref" localNamePrefix="bbf-xpongemtcont" referenceUniqueIdentifier="traffic-descriptor-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-xpongemtcont:xpongemtcont/bbf-xpongemtcont:tconts/bbf-xpongemtcont:tcont/bbf-xpongemtcont:traffic-descriptor-profile-ref"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="pppoe-profile-ref">
+          <ns:details localName="profile-ref" localNamePrefix="bbf-pppoe-ia" referenceUniqueIdentifier="pppoe-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-pppoe-ia:pppoe/bbf-pppoe-ia:profile-ref"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="dhcp-profile-ref">
+          <ns:details localName="profile-ref" localNamePrefix="bbf-l2-d4r" referenceUniqueIdentifier="dhcpv4-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-l2-d4r:l2-dhcpv4-relay/bbf-l2-d4r:profile-ref"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="forwarding-database-ref">
+          <ns:details localName="forwarding-database" localNamePrefix="bbf-l2-fwd" referenceUniqueIdentifier="forwarding-database" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-l2-fwd:forwarding/bbf-l2-fwd:forwarders/bbf-l2-fwd:forwarder/bbf-l2-fwd:mac-learning/bbf-l2-fwd:forwarding-database"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="multicast-proxy-profile-ref">
+          <ns:details localName="multicast-proxy-profile-name" localNamePrefix="bbf-mgmd" referenceUniqueIdentifier="multicast-proxy-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-mgmd:multicast/bbf-mgmd:mgmd/bbf-mgmd:multicast-vpn/bbf-mgmd:multicast-proxy-profile-name"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="multicast-network-interface-sub-interface-ref">
+          <ns:details localName="vlan-sub-interface" localNamePrefix="bbf-mgmd" referenceUniqueIdentifier="vlan-sub-interface" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-mgmd:multicast/bbf-mgmd:mgmd/bbf-mgmd:multicast-vpn/bbf-mgmd:multicast-network-interface/bbf-mgmd:single-uplink-interface-data/bbf-mgmd:vlan-sub-interface"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="multicast-interface-to-host-sub-interface-ref">
+          <ns:details localName="vlan-sub-interface" localNamePrefix="bbf-mgmd" referenceUniqueIdentifier="vlan-sub-interface" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-mgmd:multicast/bbf-mgmd:mgmd/bbf-mgmd:multicast-vpn/bbf-mgmd:multicast-interface-to-host/bbf-mgmd:vlan-sub-interface"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="state-port-sub-interface">
+          <ns:details keyPrefix="bbf-l2-fwd" localName="sub-interface" localNamePrefix="bbf-l2-fwd" referenceUniqueIdentifier="state-interface" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-l2-fwd:forwarding-state/bbf-l2-fwd:forwarders/bbf-l2-fwd:forwarder/bbf-l2-fwd:ports/bbf-l2-fwd:port/bbf-l2-fwd:sub-interface"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="state-forwarder-forwarding-database">
+          <ns:details keyPrefix="bbf-l2-fwd" localName="forwarding-database" localNamePrefix="bbf-l2-fwd" referenceUniqueIdentifier="state-forwarding-database" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-l2-fwd:forwarding-state/bbf-l2-fwd:forwarders/bbf-l2-fwd:forwarder/bbf-l2-fwd:forwarding-databases/bbf-l2-fwd:forwarding-database"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="state-multicast-vp-vlan-sub-interface">
+          <ns:details keyPrefix="bbf-mgmd" localName="vlan-sub-interface" localNamePrefix="bbf-mgmd" referenceUniqueIdentifier="state-interface" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-mgmd:multicast-state/bbf-mgmd:mgmd/bbf-mgmd:multicast-vpn/bbf-mgmd:multicast-network-interface/bbf-mgmd:single-uplink-interface-to-router-state-data/bbf-mgmd:vlan-sub-interface"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="state-interface-higher-layer-if">
+          <ns:details keyPrefix="if" localName="higher-layer-if" localNamePrefix="if" referenceUniqueIdentifier="state-interface" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces-state/if:interface/if:higher-layer-if"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="state-interface-lower-layer-if">
+          <ns:details keyPrefix="if" localName="lower-layer-if" localNamePrefix="if" referenceUniqueIdentifier="state-interface" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces-state/if:interface/if:lower-layer-if"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="qos-policy-profile-ingress-ref">
+          <ns:details localName="ingress-qos-policy-profile" localNamePrefix="bbf-qos-pol" referenceUniqueIdentifier="qos-policy-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-qos-pol:ingress-qos-policy-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="qos-policy-profile-egress-ref">
+          <ns:details localName="egress-qos-policy-profile" localNamePrefix="bbf-qos-pol" referenceUniqueIdentifier="qos-policy-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-qos-pol:egress-qos-policy-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="qos-policy-ref">
+          <ns:details localName="name" localNamePrefix="bbf-qos-pol" referenceUniqueIdentifier="qos-policy" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-pol:qos-policy-profiles/bbf-qos-pol:policy-profile/bbf-qos-pol:policy-list/bbf-qos-pol:name"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="qos-classifier-ref">
+          <ns:details localName="name" localNamePrefix="bbf-qos-pol" referenceUniqueIdentifier="qos-classifier" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-pol:policies/bbf-qos-pol:policy/bbf-qos-pol:classifiers/bbf-qos-pol:name"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="forwarding-state-database-macaddress-forwarder-ref">
+          <ns:details keyPrefix="bbf-l2-fwd" localName="forwarder" localNamePrefix="bbf-l2-fwd" referenceUniqueIdentifier="state-forwarder" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-l2-fwd:forwarding-state/bbf-l2-fwd:forwarding-databases/bbf-l2-fwd:forwarding-database/bbf-l2-fwd:mac-addresses/bbf-l2-fwd:mac-address/bbf-l2-fwd:forwarder"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="qos-bac-ref">
+          <ns:details localName="bac-name" localNamePrefix="bbf-qos-tm" referenceUniqueIdentifier="qos-bac" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-qos-tm:tm-root/bbf-qos-sched:scheduler-node/bbf-qos-sched:queue/bbf-qos-sched:bac-name"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="qos-shaper-scheduler-ref">
+          <ns:details localName="shaper-name" localNamePrefix="bbf-qos-shap" referenceUniqueIdentifier="qos-shaper" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-qos-tm:tm-root/bbf-qos-sched:scheduler-node/bbf-qos-sched:shaper-name"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="qos-shaper-queue-ref">
+          <ns:details localName="shaper-name" localNamePrefix="bbf-qos-shap" referenceUniqueIdentifier="qos-shaper" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-qos-tm:tm-root/bbf-qos-sched:scheduler-node/bbf-qos-sched:queue/bbf-qos-sched:shaper-name"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="classifier-policing-ref">
+          <ns:details localName="policing-profile-name" localNamePrefix="bbf-qos-plc" referenceUniqueIdentifier="qos-policing-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-cls:classifiers/bbf-qos-cls:classifier-entry/bbf-qos-cls:classifier-action-entry-cfg/bbf-qos-plc:policing/bbf-qos-plc:policing-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="dhcpv6-ldra-profile-ref">
+          <ns:details localName="profile-ref" localNamePrefix="bbf-ldra" referenceUniqueIdentifier="dhcpv6-ldra-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-ldra:dhcpv6-ldra/bbf-ldra:profile-ref"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="frame-processing-profile-ref">
+          <ns:details localNamePrefix="bbf-frameproc" localName="frame-processing-profile-ref" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-frameproc:frame-processing-profile-ref" referenceUniqueIdentifier="frame-processing-profiles"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="template-ref">
+          <ns:details localNamePrefix="onus-from-template" localName="template-ref" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/onu:onus/onu:onu/onus-from-template:template-parameters/onus-from-template:template-ref" referenceUniqueIdentifier="onu"/>
+        </ns:slicingResource>
+       <ns:slicingResource uniqueIdentifier="data-path-vlan-sub-interface">
+          <ns:details localNamePrefix="bbf-mgmd" localName="data-path-vlan-sub-interface" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-mgmd:multicast/bbf-mgmd:mgmd/bbf-mgmd:multicast-vpn/bbf-mgmd:multicast-interface-to-host/bbf-mgmd:data-path-vlan-sub-interface" referenceUniqueIdentifier="vlan-sub-interface"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="onu-name">
+          <ns:details localName="onu-name" localNamePrefix="nokia-sdan-if-xponvani-aug" referenceUniqueIdentifier="v-ani-interface" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-xponvani:v-ani/nokia-sdan-if-xponvani-aug:onu-name"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="classifier-enhanced-filter-ref">
+          <ns:details localName="classifier-enhanced-filter-ref" localNamePrefix="bbf-qos-enhfilt" referenceUniqueIdentifier="enhanced-filter" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-cls:classifiers/bbf-qos-cls:classifier-entry/bbf-qos-enhfilt:enhanced-filter-name"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="enhanced-filter-ref">
+          <ns:details localName="enhanced-filter-ref" localNamePrefix="bbf-qos-enhfilt" referenceUniqueIdentifier="enhanced-filter" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-filt:filters/bbf-qos-enhfilt:enhanced-filter/bbf-qos-enhfilt:filter/bbf-qos-enhfilt:enhanced-filter-name"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="vsi-vector-profile-ref">
+          <ns:details localName="profile-ref" localNamePrefix="bbf-vsi-vctr" referenceUniqueIdentifier="vsi-vector-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-vsi-vctr:vector-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="vsi-vector-profile-pppoe-profile-ref">
+          <ns:details localName="profile-ref" localNamePrefix="bbf-vsi-vctr-pppoe" referenceUniqueIdentifier="pppoe-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-vsi-vctr:vsi-vector-profiles/bbf-vsi-vctr:vsi-vector-profile/bbf-vsi-vctr-pppoe:pppoe/bbf-vsi-vctr-pppoe:profile-ref"/>
+        </ns:slicingResource>
+	      <ns:slicingResource uniqueIdentifier="vsi-vector-profile-dhcpv4-profile-ref">
+          <ns:details localName="profile-ref" localNamePrefix="bbf-vsi-vctr-dhcpv4" referenceUniqueIdentifier="dhcpv4-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-vsi-vctr:vsi-vector-profiles/bbf-vsi-vctr:vsi-vector-profile/bbf-vsi-vctr-dhcpv4:l2-dhcpv4-relay/bbf-vsi-vctr-dhcpv4:profile-ref"/>
+	      </ns:slicingResource>
+	      <ns:slicingResource uniqueIdentifier="vsi-vector-profile-dhcpv6-profile-ref">
+          <ns:details localName="profile-ref" localNamePrefix="bbf-vsi-vctr-dhcpv6" referenceUniqueIdentifier="dhcpv6-ldra-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-vsi-vctr:vsi-vector-profiles/bbf-vsi-vctr:vsi-vector-profile/bbf-vsi-vctr-dhcpv6:dhcpv6-ldra/bbf-vsi-vctr-dhcpv6:profile-ref"/>
+	      </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="subscriber-profile-ref">
+          <ns:details localName="profile" localNamePrefix="bbf-subprof" referenceUniqueIdentifier="subscriber-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-subprof:subscriber-profile/bbf-subprof:profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="icmpv6-profile-ref">
+          <ns:details localName="profile" localNamePrefix="bbf-icmpv6" referenceUniqueIdentifier="icmpv6-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-icmpv6:icmpv6/bbf-icmpv6:profile-ref"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="vsi-vector-profile-icmpv6-profile-ref">
+          <ns:details localName="profile-ref" localNamePrefix="bbf-vsi-vctr-icmpv6" referenceUniqueIdentifier="icmpv6-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-vsi-vctr:vsi-vector-profiles/bbf-vsi-vctr:vsi-vector-profile/bbf-vsi-vctr-icmpv6:icmpv6/bbf-vsi-vctr-icmpv6:profile-ref"/>
+        </ns:slicingResource>
+	      <ns:slicingResource uniqueIdentifier="qos-policing-pre-handling-profile-ref">
+          <ns:details localName="name" localNamePrefix="nokia-qos-plc-ext" referenceUniqueIdentifier="qos-policing-pre-handling-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-plc:policing-profiles/bbf-qos-plc:policing-profile/nokia-qos-plc-ext:policing-pre-handling-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="qos-policing-action-profile-ref">
+          <ns:details localName="name" localNamePrefix="nokia-qos-plc-ext" referenceUniqueIdentifier="qos-policing-action-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-plc:policing-profiles/bbf-qos-plc:policing-profile/nokia-qos-plc-ext:policing-action-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="pppoe-vlan-range-profile-ref">
+            <ns:details localName="vlan-range-profile-ref" localNamePrefix="nokia-vlan-range-pppoe" referenceUniqueIdentifier="vlan-range-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-pppoe-ia:pppoe/nokia-vlan-range-pppoe:vlan-range-profile-ref"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="l2dr4-vlan-range-profile-ref">
+            <ns:details localName="vlan-range-profile-ref" localNamePrefix="nokia-vlan-range-l2dr4" referenceUniqueIdentifier="vlan-range-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-l2-d4r:l2-dhcpv4-relay/nokia-vlan-range-l2dr4:vlan-range-profile-ref"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="l2dr6-vlan-range-profile-ref">
+            <ns:details localName="vlan-range-profile-ref" localNamePrefix="nokia-vlan-range-l2dr6" referenceUniqueIdentifier="vlan-range-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-ldra:dhcpv6-ldra/nokia-vlan-range-l2dr6:vlan-range-profile-ref"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="vsi-vector-profile-pppoe-vlan-range-profile-ref">
+            <ns:details localName="vlan-range-profile-ref" localNamePrefix="nokia-vsi-vctr-vlan-range-pppoe" referenceUniqueIdentifier="vlan-range-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-vsi-vctr:vsi-vector-profiles/bbf-vsi-vctr:vsi-vector-profile/bbf-vsi-vctr-pppoe:pppoe/nokia-vsi-vctr-vlan-range-pppoe:vlan-range-profile-ref"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="vsi-vector-profile-dhcpv4-vlan-range-profile-ref">
+            <ns:details localName="vlan-range-profile-ref" localNamePrefix="nokia-vsi-vctr-vlan-range-l2dr4" referenceUniqueIdentifier="vlan-range-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-vsi-vctr:vsi-vector-profiles/bbf-vsi-vctr:vsi-vector-profile/bbf-vsi-vctr-dhcpv4:l2-dhcpv4-relay/nokia-vsi-vctr-vlan-range-l2dr4:vlan-range-profile-ref"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="vsi-vector-profile-dhcpv6-vlan-range-profile-ref">
+            <ns:details localName="vlan-range-profile-ref" localNamePrefix="nokia-vsi-vctr-vlan-range-l2dr6" referenceUniqueIdentifier="vlan-range-profile" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-vsi-vctr:vsi-vector-profiles/bbf-vsi-vctr:vsi-vector-profile/bbf-vsi-vctr-dhcpv6:dhcpv6-ldra/nokia-vsi-vctr-vlan-range-l2dr6:vlan-range-profile-ref"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="forwarding-database-macaddress-forwarder-ref">
+          <ns:details keyPrefix="bbf-l2-fwd" localName="forwarder" localNamePrefix="bbf-l2-fwd" referenceUniqueIdentifier="forwarder" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-l2-fwd:forwarding/bbf-l2-fwd:forwarding-databases/bbf-l2-fwd:forwarding-database/bbf-l2-fwd:static-mac-address/bbf-l2-fwd:static-forwarder-port-ref/bbf-l2-fwd:forwarder"/>
+        </ns:slicingResource>
+      </ns:deviceSlicingReferences>
+
+      <ns:deviceSlicingCreatables>
+        <ns:slicingResource uniqueIdentifier="hardware">
+          <ns:details keyName="name" keyPrefix="hw" localName="component" localNamePrefix="hw" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/hw:hardware/hw:component">
+            <ns:discriminator localName="class" localNamePrefix="hw" valuePrefix="ianahw" value="module"/>
+          </ns:details>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="vlan-sub-interface">
+          <ns:details keyName="name" keyPrefix="if" localName="interface" localNamePrefix="if" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface">
+            <ns:discriminator localName="type" localNamePrefix="if" value="vlan-sub-interface" valuePrefix="bbfift"/>
+          </ns:details>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="olt-v-enet-interface">
+          <ns:details keyName="name" keyPrefix="if" localName="interface" localNamePrefix="if" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface">
+            <ns:discriminator localName="type" localNamePrefix="if" value="olt-v-enet" valuePrefix="bbf-xponift"/>
+          </ns:details>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="v-ani-interface">
+          <ns:details keyName="name" keyPrefix="if" localName="interface" localNamePrefix="if" restrictedCreationAndDeletion="true" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface">
+            <ns:discriminator localName="type" localNamePrefix="if" value="v-ani" valuePrefix="bbf-xponift"/>
+          </ns:details>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="traffic-descriptor-profile">
+          <ns:details keyName="name" keyPrefix="bbf-xpongemtcont" localName="traffic-descriptor-profile" localNamePrefix="bbf-xpongemtcont" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-xpongemtcont:xpongemtcont/bbf-xpongemtcont:traffic-descriptor-profiles/bbf-xpongemtcont:traffic-descriptor-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="tcont">
+          <ns:details keyName="name" keyPrefix="bbf-xpongemtcont" localName="tcont" localNamePrefix="bbf-xpongemtcont" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-xpongemtcont:xpongemtcont/bbf-xpongemtcont:tconts/bbf-xpongemtcont:tcont"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="gemport">
+          <ns:details keyName="name" keyPrefix="bbf-xpongemtcont" localName="gemport" localNamePrefix="bbf-xpongemtcont" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-xpongemtcont:xpongemtcont/bbf-xpongemtcont:gemports/bbf-xpongemtcont:gemport"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="forwarder">
+          <ns:details keyName="name" keyPrefix="bbf-l2-fwd" localName="forwarder" localNamePrefix="bbf-l2-fwd" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-l2-fwd:forwarding/bbf-l2-fwd:forwarders/bbf-l2-fwd:forwarder"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="forwarding-database">
+          <ns:details keyName="name" keyPrefix="bbf-l2-fwd" localName="forwarding-database" localNamePrefix="bbf-l2-fwd" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-l2-fwd:forwarding/bbf-l2-fwd:forwarding-databases/bbf-l2-fwd:forwarding-database"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="wavelength-profile">
+          <ns:details keyName="name" keyPrefix="bbf-xpon" localName="wavelength-profile" localNamePrefix="bbf-xpon" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-xpon:xpon/bbf-xpon:wavelength-profiles/bbf-xpon:wavelength-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="pppoe-profile">
+          <ns:details keyName="name" keyPrefix="bbf-pppoe-ia" localName="pppoe-profile" localNamePrefix="bbf-pppoe-ia" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-pppoe-ia:pppoe-profiles/bbf-pppoe-ia:pppoe-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="dhcpv4-profile">
+          <ns:details keyName="name" keyPrefix="bbf-l2-d4r" localName="l2-dhcpv4-relay-profile" localNamePrefix="bbf-l2-d4r" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-l2-d4r:l2-dhcpv4-relay-profiles/bbf-l2-d4r:l2-dhcpv4-relay-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="multicast-proxy-profile">
+          <ns:details keyName="name" keyPrefix="bbf-mgmd" localName="multicast-proxy-profile" localNamePrefix="bbf-mgmd" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-mgmd:multicast/bbf-mgmd:mgmd/bbf-mgmd:multicast-proxy-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="multicast-vpn">
+          <ns:details keyName="name" keyPrefix="bbf-mgmd" localName="multicast-vpn" localNamePrefix="bbf-mgmd" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-mgmd:multicast/bbf-mgmd:mgmd/bbf-mgmd:multicast-vpn"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="state-forwarder">
+          <ns:details keyName="name" keyPrefix="bbf-l2-fwd" localName="forwarder" localNamePrefix="bbf-l2-fwd" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-l2-fwd:forwarding-state/bbf-l2-fwd:forwarders/bbf-l2-fwd:forwarder"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="state-forwarding-database">
+          <ns:details keyName="name" keyPrefix="bbf-l2-fwd" localName="forwarding-database" localNamePrefix="bbf-l2-fwd" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-l2-fwd:forwarding-state/bbf-l2-fwd:forwarding-databases/bbf-l2-fwd:forwarding-database"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="state-multicast-vpn">
+          <ns:details keyName="name" keyPrefix="bbf-mgmd" localName="multicast-vpn" localNamePrefix="bbf-mgmd" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-mgmd:multicast-state/bbf-mgmd:mgmd/bbf-mgmd:multicast-vpn"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="state-interface">
+          <ns:details keyName="name" keyPrefix="if" localName="interface" localNamePrefix="if" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces-state/if:interface"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="qos-policy-profile">
+          <ns:details keyName="name" keyPrefix="bbf-qos-pol" localName="policy-profile" localNamePrefix="bbf-qos-pol" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-pol:qos-policy-profiles/bbf-qos-pol:policy-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="qos-policy">
+          <ns:details keyName="name" keyPrefix="bbf-qos-pol" localName="policy" localNamePrefix="bbf-qos-pol" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-pol:policies/bbf-qos-pol:policy"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="qos-classifier">
+          <ns:details keyName="name" keyPrefix="bbf-qos-cls" localName="classifier-entry" localNamePrefix="bbf-qos-cls" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-cls:classifiers/bbf-qos-cls:classifier-entry"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="qos-bac">
+          <ns:details keyName="name" keyPrefix="bbf-qos-tm" localName="bac-entry" localNamePrefix="bbf-qos-tm" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-tm:tm-profiles/bbf-qos-tm:bac-entry"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="qos-shaper">
+          <ns:details keyName="name" keyPrefix="bbf-qos-shap" localName="shaper-profile" localNamePrefix="bbf-qos-shap" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-tm:tm-profiles/bbf-qos-shap:shaper-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="qos-policing-profile">
+          <ns:details keyName="name" keyPrefix="bbf-qos-plc" localName="policing-profile" localNamePrefix="bbf-qos-plc" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-plc:policing-profiles/bbf-qos-plc:policing-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="dhcpv6-ldra-profile">
+          <ns:details keyName="name" keyPrefix="bbf-ldra" localName="dhcpv6-ldra-profile" localNamePrefix="bbf-ldra" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-ldra:dhcpv6-ldra-profiles/bbf-ldra:dhcpv6-ldra-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="frame-processing-profiles">
+          <ns:details localNamePrefix="bbf-frameproc" keyPrefix="bbf-frameproc" localName="frame-processing-profile" keyName="name" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-frameproc:frame-processing-profiles/bbf-frameproc:frame-processing-profile">
+          </ns:details>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="onu">
+          <ns:details localNamePrefix="onu" keyPrefix="onu" localName="onu" keyName="name" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/onu:onus/onu:onu"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="state-hardware">
+            <ns:details keyName="name" keyPrefix="hw" localName="component" localNamePrefix="hw" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/hw:hardware-state/hw:component"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="filter">
+          <ns:details keyName="name" keyPrefix="bbf-qos-filt" localName="filter" localNamePrefix="bbf-qos-filt" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-filt:filters/bbf-qos-filt:filter"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="enhanced-filter">
+          <ns:details keyName="name" keyPrefix="bbf-qos-enhfilt" localName="enhanced-filter" localNamePrefix="bbf-qos-enhfilt" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-filt:filters/bbf-qos-enhfilt:enhanced-filter"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="ipv4-security-statistics-interface">
+          <ns:details keyName="name" keyPrefix="nokia-ipv4-sppr" localName="interface" localNamePrefix="nokia-ipv4-sppr" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/nokia-ipv4-sppr:ipv4-security-statistics/nokia-ipv4-sppr:interface"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="ipv6-security-statistics-interface">
+          <ns:details keyName="name" keyPrefix="nokia-ipv6-sppr" localName="interface" localNamePrefix="nokia-ipv6-sppr" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/nokia-ipv6-sppr:ipv6-security-statistics/nokia-ipv6-sppr:interface"/>
+        </ns:slicingResource>
+	      <ns:slicingResource uniqueIdentifier="vsi-vector-profile">
+          <ns:details keyName="name" keyPrefix="bbf-vsi-vctr" localName="vsi-vector-profile" localNamePrefix="bbf-vsi-vctr" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-vsi-vctr:vsi-vector-profiles/bbf-vsi-vctr:vsi-vector-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="ethernetCsmacd-interface">
+          <ns:details keyName="name" keyPrefix="if" localName="interface" localNamePrefix="if" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface">
+            <ns:discriminator localName="type" localNamePrefix="if" value="ethernetCsmacd" valuePrefix="ianaift"/>
+          </ns:details>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="ieee8023adlag-interface">
+          <ns:details keyName="name" keyPrefix="if" localName="interface" localNamePrefix="if" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface">
+            <ns:discriminator localName="type" localNamePrefix="if" value="ieee8023adLag" valuePrefix="ianaift"/>
+          </ns:details>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="subscriber-profile">
+          <ns:details keyName="name" keyPrefix="bbf-subprof" localName="subscriber-profile" localNamePrefix="bbf-subprof" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-subprof:subscriber-profiles/bbf-subprof:subscriber-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="icmpv6-profile">
+          <ns:details keyName="name" keyPrefix="bbf-icmpv6" localName="icmpv6-profile" localNamePrefix="bbf-icmpv6" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/bbf-icmpv6:icmpv6-profiles/bbf-icmpv6:icmpv6-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="deviceBackups">
+          <ns:details keyName="slice-owner" keyPrefix="adch" localName="config-backup" localNamePrefix="adch" schemaNodeId="/anv:device-manager/adh:device/adch:device-config-history/adch:config-backup"/>
+        </ns:slicingResource>
+	      <ns:slicingResource uniqueIdentifier="qos-policing-pre-handling-profile">
+          <ns:details keyName="name" keyPrefix="nokia-qos-plc-ext" localName="pre-handling-entry" localNamePrefix="nokia-qos-plc-ext" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/nokia-qos-plc-ext:policing-pre-handling-profiles/nokia-qos-plc-ext:pre-handling-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="qos-policing-action-profile">
+          <ns:details keyName="name" keyPrefix="nokia-qos-plc-ext" localName="action-profile" localNamePrefix="nokia-qos-plc-ext" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/nokia-qos-plc-ext:policing-action-profiles/nokia-qos-plc-ext:action-profile"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="vlan-range-profile">
+          <ns:details keyName="name" keyPrefix="nokia-vlan-range" localName="vlan-range-profile" localNamePrefix="nokia-vlan-range" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/nokia-vlan-range:vlan-range-profiles/nokia-vlan-range:vlan-range-profile"/>
+        </ns:slicingResource>
+      </ns:deviceSlicingCreatables>
+
+      <ns:deviceSlicingViewScope>
+        <ns:slicingResource uniqueIdentifier="device-id">
+          <ns:details isLeaf="true" keyPrefix="adh" localName="device-id" localNamePrefix="adh" schemaNodeId="/anv:device-manager/adh:device/adh:device-id"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="hardware-type">
+          <ns:details isLeaf="true" keyPrefix="adh" localName="hardware-type" localNamePrefix="adh" schemaNodeId="/anv:device-manager/adh:device/adh:hardware-type"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="interface-version">
+          <ns:details isLeaf="true" keyPrefix="adh" localName="interface-version" localNamePrefix="adh" schemaNodeId="/anv:device-manager/adh:device/adh:interface-version"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="device-state">
+          <ns:details keyPrefix="adh" localName="device-state" localNamePrefix="adh" schemaNodeId="/anv:device-manager/adh:device/adh:device-state"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="device-specific-data">
+          <ns:details keyPrefix="adh" localName="device-specific-data" localNamePrefix="adh" schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="configured-labels">
+          <ns:details keyPrefix="tag" localName="configured-labels" localNamePrefix="tag" schemaNodeId="/anv:device-manager/adh:device/tag:configured-labels"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="config-history">
+          <ns:details keyPrefix="adch" localName="config-backup" localNamePrefix="adch" schemaNodeId="/anv:device-manager/adh:device/adch:device-config-history/adch:config-backup"/>
+        </ns:slicingResource>
+      </ns:deviceSlicingViewScope>
+
+      <ns:deviceSlicingViewExcludes>
+        <ns:slicingResource uniqueIdentifier="onus-present-on-local-channel-termination">
+          <ns:details schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces-state/if:interface/bbf-xpon:channel-termination/bbf-xpon-onu-s:onus-present-on-local-channel-termination/bbf-xpon-onu-s:onu"/>
+        </ns:slicingResource>
+        <ns:slicingResource uniqueIdentifier="hardware-state-sensor-data">
+             <ns:details schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/hw:hardware-state/hw:component/hw:sensor-data"/>
+        </ns:slicingResource> 
+        <ns:slicingResource uniqueIdentifier="hardware-state-state">
+             <ns:details schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/hw:hardware-state/hw:component/hw:state"/>
+        </ns:slicingResource> 
+        <ns:slicingResource uniqueIdentifier="hardware-state-transceiver-link-diagnostics">
+             <ns:details schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/hw:hardware-state/hw:component/bbf-hw-xcvr:transceiver-link/bbf-hw-xcvr:diagnostics"/>
+        </ns:slicingResource> 
+        <ns:slicingResource uniqueIdentifier="hardware-state-transceiver-diagnostics">
+             <ns:details schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/hw:hardware-state/hw:component/bbf-hw-xcvr:transceiver/bbf-hw-xcvr:diagnostics"/>
+        </ns:slicingResource> 
+        <ns:slicingResource uniqueIdentifier="hardware-state-transceiver-thresholds">
+             <ns:details schemaNodeId="/anv:device-manager/adh:device/adh:device-specific-data/hw:hardware-state/hw:component/bbf-hw-xcvr:transceiver/bbf-hw-xcvr:thresholds"/>
+        </ns:slicingResource>
+      </ns:deviceSlicingViewExcludes>
+
+      <ns:editValidationChecks evaluateXqueryAgainstDatastore="true">
+
+        <ns:xqmap uniqueIdentifier="ALLOCMAP" xqmapTemplate="declare variable $ALLOCMAP := map:merge(for $q in /anv:device-manager/adh:device/slicing:slicing/slicing:slice[slicing:slice-owner/text()='SLICING_OWNER']/slicing:resource-allocation/slicing:private-and-read-only-resource return map:entry( $q/slicing:name/text(), $q/slicing:private-resource-name/text()));"/>
+		
+        <ns:xqmap uniqueIdentifier="CP" xqmapTemplate=" declare variable $CP :=map:merge(for $p in /anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface[if:type='bbf-xponift:channel-pair']   return map:entry               (                  string($p/if:name),map:merge                  (                       (                          
+        map:entry('name',string($p/if:name)),
+        map:entry('channel-group-ref',string($p/bbf-xpon:channel-pair/bbf-xpon:channel-group-ref)),
+        map:entry('channel-pair-type',string($p/bbf-xpon:channel-pair/bbf-xpon:channel-pair-type))                       )                  )               )   );"/>
+		
+        <ns:xqmap uniqueIdentifier="SCG" xqmapTemplate=" declare variable $SCG :=map:merge(for $p in /anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface[if:type='bbf-xponift:channel-partition'] return map:entry ( string($p/if:name),map:merge ( ( 
+        map:entry('name',string($p/if:name)),
+        map:entry('scheduler-node', 
+            map:merge(for $sn in $p/bbf-qos-tm:tm-root/bbf-qos-sched:scheduler-node return map:entry( string($sn/bbf-qos-sched:name), map:merge(( 
+                map:entry('queue-bac-names', distinct-values(for $queue in $sn/bbf-qos-sched:queue where exists($queue/bbf-qos-sched:bac-name) return string($queue/bbf-qos-sched:bac-name))),
+                map:entry('local-queue-ids', for $queue in $sn/bbf-qos-sched:queue return number($queue/bbf-qos-sched:local-queue-id)),
+                map:entry('child-scheduler-nodes', for $cname in $sn/bbf-qos-sched:child-scheduler-nodes/bbf-qos-sched:name return string($cname))
+                ))))),
+        map:entry('channel-group-ref',string($p/bbf-xpon:channel-partition/bbf-xpon:channel-group-ref)),
+        map:entry('channel-pair-type',string($p/bbf-xpon:channel-partition/bbf-xpon:channel-partition-index)) ) ) ) );"/>
+		
+        <ns:xqmap uniqueIdentifier="SN2SCG" xqmapTemplate=" declare variable $SN2SCG :=map:merge((
+            for $scgname in map:keys($SCG) for $snname in map:keys($SCG($scgname)('scheduler-node')) return map:entry($snname,$scgname)), map{'duplicates':'combine'});"/>
+			
+        <ns:xqmap uniqueIdentifier="CHILDSN2SCG" xqmapTemplate=" declare variable $CHILDSN2SCG :=map:merge((
+            for $scgname in map:keys($SCG) for $snname in map:keys($SCG($scgname)('scheduler-node')) 
+                for $childsnname in $SCG($scgname)('scheduler-node')($snname)('child-scheduler-nodes') return map:entry($childsnname,$scgname)), map{'duplicates':'combine'});"/>
+				
+        <ns:xqmap uniqueIdentifier="CT" xqmapTemplate=" declare variable $CT :=map:merge(for $p in /anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface[if:type='bbf-xponift:channel-termination'] return map:entry ( string($p/if:name),map:merge ( ( map:entry('name',string($p/if:name)),map:entry('channel-pair-ref',string($p/bbf-xpon:channel-termination/bbf-xpon:channel-pair-ref)) ) ) ) ); "/>
+		
+        <ns:xqmap uniqueIdentifier="VANI" xqmapTemplate=" declare variable $VANI :=map:merge(for $p in /anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface[if:type='bbf-xponift:v-ani'] return map:entry ( string($p/if:name), map:merge ( ( map:entry('name',string($p/if:name)), map:entry('preferred-channel-pair',string($p/bbf-xponvani:v-ani/bbf-xponvani:preferred-channel-pair)), map:entry('protection-channel-pair',string($p/bbf-xponvani:v-ani/bbf-xponvani:protection-channel-pair)), map:entry('channel-group-ref',$CP($p/bbf-xponvani:v-ani/bbf-xponvani:preferred-channel-pair)('channel-group-ref') ), map:entry('channel-pair-type',$CP($p/bbf-xponvani:v-ani/bbf-xponvani:preferred-channel-pair)('channel-pair-type') ), map:entry('channel-partition', $p/bbf-xponvani:v-ani/bbf-xponvani:channel-partition/text()) ) ) ) );"/>
+		
+        <ns:xqmap uniqueIdentifier="TCONT" xqmapTemplate="declare variable $TCONT :=map:merge(for $p in /anv:device-manager/adh:device/adh:device-specific-data/bbf-xpongemtcont:xpongemtcont/bbf-xpongemtcont:tconts/bbf-xpongemtcont:tcont   return map:entry(string($p/bbf-xpongemtcont:name),map:merge((map:entry('name', string($p/bbf-xpongemtcont:name)),map:entry('alloc-id', string($p/bbf-xpongemtcont:alloc-id)),map:entry('interface-reference', string($p/bbf-xpongemtcont:interface-reference)), map:entry('tdp', string($p/bbf-xpongemtcont:traffic-descriptor-profile-ref)), map:entry('jitter-tolerance', number(bbf-xpongemtcont:xpongemtcont/bbf-xpongemtcont:traffic-descriptor-profiles/bbf-xpongemtcont:traffic-descriptor-profile[bbf-xpongemtcont:name=$p/bbf-xpongemtcont:traffic-descriptor-profile-ref]/nokia-sdan-traffic-descriptor-profile-aug:jitter-tolerance)))))); "/>
+		
+        <ns:xqmap uniqueIdentifier="CP2CT" xqmapTemplate="declare variable $CP2CT :=map:merge( (for $p in map:keys($CT)   return map:entry ( $CT($p)('channel-pair-ref'), $p )  ),map{'duplicates':'reject'}); "/>
+		
+        <ns:xqmap uniqueIdentifier="TCINCT" xqmapTemplate="declare variable $TCINCT := map:merge( ( for $tcont in map:keys($TCONT) let $vani:=$TCONT($tcont)('interface-reference') let $cp:=$VANI($vani)('preferred-channel-pair') let $ct:=$CP2CT($cp) return map:entry($ct,1) ) ,map{'duplicates':'combine'} ); "/>
+		
+        <ns:xqmap uniqueIdentifier="VENET" xqmapTemplate="declare variable $VENET :=map:merge(for $p in /anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface[if:type='bbf-xponift:olt-v-enet'] return map:entry ( string($p/if:name), map:merge (( map:entry('name', string($p/if:name)), map:entry('lower-layer-interface', string($p/bbf-xponvani:olt-v-enet/bbf-xponvani:lower-layer-interface)))))); "/>
+		
+        <ns:xqmap uniqueIdentifier="FPP" xqmapTemplate="
+        declare variable $FPP := 
+          map:merge(for $q in /anv:device-manager/adh:device/adh:device-specific-data/bbf-frameproc:frame-processing-profiles/bbf-frameproc:frame-processing-profile 
+            return map:entry(string($q/bbf-frameproc:name/text()), 
+              map:merge((
+                map:entry('tag',number($q/bbf-frameproc:match-criteria/bbf-frameproc:tag[bbf-frameproc:index=0]/bbf-frameproc:vlan-id/text())), 
+                map:entry('push-tag', number($q/bbf-frameproc:egress-rewrite/bbf-frameproc:push-tag[bbf-frameproc:index=0]/bbf-frameproc:vlan-id/text()))))));"/>
+				
+        <ns:xqmap uniqueIdentifier="VSI" xqmapTemplate="declare variable $VSI :=map:merge(for $p in /anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface[if:type='bbfift:vlan-sub-interface'] return map:entry ( string($p/if:name), map:merge ( (
+        map:entry('name', string($p/if:name)), 
+        map:entry('frameproc', string($p/bbf-frameproc:frame-processing-profile-ref/text())), 
+        map:entry('interface-usage', string($p/bbf-if-usg:interface-usage/bbf-if-usg:interface-usage)), 
+        map:entry('interface', string($p/bbf-subif:subif-lower-layer/bbf-subif:interface)),
+        map:entry('tag-0', number($p/bbf-frameproc:tag-0/bbf-frameproc:vlan-id)), 
+        map:entry('scheduler-node-name', string($p/bbf-qos-sched:egress-tm-objects/bbf-qos-sched:scheduler-node-name)), 
+        map:entry('egress-qos-policy-profile', string($p/bbf-qos-pol:egress-qos-policy-profile)), 
+        map:entry('ingress-qos-policy-profile', string($p/bbf-qos-pol:ingress-qos-policy-profile)) ) ) ) ); "/>
+		
+        <ns:xqmap uniqueIdentifier="ITF2VANI" xqmapTemplate="declare variable $ITF2VANI :=map:merge( ( ( for $p in map:keys($VENET) return map:entry ( $p, $VENET($p)('lower-layer-interface') ) ), ( for $p in map:keys($VSI) where (map:contains($VENET,$VSI($p)('interface'))) return map:entry ( $p, $VENET($VSI($p)('interface'))('lower-layer-interface') ) ) ),map{'duplicates':'combine'}); "/>
+		
+        <ns:xqmap uniqueIdentifier="GEMPORT" xqmapTemplate="declare variable $GEMPORT :=map:merge(for $p in /anv:device-manager/adh:device/adh:device-specific-data/bbf-xpongemtcont:xpongemtcont/bbf-xpongemtcont:gemports/bbf-xpongemtcont:gemport   return map:entry               (                  string($p/bbf-xpongemtcont:name),                   map:merge                  (                       (                          map:entry('name', string($p/bbf-xpongemtcont:name)),        map:entry('itf-ref', string($p/bbf-xpongemtcont:interface)),        map:entry('gemport-id', string($p/bbf-xpongemtcont:gemport-id))                       )                  )               )   ); "/>
+		
+        <ns:xqmap uniqueIdentifier="CP2VANI" xqmapTemplate="declare variable $CP2VANI :=map:merge( (for $p in map:keys($VANI)   return map:entry               (                  $VANI($p)('preferred-channel-pair'),                   $p               )  ),map{'duplicates':'combine'}); "/>
+		
+        <ns:xqmap uniqueIdentifier="CPART2VANI" xqmapTemplate="declare variable $CPART2VANI :=map:merge( (for $p in map:keys($VANI)   return map:entry               (                  $VANI($p)('channel-partition'), $p )  ),map{'duplicates':'combine'}); "/>
+		
+        <ns:xqmap uniqueIdentifier="VANI2TCONT" xqmapTemplate="declare variable $VANI2TCONT :=map:merge( (for $p in map:keys($TCONT)   return map:entry               (                  $TCONT($p)('interface-reference'), $p)),map{'duplicates':'combine'}); "/>
+		
+        <ns:xqmap uniqueIdentifier="ITF2GEMPORT" xqmapTemplate="declare variable $ITF2GEMPORT :=map:merge( (for $p in map:keys($GEMPORT)   return map:entry               (                  $GEMPORT($p)('itf-ref'), $p)),map{'duplicates':'combine'}); "/>
+		
+        <ns:xqmap uniqueIdentifier="VANI2VENET" xqmapTemplate="declare variable $VANI2VENET :=map:merge( (for $p in map:keys($VENET)   return map:entry               (                  $VENET($p)('lower-layer-interface'),                   $p               )  ),map{'duplicates':'combine'}); "/>
+		
+        <ns:xqmap uniqueIdentifier="VENET2VSI" xqmapTemplate="declare variable $VENET2VSI :=map:merge( (for $p in map:keys($VSI)   return map:entry               (                  $VSI($p)('interface'),                   $p               )  ),map{'duplicates':'combine'});   "/>
+		
+        <ns:xqmap uniqueIdentifier="VANI2VSI" xqmapTemplate="declare variable $VANI2VSI :=map:merge( ( for $p in map:keys($VANI2VENET)   for $venet in $VANI2VENET($p)    return map:entry($p,$VENET2VSI($venet ))    ),map{'duplicates':'combine'});  "/>
+		
+        <ns:xqmap uniqueIdentifier="QOSProF" xqmapTemplate="declare variable $QOSProF :=map:merge( (for $prf in /anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-pol:qos-policy-profiles/bbf-qos-pol:policy-profile     for $policy in $prf/bbf-qos-pol:policy-list      return map:entry($prf/bbf-qos-pol:name,$policy/bbf-qos-pol:name)  ),map{'duplicates':'combine'}); "/>
+		
+        <ns:xqmap uniqueIdentifier="QOSPolicyPF" xqmapTemplate="declare variable $QOSPolicyPF :=map:merge( (for $p in /anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-pol:policies/bbf-qos-pol:policy     for $c in $p/bbf-qos-pol:classifiers      return map:entry($p/bbf-qos-pol:name,$c/bbf-qos-pol:name)  ),map{'duplicates':'combine'}); "/>
+		
+        <ns:xqmap uniqueIdentifier="QOSClassPF" xqmapTemplate="declare variable $QOSClassPF :=map:merge( for $classentry in /anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-cls:classifiers/bbf-qos-cls:classifier-entry   return map:entry  (   string($classentry/bbf-qos-cls:name),    map:merge   ((     map:entry('name', string($classentry/bbf-qos-cls:name)),     map:entry(      'classifier-action-entry-cfg',                   map:merge      ((         for $classaction in $classentry/bbf-qos-cls:classifier-action-entry-cfg        return map:entry(         string($classaction/bbf-qos-cls:action-type),          map:merge         ((          map:entry('action-type', string($classaction/bbf-qos-cls:action-type)),          map:entry('policing-profile', string($classaction/bbf-qos-plc:policing/bbf-qos-plc:policing-profile))         ))                   )      ))     )         ))  ) );  "/>
+		
+        <ns:xqmap uniqueIdentifier="QOSPolicingPF" xqmapTemplate="declare variable $QOSPolicingPF :=map:merge( for $pf in /anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-plc:policing-profiles/bbf-qos-plc:policing-profile   return map:entry  (   string($pf/bbf-qos-plc:name),    map:merge   ((     map:entry('name', string($pf/bbf-qos-plc:name)),     map:entry('scope', string($pf/bbf-qos-plc:scope)),     map:entry('cir', ($pf/*/bbf-qos-plc:cir))       ))  ) );"/>
+		
+        <ns:xqmap uniqueIdentifier="QOSPF2PolicingPF" xqmapTemplate="declare variable $QOSPF2PolicingPF :=map:merge( ( for $p in map:keys($QOSProF)   let $SumVsiPolicingCir:=0+sum(    for $POLICY_LIST in $QOSProF($p)    for $CLASSIFIER in $QOSPolicyPF($POLICY_LIST)     where map:contains($QOSClassPF($CLASSIFIER)('classifier-action-entry-cfg'),'bbf-qos-plc:policing')     let $CLASSIFIER_ACTION :=  $QOSClassPF($CLASSIFIER)('classifier-action-entry-cfg')('bbf-qos-plc:policing')('policing-profile')     let $QOSPolicing:=$QOSPolicingPF($CLASSIFIER_ACTION)     return if ($QOSPolicing('scope')='bbf-qos-cls:vlan-sub-interface')        then  $QOSPolicing('cir')       else 0)     let $SumVenetPolicingCir:=0+sum(    for $POLICY_LIST in $QOSProF($p)    for $CLASSIFIER in $QOSPolicyPF($POLICY_LIST)     where map:contains($QOSClassPF($CLASSIFIER)('classifier-action-entry-cfg'),'bbf-qos-plc:policing')     let $CLASSIFIER_ACTION :=  $QOSClassPF($CLASSIFIER)('classifier-action-entry-cfg')('bbf-qos-plc:policing')('policing-profile')     let $QOSPolicing:=$QOSPolicingPF($CLASSIFIER_ACTION)     return if ($QOSPolicing('scope')='bbf-qos-cls:ethernet-interface')        then  $QOSPolicing('cir')       else 0)          return map:entry   (    $p,     map:merge    ((      map:entry('VsiPolicingCir', ($SumVsiPolicingCir)),      map:entry('VenetPolicingCir', ($SumVenetPolicingCir))              ))   )    ),map{'duplicates':'combine'});   "/>
+        <!--
+                     <ns:xqmap uniqueIdentifier="UniqueGemportidMap" xqmapTemplate="declare function validator-map:GetvaniByItf1($Itf_gemport) {
+            let $vani_gemport:=$ITF2VANI($Itf_gemport) 
+            return $vani_gemport };
+       declare function validator-map:Get_joinedUniqueKey($gemportkey) {
+          let $gemport:=$GEMPORT($gemportkey)
+          let $vani_gemport:=validator-map:GetvaniByItf1($gemport('itf-ref'))
+
+          let $cptype:=$VANI($vani_gemport)('channel-pair-type')
+          let $cg:=$VANI($vani_gemport)('channel-group-ref')
+          let $gemportid:=$gemport('gemport-id')
+          let $joinedKey:=concat($cg,'=',$cptype,'=',$gemportid)
+          return $joinedKey};
+ 
+        declare function validator-map:justadd($a, $b) { $a + $b };
+        declare variable $UniqueGemportidMap:=map:merge( (
+           for $gemportkey in map:keys($GEMPORT)
+           let $joinedKey:=validator-map:Get_joinedUniqueKey($gemportkey)
+           return map:entry($joinedKey,1)) , map{QName('http://saxon.sf.net/','on-duplicates'):validator-map:justadd});"/> 
+           -->
+        <ns:xqmap uniqueIdentifier="UniqueGemportidMap" xqmapTemplate="declare function validator-map:GetvaniByItf1($Itf_gemport) {
+            let $vani_gemport:=$ITF2VANI($Itf_gemport) 
+            return $vani_gemport };
+       declare function validator-map:Get_joinedUniqueKey($gemportkey) {
+          let $gemport:=$GEMPORT($gemportkey)
+          let $vani_gemport:=validator-map:GetvaniByItf1($gemport('itf-ref'))
+
+          let $cptype:=$VANI($vani_gemport)('channel-pair-type')
+          let $cg:=$VANI($vani_gemport)('channel-group-ref')
+          let $gemportid:=$gemport('gemport-id')
+          let $joinedKey:=concat($cg,'=',$cptype,'=',$gemportid)
+          return $joinedKey};
+ 
+        declare variable $UniqueGemportidMap:=map:merge(
+           let $tmpmap:=map:merge( (
+               for $gemportkey in map:keys($GEMPORT)
+               let $joinedKey:=validator-map:Get_joinedUniqueKey($gemportkey)
+               return map:entry($joinedKey,1)) ,map{'duplicates':'combine'})
+           for $tmpkey in map:keys($tmpmap)
+               return map:entry($tmpkey,sum(map:get($tmpmap,$tmpkey))));"/>
+			   
+        <ns:xqmap uniqueIdentifier="FORWARDERS" xqmapTemplate="declare variable $FORWARDERS:= map:merge(for $fwd in /anv:device-manager/adh:device/adh:device-specific-data/bbf-l2-fwd:forwarding/bbf-l2-fwd:forwarders/bbf-l2-fwd:forwarder return map:entry(string($fwd/bbf-l2-fwd:name),map:merge((
+            map:entry('flooding-policies',string($fwd/bbf-l2-fwd:flooding-policies)), 
+            map:entry('sub-interface', for $subif in $fwd/bbf-l2-fwd:ports/bbf-l2-fwd:port/bbf-l2-fwd:sub-interface return string($subif)),
+            map:entry('forwarding-database', for $fdb in $fwd/bbf-l2-fwd:mac-learning/bbf-l2-fwd:forwarding-database return string($fdb))
+            ), map{'duplicates':'combine'})));"/> 
+			
+        <ns:xqmap uniqueIdentifier="FORWARDINGDB" xqmapTemplate="declare variable $FORWARDINGDB:= map:merge(for $fdb in /anv:device-manager/adh:device/adh:device-specific-data/bbf-l2-fwd:forwarding/bbf-l2-fwd:forwarding-databases/bbf-l2-fwd:forwarding-database return map:entry(string($fdb/bbf-l2-fwd:name),map:merge((
+            map:entry('aging-timer',number($fdb/bbf-l2-fwd:aging-timer)), 
+            map:entry('max-number-mac-addresses',number($fdb/bbf-l2-fwd:max-number-mac-addresses))))));"/> 
+			
+        <ns:xqmap uniqueIdentifier="VSI2FDB" xqmapTemplate="declare variable $VSI2FDB:= map:merge((
+               for $fwd in map:keys($FORWARDERS) 
+                   for $vsi in $FORWARDERS($fwd)('sub-interface')
+                       return map:entry($vsi,$FORWARDERS($fwd)('forwarding-database'))),map{'duplicates':'combine'});"/> 
+					   
+        <ns:xqmap uniqueIdentifier="MCASTVPN" xqmapTemplate="declare variable $MCASTVPN:=map:merge(for $mvpn in /anv:device-manager/adh:device/adh:device-specific-data/bbf-mgmd:multicast/bbf-mgmd:mgmd/bbf-mgmd:multicast-vpn return map:entry(string ($mvpn/bbf-mgmd:name), map:merge(for $mitf in $mvpn/bbf-mgmd:multicast-interface-to-host return map:entry(string($mitf/bbf-mgmd:name), map:merge((map:entry('vsi', string($mitf/bbf-mgmd:vlan-sub-interface)), map:entry('max-group-number', number($mitf/bbf-mgmd:max-group-number))))))));"/>
+		
+        <ns:xqmap uniqueIdentifier="VSI2MITF" xqmapTemplate="declare variable $VSI2MITF:= map:merge((for $mvpn in map:keys($MCASTVPN) for $mitfkey in map:keys(map:get($MCASTVPN, $mvpn)) return map:entry($MCASTVPN($mvpn)($mitfkey)('vsi'),$mitfkey)),map{'duplicates':'combine'}); "/>
+		
+        <ns:xqmap uniqueIdentifier="VSI2MVPN" xqmapTemplate="declare variable $VSI2MVPN:= map:merge((for $mvpnkey in map:keys($MCASTVPN) for $mitfkey in map:keys(map:get($MCASTVPN, $mvpnkey)) return map:entry($MCASTVPN($mvpnkey)($mitfkey)('vsi'),$mvpnkey)),map{'duplicates':'combine'}); "/>
+		
+        <ns:xqmap uniqueIdentifier="VANI2VENET2VSI" 
+        xqmapTemplate="declare variable $VANI2VENET2VSI:=map:merge((
+        for $vani in map:keys($VANI2VENET)
+            let $vsidistinct := distinct-values(for $venet in map:get($VANI2VENET,$vani) return map:get($VENET2VSI,$venet))
+                return map:entry($vani,$vsidistinct)), map{'duplicates':'combine'});"/> 
+        <!--
+                     <ns:xqmap uniqueIdentifier="VSI2MAXGROUPNUMBER" xqmapTemplate="declare variable $VSI2MAXGROUPNUMBER:=map:merge((for $mvpn in map:keys($MCASTVPN) for $mitf in map:keys(map:get($MCASTVPN,$mvpn)) return map:entry($MCASTVPN($mvpn)($mitf)('vsi'), $MCASTVPN($mvpn)($mitf)('max-group-number'))),map{QName('http://saxon.sf.net/','on-duplicates'):validator-map:justadd});"/> 
+        -->
+        <ns:xqmap uniqueIdentifier="VSI2MAXGROUPNUMBER" 
+        xqmapTemplate="declare variable $VSI2MAXGROUPNUMBER:=map:merge(
+          let $tmpmap := map:merge((for $mvpn in map:keys($MCASTVPN) for $mitf in map:keys(map:get($MCASTVPN,$mvpn)) 
+              return map:entry($MCASTVPN($mvpn)($mitf)('vsi'), $MCASTVPN($mvpn)($mitf)('max-group-number'))),map{'duplicates':'combine'})
+          for $tmpkey in map:keys($tmpmap) 
+              return map:entry($tmpkey, sum(map:get($tmpmap,$tmpkey))));"/> 
+			  
+        <ns:xqmap uniqueIdentifier="TDP" 
+        xqmapTemplate="declare variable $TDP:=map:merge(
+        for $TDP in /anv:device-manager/adh:device/adh:device-specific-data/bbf-xpongemtcont:xpongemtcont/bbf-xpongemtcont:traffic-descriptor-profiles/bbf-xpongemtcont:traffic-descriptor-profile return map:entry(string($TDP/bbf-xpongemtcont:name), 
+            map:merge((map:entry('fixed-bandwidth', number($TDP/bbf-xpongemtcont:fixed-bandwidth)), map:entry('maximum-bandwidth', number($TDP/bbf-xpongemtcont:maximum-bandwidth)),map:entry('assured-bandwidth',number($TDP/bbf-xpongemtcont:assured-bandwidth)))))); "/>
+
+
+        <ns:xqmap uniqueIdentifier="TCONT2CIR" 
+        xqmapTemplate="declare variable $TCONT2CIR:=map:merge(
+           for $tcont in map:keys($TCONT) return
+            map:entry($tcont, number($TDP($TCONT($tcont)('tdp'))('fixed-bandwidth'))));"/> 
+
+        <ns:xqmap uniqueIdentifier="TCONT2PIR" 
+        xqmapTemplate="declare variable $TCONT2PIR:=map:merge(
+           for $tcont in map:keys($TCONT) return
+            map:entry($tcont, number($TDP($TCONT($tcont)('tdp'))('maximum-bandwidth'))));"/>
+ 
+        <ns:xqmap uniqueIdentifier="NETVLANID" xqmapTemplate="declare variable $NETVLANID := map:entry('svlanid',distinct-values(for $vsi in (let $itfs:=('vlan-sub-interface','olt-v-enet-interface','v-ani-interface')
+        let $ALLOC := (for $itf in $itfs return $ALLOCMAP($itf))
+        for $tmp in map:keys($VSI) where (starts-with($tmp,'SLICING_PREFIX~') or $tmp=$ALLOC) return $tmp)
+            where $VSI($vsi)('interface-usage')='network-port' and map:get($VSI($vsi),'frameproc')
+                return (if(map:get($VSI($vsi),'tag-0')) then ($VSI($vsi)('tag-0')) else (let $fp := $VSI($vsi)('frameproc')return $FPP($fp)('tag')))));"/>
+
+
+        <ns:xquery errorMessage="S-VLAN is not in allowed range" uniqueIdentifier="sVlanRange" xqueryTemplate="declare variable $LOCALMAP external;                
+        declare variable $NETVLANID:= $LOCALMAP('NETVLANID');
+	    let $SVLANRANGE := for $p in tokenize(('VLAN_ID'),',') 
+	        return(if(contains ($p, '-' )) then( let $c := (for $b in (let $a := tokenize($p,'-') return $a) return xs:integer($b)) return ($c[1] to $c[2])) else number($p))				
+            return count(map:get($NETVLANID,'svlanid')[not(.=$SVLANRANGE)])&gt;0">
+	    <ns:scopeId>frameProc_tag0_scope</ns:scopeId>
+	    <ns:scopeId>vsi_tag0_scope</ns:scopeId>
+		<ns:scopeId>interface_frameProcRef_scope</ns:scopeId>
+		</ns:xquery>   
+ 						  
+		<ns:xquery errorMessage="Maximum allowed configured GEM port per ONU(VANI) limit of ONU_MAX_GEM exceeded" uniqueIdentifier="GEMPerVaniLimit" xqueryTemplate=
+		"declare variable $LOCALMAP external;
+		declare variable $VANI2VENET2VSI:= $LOCALMAP('VANI2VENET2VSI');
+		declare variable $ITF2GEMPORT:=$LOCALMAP('ITF2GEMPORT');
+		declare variable $ALLOCMAP:=$LOCALMAP('ALLOCMAP');
+		some $vani in
+		(let $itfs:=('vlan-sub-interface','olt-v-enet-interface','v-ani-interface')
+		let $ALLOC := (for $itf in $itfs return $ALLOCMAP($itf))
+		for $tmp in map:keys($VANI2VENET2VSI)
+		where (starts-with($tmp,'SLICING_PREFIX~') or $tmp=$ALLOC) return $tmp)
+		satisfies sum( for $vsi in map:get($VANI2VENET2VSI,$vani) return count(map:get($ITF2GEMPORT,$vsi)))>ONU_MAX_GEM">
+          <ns:scopeId>gemPort_scope</ns:scopeId>
+		</ns:xquery>   			
+		
+        <ns:xquery errorMessage="Maximum allowed configured T-CONT per ONU(VANI) limit of ONU_MAX_TCONT exceeded on slice" uniqueIdentifier="TCONTPerVaniLimit" xqueryTemplate="declare variable $LOCALMAP external; 
+        declare variable $VANI2TCONT :=$LOCALMAP('VANI2TCONT'); 
+        declare variable $ALLOCMAP:=$LOCALMAP('ALLOCMAP'); 
+        some $key in 
+                (let $itfs:=('vlan-sub-interface','olt-v-enet-interface','v-ani-interface')
+                 let $ALLOC := (for $itf in $itfs return $ALLOCMAP($itf)) 
+        for $tmp in map:keys($VANI2TCONT) 
+        where (starts-with($tmp,'SLICING_PREFIX~') or $tmp=$ALLOC) return $tmp)
+        satisfies count(map:get($VANI2TCONT,$key))&gt;ONU_MAX_TCONT"> 
+		<ns:scopeId>gemTcont_scope</ns:scopeId>
+		</ns:xquery>   					
+
+
+        <ns:xquery errorMessage="Maximum allowed configured VSIs per ONU limit of ONU_MAX_VSI exceeded on slice" uniqueIdentifier="VSIPerVaniLimit" xqueryTemplate="declare variable $LOCALMAP external; declare variable $VANI2VENET :=$LOCALMAP('VANI2VENET');  
+        declare variable $VENET2VSI:=$LOCALMAP('VENET2VSI');  declare variable $VSI:=$LOCALMAP('VSI');
+        declare variable $ALLOCMAP:=$LOCALMAP('ALLOCMAP'); 
+        some $vani in (
+                 let $itfs:=('vlan-sub-interface','olt-v-enet-interface','v-ani-interface')
+                 let $ALLOC := (for $itf in $itfs return $ALLOCMAP($itf)) 
+        for $tmp in map:keys($VANI2VENET) 
+        where (starts-with($tmp,'SLICING_PREFIX~') or $tmp=$ALLOC) return $tmp)
+        satisfies sum(for $uni in map:get($VANI2VENET,$vani) return count(for $vsi in map:get($VENET2VSI, $uni) where $VSI($vsi)('interface-usage')='user-port' return $vsi))&gt;ONU_MAX_VSI">
+		<ns:scopeId>interface_vsi_scope</ns:scopeId>
+		</ns:xquery>   			
+
+        <ns:xquery errorMessage="Maximum allowed configured N:1 forwarder limit of MAX_NTO1_FWD exceeded on slice" uniqueIdentifier="Nto1FWDLimit" xqueryTemplate="declare variable $LOCALMAP external; declare variable $FORWARDERS :=$LOCALMAP('FORWARDERS');  
+        declare variable $ALLOCMAP:=$LOCALMAP('ALLOCMAP'); 
+        count(for $key in 
+        (let $ALLOC := $ALLOCMAP('forwarder') for $tmp in map:keys($FORWARDERS)
+        where (starts-with($tmp,'SLICING_PREFIX~') or $tmp=$ALLOC) return $tmp)
+        where string-length($FORWARDERS($key)('flooding-policies'))&gt;0 return $key)&gt;MAX_NTO1_FWD">
+		<ns:scopeId>forwarder_scope</ns:scopeId>
+		</ns:xquery>   					
+
+        <ns:xquery errorMessage="Maximum allowed configured aging time limit of MAX_AGING_TIME exceeded on slice" uniqueIdentifier="AgingTimerLimit" xqueryTemplate="declare variable $LOCALMAP external; declare variable $FORWARDINGDB :=$LOCALMAP('FORWARDINGDB');  
+        declare variable $ALLOCMAP:=$LOCALMAP('ALLOCMAP'); 
+        some $key in 
+        (let $ALLOC := $ALLOCMAP('forwarding-database') for $tmp in map:keys($FORWARDINGDB) 
+        where (starts-with($tmp,'SLICING_PREFIX~') or $tmp=$ALLOC) return $tmp)
+        satisfies $FORWARDINGDB($key)('aging-timer')&gt;MAX_AGING_TIME">
+		<ns:scopeId>forwardingDatabase_scope</ns:scopeId>
+		</ns:xquery>   					
+
+        <ns:xquery errorMessage="Maximum allowed configured multicast proxy limit of MAX_MCPXORY exceeded" uniqueIdentifier="MCProxyLimit" xqueryTemplate="declare variable $LOCALMAP external; declare variable $ALLOCMAP :=$LOCALMAP('ALLOCMAP');  count(let $ALLOC := $ALLOCMAP('multicast-proxy-profile')          for $MC_PROXY_PROFILE in /anv:device-manager/adh:device/adh:device-specific-data/bbf-mgmd:multicast/bbf-mgmd:mgmd/bbf-mgmd:multicast-proxy-profile          where ($MC_PROXY_PROFILE/bbf-mgmd:name[starts-with(text(),'SLICING_PREFIX~')] or $MC_PROXY_PROFILE/bbf-mgmd:name[text()=$ALLOC]) return $MC_PROXY_PROFILE)&gt;MAX_MCPXORY">
+		<ns:scopeId>multicastProxyProfile_scope</ns:scopeId>
+		</ns:xquery>		
+		
+        <ns:xquery errorMessage="Maximum allowed configured multicast channels limit of MAX_MCCHANNEL exceeded" uniqueIdentifier="MCChannelLimit" xqueryTemplate="declare variable $LOCALMAP external; declare variable $ALLOCMAP :=$LOCALMAP('ALLOCMAP');  count(let $ALLOC := $ALLOCMAP('multicast-vpn')          for $MCVPN in /anv:device-manager/adh:device/adh:device-specific-data/bbf-mgmd:multicast/bbf-mgmd:mgmd/bbf-mgmd:multicast-vpn          where ($MCVPN/bbf-mgmd:name[starts-with(text(),'SLICING_PREFIX~')] or $MCVPN/bbf-mgmd:name[text()=$ALLOC])          return $MCVPN/bbf-mgmd:multicast-channel/bbf-mgmd:name)&gt;MAX_MCCHANNEL">
+		<ns:scopeId>multicastVpn_scope</ns:scopeId>
+		</ns:xquery>   					
+
+
+        <ns:xquery errorMessage="Maximum allowed IGMP joins per ONU(VANI) limit of ONU_MAX_IGMP_JOIN exceeded on slice" uniqueIdentifier="IGMPJoinPerVaniLimit" 
+        xqueryTemplate="declare variable $LOCALMAP external; declare variable $VANI2VENET2VSI:= $LOCALMAP('VANI2VENET2VSI'); 
+        declare variable $VSI2MAXGROUPNUMBER:=$LOCALMAP('VSI2MAXGROUPNUMBER'); 
+        declare variable $ALLOCMAP:=$LOCALMAP('ALLOCMAP'); 
+        some $vani in (
+                 let $itfs:=('vlan-sub-interface','olt-v-enet-interface','v-ani-interface')
+                 let $ALLOC := (for $itf in $itfs return $ALLOCMAP($itf)) 
+        for $tmp in map:keys($VANI2VENET2VSI) 
+        where (starts-with($tmp,'SLICING_PREFIX~') or $tmp=$ALLOC) return $tmp)
+        satisfies sum(
+                for $vsi in map:get($VANI2VENET2VSI,$vani)
+                    return map:get($VSI2MAXGROUPNUMBER, $vsi))&gt;ONU_MAX_IGMP_JOIN">
+		<ns:scopeId>multicastVpn_scope</ns:scopeId>
+		</ns:xquery>   								
+
+        <ns:xquery errorMessage="Maximum allowed configured queue for level 2 scheduler node limit of L2_SCHEDULER_MAX_QUEUE in slice" uniqueIdentifier="QueuePerL2SchedulerLimit" 
+        xqueryTemplate="declare variable $LOCALMAP external; declare variable $SCG :=$LOCALMAP('SCG'); declare variable $SN2SCG :=$LOCALMAP('SN2SCG');  
+        declare variable $CHILDSN2SCG :=$LOCALMAP('CHILDSN2SCG'); 
+        declare variable $ALLOCMAP :=$LOCALMAP('ALLOCMAP'); 
+        some $snode in map:keys($CHILDSN2SCG)
+        satisfies count(
+                 let $itfs:=('vlan-sub-interface','olt-v-enet-interface','v-ani-interface')
+                 let $ALLOC := (for $itf in $itfs return $ALLOCMAP($itf)) 
+        for $scg in map:get($SN2SCG,$snode) where $scg=$ALLOC return $SCG($scg)('scheduler-node')($snode)('local-queue-ids'))&gt;L2_SCHEDULER_MAX_QUEUE">
+		<ns:scopeId>interfaceTm_scope</ns:scopeId>
+		</ns:xquery>   					
+
+        <ns:xquery errorMessage="Maximum allowed configured queue size per ONU(VANI) limit of ONU_MAX_QUEUE_SIZE exceeded on slice" uniqueIdentifier="QueueSizePerVaniLimit" 
+        xqueryTemplate="declare variable $LOCALMAP external; declare variable $VANI2VENET2VSI:= $LOCALMAP('VANI2VENET2VSI'); declare variable $SCG:=$LOCALMAP('SCG');  declare variable $ALLOCMAP:=$LOCALMAP('ALLOCMAP');
+        declare variable $VSI:=$LOCALMAP('VSI');
+        some $vani in (
+                 let $itfs:=('vlan-sub-interface','olt-v-enet-interface','v-ani-interface')
+                 let $ALLOC := (for $itf in $itfs return $ALLOCMAP($itf)) 
+        for $tmp in map:keys($VANI2VENET2VSI) 
+        where (starts-with($tmp,'SLICING_PREFIX~') or $tmp=$ALLOC) return $tmp)
+        satisfies 
+        sum(let $bac-names := distinct-values(for $vsi in map:get($VANI2VENET2VSI, $vani) let $vsisnn := $VSI($vsi)('scheduler-node-name')
+            for $scg in map:keys($SCG) for $scgsn in map:keys($SCG($scg)('scheduler-node'))
+                where $scgsn=$vsisnn  return map:get($SCG($scg)('scheduler-node'),$scgsn)('queue-bac-names'))
+             for $bac-name in $bac-names
+                return /anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-tm:tm-profiles/bbf-qos-tm:bac-entry
+       [bbf-qos-tm:name=$bac-name]/bbf-qos-tm:max-queue-size)
+        &gt;ONU_MAX_QUEUE_SIZE">
+		<ns:scopeId>interface_egress-tm-objects_scope</ns:scopeId>
+		<ns:scopeId>tmProfiles_scope</ns:scopeId>
+		</ns:xquery>   					
+ 								  
+        <ns:xquery errorMessage="Maximum allowed configured traffic descriptor profile limit of MAX_TDP exceeded on slice" uniqueIdentifier="TDPLimit" 
+        xqueryTemplate="declare variable $LOCALMAP external; declare variable $TDP:= $LOCALMAP('TDP'); declare variable $ALLOCMAP :=$LOCALMAP('ALLOCMAP');   
+        count(let $ALLOC:=$ALLOCMAP('traffic-descriptor-profile') for $tmp in map:keys($TDP) 
+        where (starts-with($tmp,'SLICING_PREFIX~') or $tmp=$ALLOC) 
+        return $tmp)&gt;MAX_TDP">
+		<ns:scopeId>tcontTdp_scope</ns:scopeId>
+		</ns:xquery>   					
+
+        <ns:xquery errorMessage="Maximum allowed configured US CIR for Channel Partition 'CHANNEL_PARTITION_NAME' limit of PON_US_MAX_CIR exceeded on slice" uniqueIdentifier="usCIRPerCPartLimit" 
+        xqueryTemplate="declare variable $LOCALMAP external; declare variable $VANI2TCONT:= $LOCALMAP('VANI2TCONT'); declare variable $CPART2VANI :=$LOCALMAP('CPART2VANI');    declare variable $TCONT :=$LOCALMAP('TCONT');    declare variable $TDP :=$LOCALMAP('TDP');   declare variable $ALLOCMAP :=$LOCALMAP('ALLOCMAP');   declare variable $TCONT2CIR :=$LOCALMAP('TCONT2CIR');   
+                 let $itfs:=('vlan-sub-interface','olt-v-enet-interface','v-ani-interface')
+                 let $ALLOC := (for $itf in $itfs return $ALLOCMAP($itf)) 
+      let $tconts:=(for $vani in map:get($CPART2VANI,'CHANNEL_PARTITION_NAME') 
+        where (starts-with($vani,'SLICING_PREFIX~') or $vani=$ALLOC) 
+      return $VANI2TCONT($vani))
+      return sum(for $tcont in $tconts  return map:get($TCONT2CIR, $tcont))&gt;PON_US_MAX_CIR">
+          <ns:scopeId>gemTcont_scope</ns:scopeId>
+		  <ns:scopeId>tcontTdp_scope</ns:scopeId>
+		</ns:xquery>   				  
+
+        <ns:xquery errorMessage="Maximum allowed configured US PIR for Channel Partition 'CHANNEL_PARTITION_NAME' limit of PON_US_MAX_PIR exceeded on slice" uniqueIdentifier="usPIRPerCPartLimit" 
+        xqueryTemplate="declare variable $LOCALMAP external; declare variable $VANI2TCONT:= $LOCALMAP('VANI2TCONT'); declare variable $CPART2VANI :=$LOCALMAP('CPART2VANI');    declare variable $TCONT :=$LOCALMAP('TCONT');    declare variable $TDP :=$LOCALMAP('TDP');   declare variable $ALLOCMAP :=$LOCALMAP('ALLOCMAP');   declare variable $TCONT2PIR :=$LOCALMAP('TCONT2PIR');   
+                 let $itfs:=('vlan-sub-interface','olt-v-enet-interface','v-ani-interface')
+                 let $ALLOC := (for $itf in $itfs return $ALLOCMAP($itf)) 
+      let $tconts:=(for $vani in map:get($CPART2VANI,'CHANNEL_PARTITION_NAME') 
+        where (starts-with($vani,'SLICING_PREFIX~') or $vani=$ALLOC) 
+      return $VANI2TCONT($vani))
+      return sum(for $tcont in $tconts  return map:get($TCONT2PIR, $tcont))&gt;PON_US_MAX_PIR">
+          <ns:scopeId>gemTcont_scope</ns:scopeId>
+		  <ns:scopeId>tcontTdp_scope</ns:scopeId>
+		</ns:xquery>   				  
+
+
+        <ns:xquery errorMessage="Lowest configured Jitter Tolerance per TCONT for Channel Partition 'CHANNEL_PARTITION_NAME' limit of PON_JT_TCONT exceeded" uniqueIdentifier="JitterTolerancePerTCONTPerCPartLimit"
+        xqueryTemplate="declare variable $LOCALMAP external; declare variable $VANI2TCONT:= $LOCALMAP('VANI2TCONT'); declare variable $CPART2VANI :=$LOCALMAP('CPART2VANI');    declare variable $TCONTM :=$LOCALMAP('TCONT');    declare variable $ALLOCMAP :=$LOCALMAP('ALLOCMAP');    
+                 let $itfs:=('vlan-sub-interface','olt-v-enet-interface','v-ani-interface')
+                 let $ALLOC := (for $itf in $itfs return $ALLOCMAP($itf)) 
+        let $tconts:=(for $vani in map:get($CPART2VANI,'CHANNEL_PARTITION_NAME') 
+        where (starts-with($vani,'SLICING_PREFIX~') or $vani=$ALLOC) 
+        return $VANI2TCONT($vani))
+        let $result:=(for $tcont in $tconts return $TCONTM($tcont)('jitter-tolerance')&lt;PON_JT_TCONT)
+        return $result=true()">
+          <ns:scopeId>gemTcont_scope</ns:scopeId>
+		  <ns:scopeId>tcontTdp_scope</ns:scopeId>
+		</ns:xquery> 
+
+        <ns:xquery errorMessage="Maximum number of TCONTs per ONTs for Channel Partition 'CHANNEL_PARTITION_NAME' limit of PON_ONU_MAX_TCONT exceeded on slice" uniqueIdentifier="TCONTPerVaniPerCPartLimit" 
+        xqueryTemplate="declare variable $LOCALMAP external; 
+        declare variable $VANI2TCONT:= $LOCALMAP('VANI2TCONT'); 
+        declare variable $CPART2VANI :=$LOCALMAP('CPART2VANI');    
+        declare variable $ALLOCMAP :=$LOCALMAP('ALLOCMAP');    
+        some $vani in (
+                 let $itfs:=('vlan-sub-interface','olt-v-enet-interface','v-ani-interface')
+                 let $ALLOC := (for $itf in $itfs return $ALLOCMAP($itf)) 
+            for $tmp in map:get($CPART2VANI,'CHANNEL_PARTITION_NAME')
+                where (starts-with($tmp,'SLICING_PREFIX~') or $tmp=$ALLOC) return $tmp)
+            satisfies count($VANI2TCONT($vani))&gt;PON_ONU_MAX_TCONT">
+          <ns:scopeId>gemTcont_scope</ns:scopeId>
+		</ns:xquery>	  											
+
+	<ns:scope uniqueIdentifier="frameProc_tag0_scope" xpathTemplate="/anv:device-manager/adh:device/adh:device-specific-data/bbf-frameproc:frame-processing-profiles/bbf-frameproc:frame-processing-profile/bbf-frameproc:match-criteria/bbf-frameproc:tag/bbf-frameproc:vlan-id"/>		
+	<ns:scope uniqueIdentifier="vsi_tag0_scope" xpathTemplate="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-frameproc:tag-0/bbf-frameproc:vlan-id "/>	
+	<ns:scope uniqueIdentifier="interface_frameProcRef_scope" xpathTemplate="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-frameproc:frame-processing-profile-ref"/>
+	<ns:scope uniqueIdentifier="forwardingDatabase_scope" xpathTemplate="/anv:device-manager/adh:device/adh:device-specific-data/bbf-l2-fwd:forwarding/bbf-l2-fwd:forwarding-databases/bbf-l2-fwd:forwarding-database"/>
+    <ns:scope uniqueIdentifier="gemPort_scope" xpathTemplate="/anv:device-manager/adh:device/adh:device-specific-data/bbf-xpongemtcont:xpongemtcont/bbf-xpongemtcont:gemports/bbf-xpongemtcont:gemport"/>
+	<ns:scope uniqueIdentifier="gemTcont_scope" xpathTemplate="/anv:device-manager/adh:device/adh:device-specific-data/bbf-xpongemtcont:xpongemtcont/bbf-xpongemtcont:tconts/bbf-xpongemtcont:tcont"/>
+	<ns:scope uniqueIdentifier="interface_vsi_scope" xpathTemplate="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface[if:type='bbfift:vlan-sub-interface']"/>
+	<ns:scope uniqueIdentifier="forwarder_scope" xpathTemplate="/anv:device-manager/adh:device/adh:device-specific-data/bbf-l2-fwd:forwarding/bbf-l2-fwd:forwarders/bbf-l2-fwd:forwarder"/>
+	<ns:scope uniqueIdentifier="multicastProxyProfile_scope" xpathTemplate="/anv:device-manager/adh:device/adh:device-specific-data/bbf-mgmd:multicast/bbf-mgmd:mgmd/bbf-mgmd:multicast-proxy-profile"/>
+	<ns:scope uniqueIdentifier="multicastVpn_scope" xpathTemplate="/anv:device-manager/adh:device/adh:device-specific-data/bbf-mgmd:multicast/bbf-mgmd:mgmd/bbf-mgmd:multicast-vpn"/>
+	<ns:scope uniqueIdentifier="interfaceTm_scope" xpathTemplate="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-qos-tm:tm-root"/>
+	<ns:scope uniqueIdentifier="interface_scope" xpathTemplate="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface"/>
+	<ns:scope uniqueIdentifier="tmProfiles_scope" xpathTemplate="/anv:device-manager/adh:device/adh:device-specific-data/bbf-qos-tm:tm-profiles"/>
+	<ns:scope uniqueIdentifier="tcontTdp_scope" xpathTemplate="/anv:device-manager/adh:device/adh:device-specific-data/bbf-xpongemtcont:xpongemtcont/bbf-xpongemtcont:traffic-descriptor-profiles/bbf-xpongemtcont:traffic-descriptor-profile"/>
+	<ns:scope uniqueIdentifier="interface_egress-tm-objects_scope" xpathTemplate="/anv:device-manager/adh:device/adh:device-specific-data/if:interfaces/if:interface/bbf-qos-es:egress-tm-objects"/>
+
+      </ns:editValidationChecks>
+    </ns:deviceTypeResources>
+  </ns:deviceTypes>
+</ns:SlicingConfiguration>

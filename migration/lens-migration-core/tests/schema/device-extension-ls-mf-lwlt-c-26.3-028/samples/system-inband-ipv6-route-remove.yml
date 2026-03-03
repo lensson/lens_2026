@@ -1,0 +1,25 @@
+arguments:
+  interface-name:
+    description: Name of inband interface
+    suggested-values:
+    - inband
+  ipv6-address:
+    description: Inband interface IPv6 address
+    suggested-values:
+    - 2001:0A90:FF0:C203::0A50:5951
+  control-plane-protocol-name:
+    description: The name of the control-plane protocol instance
+    suggested-values:
+    - inband
+  route6-dest-prefix:
+    description: IPv6 destination prefix
+    suggested-values:
+    - ::/0
+available-locally: true
+domains: system>inband
+entity: ipv6-route
+freemarker: true
+name: Remove static inband management IPv6 address and route
+operation: remove
+sample-id: system-inband-ipv6-route-remove
+status: draft

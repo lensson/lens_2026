@@ -1,0 +1,16 @@
+arguments:
+  netconf-client-name:
+    description: Name of NETCONF clients list
+    suggested-values:
+    - nc-client
+  endpoint-name:
+    description: The name of specific endpoint
+    suggested-values:
+    - endpoint
+domains: system>callhome
+entity: delete-secondary-pma
+freemarker: true
+name: Delete secondary pma
+operation: remove
+sample-id: system-callhome-delete-secondary-pma-remove
+status: draft

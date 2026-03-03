@@ -1,0 +1,7 @@
+domains: system>authorization
+entity: nacm
+freemarker: true
+name: Retrieve authorization operations statistics
+operation: get
+sample-id: system-authorization-nacm-get
+status: draft

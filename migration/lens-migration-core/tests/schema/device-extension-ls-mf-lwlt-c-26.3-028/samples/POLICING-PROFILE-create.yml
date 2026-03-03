@@ -1,0 +1,61 @@
+arguments:
+  policing-profile-name:
+    description: Policing profile name
+    suggested-values:
+    - policing-profile
+  policing-scope:
+    description: the scope of the policer instance sharing is within ethernet-interface
+      or vlan-sub-interface, without configuring scope means sharing within ccl conditions
+      in same vsi.
+    optional: true
+  policing-type:
+    description: type of policer, trtcm(two-rate-three-color-marker) or srtcm(single-rate-two-color-marker)
+    suggested-values:
+    - trtcm
+  policing-coupling-flag:
+    description: flag indicating whether tokens that would overflow the C-bucket should
+      be added to the E-bucket
+    suggested-values:
+    - 0
+    - 1
+  policing-color-mode:
+    description: color mode of the policer, should be color-aware or color-blind
+    suggested-values:
+    - color-aware
+  policing-cir:
+    description: the average rate of traffic that respect the guarantees of bandwidth
+    suggested-values:
+    - 20000000
+  policing-eir:
+    description: how much traffic exceeding the CIR can be admitted in the network
+      with the assurance that it will not be discarded directly by the policer.
+    suggested-values:
+    - 10000000
+  policing-cbs:
+    description: the amount of traffic that can be admitted above the CIR and is considered
+      green.
+    suggested-values:
+    - 10240
+  policing-ebs:
+    description: the amount of excessive traffic that can be admitted above the EIR
+      without being discarded directly by the policer (yellow).
+    suggested-values:
+    - 10240
+  policing-action-profile-name:
+    description: policing action profile name
+    optional: true
+    suggested-values:
+    - policing-action-profile
+  policing-pre-handling-profile-name:
+    description: policing-pre-handling-profile name
+    optional: true
+    suggested-values:
+    - policing-pre-handling-profile
+domains: unicast>qos>policy-profiles
+entity: policing_profile
+freemarker: true
+name: Configure QoS policing profile
+operation: edit
+sample-id: unicast-qos-policy-profiles-policing_profile-edit
+scope: not(mx) and not(dpu)
+status: draft

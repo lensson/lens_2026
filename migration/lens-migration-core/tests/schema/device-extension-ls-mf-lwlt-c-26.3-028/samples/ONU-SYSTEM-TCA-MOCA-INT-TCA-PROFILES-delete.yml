@@ -1,0 +1,18 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  moca-interface-tca-profile:
+    description: Moca Interface performance monitoring counters threshold profile
+      name
+    suggested-values:
+    - moca_int_tca_profile
+domains: onu>system>tca>pm-profiles
+entity: moca-int-tca-profile
+freemarker: true
+name: Remove Moca Interface TCA profile
+operation: remove
+sample-id: onu-system-tca-pm-profiles-moca-int-tca-profile-remove
+scope: eonu
+status: draft

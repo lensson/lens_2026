@@ -1,0 +1,41 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  xpon-fec-error-profile:
+    description: ANI XPON FEC PM counters threshold profile name
+    suggested-values:
+    - fec_tca_profile
+  corrected-bytes-threshold:
+    description: Threshold value for the number of bytes that were corrected by the
+      FEC function  range is 0 .. 18446744073709551615
+    optional: true
+    suggested-values:
+    - 10
+  corrected-code-words-threshold:
+    description: Threshold value for the number of the code words that were corrected
+      by the FEC function  range is 0 .. 18446744073709551615
+    optional: true
+    suggested-values:
+    - 5
+  uncorrectable-code-words-threshold:
+    description: Threshold value for number of uncorrectable code words  range is
+      0 .. 18446744073709551615
+    optional: true
+    suggested-values:
+    - 10
+  fec-seconds-threshold:
+    description: Threshold value for the number of seconds during which there was
+      a FEC anomaly  range is 0 .. 4294967294
+    optional: true
+    suggested-values:
+    - 10
+domains: onu>system>tca>pm-profiles
+entity: ani-xpon-fec-pm-tca-profile
+freemarker: true
+name: Config ANI XPON FEC PM TCA profile
+operation: create
+sample-id: onu-system-tca-pm-profiles-ani-xpon-fec-pm-tca-profile-create
+scope: eonu
+status: draft

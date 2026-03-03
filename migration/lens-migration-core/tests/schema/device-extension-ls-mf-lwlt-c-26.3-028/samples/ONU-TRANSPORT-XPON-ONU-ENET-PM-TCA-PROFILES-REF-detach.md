@@ -1,0 +1,23 @@
+Description:
+This macro detaches Ethernet performance monitoring TCA profiles from an ONT UNI interface (ENET)
+
+Prerequisite:
+
+* Ethernet frame error TCA profile should be already associated with ethernet-frame-error-profile
+* Ethernet physical layer TCA profile should be already associated with ethernet-physical-layer-error-profile
+* Ethernet frame error extended TCA profile should be already associated with ethernet-frame-error-extended-profile
+
+Input parameters:
+
+* ethernet-frame-error-profile    :  ethernet-frame-error-profile name
+* ethernet-physical-layer-error-profile    :  ethernet-physical-layer-error-profile name
+* ethernet-frame-error-extended-profile    :  ethernet-frame-error-extended-profile name
+
+Input parameters:
+
+* eth-name: ONT UNI interface name (ENET)
+* ethernet-frame-error-extended-profile: Ethernet frame error extended TCA profile.
+* ethernet-frame-error-profile: Ethernet frame error tca profile.
+* ethernet-physical-layer-error-profile: Ethernet physical layer error TCA profile.
+* onu-name: ONU name
+

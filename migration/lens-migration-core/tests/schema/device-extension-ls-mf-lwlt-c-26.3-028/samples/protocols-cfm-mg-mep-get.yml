@@ -1,0 +1,13 @@
+arguments:
+  maintenance-group-id:
+    description: The maintenance group provides a handle for the MD and MA combination.
+    suggested-values:
+    - MG
+domains: unicast>protocols>cfm
+entity: mg-mep
+freemarker: true
+name: Retrieve local MEPs state data and statistics.
+operation: retrieve
+sample-id: unicast-protocols-cfm-mg-mep-retrieve
+scope: cfm-user or cfm-network or cfm-user-fiber or ccm or eth-ais
+status: draft

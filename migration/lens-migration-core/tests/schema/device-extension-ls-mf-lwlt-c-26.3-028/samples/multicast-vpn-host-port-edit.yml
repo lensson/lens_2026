@@ -1,0 +1,39 @@
+arguments:
+  vpn-host-port-name:
+    description: The name of a multicast host port.
+    suggested-values:
+    - user-mc-itf1
+  vpn-name:
+    description: The name of a multicast vpn.
+    suggested-values:
+    - mc-vpn
+  cc-name:
+    description: Specifies the VLAN sub-interface on a host interface.
+    optional: true
+    suggested-values:
+    - cc-1
+  ibridge-user-port-name:
+    description: Specifies the VLAN sub-interface on a host interface.
+    optional: true
+    suggested-values:
+    - bridge-port-1
+  unmatched-join-processing-user-port-name:
+    description: Specifies the VLAN sub-interface to be used when the multicast function
+      needs knowledge on a related datapath.
+    optional: true
+  max-group-number:
+    description: This attribute specifies the maximum number of dynamic multicast
+      groups that may be replicated to the interface at any one time.
+    optional: true
+  multicast-package-name:
+    description: The name of a multicast package.
+    suggested-values:
+    - Pkg-1
+domains: multicast>vpn
+entity: host-port
+freemarker: true
+name: Configure multicast host port
+operation: edit
+sample-id: multicast-vpn-host-port-edit
+scope: multicast-fiber and not(mx) and not(dpu)
+status: draft

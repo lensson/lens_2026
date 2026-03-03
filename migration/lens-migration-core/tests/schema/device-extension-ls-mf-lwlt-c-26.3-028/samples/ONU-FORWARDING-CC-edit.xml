@@ -1,0 +1,390 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <onus xmlns="urn:bbf:params:xml:ns:yang:bbf-fiber-onu-emulated-mount">
+        <onu>
+          <name>${onu\-name}</name>
+          <root>
+            <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces-mounted">
+              <interface xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                <name>${cc\-name}</name>
+<#if vsi\-auto\-instantiate?has_content>
+                <auto-instantiate xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">${vsi\-auto\-instantiate}</auto-instantiate>
+</#if>
+                <type xmlns:bbfift="urn:bbf:yang:bbf-if-type-mounted">bbfift:vlan-sub-interface</type>
+                <enabled>true</enabled>
+                <subif-lower-layer xmlns="urn:bbf:yang:bbf-sub-interfaces-mounted">
+                  <interface>${enet\-name}</interface>
+                </subif-lower-layer>
+                <inline-frame-processing xmlns="urn:bbf:yang:bbf-sub-interfaces-mounted">
+                  <ingress-rule>
+<#if tagged\-traffic?has_content && tagged\-traffic>
+                    <rule>
+                      <name>rule_TAGGED</name>
+                      <priority>100</priority>
+<#if tagged\-auto\-instantiate?has_content>
+                      <auto-instantiate xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">${tagged\-auto\-instantiate}</auto-instantiate>
+</#if>
+                      <flexible-match>
+                        <match-criteria xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+                          <tag>
+                            <index>0</index>
+                            <dot1q-tag>
+                              <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+<#if tagged\-q\-vlan\-id?has_content>
+                              <vlan-id>${tagged\-q\-vlan\-id}</vlan-id>
+</#if>
+                              <pbit>any</pbit>
+                              <dei>any</dei>
+                            </dot1q-tag>
+                          </tag>
+                        </match-criteria>
+                        <exclude-criteria xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+<#if ethernet\-frame\-type?has_content>
+                          <ethernet-frame-type>${ethernet\-frame\-type}</ethernet-frame-type>
+</#if>
+                        </exclude-criteria>
+                      </flexible-match>
+                      <ingress-rewrite>
+<#if n\-vlan\-id?has_content>
+                        <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">1</pop-tags>
+                        <push-tag xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+                          <index>0</index>
+                          <dot1q-tag>
+                            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                            <vlan-id>${n\-vlan\-id}</vlan-id>
+<#if tagged\-us\-pbit?has_content && tagged\-us\-pbit == "copy">
+                            <pbit-from-tag-index>0</pbit-from-tag-index>
+</#if>
+<#if tagged\-us\-pbit?has_content && tagged\-us\-pbit == "mpbit">
+                            <pbit-marking-index xmlns="urn:bbf:yang:bbf-qos-policies-sub-interfaces-mounted">0</pbit-marking-index>
+</#if>
+<#if tagged\-us\-pbit?has_content == false>
+                            <pbit-from-tag-index>0</pbit-from-tag-index>
+</#if>
+                            <dei-from-tag-index>0</dei-from-tag-index>
+                          </dot1q-tag>
+                        </push-tag>
+</#if>
+                      </ingress-rewrite>
+                    </rule>
+</#if>
+<#if prio\-tagged\-traffic?has_content && prio\-tagged\-traffic>
+                    <rule>
+                      <name>rule_PRIO_TAGGED</name>
+                      <priority>100</priority>
+<#if prio\-tagged\-auto\-instantiate?has_content>
+                      <auto-instantiate xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">${prio\-tagged\-auto\-instantiate}</auto-instantiate>
+</#if>
+                      <flexible-match>
+                        <match-criteria xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+                          <tag>
+                            <index>0</index>
+                            <dot1q-tag>
+                              <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                              <vlan-id>priority-tagged</vlan-id>
+                              <pbit>any</pbit>
+                              <dei>any</dei>
+                            </dot1q-tag>
+                          </tag>
+                        </match-criteria>
+                        <exclude-criteria xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+<#if ethernet\-frame\-type?has_content>
+                          <ethernet-frame-type>${ethernet\-frame\-type}</ethernet-frame-type>
+</#if>
+                        </exclude-criteria>
+                      </flexible-match>
+                      <ingress-rewrite>
+<#if n\-vlan\-id?has_content>
+                        <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">1</pop-tags>
+                        <push-tag xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+                          <index>0</index>
+                          <dot1q-tag>
+                            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                            <vlan-id>${n\-vlan\-id}</vlan-id>
+<#if prio\-tagged\-us\-pbit?has_content && prio\-tagged\-us\-pbit == "copy">
+                            <pbit-from-tag-index>0</pbit-from-tag-index>
+</#if>
+<#if prio\-tagged\-us\-pbit?has_content && prio\-tagged\-us\-pbit == "mpbit">
+                            <pbit-marking-index xmlns="urn:bbf:yang:bbf-qos-policies-sub-interfaces-mounted">0</pbit-marking-index>
+</#if>
+<#if prio\-tagged\-us\-pbit?has_content == false>
+                            <pbit-from-tag-index>0</pbit-from-tag-index>
+</#if>
+                            <dei-from-tag-index>0</dei-from-tag-index>
+                          </dot1q-tag>
+                        </push-tag>
+</#if>
+                      </ingress-rewrite>
+                    </rule>
+</#if>
+<#if untagged\-traffic?has_content && untagged\-traffic>
+                    <rule>
+                      <name>rule_UNTAGGED</name>
+                      <priority>100</priority>
+<#if untagged\-auto\-instantiate?has_content>
+                      <auto-instantiate xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">${untagged\-auto\-instantiate}</auto-instantiate>
+</#if>
+                      <flexible-match>
+                        <match-criteria xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+                          <untagged/>
+                        </match-criteria>
+                      </flexible-match>
+                      <ingress-rewrite>
+<#if n\-vlan\-id?has_content>
+                        <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">0</pop-tags>
+                        <push-tag xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+                          <index>0</index>
+                          <dot1q-tag>
+                            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                            <vlan-id>${n\-vlan\-id}</vlan-id>
+                            <pbit-marking-index xmlns="urn:bbf:yang:bbf-qos-policies-sub-interfaces-mounted">0</pbit-marking-index>
+                            <write-dei-0/>
+                          </dot1q-tag>
+                        </push-tag>
+</#if>
+                      </ingress-rewrite>
+                    </rule>
+</#if>
+<#if anyframe\-traffic?has_content && anyframe\-traffic>
+                    <rule>
+                      <name>rule_ANYFRAME</name>
+                      <priority>101</priority>
+<#if anyframe\-auto\-instantiate?has_content>
+                      <auto-instantiate xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/onus-from-template">${anyframe\-auto\-instantiate}</auto-instantiate>
+</#if>
+                      <flexible-match>
+                        <match-criteria xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+                          <any-frame/>
+                        </match-criteria>
+                      </flexible-match>
+                      <ingress-rewrite>
+<#if n\-vlan\-id?has_content>
+                        <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">0</pop-tags>
+                        <push-tag xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+                          <index>0</index>
+                          <dot1q-tag>
+                            <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                            <vlan-id>${n\-vlan\-id}</vlan-id>
+                            <pbit-marking-index xmlns="urn:bbf:yang:bbf-qos-policies-sub-interfaces-mounted">0</pbit-marking-index>
+                            <dei-from-tag-index>0</dei-from-tag-index>
+                          </dot1q-tag>
+                        </push-tag>
+</#if>
+                      </ingress-rewrite>
+                    </rule>
+</#if>
+                  </ingress-rule>
+<#if ! vsi\-auto\-instantiate?has_content >
+<#if tagged\-traffic?has_content && tagged\-traffic>
+<#if ! tagged\-auto\-instantiate?has_content >
+                  <egress-rewrite>
+<#if n\-vlan\-id?has_content>
+                    <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">1</pop-tags>
+<#if tagged\-q\-vlan\-id?has_content && tagged\-q\-vlan\-id != "any">
+                    <push-tag xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+                      <index>0</index>
+                      <dot1q-tag>
+                        <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                        <vlan-id>${tagged\-q\-vlan\-id}</vlan-id>
+                        <pbit-from-tag-index>0</pbit-from-tag-index>
+                        <dei-from-tag-index>0</dei-from-tag-index>
+                      </dot1q-tag>
+                    </push-tag>
+</#if>
+</#if>
+                  </egress-rewrite>
+</#if>
+</#if>
+<#if prio\-tagged\-traffic?has_content && prio\-tagged\-traffic>
+<#if ! prio\-tagged\-auto\-instantiate?has_content>
+                  <egress-rewrite>
+<#if n\-vlan\-id?has_content>
+                    <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">1</pop-tags>
+                    <push-tag xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">
+                      <index>0</index>
+                      <dot1q-tag>
+                        <tag-type xmlns:bbf-dot1qt="urn:bbf:yang:bbf-dot1q-types">bbf-dot1qt:c-vlan</tag-type>
+                        <vlan-id>0</vlan-id>
+                        <pbit-from-tag-index>0</pbit-from-tag-index>
+                        <dei-from-tag-index>0</dei-from-tag-index>
+                      </dot1q-tag>
+                    </push-tag>
+</#if>
+                  </egress-rewrite>
+</#if>
+</#if>
+<#if untagged\-traffic?has_content && untagged\-traffic>
+<#if ! untagged\-auto\-instantiate?has_content>
+                  <egress-rewrite>
+<#if n\-vlan\-id?has_content>
+                    <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">1</pop-tags>
+</#if>
+                  </egress-rewrite>
+</#if>
+</#if>
+<#if anyframe\-traffic?has_content && anyframe\-traffic>
+<#if ! anyframe\-auto\-instantiate?has_content>
+                  <egress-rewrite>
+<#if n\-vlan\-id?has_content>
+                    <pop-tags xmlns="urn:bbf:yang:bbf-sub-interface-tagging-mounted">1</pop-tags>
+</#if>
+                  </egress-rewrite>
+</#if>
+</#if>
+</#if>
+                </inline-frame-processing>
+                <ingress-qos-policy-profile xmlns="urn:bbf:yang:bbf-qos-policies-mounted">${ingress\-qos\-profile\-name}</ingress-qos-policy-profile>
+              </interface>
+            </interfaces>
+<#if (gemport\-sharing?has_content && gemport\-sharing == false) || (!gemport\-sharing?has_content)>
+            <xpongemtcont xmlns="urn:bbf:yang:bbf-xpongemtcont-mounted">
+              <gemports>
+<#if tc0\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${cc\-name}-GEM0</name>
+                  <interface>${cc\-name}</interface>
+                  <traffic-class>0</traffic-class>
+                  <tcont-ref>${tc0\-tcont\-name}</tcont-ref>
+<#if tc0\-gemport\-id?has_content>
+                  <gemport-id>${tc0\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+<#if tc1\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${cc\-name}-GEM1</name>
+                  <interface>${cc\-name}</interface>
+                  <traffic-class>1</traffic-class>
+                  <tcont-ref>${tc1\-tcont\-name}</tcont-ref>
+<#if tc1\-gemport\-id?has_content>
+                  <gemport-id>${tc1\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+<#if tc2\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${cc\-name}-GEM2</name>
+                  <interface>${cc\-name}</interface>
+                  <traffic-class>2</traffic-class>
+                  <tcont-ref>${tc2\-tcont\-name}</tcont-ref>
+<#if tc2\-gemport\-id?has_content>
+                  <gemport-id>${tc2\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+<#if tc3\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${cc\-name}-GEM3</name>
+                  <interface>${cc\-name}</interface>
+                  <traffic-class>3</traffic-class>
+                  <tcont-ref>${tc3\-tcont\-name}</tcont-ref>
+<#if tc3\-gemport\-id?has_content>
+                  <gemport-id>${tc3\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+<#if tc4\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${cc\-name}-GEM4</name>
+                  <interface>${cc\-name}</interface>
+                  <traffic-class>4</traffic-class>
+                  <tcont-ref>${tc4\-tcont\-name}</tcont-ref>
+<#if tc4\-gemport\-id?has_content>
+                  <gemport-id>${tc4\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+<#if tc5\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${cc\-name}-GEM5</name>
+                  <interface>${cc\-name}</interface>
+                  <traffic-class>5</traffic-class>
+                  <tcont-ref>${tc5\-tcont\-name}</tcont-ref>
+<#if tc5\-gemport\-id?has_content>
+                  <gemport-id>${tc5\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+<#if tc6\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${cc\-name}-GEM6</name>
+                  <interface>${cc\-name}</interface>
+                  <traffic-class>6</traffic-class>
+                  <tcont-ref>${tc6\-tcont\-name}</tcont-ref>
+<#if tc6\-gemport\-id?has_content>
+                  <gemport-id>${tc6\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+<#if tc7\-tcont\-name?has_content>
+                <gemport xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+                  <name>${cc\-name}-GEM7</name>
+                  <interface>${cc\-name}</interface>
+                  <traffic-class>7</traffic-class>
+                  <tcont-ref>${tc7\-tcont\-name}</tcont-ref>
+<#if tc7\-gemport\-id?has_content>
+                  <gemport-id>${tc7\-gemport\-id}</gemport-id>
+</#if>
+<#if upstream\-aes?has_content>
+                  <upstream-aes-indicator>${upstream\-aes}</upstream-aes-indicator>
+</#if>
+<#if downstream\-aes?has_content>
+                  <downstream-aes-indicator>${downstream\-aes}</downstream-aes-indicator>
+</#if>
+                </gemport>
+</#if>
+              </gemports>
+            </xpongemtcont>
+</#if>
+          </root>
+        </onu>
+      </onus>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,37 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  moca-port-hw-number:
+    description: ONU MoCA uni Number
+    suggested-values:
+    - 1
+  moca-port-hw-option:
+    allowed-values:
+    - moca
+    description: ONU MoCA HW Option
+    suggested-values:
+    - moca
+  moca-name:
+    description: The name of the ONU MoCA interface that will be created
+    suggested-values:
+    - uni-1-1-1
+  moca-mode:
+    allowed-values:
+    - moca
+    - moca-access
+    description: configure ONU support MoCA1.1 or MoCA2.5
+    optional: true
+    suggested-values:
+    - moca
+  moca-password:
+    description: MoCA Encryption Key
+    optional: true
+domains: onu>transport>moca-uni
+freemarker: true
+name: Edit moca uni interface
+operation: edit
+sample-id: onu-transport-moca-uni-edit
+scope: eonu
+status: draft

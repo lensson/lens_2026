@@ -1,0 +1,14 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get>
+    <filter type="subtree">
+      <netconf-state xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring">
+               <sessions>
+                <session/>
+               </sessions>
+      </netconf-state>
+    </filter>
+  </get>
+</rpc>
+
+
+

@@ -1,0 +1,16 @@
+arguments:
+  group-name:
+    description: Group name associated with this entry.
+    suggested-values:
+    - admin-group
+  user-name:
+    description: The name of users who belong to this group.
+    optional: true
+    suggested-values:
+    - admin_user
+domains: system>authorization>groups
+freemarker: true
+name: Configure user in a system group
+operation: edit
+sample-id: system-authorization-groups-edit
+status: draft

@@ -1,0 +1,15 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+    <filter type="subtree">
+      <netconf-server xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-server">
+        <call-home>
+          <cli-timer xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-netconf-server"/>
+        </call-home>
+      </netconf-server>
+    </filter>
+    <ns0:with-defaults xmlns:ns0="urn:ietf:params:xml:ns:yang:ietf-netconf-with-defaults">report-all-tagged</ns0:with-defaults>
+  </get-config>
+</rpc>

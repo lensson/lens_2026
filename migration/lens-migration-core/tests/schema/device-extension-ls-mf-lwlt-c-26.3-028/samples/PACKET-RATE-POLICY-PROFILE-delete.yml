@@ -1,0 +1,12 @@
+arguments:
+  packet-rate-policy-profile-name:
+    suggested-values:
+    - PacketRateLimit0
+domains: system>cpu
+entity: packet-rate-policy-profile
+freemarker: false
+name: Delete the cpu packet rate limit policy and classifier
+operation: delete
+sample-id: system-cpu-packet-rate-policy-profile-delete
+scope: not(dpu)
+status: draft

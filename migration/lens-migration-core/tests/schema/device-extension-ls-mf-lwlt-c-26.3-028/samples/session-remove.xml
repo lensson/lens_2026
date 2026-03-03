@@ -1,0 +1,14 @@
+<rpc message-id="remiveProTracingSession" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+       <protocol-tracing xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-protocol-tracing">
+          <session xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="remove">
+              <name>${session\-name}</name>
+          </session>
+       </protocol-tracing>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,8 @@
+domains: multicast>qos
+entity: policy-profile
+freemarker: true
+name: Delete multicast services QoS policy profile
+operation: delete
+sample-id: multicast-qos-policy-profile-delete
+scope: multicast-fiber and not(dpu)
+status: draft

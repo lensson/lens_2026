@@ -1,0 +1,12 @@
+arguments:
+  enet-name:
+    description: The name of the virtual ENET UNI.
+    suggested-values:
+    - uni-1-1-1-1
+domains: transport>xpon>enet
+freemarker: true
+name: Retrieve ethernet uni operational data
+operation: get
+sample-id: transport-xpon-enet-get
+scope: not(fx-p2p)
+status: draft

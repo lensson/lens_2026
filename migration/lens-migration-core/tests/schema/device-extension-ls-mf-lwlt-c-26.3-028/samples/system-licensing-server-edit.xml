@@ -1,0 +1,19 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <licensing xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-licensing-app">
+        <server xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="merge">
+          <#if network\-address?has_content>
+              <address>${network\-address}</address>
+          </#if>
+          <#if network\-port?has_content>
+              <port>${network\-port}</port>
+          </#if>
+        </server>
+      </licensing>
+    </config>
+  </edit-config>
+</rpc>

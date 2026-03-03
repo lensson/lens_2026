@@ -1,0 +1,11 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <get>
+    <filter type="subtree">
+      <hw:hardware-state xmlns:hw="urn:ietf:params:xml:ns:yang:ietf-hardware">
+        <hw:component>
+          <hw:name>${board\-name}</hw:name>
+        </hw:component>
+      </hw:hardware-state>
+    </filter>
+  </get>
+</rpc>

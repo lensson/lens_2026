@@ -1,0 +1,43 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <policies xmlns="urn:bbf:yang:bbf-qos-policies">
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:operation="delete">
+          <name>${untag\-policy\-name}</name>
+        </policy>
+      </policies>    	
+      <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+        <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="delete">
+          <name>cls-default-pbit-${untag\-policy\-name}</name>
+        </classifier-entry>
+        <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="delete">
+          <name>cls_ing_inpbit0</name>
+        </classifier-entry>
+        <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="delete">
+          <name>cls_ing_inpbit1</name>
+        </classifier-entry>	
+        <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="delete">
+          <name>cls_ing_inpbit2</name>
+        </classifier-entry>	
+        <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="delete">
+          <name>cls_ing_inpbit3</name>
+        </classifier-entry>	
+        <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="delete">
+          <name>cls_ing_inpbit4</name>
+        </classifier-entry>	
+        <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="delete">
+          <name>cls_ing_inpbit5</name>
+        </classifier-entry>	
+        <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="delete">
+          <name>cls_ing_inpbit6</name>
+        </classifier-entry>
+        <classifier-entry xmlns:ns1="urn:ietf:params:xml:ns:netconf:base:1.0" ns1:operation="delete">
+          <name>cls_ing_inpbit7</name>
+        </classifier-entry>				
+      </classifiers>
+    </config>
+  </edit-config>
+</rpc>

@@ -1,0 +1,27 @@
+arguments:
+  xpon-cage-name:
+    description: Cage name.
+    suggested-values:
+    - C1
+  model-name:
+    description: Model number of SFP plugged in the cage (model number can be a generic
+      model-name or a dedicated 3FE number).
+    suggested-values:
+    - 3FE53441AC
+  olt-port-name:
+    description: OLT infrastructure port name.
+    suggested-values:
+    - port-1
+  position:
+    description: An indication of the relative position of this child component among
+      all its sibling components.
+    suggested-values:
+    - 1
+domains: transport>gpon>olt-port
+freemarker: true
+name: Edit GPON OLT port
+operation: edit
+sample-id: transport-gpon-olt-port-edit
+scope: gpon or gpon-xgs or gpon-xgs-25g or gpon-ngpon2-xgs-25g or gpon-xgs-25g-hs
+  or gpon-xgpon-xgs-25g or gpon-ngpon2-xgpon-xgs-25g
+status: draft

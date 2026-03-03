@@ -1,0 +1,17 @@
+arguments:
+  onu-name:
+    description: ONU name
+    suggested-values:
+    - ani-1-1-1
+  tca-monitoring-enabled:
+    description: Value false or true for tca-monitoring-enabled
+    suggested-values:
+    - 'true'
+domains: onu>system>tca
+entity: tca-monitoring
+freemarker: true
+name: Enable or disable TCA monitoring
+operation: tca-monitoring-enabled
+sample-id: onu-system-tca-tca-monitoring-tca-monitoring-enabled
+scope: eonu
+status: draft

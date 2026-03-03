@@ -1,0 +1,17 @@
+arguments:
+  id:
+    description: The id of the configured fingerprint
+    suggested-values:
+    - 1
+  netconf-client-name:
+    description: Name of NETCONF clients list.
+    suggested-values:
+    - nc-client
+available-locally: true
+domains: system>callhome>certificates
+entity: fingerprints
+freemarker: true
+name: Remove fingerprint with specific id
+operation: remove
+sample-id: system-callhome-certificates-fingerprints-remove
+status: draft

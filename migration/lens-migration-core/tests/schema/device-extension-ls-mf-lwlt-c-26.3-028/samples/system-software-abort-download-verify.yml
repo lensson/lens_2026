@@ -1,0 +1,20 @@
+arguments:
+  component:
+    description: Name of the component, default must be Chassis.
+    suggested-values:
+    - Chassis
+  software-name:
+    description: Name of the application.
+    suggested-values:
+    - application_software
+  download-software-name:
+    description: Name of the passive software downloaded
+    suggested-values:
+    - L6GQAH62.599
+available-locally: true
+domains: system>software
+freemarker: true
+name: Stop ongoing verification of software
+operation: abort-download-verify
+sample-id: system-software-abort-download-verify
+status: draft

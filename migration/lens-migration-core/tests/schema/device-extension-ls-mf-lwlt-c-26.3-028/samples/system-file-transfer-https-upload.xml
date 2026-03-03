@@ -1,0 +1,27 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <action xmlns="urn:ietf:params:xml:ns:yang:1">
+    <file-transfer xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-file-transfer">
+      <upload>
+        <url>${host\-url}</url>
+        <server-auth>
+          <#if certificate\-type == "pinned-ca-certs">
+            <pinned-ca-certs>${certificate\-list\-name}</pinned-ca-certs>
+            <#elseif certificate\-type == "pinned-server-certs">
+            <pinned-server-certs>${certificate\-list\-name}</pinned-server-certs>
+            <#elseif certificate\-type == "client-cert-and-key">
+            <est-certificate-profile>${certificate\-list\-name}</est-certificate-profile>
+          </#if>
+        </server-auth>
+      <#if compression?has_content>
+        <compression-format>${compression}</compression-format>
+      </#if>
+        <category>
+          <category-type>${category\-type}</category-type>
+      <#if filename?has_content>
+          <files>${filename}</files>
+      </#if>
+        </category>
+      </upload>
+    </file-transfer>
+  </action>
+</rpc>

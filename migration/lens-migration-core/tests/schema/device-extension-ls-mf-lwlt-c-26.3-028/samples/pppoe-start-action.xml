@@ -1,0 +1,29 @@
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+<action xmlns="urn:ietf:params:xml:ns:yang:1">
+    <pppoe-client-simulator xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-pppoe-client-simulator">
+      <session>
+      <interface>${interface}</interface>
+          <start-client-session>
+            <client-mac>${client\-mac}</client-mac>
+            <#if inner\-vlan\-pbit\-value?has_content>
+              <inner-vlan-pbit-value>${inner\-vlan\-pbit\-value}</inner-vlan-pbit-value>
+            </#if>
+            <#if outer\-vlan\-pbit\-value?has_content>
+            <outer-vlan-pbit-value>${outer\-vlan\-pbit\-value}</outer-vlan-pbit-value>
+            </#if>
+            <#if mru?has_content>
+            <mru>${mru}</mru>
+            </#if>
+            <#if authentication\-protocol?has_content && user\-name?has_content && password?has_content>
+              <authentication-protocol>${authentication\-protocol}</authentication-protocol>
+	      <user-name>${user\-name}</user-name>
+              <password>${password}</password>
+            </#if>
+            <#if time\-out?has_content>
+            <time-out>${time\-out}</time-out>
+            </#if>
+   </start-client-session>
+</session>
+</pppoe-client-simulator>
+</action>
+</rpc>
