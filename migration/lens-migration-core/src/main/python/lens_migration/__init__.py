@@ -8,9 +8,13 @@ Lens Migration Core —— 主入口模块
 三种迁移模式（按实现进度）：
   1. 意图驱动（Intent-Driven） ✅ 当前可用
      —— 依赖：迁移意图文档（Markdown）+ XML 示例
-  2. Schema 驱动（Schema-Driven） 📋 待实现
+     —— 使用规则引擎生成 XSLT
+  2. AI 驱动（AI-Driven） ✅ Phase 2 完成
+     —— 依赖：迁移意图文档 + XML 示例 + LLM（OpenAI / Anthropic / Ollama）
+     —— 使用 LLM 生成 XSLT，验证失败时自动迭代修正
+  3. Schema 驱动（Schema-Driven） 📋 待实现
      —— 依赖：新旧版本 YANG Schema 目录
-  3. 混合（Hybrid） 📋 待实现
+  4. 混合（Hybrid） 📋 待实现
      —— 同时使用意图文档和 Schema 差异
 """
 
@@ -173,6 +177,126 @@ class MigrationEngine:
 
         except Exception as e:
             logger.error(f"迁移执行异常: {e}", exc_info=True)
+            result["errors"].append(str(e))
+
+        return result
+
+    def migrate_with_ai(
+        self,
+        intent_file: Path,
+        input_xml: Path,
+        expected_output_xml: Optional[Path] = None,
+        output_xslt: Optional[Path] = None,
+        llm_provider: str = "mock",
+        llm_model: Optional[str] = None,
+        max_rounds: int = 3,
+        **llm_kwargs,
+    ) -> Dict[str, Any]:
+        """
+        执行 AI 驱动迁移（Phase 2）。
+
+        使用 LLM 生成 XSLT，若验证失败则自动多轮迭代修正。
+        与 migrate_from_intent() 互补：规则引擎处理结构清晰的规则，
+        AI 路径处理复杂嵌套或规则引擎无法推导的情况。
+
+        Args:
+            intent_file:        迁移意图文档路径（Markdown 格式）
+            input_xml:          输入 XML 示例文件路径
+            expected_output_xml: 期望输出 XML 文件路径（可选，用于验证和 Prompt）
+            output_xslt:        生成的 XSLT 保存路径（默认写入 work_dir）
+            llm_provider:       LLM Provider："openai"/"anthropic"/"ollama"/"mock"
+            llm_model:          模型名称（不传则使用 Provider 默认值）
+            max_rounds:         最大迭代轮次（含首次生成），默认 3
+            **llm_kwargs:       传递给 LLMClient 的额外参数（如 api_key、base_url）
+
+        Returns:
+            结果字典，包含：
+              success         —— 最终是否验证通过
+              intent_file     —— 意图文档路径
+              input_xml       —— 输入 XML 路径
+              xslt_file       —— 生成的 XSLT 路径
+              rounds_used     —— 实际迭代轮次
+              total_tokens    —— 累计消耗 token 数
+              validation      —— 最后一轮验证详情
+              round_history   —— 每轮迭代历史
+              errors          —— 最终错误列表
+        """
+        from lens_migration.ai.llm_client import create_llm_client
+        from lens_migration.ai.xslt_refiner import XSLTRefiner
+
+        logger.info("=" * 80)
+        logger.info("开始执行 AI 驱动迁移")
+        logger.info(f"  provider={llm_provider}，model={llm_model or '(default)'}，max_rounds={max_rounds}")
+        logger.info("=" * 80)
+
+        result: Dict[str, Any] = {
+            "success": False,
+            "intent_file": str(intent_file),
+            "input_xml": str(input_xml),
+            "xslt_file": None,
+            "rounds_used": 0,
+            "total_tokens": 0,
+            "validation": None,
+            "round_history": [],
+            "errors": [],
+        }
+
+        try:
+            # Step 1：解析意图
+            logger.info("Step 1：解析迁移意图文档...")
+            intent = self.intent_parser.parse(intent_file)
+            logger.info(f"  ✓ 提取到 {len(intent.rules)} 条迁移规则")
+
+            # Step 2：加载 XML 文件
+            logger.info("Step 2：加载 XML 示例文件...")
+            input_xml_content = input_xml.read_text(encoding="utf-8")
+            expected_output_content = None
+            if expected_output_xml and expected_output_xml.exists():
+                expected_output_content = expected_output_xml.read_text(encoding="utf-8")
+                logger.info(f"  ✓ 期望输出加载完成（{len(expected_output_content)} 字节）")
+
+            # Step 3：创建 LLM 客户端
+            logger.info(f"Step 3：创建 LLM 客户端（{llm_provider}）...")
+            llm_client = create_llm_client(llm_provider, model=llm_model, **llm_kwargs)
+            logger.info(f"  ✓ LLM 客户端就绪")
+
+            # Step 4：XSLT 生成 + 迭代修正
+            if output_xslt is None:
+                output_xslt = self.work_dir / "ai-generated-transform.xslt"
+
+            logger.info(f"Step 4：启动 XSLT 生成迭代（max_rounds={max_rounds}）...")
+            refiner = XSLTRefiner(llm_client, max_rounds=max_rounds, validator=self.validator)
+            refine_result = refiner.refine(
+                intent=intent,
+                input_xml=input_xml_content,
+                input_xml_path=input_xml,
+                expected_output=expected_output_content,
+                expected_output_path=expected_output_xml,
+                output_xslt=output_xslt,
+            )
+
+            # 汇总结果
+            result.update({
+                "success": refine_result["success"],
+                "xslt_file": refine_result["xslt_file"],
+                "rounds_used": refine_result["rounds_used"],
+                "total_tokens": refine_result["total_tokens"],
+                "validation": refine_result["validation"],
+                "round_history": refine_result["round_history"],
+                "errors": refine_result["errors"],
+            })
+
+            if result["success"]:
+                logger.info(f"  ✅ AI 迁移成功（第 {result['rounds_used']} 轮通过）")
+            else:
+                logger.warning(f"  ✗ AI 迁移失败（{max_rounds} 轮后仍未通过）")
+
+            logger.info("=" * 80)
+            logger.info("AI 驱动迁移完成")
+            logger.info("=" * 80)
+
+        except Exception as e:
+            logger.error(f"AI 迁移执行异常: {e}", exc_info=True)
             result["errors"].append(str(e))
 
         return result

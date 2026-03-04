@@ -1,8 +1,41 @@
 """
-lens_migration.ai —— AI 辅助子包（待实现）
+lens_migration.ai —— AI 辅助子包（Phase 2）
 
-计划提供以下能力（Phase 4）：
-  - RuleInferenceEngine : 基于 LLM 的规则推断，从示例 XML 自动生成迁移规则
-  - XSLTOptimizer       : AI 辅助优化生成的 XSLT，提升转换效率和正确性
+提供以下能力：
+  - LLMClient     : 统一 LLM 调用接口（OpenAI / Anthropic / Ollama / Mock）
+  - PromptBuilder : 将迁移意图 + XML 示例组装为 LLM Prompt
+  - XSLTRefiner   : LLM 生成 XSLT + 验证失败时自动多轮迭代修正
+
+快速使用：
+    from lens_migration.ai import create_llm_client, XSLTRefiner
+
+    client  = create_llm_client("ollama", model="llama3.2")
+    refiner = XSLTRefiner(client, max_rounds=3)
+    result  = refiner.refine(intent, input_xml_str, input_xml_path)
 """
 
+from lens_migration.ai.llm_client import (
+    LLMClient,
+    OpenAIClient,
+    AnthropicClient,
+    OllamaClient,
+    MockLLMClient,
+    LLMResponse,
+    ChatMessage,
+    create_llm_client,
+)
+from lens_migration.ai.prompt_builder import PromptBuilder
+from lens_migration.ai.xslt_refiner import XSLTRefiner
+
+__all__ = [
+    "LLMClient",
+    "OpenAIClient",
+    "AnthropicClient",
+    "OllamaClient",
+    "MockLLMClient",
+    "LLMResponse",
+    "ChatMessage",
+    "create_llm_client",
+    "PromptBuilder",
+    "XSLTRefiner",
+]
