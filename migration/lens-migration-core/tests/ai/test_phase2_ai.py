@@ -15,6 +15,7 @@ Phase 2 AI 模块单元测试
 """
 
 import sys
+import os
 import pytest
 from pathlib import Path
 from unittest.mock import patch
@@ -25,6 +26,8 @@ sys.path.insert(0, str(SRC))
 
 from lens_migration.ai.llm_client import (
     MockLLMClient,
+    QwenClient,
+    DeepseekClient,
     create_llm_client,
     ChatMessage,
     LLMResponse,
@@ -135,9 +138,37 @@ class TestCreateLLMClient:
         assert isinstance(client, MockLLMClient)
         assert client.provider_name == "mock"
 
+    def test_qwen_provider_routing(self):
+        """qwen/dashscope/tongyi 三个别名都应路由到 QwenClient。"""
+        for alias in ("qwen", "dashscope", "tongyi"):
+            client = create_llm_client(alias, api_key="fake-key")
+            assert isinstance(client, QwenClient), f"alias={alias} 未路由到 QwenClient"
+            assert client.provider_name == "qwen"
+
+    def test_deepseek_provider_routing(self):
+        """deepseek 应路由到 DeepseekClient。"""
+        client = create_llm_client("deepseek", api_key="fake-key")
+        assert isinstance(client, DeepseekClient)
+        assert client.provider_name == "deepseek"
+
+    def test_qwen_default_model(self):
+        """Qwen 默认模型应为 qwen-plus。"""
+        client = create_llm_client("qwen", api_key="fake-key")
+        assert client.model == "qwen-plus"
+
+    def test_deepseek_default_model(self):
+        """Deepseek 默认模型应为 deepseek-chat。"""
+        client = create_llm_client("deepseek", api_key="fake-key")
+        assert client.model == "deepseek-chat"
+
+    def test_qwen_custom_model(self):
+        """指定模型名称应被正确传入。"""
+        client = create_llm_client("qwen", model="qwen-max", api_key="fake-key")
+        assert client.model == "qwen-max"
+
     def test_unknown_provider_raises(self):
         with pytest.raises(ValueError, match="不支持的 LLM provider"):
-            create_llm_client("unknown-provider")
+            create_llm_client("unknown-provider-xyz")
 
     def test_provider_case_insensitive(self):
         """provider 名称大小写不敏感。"""
@@ -146,7 +177,116 @@ class TestCreateLLMClient:
 
 
 # =============================================================================
-# 3. PromptBuilder 测试
+# 3. Qwen 真实集成测试（需要 DASHSCOPE_API_KEY，否则自动跳过）
+# =============================================================================
+
+# 检测是否存在 API Key
+_DASHSCOPE_KEY = os.environ.get("DASHSCOPE_API_KEY") or os.environ.get("QWEN_API_KEY")
+
+@pytest.mark.skipif(not _DASHSCOPE_KEY, reason="未设置 DASHSCOPE_API_KEY，跳过 Qwen 真实调用测试")
+class TestQwenLiveIntegration:
+    """
+    Qwen 真实 API 集成测试。
+
+    运行前提：
+        export DASHSCOPE_API_KEY=sk-xxxxxxxxxxxx
+
+    运行命令（仅跑此分组）：
+        DASHSCOPE_API_KEY=sk-xxx PYTHONPATH=src/main/python \\
+          venv/bin/python3 -m pytest tests/ai/test_phase2_ai.py::TestQwenLiveIntegration -v -s
+    """
+
+    @pytest.fixture
+    def intent(self):
+        return IntentParser().parse(INTENT_FILE)
+
+    def test_qwen_simple_chat(self):
+        """Qwen 基础对话：验证 API 可达、响应非空。"""
+        client = QwenClient(model="qwen-turbo")   # turbo 最快最省钱
+        resp = client.chat("请用一句话回答：XSLT 是什么？")
+        assert resp.content, "Qwen 返回了空响应"
+        assert resp.provider == "qwen"
+        assert resp.total_tokens > 0
+        print(f"\n[Qwen simple chat] 响应: {resp.content[:200]}")
+        print(f"[Qwen simple chat] tokens={resp.total_tokens}，耗时={resp.latency_ms:.0f}ms")
+
+    def test_qwen_xslt_generation(self, intent, tmp_path):
+        """Qwen 完整 XSLT 生成：从意图文档生成可用的 XSLT 并通过验证。"""
+        from lens_migration.ai.xslt_refiner import XSLTRefiner
+
+        input_xml = INPUT_FILE.read_text(encoding="utf-8")
+        expected_xml = EXPECTED_FILE.read_text(encoding="utf-8")
+
+        client  = QwenClient(model="qwen-plus")
+        refiner = XSLTRefiner(client, max_rounds=3)
+
+        result = refiner.refine(
+            intent=intent,
+            input_xml=input_xml,
+            input_xml_path=INPUT_FILE,
+            expected_output=expected_xml,
+            expected_output_path=EXPECTED_FILE,
+            output_xslt=tmp_path / "qwen-generated.xslt",
+        )
+
+        print(f"\n[Qwen XSLT gen] 结果: success={result['success']}，"
+              f"rounds={result['rounds_used']}，tokens={result['total_tokens']}")
+        for i, rec in enumerate(result["round_history"], 1):
+            print(f"  Round {i}: syntax={rec['syntax_valid']}，"
+                  f"transform={rec['transformation_ok']}，"
+                  f"tests={rec['tests_passed']}，"
+                  f"tokens={rec['tokens']}，耗时={rec['latency_ms']:.0f}ms")
+        if result.get("errors"):
+            print(f"  错误: {result['errors']}")
+
+        # 至少语法合法（即使语义比对未完全通过，也应生成有效 XSLT）
+        assert result["rounds_used"] >= 1, "应至少完成一轮生成"
+        assert result["round_history"][0]["syntax_valid"], \
+            f"第 1 轮 XSLT 语法应有效，错误: {result['round_history'][0]['errors']}"
+
+    def test_qwen_refinement_on_bad_xslt(self, intent, tmp_path):
+        """验证 Qwen 在第 1 轮失败时，第 2 轮能修正并生成有效 XSLT。"""
+        from lens_migration.ai.xslt_refiner import XSLTRefiner
+        from lens_migration.ai.prompt_builder import PromptBuilder
+
+        input_xml = INPUT_FILE.read_text(encoding="utf-8")
+        call_count = {"n": 0}
+
+        client = QwenClient(model="qwen-plus")
+        original_do_chat = client._do_chat.__func__
+
+        def patched_do_chat(self_inner, messages, **kwargs):
+            call_count["n"] += 1
+            if call_count["n"] == 1:
+                # 强制第 1 轮返回无效内容
+                return LLMResponse(
+                    content="this is not valid xslt",
+                    model="qwen-plus", provider="qwen"
+                )
+            # 第 2 轮以后走真实 Qwen API
+            return original_do_chat(self_inner, messages, **kwargs)
+
+        with patch.object(type(client), "_do_chat", patched_do_chat):
+            refiner = XSLTRefiner(client, max_rounds=3)
+            result = refiner.refine(
+                intent=intent,
+                input_xml=input_xml,
+                input_xml_path=INPUT_FILE,
+                output_xslt=tmp_path / "qwen-refined.xslt",
+            )
+
+        print(f"\n[Qwen refinement] rounds={result['rounds_used']}，"
+              f"success={result['success']}，tokens={result['total_tokens']}")
+
+        assert result["rounds_used"] >= 2, "应至少经历 2 轮（第 1 轮强制失败）"
+        # 第 2 轮开始是真实 Qwen 调用，应能生成语法合法的 XSLT
+        if len(result["round_history"]) >= 2:
+            assert result["round_history"][1]["syntax_valid"], \
+                f"第 2 轮 XSLT 应语法合法，错误: {result['round_history'][1]['errors']}"
+
+
+# =============================================================================
+# 4. PromptBuilder 测试
 # =============================================================================
 
 class TestPromptBuilder:
@@ -213,7 +353,7 @@ class TestPromptBuilder:
 
 
 # =============================================================================
-# 4. XSLTRefiner 测试
+# 5. XSLTRefiner 测试
 # =============================================================================
 
 class TestXSLTRefiner:
@@ -312,7 +452,7 @@ class TestXSLTRefiner:
 
 
 # =============================================================================
-# 5. MigrationEngine.migrate_with_ai 集成测试
+# 6. MigrationEngine.migrate_with_ai 集成测试
 # =============================================================================
 
 class TestMigrationEngineAI:

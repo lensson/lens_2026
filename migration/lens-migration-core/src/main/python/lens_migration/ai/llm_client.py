@@ -4,10 +4,12 @@ LLM Client Module（大语言模型客户端模块）
 提供统一的 LLM 调用接口，屏蔽不同模型 Provider 的 API 差异。
 
 支持的 Provider：
-  - OpenAI  (gpt-4o, gpt-4-turbo, gpt-3.5-turbo)
-  - Anthropic Claude (claude-3-5-sonnet, claude-3-haiku)
-  - Ollama  (本地部署，任意模型，如 llama3、mistral、qwen2.5)
-  - Mock    (单元测试专用，无需真实 API Key)
+  - OpenAI     (gpt-4o, gpt-4-turbo, gpt-3.5-turbo)
+  - Anthropic  Claude (claude-3-5-sonnet, claude-3-haiku)
+  - Ollama     (本地部署，任意模型，如 llama3、mistral、qwen2.5)
+  - Qwen       (阿里云通义千问，qwen-plus、qwen-turbo、qwen-max 等)
+  - Deepseek   (深度求索，deepseek-chat、deepseek-reasoner 等)
+  - Mock       (单元测试专用，无需真实 API Key)
 
 使用方式（推荐通过工厂函数创建）：
     from lens_migration.ai.llm_client import create_llm_client
@@ -372,6 +374,147 @@ class OllamaClient(LLMClient):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Qwen Provider（阿里云通义千问）
+# ─────────────────────────────────────────────────────────────────────────────
+
+class QwenClient(LLMClient):
+    """
+    阿里云通义千问（Qwen）API 客户端。
+
+    使用 DashScope OpenAI 兼容端点，无需额外 SDK。
+    API 文档：https://help.aliyun.com/zh/model-studio/developer-reference/
+
+    需要环境变量：DASHSCOPE_API_KEY（即 Qwen API Key）
+    可选环境变量：QWEN_BASE_URL（覆盖默认端点）
+
+    支持的模型：
+      - qwen-plus       （推荐，平衡性能与成本）
+      - qwen-turbo      （最快，适合简单任务）
+      - qwen-max        （最强，复杂推理）
+      - qwen2.5-coder-32b-instruct（代码专用）
+
+    示例：
+        client = QwenClient(model="qwen-plus")
+        # 或通过环境变量配置 API Key
+        # export DASHSCOPE_API_KEY=sk-xxx
+    """
+
+    DEFAULT_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+
+    def __init__(
+        self,
+        model: str = "qwen-plus",
+        api_key: Optional[str] = None,
+        base_url: Optional[str] = None,
+        max_retries: int = 3,
+    ):
+        super().__init__(model, max_retries)
+        try:
+            from openai import OpenAI
+        except ImportError:
+            raise ImportError("请安装 openai 包: pip install openai>=1.0.0")
+
+        resolved_key = api_key or os.environ.get("DASHSCOPE_API_KEY") or os.environ.get("QWEN_API_KEY")
+        if not resolved_key:
+            logger.warning("[Qwen] 未找到 API Key（DASHSCOPE_API_KEY），调用时将报错")
+
+        self._base_url = base_url or os.environ.get("QWEN_BASE_URL", self.DEFAULT_BASE_URL)
+        self._client = OpenAI(api_key=resolved_key or "missing", base_url=self._base_url)
+        logger.info(f"[Qwen] 客户端就绪，base_url={self._base_url}，模型={model}")
+
+    @property
+    def provider_name(self) -> str:
+        return "qwen"
+
+    def _do_chat(self, messages: List[ChatMessage], **kwargs) -> LLMResponse:
+        openai_messages = [{"role": m.role, "content": m.content} for m in messages]
+        resp = self._client.chat.completions.create(
+            model=self.model,
+            messages=openai_messages,
+            temperature=kwargs.get("temperature", 0.2),
+            max_tokens=kwargs.get("max_tokens", 4096),
+        )
+        choice = resp.choices[0]
+        return LLMResponse(
+            content=choice.message.content or "",
+            model=resp.model,
+            provider=self.provider_name,
+            input_tokens=resp.usage.prompt_tokens if resp.usage else 0,
+            output_tokens=resp.usage.completion_tokens if resp.usage else 0,
+            raw=resp,
+        )
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Deepseek Provider
+# ─────────────────────────────────────────────────────────────────────────────
+
+class DeepseekClient(LLMClient):
+    """
+    Deepseek API 客户端。
+
+    使用 Deepseek 官方 OpenAI 兼容端点。
+    API 文档：https://platform.deepseek.com/api-docs/
+
+    需要环境变量：DEEPSEEK_API_KEY
+    可选环境变量：DEEPSEEK_BASE_URL（覆盖默认端点）
+
+    支持的模型：
+      - deepseek-chat     （DeepSeek-V3，通用对话与代码）
+      - deepseek-reasoner （DeepSeek-R1，链式推理，复杂逻辑）
+
+    示例：
+        client = DeepseekClient(model="deepseek-chat")
+        # export DEEPSEEK_API_KEY=sk-xxx
+    """
+
+    DEFAULT_BASE_URL = "https://api.deepseek.com/v1"
+
+    def __init__(
+        self,
+        model: str = "deepseek-chat",
+        api_key: Optional[str] = None,
+        base_url: Optional[str] = None,
+        max_retries: int = 3,
+    ):
+        super().__init__(model, max_retries)
+        try:
+            from openai import OpenAI
+        except ImportError:
+            raise ImportError("请安装 openai 包: pip install openai>=1.0.0")
+
+        resolved_key = api_key or os.environ.get("DEEPSEEK_API_KEY")
+        if not resolved_key:
+            logger.warning("[Deepseek] 未找到 API Key（DEEPSEEK_API_KEY），调用时将报错")
+
+        self._base_url = base_url or os.environ.get("DEEPSEEK_BASE_URL", self.DEFAULT_BASE_URL)
+        self._client = OpenAI(api_key=resolved_key or "missing", base_url=self._base_url)
+        logger.info(f"[Deepseek] 客户端就绪，base_url={self._base_url}，模型={model}")
+
+    @property
+    def provider_name(self) -> str:
+        return "deepseek"
+
+    def _do_chat(self, messages: List[ChatMessage], **kwargs) -> LLMResponse:
+        openai_messages = [{"role": m.role, "content": m.content} for m in messages]
+        resp = self._client.chat.completions.create(
+            model=self.model,
+            messages=openai_messages,
+            temperature=kwargs.get("temperature", 0.2),
+            max_tokens=kwargs.get("max_tokens", 4096),
+        )
+        choice = resp.choices[0]
+        return LLMResponse(
+            content=choice.message.content or "",
+            model=resp.model,
+            provider=self.provider_name,
+            input_tokens=resp.usage.prompt_tokens if resp.usage else 0,
+            output_tokens=resp.usage.completion_tokens if resp.usage else 0,
+            raw=resp,
+        )
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Mock Provider（单元测试专用）
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -465,7 +608,7 @@ def create_llm_client(
 
     Args:
         provider: Provider 名称，可选：
-                  "openai"、"anthropic"、"ollama"、"mock"
+                  "openai"、"anthropic"、"ollama"、"qwen"、"deepseek"、"mock"
                   也可通过环境变量 LLM_PROVIDER 指定默认 provider。
         model:    模型名称（不传则使用各 Provider 默认值）
         **kwargs: 传递给对应客户端构造函数的额外参数
@@ -488,11 +631,15 @@ def create_llm_client(
         return AnthropicClient(model=model or "claude-3-5-sonnet-20241022", **kwargs)
     elif provider in ("ollama", "local"):
         return OllamaClient(model=model or "llama3.2", **kwargs)
+    elif provider in ("qwen", "dashscope", "tongyi"):
+        return QwenClient(model=model or "qwen-plus", **kwargs)
+    elif provider == "deepseek":
+        return DeepseekClient(model=model or "deepseek-chat", **kwargs)
     elif provider == "mock":
         return MockLLMClient(**kwargs)
     else:
         raise ValueError(
             f"不支持的 LLM provider: '{provider}'。"
-            f"可选值: openai, anthropic, ollama, mock"
+            f"可选值: openai, anthropic, ollama, qwen, deepseek, mock"
         )
 
