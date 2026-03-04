@@ -19,9 +19,9 @@ from typing import Optional, Dict, Any
 import json
 import logging
 
-from lens_migration.intent_parser import IntentParser
-from lens_migration.xslt_generator import XSLTGenerator
-from lens_migration.validator import XSLTValidator
+from lens_migration.parser.intent_parser import IntentParser
+from lens_migration.generator.xslt_generator import XSLTGenerator
+from lens_migration.validator.validator import XSLTValidator
 
 # 配置根日志：INFO 级别，格式含时间戳、模块名、级别
 logging.basicConfig(

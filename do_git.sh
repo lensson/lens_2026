@@ -13,3 +13,4 @@ cd /home/zhenac/my/lens_2026
   git log --oneline -3
 } > /home/zhenac/my/lens_2026/git_out.txt 2>&1
 
+

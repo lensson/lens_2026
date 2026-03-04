@@ -18,8 +18,8 @@ from lxml import etree
 SRC = Path(__file__).parent.parent.parent.parent / "src" / "main" / "python"
 sys.path.insert(0, str(SRC))
 
-from lens_migration.intent_parser import IntentParser, RuleType
-from lens_migration.xslt_generator import XSLTGenerator
+from lens_migration.parser.intent_parser import IntentParser, RuleType
+from lens_migration.generator.xslt_generator import XSLTGenerator
 
 # ── 测试用例路径 ──────────────────────────────────────────────────────────────
 BASE = Path(__file__).parent.parent

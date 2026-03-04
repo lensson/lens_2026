@@ -15,7 +15,7 @@ import logging
 import re
 from lxml import etree
 
-from lens_migration.intent_parser import MigrationIntent, MigrationRule, RuleType
+from lens_migration.parser.intent_parser import MigrationIntent, MigrationRule, RuleType
 
 logger = logging.getLogger(__name__)
 
@@ -55,13 +55,21 @@ class XSLTGenerator:
         Returns:
             完整的 XSLT 样式表字符串
         """
-        logger.info("开始生成 XSLT 转换样式表...")
+        logger.info("=" * 60)
+        logger.info("开始生成 XSLT 转换样式表")
+        logger.info(f"  意图标题 : {intent.title}")
+        logger.info(f"  规则总数 : {len(intent.rules)}")
 
         # 解析输入 XML，提取根命名空间和根元素名
         try:
             input_doc = etree.fromstring(input_xml.encode('utf-8'))
             root_ns = self._extract_namespace(input_doc)
             root_element = input_doc.tag.split('}')[-1]  # 去掉命名空间前缀，保留本地名
+            logger.info(f"  输入 XML 根元素 : <{root_element}>")
+            if root_ns:
+                logger.info(f"  命名空间        : {root_ns}")
+            else:
+                logger.info("  命名空间        : 无（裸标签）")
         except Exception as e:
             logger.warning(f"解析输入 XML 失败，将不使用命名空间: {e}")
             root_ns = None
@@ -70,26 +78,44 @@ class XSLTGenerator:
         xslt_parts = []
 
         # 生成文件头（xmlns 声明 + xsl:output）
+        logger.info("生成 XSLT 文件头...")
         xslt_parts.append(self._generate_header(root_ns))
 
         # 生成 Identity Template（默认行为：原样复制所有节点）
+        logger.info("生成 Identity Template（原样复制所有节点）...")
         xslt_parts.append(self._generate_identity_template())
 
         # 按优先级从小到大排列规则（数值越小越优先匹配）
         sorted_rules = sorted(intent.rules, key=lambda r: r.priority)
+        logger.info(f"规则排序完成（按优先级升序）：")
+        for r in sorted_rules:
+            logger.info(f"  [{r.priority:3d}] {r.rule_id} | {r.rule_type.value:15s} | {r.description}")
 
         # 逐条生成规则对应的 XSLT 模板
+        generated_count = 0
+        skipped_count = 0
         for rule in sorted_rules:
+            logger.debug(f"处理规则 {rule.rule_id}: type={rule.rule_type.value}, xpath={rule.xpath}")
+            if rule.xslt_hint:
+                logger.info(f"  ✓ 规则 {rule.rule_id}: 使用 xslt_hint（人工验证片段）")
             template = self._generate_rule_template(rule, root_ns)
             if template:
                 xslt_parts.append(template)
+                generated_count += 1
+                logger.info(f"  ✓ 规则 {rule.rule_id}: 模板生成成功（match={self._xpath_to_match_pattern(rule.xpath, root_ns)}）")
+            else:
+                skipped_count += 1
+                logger.warning(f"  ✗ 规则 {rule.rule_id}: 跳过（类型={rule.rule_type.value}，无法生成）")
 
         # 生成文件尾
         xslt_parts.append(self._generate_footer())
 
         xslt_code = '\n\n'.join(xslt_parts)
 
-        logger.info(f"XSLT 生成完成：共 {len(sorted_rules)} 条规则模板")
+        logger.info("-" * 60)
+        logger.info(f"XSLT 生成完成：成功 {generated_count} 条，跳过 {skipped_count} 条")
+        logger.info(f"XSLT 总大小  ：{len(xslt_code)} 字节，{xslt_code.count(chr(10))+1} 行")
+        logger.info("=" * 60)
 
         return xslt_code
 
@@ -160,20 +186,24 @@ class XSLTGenerator:
         """
         # ── 优先使用 xslt_hint ──────────────────────────────────────────────
         if rule.xslt_hint and rule.xslt_hint.strip():
+            logger.debug(f"  规则 {rule.rule_id}: 使用 xslt_hint，长度={len(rule.xslt_hint)} 字节")
             return self._wrap_hint_as_template(rule, namespace)
 
         # ── 无 hint 时按类型推导 ────────────────────────────────────────────
         if rule.rule_type == RuleType.RENAME:
+            logger.debug(f"  规则 {rule.rule_id}: 生成 RENAME 模板，{rule.source_value} → {rule.target_value}")
             return self._generate_rename_template(rule, namespace)
         elif rule.rule_type == RuleType.MODIFY_VALUE:
+            logger.debug(f"  规则 {rule.rule_id}: 生成 MODIFY_VALUE 模板，{rule.source_value} → {rule.target_value}")
             return self._generate_modify_value_template(rule, namespace)
         elif rule.rule_type == RuleType.DELETE_NODE:
+            logger.debug(f"  规则 {rule.rule_id}: 生成 DELETE_NODE 模板，xpath={rule.xpath}")
             return self._generate_delete_template(rule, namespace)
         elif rule.rule_type == RuleType.ADD_NODE:
-            logger.warning(f"ADD_NODE 规则无 xslt_hint，已跳过: {rule.rule_id}")
+            logger.warning(f"  规则 {rule.rule_id}: ADD_NODE 规则无 xslt_hint，已跳过: {rule.rule_id}")
             return None
         else:
-            logger.warning(f"不支持的规则类型，已跳过: {rule.rule_type}")
+            logger.warning(f"  规则 {rule.rule_id}: 不支持的规则类型，已跳过: {rule.rule_type}")
             return None
 
     def _wrap_hint_as_template(
@@ -423,3 +453,4 @@ class XSLTGenerator:
     def _generate_footer(self) -> str:
         """生成 XSLT 文件尾（关闭根元素）。"""
         return '</xsl:stylesheet>'
+
