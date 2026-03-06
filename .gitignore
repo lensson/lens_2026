@@ -36,3 +36,8 @@ dependency-reduced-pom.xml
 **/venv/
 **/.venv/
 
+# Secrets / env files — 不提交包含真实密钥的 env 文件
+# 提交时只保留 *.env.example 模板
+conf/env/*.env
+migration/lens-migration-core/.env.test
+migration/lens-migration-core/.env

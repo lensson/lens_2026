@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  vlan-policy-test / sample-01
+  old-version (v1): 2 sub-interface entries with legacy structure
+  Paired with: new-version/vlan-sample-01-v2.xml
+
+  Changes expected in v2:
+  1. [Rule 1] pop-and-push-vlan -> pop-and-push-2-tags
+  2. [Rule 2] eth0.100 vlan-id: 100 -> 101
+  3. [Rule 3] Add admin-state=enabled to each interface
+  4. [Rule 4] Remove legacy-mode elements
+-->
+<interfaces xmlns="urn:bbf:yang:bbf-sub-interfaces">
+
+  <!-- Sub-interface 1: eth0.100 (VLAN 100, will have vlan-id changed to 101) -->
+  <interface>
+    <name>eth0.100</name>
+    <description>Customer VLAN 100 sub-interface</description>
+    <legacy-mode>true</legacy-mode>
+    <subif-lower-layer>
+      <interface>eth0</interface>
+      <inline-frame-processing>
+        <ingress-rule>
+          <rule>
+            <name>ingress-match-100</name>
+            <priority>100</priority>
+            <match-criteria>
+              <dot1q-tag>
+                <index>0</index>
+                <tag-type>c-vlan</tag-type>
+                <vlan-id>100</vlan-id>
+              </dot1q-tag>
+            </match-criteria>
+          </rule>
+        </ingress-rule>
+        <egress-rewrite>
+          <pop-and-push-vlan>
+            <pop-tags>1</pop-tags>
+            <push-tag>
+              <index>0</index>
+              <tag-type>c-vlan</tag-type>
+              <vlan-id>100</vlan-id>
+              <write-pbit>0</write-pbit>
+            </push-tag>
+          </pop-and-push-vlan>
+        </egress-rewrite>
+      </inline-frame-processing>
+    </subif-lower-layer>
+  </interface>
+
+  <!-- Sub-interface 2: eth0.200 (VLAN 200, unchanged vlan-id) -->
+  <interface>
+    <name>eth0.200</name>
+    <description>Customer VLAN 200 sub-interface</description>
+    <subif-lower-layer>
+      <interface>eth0</interface>
+      <inline-frame-processing>
+        <ingress-rule>
+          <rule>
+            <name>ingress-match-200</name>
+            <priority>200</priority>
+            <match-criteria>
+              <dot1q-tag>
+                <index>0</index>
+                <tag-type>c-vlan</tag-type>
+                <vlan-id>200</vlan-id>
+              </dot1q-tag>
+            </match-criteria>
+          </rule>
+        </ingress-rule>
+        <egress-rewrite>
+          <pop-and-push-vlan>
+            <pop-tags>1</pop-tags>
+            <push-tag>
+              <index>0</index>
+              <tag-type>c-vlan</tag-type>
+              <vlan-id>200</vlan-id>
+              <write-pbit>0</write-pbit>
+            </push-tag>
+          </pop-and-push-vlan>
+        </egress-rewrite>
+      </inline-frame-processing>
+    </subif-lower-layer>
+  </interface>
+
+</interfaces>
+

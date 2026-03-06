@@ -58,23 +58,36 @@
 - ✅ pytest 端到端测试：`validation/test_e2e_simple_classifier.py`（21 个用例，支持 `--log-cli-level=DEBUG`）
 
 ---
-## Phase 2 — AI 集成（智能 XSLT 生成）📋
+## Phase 2 — AI 集成（智能 XSLT 生成）✅
 
 ### 框架
-- ⬜ `ai/` 子包实现 LLM Provider 抽象层，屏蔽不同模型差异
-- ⬜ AI 调用结果缓存，避免重复调用
+- ✅ `ai/` 子包实现 LLM Provider 抽象层，屏蔽不同模型 API 差异
+- ✅ 重试逻辑（指数退避）由基类 `LLMClient` 统一处理
+- ✅ `MockLLMClient` 支持 `call_history` 记录，便于测试断言
+- ✅ 本地 Ollama 部署（`ollama serve`），安装 `qwen3:8b`（Qwen最新版，2025.04）
 
 ### 业务
-- ⬜ 意图文档 → 结构化 Prompt 的转换策略（含 Yang 节点路径、数据类型、XML 示例片段）
-- ⬜ 多轮对话迭代：XSLT 测试失败时，将错误信息反馈给 AI 自动修正
-- ⬜ 防幻觉：AI 生成后，规则引擎做二次格式校验
+- ✅ 意图文档 → 结构化 Prompt（System + User），含 Yang 节点路径、XSLT 规范、XML 示例片段
+- ✅ 多轮对话迭代：XSLT 验证失败时，将错误信息 + 上一轮 XSLT 反馈给 AI 自动修正（最多 N 轮）
+- ✅ 防幻觉：`XSLTRefiner._extract_xslt()` 从 LLM 输出中可靠提取 XSLT，识别代码块和纯 XML
+- ✅ `vlan-policy-test`：第二个端到端测试用例，覆盖 GitHub Models + 本地 Ollama 双 provider
 
 ### 技术
-- ⬜ `ai/llm_client.py`：统一 LLM 调用接口，支持 OpenAI GPT-4、本地 Ollama、Azure OpenAI
-- ⬜ `ai/prompt_builder.py`：从意图 + Yang 上下文构建 Prompt
-- ⬜ `ai/xslt_refiner.py`：基于测试失败结果对 XSLT 做 AI 迭代修正
-- ⬜ 在 `XSLTGenerator` 中加入 AI 生成路径（与规则引擎并存，可配置）
-- ⬜ 单元测试：Mock LLM 响应，测试 Prompt 构建逻辑
+- ✅ `ai/llm_client.py`：统一 LLM 调用接口，支持 OpenAI、Anthropic Claude、Qwen、Deepseek、本地 Ollama（默认 `qwen3:8b`）、GitHub Models、Mock
+- ✅ `ai/prompt_builder.py`：`build_generate_prompt()` + `build_refinement_prompt()`，含完整中文注释
+- ✅ `ai/xslt_refiner.py`：编排 LLM 调用 → 验证 → 错误反馈 → 迭代修正主循环，记录每轮历史
+- ✅ `MigrationEngine.migrate_with_ai()`：AI 路径顶层入口，与规则引擎路径并存可配置
+- ✅ `ai/__init__.py`：暴露所有公共 API（`create_llm_client`、`XSLTRefiner`、`PromptBuilder` 等）
+- ✅ 单元测试：`tests/ai/test_phase2_ai.py`，**25/25 全部通过**，全离线 Mock，无需 API Key
+  - `TestMockLLMClient`（6项）：固定响应、关键字映射、调用历史、reset、token 估算
+  - `TestCreateLLMClient`（3项）：工厂函数路由、未知 provider 报错、大小写不敏感
+  - `TestPromptBuilder`（6项）：system/user prompt 内容验证、修正 prompt 结构
+  - `TestXSLTRefiner`（7项）：首轮成功、二轮修正成功、max_rounds 耗尽、XSLT 提取逻辑
+  - `TestMigrationEngineAI`（3项）：端到端 Mock 集成、字段完整性、非法 provider 错误处理
+- ✅ `vlan-policy-test`：4规则 VLAN XSLT 生成测试，`TestAIVlanPolicyGeneration`（GitHub）+ `TestOllamaVlanPolicyGeneration`（本地 Ollama）各20个断言
+- ✅ Ollama 本地模型推荐：`qwen3:8b`（默认）、`qwen3:4b`、`qwen2.5-coder:7b`；运行脚本：`run_ollama_test.sh`
+
+> **Ollama 模型说明**：Ollama 上没有 "qwen3.5"，Qwen 系列最新版叫 **qwen3**（2025.04 Alibaba 发布），Ollama tag 为 `qwen3:8b` / `qwen3:4b` 等。
 
 ---
 ## Phase 3 — Schema 驱动迁移（Yang 分析）📋
@@ -172,16 +185,16 @@
 |------|-----------|:----:|
 | Phase 0 — 基础架构 | 项目骨架、Maven 编译通过、Python 环境就绪 | ✅ 完成 |
 | Phase 1 — 意图驱动 MVP | simple-classifier-test **21/21** 通过、XSLT 生成、子包重构 | ✅ 完成 |
-| Phase 2 — AI 集成 | LLM 生成 XSLT，自动迭代修正 | ⬜ 未开始 |
+| Phase 2 — AI 集成 | LLM 生成 XSLT，多轮迭代修正；本地 Ollama(qwen3:8b) + GitHub Models；**vlan-policy-test 20/20** | ✅ 完成 |
 | Phase 3 — Schema 驱动 | Yang 差异分析，自动生成迁移规则 | ⬜ 未开始（骨架已有） |
 | Phase 4 — 测试框架 | N-1 批量用例，CI 集成 | ⬜ 未开始 |
 | Phase 5 — 后端完整实现 | REST API 全覆盖，异步任务，DB 持久化 | 🔧 骨架完成，业务待实现 |
 | Phase 6 — 前端 UI | Vue 3 可视化操作全流程 | ⬜ 未开始 |
 
 ---
-## 当前优先事项（进入 Phase 2 / Phase 3）
-1. **Phase 2 启动**：`ai/llm_client.py` 接口定义，为 LLM 调用预留扩展点
-2. **Phase 3 启动**：`parser/yang_parser.py` 接入 `pyang` 真实解析，验证 `device-extension-ls-mf-lwlt-c-26.3-028` 数据集
+## 当前优先事项（进入 Phase 3）
+1. **Phase 3 启动**：`parser/yang_parser.py` 接入 `pyang` 真实解析，验证 `device-extension-ls-mf-lwlt-c-26.3-028` 数据集
+2. **Phase 3 推进**：`analyzer/schema_analyzer.py` 实现真实 diff 逻辑，生成结构化变更列表
 3. **Phase 5 推进**：`service/MigrationService.java` 实现 `callPythonCore()`，打通 Java → Python 调用链
 4. **更多测试用例**：基于 `tests/schema/` 下的真实 Yang + samples 创建第二个端到端测试用例
 

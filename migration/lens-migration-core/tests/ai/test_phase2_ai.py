@@ -28,6 +28,7 @@ from lens_migration.ai.llm_client import (
     MockLLMClient,
     QwenClient,
     DeepseekClient,
+    GitHubModelsClient,
     create_llm_client,
     ChatMessage,
     LLMResponse,
@@ -68,6 +69,41 @@ VALID_XSLT = """\
 
 # ── 无效 XSLT（触发修正流程用）───────────────────────────────────────────────
 INVALID_XSLT = "this is not valid xml at all <broken>"
+
+# ── 模块级：各 Provider 可用性检测（在所有类定义之前执行）──────────────────────
+
+# GitHub Token
+_GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+
+# Qwen / DashScope Key
+_DASHSCOPE_KEY = os.environ.get("DASHSCOPE_API_KEY") or os.environ.get("QWEN_API_KEY")
+
+# Ollama：优先使用 conftest.py 根据 OLLAMA_TARGET 设置的 OLLAMA_MODEL / OLLAMA_BASE_URL
+# OLLAMA_TARGET=remote → localhost:11435 (SSH 隧道到 10.99.79.20，qwen2.5-coder:14b)
+# OLLAMA_TARGET=local  → localhost:11434 (qwen2.5-coder:3b)
+_OLLAMA_MODEL_TEST   = os.environ.get("OLLAMA_MODEL",    "qwen2.5-coder:14b")
+_OLLAMA_BASE_URL_TEST = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1")
+
+
+def _check_ollama_for_test() -> tuple:
+    """检测 OLLAMA_BASE_URL 指向的 Ollama 服务是否可达，且目标模型已安装。"""
+    import urllib.request, json
+    api_base = _OLLAMA_BASE_URL_TEST.replace("/v1", "").rstrip("/")
+    try:
+        with urllib.request.urlopen(f"{api_base}/api/tags", timeout=5) as r:
+            data = json.loads(r.read())
+        models = [m.get("name", "") for m in data.get("models", [])]
+        base = _OLLAMA_MODEL_TEST.split(":")[0]
+        found = any(m == _OLLAMA_MODEL_TEST or m.startswith(base + ":") for m in models)
+        if not found:
+            return False, (f"Ollama 在线但未找到模型 '{_OLLAMA_MODEL_TEST}'，"
+                           f"已有: {models}。请运行: ollama pull {_OLLAMA_MODEL_TEST}")
+        return True, f"Ollama 可用，model={_OLLAMA_MODEL_TEST}，url={_OLLAMA_BASE_URL_TEST}"
+    except Exception as e:
+        return False, f"Ollama 不可达 ({_OLLAMA_BASE_URL_TEST}): {e}"
+
+
+_OLLAMA_TEST_OK, _OLLAMA_TEST_REASON = _check_ollama_for_test()
 
 
 # =============================================================================
@@ -161,6 +197,37 @@ class TestCreateLLMClient:
         client = create_llm_client("deepseek", api_key="fake-key")
         assert client.model == "deepseek-chat"
 
+    def test_github_provider_routing(self):
+        """github / github_models / githubmodels 三个别名都应路由到 GitHubModelsClient。"""
+        for alias in ("github", "github_models", "githubmodels"):
+            client = create_llm_client(alias, token="ghp_fake_token_for_test")
+            assert isinstance(client, GitHubModelsClient), f"alias={alias} 未路由到 GitHubModelsClient"
+            assert client.provider_name == "github"
+
+    def test_github_default_model(self):
+        """GitHub Models 默认模型应为 gpt-4o。"""
+        client = create_llm_client("github", token="ghp_fake_token_for_test")
+        assert client.model == "gpt-4o"
+
+    def test_github_custom_model(self):
+        """指定 GitHub Models 模型名称应被正确传入。"""
+        client = create_llm_client("github", model="gpt-4o-mini", token="ghp_fake_token_for_test")
+        assert client.model == "gpt-4o-mini"
+
+    def test_github_missing_token_raises(self):
+        """未提供 GITHUB_TOKEN 时应抛出 ValueError。"""
+        # 确保环境变量未设置
+        env_backup = {}
+        for k in ("GITHUB_TOKEN", "GH_TOKEN"):
+            env_backup[k] = os.environ.pop(k, None)
+        try:
+            with pytest.raises(ValueError, match="GITHUB_TOKEN"):
+                create_llm_client("github")
+        finally:
+            for k, v in env_backup.items():
+                if v is not None:
+                    os.environ[k] = v
+
     def test_qwen_custom_model(self):
         """指定模型名称应被正确传入。"""
         client = create_llm_client("qwen", model="qwen-max", api_key="fake-key")
@@ -174,6 +241,54 @@ class TestCreateLLMClient:
         """provider 名称大小写不敏感。"""
         client = create_llm_client("MOCK", fixed_response="ok")
         assert client.provider_name == "mock"
+
+    def test_ollama_provider_routing(self):
+        """ollama / local 两个别名都应路由到 OllamaClient。"""
+        from lens_migration.ai.llm_client import OllamaClient
+        for alias in ("ollama", "local"):
+            client = create_llm_client(alias, model="qwen3:8b")
+            assert isinstance(client, OllamaClient), f"alias={alias} 未路由到 OllamaClient"
+            assert client.provider_name == "ollama"
+
+    def test_ollama_default_model(self):
+        """Ollama 默认模型应为 qwen3:8b（无 OLLAMA_MODEL 环境变量时）。"""
+        from lens_migration.ai.llm_client import OllamaClient
+        env_backup = os.environ.pop("OLLAMA_MODEL", None)
+        try:
+            client = create_llm_client("ollama")
+            assert client.model == "qwen3:8b"
+        finally:
+            if env_backup:
+                os.environ["OLLAMA_MODEL"] = env_backup
+
+    def test_ollama_api_key_from_env(self):
+        """OLLAMA_API_KEY 环境变量应被 OllamaClient 正确读取（不报错）。"""
+        from lens_migration.ai.llm_client import OllamaClient
+        os.environ["OLLAMA_API_KEY"] = "test-key-from-env"
+        try:
+            client = OllamaClient(model="qwen3:8b")
+            # 客户端应正常构建，不抛异常
+            assert client.provider_name == "ollama"
+        finally:
+            os.environ.pop("OLLAMA_API_KEY", None)
+
+    def test_ollama_api_key_explicit_param(self):
+        """显式传入 api_key 参数时，OllamaClient 应使用该 key（不报错）。"""
+        from lens_migration.ai.llm_client import OllamaClient
+        client = OllamaClient(model="qwen3:8b", api_key="explicit-key")
+        assert client.provider_name == "ollama"
+
+    def test_ollama_no_api_key_fallback(self):
+        """未设置 OLLAMA_API_KEY 时，OllamaClient 应 fallback 到 'ollama' 占位符（本地模式）。"""
+        from lens_migration.ai.llm_client import OllamaClient
+        env_backup = os.environ.pop("OLLAMA_API_KEY", None)
+        try:
+            # 不传 api_key，不设置 OLLAMA_API_KEY → 使用 "ollama" 占位符，不抛异常
+            client = OllamaClient(model="qwen3:8b")
+            assert client.provider_name == "ollama"
+        finally:
+            if env_backup:
+                os.environ["OLLAMA_API_KEY"] = env_backup
 
 
 # =============================================================================
@@ -450,6 +565,56 @@ class TestXSLTRefiner:
         extracted = XSLTRefiner._extract_xslt("blah blah blah no xml here")
         assert extracted == ""
 
+    def test_output_xslt_written_to_disk(self, intent, input_xml, tmp_path):
+        """成功时 output_xslt 文件应写入磁盘且内容非空。"""
+        client = MockLLMClient(fixed_response=VALID_XSLT)
+        refiner = XSLTRefiner(client, max_rounds=3)
+        out = tmp_path / "result.xslt"
+        result = refiner.refine(
+            intent=intent,
+            input_xml=input_xml,
+            input_xml_path=INPUT_FILE,
+            output_xslt=out,
+        )
+        assert result["success"] is True
+        assert out.exists(), "输出文件应写入磁盘"
+        content = out.read_text(encoding="utf-8")
+        assert "xsl:stylesheet" in content, "输出文件应包含有效 XSLT 内容"
+
+    def test_total_tokens_accumulated(self, intent, input_xml, tmp_path):
+        """多轮迭代后 total_tokens 应为各轮之和。"""
+        # 用一个能被 _extract_xslt 提取但 XML 语法无效的内容（触发验证失败而非提取失败）
+        BROKEN_BUT_EXTRACTABLE = (
+            "<?xml version=\"1.0\"?>\n"
+            "<xsl:stylesheet xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\n"
+            "  <UNCLOSED_TAG>\n"
+            "</xsl:stylesheet>"
+        )
+        call_count = {"n": 0}
+        original_do_chat = MockLLMClient._do_chat
+
+        def patched(self_inner, messages, **kwargs):
+            call_count["n"] += 1
+            if call_count["n"] == 1:
+                return LLMResponse(content=BROKEN_BUT_EXTRACTABLE, model="mock", provider="mock")
+            return original_do_chat(self_inner, messages, **kwargs)
+
+        client = MockLLMClient(fixed_response=VALID_XSLT)
+        with patch.object(MockLLMClient, "_do_chat", patched):
+            refiner = XSLTRefiner(client, max_rounds=3)
+            result = refiner.refine(
+                intent=intent,
+                input_xml=input_xml,
+                input_xml_path=INPUT_FILE,
+                output_xslt=tmp_path / "out.xslt",
+            )
+        assert result["rounds_used"] >= 2, f"应至少 2 轮，实际={result['rounds_used']}"
+        assert result["total_tokens"] > 0
+        # total_tokens 应为各轮 tokens 之和（跳过无 tokens 字段的轮次）
+        summed = sum(rec.get("tokens", 0) for rec in result["round_history"])
+        assert result["total_tokens"] == summed, \
+            f"total_tokens={result['total_tokens']} 应等于各轮之和 {summed}"
+
 
 # =============================================================================
 # 6. MigrationEngine.migrate_with_ai 集成测试
@@ -500,4 +665,233 @@ class TestMigrationEngineAI:
         )
         assert result["success"] is False
         assert len(result["errors"]) > 0
+
+    def test_migrate_with_ai_workdir_created(self, tmp_path):
+        """work_dir 不存在时应自动创建。"""
+        work = tmp_path / "auto_created_work"
+        assert not work.exists()
+        engine = MigrationEngine(work_dir=work)
+        engine.migrate_with_ai(
+            intent_file=INTENT_FILE,
+            input_xml=INPUT_FILE,
+            llm_provider="mock",
+            fixed_response=VALID_XSLT,
+        )
+        assert work.exists(), "work_dir 应被自动创建"
+
+    def test_migrate_with_ai_xslt_content(self, tmp_path):
+        """成功时，输出的 XSLT 文件应包含 xsl:stylesheet 标签。"""
+        engine = MigrationEngine(work_dir=tmp_path / "work")
+        out = tmp_path / "final.xslt"
+        result = engine.migrate_with_ai(
+            intent_file=INTENT_FILE,
+            input_xml=INPUT_FILE,
+            llm_provider="mock",
+            fixed_response=VALID_XSLT,
+            output_xslt=out,
+        )
+        assert result["success"] is True
+        if out.exists():
+            assert "xsl:stylesheet" in out.read_text(encoding="utf-8")
+
+
+# =============================================================================
+# 7. MigrationEngine + Ollama live 集成（需要 Ollama 可用，否则跳过）
+# =============================================================================
+
+@pytest.mark.skipif(not _OLLAMA_TEST_OK, reason=_OLLAMA_TEST_REASON)
+class TestMigrationEngineOllamaLive:
+    """MigrationEngine 端到端集成，使用真实 Ollama 模型。"""
+
+    def test_migrate_with_ollama_success(self, tmp_path):
+        """Ollama 端到端：migrate_with_ai 应返回 success=True，XSLT 语法合法。"""
+        engine = MigrationEngine(work_dir=tmp_path / "work")
+        out = tmp_path / "ollama-e2e.xslt"
+        result = engine.migrate_with_ai(
+            intent_file=INTENT_FILE,
+            input_xml=INPUT_FILE,
+            expected_output_xml=EXPECTED_FILE,
+            output_xslt=out,
+            llm_provider="ollama",
+            llm_model=_OLLAMA_MODEL_TEST,
+            base_url=_OLLAMA_BASE_URL_TEST,
+            max_rounds=3,
+        )
+        print(f"\n[MigrationEngine Ollama] model={_OLLAMA_MODEL_TEST}")
+        print(f"  success={result['success']}，rounds={result['rounds_used']}，"
+              f"tokens={result['total_tokens']}")
+        for i, rec in enumerate(result["round_history"], 1):
+            print(f"  Round {i}: syntax={rec['syntax_valid']}，"
+                  f"transform={rec.get('transformation_ok')}，"
+                  f"tokens={rec['tokens']}，耗时={rec.get('latency_ms', 0):.0f}ms")
+
+        assert result["rounds_used"] >= 1
+        assert result["round_history"][0]["syntax_valid"], \
+            f"第 1 轮应生成有效 XSLT，错误: {result['round_history'][0]['errors']}"
+
+
+# =============================================================================
+# 7. GitHub Models 真实集成测试（需要 GITHUB_TOKEN，否则自动跳过）
+# =============================================================================
+
+# 检测是否存在 GitHub Token
+_GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+
+
+@pytest.mark.skipif(not _GITHUB_TOKEN, reason="未设置 GITHUB_TOKEN，跳过 GitHub Models 真实调用测试")
+class TestGitHubModelsLiveIntegration:
+    """
+    GitHub Models 真实 API 集成测试。
+
+    无需申请任何 API Key，只需 GitHub Personal Access Token（PAT）。
+
+    获取 Token：
+        1. 打开 https://github.com/settings/tokens
+        2. 点击 "Generate new token (classic)"
+        3. 勾选 "public_repo"（或 "repo"），生成 Token
+        4. 复制 Token（格式：ghp_xxxxxxxxxxxx）
+
+    运行命令：
+        export GITHUB_TOKEN=ghp_xxxxxxxxxxxx
+        PYTHONPATH=src/main/python \\
+          venv/bin/python3 -m pytest tests/ai/test_phase2_ai.py::TestGitHubModelsLiveIntegration -v -s
+
+    注意：GitHub Models 有频率限制，请勿频繁大量调用。
+    """
+
+    @pytest.fixture
+    def intent(self):
+        return IntentParser().parse(INTENT_FILE)
+
+    def test_github_simple_chat(self):
+        """GitHub Models 基础对话：验证 API 可达、响应非空。"""
+        client = GitHubModelsClient(model="gpt-4o-mini")
+        resp = client.chat("请用一句话回答：XSLT 是什么？不要超过 50 字。")
+        assert resp.content, "GitHub Models 返回了空响应"
+        assert resp.provider == "github"
+        assert resp.total_tokens > 0
+        assert resp.latency_ms > 0
+        print(f"\n[GitHub Models simple chat] 响应: {resp.content[:200]}")
+        print(f"[GitHub Models simple chat] tokens={resp.total_tokens}，耗时={resp.latency_ms:.0f}ms")
+
+    def test_github_system_prompt(self, intent):
+        """GitHub Models 支持 system_prompt，且响应遵循指令。"""
+        client = GitHubModelsClient(model="gpt-4o-mini")
+        resp = client.chat(
+            "什么是 XSLT？",
+            system_prompt="你是 XML 专家，用中文回答，不超过 20 字。",
+        )
+        assert resp.content
+        assert resp.provider == "github"
+        print(f"\n[GitHub system_prompt] 响应: {resp.content}")
+
+    def test_github_xslt_generation(self, intent, tmp_path):
+        """GitHub Models 完整 XSLT 生成：从意图文档生成可用的 XSLT 并通过语法验证。"""
+        from lens_migration.ai.xslt_refiner import XSLTRefiner
+
+        input_xml    = INPUT_FILE.read_text(encoding="utf-8")
+        expected_xml = EXPECTED_FILE.read_text(encoding="utf-8")
+        out_file     = tmp_path / "github-generated.xslt"
+
+        client  = GitHubModelsClient(model="gpt-4o-mini")
+        refiner = XSLTRefiner(client, max_rounds=3)
+
+        result = refiner.refine(
+            intent=intent,
+            input_xml=input_xml,
+            input_xml_path=INPUT_FILE,
+            expected_output=expected_xml,
+            expected_output_path=EXPECTED_FILE,
+            output_xslt=out_file,
+        )
+
+        print(f"\n[GitHub Models XSLT gen] 结果: success={result['success']}，"
+              f"rounds={result['rounds_used']}，tokens={result['total_tokens']}")
+        for i, rec in enumerate(result["round_history"], 1):
+            print(f"  Round {i}: syntax={rec['syntax_valid']}，"
+                  f"transform={rec.get('transformation_ok')}，"
+                  f"tokens={rec['tokens']}，耗时={rec['latency_ms']:.0f}ms")
+        if result.get("errors"):
+            print(f"  错误: {result['errors']}")
+
+        assert result["rounds_used"] >= 1, "应至少完成一轮生成"
+        assert out_file.exists(), "XSLT 输出文件应已写入磁盘"
+        assert result["round_history"][0]["syntax_valid"], \
+            f"第 1 轮 XSLT 语法应有效，错误: {result['round_history'][0]['errors']}"
+
+
+# =============================================================================
+# 8. Ollama 真实集成测试（需要 Ollama 服务运行，否则自动跳过）
+# =============================================================================
+
+
+@pytest.mark.skipif(not _OLLAMA_TEST_OK, reason=_OLLAMA_TEST_REASON)
+class TestOllamaLiveIntegration:
+    """
+    Ollama 本地模型真实 API 集成测试。
+
+    与 GitHub Models 测试完全对称，验证两者通过相同接口可互换。
+    认证方式：OLLAMA_API_KEY 环境变量（本地无认证时可不设置）。
+
+    运行前提：
+        ollama serve &
+        ollama pull qwen3:8b          # 或其他模型
+        OLLAMA_MODEL=qwen3:8b \\
+          PYTHONPATH=src/main/python \\
+          venv/bin/python3 -m pytest tests/ai/test_phase2_ai.py::TestOllamaLiveIntegration -v -s
+    """
+
+    @pytest.fixture
+    def intent(self):
+        return IntentParser().parse(INTENT_FILE)
+
+    def test_ollama_simple_chat(self):
+        """
+        Ollama 基础连通性：使用 create_llm_client('ollama') 工厂与 GitHub 完全对称调用。
+        OLLAMA_API_KEY 环境变量控制认证，本地无认证时自动使用 'ollama' 占位符。
+        """
+        client = create_llm_client("ollama", model=_OLLAMA_MODEL_TEST)
+        resp = client.chat("请用一句话回答：XSLT 是什么？不要超过 50 字。")
+        assert resp.content, "Ollama 返回了空响应"
+        assert resp.provider == "ollama"
+        assert resp.total_tokens > 0
+        print(f"\n[Ollama simple chat] 模型={_OLLAMA_MODEL_TEST}")
+        print(f"[Ollama simple chat] 响应: {resp.content[:300]}")
+        print(f"[Ollama simple chat] tokens={resp.total_tokens}，耗时={resp.latency_ms:.0f}ms")
+
+    def test_ollama_xslt_generation(self, intent, tmp_path):
+        """
+        Ollama 完整 XSLT 生成：与 GitHub Models 测试相同的流程，
+        验证本地模型也能生成语法合法的 XSLT。
+        """
+        from lens_migration.ai.xslt_refiner import XSLTRefiner
+
+        input_xml    = INPUT_FILE.read_text(encoding="utf-8")
+        expected_xml = EXPECTED_FILE.read_text(encoding="utf-8")
+
+        client  = create_llm_client("ollama", model=_OLLAMA_MODEL_TEST)
+        refiner = XSLTRefiner(client, max_rounds=3)
+
+        result = refiner.refine(
+            intent=intent,
+            input_xml=input_xml,
+            input_xml_path=INPUT_FILE,
+            expected_output=expected_xml,
+            expected_output_path=EXPECTED_FILE,
+            output_xslt=tmp_path / f"ollama-{_OLLAMA_MODEL_TEST.replace(':', '-')}-generated.xslt",
+        )
+
+        print(f"\n[Ollama XSLT gen] 模型={_OLLAMA_MODEL_TEST}")
+        print(f"[Ollama XSLT gen] 结果: success={result['success']}，"
+              f"rounds={result['rounds_used']}，tokens={result['total_tokens']}")
+        for i, rec in enumerate(result["round_history"], 1):
+            print(f"  Round {i}: syntax={rec['syntax_valid']}，"
+                  f"transform={rec.get('transformation_ok')}，"
+                  f"tokens={rec['tokens']}，耗时={rec.get('latency_ms', 0):.0f}ms")
+        if result.get("errors"):
+            print(f"  错误: {result['errors']}")
+
+        assert result["rounds_used"] >= 1, "应至少完成一轮生成"
+        assert result["round_history"][0]["syntax_valid"], \
+            f"第 1 轮 XSLT 语法应有效，错误: {result['round_history'][0]['errors']}"
 

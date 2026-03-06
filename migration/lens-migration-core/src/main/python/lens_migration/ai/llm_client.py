@@ -4,12 +4,13 @@ LLM Client Module（大语言模型客户端模块）
 提供统一的 LLM 调用接口，屏蔽不同模型 Provider 的 API 差异。
 
 支持的 Provider：
-  - OpenAI     (gpt-4o, gpt-4-turbo, gpt-3.5-turbo)
-  - Anthropic  Claude (claude-3-5-sonnet, claude-3-haiku)
-  - Ollama     (本地部署，任意模型，如 llama3、mistral、qwen2.5)
-  - Qwen       (阿里云通义千问，qwen-plus、qwen-turbo、qwen-max 等)
-  - Deepseek   (深度求索，deepseek-chat、deepseek-reasoner 等)
-  - Mock       (单元测试专用，无需真实 API Key)
+  - OpenAI        (gpt-4o, gpt-4-turbo, gpt-3.5-turbo)
+  - Anthropic     Claude (claude-3-5-sonnet, claude-3-haiku)
+  - Ollama        (本地部署，任意模型，如 llama3、mistral、qwen2.5)
+  - Qwen          (阿里云通义千问，qwen-plus、qwen-turbo、qwen-max 等)
+  - Deepseek      (深度求索，deepseek-chat、deepseek-reasoner 等)
+  - GitHubModels  (GitHub Models 免费推理，使用 GitHub Token，无需单独申请 Key)
+  - Mock          (单元测试专用，无需真实 API Key)
 
 使用方式（推荐通过工厂函数创建）：
     from lens_migration.ai.llm_client import create_llm_client
@@ -19,6 +20,10 @@ LLM Client Module（大语言模型客户端模块）
 
     # 使用本地 Ollama
     client = create_llm_client("ollama", model="llama3.2")
+
+    # 使用 GitHub Models（只需 GitHub Token，无需单独申请 Key）
+    # export GITHUB_TOKEN=ghp_xxxx  （或 GitHub Actions 中的 secrets.GITHUB_TOKEN）
+    client = create_llm_client("github", model="gpt-4o")
 
     # Mock（测试用）
     client = create_llm_client("mock", fixed_response="<xsl:template>...</xsl:template>")
@@ -319,23 +324,34 @@ class AnthropicClient(LLMClient):
 
 class OllamaClient(LLMClient):
     """
-    Ollama 本地模型客户端。
+    Ollama 本地（或远程）模型客户端。
 
-    通过 OpenAI 兼容接口调用本地 Ollama 服务。
-    默认地址：http://localhost:11434/v1
+    通过 OpenAI 兼容接口调用 Ollama 服务，认证方式与其他 Provider 保持一致：
+      - 本地无认证：OLLAMA_API_KEY 未设置时，自动使用 "ollama" 占位符
+      - 远程带认证：设置 OLLAMA_API_KEY 即可（部分托管 Ollama 服务需要）
 
-    环境变量：OLLAMA_BASE_URL（覆盖默认地址）
+    环境变量：
+      OLLAMA_BASE_URL  — 服务地址，默认 http://localhost:11434/v1
+      OLLAMA_API_KEY   — API Key（本地部署可不设置，远程带认证时必填）
+      OLLAMA_MODEL     — 默认模型（可被构造参数覆盖）
+
+    推荐模型：
+      qwen3:8b          — Qwen 最新版（2025.04），~5GB，默认
+      qwen3:4b          — Qwen3 精简版，~2.5GB
+      qwen2.5-coder:7b  — 代码专用，~4.7GB
+      qwen2.5-coder:3b  — 最小版，~2GB，CPU 可运行
 
     使用前需先启动 Ollama 服务并拉取模型：
         ollama serve
-        ollama pull llama3.2
+        ollama pull qwen3:8b
     """
 
     DEFAULT_BASE_URL = "http://localhost:11434/v1"
 
     def __init__(
         self,
-        model: str = "llama3.2",
+        model: str = "qwen3:8b",
+        api_key: Optional[str] = None,
         base_url: Optional[str] = None,
         max_retries: int = 2,
     ):
@@ -346,9 +362,12 @@ class OllamaClient(LLMClient):
             raise ImportError("请安装 openai 包（Ollama 使用其兼容接口）: pip install openai>=1.0.0")
 
         self._base_url = base_url or os.environ.get("OLLAMA_BASE_URL", self.DEFAULT_BASE_URL)
-        # Ollama 不需要真实 API Key，随便填一个即可
-        self._client = OpenAI(api_key="ollama", base_url=self._base_url)
-        logger.info(f"[Ollama] 客户端就绪，base_url={self._base_url}，模型={model}")
+        # 优先用显式参数，其次 OLLAMA_API_KEY 环境变量，最后 fallback 到 "ollama" 占位符
+        # （本地 Ollama 不校验 API Key，任意非空字符串均可）
+        resolved_key = api_key or os.environ.get("OLLAMA_API_KEY", "ollama")
+        self._client = OpenAI(api_key=resolved_key, base_url=self._base_url)
+        logger.info(f"[Ollama] 客户端就绪，base_url={self._base_url}，模型={model}，"
+                    f"api_key={'(set)' if resolved_key != 'ollama' else '(local/no-auth)'}")
 
     @property
     def provider_name(self) -> str:
@@ -515,6 +534,102 @@ class DeepseekClient(LLMClient):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# GitHub Models Provider
+# ─────────────────────────────────────────────────────────────────────────────
+
+class GitHubModelsClient(LLMClient):
+    """
+    GitHub Models 免费推理客户端。
+
+    GitHub Models 是 GitHub 提供的模型推理服务，使用 GitHub Personal Access Token
+    即可访问，无需单独申请 OpenAI / Azure 账号，非常适合在线快速测试。
+
+    前提条件：
+      1. 拥有 GitHub 账号
+      2. 在 https://github.com/settings/tokens 生成一个 Personal Access Token（PAT）
+         - 勾选 "Models" 权限（或使用 Classic Token，权限选 public_repo 即可）
+      3. 将 Token 设置到环境变量：export GITHUB_TOKEN=ghp_xxxx
+
+    端点地址：https://models.inference.ai.azure.com（GitHub 官方推理网关）
+    API 文档：https://docs.github.com/en/github-models
+
+    支持的模型（GitHub Models 目前可用，实时列表见官网）：
+      - gpt-4o                      （OpenAI，推荐）
+      - gpt-4o-mini                 （OpenAI，更快更便宜）
+      - o1-mini                     （OpenAI，推理增强）
+      - Meta-Llama-3.1-70B-Instruct （Meta，开源）
+      - Mistral-large-2407          （Mistral AI）
+      - Phi-3.5-MoE-instruct        （Microsoft）
+
+    使用示例：
+        # 方式1：环境变量（推荐）
+        export GITHUB_TOKEN=ghp_xxxx
+        client = GitHubModelsClient()
+
+        # 方式2：直接传入 token
+        client = GitHubModelsClient(token="ghp_xxxx", model="gpt-4o-mini")
+
+        # 方式3：通过工厂函数
+        client = create_llm_client("github", model="gpt-4o")
+
+    注意事项：
+      - GitHub Models 对个人账号有频率限制（Rate Limit），测试时请适当控制请求频率
+      - 生产环境建议使用付费 API（OpenAI / Azure），GitHub Models 仅适合开发测试
+    """
+
+    DEFAULT_BASE_URL = "https://models.inference.ai.azure.com"
+
+    def __init__(
+        self,
+        model: str = "gpt-4o",
+        token: Optional[str] = None,
+        base_url: Optional[str] = None,
+        max_retries: int = 3,
+    ):
+        super().__init__(model, max_retries)
+        try:
+            from openai import OpenAI
+        except ImportError:
+            raise ImportError("请安装 openai 包: pip install openai>=1.0.0")
+
+        # Token 读取优先级：构造参数 > GITHUB_TOKEN > GH_TOKEN
+        resolved_token = token or os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+        if not resolved_token:
+            raise ValueError(
+                "[GitHubModels] 未找到 GitHub Token。\n"
+                "请设置环境变量 GITHUB_TOKEN=ghp_xxxx\n"
+                "Token 申请地址：https://github.com/settings/tokens"
+            )
+
+        self._base_url = base_url or os.environ.get("GITHUB_MODELS_BASE_URL", self.DEFAULT_BASE_URL)
+        # GitHub Models 使用 Bearer Token 作为 API Key
+        self._client = OpenAI(api_key=resolved_token, base_url=self._base_url)
+        logger.info(f"[GitHubModels] 客户端就绪，base_url={self._base_url}，模型={model}")
+
+    @property
+    def provider_name(self) -> str:
+        return "github"
+
+    def _do_chat(self, messages: List[ChatMessage], **kwargs) -> LLMResponse:
+        openai_messages = [{"role": m.role, "content": m.content} for m in messages]
+        resp = self._client.chat.completions.create(
+            model=self.model,
+            messages=openai_messages,
+            temperature=kwargs.get("temperature", 0.2),
+            max_tokens=kwargs.get("max_tokens", 4096),
+        )
+        choice = resp.choices[0]
+        return LLMResponse(
+            content=choice.message.content or "",
+            model=resp.model,
+            provider=self.provider_name,
+            input_tokens=resp.usage.prompt_tokens if resp.usage else 0,
+            output_tokens=resp.usage.completion_tokens if resp.usage else 0,
+            raw=resp,
+        )
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Mock Provider（单元测试专用）
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -608,7 +723,7 @@ def create_llm_client(
 
     Args:
         provider: Provider 名称，可选：
-                  "openai"、"anthropic"、"ollama"、"qwen"、"deepseek"、"mock"
+                  "openai"、"anthropic"、"ollama"、"qwen"、"deepseek"、"github"、"mock"
                   也可通过环境变量 LLM_PROVIDER 指定默认 provider。
         model:    模型名称（不传则使用各 Provider 默认值）
         **kwargs: 传递给对应客户端构造函数的额外参数
@@ -630,16 +745,18 @@ def create_llm_client(
     elif provider == "anthropic":
         return AnthropicClient(model=model or "claude-3-5-sonnet-20241022", **kwargs)
     elif provider in ("ollama", "local"):
-        return OllamaClient(model=model or "llama3.2", **kwargs)
+        return OllamaClient(model=model or os.environ.get("OLLAMA_MODEL", "qwen3:8b"), **kwargs)
     elif provider in ("qwen", "dashscope", "tongyi"):
         return QwenClient(model=model or "qwen-plus", **kwargs)
     elif provider == "deepseek":
         return DeepseekClient(model=model or "deepseek-chat", **kwargs)
+    elif provider in ("github", "github_models", "githubmodels"):
+        return GitHubModelsClient(model=model or "gpt-4o", **kwargs)
     elif provider == "mock":
         return MockLLMClient(**kwargs)
     else:
         raise ValueError(
             f"不支持的 LLM provider: '{provider}'。"
-            f"可选值: openai, anthropic, ollama, qwen, deepseek, mock"
+            f"可选值: openai, anthropic, ollama, qwen, deepseek, github, mock"
         )
 

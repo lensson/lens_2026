@@ -1,56 +1,75 @@
-# YANG Data Migration Tool
+# YANG 数据迁移工具
 
 ## 项目概述
 
-YANG数据迁移工具是一个AI驱动的自动化工具，用于设备固件升级时的配置数据迁移。该工具能够理解自然语言描述的迁移意图，分析YANG Schema变化，并自动生成XSLT转换文件。
+YANG 数据迁移工具是一个 AI 驱动的自动化工具，用于设备固件升级时的配置数据迁移。  
+该工具能够理解自然语言描述的迁移意图，分析 YANG Schema 变化，并自动生成 XSLT 转换文件。
+
+**当前状态**：Phase 0 ✅ · Phase 1 ✅ · Phase 2 ✅ · Phase 3–6 规划中
+
+---
 
 ## 项目结构
 
 ```
 lens_2026/
-├── migration/                          # 迁移工具主项目
-│   ├── pom.xml                        # Maven父POM
-│   ├── lens-migration-backend/        # 后端服务（Spring Boot）
+├── migration/                              # 迁移工具主项目
+│   ├── pom.xml                            # Maven 父 POM
+│   ├── lens-migration-backend/            # 后端服务（Spring Boot）
 │   │   ├── pom.xml
 │   │   └── src/main/
 │   │       ├── java/com/lens/migration/
-│   │       │   ├── LensMigrationBackend.java    # 主应用类
-│   │       │   ├── controller/                   # REST Controllers
-│   │       │   ├── service/                      # 业务逻辑
-│   │       │   ├── domain/                       # 领域模型
-│   │       │   ├── repository/                   # 数据访问
-│   │       │   └── config/                       # 配置类
+│   │       │   ├── LensMigrationBackend.java
+│   │       │   ├── controller/            # REST Controllers
+│   │       │   ├── service/               # 业务逻辑（骨架）
+│   │       │   ├── domain/                # 领域模型（骨架）
+│   │       │   ├── repository/            # 数据访问（骨架）
+│   │       │   └── config/                # SecurityConfig, OpenAPIConfig
 │   │       └── resources/
 │   │           └── application.yml
-│   ├── lens-migration-frontend/       # 前端应用（Vue/React）
+│   ├── lens-migration-frontend/           # 前端应用（规划中）
 │   │   └── src/
-│   └── lens-migration-core/          # Python核心引擎
+│   └── lens-migration-core/              # Python 核心引擎
 │       ├── requirements.txt
 │       ├── src/main/python/lens_migration/
-│       │   ├── parser/               # YANG解析器
-│       │   ├── analyzer/             # Schema分析器
-│       │   ├── generator/            # XSLT生成器
-│       │   ├── ai/                   # AI集成
-│       │   └── utils/                # 工具类
-│       └── tests/                    # 测试
+│       │   ├── __init__.py               # MigrationEngine 入口
+│       │   ├── parser/
+│       │   │   ├── intent_parser.py      # 从 Markdown 提取迁移规则
+│       │   │   └── yang_parser.py        # YANG 解析（骨架，Phase 3）
+│       │   ├── generator/
+│       │   │   └── xslt_generator.py     # 规则驱动 XSLT 生成
+│       │   ├── analyzer/
+│       │   │   └── schema_analyzer.py    # Schema 差异分析（骨架，Phase 3）
+│       │   ├── ai/
+│       │   │   ├── llm_client.py         # 多 Provider LLM 客户端
+│       │   │   ├── prompt_builder.py     # Prompt 构建器
+│       │   │   └── xslt_refiner.py       # AI 迭代修正器
+│       │   ├── validator/
+│       │   │   └── validator.py          # XSLT 语法 + 转换验证
+│       │   └── utils/
+│       └── tests/
+│           ├── ai/                        # Phase 2 AI 单元测试
+│           ├── schema/                    # 真实设备 YANG 数据集
+│           └── simple-classifier-test/   # Phase 1 端到端测试用例
 └── doc/
-    ├── migration/                     # 文档和脚本
-    │   ├── request.md                # 需求文档
-    │   ├── README.md                 # 主文档（移动到这里）
-    │   ├── architecture.md           # 架构设计
-    │   ├── examples/                 # 示例文件
-    │   └── scripts/                  # 工具脚本
+    ├── migration/
+    │   ├── request.md                    # 需求文档
+    │   ├── roadmap.md                    # 研发路线图（含完成状态）
+    │   ├── architecture.md               # 架构设计
+    │   └── HISTORY.md                    # 变更记录
     └── nacos-backup/
-        └── lens-migration-backend.yaml  # Nacos配置
+        └── lens-migration-backend.yaml   # Nacos 配置
 ```
+
+---
 
 ## 架构设计
 
-### 1. 微服务架构
+### 微服务架构
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                      Lens Gateway (8050)                     │
+│                    Lens Gateway (8050)                       │
 │  路由: /v2/lens/migration/** → lens-migration-backend       │
 └─────────────────────────────────────────────────────────────┘
                              │
@@ -60,59 +79,77 @@ lens_2026/
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
 │  │ Controllers  │  │  Services    │  │  Repositories│     │
 │  └──────────────┘  └──────────────┘  └──────────────┘     │
-│         │                  │                  │             │
-│         └──────────────────┼──────────────────┘             │
+│                        ProcessBuilder                        │
+│                            │ JSON                           │
 │                            ▼                                 │
 │                ┌────────────────────────┐                   │
-│                │  Python Core Engine    │                   │
-│                │  (Process/gRPC)        │                   │
+│                │   Python Core Engine   │                   │
 │                └────────────────────────┘                   │
 └─────────────────────────────────────────────────────────────┘
                              │
                              ▼
 ┌─────────────────────────────────────────────────────────────┐
 │                  Python Core Engine                          │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │ YANG Parser  │  │Schema Analyzer│  │AI Processor │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │XSLT Generator│  │Test Generator │  │  Validator   │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
+│                                                              │
+│  ┌───────────────┐  ┌────────────────┐  ┌───────────────┐ │
+│  │ IntentParser  │  │ XSLTGenerator  │  │  XSLTValidator│ │
+│  └───────────────┘  └────────────────┘  └───────────────┘ │
+│                                                              │
+│  ┌────────────────────────────────────────────────────────┐│
+│  │                  AI 层（Phase 2）                       ││
+│  │  ┌────────────┐  ┌───────────────┐  ┌──────────────┐ ││
+│  │  │ LLMClient  │  │ PromptBuilder │  │ XSLTRefiner  │ ││
+│  │  │ (多 Provider│  └───────────────┘  └──────────────┘ ││
+│  │  │ 统一接口)   │                                        ││
+│  │  └────────────┘                                        ││
+│  └────────────────────────────────────────────────────────┘│
 └─────────────────────────────────────────────────────────────┘
+                             │
+                    ┌────────┴────────┐
+                    ▼                 ▼
+             LLM Provider       YANG Schema
+         (OpenAI/Qwen/etc.)  device-extension-*
 ```
 
-### 2. 技术栈
+### 两种 XSLT 生成路径
 
-**后端服务 (lens-migration-backend)**:
+| 路径 | 描述 | 入口方法 |
+|------|------|---------|
+| **规则引擎**（Phase 1）| 解析意图 Markdown → 规则列表 → 模板化生成 | `MigrationEngine.migrate()` |
+| **AI 生成**（Phase 2）| 意图 + XML 示例 → LLM Prompt → XSLT → 验证 → 迭代修正 | `MigrationEngine.migrate_with_ai()` |
+
+---
+
+## 技术栈
+
+**后端服务 (lens-migration-backend)**：
 - Spring Boot 3.x
 - Spring Cloud (Nacos Discovery & Config)
 - Spring Security OAuth2 Resource Server
 - Spring Data JPA
 - Springdoc OpenAPI
 
-**前端应用 (lens-migration-frontend)**:
-- Vue 3 / React 18
-- TypeScript
-- Ant Design / Element Plus
-- Axios
-
-**核心引擎 (lens-migration-core)**:
+**核心引擎 (lens-migration-core)**：
 - Python 3.10+
-- pyang (YANG解析)
-- lxml (XML/XSLT处理)
-- OpenAI/Anthropic API (AI集成)
+- pyang（YANG 解析）
+- lxml（XML/XSLT 处理）
+- openai SDK（兼容 OpenAI / Qwen / Deepseek / Ollama）
+- anthropic SDK（Claude）
+- tenacity（重试 + 指数退避）
+
+---
 
 ## 快速开始
 
 ### 1. 环境准备
 
-**Java环境**:
+**Java 环境**：
 ```bash
 java --version  # Java 21+
 mvn --version   # Maven 3.8+
 ```
 
-**Python环境**:
+**Python 环境**：
 ```bash
 cd /home/zhenac/my/lens_2026/migration/lens-migration-core
 python3 -m venv venv
@@ -120,18 +157,180 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-**数据库**:
+### 2. 配置环境变量
+
+复制并编辑环境文件：
 ```bash
-# 创建数据库
-mysql -u root -p
-CREATE DATABASE lens_migration CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-GRANT ALL PRIVILEGES ON lens_migration.* TO 'lens'@'%';
-FLUSH PRIVILEGES;
+cp /home/zhenac/my/lens_2026/conf/env/lens_2026.env .env
+# 填写 AI API Key（至少一个）
+export DASHSCOPE_API_KEY=sk-xxx   # Qwen（推荐）
+export OPENAI_API_KEY=sk-xxx      # OpenAI
+export ANTHROPIC_API_KEY=sk-xxx   # Anthropic Claude
+export DEEPSEEK_API_KEY=sk-xxx    # Deepseek
 ```
 
-### 2. 配置Nacos
+### 3. 运行测试
 
-上传配置到Nacos:
+```bash
+cd migration/lens-migration-core
+source venv/bin/activate
+
+# Phase 1 端到端测试（规则引擎，无需 API Key）
+pytest tests/simple-classifier-test/validation/ -v
+# 预期：21/21 通过
+
+# Phase 2 AI 单元测试（全 Mock，无需 API Key）
+pytest tests/ai/ -v
+# 预期：25/25 通过
+```
+
+### 4. 编译后端
+
+```bash
+cd /home/zhenac/my/lens_2026/migration
+mvn clean install
+```
+
+### 5. 启动后端服务
+
+```bash
+# 启动后端
+cd lens-migration-backend
+mvn spring-boot:run
+# 服务端口：8044
+# Swagger UI：http://localhost:8050/v2/lens/migration/swagger-ui/index.html
+```
+
+---
+
+## AI 集成（Phase 2）
+
+### 支持的 LLM Provider
+
+| Provider | 推荐模型 | 所需环境变量 | 说明 |
+|----------|----------|-------------|------|
+| **GitHub Models**（在线测试首选）| `gpt-4o` / `gpt-4o-mini` | `GITHUB_TOKEN` | 只需 GitHub PAT，无需单独申请 Key，免费配额 |
+| **Qwen** | `qwen-plus` / `qwen-max` | `DASHSCOPE_API_KEY` | 阿里云通义千问，OpenAI 兼容接口 |
+| **OpenAI** | `gpt-4o` / `gpt-4-turbo` | `OPENAI_API_KEY` | 效果最佳，成本较高 |
+| **Deepseek** | `deepseek-chat` / `deepseek-reasoner` | `DEEPSEEK_API_KEY` | 代码能力强，成本低 |
+| **Anthropic** | `claude-3-5-sonnet-20241022` | `ANTHROPIC_API_KEY` | 长上下文能力强 |
+| **Ollama**（本地）| `llama3.2` / `qwen2.5-coder` | `OLLAMA_BASE_URL`（可选）| 离线运行，无需 API Key |
+| **Mock**（测试）| — | — | 单元测试专用，无需网络 |
+
+### 工厂函数创建客户端
+
+```python
+from lens_migration.ai.llm_client import create_llm_client
+
+# GitHub Models（推荐用于在线测试，只需 GitHub Personal Access Token）
+# 1. 打开 https://github.com/settings/tokens → Generate new token (classic)
+# 2. 勾选 public_repo，复制 Token
+# 3. export GITHUB_TOKEN=ghp_xxxxxxxxxxxx
+client = create_llm_client("github", model="gpt-4o-mini")  # mini 更快、配额更宽松
+
+# Qwen（需设置 DASHSCOPE_API_KEY）
+client = create_llm_client("qwen", model="qwen-plus")
+
+# OpenAI
+client = create_llm_client("openai", model="gpt-4o")
+
+# Deepseek
+client = create_llm_client("deepseek", model="deepseek-chat")
+
+# 本地 Ollama（需先 ollama serve && ollama pull qwen2.5-coder:7b）
+client = create_llm_client("ollama", model="qwen2.5-coder:7b")
+
+# Mock（测试用）
+client = create_llm_client("mock", fixed_response="<xsl:stylesheet .../>")
+```
+
+也可通过环境变量指定默认 provider：
+```bash
+export LLM_PROVIDER=qwen
+export LLM_MODEL=qwen-plus
+```
+
+### AI 生成 XSLT 流程
+
+```python
+from lens_migration import MigrationEngine
+from lens_migration.ai.llm_client import create_llm_client
+
+engine = MigrationEngine()
+llm = create_llm_client("qwen", model="qwen-plus")
+
+result = engine.migrate_with_ai(
+    intent_file="tests/simple-classifier-test/input/request/migration-intent-v1-to-v2.md",
+    input_xml_file="tests/simple-classifier-test/input/old-version/classifier-sample-01-v1.xml",
+    expected_output_file="tests/simple-classifier-test/input/new-version/classifier-sample-01-v2.xml",
+    output_xslt="output/ai-generated.xslt",
+    llm_client=llm,
+    max_rounds=3,          # 最多迭代 3 轮
+)
+
+print(f"成功: {result['success']}")
+print(f"迭代轮次: {result['rounds_used']}")
+print(f"消耗 Token: {result['total_tokens']}")
+```
+
+### 多轮迭代修正机制
+
+```
+Round 1：LLM 根据意图文档 + XML 示例 → 生成初始 XSLT
+         ↓ 验证失败（语法错误 / 输出不符）？
+Round 2：[初始 XSLT + 错误信息] → LLM 修正
+         ↓ 仍然失败？
+Round N：继续迭代，直到通过或达到 max_rounds
+         ↓
+         返回最终结果（含每轮历史记录）
+```
+
+### AI 模块结构
+
+```
+ai/
+├── llm_client.py      # LLM Provider 抽象基类 + 5 个实现 + Mock + 工厂函数
+│                        重试逻辑（指数退避）、调用耗时统计、Token 计数
+├── prompt_builder.py  # System Prompt + User Prompt 构建
+│                        build_generate_prompt()  — 初次生成
+│                        build_refinement_prompt() — 迭代修正
+└── xslt_refiner.py    # 编排 LLM 调用 → 验证 → 反馈 → 修正主循环
+                         _extract_xslt()          — 从 LLM 输出中可靠提取 XSLT
+```
+
+---
+
+## 测试结果
+
+| 测试套件 | 测试文件 | 通过 / 总计 | 说明 |
+|---------|---------|:----------:|------|
+| Phase 1 端到端 | `tests/simple-classifier-test/validation/test_e2e_simple_classifier.py` | **21 / 21** | 规则引擎，无需 API Key |
+| Phase 2 AI 单元 | `tests/ai/test_phase2_ai.py` | **34 / 34** | 全 Mock，无需 API Key（含 GitHub Provider 路由测试）|
+
+Phase 2 测试覆盖：
+- `TestMockLLMClient`（6 项）：固定响应、关键字映射、调用历史、reset、token 估算
+- `TestCreateLLMClient`（12 项）：工厂函数路由（含 github/github_models/githubmodels 三别名）、默认模型、缺少 Token 报错、大小写不敏感
+- `TestPromptBuilder`（6 项）：system/user prompt 内容验证、修正 prompt 结构
+- `TestXSLTRefiner`（7 项）：首轮成功、二轮修正成功、max_rounds 耗尽、XSLT 提取
+- `TestMigrationEngineAI`（3 项）：端到端 Mock 集成、字段完整性、非法 provider 错误
+
+---
+
+## 真实设备测试数据
+
+**设备信息**：
+- 型号：ls-mf（Light Speed Multi-Function）
+- 板卡：lwlt-c（LightWave Line Termination - C variant）
+- 固件版本：26.3-028
+- 位置：`lens-migration-core/tests/schema/device-extension-ls-mf-lwlt-c-26.3-028/`
+
+数据集包含：完整 YANG 模块（BBF、IETF、IANA、Nokia）、yang-library.xml、设备样本 XML 等。
+
+---
+
+## Nacos 配置
+
+上传配置：
 ```bash
 cd /home/zhenac/my/lens_2026/doc/nacos-backup
 curl -X POST "http://localhost:8848/nacos/v1/cs/configs" \
@@ -142,332 +341,37 @@ curl -X POST "http://localhost:8848/nacos/v1/cs/configs" \
   --data-urlencode "content@lens-migration-backend.yaml"
 ```
 
-更新Gateway路由配置（已包含migration路由）。
+---
 
-### 3. 编译项目
+## API 访问
 
-```bash
-cd /home/zhenac/my/lens_2026/migration
-mvn clean install
-```
-
-### 4. 启动服务
-
-```bash
-# 启动后端服务
-cd lens-migration-backend
-mvn spring-boot:run
-
-# 服务将在端口8044启动
-# Swagger UI: http://localhost:8050/v2/lens/migration/swagger-ui/index.html
-```
-
-### 5. 访问API
-
-通过Gateway访问:
+通过 Gateway（需登录 Keycloak）：
 ```
 http://localhost:8050/v2/lens/migration/swagger-ui/index.html
 ```
 
-直接访问:
+直接访问：
 ```
-http://localhost:8044/swagger-ui.html
+http://localhost:8044/swagger-ui/index.html
 ```
-
-## 核心功能
-
-### 真实设备测试数据
-
-项目包含了真实的设备 YANG schema 数据集用于测试和开发：
-
-**设备信息：**
-- 设备型号: ls-mf (Light Speed Multi-Function)
-- 板卡类型: lwlt-c (LightWave Line Termination - C variant)
-- 固件版本: 26.3-028
-- 数据位置: `lens-migration-core/tests/device-extension-ls-mf-lwlt-c-26.3-028/`
-
-**数据集包含：**
-- 完整的 YANG 模块文件（BBF、IETF、IANA、Nokia）
-- yang-library.xml（定义模块依赖和 deviation 关系）
-- 设备配置和默认值
-- 注解文件（PAE - Platform Annotation Extensions）
-- 样本 XML 数据
-
-**使用示例：**
-```python
-from lens_migration.parser import YangParser
-
-# 从 yang-library.xml 加载完整的 schema
-parser = YangParser("tests/device-extension-ls-mf-lwlt-c-26.3-028/yang")
-schema = parser.parse_from_library(
-    "tests/device-extension-ls-mf-lwlt-c-26.3-028/model/yang-library.xml"
-)
-
-# Schema 包含约 300+ 模块，包括所有 deviation 关系
-print(f"Loaded {len(schema.modules)} YANG modules")
-```
-
-详细说明请参考：`lens-migration-core/tests/device-extension-ls-mf-lwlt-c-26.3-028/README.md`
 
 ---
-
-### 1. 创建迁移项目
-
-```bash
-POST /api/v1/migrations
-{
-  "name": "Firmware v2.0 to v3.0",
-  "description": "Migrate from firmware 2.0 to 3.0",
-  "boardType": "board-type-a"
-}
-```
-
-### 2. 上传YANG Schema
-
-```bash
-POST /api/v1/migrations/{id}/schemas
-{
-  "oldSchema": "base64_encoded_yang_files",
-  "newSchema": "base64_encoded_yang_files",
-  "deviations": ["base64_encoded_deviation_files"]
-}
-```
-
-### 3. 上传迁移意图
-
-```bash
-POST /api/v1/migrations/{id}/intent
-{
-  "content": "将配置节点 'old-interface-name' 重命名为 'new-interface-name'..."
-}
-```
-
-### 4. 生成XSLT
-
-```bash
-POST /api/v1/migrations/{id}/generate
-```
-
-AI将分析Schema变化和迁移意图，自动生成XSLT转换文件。
-
-### 5. 生成测试用例
-
-```bash
-POST /api/v1/migrations/{id}/tests/generate
-```
-
-自动生成N-1版本的测试XML文件。
-
-### 6. 运行测试
-
-```bash
-POST /api/v1/migrations/{id}/tests/run
-```
-
-执行测试并生成报告。
-
-### 7. 下载XSLT
-
-```bash
-GET /api/v1/migrations/{id}/xslt
-```
-
-下载生成的XSLT转换文件。
-
-## 开发指南
-
-### 后端开发
-
-添加新的API endpoint:
-
-```java
-@RestController
-@RequestMapping("/api/v1/migrations")
-public class MigrationController {
-    
-    @PostMapping("/{id}/custom-action")
-    public ResponseEntity<?> customAction(@PathVariable String id) {
-        // 实现逻辑
-        return ResponseEntity.ok(result);
-    }
-}
-```
-
-### Python核心引擎
-
-添加新的分析器:
-
-```python
-from lens_migration.analyzer.base import BaseAnalyzer
-
-class CustomAnalyzer(BaseAnalyzer):
-    def analyze(self, schema):
-        # 实现分析逻辑
-        return analysis_result
-```
-
-### AI Prompt优化
-
-编辑AI提示模板:
-
-```python
-# lens_migration/ai/prompts.py
-XSLT_GENERATION_PROMPT = """
-你是YANG数据迁移专家...
-{schema_changes}
-{migration_intent}
-生成XSLT代码...
-"""
-```
-
-## 配置说明
-
-### Nacos配置项
-
-```yaml
-migration:
-  python:
-    executable: python3              # Python解释器
-    venv-path: /path/to/venv        # 虚拟环境路径
-  storage:
-    base-path: /var/lens/migration  # 存储根目录
-  ai:
-    provider: openai                 # AI提供商
-    api-key: ${AI_API_KEY}          # API密钥
-    model: gpt-4-turbo              # 模型名称
-    temperature: 0.3                 # 生成温度
-```
-
-### 环境变量
-
-```bash
-# .env文件
-MIGRATION_PORT=8044
-DB_HOST=localhost
-DB_PORT=33306
-DB_USERNAME=lens
-DB_PASSWORD=lens
-KEYCLOAK_URL=http://172.28.0.1:28080
-AI_API_KEY=your-api-key
-```
-
-## API认证
-
-使用OAuth2 Authorization Code流程:
-
-1. 打开Swagger UI
-2. 点击"Authorize"按钮
-3. 登录Keycloak（用户名/密码）
-4. 自动获取JWT token
-5. 所有API请求自动携带token
-
-客户端凭证已预配置:
-- Client ID: `lens-client`
-- Client Secret: `x6lEH0DMcT27eop2cszIP3Brc2sDQHLb`
-
-## 测试
-
-### 单元测试
-
-```bash
-cd lens-migration-backend
-mvn test
-```
-
-### 集成测试
-
-```bash
-cd lens-migration-core
-pytest tests/
-```
-
-## 部署
-
-### Docker部署
-
-```bash
-# 构建镜像
-cd lens-migration-backend
-docker build -t lens-migration-backend:latest .
-
-# 运行容器
-docker run -d \
-  -p 8044:8044 \
-  -e NACOS_SERVER=nacos-server:8848 \
-  -e DB_HOST=mariadb-server \
-  lens-migration-backend:latest
-```
-
-### Kubernetes部署
-
-```bash
-kubectl apply -f k8s/lens-migration-backend.yaml
-```
-
-## 监控
-
-访问Actuator endpoints:
-```
-http://localhost:8044/actuator/health
-http://localhost:8044/actuator/metrics
-http://localhost:8044/actuator/prometheus
-```
-
-## 常见问题
-
-### Q: Python引擎启动失败？
-
-检查Python环境和依赖:
-```bash
-source venv/bin/activate
-pip list
-python -c "import pyang; print('OK')"
-```
-
-### Q: AI生成失败？
-
-检查AI API配置:
-- API密钥是否正确
-- 网络是否可达AI服务
-- 查看日志获取详细错误
-
-### Q: XSLT验证失败？
-
-检查生成的XSLT语法:
-```bash
-xmllint --xslt generated.xslt
-```
 
 ## 路线图
 
-- [x] Phase 1: 基础框架和后端服务
-- [ ] Phase 2: Python核心引擎实现
-- [ ] Phase 3: AI集成和XSLT生成
-- [ ] Phase 4: 前端UI开发
-- [ ] Phase 5: 测试自动化
-- [ ] Phase 6: 生产环境优化
+| 阶段 | 关键交付物 | 状态 |
+|------|-----------|:----:|
+| Phase 0 — 基础架构 | 项目骨架、Maven 编译、Python 环境 | ✅ 完成 |
+| Phase 1 — 意图驱动 MVP | 规则引擎生成 XSLT，21/21 测试通过 | ✅ 完成 |
+| Phase 2 — AI 集成 | 多 Provider LLM，迭代修正，25/25 测试通过 | ✅ 完成 |
+| Phase 3 — Schema 驱动 | pyang 真实解析，Yang diff 分析 | ⬜ 未开始（骨架已有）|
+| Phase 4 — 测试框架 | 批量用例，CI 集成 | ⬜ 未开始 |
+| Phase 5 — 后端完整实现 | REST API 全覆盖，异步任务，DB 持久化 | 🔧 骨架完成 |
+| Phase 6 — 前端 UI | Vue 3 可视化操作全流程 | ⬜ 未开始 |
 
-## 贡献
-
-欢迎贡献代码！请遵循以下流程:
-
-1. Fork项目
-2. 创建feature分支
-3. 提交代码
-4. 发起Pull Request
-
-## 许可证
-
-[待定]
-
-## 联系方式
-
-- 项目负责人: Lens Team
-- 技术支持: lens-support@example.com
-- Issue跟踪: [GitHub Issues]
+详细路线图：[doc/migration/roadmap.md](../doc/migration/roadmap.md)
 
 ---
 
-**Last Updated**: 2026-02-28  
-**Version**: 0.1.0-alpha  
-**Status**: In Active Development
+**最后更新**：2026-03-04  
+**版本**：0.2.0-alpha（Phase 2 完成）
