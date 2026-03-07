@@ -41,9 +41,9 @@ OUTPUT_DIR    = BASE / "output"
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 # ── Ollama 环境变量（conftest.py 根据 OLLAMA_TARGET 自动设置）──────────────
-# OLLAMA_TARGET=remote → OLLAMA_MODEL=qwen2.5-coder:14b, OLLAMA_BASE_URL=http://localhost:11435/v1
+# OLLAMA_TARGET=remote → OLLAMA_MODEL=qwen3.5:35b,       OLLAMA_BASE_URL=http://localhost:11435/v1
 # OLLAMA_TARGET=local  → OLLAMA_MODEL=qwen2.5-coder:3b,  OLLAMA_BASE_URL=http://localhost:11434/v1
-_OLLAMA_MODEL  = os.environ.get("OLLAMA_MODEL",    "qwen2.5-coder:14b")
+_OLLAMA_MODEL  = os.environ.get("OLLAMA_MODEL",    "qwen3.5:35b")
 _OLLAMA_URL    = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1")
 
 

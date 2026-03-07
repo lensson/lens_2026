@@ -79,9 +79,9 @@ _GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
 _DASHSCOPE_KEY = os.environ.get("DASHSCOPE_API_KEY") or os.environ.get("QWEN_API_KEY")
 
 # Ollama：优先使用 conftest.py 根据 OLLAMA_TARGET 设置的 OLLAMA_MODEL / OLLAMA_BASE_URL
-# OLLAMA_TARGET=remote → localhost:11435 (SSH 隧道到 10.99.79.20，qwen2.5-coder:14b)
+# OLLAMA_TARGET=remote → localhost:11435 (SSH 隧道到 10.99.79.20，qwen3.5:35b)
 # OLLAMA_TARGET=local  → localhost:11434 (qwen2.5-coder:3b)
-_OLLAMA_MODEL_TEST   = os.environ.get("OLLAMA_MODEL",    "qwen2.5-coder:14b")
+_OLLAMA_MODEL_TEST   = os.environ.get("OLLAMA_MODEL",    "qwen3.5:35b")
 _OLLAMA_BASE_URL_TEST = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1")
 
 

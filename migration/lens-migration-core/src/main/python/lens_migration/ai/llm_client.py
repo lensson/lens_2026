@@ -373,23 +373,96 @@ class OllamaClient(LLMClient):
     def provider_name(self) -> str:
         return "ollama"
 
+    def _is_thinking_model(self) -> bool:
+        """判断是否为思考模型（qwen3.x / deepseek-r1 等）。"""
+        m = self.model.lower()
+        return m.startswith("qwen3") or m.startswith("deepseek-r1") or "thinking" in m
+
     def _do_chat(self, messages: List[ChatMessage], **kwargs) -> LLMResponse:
+        think = kwargs.get("think", False)
+        # 思考模型禁用 think 时，必须走原生 /api/chat
+        # OpenAI 兼容接口不支持 think 字段，extra_body 方式无效
+        if self._is_thinking_model() and not think:
+            return self._do_chat_native(messages, **kwargs)
+
+        # 普通模型 or think=True：走 OpenAI 兼容接口
         openai_messages = [{"role": m.role, "content": m.content} for m in messages]
         resp = self._client.chat.completions.create(
             model=self.model,
             messages=openai_messages,
             temperature=kwargs.get("temperature", 0.2),
-            max_tokens=kwargs.get("max_tokens", 4096),
+            max_tokens=kwargs.get("max_tokens", 16384),
         )
         choice = resp.choices[0]
+        raw_content = choice.message.content or ""
+        content = self._extract_final_content(raw_content)
+        if not content and raw_content:
+            logger.warning(f"[Ollama] 响应仅含推理链（截断），output_tokens="
+                           f"{resp.usage.completion_tokens if resp.usage else '?'}")
+            content = raw_content
         return LLMResponse(
-            content=choice.message.content or "",
+            content=content,
             model=resp.model,
             provider=self.provider_name,
             input_tokens=resp.usage.prompt_tokens if resp.usage else 0,
             output_tokens=resp.usage.completion_tokens if resp.usage else 0,
             raw=resp,
         )
+
+    def _do_chat_native(self, messages: List[ChatMessage], **kwargs) -> LLMResponse:
+        """
+        Ollama 原生 /api/chat 调用（非 OpenAI 兼容接口）。
+        用于思考模型禁用思考链（think=false），OpenAI 兼容接口不支持该字段。
+        已验证：curl .../api/chat -d '{"think":false,...}' → 7.5s 正常响应
+        """
+        try:
+            import httpx
+        except ImportError:
+            raise ImportError("请安装 httpx: pip install httpx")
+
+        base = self._base_url.rstrip("/")
+        if base.endswith("/v1"):
+            base = base[:-3]
+        url = f"{base}/api/chat"
+
+        payload = {
+            "model": self.model,
+            "think": False,
+            "stream": False,
+            "options": {"temperature": kwargs.get("temperature", 0.2)},
+            "messages": [{"role": m.role, "content": m.content} for m in messages],
+        }
+        logger.debug(f"[Ollama native] POST {url}  think=false  model={self.model}")
+
+        t0 = time.time()
+        http_resp = httpx.post(url, json=payload, timeout=300)
+        http_resp.raise_for_status()
+        data = http_resp.json()
+        latency_ms = (time.time() - t0) * 1000
+
+        content = self._extract_final_content(data.get("message", {}).get("content", ""))
+        output_tokens = data.get("eval_count", 0)
+        input_tokens  = data.get("prompt_eval_count", 0)
+        tps = output_tokens / (latency_ms / 1000) if latency_ms > 0 and output_tokens > 0 else 0
+        logger.info(f"[Ollama native] 完成，tokens={input_tokens}+{output_tokens}，"
+                    f"耗时={latency_ms:.0f}ms，tps={tps:.1f}")
+        return LLMResponse(
+            content=content,
+            model=self.model,
+            provider=self.provider_name,
+            input_tokens=input_tokens,
+            output_tokens=output_tokens,
+            raw=data,
+        )
+
+    @staticmethod
+    def _extract_final_content(text: str) -> str:
+        """剥离 <think>...</think> 推理链，返回最终答案。"""
+        import re
+        if "<think>" not in text:
+            return text.strip()
+        after = re.split(r"</think>", text, maxsplit=1)
+        return after[1].strip() if len(after) == 2 else ""
 
 
 # ─────────────────────────────────────────────────────────────────────────────

@@ -72,7 +72,7 @@ _TUNNEL_PROC = None
 if _TARGET == "remote":
     # 填充统一变量（供 OllamaClient 使用）
     if "OLLAMA_MODEL" not in os.environ:
-        os.environ["OLLAMA_MODEL"] = os.environ.get("OLLAMA_REMOTE_MODEL", "qwen2.5-coder:14b")
+        os.environ["OLLAMA_MODEL"] = os.environ.get("OLLAMA_REMOTE_MODEL", "qwen3.5:35b")
     if "OLLAMA_BASE_URL" not in os.environ:
         os.environ["OLLAMA_BASE_URL"] = os.environ.get("OLLAMA_REMOTE_URL", "http://localhost:11435/v1")
 

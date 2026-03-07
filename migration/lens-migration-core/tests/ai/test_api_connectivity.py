@@ -43,7 +43,7 @@ from lens_migration.ai.llm_client import (
 _GITHUB_TOKEN      = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
 _LOCAL_MODEL       = os.environ.get("OLLAMA_LOCAL_MODEL", "qwen2.5-coder:3b")
 _LOCAL_URL         = os.environ.get("OLLAMA_LOCAL_URL", "http://localhost:11434/v1")
-_REMOTE_MODEL      = os.environ.get("OLLAMA_REMOTE_MODEL", "qwen2.5-coder:14b")
+_REMOTE_MODEL      = os.environ.get("OLLAMA_REMOTE_MODEL", "qwen3.5:35b")
 _REMOTE_URL        = os.environ.get("OLLAMA_REMOTE_URL", "http://localhost:11435/v1")
 _TUNNEL_LOCAL_PORT = int(os.environ.get("OLLAMA_TUNNEL_LOCAL_PORT", "11435"))
 
@@ -297,7 +297,8 @@ class TestRemoteOllama:
         client = create_llm_client("ollama", model=_REMOTE_MODEL, base_url=_REMOTE_URL)
         question = "请解释 XSLT 中 xsl:template 和 xsl:apply-templates 的区别，用中文，不超过 60 字。"
         t0 = time.time()
-        resp = client.chat(question)
+        # 用 system_prompt 限制回答长度，防止思考模型过度推理
+        resp = client.chat(question, system_prompt="你是 XML 专家。简洁回答，不超过 60 字，禁止思考。")
         elapsed = (time.time() - t0) * 1000
 
         print(f"\n  ── 性能基准（远端 RTX 4090）──")
@@ -312,7 +313,7 @@ class TestRemoteOllama:
         print(f"  响应    : {resp.content}")
 
         assert resp.content
-        assert elapsed < 60_000, f"推理超时（{elapsed:.0f}ms > 60s）"
+        assert elapsed < 180_000, f"推理超时（{elapsed:.0f}ms > 180s）"
 
 
 # =============================================================================
