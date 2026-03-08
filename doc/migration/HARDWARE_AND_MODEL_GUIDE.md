@@ -1,6 +1,6 @@
 # 硬件配置与模型选型指南
 
-> 更新时间：2026-03-07
+> 更新时间：2026-03-07（全量测试 133 项）
 
 ---
 
@@ -36,23 +36,31 @@
 
 ## 2. 实测性能
 
-### 2.1 简单 Chat 性能（2026-03-07）
+### 2.1 简单 Chat 性能（2026-03-07，全量测试）
 
 测试问题：`请用中文一句话回答：XSLT 是什么？不要超过 20 字。`
 
 | Provider | Model | 冷加载延迟 | 热推理延迟 | 吞吐量（热） | 备注 |
 |---|---|---|---|---|---|
-| **GitHub Models** | gpt-4o-mini | — | ~2-3.8s | — | 云端 API，受网络波动 |
-| **Ollama 本地** | qwen2.5-coder:3b | ~24-37s | ~2.5-3.5s | 2.5 tokens/s | CPU only |
-| **Ollama 远程** | qwen2.5-coder:14b | ~1.9s | **321ms** | **196 tokens/s** | RTX 4090 |
-| **Ollama 远程** | qwen3.5:35b | ~6.5s | **784ms** | **40 tokens/s** | RTX 4090，思考模型 |
+| **GitHub Models** | gpt-4o-mini | — | ~2-4s | — | 云端 API，受网络波动 |
+| **Ollama 本地** | qwen2.5-coder:3b | ~24-37s | ~2.5-35s | 1.7 tokens/s | CPU only |
+| **Ollama 远程** | qwen2.5-coder:14b | ~2.0s | **395ms** | — | RTX 4090 |
+| **Ollama 远程** | qwen3.5:35b | ~7.0s | **853ms** | — | RTX 4090，think=false |
 
 性能基准（较长问题，`test_performance_benchmark`）：
 
 | 模型 | 总延迟 | Tokens | 吞吐量 |
 |---|---|---|---|
-| qwen2.5-coder:14b | **473ms** | 93 | **196 tokens/s** 🚀 |
-| qwen3.5:35b | **1007ms** | 101 | **100 tokens/s** |
+| qwen2.5-coder:14b | **471ms** | 94 | **199.4 tokens/s** 🚀 |
+| qwen3.5:35b | **922ms** | 97 | **105.2 tokens/s** |
+
+三 Provider 延迟对比（`test_performance_comparison`，热推理）：
+
+| 排名 | Provider | 延迟 | Tokens |
+|---|---|---|---|
+| 🥇 | 远端 qwen2.5-coder:14b | **340ms** | 67 |
+| 🥈 | GitHub gpt-4o-mini | ~1965-4112ms | 53 |
+| 🥉 | 本地 qwen2.5-coder:3b | ~9000-34000ms | 58 |
 
 ### 2.2 模型切换开销实测（2026-03-07）
 
@@ -72,49 +80,51 @@ Round 4  qwen3.5:35b       热推理：0.10s    推理：0.77s  总计：0.87s  
 - **同一 case 固定用一个模型**：切换开销可忽略
 - **推荐策略**：代码/XSLT 生成任务用 `qwen2.5-coder:14b`（速度快 2x），复杂推理/质量优先用 `qwen3.5:35b`
 
-### 2.3 两模型完整 AI Case 对比（2026-03-07）
+### 2.3 全量 AI Case 对比（2026-03-07，133 项）
 
-> 相同测试集：`TestRemoteOllama`（7项）+ `TestMigrationEngineOllamaLive`（1项）+ `TestOllamaLiveIntegration`（2项）= 共 10 项
+> 全量：`TestRemoteOllama`(7) + `TestThreeProviderComparison`(2) + `TestMigrationEngineOllamaLive`(1) + `TestOllamaLiveIntegration`(2) + `TestQwenLiveIntegration`(3,skip) + `TestSimpleClassifierE2E`(21) + `TestVlanOllama`(21) + `TestVlanGitHub`(20) + 单元测试(56)
 
-| 指标 | qwen2.5-coder:14b | qwen3.5:35b | 差异 |
-|---|---|---|---|
-| **simple_chat 延迟** | **764ms** | 7471ms（含冷加载） | 35b 慢 **9.8x** |
-| **simple_chat 延迟（热）** | **390ms** | **916ms** | 35b 慢 2.4x |
-| performance_benchmark 延迟 | **499ms** | 1101ms | 35b 慢 2.2x |
-| performance_benchmark 吞吐 | **196 t/s** | **100 t/s** | 14b 快 2x |
-| **XSLT 生成耗时（MigrationEngine）** | **5744ms** | 14645ms | 35b 慢 2.6x |
-| XSLT 生成 tokens | 2327 | 2478（多 6%） | 35b 更详细 |
-| **XSLT 生成耗时（OllamaLive）** | **5844ms** | 14716ms | 35b 慢 2.5x |
-| XSLT 生成轮次 | **1 轮** | **1 轮** | 持平 ✅ |
-| XSLT syntax 验证 | ✅ pass | ✅ pass | 持平 ✅ |
-| XSLT transform 验证 | ✅ pass | ✅ pass | 持平 ✅ |
-| 通过测试数 | **10/10** | **10/10** | 持平 ✅ |
-| **套件总耗时** | **15.1s** | 41.1s | 35b 慢 2.7x |
+**全量测试结果：14b 跑 133 项（130 passed, 3 skipped），35b 跑 57 Ollama 项（54 passed, 3 skipped）**
 
-**关键结论：**
-- **质量持平**：两个模型均 1 轮完成 XSLT 生成，syntax + transform 全部验证通过，无需多轮迭代
-- **速度差距**：14b 整体快 **2.5-2.7x**，XSLT 生成 5.7s vs 14.6s
-- **tokens 差**：35b 多生成约 151 tokens（+6%），内容更详尽但不影响正确性
-- **冷加载影响**：35b simple_chat 首次含 6.5s 冷加载（7.5s → 热加载后降至 916ms）
+| 指标 | GitHub gpt-4o-mini | qwen2.5-coder:14b | qwen3.5:35b | 备注 |
+|---|---|---|---|---|
+| **simple_chat（冷加载）** | — | 2039ms | 6998ms | 首次加载含切换 |
+| **simple_chat（热）** | ~1965-4112ms | **395ms** | **853ms** | 热推理 |
+| **performance_benchmark** | — | **471ms / 199 t/s** | 922ms / 105 t/s | — |
+| **phase2 XSLT 生成** | 5376ms / 2300 tok | 5859ms / 2337 tok | 13281ms / 2478 tok | MigrationEngine |
+| **vlan XSLT 生成** | 5086ms / 2848 tok | 5305ms / 2975 tok | 11896ms / 3191 tok | 热加载 |
+| **vlan 吞吐量** | 560 t/s | 561 t/s | 268 t/s | — |
+| **simple-classifier** | ✅ 21/21 | ✅ 21/21 | ✅ 21/21 | 规则引擎，无 AI |
+| **XSLT 生成轮次** | 1 轮 | 1 轮 | 1 轮 | 均首轮通过 |
+| **4 条 vlan 规则** | ✅ | ✅ | ✅ | — |
 
-### 2.4 vlan-policy-test 三模型对比（2026-03-07）
+**关键结论（全量）：**
+- **全量 133 项：14b 130 passed / 3 skipped，0 failed** ✅
+- **35b Ollama 57 项：54 passed / 3 skipped，0 failed** ✅（3 skipped 均为 Qwen Cloud API，未配置 KEY）
+- **速度**：14b benchmark **199 t/s**，35b **105 t/s**，14b 快 **1.9x**
+- **vlan 生成**：14b（5.3s）vs 35b（11.9s），14b 快 **2.2x**；35b vlan 因热加载已无冷启动开销
+- **质量**：三模型均 1 轮完成，所有语义验证通过，tokens 差异 ≤7%
+
+### 2.4 vlan-policy-test 三模型对比（2026-03-07，全量）
 
 > 测试集：`TestVlanOllama`（21 项）+ `TestVlanGitHub`（20 项）= 共 41 项
 
 | 指标 | GitHub gpt-4o-mini | qwen2.5-coder:14b | qwen3.5:35b |
 |---|---|---|---|
-| **XSLT 生成延迟** | **4852ms** | 15944ms | 47788ms |
-| **吞吐量** | **587 t/s** | **187 t/s** | 67 t/s |
-| tokens | 2848 | 2974 | 3191（最详细）|
+| **XSLT 生成延迟** | **5086ms** | **5305ms** | 11896ms（热加载）|
+| **吞吐量** | **560 t/s** | **561 t/s** | 268 t/s |
+| tokens | 2848 | 2975 | 3191（最详细）|
 | 生成轮次 | **1 轮** | **1 轮** | **1 轮** |
 | 4 条规则全通过 | ✅ | ✅ | ✅ |
 | 通过测试数 | 20/20 | 21/21 | 21/21 |
-| **套件总耗时** | — | **21.9s** | 53.6s |
+| **套件总耗时** | — | **21.9s** | ~35s（热） |
+
+> ℹ️ 35b vlan 延迟 **11.9s**（热加载，本轮模型已预热），较上次 47.8s（冷加载）大幅缩短。
 
 **结论：**
 - **质量完全一致**：三模型均 1 轮完成，4 条业务规则 100% 通过
-- **14b 比 35b 快 3.0x**（XSLT 生成），套件总耗时快 2.4x
-- **35b tokens 最多**（多 7%），内容更丰富，但验证结果无差异
+- **GitHub ≈ 14b**（~5s，~560 t/s），速度相当；**35b 慢 2.2x**（热加载）
+- **35b tokens 最多**（多 7%），内容更丰富，验证结果无差异
 - **日常开发首选 14b**；需要更高推理质量时换 35b
 
 ---
