@@ -8,11 +8,13 @@
 # 支持的页面（默认 Roadmap）:
 #   Roadmap  ←→  ../roadmap.md
 #   Request  ←→  ../request.md
+#   Hardware ←→  ../HARDWARE_AND_MODEL_GUIDE.md
 #
 # 用法:
-#   ./confluence-upload.sh                              # 上传 roadmap.md → Roadmap
-#   ./confluence-upload.sh -t Request -f ../request.md # 上传 request.md → Request
-#   ./confluence-upload.sh -u zhenac -p mypass         # 指定凭据
+#   ./confluence-upload.sh                                         # 上传 roadmap.md → Roadmap
+#   ./confluence-upload.sh -t Request -f ../request.md             # 上传 request.md → Request
+#   ./confluence-upload.sh -t Hardware -f ../HARDWARE_AND_MODEL_GUIDE.md  # 上传 hardware
+#   ./confluence-upload.sh -u zhenac -p mypass                     # 指定凭据
 #   CONFLUENCE_USER=zhenac CONFLUENCE_PASS=xxx ./confluence-upload.sh
 # ==============================================================================
 
@@ -51,8 +53,15 @@ done
 
 MD_FILE="$(realpath "$MD_FILE")"
 
-[ -z "$CONFLUENCE_USER" ] && read -rp "Confluence 用户名: " CONFLUENCE_USER
-[ -z "$CONFLUENCE_PASS" ] && { read -rsp "Confluence 密码: " CONFLUENCE_PASS; echo ""; }
+if [ -z "$CONFLUENCE_USER" ]; then
+    printf "Confluence 用户名: " > /dev/tty
+    read -r CONFLUENCE_USER < /dev/tty
+fi
+if [ -z "$CONFLUENCE_PASS" ]; then
+    printf "Confluence 密码: " > /dev/tty
+    read -rs CONFLUENCE_PASS < /dev/tty
+    echo "" > /dev/tty
+fi
 
 echo -e "\n${BLUE}══════════════════════════════════════════════════════${NC}"
 echo -e "${BLUE}  Confluence 上传${NC}"
