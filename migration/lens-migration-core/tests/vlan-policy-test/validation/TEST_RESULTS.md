@@ -230,24 +230,24 @@ GitHub vs 14b           持平（-0.4%）           GitHub≈14b
 
 ---
 
-## 性能对比（2026-03-07）
+## 性能对比（2026-03-07，全量测试）
 
 ```
 XSLT 生成任务（vlan-policy-test，Round 1）
 ─────────────────────────────────────────────────────────────────────
 Provider          Model                 Tokens  Latency    Throughput   套件耗时
-GitHub Models     gpt-4o-mini            2848    4852ms   587.0 t/s       —
-Ollama RTX 4090   qwen2.5-coder:14b      2974   15944ms   186.5 t/s    21.9s  ← 速度优先
-Ollama RTX 4090   qwen3.5:35b            3191   47788ms    66.8 t/s    53.6s  ← 质量优先
+GitHub Models     gpt-4o-mini            2848    5086ms   560.0 t/s       —
+Ollama RTX 4090   qwen2.5-coder:14b      2975    5305ms   560.8 t/s    21.9s  ← 速度优先
+Ollama RTX 4090   qwen3.5:35b            3191   11896ms   268.2 t/s    ~35s   ← 质量优先（热加载）
 ─────────────────────────────────────────────────────────────────────
-14b vs 35b        +217 tokens(+7%)      14b 快 3.0x                  14b 快 2.4x
-GitHub vs 14b     -126 tokens(-4%)    GitHub 快 3.3x
+GitHub vs 14b     持平（延迟差 4%，吞吐持平 ~560 t/s）
+14b vs 35b        +216 tokens(+7%)      14b 快 2.2x（热） / 9x（冷加载）
 ─────────────────────────────────────────────────────────────────────
 ```
 
 > **注**：吞吐量包含 prompt tokens（约 2400）和 output tokens（约 400-800）。
-> qwen3.5:35b tokens 最多（内容更丰富），但生成时间最长（47s，含 6.5s 冷加载切换开销）。
-> GitHub gpt-4o-mini 延迟最低（云端 API，无冷加载）；Ollama 14b 速度与质量综合最佳。
+> 35b 热加载延迟 11.9s，冷加载约 47.8s（见切换基准测试）。
+> GitHub gpt-4o-mini 和 qwen2.5-coder:14b 在本用例速度**完全相当**（~5s，~560 t/s）。
 
 ---
 
@@ -287,14 +287,14 @@ rm -f tests/vlan-policy-test/output/github-transform.xslt \
 | #2 | `eth0.200` vlan-id 也被改成 101 | 意图描述 XPath 过于宽泛 | 提供完整精确 XPath + 明确约束说明 |
 | #3 | 21/21 全部通过 ✅ | — | — |
 | 2026-03-06 | Ollama test_vlan_ollama 检测走本地端口 | `_check_ollama()` 硬编码 `localhost:11434` | 改用 `_OLLAMA_URL` 变量 |
+| 2026-03-07 | 全量测试 GitHub≈14b 速度持平 | 模型预热后 XSLT 热生成约 5s | — |
 
 ---
 
 ## 结论
 
 - **三种 Provider 首轮生成成功率均为 100%**，全部通过（20/20 GitHub + 21/21 Ollama×2）
-- **速度**：GitHub gpt-4o-mini（587 t/s）最快，14b（187 t/s）次之，35b（67 t/s）最慢
-- **XSLT 生成时间**：14b（15.9s）比 35b（47.8s）快 **3.0x**；GitHub（4.9s）最快
+- **速度**：GitHub gpt-4o-mini ≈ qwen2.5-coder:14b（~5s，~560 t/s），**两者持平**；35b（热）慢 2.2x
 - **质量持平**：三模型均 1 轮完成，4 条业务规则全部通过，tokens 差异 ≤7%
-- **推荐**：日常开发 → `qwen2.5-coder:14b`（速度快 3x，质量无差异）；质量审查 → `qwen3.5:35b`
+- **推荐**：日常开发 → `qwen2.5-coder:14b`（与 GitHub 速度持平，无 API 费用）；质量审查 → `qwen3.5:35b`
 - **架构验证**：`create_llm_client` 工厂模式完全可互换，测试代码零差异

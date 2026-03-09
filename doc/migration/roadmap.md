@@ -85,9 +85,14 @@
   - `TestXSLTRefiner`（7项）：首轮成功、二轮修正成功、max_rounds 耗尽、XSLT 提取逻辑
   - `TestMigrationEngineAI`（3项）：端到端 Mock 集成、字段完整性、非法 provider 错误处理
 - ✅ `vlan-policy-test`：4规则 VLAN XSLT 生成测试，`TestAIVlanPolicyGeneration`（GitHub）+ `TestOllamaVlanPolicyGeneration`（本地 Ollama）各20个断言
-- ✅ Ollama 本地模型推荐：`qwen3:8b`（默认）、`qwen3:4b`、`qwen2.5-coder:7b`；运行脚本：`run_ollama_test.sh`
+- ✅ Ollama 远端部署（RTX 4090，10.99.79.20）：`qwen2.5-coder:14b`（速度优先）+ `qwen3.5:35b`（质量优先），SSH 隧道自动管理
+- ✅ 全量测试（2026-03-07）：**133 项 / 130 passed / 3 skipped（Qwen Cloud API 未配置）/ 0 failed**
+  - GitHub gpt-4o-mini + qwen2.5-coder:14b：全量 133 项，120.7s
+  - qwen3.5:35b：Ollama 相关 57 项，126.7s
+  - 三模型均 1 轮完成 XSLT 生成，benchmark 吞吐：14b **199 t/s**，35b **105 t/s**
+  - vlan-policy-test：GitHub ≈ 14b（~5s，~560 t/s），35b 热加载 11.9s
 
-> **Ollama 模型说明**：Ollama 上没有 "qwen3.5"，Qwen 系列最新版叫 **qwen3**（2025.04 Alibaba 发布），Ollama tag 为 `qwen3:8b` / `qwen3:4b` 等。
+> **Ollama 模型说明**：Ollama 上没有 "qwen3.5"，Qwen 系列最新版叫 **qwen3**（2025.04 Alibaba 发布），Ollama tag 为 `qwen3:8b` / `qwen3:4b` 等。远端部署模型 `qwen3.5:35b` 为第三方量化版本。
 
 ---
 ## Phase 3 — Schema 驱动迁移（Yang 分析）📋
@@ -185,7 +190,7 @@
 |------|-----------|:----:|
 | Phase 0 — 基础架构 | 项目骨架、Maven 编译通过、Python 环境就绪 | ✅ 完成 |
 | Phase 1 — 意图驱动 MVP | simple-classifier-test **21/21** 通过、XSLT 生成、子包重构 | ✅ 完成 |
-| Phase 2 — AI 集成 | LLM 生成 XSLT，多轮迭代修正；本地 Ollama(qwen3:8b) + GitHub Models；**vlan-policy-test 20/20** | ✅ 完成 |
+| Phase 2 — AI 集成 | LLM 生成 XSLT，多轮迭代修正；GitHub Models + 远端 Ollama（qwen2.5-coder:14b / qwen3.5:35b）；**全量 133 项 130 passed / 3 skipped（2026-03-07）** | ✅ 完成 |
 | Phase 3 — Schema 驱动 | Yang 差异分析，自动生成迁移规则 | ⬜ 未开始（骨架已有） |
 | Phase 4 — 测试框架 | N-1 批量用例，CI 集成 | ⬜ 未开始 |
 | Phase 5 — 后端完整实现 | REST API 全覆盖，异步任务，DB 持久化 | 🔧 骨架完成，业务待实现 |
