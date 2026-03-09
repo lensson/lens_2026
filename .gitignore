@@ -14,7 +14,10 @@
 !migration/lens-migration-backend/lens-migration-backend.iml
 **/*.ipr
 **/*.iws
+# IDEA config - mostly ignored, but library defs for migration-backend must be tracked
 .idea/
+!.idea/libraries/
+!.idea/libraries/lens_migration_backend_Maven.xml
 **/npm-debug.log
 **/yarn-error.log
 **/build-info.json
