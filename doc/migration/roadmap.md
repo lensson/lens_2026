@@ -138,9 +138,41 @@
 ## Phase 5 — Java 后端完整实现 🔧
 
 ### 框架
-- ⬜ 迁移任务持久化（MariaDB JPA），支持历史记录查询
+- ✅ 迁移任务持久化（MariaDB JPA）— 数据库 `auto_migration` 已建立，7 张表完整建模
 - ⬜ 异步任务（Spring `@Async`），避免长时间生成阻塞 HTTP
 - ✅ 完整接入 Gateway + Nacos + OAuth2
+
+### 数据库建模（2026-03-09）✅
+
+数据库名：**`auto_migration`**（MariaDB，端口 33306，用户 lens）
+
+| 表名 | 实体类 | 说明 |
+|------|--------|------|
+| `migration_project` | `MigrationProject` | 迁移项目主表，记录设备型号、版本、AI配置、状态 |
+| `migration_schema` | `MigrationSchema` | Yang Schema 上传记录（支持 source/target 版本 + Deviation） |
+| `migration_example` | `MigrationExample` | XML 样本对（输入旧版本 + 期望输出新版本），含命名空间映射 |
+| `migration_intent` | `MigrationIntent` | 意图文档（Markdown），含解析后规则 JSON，支持多版本 |
+| `migration_artifact` | `MigrationArtifact` | 生成产物（XSLT/XML），含 AI 对话历史、Token 消耗、耗时 |
+| `migration_test_run` | `MigrationTestRun` | 测试执行批次，记录通过/失败/出错数量 |
+| `migration_test_case_result` | `MigrationTestCaseResult` | 单条样本对的验证结果，含 diff 详情 |
+
+**枚举类型：**
+- `MigrationStatus`：CREATED → SCHEMA_UPLOADED → INTENT_UPLOADED → GENERATING → GENERATED → TESTING → COMPLETED / FAILED
+- `MigrationType`：INTENT_DRIVEN / SCHEMA_DRIVEN / HYBRID
+- `AiProvider`：OPENAI / GITHUB / QWEN / DEEPSEEK / OLLAMA / NONE
+- `ArtifactType`：XSLT / YANG_SCHEMA / INPUT_XML / EXPECTED_XML / ACTUAL_XML / INTENT_DOC / TEST_REPORT
+- `TestStatus`：RUNNING / PASSED / FAILED / ERROR / SKIPPED
+
+**Repository 层（Spring Data JPA）：**
+- ✅ `MigrationProjectRepository`：按状态/设备/关键字查询
+- ✅ `MigrationSchemaRepository`：按版本/是否 Deviation/校验值查询
+- ✅ `MigrationExampleRepository`：按操作类型查询
+- ✅ `MigrationIntentRepository`：激活版本查询
+- ✅ `MigrationArtifactRepository`：激活版本/类型查询
+- ✅ `MigrationTestRunRepository`：最近执行/按状态查询
+- ✅ `MigrationTestCaseResultRepository`：按测试批次/状态查询
+
+**初始化文档：** `src/main/resources/db/schema-auto_migration.sql`（注释文档，ddl-auto=update 自动建表）
 
 ### 业务
 | 接口 | 说明 | 状态 |
@@ -159,11 +191,14 @@
 ### 技术
 - ✅ `MigrationController`：骨架已有（health check + createMigration + getMigration 占位）
 - ✅ `SecurityConfig`（JWT/JWK）、`OpenAPIConfig`（Swagger）已实现
-- ⬜ `domain/`：JPA 实体 `MigrationProject`、`MigrationArtifact`、`TestResult`
-- ⬜ `repository/`：Spring Data JPA Repository
+- ✅ `domain/`：7 个 JPA 实体 + `BaseEntity`（JPA Auditing）+ 5 个枚举
+- ✅ `repository/`：7 个 Spring Data JPA Repository，含常用查询方法
+- ✅ `config/JpaConfig`：启用 `@EnableJpaAuditing` + Repository 扫描
+- ✅ Nacos 配置更新：datasource URL 指向 `auto_migration`，含 HikariCP 连接池配置
 - ⬜ `service/MigrationService`：通过 `ProcessBuilder` 调用 Python，传参、捕获输出、解析 JSON
 - ⬜ 文件存储：上传的 Yang/XML/意图文档存至本地文件系统或对象存储
 - ⬜ Swagger：所有业务 API 补全 OpenAPI 注解
+- ⬜ `MigrationController` 完整实现（调用 Service 层）
 
 ---
 ## Phase 6 — 前端 UI 📋
@@ -193,15 +228,18 @@
 | Phase 2 — AI 集成 | LLM 生成 XSLT，多轮迭代修正；GitHub Models + 远端 Ollama（qwen2.5-coder:14b / qwen3.5:35b）；**全量 133 项 130 passed / 3 skipped（2026-03-07）** | ✅ 完成 |
 | Phase 3 — Schema 驱动 | Yang 差异分析，自动生成迁移规则 | ⬜ 未开始（骨架已有） |
 | Phase 4 — 测试框架 | N-1 批量用例，CI 集成 | ⬜ 未开始 |
-| Phase 5 — 后端完整实现 | REST API 全覆盖，异步任务，DB 持久化 | 🔧 骨架完成，业务待实现 |
+| Phase 5 — 后端完整实现 | REST API 全覆盖，异步任务，DB 持久化 | 🔧 数据库建模完成（auto_migration，7表），Service/Controller 待实现 |
 | Phase 6 — 前端 UI | Vue 3 可视化操作全流程 | ⬜ 未开始 |
 
 ---
-## 当前优先事项（进入 Phase 3）
-1. **Phase 3 启动**：`parser/yang_parser.py` 接入 `pyang` 真实解析，验证 `device-extension-ls-mf-lwlt-c-26.3-028` 数据集
-2. **Phase 3 推进**：`analyzer/schema_analyzer.py` 实现真实 diff 逻辑，生成结构化变更列表
-3. **Phase 5 推进**：`service/MigrationService.java` 实现 `callPythonCore()`，打通 Java → Python 调用链
-4. **更多测试用例**：基于 `tests/schema/` 下的真实 Yang + samples 创建第二个端到端测试用例
+## 当前优先事项（Phase 5 进行中）
+1. **Phase 5 推进（当前重点）**：
+   - ✅ 数据库 `auto_migration` 建立完毕（MariaDB）
+   - ✅ 7 个 JPA 实体 + 5 个枚举 + 7 个 Repository 编写完成，Maven 编译通过
+   - ⬜ 下一步：`service/MigrationService.java` 实现业务逻辑（从上传文件到触发 Python 核心）
+   - ⬜ 下一步：完善 `MigrationController` 接口，接入 Service 层
+2. **Phase 3 启动**：`parser/yang_parser.py` 接入 `pyang` 真实解析，验证 `device-extension-ls-mf-lwlt-c-26.3-028` 数据集
+3. **更多测试用例**：基于 `tests/schema/` 下的真实 Yang + samples 创建第二个端到端测试用例
 
 ---
-*最后更新：2026-03-04*
+*最后更新：2026-03-09*

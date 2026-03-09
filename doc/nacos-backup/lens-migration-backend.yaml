@@ -6,11 +6,15 @@ spring:
     name: lens-migration-backend
   
   datasource:
-    url: jdbc:mariadb://${DB_HOST:localhost}:${DB_PORT:33306}/lens_migration?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mariadb://${DB_HOST:localhost}:${DB_PORT:33306}/auto_migration?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
     username: ${DB_USERNAME:lens}
     password: ${DB_PASSWORD:lens}
     driver-class-name: org.mariadb.jdbc.Driver
-  
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 10
+      minimum-idle: 2
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -19,6 +23,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MariaDBDialect
         format_sql: true
+    open-in-view: false
 
 # Server Configuration
 server:
