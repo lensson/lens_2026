@@ -1,6 +1,7 @@
 package com.lens.migration.domain;
 
-import jakarta.persistence.*;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
 /**
@@ -14,11 +15,7 @@ import lombok.*;
  * 数据库：auto_migration
  * 表名：migration_intent
  */
-@Entity
-@Table(name = "migration_intent", indexes = {
-    @Index(name = "idx_intent_project_id", columnList = "project_id"),
-    @Index(name = "idx_intent_version", columnList = "project_id, version")
-})
+@TableName("migration_intent")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,36 +24,34 @@ import lombok.*;
 public class MigrationIntent extends BaseEntity {
 
     /**
-     * 所属迁移项目
+     * 所属迁移项目 ID
      */
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "project_id", nullable = false)
-    private MigrationProject project;
+    @TableField("project_id")
+    private Long projectId;
 
     /**
      * 意图文档版本号（每次上传自动递增）
      */
-    @Column(name = "version", nullable = false)
+    @TableField("version")
     @Builder.Default
     private Integer version = 1;
 
     /**
      * 意图文档文件名
      */
-    @Column(name = "file_name", nullable = false, length = 255)
+    @TableField("file_name")
     private String fileName;
 
     /**
      * 意图文档存储路径
      */
-    @Column(name = "storage_path", nullable = false, length = 500)
+    @TableField("storage_path")
     private String storagePath;
 
     /**
      * 意图文档完整内容（Markdown 文本，直接存入数据库便于检索）
-     * 使用 TEXT 类型，支持较长内容
      */
-    @Column(name = "content", columnDefinition = "TEXT")
+    @TableField("content")
     private String content;
 
     /**
@@ -64,26 +59,25 @@ public class MigrationIntent extends BaseEntity {
      * 格式示例：
      * [{"type":"RENAME","source_xpath":"...","target_xpath":"..."},...]
      */
-    @Column(name = "parsed_rules", columnDefinition = "TEXT")
+    @TableField("parsed_rules")
     private String parsedRules;
 
     /**
      * 解析出的规则数量（冗余字段，便于快速统计）
      */
-    @Column(name = "rules_count")
+    @TableField("rules_count")
     private Integer rulesCount;
 
     /**
      * 是否为当前激活版本（用于生成时选择最新意图）
      */
-    @Column(name = "is_active", nullable = false)
+    @TableField("is_active")
     @Builder.Default
     private Boolean isActive = true;
 
     /**
      * 备注
      */
-    @Column(name = "remark", length = 500)
+    @TableField("remark")
     private String remark;
 }
-

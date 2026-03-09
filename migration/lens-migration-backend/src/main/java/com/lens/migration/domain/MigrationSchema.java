@@ -1,6 +1,7 @@
 package com.lens.migration.domain;
 
-import jakarta.persistence.*;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
 /**
@@ -12,11 +13,7 @@ import lombok.*;
  * 数据库：auto_migration
  * 表名：migration_schema
  */
-@Entity
-@Table(name = "migration_schema", indexes = {
-    @Index(name = "idx_schema_project_id", columnList = "project_id"),
-    @Index(name = "idx_schema_version", columnList = "schema_version")
-})
+@TableName("migration_schema")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,60 +21,40 @@ import lombok.*;
 @Builder
 public class MigrationSchema extends BaseEntity {
 
-    /**
-     * 所属迁移项目
-     */
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "project_id", nullable = false)
-    private MigrationProject project;
+    /** 所属迁移项目 ID */
+    @TableField("project_id")
+    private Long projectId;
 
-    /**
-     * Yang 文件名（如 "ietf-interfaces@2018-02-20.yang"）
-     */
-    @Column(name = "file_name", nullable = false, length = 255)
+    /** Yang 文件名（如 "ietf-interfaces@2018-02-20.yang"） */
+    @TableField("file_name")
     private String fileName;
 
-    /**
-     * Yang 模块名称（如 "ietf-interfaces"）
-     */
-    @Column(name = "module_name", length = 200)
+    /** Yang 模块名称（如 "ietf-interfaces"） */
+    @TableField("module_name")
     private String moduleName;
 
-    /**
-     * Schema 版本标识（"source" = 旧版，"target" = 新版）
-     */
-    @Column(name = "schema_version", nullable = false, length = 20)
+    /** Schema 版本标识（"source" = 旧版，"target" = 新版） */
+    @TableField("schema_version")
     private String schemaVersion;
 
-    /**
-     * 是否为 Deviation Yang（覆盖层，针对特定板卡的差异描述）
-     */
-    @Column(name = "is_deviation", nullable = false)
+    /** 是否为 Deviation Yang（覆盖层，针对特定板卡的差异描述） */
+    @TableField("is_deviation")
     @Builder.Default
     private Boolean isDeviation = false;
 
-    /**
-     * 文件存储路径（相对于 storage.base-path）
-     */
-    @Column(name = "storage_path", nullable = false, length = 500)
+    /** 文件存储路径（相对于 storage.base-path） */
+    @TableField("storage_path")
     private String storagePath;
 
-    /**
-     * 文件大小（字节）
-     */
-    @Column(name = "file_size")
+    /** 文件大小（字节） */
+    @TableField("file_size")
     private Long fileSize;
 
-    /**
-     * 文件内容 MD5 校验值（防止重复上传）
-     */
-    @Column(name = "checksum", length = 64)
+    /** 文件内容 MD5 校验值（防止重复上传） */
+    @TableField("checksum")
     private String checksum;
 
-    /**
-     * 备注（如 "主模块" / "板卡 lwlt-c 的 deviation 层"）
-     */
-    @Column(name = "remark", length = 500)
+    /** 备注（如 "主模块" / "板卡 lwlt-c 的 deviation 层"） */
+    @TableField("remark")
     private String remark;
 }
-

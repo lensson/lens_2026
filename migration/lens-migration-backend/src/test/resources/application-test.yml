@@ -1,0 +1,41 @@
+# 测试环境配置 - 直连真实 auto_migration 数据库
+# 测试使用真实 MariaDB，避免与生产数据混合，测试后清理数据
+
+spring:
+  application:
+    name: lens-migration-backend-test
+  # 跳过 Nacos 配置导入（测试环境不需要）
+  cloud:
+    nacos:
+      config:
+        enabled: false
+      discovery:
+        enabled: false
+  config:
+    import: optional:nacos:lens-migration-backend.yaml
+  # 测试数据源 - 直连 auto_migration
+  datasource:
+    url: jdbc:mariadb://localhost:33306/auto_migration?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+    username: lens
+    password: lens
+    driver-class-name: org.mariadb.jdbc.Driver
+
+# 关闭 security 自动配置（Mapper 单测不需要鉴权上下文）
+spring.autoconfigure.exclude: >
+  org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration,
+  org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration
+
+# MyBatis-Plus 测试配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+
+logging:
+  level:
+    com.lens.migration: DEBUG
+    com.baomidou.mybatisplus: DEBUG
+

@@ -1,39 +1,33 @@
 package com.lens.migration.domain;
 
-import jakarta.persistence.*;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 /**
  * 所有实体的公共基类
  *
- * 提供主键（自增 Long）、创建时间、更新时间的统一审计字段。
- * 使用 Spring Data JPA Auditing 自动填充时间戳。
+ * 提供主键（自增 Long）、创建时间、更新时间的统一字段。
+ * 使用 MyBatis-Plus MetaObjectHandler 自动填充 createdAt / updatedAt。
  */
 @Getter
 @Setter
-@MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
 
     /** 主键，数据库自增 */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    /** 记录创建时间，自动填充 */
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
+    /** 记录创建时间，插入时自动填充 */
+    @TableField(value = "created_at", fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
 
-    /** 记录最后更新时间，自动填充 */
-    @LastModifiedDate
-    @Column(name = "updated_at", nullable = false)
+    /** 记录最后更新时间，插入和更新时自动填充 */
+    @TableField(value = "updated_at", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedAt;
 }
-
