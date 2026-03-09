@@ -9,8 +9,9 @@
 **/dist/
 **/node_modules/
 **/*~
-# all iml files
+# all iml files (except lens-migration-backend which must be tracked for IDEA classpath)
 **/*.iml
+!migration/lens-migration-backend/lens-migration-backend.iml
 **/*.ipr
 **/*.iws
 .idea/
