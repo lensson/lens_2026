@@ -17,7 +17,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan("com.lens.migration.repository")
+@MapperScan("com.lens.migration.mapper")
 public class LensMigrationBackend {
 
     public static void main(String[] args) {

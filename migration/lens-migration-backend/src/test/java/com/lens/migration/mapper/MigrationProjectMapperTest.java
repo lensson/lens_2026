@@ -5,7 +5,7 @@ import com.lens.migration.domain.MigrationProject;
 import com.lens.migration.domain.enums.AiProvider;
 import com.lens.migration.domain.enums.MigrationStatus;
 import com.lens.migration.domain.enums.MigrationType;
-import com.lens.migration.repository.MigrationProjectMapper;
+import com.lens.migration.mapper.MigrationProjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

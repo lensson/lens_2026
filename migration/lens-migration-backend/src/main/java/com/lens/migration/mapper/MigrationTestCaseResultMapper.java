@@ -1,4 +1,4 @@
-package com.lens.migration.repository;
+package com.lens.migration.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lens.migration.domain.MigrationTestCaseResult;
 import com.lens.migration.domain.enums.TestStatus;

@@ -2,7 +2,7 @@ package com.lens.migration.mapper;
 
 import com.lens.migration.domain.*;
 import com.lens.migration.domain.enums.*;
-import com.lens.migration.repository.*;
+import com.lens.migration.mapper.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
