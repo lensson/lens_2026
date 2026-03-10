@@ -12,8 +12,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -31,9 +31,9 @@ public class MigrationController {
     @PostMapping
     @Operation(summary = "创建迁移项目")
     public ResponseEntity<ApiResponse<MigrationProjectDTO.Response>> create(
-            @Valid @RequestBody MigrationProjectDTO.CreateRequest req,
-            @AuthenticationPrincipal Jwt jwt) {
-        String createdBy = jwt != null ? jwt.getSubject() : "anonymous";
+            @Valid @RequestBody MigrationProjectDTO.CreateRequest req) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String createdBy = (auth != null && auth.isAuthenticated()) ? auth.getName() : "anonymous";
         MigrationProjectDTO.Response resp = projectService.create(req, createdBy);
         return ResponseEntity.status(201).body(ApiResponse.created(resp));
     }
