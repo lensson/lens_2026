@@ -4,7 +4,7 @@
 spring:
   application:
     name: lens-migration-backend
-  
+
   datasource:
     url: jdbc:mariadb://${DB_HOST:localhost}:${DB_PORT:33306}/auto_migration?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
     username: ${DB_USERNAME:lens}
@@ -15,15 +15,11 @@ spring:
       maximum-pool-size: 10
       minimum-idle: 2
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: ${JPA_SHOW_SQL:false}
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MariaDBDialect
-        format_sql: true
-    open-in-view: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${KEYCLOAK_URL:http://172.28.0.1:28080}/realms/${KEYCLOAK_REALM:lens}/protocol/openid-connect/certs
 
 # Server Configuration
 server:
@@ -44,8 +40,9 @@ openapi:
 springdoc:
   api-docs:
     path: /v3/api-docs
+    enabled: true
   swagger-ui:
-    path: /swagger-ui.html
+    path: /swagger-ui/index.html
     url: /v2/lens/migration/v3/api-docs
     config-url: /v2/lens/migration/v3/api-docs/swagger-config
     oauth2-redirect-url: http://localhost:8050/v2/lens/migration/swagger-ui/oauth2-redirect.html
@@ -64,10 +61,6 @@ keycloak:
   url: ${KEYCLOAK_URL:http://172.28.0.1:28080}
   realm: ${KEYCLOAK_REALM:lens}
 
-# Security Configuration
-spring.security.oauth2.resourceserver.jwt:
-  jwk-set-uri: ${KEYCLOAK_URL:http://172.28.0.1:28080}/realms/${KEYCLOAK_REALM:lens}/protocol/openid-connect/certs
-
 # Migration Service Configuration
 migration:
   python:
@@ -80,9 +73,9 @@ migration:
     xslt-dir: ${STORAGE_PATH:/var/lens/migration}/xslt
     test-dir: ${STORAGE_PATH:/var/lens/migration}/tests
   ai:
-    provider: ${AI_PROVIDER:openai}
+    provider: ${AI_PROVIDER:github}
     api-key: ${AI_API_KEY:}
-    model: ${AI_MODEL:gpt-4-turbo}
+    model: ${AI_MODEL:gpt-4o}
     max-tokens: ${AI_MAX_TOKENS:4000}
     temperature: ${AI_TEMPERATURE:0.3}
 
@@ -91,7 +84,7 @@ logging:
   level:
     root: ${LOG_LEVEL_ROOT:INFO}
     com.lens: ${LOG_LEVEL_LENS:DEBUG}
-    org.springframework.security: ${LOG_LEVEL_SPRING_SECURITY:DEBUG}
+    org.springframework.security: ${LOG_LEVEL_SPRING_SECURITY:INFO}
 
 # Management & Actuator
 management:

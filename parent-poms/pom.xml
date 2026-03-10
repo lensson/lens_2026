@@ -57,7 +57,7 @@
         <swagger.ui.version>2.6.1</swagger.ui.version>
         <swagger.starter.version>3.0.0</swagger.starter.version>
 
-        <springdoc-openapi-starter-webmvc-ui.version>2.6.0</springdoc-openapi-starter-webmvc-ui.version>
+        <springdoc-openapi-starter-webmvc-ui.version>2.7.0</springdoc-openapi-starter-webmvc-ui.version>
 
         <!-- spring -->
         <spring-boot.version>3.4.5</spring-boot.version>
