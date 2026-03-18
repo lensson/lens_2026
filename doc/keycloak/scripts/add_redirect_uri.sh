@@ -41,7 +41,7 @@ TOKEN_RESPONSE=$(curl -sS -X POST "$TOKEN_URL" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=password&client_id=admin-cli&username=${ADMIN_USER}&password=${ADMIN_PASS}")
 
-ACCESS_TOKEN=$(echo "$TOKEN_RESPONSE" | jq -r .access_token // empty)
+ACCESS_TOKEN=$(echo "$TOKEN_RESPONSE" | jq -r '.access_token // empty')
 if [ -z "$ACCESS_TOKEN" ]; then
   echo "Failed to obtain admin token. Response:" >&2
   echo "$TOKEN_RESPONSE" >&2

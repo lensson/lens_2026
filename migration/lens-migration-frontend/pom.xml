@@ -18,8 +18,9 @@
     <description>YANG Migration Frontend - Web UI for migration management</description>
 
     <properties>
-        <node.version>v18.20.4</node.version>
-        <npm.version>10.7.0</npm.version>
+    <node.version>v22.22.1</node.version>
+    <npm.version>10.9.4</npm.version>
+    <frontend.src.dir>${project.basedir}/src</frontend.src.dir>
     </properties>
 
     <build>
@@ -31,7 +32,8 @@
                 <configuration>
                     <nodeVersion>${node.version}</nodeVersion>
                     <npmVersion>${npm.version}</npmVersion>
-                    <workingDirectory>src</workingDirectory>
+                    <workingDirectory>${frontend.src.dir}</workingDirectory>
+                    <installDirectory>${project.build.directory}</installDirectory>
                 </configuration>
                 <executions>
                     <execution>

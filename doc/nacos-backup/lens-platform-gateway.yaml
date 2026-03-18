@@ -9,6 +9,11 @@
 
 server:
   port: ${GATEWAY_PORT:8050}
+  servlet:
+    session:
+      cookie:
+        secure: false
+        same-site: Lax
 
 spring:
   application:
@@ -125,22 +130,6 @@ spring:
             - StripPrefix=4
             - AddRequestHeader=X-Forwarded-Prefix, /v2/lens/platform/monitor
 
-# OpenAPI Configuration
-openapi:
-  service:
-    title: Lens Platform Gateway API
-    version: ${OPENAPI_VERSION:2.0.0}
-    url: ${GATEWAY_URL:http://localhost:8050}
-
-# Keycloak Configuration
-keycloak:
-  url: ${KEYCLOAK_URL:http://172.28.0.1:28080}
-  realm: ${KEYCLOAK_REALM:lens}
-  # Admin credentials (for management operations if needed)
-  admin:
-    username: ${KEYCLOAK_ADMIN_USERNAME:admin}
-    password: ${KEYCLOAK_ADMIN_PASSWORD:admin}
-
         # Migration service Swagger routes
         - id: lens-migration-backend-swagger
           uri: lb://lens-migration-backend
@@ -156,10 +145,35 @@ keycloak:
           uri: lb://lens-migration-backend
           order: 100
           predicates:
-            - Path=/v2/lens/migration/**
+            - Path=/v2/lens/migration/api/**
           filters:
             - StripPrefix=3
             - AddRequestHeader=X-Forwarded-Prefix,/v2/lens/migration
+
+        # Migration frontend (SPA) - port 8060 (local dev & Docker)
+        - id: lens-migration-frontend
+          uri: http://localhost:8060
+          order: 200
+          predicates:
+            - Path=/v2/lens/migration/ui/**
+          filters:
+            - StripPrefix=4
+
+# OpenAPI Configuration
+openapi:
+  service:
+    title: Lens Platform Gateway API
+    version: ${OPENAPI_VERSION:2.0.0}
+    url: ${GATEWAY_URL:http://localhost:8050}
+
+# Keycloak Configuration
+keycloak:
+  url: ${KEYCLOAK_URL:http://172.28.0.1:28080}
+  realm: ${KEYCLOAK_REALM:lens}
+  # Admin credentials (for management operations if needed)
+  admin:
+    username: ${KEYCLOAK_ADMIN_USERNAME:admin}
+    password: ${KEYCLOAK_ADMIN_PASSWORD:admin}
 
 # Logging Configuration
 logging:

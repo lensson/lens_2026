@@ -21,7 +21,7 @@
     <modules>
         <module>lens-migration-backend</module>
         <!-- lens-migration-core is a Python project, configured separately -->
-        <!-- lens-migration-frontend: frontend scaffolding not yet created -->
+        <module>lens-migration-frontend</module>
     </modules>
 
 </project>

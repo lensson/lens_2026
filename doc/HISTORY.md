@@ -1,6 +1,61 @@
 # lens_2026 Project History
 
-## 2026-02-27: Fixed Service Startup Failure - Made Nacos Config Import Optional
+## 2026-03-11: Phase 6 — Migration Frontend SPA (Vue 3 + Element Plus)
+
+### Overview
+Built the initial SPA for `lens-migration-frontend` using **Vue 3 + Vite + Element Plus**.
+
+### Structure
+```
+lens-migration-frontend/
+├── src/                    # Vite project root (npm workdir)
+│   ├── src/
+│   │   ├── main.js         # Entry: ElementPlus + Pinia + Router
+│   │   ├── App.vue         # Layout shell (header + sidebar + router-view)
+│   │   ├── router/         # Vue Router 4 (history mode)
+│   │   ├── api/index.js    # Axios → /v2/lens/migration/api/v1
+│   │   ├── stores/         # Pinia store (project CRUD)
+│   │   └── views/
+│   │       ├── ProjectList.vue      # 项目列表 + 搜索/过滤/分页
+│   │       ├── ProjectCreate.vue    # 新建项目表单
+│   │       ├── ProjectDetail.vue    # 项目详情（描述信息）
+│   │       └── ProjectWorkbench.vue # 4-tab 工作台：Schema/样本/意图/XSLT生成
+│   └── vite.config.js      # port:9000, proxy /v2/lens/migration/api → gateway
+├── dist/                   # Build output (nginx serve root)
+├── Dockerfile              # node:22-alpine build + nginx:alpine serve
+└── nginx.conf              # listen 9000, SPA fallback, API proxy
+```
+
+### Features
+- **项目列表**：分页查询、状态/类型/关键字过滤、快速跳转工作台
+- **新建项目**：设备型号、版本、迁移类型、AI 提供商配置
+- **工作台（4步骤 Tab）**：
+  1. Yang Schema 管理（添加/删除，SOURCE/TARGET/Deviation）
+  2. XML 样本对管理（旧版本输入 + 新版本期望输出）
+  3. 意图文档编辑（Markdown，保存到后端）
+  4. XSLT 生成（选择 AI 提供商/模型/最大轮数，运行测试，预览/下载 XSLT）
+
+### Ports
+- 本地开发：`npm run dev` → **http://localhost:9000**
+- Docker 部署：container port **9000**
+- API proxy（本地）：`/v2/lens/migration/api` → `http://localhost:8050`
+
+### Build
+```bash
+cd migration/lens-migration-frontend/src
+npm install
+npm run dev    # dev server :9000
+npm run build  # dist/ output
+```
+
+### Docker
+```bash
+cd migration/lens-migration-frontend
+docker build -t lens-migration-frontend .
+docker run -p 9000:9000 lens-migration-frontend
+```
+
+
 
 ### Overview
 Fixed services failing to start when Nacos configuration cannot be loaded by making the config import optional.

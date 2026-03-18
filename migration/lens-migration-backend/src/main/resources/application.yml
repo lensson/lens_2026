@@ -13,15 +13,26 @@ spring:
         group: ${NACOS_GROUP:DEFAULT_GROUP}
         file-extension: yaml
         refresh-enabled: true
-    import: "nacos:lens-migration-backend.yaml?group=DEFAULT_GROUP&namespace=lens_2026&refresh=true"
   config:
-    import: "nacos:lens-migration-backend.yaml?group=DEFAULT_GROUP&namespace=lens_2026&refresh=true"
+    import: "optional:nacos:lens-migration-backend.yaml?group=DEFAULT_GROUP&namespace=lens_2026&refresh=true"
+
+  # Datasource defaults — overridden by Nacos config at runtime
+  datasource:
+    url: jdbc:mariadb://${DB_HOST:localhost}:${DB_PORT:33306}/auto_migration?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:lens}
+    password: ${DB_PASSWORD:lens}
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${KEYCLOAK_URL:http://172.28.0.1:28080}/realms/${KEYCLOAK_REALM:lens}/protocol/openid-connect/certs
 
 server:
-  port: 8060
-  forward-headers-strategy: framework
+  port: 8061
 
-# MyBatis-Plus 配置
+# MyBatis-Plus 本地默认配置（可被 Nacos 覆盖）
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
@@ -32,9 +43,3 @@ mybatis-plus:
       logic-delete-field: deleted
       logic-delete-value: 1
       logic-not-delete-value: 0
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info,metrics,prometheus

@@ -18,7 +18,8 @@
     <description>YANG Migration Backend Service - RESTful API for migration management</description>
 
     <dependencies>
-        <!-- Spring Boot Starters -->
+        <!-- Spring Cloud -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -30,10 +31,6 @@
         </dependency>
 
         <!-- Spring Cloud -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -71,7 +68,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>${springdoc-openapi-starter-webmvc-ui.version}</version>
+            <version>${springdoc.version}</version>
         </dependency>
 
         <!-- Lombok -->

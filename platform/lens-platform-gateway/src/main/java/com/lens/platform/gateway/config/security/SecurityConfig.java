@@ -8,6 +8,8 @@ import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.jwt.NimbusReactiveJwtDecoder;
 import org.springframework.security.oauth2.jwt.ReactiveJwtDecoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.web.server.authentication.HttpStatusServerEntryPoint;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
@@ -42,18 +44,30 @@ public class SecurityConfig {
                 .pathMatchers("/actuator/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/webjars/**").permitAll()
                 // Login and OAuth2 endpoints
                 .pathMatchers("/login/**", "/oauth2/**", "/logout").permitAll()
+                // API paths should require authentication
+                .pathMatchers("/v2/**").authenticated()
                 // All other requests require authentication
                 .anyExchange().authenticated()
             )
-            // Disable OAuth2 Login to prevent redirect for Swagger UI
-            // Users can still authenticate via Swagger UI's "Authorize" button
-            // .oauth2Login() - COMMENTED OUT to allow public Swagger UI access
+            // Enable OAuth2 Login so the gateway can handle the authorization code callback
+            // This will allow the gateway to exchange the authorization code for tokens and
+            // establish a session cookie for browser clients.
+            .oauth2Login();
 
-            // OAuth2 Resource Server - for JWT token validation from Swagger UI
-            .oauth2ResourceServer(oauth2 -> oauth2
+        // OAuth2 Resource Server - for JWT token validation from Swagger UI and APIs
+        http.oauth2ResourceServer(oauth2 -> oauth2
                 .jwt(jwt -> jwt.jwtDecoder(jwtDecoder()))
-            )
-            .csrf(ServerHttpSecurity.CsrfSpec::disable);
+        );
+
+        // Return 401 Unauthorized for unauthenticated API/XHR requests instead of redirecting
+        // the client to the authorization endpoint (which causes browsers to follow redirects
+        // inside XHR and fail due to CORS). This ensures XHR clients receive 401 and the
+        // browser-based SPA can perform a full top-level navigation to the Keycloak authorize
+        // endpoint when appropriate.
+        http.exceptionHandling(ex -> ex.authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)));
+
+        // Disable CSRF (for simplicity in this gateway setup)
+        http.csrf(ServerHttpSecurity.CsrfSpec::disable);
 
         return http.build();
     }

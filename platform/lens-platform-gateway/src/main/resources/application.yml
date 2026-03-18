@@ -8,6 +8,29 @@ server:
 spring:
   application:
     name: lens-platform-gateway
+  # Local OAuth2 client registration (fallback when Nacos is unavailable)
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${JWT_ISSUER_URI:http://localhost:28080/realms/lens}
+            authorization-uri: ${KEYCLOAK_URL:http://localhost:28080}/realms/${KEYCLOAK_REALM:lens}/protocol/openid-connect/auth
+            token-uri: ${KEYCLOAK_URL:http://localhost:28080}/realms/${KEYCLOAK_REALM:lens}/protocol/openid-connect/token
+            user-info-uri: ${KEYCLOAK_URL:http://localhost:28080}/realms/${KEYCLOAK_REALM:lens}/protocol/openid-connect/userinfo
+            jwk-set-uri: ${JWT_JWK_SET_URI:http://localhost:28080/realms/lens/protocol/openid-connect/certs}
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: ${KEYCLOAK_CLIENT_ID:lens-client}
+            client-secret: ${KEYCLOAK_CLIENT_SECRET:x6lEH0DMcT27eop2cszIP3Brc2sDQHLb}
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+              - profile
+              - email
   config:
     import:
       - optional:nacos:lens-platform-gateway.yaml?group=DEFAULT_GROUP&namespace=lens_2026&refresh=true

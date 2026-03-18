@@ -20,6 +20,7 @@ WORK_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 OUT_DIR="$WORK_DIR/frontend-dist"
 NGINX_CONF="$OUT_DIR/default.conf"
 CONTAINER_NAME="lens-frontend-nginx"
+# inside the container this hostname will be mapped to the host gateway IP
 HOST_GATEWAY_HOSTNAME="host.docker.internal"
 HOST_GATEWAY_PORT=8050
 LISTEN_PORT=8060
@@ -65,12 +66,23 @@ fi
 rm -rf "$OUT_DIR"
 mkdir -p "$OUT_DIR"
 
-BUILT_DIR="$FRONTEND_DIR/$BUILD_DIR_NAME"
-if [ -d "$BUILT_DIR" ]; then
-  echo "Copying build output from $BUILT_DIR -> $OUT_DIR"
-  cp -r "$BUILT_DIR"/* "$OUT_DIR"/
-else
-  echo "Warning: build output directory not found ($BUILT_DIR)."
+# Vite sometimes emits dist/ at the frontend root (../dist) instead of inside src/
+BUILT_DIR_CANDIDATES=(
+  "$FRONTEND_DIR/$BUILD_DIR_NAME"
+  "$(dirname "$FRONTEND_DIR")/$BUILD_DIR_NAME"
+)
+COPIED=0
+for BUILT_DIR in "${BUILT_DIR_CANDIDATES[@]}"; do
+  if [ -d "$BUILT_DIR" ]; then
+    echo "Copying build output from $BUILT_DIR -> $OUT_DIR"
+    cp -r "$BUILT_DIR"/* "$OUT_DIR"/
+    COPIED=1
+    break
+  fi
+done
+
+if [ $COPIED -ne 1 ]; then
+  echo "Warning: build output directory not found in any of: ${BUILT_DIR_CANDIDATES[*]}"
   echo "If you are running dev server instead of building, consider using the '--no-docker' option and run dev locally."
   # Still create a minimal index.html to avoid nginx 404
   cat > "$OUT_DIR/index.html" <<'HTML'
